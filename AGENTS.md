@@ -171,6 +171,8 @@ Useful scoped Turbo invocation pattern:
 
 - Publishing is manual-first and maintainer-controlled.
 - Publishing is allowed only in GitHub Actions trusted publishing workflow (`.github/workflows/release.yml`).
+- Non-dry-run (`dry_run=false`) release executions require explicit maintainer approval in GitHub Actions before publish steps proceed.
+- When triggering a non-dry-run release via `gh workflow run`, agents must immediately notify the maintainer to approve the run manually and include the run URL.
 - Do not add push/merge/tag-triggered publish automation.
 - Release streams use a two-channel model: `next` (prerelease) and `stable`, both published from `main`.
 - Channel and ref must match exactly: `next->main`, `stable->main`.
