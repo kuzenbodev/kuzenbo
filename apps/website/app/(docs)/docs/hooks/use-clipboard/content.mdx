@@ -1,0 +1,133 @@
+---
+title: "useClipboard"
+description: "Copy text with status lifecycle, accessibility announcements, and optional legacy execCommand fallback."
+section: "hooks"
+package: "hooks"
+status: "stable"
+order: 6
+surface: "hook"
+seoTitle: "useClipboard | Kuzenbo Docs"
+seoDescription: "Use useClipboard to copy values with explicit status/error state, ARIA announcements, and optional legacy fallback behavior."
+ogImage: "/docs-og/hooks/use-clipboard"
+ogImageAlt: "useClipboard documentation"
+aliases:
+  - "/docs/hooks/browser/use-clipboard"
+---
+
+## Overview
+
+`useClipboard` wraps clipboard writes with a predictable async contract:
+
+- status lifecycle (`idle -> copying -> copied|failed`)
+- typed `errorCode` values for unavailable permission/runtime cases
+- `announcement` and `announcementProps` for screen-reader feedback
+- optional legacy fallback (`document.execCommand("copy")`)
+
+## Installation
+
+```npm
+npm i @kuzenbo/hooks
+```
+
+## Import
+
+```tsx
+import { useClipboard } from "@kuzenbo/hooks";
+```
+
+## API
+
+`useClipboard(options?)` accepts:
+
+- `copiedDurationMs?: number` (default `1600`)
+- `failedDurationMs?: number` (default `2200`)
+- `useLegacyFallback?: boolean` (default `false`)
+
+It returns:
+
+- `status: "idle" | "copying" | "copied" | "failed"`
+- `errorCode: "clipboard-unavailable" | "permission-denied" | "write-failed" | "fallback-failed" | null`
+- `announcement: string`
+- `announcementProps: { role: "status"; "aria-live": "polite" | "assertive"; "aria-atomic": true; children: string }`
+- `copy: (value: string) => Promise<{ ok: boolean; status; errorCode }>`
+- `reset: () => void`
+
+## Example: copy button with a11y announcements
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { useClipboard } from "@kuzenbo/hooks";
+
+export function ClipboardButtonExample() {
+  const [value, setValue] = useState("npm i @kuzenbo/hooks");
+  const { status, errorCode, announcementProps, copy, reset } = useClipboard();
+
+  return (
+    <section className="space-y-3">
+      <label className="text-sm text-muted-foreground" htmlFor="copy-value">
+        Clipboard value
+      </label>
+      <input
+        className="h-9 w-full rounded-md border border-border bg-background px-3 text-sm"
+        id="copy-value"
+        onChange={(event) => setValue(event.currentTarget.value)}
+        value={value}
+      />
+
+      <div className="flex gap-2">
+        <button
+          className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-3 text-sm text-primary-foreground"
+          disabled={status === "copying"}
+          onClick={async () => {
+            await copy(value);
+          }}
+          type="button"
+        >
+          {status === "copying" ? "Copying..." : "Copy"}
+        </button>
+        <button
+          className="inline-flex h-9 items-center justify-center rounded-md border border-border px-3 text-sm"
+          onClick={reset}
+          type="button"
+        >
+          Reset
+        </button>
+      </div>
+
+      <p className="text-sm text-muted-foreground">
+        Status: <strong>{status}</strong>
+        {errorCode ? ` (${errorCode})` : ""}
+      </p>
+
+      <span className="sr-only" {...announcementProps} />
+    </section>
+  );
+}
+```
+
+## Fallback behavior
+
+When `copy(value)` runs:
+
+| Scenario                                 | `useLegacyFallback: false`                                                                           | `useLegacyFallback: true`                                                         |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `navigator.clipboard.writeText` succeeds | returns `ok: true`, status `copied`                                                                  | same                                                                              |
+| Clipboard API throws                     | status `failed`, mapped error code (`permission-denied`, `clipboard-unavailable`, or `write-failed`) | attempts `execCommand("copy")`; success => `copied`, failure => `fallback-failed` |
+| Clipboard API missing                    | status `failed`, `clipboard-unavailable`                                                             | attempts `execCommand("copy")`; success => `copied`, failure => `fallback-failed` |
+
+The hook auto-resets `copied`/`failed` states after the configured duration.
+
+## SSR and RSC notes
+
+- Client-only hook: it depends on `navigator` and optional DOM fallback APIs.
+- Safe for SSR bundles because browser globals are read only inside runtime callbacks.
+- Use from Client Components only; do not call in React Server Components.
+
+## Related docs
+
+- [useFullscreen](/docs/hooks/use-fullscreen)
+- [useIsomorphicEffect](/docs/hooks/use-isomorphic-effect)
+- [Hooks Index](/docs/hooks)

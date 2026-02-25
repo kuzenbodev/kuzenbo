@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "../../.oxlintrc.json",
+    "../../node_modules/ultracite/config/oxlint/react/.oxlintrc.json",
+    "../../node_modules/ultracite/config/oxlint/next/.oxlintrc.json"
+  ],
+  "rules": {
+    "eslint-plugin-react/no-danger": "off"
+  },
+  "ignorePatterns": [".source"]
+}

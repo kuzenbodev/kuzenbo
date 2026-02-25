@@ -1,0 +1,100 @@
+---
+title: "usePlotArea"
+description: "Read the computed plot-area rectangle (x, y, width, height) from Recharts chart state."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 17
+surface: "hook"
+seoTitle: "usePlotArea | Kuzenbo Docs"
+seoDescription: "Use usePlotArea to position custom chart overlays using the exact computed plot rectangle."
+ogImage: "/docs-og/hooks/use-plot-area"
+ogImageAlt: "usePlotArea documentation"
+---
+
+## What this hook does
+
+`usePlotArea` is a Recharts v3 layout hook re-exported by `@kuzenbo/charts`.
+It returns the computed plot-area rectangle where data marks are rendered.
+
+## Reads and writes
+
+- Reads: plot-area rectangle from Recharts chart state.
+- Writes: nothing. This hook is read-only.
+
+## When to use it
+
+- Position SVG overlays exactly over rendered chart marks.
+- Clip custom annotations to the visible plotting region.
+- Place labels using chart-relative coordinates.
+
+## Import
+
+```tsx
+import { usePlotArea } from "@kuzenbo/charts";
+```
+
+## Example: draw an overlay inside the plot area
+
+```tsx
+"use client";
+
+import { usePlotArea } from "@kuzenbo/charts";
+
+export function PlotAreaOverlay() {
+  const plotArea = usePlotArea();
+
+  if (!plotArea) {
+    return null;
+  }
+
+  return (
+    <g>
+      <rect
+        fill="none"
+        height={plotArea.height}
+        stroke="var(--border)"
+        strokeDasharray="4 4"
+        width={plotArea.width}
+        x={plotArea.x}
+        y={plotArea.y}
+      />
+    </g>
+  );
+}
+```
+
+## Example: center point calculation
+
+```tsx
+const plotArea = usePlotArea();
+
+const center =
+  plotArea === undefined
+    ? null
+    : {
+        x: plotArea.x + plotArea.width / 2,
+        y: plotArea.y + plotArea.height / 2,
+      };
+```
+
+## Return contract and edge cases
+
+- Type: `PlotArea | undefined`
+- `PlotArea` includes `{ x, y, width, height }` in chart-local pixels.
+- Returns `undefined` outside chart context.
+- Returns `undefined` until plot metrics are available.
+- Coordinates are based on chart layout and offset, not viewport scroll position.
+
+## SSR and RSC caveats
+
+- Use in Client Components rendered under chart context.
+- Always null-check before using geometry values.
+- Keep fallback rendering deterministic while layout state initializes.
+
+## Related docs
+
+- [useOffset](/docs/hooks/use-offset)
+- [useChartWidth](/docs/hooks/use-chart-width)
+- [useChartHeight](/docs/hooks/use-chart-height)
+- [Hooks Index](/docs/hooks)

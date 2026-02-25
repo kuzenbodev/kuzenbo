@@ -1,0 +1,161 @@
+---
+title: "Typography"
+description: "Semantic typography primitives and aliases for consistent text hierarchy in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 88
+surface: "component"
+seoTitle: "Typography | Kuzenbo Docs"
+seoDescription: "Semantic typography primitives and aliases for consistent text hierarchy in @kuzenbo/core."
+ogImage: "/docs-og/components/typography"
+ogImageAlt: "Typography documentation"
+aliases:
+  - "/docs/components/display/typography"
+---
+
+## Typography at a Glance
+
+`Typography` is Kuzenbo's semantic text system.
+It exposes canonical primitives (`Typography.Text`, `Typography.Heading`) plus aliases (`Typography.H1`, `Typography.P`, `Typography.Link`, and more).
+
+Use these primitives instead of ad-hoc text utility classes to keep hierarchy and tone consistent across the system.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Code,
+  Typography,
+  TypographyBlockquote,
+  TypographyBody,
+  TypographyCaption,
+  TypographyDisplay,
+  TypographyEyebrow,
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyH5,
+  TypographyH6,
+  TypographyHeading,
+  typographyHeadingVariants,
+  TypographyLead,
+  TypographyLi,
+  TypographyLink,
+  TypographyMuted,
+  TypographyOl,
+  TypographyOverline,
+  TypographyP,
+  TypographySmall,
+  TypographySubheading,
+  TypographyText,
+  typographyTextVariants,
+  TypographyUl,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Typography } from "@kuzenbo/core";
+
+export function TypographyBasic() {
+  return (
+    <article className="space-y-3">
+      <Typography.H2>Release Notes</Typography.H2>
+      <Typography.P>
+        This release improves chart tooltips, keyboard focus states, and docs
+        navigation.
+      </Typography.P>
+      <Typography.Muted>Updated 2 days ago</Typography.Muted>
+    </article>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { Code, Typography } from "@kuzenbo/core";
+
+export function TypographyAdvanced() {
+  return (
+    <section className="space-y-4">
+      <Typography.Heading render={<h3 />} variant="h2">
+        Visual hierarchy with custom semantic tag
+      </Typography.Heading>
+
+      <Typography.Text render={<span />} variant="caption">
+        Inline caption rendered as span for compact UI rows.
+      </Typography.Text>
+
+      <Typography.Body>
+        Use <Code>Code</Code> for inline code and{" "}
+        <Typography.Link href="/docs/getting-started">
+          Typography.Link
+        </Typography.Link>{" "}
+        for inline navigation.
+      </Typography.Body>
+
+      <Typography.Ul>
+        <Typography.Li>Keep heading levels sequential.</Typography.Li>
+        <Typography.Li>
+          Prefer semantic variants over custom text classes.
+        </Typography.Li>
+      </Typography.Ul>
+    </section>
+  );
+}
+```
+
+## API Details
+
+- Canonical primitives:
+  `Typography.Text` (text variants) and `Typography.Heading` (heading variants).
+- Heading aliases:
+  `Typography.H1` through `Typography.H6`, `Typography.Display`, `Typography.Subheading`.
+- Text aliases:
+  `Typography.Body`, `Typography.Lead`, `Typography.Muted`, `Typography.Small`, `Typography.Caption`, `Typography.Overline`, `Typography.Eyebrow`.
+- Prose/content helpers:
+  `Typography.P`, `Typography.Blockquote`, `Typography.Link`, `Typography.Ul`, `Typography.Ol`, `Typography.Li`.
+- Standalone inline/block code primitive:
+  `Code`.
+- Variant helpers:
+  `typographyHeadingVariants` and `typographyTextVariants` for controlled extension.
+
+## Accessibility
+
+- Keep heading hierarchy logical for screen-reader outline navigation.
+- Preserve semantic list markup (`Ul/Ol/Li`) for grouped instructions.
+- Ensure links remain discoverable with clear text and sufficient contrast.
+
+## SSR and RSC Notes
+
+- Typography primitives are server-safe and work well in RSC-heavy layouts.
+- Use `render` only when you intentionally need a different semantic tag without losing variant styling.
+
+## Styling and Tokens
+
+- Typography variants are built on semantic tokens (`text-foreground`, `text-muted-foreground`).
+- Prefer component variants over direct utility typography overrides.
+- If you must customize, layer `className` onto primitives so slot metadata remains intact.
+
+## Troubleshooting
+
+- If the wrong HTML tag renders, check alias defaults and `render` overrides.
+- If styles differ between aliases and canonical variants, verify `variant` mapping.
+- If link styles look missing, ensure you are using `Typography.Link` rather than raw anchors.
+
+## Related Docs
+
+- [Color Primitives](/docs/foundations/color-primitives)
+- [Code](/docs/components/code)
+- [Typography System](/docs/foundations/typography-system)
+- [Composition Patterns](/docs/patterns/composition)

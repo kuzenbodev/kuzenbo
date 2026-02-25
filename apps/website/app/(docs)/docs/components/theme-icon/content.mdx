@@ -1,0 +1,135 @@
+---
+title: "Theme Icon"
+description: "Use @kuzenbo/core ThemeIcon for icon containers with semantic variant tokens, size controls, and render-prop element composition."
+section: "components"
+package: "core"
+status: "stable"
+order: 81
+surface: "component"
+seoTitle: "Theme Icon | Kuzenbo Docs"
+seoDescription: "Use @kuzenbo/core ThemeIcon for icon containers with semantic variant tokens, size controls, and render-prop element composition."
+ogImage: "/docs-og/components/theme-icon"
+ogImageAlt: "Theme Icon documentation"
+aliases:
+  - "/docs/components/display/theme-icon"
+---
+
+## Purpose
+
+`ThemeIcon` is a compact icon container in `@kuzenbo/core` with semantic variants and consistent sizing. It is useful for status chips, icon-only affordances, and decorated list items where icon styling should follow the design system.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { ThemeIcon, themeIconVariants } from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { ThemeIcon } from "@kuzenbo/core";
+
+export function StatusIcon() {
+  return (
+    <ThemeIcon aria-hidden size="sm" variant="success">
+      <svg fill="none" height="16" viewBox="0 0 24 24" width="16">
+        <path
+          d="M5 12l4 4L19 6"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    </ThemeIcon>
+  );
+}
+```
+
+## Advanced usage: render prop composition and variant matrix
+
+`ThemeIcon` supports Base UI `render` composition for changing the underlying element.
+
+```tsx
+import { ThemeIcon, themeIconVariants } from "@kuzenbo/core";
+
+const variants = [
+  "default",
+  "outline",
+  "warning",
+  "danger",
+  "info",
+  "success",
+] as const;
+
+export function ThemeIconExamples() {
+  return (
+    <div className="space-y-4">
+      <ThemeIcon
+        render={<a href="/docs/components/theme-icon" />}
+        size="lg"
+        variant="link"
+      >
+        ?
+      </ThemeIcon>
+
+      <div className="flex flex-wrap gap-2">
+        {variants.map((variant) => (
+          <ThemeIcon key={variant} variant={variant}>
+            {variant.slice(0, 1).toUpperCase()}
+          </ThemeIcon>
+        ))}
+      </div>
+
+      <code className="block text-xs text-muted-foreground">
+        {themeIconVariants({ size: "xl", variant: "secondary" })}
+      </code>
+    </div>
+  );
+}
+```
+
+## API reference
+
+- `ThemeIcon`
+  Main component.
+  Variants: `default`, `outline`, `secondary`, `ghost`, `link`, `warning`, `danger`, `info`, `success`.
+  Sizes: `xs`, `sm`, `md` (default), `lg`, `xl`.
+  Supports `render` prop composition for custom element tags.
+- `themeIconVariants`
+  Tailwind Variants helper mirroring component variant and size contracts.
+
+## Accessibility notes
+
+- Decorative icons should be `aria-hidden`.
+- Interactive icon containers should render semantic interactive elements (`button`, `a`) via `render` and include readable labels.
+- Do not rely on color alone for status communication; pair with text when status is important.
+
+## SSR and RSC notes
+
+`ThemeIcon` is a client export and should be rendered inside Client Components when used with interactive render targets.
+
+## Styling and semantic tokens
+
+`ThemeIcon` variants are built on semantic tokens (`bg-primary`, `text-primary-foreground`, status tokens, and border tokens). Prefer extending with semantic utilities and avoid raw palette classes.
+
+## Troubleshooting
+
+- Icon looks off-center:
+  Ensure child SVG has no conflicting width/height utilities.
+- Variant appears wrong in dark mode:
+  Confirm you are using a supported variant name and not overriding with raw colors.
+- Click behavior missing:
+  Use `render` to supply an interactive element and attach handlers there.
+
+## Related links
+
+- [Badge](/docs/components/badge)
+- [Button](/docs/components/button)
+- [Avatar](/docs/components/avatar)

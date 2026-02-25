@@ -1,0 +1,69 @@
+---
+title: "Styling"
+description: "Theme tokens, optional baseline styles, and how to use semantic colors."
+section: "getting-started"
+package: "styles"
+status: "stable"
+order: 7
+surface: "guide"
+seoTitle: "Styling | Kuzenbo Docs"
+seoDescription: "Understand what @kuzenbo/styles/recommended.css adds and when to use it."
+ogImage: "/docs-og/getting-started/styling"
+ogImageAlt: "Kuzenbo styling guide"
+---
+
+## How styling works
+
+Kuzenbo has two layers:
+
+- **Theme tokens** — from `@kuzenbo/theme`, define colors, spacing, and component styles
+- **Optional baseline** — from `@kuzenbo/styles/recommended.css`, adds global polish
+
+## What you get with `recommended.css`
+
+The baseline file adds:
+
+- Theme-aware native UI color-scheme behavior (`light`/`dark`)
+- Scrollbar polish using theme border tokens with pointer-aware sizing
+- Consistent focus-visible rings with compatibility fallback
+- Font smoothing and tap highlight tweaks
+- Smooth scrolling (pauses when modals lock scroll, respects reduced motion)
+- Root overscroll behavior and stable scrollbar gutter
+- Long-text wrapping protection for common content elements
+- Link underline readability defaults
+- High-contrast semantic text selection colors
+- Optional sticky-header offset hook (`--kb-anchor-offset`) for hash/focus navigation
+
+## Import order
+
+Theme CSS must load first so tokens are in place before baseline overrides:
+
+```tsx
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+```
+
+For sticky app headers, define a single offset value:
+
+```css
+:root {
+  --kb-anchor-offset: 5rem;
+}
+```
+
+## When to skip `@kuzenbo/styles`
+
+If you already have your own global baseline (scrollbars, focus styles, etc.), skip `recommended.css`. Keep the theme CSS and use your own globals.
+
+## Use semantic tokens
+
+Prefer semantic tokens so themes stay consistent:
+
+- `bg-background` — page background
+- `text-foreground` — primary text
+- `border-border` — borders
+- `text-muted-foreground` — secondary text
+
+Avoid raw palette classes (`text-gray-500`, `bg-slate-900`) so dark mode and theme changes work correctly.
+
+If styles look off across pages, check import order and any palette overrides.

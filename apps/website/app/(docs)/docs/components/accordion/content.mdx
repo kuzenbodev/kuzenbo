@@ -1,0 +1,190 @@
+---
+title: "Accordion"
+description: "Build expandable sections with @kuzenbo/core Accordion, including variant contracts and composition patterns for dense settings UIs."
+section: "components"
+package: "core"
+status: "stable"
+order: 2
+surface: "component"
+seoTitle: "Accordion | Kuzenbo Docs"
+seoDescription: "Build expandable sections with @kuzenbo/core Accordion, including variant contracts and composition patterns for dense settings UIs."
+ogImage: "/docs-og/components/accordion"
+ogImageAlt: "Accordion documentation"
+aliases:
+  - "/docs/components/navigation/accordion"
+---
+
+## Purpose
+
+`Accordion` is the expandable disclosure primitive in `@kuzenbo/core`. Use it when you need progressive disclosure for settings, FAQs, or inspector panels while keeping keyboard support and slot composition consistent.
+
+Boundaries for this page:
+
+- Focuses on exported `Accordion` surface from `@kuzenbo/core`.
+- Covers composition with `Accordion.Item`, `Accordion.Header`, `Accordion.Trigger`, and `Accordion.Content`.
+- Does not cover app-specific state orchestration outside component usage.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core @kuzenbo/theme
+```
+
+## Import
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
+  AccordionTrigger,
+  accordionVariants,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Accordion } from "@kuzenbo/core";
+
+export function BillingAccordion() {
+  return (
+    <Accordion className="w-full max-w-xl" variant="default">
+      <Accordion.Item value="plan">
+        <Accordion.Header>
+          <Accordion.Trigger>Plan details</Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content>
+          Current plan: Pro. Renews on the 1st of each month.
+        </Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item value="invoices">
+        <Accordion.Header>
+          <Accordion.Trigger>Invoices</Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content>
+          Download invoices from the billing history table.
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>
+  );
+}
+```
+
+## Advanced pattern: variant-driven styling
+
+`Accordion` exposes a variant contract in both runtime props and `accordionVariants`.
+
+```tsx
+import { Accordion, accordionVariants } from "@kuzenbo/core";
+
+export function SettingsAccordion() {
+  return (
+    <section className="space-y-3">
+      <h3 className="text-sm font-medium text-foreground">
+        Workspace settings
+      </h3>
+
+      <Accordion className="w-full" variant="bordered">
+        <Accordion.Item value="members">
+          <Accordion.Header>
+            <Accordion.Trigger>Members</Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content>
+            Invite, remove, and manage workspace roles.
+          </Accordion.Content>
+        </Accordion.Item>
+
+        <Accordion.Item value="security">
+          <Accordion.Header>
+            <Accordion.Trigger>Security</Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content>
+            Configure 2FA policy and session limits.
+          </Accordion.Content>
+        </Accordion.Item>
+      </Accordion>
+
+      <p className="text-xs text-muted-foreground">
+        Variant class preview: {accordionVariants({ variant: "ghost" })}
+      </p>
+    </section>
+  );
+}
+```
+
+## Size scale
+
+`Accordion` supports `xs | sm | md | lg | xl` sizing. The root `size` value cascades into trigger height/spacing and content spacing.
+
+```tsx
+import { Accordion } from "@kuzenbo/core";
+
+export function CompactFaqAccordion() {
+  return (
+    <Accordion size="xs" variant="ghost">
+      <Accordion.Item value="shipping">
+        <Accordion.Header>
+          <Accordion.Trigger>Shipping policy</Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content>
+          Orders typically ship within one business day.
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>
+  );
+}
+```
+
+## API reference
+
+- `Accordion`
+  Root wrapper built on Base UI accordion root props plus `variant`.
+  `variant` values: `default`, `bordered`, `ghost`.
+  `size` values: `xs`, `sm`, `md`, `lg`, `xl`.
+- `AccordionItem`
+  Item container. `value` should be unique within the same root.
+- `AccordionHeader`
+  Semantic heading wrapper that labels each trigger/panel pair.
+- `AccordionTrigger`
+  Interactive trigger for toggling each item.
+- `AccordionContent`
+  Expandable panel content region.
+- `Accordion.Panel`
+  Alias of `AccordionContent` matching Base UI `Panel` naming.
+- `accordionVariants`
+  Tailwind Variants helper used by root styling.
+
+## Accessibility notes
+
+- Use clear, action-oriented trigger text so screen readers can announce intent.
+- Keep each primitive pair in semantic order (`Header` + `Trigger`, then `Content`).
+- Validate focus visibility for every variant (`default`, `bordered`, `ghost`) in both light and dark themes.
+
+## SSR and RSC notes
+
+`Accordion` is interactive. In Next.js App Router, render it from a Client Component boundary (`"use client"`) or from a client child inside a server route.
+
+## Styling and semantic tokens
+
+Accordion styles already rely on semantic tokens such as `border-border` and `bg-background`. Extend with semantic utilities only:
+
+- Use `bg-background`, `text-foreground`, `border-border`.
+- Use `text-muted-foreground` for helper copy.
+- Avoid raw palette classes like `text-gray-500` or `bg-slate-100`.
+
+## Troubleshooting
+
+- Item does not expand:
+  Confirm each `Accordion.Item` has a unique `value` and that trigger/content are correctly nested.
+- Variant does not apply:
+  Verify `variant` is one of `default`, `bordered`, `ghost`.
+- Unexpected spacing in custom layouts:
+  Check parent wrappers for conflicting `gap`, `padding`, or `overflow` utilities.
+
+## Related links
+
+- [Collapsible](/docs/components/collapsible)
+- [Tabs](/docs/components/tabs)
+- [Navigation Menu](/docs/components/navigation-menu)

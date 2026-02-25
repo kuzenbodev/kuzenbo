@@ -1,0 +1,156 @@
+---
+title: "Radio Group"
+description: "Collect a single selection from multiple options with Base UI radio semantics and Kuzenbo styling contracts."
+section: "components"
+package: "core"
+status: "stable"
+order: 63
+surface: "component"
+seoTitle: "Radio Group | Kuzenbo Docs"
+seoDescription: "Use RadioGroup from @kuzenbo/core for single-choice forms with accessible labeling and controlled state support."
+ogImage: "/docs-og/components/radio-group"
+ogImageAlt: "Radio Group documentation"
+aliases:
+  - "/docs/components/inputs/radio-group"
+---
+
+## Overview
+
+`RadioGroup` is a single-selection form control built on Base UI radio primitives.
+Use it when exactly one option must be selected from a known list.
+
+Use radios for mutually exclusive choices. Use checkboxes for multi-select.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Label, RadioGroup, RadioGroupItem } from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Label, RadioGroup } from "@kuzenbo/core";
+
+export function RadioGroupBasicExample() {
+  return (
+    <RadioGroup defaultValue="starter">
+      <div className="flex items-center gap-2">
+        <RadioGroup.Item id="plan-starter" value="starter" />
+        <Label htmlFor="plan-starter">Starter</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroup.Item id="plan-pro" value="pro" />
+        <Label htmlFor="plan-pro">Pro</Label>
+      </div>
+    </RadioGroup>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { useState } from "react";
+
+import { Label, RadioGroup } from "@kuzenbo/core";
+
+export function RadioGroupAdvancedExample() {
+  const [value, setValue] = useState("weekly");
+
+  return (
+    <RadioGroup
+      className="grid grid-cols-3 gap-3"
+      onValueChange={setValue}
+      value={value}
+    >
+      <label className="flex items-center gap-2">
+        <RadioGroup.Item value="daily" />
+        <Label render={<span />}>Daily</Label>
+      </label>
+      <label className="flex items-center gap-2">
+        <RadioGroup.Item value="weekly" />
+        <Label render={<span />}>Weekly</Label>
+      </label>
+      <label className="flex items-center gap-2 opacity-70">
+        <RadioGroup.Item disabled value="monthly" />
+        <Label render={<span />}>Monthly (disabled)</Label>
+      </label>
+    </RadioGroup>
+  );
+}
+```
+
+## Unified Size Contract
+
+`RadioGroup.Item` follows shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for radio controls:
+
+- Compact visual control size scales by token.
+- Indicator dot size scales with item size.
+- Hit target is expanded independently for accessible interaction.
+
+Precedence rule:
+
+`RadioGroup.Indicator size ?? RadioGroup.Item size ?? "md"`
+
+Compact-control exception: radios intentionally stay compact and should not be stretched to input-height parity.
+
+```tsx
+// Before
+<RadioGroup.Item size="md" value="weekly" />
+
+// After
+<RadioGroup.Item size="md" value="weekly" />
+```
+
+## API Notes
+
+- `RadioGroup` forwards Base UI group props, including controlled/uncontrolled selection support.
+- `RadioGroupItem` maps to `Radio.Root`, includes indicator rendering out of the box, and supports `size` (`xs | sm | md | lg | xl`).
+- Item states include disabled and invalid visual treatment (`aria-invalid`).
+- Layout is intentionally CSS-driven; use `className` on the group for vertical/horizontal arrangements.
+
+## Accessibility
+
+- Every radio item needs an accessible name. Use one of:
+  - associated `<Label htmlFor="...">`
+  - wrapping label element
+  - `aria-label`
+- Keep options concise and mutually exclusive.
+- Preserve visible focus indicators for keyboard users.
+
+## SSR and RSC
+
+- Radio interactions require client execution.
+- Server-rendered form shells can pass initial defaults into a client `RadioGroup` boundary.
+
+## Styling and Tokens
+
+- Built-in item styles use semantic tokens for input, ring, and error states.
+- Keep surrounding labels and helper text on semantic classes (`text-foreground`, `text-muted-foreground`).
+- Avoid hard-coded color scales for state colors.
+
+## Troubleshooting
+
+- Clicking label does not toggle item: make sure label is associated via `htmlFor` + `id` or wraps the item.
+- Selection not updating: in controlled mode, ensure `onValueChange` updates `value`.
+- Disabled item still appears interactive: check that `disabled` is set on `RadioGroup.Item`, not only on wrapper markup.
+
+## Related Docs
+
+- [Checkbox](/docs/components/checkbox)
+- [Select](/docs/components/select)
+- [Form](/docs/components/form)
+- [Components Index](/docs/components)

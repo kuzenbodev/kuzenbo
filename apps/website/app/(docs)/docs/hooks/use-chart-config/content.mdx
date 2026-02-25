@@ -1,0 +1,121 @@
+---
+title: "useChartConfig"
+description: "Read the current chart context from Chart.Provider or Chart.Root, including config, chart id, and color resolver helpers."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 7
+surface: "hook"
+seoTitle: "useChartConfig | Kuzenbo Docs"
+seoDescription: "Read the current chart context from Chart.Provider or Chart.Root, including config, chart id, and color resolver helpers."
+ogImage: "/docs-og/hooks/use-chart-config"
+ogImageAlt: "useChartConfig documentation"
+---
+
+## Overview
+
+`useChartConfig` returns the full chart context created by `Chart.Provider` (or `Chart.Root`). It is the primary low-level hook for custom legend/tooltip UI that needs config and color helpers.
+
+## What It Reads and Writes
+
+- Reads: `ChartContext` value (`chartId`, `config`, `seriesRegistry`, color helper functions).
+- Writes: nothing. This hook is read-only.
+
+## When to Use
+
+- Build custom legend or tooltip content from chart config metadata.
+- Resolve theme-aware series colors without duplicating chart color logic.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import { useChartConfig } from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import { Chart, type ChartConfig, useChartConfig } from "@kuzenbo/charts";
+import { Line, LineChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", revenue: 172000, target: 180000 },
+  { month: "Feb", revenue: 186000, target: 190000 },
+  { month: "Mar", revenue: 201000, target: 205000 },
+];
+
+const config: ChartConfig = {
+  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+  target: { label: "Target", color: "var(--color-chart-3)" },
+};
+
+const CustomLegend = () => {
+  const { config: chartConfig, getSeriesColorVar } = useChartConfig();
+
+  return (
+    <ul className="mt-3 grid gap-1 text-sm">
+      {Object.entries(chartConfig).map(([key, series]) => (
+        <li key={key} className="flex items-center gap-2 text-foreground">
+          <span
+            className="inline-block h-2.5 w-2.5 rounded-full"
+            style={{ backgroundColor: getSeriesColorVar(key) }}
+          />
+          {series.label ?? key}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export function ChartConfigLegendExample() {
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <LineChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Line dataKey="revenue" dot={false} stroke="var(--color-revenue)" />
+        <Line dataKey="target" dot={false} stroke="var(--color-target)" />
+      </LineChart>
+      <CustomLegend />
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contract
+
+`useChartConfig()` returns an object with:
+
+- `chartId: string`
+- `config: ChartConfig`
+- `seriesRegistry: ChartSeriesColorRegistry`
+- `getSeriesColor(seriesKey): string | undefined`
+- `getSeriesColorVar(seriesKey): string`
+- `resolveColorExpression(color, fallbackSeriesKey?): string | undefined`
+
+## Caveats
+
+- Throws outside chart context with:
+  - `useChartConfig must be used within a <Chart.Provider /> or <Chart.Root />`
+- `getSeriesColor` can return `undefined` for unknown series keys.
+- `chartId` is auto-generated when `id` is not provided to the provider/root.
+
+## SSR and RSC Notes
+
+- Use in Client Components only.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [useChart](/docs/hooks/use-chart)
+- [useSeriesColor](/docs/hooks/use-series-color)
+- [useSeriesColorVar](/docs/hooks/use-series-color-var)
+- [Chart](/docs/components/chart)

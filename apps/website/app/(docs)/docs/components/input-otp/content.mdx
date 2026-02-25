@@ -1,0 +1,177 @@
+---
+title: "Input OTP"
+description: "Build one-time passcode inputs with slot-level control over groups, separators, and cells."
+section: "components"
+package: "core"
+status: "stable"
+order: 43
+surface: "component"
+seoTitle: "Input OTP | Kuzenbo Docs"
+seoDescription: "Compose accessible OTP entry UI with grouped slots and optional separators."
+ogImage: "/docs-og/components/input-otp"
+ogImageAlt: "Input OTP documentation"
+aliases:
+  - "/docs/components/inputs/input-otp"
+---
+
+## Purpose and boundaries
+
+`InputOTP` provides structured passcode entry using the `input-otp` runtime and Kuzenbo slot primitives.
+
+Use it for:
+
+- Login verification codes
+- Step-up auth prompts
+- Short secure token entry with copy/paste support
+
+It does not validate code correctness by itself. Validation and submit logic stay in your app.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+"use client";
+
+import { InputOTP } from "@kuzenbo/core";
+
+export function OtpSixDigits() {
+  return (
+    <InputOTP maxLength={6}>
+      <InputOTP.Group>
+        <InputOTP.Slot index={0} />
+        <InputOTP.Slot index={1} />
+        <InputOTP.Slot index={2} />
+        <InputOTP.Slot index={3} />
+        <InputOTP.Slot index={4} />
+        <InputOTP.Slot index={5} />
+      </InputOTP.Group>
+    </InputOTP>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { InputOTP } from "@kuzenbo/core";
+
+export function ControlledOtp() {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="space-y-2">
+      <label className="text-sm font-medium" htmlFor="verification-code">
+        Verification code
+      </label>
+
+      <InputOTP
+        containerClassName="justify-start"
+        id="verification-code"
+        maxLength={6}
+        value={value}
+        onChange={setValue}
+      >
+        <InputOTP.Group>
+          <InputOTP.Slot index={0} />
+          <InputOTP.Slot index={1} />
+          <InputOTP.Slot index={2} />
+        </InputOTP.Group>
+
+        <InputOTP.Separator />
+
+        <InputOTP.Group>
+          <InputOTP.Slot index={3} />
+          <InputOTP.Slot index={4} />
+          <InputOTP.Slot index={5} />
+        </InputOTP.Group>
+      </InputOTP>
+
+      <p className="text-xs text-muted-foreground">
+        Current value: {value || "(empty)"}
+      </p>
+    </div>
+  );
+}
+```
+
+## API reference
+
+### `InputOTP`
+
+- Root OTP container and behavior runtime.
+- Accepts `input-otp` props such as `maxLength`, `value`, `onChange`, and input-level attributes.
+- Adds `containerClassName` for the outer slot wrapper.
+- Supports `size="xs" | "sm" | "md" | "lg" | "xl"` (`md` default).
+- Root size cascades to `InputOTP.Group`, `InputOTP.Slot`, and `InputOTP.Separator`.
+
+### `InputOTPGroup`
+
+Layout group for adjacent slot cells.
+
+- Supports optional `size` override.
+
+### `InputOTPSlot`
+
+Individual visual cell.
+
+- Requires `index: number`.
+- Reads active/focused/character state from `OTPInputContext`.
+- Supports optional `size` override.
+
+### `InputOTPSeparator`
+
+Visual separator slot (`role="separator"`) between slot groups.
+
+- Supports optional `size` override.
+
+## Accessibility notes
+
+- Connect a visible label to the root input (`label htmlFor` + `id`).
+- Use `aria-invalid` when verification fails so invalid styling and semantics stay aligned.
+- Keep a clear submit action and error message near the control.
+
+## SSR and RSC notes
+
+- `InputOTP` is a client component.
+- Render it in client boundaries only.
+- Keep initial value stable between server and client to avoid hydration surprises.
+
+## Styling and tokens
+
+- Slot styling uses semantic tokens such as `border-input`, `border-danger`, `ring-ring`, `bg-input`.
+- Extend with semantic classes only.
+- Size scale follows Kuzenbo control tokens: `xs | sm | md | lg | xl`.
+- Sizing precedence is `explicit child size ?? root size ?? "md"`.
+
+## Troubleshooting
+
+- Slots render empty permanently: check `maxLength` and slot indexes (`0..maxLength-1`).
+- Group error state does not show: apply `aria-invalid` on the input root.
+- Caret behavior is odd after custom CSS: avoid overriding slot `position` and caret container styles.
+
+## Related docs
+
+- [Input](/docs/components/input)
+- [Field](/docs/components/field)
+- [Label](/docs/components/label)
+- [Components index](/docs/components)

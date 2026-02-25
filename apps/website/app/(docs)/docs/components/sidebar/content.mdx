@@ -1,0 +1,176 @@
+---
+title: "Sidebar"
+description: "Build responsive app-shell navigation with provider state, desktop collapse modes, and mobile sheet behavior."
+section: "components"
+package: "core"
+status: "stable"
+order: 71
+surface: "component"
+seoTitle: "Sidebar | Kuzenbo Docs"
+seoDescription: "Use Sidebar from @kuzenbo/core for responsive application navigation with controlled state and composable menu primitives."
+ogImage: "/docs-og/components/sidebar"
+ogImageAlt: "Sidebar documentation"
+aliases:
+  - "/docs/components/navigation/sidebar"
+---
+
+## Overview
+
+`Sidebar` is a full app-shell navigation system, not just a single panel component.
+It includes provider-managed state, mobile sheet rendering, desktop collapse modes, and composable menu/group primitives.
+
+Use it for dashboard or product-shell navigation where the content area (`SidebarInset`) must stay synchronized with nav state.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Sidebar,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import {
+  Sidebar,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@kuzenbo/core";
+
+export function SidebarBasicExample() {
+  return (
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton>Home</SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton>Settings</SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </Sidebar>
+
+      <SidebarInset>
+        <header className="flex h-12 items-center gap-2 border-b border-border px-4">
+          <SidebarTrigger />
+          <span className="text-sm font-medium text-foreground">Dashboard</span>
+        </header>
+        <main className="flex-1 p-4">Main content</main>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "@kuzenbo/core";
+
+export function SidebarAdvancedExample() {
+  return (
+    <SidebarProvider defaultOpen>
+      <Sidebar collapsible="icon" side="left" variant="floating">
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton tooltip="Overview">
+                    Overview
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton tooltip="Usage">Usage</SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+    </SidebarProvider>
+  );
+}
+```
+
+## API Notes
+
+- `SidebarProvider` is required. `useSidebar()` throws if used outside this provider.
+- Provider supports controlled and uncontrolled state (`open`, `defaultOpen`, `onOpenChange`).
+- Provider persists sidebar state in cookie `sidebar_state` (7-day max age) and binds `Cmd/Ctrl + b` keyboard toggle.
+- `Sidebar` props:
+  - `side`: `left` or `right`
+  - `variant`: `sidebar`, `floating`, `inset`
+  - `collapsible`: `offExamples`, `icon`, `none`
+- On mobile, sidebar content renders in a sheet-style surface automatically.
+- `SidebarMenuButton` supports `tooltip` and only shows tooltip in collapsed desktop state.
+- `Sidebar.Input` uses compact `size="sm"` by default and supports explicit `xs|sm|md|lg|xl` overrides.
+
+## Sidebar Menu Size Scaling
+
+`SidebarMenu` and `SidebarMenu*` descendants support `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
+
+- Root-driven default: `SidebarMenu size` cascades to `SidebarMenuButton`, `SidebarMenuSubButton`, `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, and `SidebarMenuSub`.
+- Child override: explicit child `size` props override `SidebarMenu` root size.
+- Precedence: `explicit child size ?? nearest SidebarMenu size ?? "md"`.
+- In icon-only collapsed mode, button icon box size remains fixed for layout stability.
+
+## Accessibility
+
+- `SidebarTrigger` includes screen-reader text for toggle intent.
+- Mobile sheet rendering includes hidden title/description nodes for assistive context.
+- Keep nav labels textual and avoid icon-only menus unless tooltips and names are provided.
+
+## SSR and RSC
+
+- Sidebar state is client-driven (`useIsMobile`, keyboard listeners, cookie writes), so render it in client components.
+- Server components can still provide nav data to a client sidebar shell.
+
+## Styling and Tokens
+
+- Sidebar surfaces are tokenized separately (`bg-sidebar`, `text-sidebar-foreground`, `border-sidebar-border`).
+- Width is controlled through CSS variables (`--sidebar-width`, `--sidebar-width-icon`) set by provider.
+- Keep page content (`SidebarInset`) on semantic page tokens (`bg-background`, `text-foreground`).
+
+## Troubleshooting
+
+- `useSidebar must be used within a SidebarProvider`: wrap the tree in `SidebarProvider`.
+- Sidebar does not collapse on desktop: verify `collapsible` is not `none`.
+- Tooltips are always hidden: tooltip visibility is suppressed on mobile and expanded desktop states by design.
+- Layout width feels off: override provider style variables instead of hard-coding sidebar widths in multiple places.
+
+## Related Docs
+
+- [Drawer](/docs/components/drawer)
+- [Sheet](/docs/components/sheet)
+- [Button](/docs/components/button)
+- [Components Index](/docs/components)

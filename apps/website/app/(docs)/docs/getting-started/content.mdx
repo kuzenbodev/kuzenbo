@@ -1,0 +1,44 @@
+---
+title: "Getting Started"
+description: "Get Kuzenbo running in minutes — install, add styles, and build your first page."
+section: "getting-started"
+package: "core"
+status: "stable"
+order: 1
+surface: "guide"
+seoTitle: "Getting Started | Kuzenbo Docs"
+seoDescription: "Install Kuzenbo packages, wire theme runtime, and ship your first production-ready UI quickly."
+ogImage: "/docs-og/getting-started"
+ogImageAlt: "Kuzenbo getting started overview"
+---
+
+## Get building in minutes
+
+Add Kuzenbo to your React or Next.js app in a few steps. You need React 19 and your usual package manager (npm, pnpm, yarn, or bun).
+
+## Quick path
+
+Using Next.js App Router? Run this, then add the snippet below to your root layout:
+
+```bash
+npm i @kuzenbo/core @kuzenbo/theme @kuzenbo/styles react react-dom next-themes
+```
+
+In `app/layout.tsx`, add the theme script and provider (see [Installation](/docs/getting-started/installation) for the full snippet), import the CSS in `app/globals.css`, and you’re set.
+
+## Step-by-step
+
+Prefer a guided walkthrough? Follow:
+
+1. [Installation](/docs/getting-started/installation) — exact commands for your package manager
+2. [Quickstart](/docs/getting-started/quickstart) — build your first page
+3. [Next.js](/docs/getting-started/nextjs) — App Router setup with SSR-safe theming
+
+## What's next
+
+- [Introduction](/docs/getting-started/introduction) — understand the packages
+- [Styling](/docs/getting-started/styling) and [Theming](/docs/getting-started/theming) — tokens and dark mode
+
+## Why separate packages?
+
+Kuzenbo ships UI in focused packages so you only install what you use. Start with `core` and `theme`, then add `charts`, `date`, `notifications`, or `ai` when you need them.

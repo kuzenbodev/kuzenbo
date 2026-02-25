@@ -1,0 +1,167 @@
+---
+title: "Radial Bar Chart"
+description: "Prebuilt RadialBarChart for segmented comparisons with label modes, background tracks, and legend-highlight behavior."
+section: "components"
+package: "charts"
+status: "stable"
+order: 62
+surface: "component"
+seoTitle: "Radial Bar Chart | Kuzenbo Docs"
+seoDescription: "Use @kuzenbo/charts RadialBarChart for compact radial comparisons with tooltip and legend support."
+ogImage: "/docs-og/components/radial-bar-chart"
+ogImageAlt: "Radial Bar Chart documentation"
+---
+
+## Overview
+
+`RadialBarChart` is a complete radial chart for comparing category values around a circle. It is useful when you want a compact, high-contrast summary of segment performance.
+
+Use it for side-by-side category snapshots, not long historical trends.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import {
+  RadialBarChart,
+  type RadialBarChartProps,
+  type RadialBarLabelPosition,
+} from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { RadialBarChart } from "@kuzenbo/charts";
+
+const data = [
+  { name: "North America", value: 68 },
+  { name: "Europe", value: 52 },
+  { name: "APAC", value: 44 },
+  { name: "LATAM", value: 29 },
+];
+
+const series = [
+  {
+    name: "North America",
+    label: "North America",
+    color: "var(--color-chart-1)",
+  },
+  { name: "Europe", label: "Europe", color: "var(--color-chart-2)" },
+  { name: "APAC", label: "APAC", color: "var(--color-chart-3)" },
+  { name: "LATAM", label: "LATAM", color: "var(--color-chart-4)" },
+];
+
+export function RadialBarChartBasic() {
+  return (
+    <RadialBarChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="value"
+      series={series}
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { RadialBarChart } from "@kuzenbo/charts";
+
+const data = [
+  { name: "North America", value: 68 },
+  { name: "Europe", value: 52 },
+  { name: "APAC", value: 44 },
+  { name: "LATAM", value: 29 },
+];
+
+const series = [
+  {
+    name: "North America",
+    label: "North America",
+    color: "var(--color-chart-1)",
+  },
+  { name: "Europe", label: "Europe", color: "var(--color-chart-2)" },
+  { name: "APAC", label: "APAC", color: "var(--color-chart-3)" },
+  { name: "LATAM", label: "LATAM", color: "var(--color-chart-4)" },
+];
+
+export function RadialBarChartAdvanced() {
+  return (
+    <RadialBarChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="value"
+      labelMode="value"
+      labelPosition="inside"
+      series={series}
+      tooltipSource="all"
+      valueFormatter={(value) => `${value}%`}
+      withBackground
+      withLabels
+      withLegend
+    />
+  );
+}
+```
+
+## API Reference
+
+- `RadialBarChart`
+  Required:
+  - `data`
+  - `dataKey`
+
+  Common options:
+  - `series`, `nameKey`
+  - `labelMode`, `labelPosition`, `withLabels`
+  - `withBackground`, `fillOpacity`
+  - `startAngle`, `endAngle`
+  - `withLegend`, `withTooltip`, `tooltipSource`
+  - `radialBarProps`, `radialBarChartProps`
+
+  Compatibility alias:
+  - `chartProps` is still accepted, while `radialBarChartProps` is the preferred prop.
+
+- Exported types:
+  - `RadialBarChartProps`
+  - `RadialBarLabelPosition`
+  - `RadialBarSeriesProps`
+
+## Accessibility
+
+- Recharts `accessibilityLayer` is enabled.
+- Keep segment labels and legend text explicit, not color-dependent.
+- If labels are hidden (`withLabels={false}`), ensure tooltip and legend still provide clear value mapping.
+
+## SSR and RSC Notes
+
+- `RadialBarChart` is a Client Component (`"use client"`).
+- In App Router, pass plain data from server components into a client chart wrapper.
+
+## Styling and Tokens
+
+- Use semantic chart palette tokens (`var(--color-chart-1..n)`) for predictable theming.
+- For global chart shell styling, use `chartRootProps.className` with semantic background/text utilities.
+- Keep custom fills and backgrounds token-based for light/dark consistency.
+
+## Troubleshooting
+
+- Chart renders but appears collapsed: provide explicit height in `chartRootProps`.
+- Legend hover dims too aggressively: set `enableLegendHighlight={false}`.
+- Labels are missing: enable `withLabels` and choose a visible `labelPosition`.
+- Tooltip behavior not matching expectations: set `tooltipSource` explicitly (`segment` or `all`).
+
+## Related Docs
+
+- [Chart Primitives](/docs/components/chart)
+- [Donut Chart](/docs/components/donut-chart)
+- [Pie Chart](/docs/components/pie-chart)
+- [Radar Chart](/docs/components/radar-chart)

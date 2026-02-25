@@ -1,0 +1,213 @@
+---
+title: "Alert"
+description: "Use Alert for inline status messaging and AlertDialog for irreversible confirmations in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 5
+surface: "component"
+seoTitle: "Alert | Kuzenbo Docs"
+seoDescription: "Use Alert for inline status messaging and AlertDialog for irreversible confirmations in @kuzenbo/core."
+ogImage: "/docs-og/components/alert"
+ogImageAlt: "Alert documentation"
+aliases:
+  - "/docs/components/display/alert"
+---
+
+## Overview
+
+`Alert` and `AlertDialog` solve two different communication jobs:
+
+- `Alert` is for inline, persistent feedback inside normal page flow.
+- `AlertDialog` is for high-risk confirmations that should block progress until the user decides.
+
+Use inline `Alert` for status, context, and guidance. Use `AlertDialog` only when an action has serious consequences.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertTitle,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core";
+
+export function AccountAlert() {
+  return (
+    <Alert variant="warning">
+      <AlertTitle>Plan limit reached</AlertTitle>
+      <AlertDescription>
+        Add seats or remove inactive users before inviting teammates.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+## Tone and Appearance Example
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core";
+
+export function ProductAnnouncementAlert() {
+  return (
+    <Alert appearance="outline" variant="primary">
+      <AlertTitle>New editor released</AlertTitle>
+      <AlertDescription>
+        Turn it on in settings to preview the latest writing experience.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+## Dark Colored Example
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core";
+
+export function DarkSuccessAlert() {
+  return (
+    <Alert appearance="inverted" variant="success">
+      <svg
+        aria-hidden="true"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="1.8"
+        />
+        <path
+          d="M12 8V13M12 16.5H12.01"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.8"
+        />
+      </svg>
+      <AlertTitle>Notification! All good</AlertTitle>
+      <AlertDescription>
+        This keeps a dark surface while preserving semantic success accents.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Button } from "@kuzenbo/core";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@kuzenbo/core";
+
+export function DeleteProjectDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger render={<Button variant="danger" />}>
+        Delete project
+      </AlertDialogTrigger>
+
+      <AlertDialogContent size="md">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete this project?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This permanently removes environments, API keys, and deployment
+            logs.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction variant="danger">Delete</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+```
+
+## API Reference
+
+- `Alert`: inline container with `role="alert"`; supports `variant="default" | "primary" | "secondary" | "warning" | "danger" | "info" | "success"`, `appearance="default" | "subtle" | "outline" | "inverted"`, and `size="xs" | "sm" | "md" | "lg" | "xl"` (`md` default).
+- `AlertTitle`: short, high-emphasis heading inside alert content.
+- `AlertDescription`: longer supportive copy; link styles are included by default.
+- `AlertAction`: right-aligned action slot for compact controls.
+- `alertVariants`: variant helper when you need the same visual contract in custom wrappers.
+- `AlertDialog`: confirm-flow root.
+- `AlertDialogTrigger`: opener; supports Base UI `render` composition.
+- `AlertDialogContent`: popup surface; supports `size="md" | "sm"`.
+- `AlertDialogHeader`, `AlertDialogTitle`, `AlertDialogDescription`, `AlertDialogFooter`: semantic structure for confirm copy and controls.
+- `AlertDialogCancel`, `AlertDialogAction`: prewired action buttons.
+- `AlertDialogOverlay`, `AlertDialogPortal`: overlay and portal hooks.
+- `AlertDialogMedia`: optional icon/media slot in the header area.
+
+## Accessibility
+
+- Inline alerts are announced via `role="alert"`; keep the message concise and actionable.
+- Confirm flows render as `alertdialog`; always provide a title and description.
+- Provide distinct button labels (`Cancel`, `Delete`, `Archive`) so intent is obvious to screen-reader users.
+
+## SSR and RSC Notes
+
+- `Alert` can be rendered in server components when content is static.
+- `AlertDialog` is interactive and should be used from client components.
+- In Next.js App Router, keep dialog state and callbacks behind a `"use client"` boundary.
+
+## Styling and Tokens
+
+- Use `variant` to choose semantic tone (`default`, `primary`, `secondary`, `warning`, `danger`, `info`, `success`).
+- Use `appearance` to control emphasis (`default`, `subtle`, `outline`, `inverted`) without changing tone semantics.
+- Use `size` to scale spacing, icon density, and text (`xs` through `xl`).
+- `appearance="inverted"` gives a dark surface while keeping semantic tone accents through icon color.
+- `Alert` styles use semantic tokens (`bg-card`, `bg-warning`, `bg-danger`, `text-foreground`, `text-muted-foreground`, `bg-background`).
+- If you need custom emphasis, keep semantic token classes such as `border-border`, `text-muted-foreground`, and `bg-background`.
+
+## Troubleshooting
+
+- Alert looks muted in dark mode: confirm you are using `variant` and `appearance` instead of hard-coded palette classes.
+- Dialog does not open: verify `AlertDialogTrigger` is inside `AlertDialog` and rendered as an interactive element.
+- Cancel/action buttons are unstyled: use `AlertDialogCancel` and `AlertDialogAction` instead of raw buttons.
+
+## Related Links
+
+- [Alert Dialog](/docs/components/alert-dialog)
+- [Dialog](/docs/components/dialog)
+- [Toast](/docs/components/toast)
+- [Button](/docs/components/button)

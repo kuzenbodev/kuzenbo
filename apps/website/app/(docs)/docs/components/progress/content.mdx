@@ -1,0 +1,117 @@
+---
+title: "Progress"
+description: "Display determinate and indeterminate progress states with @kuzenbo/core Progress and slot exports."
+section: "components"
+package: "core"
+status: "stable"
+order: 59
+surface: "component"
+seoTitle: "Progress | Kuzenbo Docs"
+seoDescription: "Progress component guide for @kuzenbo/core covering determinate state, labeling, and composition with slot exports."
+ogImage: "/docs-og/components/progress"
+ogImageAlt: "Progress documentation"
+aliases:
+  - "/docs/components/display/progress"
+---
+
+## Overview
+
+`Progress` communicates completion state for ongoing work such as uploads, jobs, and setup checklists.
+
+By default, the root renders a track and indicator and lets you optionally add label/value content.
+
+Use it when you can estimate progress or want a lightweight indeterminate indicator.
+
+Do not use it as a replacement for status toasts or long-form task logs.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Progress,
+  ProgressIndicator,
+  ProgressLabel,
+  ProgressTrack,
+  ProgressValue,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Progress } from "@kuzenbo/core";
+
+export function FileUploadProgress() {
+  return (
+    <Progress value={60}>
+      <Progress.Label>Uploading assets</Progress.Label>
+      <Progress.Value />
+    </Progress>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Progress } from "@kuzenbo/core";
+
+export function PipelineProgress({ active }: { active: boolean }) {
+  return (
+    <Progress
+      aria-label="Pipeline execution"
+      className="max-w-md"
+      value={active ? undefined : 100}
+    >
+      <Progress.Label>{active ? "Processing" : "Completed"}</Progress.Label>
+      <Progress.Value />
+    </Progress>
+  );
+}
+```
+
+When `value` is omitted (`undefined`), Base UI progress behavior is indeterminate.
+
+## API Notes
+
+- `Progress` accepts Base UI root props and injects:
+  - `ProgressTrack`
+  - `ProgressIndicator`
+- `Progress.Label` and `Progress.Value` are convenience slots for status text.
+- Individual exports (`ProgressTrack`, `ProgressIndicator`, `ProgressLabel`, `ProgressValue`) are available when you need lower-level composition.
+
+## Accessibility
+
+- Add a descriptive label (`Progress.Label` or `aria-label`) so assistive tech can announce what is progressing.
+- Keep percentages meaningful. If exact progress is unknown, use indeterminate mode and pair with contextual copy.
+- Avoid using color alone to communicate completion or errors.
+
+## SSR and RSC
+
+`Progress` is client-only (`"use client"` in source). Use it in a client component boundary.
+
+## Styling and Semantic Tokens
+
+- Track uses `bg-muted`.
+- Indicator uses `bg-primary` with transitions.
+- Value text uses `text-muted-foreground` with tabular numerals.
+
+Keep custom overrides token-based so progress remains readable across themes.
+
+## Troubleshooting
+
+- Progress looks stuck: verify that the `value` prop actually updates over time.
+- No visible fill: check for `value` outside expected range or conflicting custom classes.
+- Accessibility audits fail: provide an explicit label when not rendering `Progress.Label`.
+
+## Related Docs
+
+- [Spinner](/docs/components/spinner)
+- [Toast](/docs/components/toast)
+- [Accessibility Foundation](/docs/foundations/accessibility)

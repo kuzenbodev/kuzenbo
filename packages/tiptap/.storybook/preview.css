@@ -1,0 +1,4 @@
+@import "@kuzenbo/storybook/preview.css";
+@import "../src/styles/tiptap-editor.css";
+
+@source "../src/**/*.{ts,tsx,mdx}";

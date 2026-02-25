@@ -1,0 +1,137 @@
+---
+title: "Marquee"
+description: "Scrollable ticker-style content and fade edges with @kuzenbo/core Marquee."
+section: "components"
+package: "core"
+status: "stable"
+order: 48
+surface: "component"
+seoTitle: "Marquee | Kuzenbo Docs"
+seoDescription: "Scrollable ticker-style content and fade edges with @kuzenbo/core Marquee."
+ogImage: "/docs-og/components/marquee"
+ogImageAlt: "Marquee documentation"
+aliases:
+  - "/docs/components/display/marquee"
+---
+
+## Marquee at a Glance
+
+`Marquee` builds horizontally scrolling content with a composable API:
+`Marquee`, `Marquee.Content`, `Marquee.Item`, and optional `Marquee.Fade` edges.
+It uses `react-fast-marquee` under the hood.
+
+Use it for lightweight ticker or logo-band experiences.
+Do not use it for critical content that users must read at a fixed pace.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Marquee,
+  MarqueeContent,
+  MarqueeFade,
+  MarqueeItem,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Badge, Marquee } from "@kuzenbo/core";
+
+export function LogoBand() {
+  return (
+    <Marquee className="rounded-lg border border-border bg-background">
+      <Marquee.Content>
+        <Marquee.Item>
+          <Badge variant="secondary">Acme</Badge>
+        </Marquee.Item>
+        <Marquee.Item>
+          <Badge variant="secondary">Nimbus</Badge>
+        </Marquee.Item>
+        <Marquee.Item>
+          <Badge variant="secondary">Orbit</Badge>
+        </Marquee.Item>
+      </Marquee.Content>
+    </Marquee>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { Marquee, Typography } from "@kuzenbo/core";
+
+export function NewsTicker() {
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(mediaQuery.matches);
+  }, []);
+
+  return (
+    <Marquee className="relative rounded-lg border border-border bg-card">
+      <Marquee.Fade className="pointer-events-none" side="left" />
+      <Marquee.Fade className="pointer-events-none" side="right" />
+
+      <Marquee.Content direction="right" play={!reduceMotion} speed={28}>
+        <Marquee.Item>
+          <Typography.Small>v0.3.0 release candidate is live</Typography.Small>
+        </Marquee.Item>
+        <Marquee.Item>
+          <Typography.Small>Component tests gate CI</Typography.Small>
+        </Marquee.Item>
+      </Marquee.Content>
+    </Marquee>
+  );
+}
+```
+
+## API Details
+
+- `Marquee` is the clipping wrapper (`ComponentProps<"div">`).
+- `Marquee.Content` forwards props to `react-fast-marquee` with defaults:
+  `loop=0`, `autoFill=true`, `pauseOnHover=true`.
+- `Marquee.Item` wraps each repeated item and keeps stable spacing.
+- `Marquee.Fade` adds left/right gradient masks (`side: "left" | "right"`).
+
+## Accessibility
+
+- Motion should be optional; respect reduced-motion preferences.
+- Keep duplicate marquee content out of semantic reading order when needed.
+- For important announcements, provide a static fallback region.
+
+## SSR and RSC Notes
+
+- `Marquee` is client-only.
+- If you compute reduced-motion from `window`, do it in `useEffect` to avoid hydration drift.
+
+## Styling and Tokens
+
+- Use semantic backgrounds around ticker surfaces (`bg-background`, `bg-card`, `border-border`).
+- Fade overlays already blend from `background` to transparent.
+- Use `pointer-events-none` on fades when edge content must remain interactive.
+
+## Troubleshooting
+
+- If content appears duplicated, remember `autoFill` is enabled by default.
+- If hover pause does not work, check `pauseOnHover` and overlay pointer behavior.
+- If text feels too fast, reduce `speed` and increase spacing between `Marquee.Item` entries.
+
+## Related Docs
+
+- [Badge](/docs/components/badge)
+- [Typography](/docs/components/typography)
+- [Performance](/docs/foundations/performance)

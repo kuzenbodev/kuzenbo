@@ -1,0 +1,110 @@
+---
+title: "useSeriesColorVar"
+description: "Resolve a CSS variable reference for a chart series key, with deterministic slug fallback for unknown keys."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 19
+surface: "hook"
+seoTitle: "useSeriesColorVar | Kuzenbo Docs"
+seoDescription: "Resolve a CSS variable reference for a chart series key, with deterministic slug fallback for unknown keys."
+ogImage: "/docs-og/hooks/use-series-color-var"
+ogImageAlt: "useSeriesColorVar documentation"
+---
+
+## Overview
+
+`useSeriesColorVar` returns a CSS variable expression for a series key (for example `var(--color-revenue)`). It is useful when you need a stable color token string for inline styles or custom SVG markup.
+
+## What It Reads and Writes
+
+- Reads: chart series registry from `ChartContext`.
+- Writes: nothing. This hook is read-only.
+
+## When to Use
+
+- Build custom chart UI that needs tokenized color vars by key.
+- Reuse the same series-color mapping in custom legend chips or annotations.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import { useSeriesColorVar } from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import { Chart, type ChartConfig, useSeriesColorVar } from "@kuzenbo/charts";
+import { Line, LineChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", "Revenue Total": 172000 },
+  { month: "Feb", "Revenue Total": 186000 },
+  { month: "Mar", "Revenue Total": 201000 },
+];
+
+const config: ChartConfig = {
+  "Revenue Total": { label: "Revenue", color: "var(--color-chart-1)" },
+};
+
+const SeriesColorReadout = () => {
+  const revenueColorVar = useSeriesColorVar("Revenue Total");
+  const fallbackColorVar = useSeriesColorVar("Unmapped Metric");
+
+  return (
+    <p className="text-sm text-foreground">
+      {`known=${revenueColorVar}, fallback=${fallbackColorVar}`}
+    </p>
+  );
+};
+
+const RevenueLine = () => {
+  const revenueStroke = useSeriesColorVar("Revenue Total");
+
+  return <Line dataKey="Revenue Total" dot={false} stroke={revenueStroke} />;
+};
+
+export function SeriesColorVarExample() {
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <LineChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <RevenueLine />
+      </LineChart>
+      <SeriesColorReadout />
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contract
+
+- Signature: `(seriesKey: string) => string`
+- Known key: returns mapped registry variable (for example `var(--color-revenue-total)`).
+- Unknown key: returns deterministic slug fallback (for example `var(--color-unmapped-metric)`).
+
+## Caveats
+
+- This hook requires chart context and will throw outside `Chart.Provider` / `Chart.Root`.
+- Returned value is a CSS variable reference string; it does not resolve to a concrete color until CSS is applied.
+
+## SSR and RSC Notes
+
+- Use in Client Components only.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [useSeriesColor](/docs/hooks/use-series-color)
+- [useChartConfig](/docs/hooks/use-chart-config)
+- [Chart](/docs/components/chart)

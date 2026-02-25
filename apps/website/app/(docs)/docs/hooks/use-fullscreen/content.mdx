@@ -1,0 +1,118 @@
+---
+title: "useFullscreen"
+description: "Toggle element or document fullscreen with cross-browser fallbacks, reactive fullscreen state, and cleanup-safe event handling."
+section: "hooks"
+package: "hooks"
+status: "stable"
+order: 12
+surface: "hook"
+seoTitle: "useFullscreen | Kuzenbo Docs"
+seoDescription: "Toggle element or document fullscreen with cross-browser fallbacks, reactive fullscreen state, and cleanup-safe event handling."
+ogImage: "/docs-og/hooks/use-fullscreen"
+ogImageAlt: "useFullscreen documentation"
+aliases:
+  - "/docs/hooks/browser/use-fullscreen"
+---
+
+## Overview
+
+`useFullscreen` manages browser fullscreen for a target element and exposes a simple contract: `ref`, `toggle`, and `fullscreen`.
+
+## What It Reads and Writes
+
+- Reads:
+  - Fullscreen state from `document.fullscreenElement` and vendor-prefixed equivalents.
+  - Current target element from an internal ref (falls back to `document.documentElement`).
+- Writes:
+  - Calls request/exit fullscreen APIs.
+  - Registers `fullscreenchange` and `fullscreenerror` listeners (including prefixed variants).
+  - Updates internal `fullscreen` state.
+
+## When to Use
+
+- Fullscreen media or dashboard panels.
+- Focus mode for charts/tables where viewport space matters.
+
+## Installation
+
+```npm
+npm i @kuzenbo/hooks
+```
+
+## Import
+
+```tsx
+import { useFullscreen } from "@kuzenbo/hooks";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import { useCallback, useState } from "react";
+
+import { useFullscreen } from "@kuzenbo/hooks";
+
+export function FullscreenPanelExample() {
+  const { ref, toggle, fullscreen } = useFullscreen<HTMLDivElement>();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleToggle = useCallback(async () => {
+    try {
+      await toggle();
+      setError(null);
+    } catch {
+      setError("Fullscreen request was blocked by the browser.");
+    }
+  }, [toggle]);
+
+  return (
+    <section className="space-y-3">
+      <div
+        className="flex min-h-40 items-center justify-center rounded-md border border-border bg-muted text-muted-foreground"
+        ref={ref}
+      >
+        {fullscreen ? "Fullscreen active" : "Inline mode"}
+      </div>
+
+      <button
+        className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-3 text-sm text-primary-foreground"
+        onClick={handleToggle}
+        type="button"
+      >
+        {fullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+      </button>
+
+      {error ? <p className="text-sm text-danger-foreground">{error}</p> : null}
+    </section>
+  );
+}
+```
+
+## Return Contract
+
+`useFullscreen<T>()` returns:
+
+- `ref: RefCallback<T | null>` (from `react`)
+- `toggle: () => Promise<void>`
+- `fullscreen: boolean`
+
+## Edge Behavior and Caveats
+
+- Initial `fullscreen` is `false`.
+- Calling `ref(null)` makes the hook fall back to `document.documentElement`.
+- Browser policies can reject fullscreen requests without user gesture; handle `toggle()` errors.
+- On `fullscreenerror`, the hook sets `fullscreen` to `false` and logs a console error message.
+- If an API is unavailable in the browser, toggle may resolve without entering fullscreen.
+
+## SSR and RSC Notes
+
+- Client-only hook. It relies on `window.document` and DOM events.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [useIsomorphicEffect](/docs/hooks/use-isomorphic-effect)
+- [useMobile](/docs/hooks/use-mobile)
+- [Hooks Index](/docs/hooks)

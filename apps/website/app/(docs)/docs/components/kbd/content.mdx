@@ -1,0 +1,134 @@
+---
+title: "Kbd"
+description: "Document and present keyboard shortcuts with Kbd and KbdGroup from @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 45
+surface: "component"
+seoTitle: "Kbd | Kuzenbo Docs"
+seoDescription: "Document and present keyboard shortcuts with Kbd and KbdGroup from @kuzenbo/core."
+ogImage: "/docs-og/components/kbd"
+ogImageAlt: "Kbd documentation"
+aliases:
+  - "/docs/components/display/kbd"
+---
+
+## Overview
+
+`Kbd` and `KbdGroup` are presentational helpers for keyboard hints.
+
+- Use them for visible shortcut notation in docs, commands, and action menus.
+- They are not interactive controls.
+- Keep shortcut hints paired with plain-language action text.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Kbd, KbdGroup } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Kbd, KbdGroup } from "@kuzenbo/core";
+
+export function ShortcutHint() {
+  return (
+    <div className="flex items-center gap-2">
+      <span>Quick search</span>
+      <KbdGroup>
+        <Kbd>Cmd</Kbd>
+        <Kbd>K</Kbd>
+      </KbdGroup>
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Kbd } from "@kuzenbo/core";
+
+export function CommandPaletteHints() {
+  return (
+    <ul className="space-y-2 text-sm">
+      <li className="flex items-center justify-between gap-4">
+        <span>Open command palette</span>
+        <Kbd.Group>
+          <Kbd>Cmd</Kbd>
+          <Kbd>K</Kbd>
+        </Kbd.Group>
+      </li>
+
+      <li className="flex items-center justify-between gap-4">
+        <span>Save draft</span>
+        <Kbd.Group>
+          <Kbd>Cmd</Kbd>
+          <Kbd>S</Kbd>
+        </Kbd.Group>
+      </li>
+    </ul>
+  );
+}
+```
+
+## API Reference
+
+- `Kbd`: renders a semantic `<kbd>` token with shortcut styling.
+- `KbdGroup`: groups related keys and separators into one visual shortcut cluster.
+- Both exports are display primitives and can be nested in typography, menu rows, and table cells.
+
+## Size Scale
+
+`Kbd` and `KbdGroup` support:
+
+- `xs`
+- `sm`
+- `md` (default)
+- `lg`
+- `xl`
+
+`KbdGroup` can provide a default group size while each `Kbd` can override it.
+Resolution order:
+
+- explicit `Kbd` size
+- nearest `KbdGroup` size
+- component default (`md`)
+
+## Accessibility
+
+- Do not rely on keyboard hint visuals alone to communicate actions.
+- Keep instruction text adjacent (`Save draft`, `Open search`) so screen readers and new users have context.
+- If shortcuts differ by platform, render explicit platform labels.
+
+## SSR and RSC Notes
+
+- `Kbd` is static markup and safe in server components.
+- Client boundaries are only needed if shortcut hints are conditionally rendered from client state.
+
+## Styling and Tokens
+
+- Default styles use semantic surfaces (`bg-muted`, `text-muted-foreground`).
+- Keep `Kbd` size compact and avoid forcing large text that breaks alignment in tables/menus.
+- If you customize spacing, preserve monospaced or tabular rhythm for readable multi-key combinations.
+
+## Troubleshooting
+
+- Keys look clickable: ensure you are not wrapping `Kbd` in button semantics unintentionally.
+- Group alignment drifts in dense layouts: place `KbdGroup` inside a flex row with explicit gap.
+- Visual contrast is weak: check parent opacity or muted container backgrounds before overriding token classes.
+
+## Related Links
+
+- [Typography](/docs/components/typography)
+- [Command](/docs/components/command)
+- [Tooltip](/docs/components/tooltip)
+- [Button](/docs/components/button)

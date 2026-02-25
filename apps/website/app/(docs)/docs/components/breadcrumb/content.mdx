@@ -1,0 +1,194 @@
+---
+title: "Breadcrumb"
+description: "Build semantic breadcrumb navigation in @kuzenbo/core with composable items, separators, and overflow affordances."
+section: "components"
+package: "core"
+status: "stable"
+order: 14
+surface: "component"
+seoTitle: "Breadcrumb | Kuzenbo Docs"
+seoDescription: "Build semantic breadcrumb navigation in @kuzenbo/core with composable items, separators, and overflow affordances."
+ogImage: "/docs-og/components/breadcrumb"
+ogImageAlt: "Breadcrumb documentation"
+aliases:
+  - "/docs/components/navigation/breadcrumb"
+---
+
+## Overview
+
+`Breadcrumb` provides semantic path navigation with explicit slot components.
+
+- Use it for hierarchy and orientation (`Home / Docs / API`).
+- Do not use it as a stepper or a tab replacement.
+
+The root is a real `<nav aria-label="breadcrumb">`, and the current page is represented with `aria-current="page"`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@kuzenbo/core";
+
+export function DocsBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@kuzenbo/core";
+
+export function OverflowBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}
+```
+
+## Size Scale
+
+`Breadcrumb` supports `xs | sm | md | lg | xl` sizing on the root and all
+subprimitives.
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@kuzenbo/core";
+
+export function SizedBreadcrumb() {
+  return (
+    <Breadcrumb size="lg">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs" size="sm">
+            Docs
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator size="sm" />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}
+```
+
+## API Reference
+
+- `Breadcrumb`: root navigation container (`<nav aria-label="breadcrumb">`) with optional `size` (`xs | sm | md | lg | xl`, default `md`).
+- `BreadcrumbList`: ordered list (`<ol>`) wrapper with optional `size` override.
+- `BreadcrumbItem`: individual list item with optional `size` override.
+- `BreadcrumbLink`: interactive ancestor link; supports Base UI `render` composition and optional `size` override.
+- `BreadcrumbPage`: current location marker with `aria-current="page"` and optional `size` override.
+- `BreadcrumbSeparator`: visual separator between items; defaults to arrow icon and supports optional `size` override.
+- `BreadcrumbEllipsis`: compact overflow marker for deep paths with optional `size` override.
+
+## Accessibility
+
+- Keep breadcrumb order aligned with real navigation hierarchy.
+- Exactly one item should be `BreadcrumbPage` for the current location.
+- If you use `BreadcrumbEllipsis`, provide another path-discovery mechanism (menu, sitemap, parent page links).
+
+## SSR and RSC Notes
+
+- Breadcrumb markup is server-friendly and works in RSC.
+- When paths are dynamic, compute breadcrumb segments on the server and render links directly.
+- Use a client boundary only when breadcrumbs depend on client-only state.
+
+## Styling and Tokens
+
+- Default styles already use semantic tokens (`text-muted-foreground`, `text-foreground`).
+- Keep separators subtle; avoid saturated custom colors that compete with page headings.
+- Use spacing and typography primitives for hierarchy before adding extra decoration.
+
+## Troubleshooting
+
+- Breadcrumb is not announced as navigation: keep `Breadcrumb` as the root so `aria-label="breadcrumb"` remains present.
+- Current page still looks clickable: use `BreadcrumbPage` instead of `BreadcrumbLink` for the final item.
+- Overflow paths become unreadable: collapse middle segments with `BreadcrumbEllipsis`.
+
+## Related Links
+
+- [Navigation Menu](/docs/components/navigation-menu)
+- [Tabs](/docs/components/tabs)
+- [Pagination](/docs/components/pagination)
+- [Separator](/docs/components/separator)

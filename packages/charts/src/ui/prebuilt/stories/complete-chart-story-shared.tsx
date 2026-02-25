@@ -1,0 +1,24 @@
+export const completeChartShellClassName =
+  "mx-auto w-full max-w-5xl rounded-2xl border border-border bg-background p-4";
+
+export const completeChartCompactShellClassName =
+  "mx-auto w-full max-w-md rounded-2xl border border-border bg-background p-3";
+
+const compactNumberFormatter = new Intl.NumberFormat("en-US", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+
+export const formatCurrencyCompact = (value: number) =>
+  `$${compactNumberFormatter.format(value)}`;
+
+export const formatNumberCompact = (value: number) =>
+  compactNumberFormatter.format(value);
+
+export const formatPercent = (value: number) => `${value}%`;
+
+export const formatSignedNumberCompact = (value: number) => {
+  const sign = value > 0 ? "+" : "";
+
+  return `${sign}${compactNumberFormatter.format(value)}`;
+};

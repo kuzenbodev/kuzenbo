@@ -1,0 +1,69 @@
+---
+title: "Hooks"
+description: "Hook index across public Kuzenbo packages with ownership guidance, SSR boundaries, and testing notes."
+section: "hooks"
+package: "hooks"
+status: "stable"
+order: 1
+surface: "package"
+seoTitle: "Hooks | Kuzenbo Docs"
+seoDescription: "Find the right Kuzenbo hook by package and usage pattern."
+ogImage: "/docs-og/hooks"
+ogImageAlt: "Hooks documentation"
+---
+
+## Hook ownership model
+
+The Hooks section covers hook APIs from multiple public packages, not only `@kuzenbo/hooks`. Import each hook from its owning package.
+
+| Package              | Core hooks                                                            | Use when                                             |
+| -------------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
+| `@kuzenbo/hooks`     | `useClipboard`, `useFullscreen`, `useIsMobile`, `useIsomorphicEffect` | Generic UI runtime concerns shared across products   |
+| `@kuzenbo/charts`    | `useChart*`, tooltip hooks, color hooks                               | Building custom chart primitives and tooltip UIs     |
+| `@kuzenbo/datatable` | `useDatatableState`                                                   | Controlling table state and behavior composition     |
+| `@kuzenbo/ai`        | `useAiSession`                                                        | Local AI session lifecycle and message counter state |
+
+## Import pattern
+
+```tsx
+import { useAiSession } from "@kuzenbo/ai";
+import { useChart, useSeriesColor } from "@kuzenbo/charts";
+import { useDatatableState } from "@kuzenbo/datatable";
+import {
+  useClipboard,
+  useFullscreen,
+  useIsMobile,
+  useIsomorphicEffect,
+} from "@kuzenbo/hooks";
+```
+
+## `@kuzenbo/hooks` boundary rule
+
+`@kuzenbo/hooks` is intentionally standalone. It must remain usable without `@kuzenbo/core`. If you need component-specific behavior, place that hook in the package that owns the component surface.
+
+## SSR and client boundaries
+
+- Hooks run in client components only.
+- Use `useIsomorphicEffect` when you need layout-effect semantics without SSR warnings.
+- Keep server data fetches in server components and pass serializable values to client hook consumers.
+
+## Performance guidance
+
+- Avoid running viewport or media-query hooks in deeply repeated list items.
+- Memoize expensive derived values from chart hooks at the call site.
+- Keep hook state local unless there is a strong cross-tree synchronization requirement.
+
+## Testing guidance
+
+- Prefer hook-level tests with `renderHook` for state transitions and cleanup behavior.
+- Cover breakpoint boundaries explicitly (`767` vs `768` for `useIsMobile`).
+- For interaction hooks (fullscreen, chart tooltips), test event-driven state updates rather than implementation internals.
+
+## Start with these pages
+
+- [useFullscreen](/docs/hooks/use-fullscreen)
+- [useClipboard](/docs/hooks/use-clipboard)
+- [useIsomorphicEffect](/docs/hooks/use-isomorphic-effect)
+- [useAiSession](/docs/hooks/use-ai-session)
+- [useDatatableState](/docs/hooks/use-datatable-state)
+- [useChart](/docs/hooks/use-chart)

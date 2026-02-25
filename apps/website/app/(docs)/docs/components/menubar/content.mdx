@@ -1,0 +1,173 @@
+---
+title: "Menubar"
+description: "Build application-style top menus with @kuzenbo/core Menubar, including groups, radio and checkbox items, and nested submenus."
+section: "components"
+package: "core"
+status: "stable"
+order: 49
+surface: "component"
+seoTitle: "Menubar | Kuzenbo Docs"
+seoDescription: "Build application-style top menus with @kuzenbo/core Menubar, including groups, radio and checkbox items, and nested submenus."
+ogImage: "/docs-og/components/menubar"
+ogImageAlt: "Menubar documentation"
+aliases:
+  - "/docs/components/navigation/menubar"
+---
+
+## Purpose
+
+`Menubar` is the desktop-style top navigation menu primitive in `@kuzenbo/core`. It is suited for application toolbars where users expect keyboard-accessible hierarchical menus.
+
+Use it for:
+
+- File/Edit/View style app menus.
+- Settings menus with checkable and radio options.
+- Nested submenus for dense command trees.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Menubar } from "@kuzenbo/core";
+
+export function AppMenubar() {
+  return (
+    <Menubar>
+      <Menubar.Menu>
+        <Menubar.Trigger>File</Menubar.Trigger>
+        <Menubar.Content>
+          <Menubar.Item>New</Menubar.Item>
+          <Menubar.Item>Open</Menubar.Item>
+          <Menubar.Separator />
+          <Menubar.Item>Exit</Menubar.Item>
+        </Menubar.Content>
+      </Menubar.Menu>
+
+      <Menubar.Menu>
+        <Menubar.Trigger>Edit</Menubar.Trigger>
+        <Menubar.Content>
+          <Menubar.Item>Cut</Menubar.Item>
+          <Menubar.Item>Copy</Menubar.Item>
+          <Menubar.Item>Paste</Menubar.Item>
+        </Menubar.Content>
+      </Menubar.Menu>
+    </Menubar>
+  );
+}
+```
+
+## Advanced usage: groups, checkbox/radio items, and submenu
+
+```tsx
+import { Menubar } from "@kuzenbo/core";
+
+export function EditorMenu() {
+  return (
+    <Menubar>
+      <Menubar.Menu>
+        <Menubar.Trigger>View</Menubar.Trigger>
+        <Menubar.Content>
+          <Menubar.Label>Panels</Menubar.Label>
+          <Menubar.Group>
+            <Menubar.CheckboxItem defaultChecked>Sidebar</Menubar.CheckboxItem>
+            <Menubar.CheckboxItem>Status bar</Menubar.CheckboxItem>
+          </Menubar.Group>
+
+          <Menubar.Separator />
+
+          <Menubar.Label>Density</Menubar.Label>
+          <Menubar.RadioGroup defaultValue="comfortable">
+            <Menubar.RadioItem value="compact">Compact</Menubar.RadioItem>
+            <Menubar.RadioItem value="comfortable">
+              Comfortable
+            </Menubar.RadioItem>
+          </Menubar.RadioGroup>
+
+          <Menubar.Separator />
+
+          <Menubar.Sub>
+            <Menubar.SubTrigger>More tools</Menubar.SubTrigger>
+            <Menubar.SubContent>
+              <Menubar.Item>
+                Command palette
+                <Menubar.Shortcut>Cmd+K</Menubar.Shortcut>
+              </Menubar.Item>
+            </Menubar.SubContent>
+          </Menubar.Sub>
+        </Menubar.Content>
+      </Menubar.Menu>
+    </Menubar>
+  );
+}
+```
+
+## Size Scaling
+
+`Menubar` supports `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
+
+- Root-driven default: `Menubar size` scales trigger row density and dropdown internals.
+- Content override: `Menubar.Content size` overrides root for overlay descendants.
+- Child override: item-level `size` props (for example `Menubar.Item size`) override content/root.
+
+Precedence:
+
+- Trigger row: `explicit child size ?? root size ?? "md"`.
+- Overlay descendants: `explicit child size ?? nearest content size ?? root size ?? "md"`.
+
+## API reference
+
+- Root/menu primitives
+  `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarPortal`.
+- Item primitives
+  `MenubarItem`, `MenubarCheckboxItem`, `MenubarRadioItem`, `MenubarRadioGroup`, `MenubarShortcut`.
+- Structural primitives
+  `MenubarGroup`, `MenubarLabel`, `MenubarSeparator`.
+- Nested menus
+  `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent`.
+
+## Accessibility notes
+
+- Trigger labels should be concise and predictable (for example, `File`, `Edit`, `View`).
+- Keep menu item order stable so keyboard users can build muscle memory.
+- Use check/radio items for persistent state, not plain `MenubarItem`.
+
+## SSR and RSC notes
+
+`Menubar` is interactive and should render from a Client Component boundary.
+
+## Styling and semantic tokens
+
+Menubar defaults are tokenized (`bg-background`, `border-border`, etc.). Keep custom states in semantic classes and preserve contrast on focus and hover states.
+
+## Troubleshooting
+
+- Menu does not open:
+  Confirm `Menubar.Trigger` and `Menubar.Content` are children of the same `Menubar.Menu`.
+- Nested submenu is unreachable:
+  Ensure `Menubar.SubTrigger` and `Menubar.SubContent` are wrapped by `Menubar.Sub`.
+- Check/radio states do not persist:
+  Wire controlled values where needed, or use `defaultChecked`/`defaultValue` for uncontrolled behavior.
+
+## Related links
+
+- [Menu](/docs/components/menu)
+- [Context Menu](/docs/components/context-menu)
+- [Command](/docs/components/command)

@@ -1,0 +1,160 @@
+---
+title: "Toggle"
+description: "Build pressed-state controls and grouped selection patterns with Toggle and ToggleGroup from @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 84
+surface: "component"
+seoTitle: "Toggle | Kuzenbo Docs"
+seoDescription: "Build pressed-state controls and grouped selection patterns with Toggle and ToggleGroup from @kuzenbo/core."
+ogImage: "/docs-og/components/toggle"
+ogImageAlt: "Toggle documentation"
+aliases:
+  - "/docs/components/inputs/toggle"
+---
+
+## Overview
+
+`Toggle` models a pressed/unpressed button state (`aria-pressed`).
+
+`ToggleGroup` coordinates multiple toggles for single-select or multi-select behavior.
+
+Use cases:
+
+- `Toggle`: per-item formatting controls (bold, italic, pin).
+- `ToggleGroup`: alignment pickers, filter bars, and segmented controls.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
+  toggleVariants,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Toggle } from "@kuzenbo/core";
+
+export function PinToggle() {
+  return (
+    <Toggle aria-label="Pin item" variant="outline">
+      Pin
+    </Toggle>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { ToggleGroup } from "@kuzenbo/core";
+
+export function TextAlignPicker() {
+  const [value, setValue] = useState<string[]>(["left"]);
+
+  return (
+    <ToggleGroup
+      multiple={false}
+      onValueChange={setValue}
+      orientation="horizontal"
+      spacing={0}
+      value={value}
+      variant="outline"
+    >
+      <ToggleGroup.Item value="left">Left</ToggleGroup.Item>
+      <ToggleGroup.Item value="center">Center</ToggleGroup.Item>
+      <ToggleGroup.Item value="right">Right</ToggleGroup.Item>
+    </ToggleGroup>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Toggle` and `ToggleGroup` use shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for toggle surfaces:
+
+- Row height and minimum control width scale together.
+- Icon defaults and text density adjust by token.
+- Outline-group border merging stays stable across sizes.
+
+Precedence rule:
+
+`ToggleGroup.Item explicit size ?? ToggleGroup size ?? "md"`
+
+```tsx
+// Before
+<ToggleGroup size="md">
+  <ToggleGroup.Item value="left">Left</ToggleGroup.Item>
+</ToggleGroup>
+
+// After
+<ToggleGroup size="md">
+  <ToggleGroup.Item size="sm" value="left">Left</ToggleGroup.Item>
+</ToggleGroup>
+```
+
+## API Reference
+
+- `Toggle`: standalone pressed-state control.
+- Variant props: `variant="default" | "outline"`, `size="xs" | "sm" | "md" | "lg" | "xl"`.
+- `toggleVariants`: reusable variant function for shared styling contracts.
+
+- `ToggleGroup`: group root with layout and selection behavior.
+- Common group props: `value`, `defaultValue`, `onValueChange`, `multiple`.
+- Group layout props: `orientation="horizontal" | "vertical"`, `spacing`, `variant`, `size`.
+
+- `ToggleGroupItem`: item-level control tied to group state.
+- `ToggleGroupContext`: exported context used internally by group items to inherit variant/size/spacing.
+
+## Accessibility
+
+- Provide explicit `aria-label` when button text is icon-only.
+- In groups, keep item labels short and mutually exclusive for single-select modes.
+- Use `multiple={false}` only when exactly one option should remain active.
+
+## SSR and RSC Notes
+
+- Static toggle markup can render on the server.
+- Interactive pressed state and controlled groups should run in client components.
+- Keep initial `value` and `defaultValue` aligned with server-rendered UI to avoid hydration drift.
+
+## Styling and Tokens
+
+- `Toggle` uses semantic interaction tokens (`bg-muted`, `text-foreground`, `border-input`, `ring-ring`).
+- For segmented controls, prefer `ToggleGroup spacing={0}` with `variant="outline"` over custom border hacks.
+- Use `toggleVariants` when building wrappers that must stay aligned with core Toggle visuals.
+
+## Troubleshooting
+
+- Toggle appears but does not change state: check controlled `value` updates in `onValueChange`.
+- Group borders look doubled: use `spacing={0}` and let built-in group item border merging handle edges.
+- Icons are misaligned: keep icon sizing consistent and rely on built-in toggle slot spacing.
+
+## Related Links
+
+- [Toggle Group](/docs/components/toggle-group)
+- [Switch](/docs/components/switch)
+- [Tabs](/docs/components/tabs)
+- [Toolbar](/docs/components/toolbar)

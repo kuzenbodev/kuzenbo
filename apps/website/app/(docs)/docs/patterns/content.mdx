@@ -1,0 +1,74 @@
+---
+title: "Patterns"
+description: "Implementation patterns for building reliable Kuzenbo interfaces across packages and teams."
+section: "patterns"
+package: "core"
+status: "stable"
+order: 1
+surface: "guide"
+seoTitle: "Patterns | Kuzenbo Docs"
+seoDescription: "Practical architecture and composition patterns for Kuzenbo production apps."
+ogImage: "/docs-og/patterns"
+ogImageAlt: "Patterns index guidance"
+---
+
+## What Patterns Means In Kuzenbo
+
+Patterns in this docs section are repeatable implementation decisions, not just component examples. They help teams ship consistent behavior across app surfaces while preserving package boundaries.
+
+## Pattern Areas
+
+- [Composition](/docs/patterns/composition): building reusable APIs with explicit slots and predictable ownership.
+- [Forms](/docs/patterns/forms): structuring validation, error states, and field semantics.
+- [Navigation Patterns](/docs/patterns/navigation-patterns): menus, sidebars, and route transitions.
+- [Overlay Patterns](/docs/patterns/overlay-patterns): dialog, drawer, sheet, popover, and tooltip layering.
+- [Migration](/docs/patterns/migration): safe upgrade paths and regression control.
+
+## Cross-Cutting Rules
+
+1. Prefer Base UI `render` composition over `asChild` for new work.
+2. Use semantic color tokens (`bg-background`, `text-foreground`, `border-border`) instead of raw palette classes.
+3. Prefer Kuzenbo typography primitives over ad-hoc text utility styling.
+4. Keep hook logic in hook-owning packages and UI composition in UI-owning packages.
+
+## Example: Composition-First Trigger
+
+```tsx
+import { Button, Dialog } from "@kuzenbo/core";
+
+export const DeleteDialog = () => (
+  <Dialog>
+    <Dialog.Trigger render={<Button variant="danger" />}>
+      Delete project
+    </Dialog.Trigger>
+    <Dialog.Content>
+      <Dialog.Header>
+        <Dialog.Title>Delete project</Dialog.Title>
+        <Dialog.Description>
+          This action is permanent and cannot be undone.
+        </Dialog.Description>
+      </Dialog.Header>
+    </Dialog.Content>
+  </Dialog>
+);
+```
+
+## Accessibility and Performance Expectations
+
+- Test keyboard interaction flows for all pattern-level interactions, not just component rendering.
+- Keep focus transitions deterministic when patterns cross route boundaries or overlays.
+- Avoid introducing expensive state synchronization in layout-level components when local state is enough.
+
+## Review Checklist For Pattern Changes
+
+- Pattern documentation updated in the same change set.
+- Stories cover new states and interaction edges.
+- Tests include regression coverage for reported bugs.
+- Boundaries remain valid (`hooks` package stays independent from `core`).
+
+## Related Docs
+
+- [Foundations](/docs/foundations)
+- [Components](/docs/components)
+- [Hooks](/docs/hooks)
+- [Reference](/docs/reference)

@@ -1,0 +1,175 @@
+---
+title: "Toast"
+description: "Deliver transient notifications with @kuzenbo/notifications Toast primitives, provider wiring, and useToast helpers."
+section: "components"
+package: "notifications"
+status: "stable"
+order: 83
+surface: "component"
+seoTitle: "Toast | Kuzenbo Docs"
+seoDescription: "Toast primitives and useToast workflow in @kuzenbo/notifications, including provider setup and async feedback patterns."
+ogImage: "/docs-og/components/toast"
+ogImageAlt: "Toast documentation"
+aliases:
+  - "/docs/components/overlays/toast"
+---
+
+## Overview
+
+`@kuzenbo/notifications` exposes two toast layers:
+
+- low-level primitives (`Toast.Root`, `Toast.Content`, `Toast.Viewport`, etc.)
+- a high-level ergonomic API (`ToastProvider` + `useToast`)
+
+Use toasts for short-lived, non-blocking feedback (save success, retry failure, background task updates).
+
+Do not use toasts for critical confirmations that require deliberate user decisions.
+
+## Installation
+
+```npm
+npm i @kuzenbo/notifications
+```
+
+## Import
+
+```tsx
+import {
+  Toast,
+  ToastProvider,
+  ToastViewport,
+  useToast,
+} from "@kuzenbo/notifications";
+```
+
+## Basic Example
+
+```tsx
+"use client";
+
+import { ToastProvider, useToast } from "@kuzenbo/notifications";
+
+function SaveButton() {
+  const toast = useToast();
+
+  return (
+    <button
+      className="rounded-md border border-border px-3 py-2 text-sm"
+      onClick={() => toast.success({ description: "Changes saved." })}
+      type="button"
+    >
+      Save
+    </button>
+  );
+}
+
+export function ToastBasicDemo() {
+  return (
+    <ToastProvider>
+      <SaveButton />
+    </ToastProvider>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { ToastProvider, useToast } from "@kuzenbo/notifications";
+
+function PublishButton() {
+  const toast = useToast();
+
+  const publish = async () => {
+    await toast.promise(fetch("/api/publish", { method: "POST" }), {
+      loading: { title: "Publishing" },
+      success: { title: "Published", description: "Release is live." },
+      error: { title: "Failed", description: "Try again in a moment." },
+    });
+  };
+
+  return (
+    <button
+      className="rounded-md border border-border px-3 py-2 text-sm"
+      onClick={publish}
+      type="button"
+    >
+      Publish release
+    </button>
+  );
+}
+
+export function ToastAsyncDemo() {
+  return (
+    <ToastProvider>
+      <PublishButton />
+    </ToastProvider>
+  );
+}
+```
+
+## API Notes
+
+- `Toast` namespace includes `Action`, `Close`, `Content`, `Description`, `Portal`, `Root`, `Title`, and `Viewport`.
+- `ToastProvider` is a ready-to-use provider that renders viewport + managed toast list.
+- `useToast` helper methods:
+  - `add`
+  - `success`
+  - `error`
+  - `info`
+  - `warning`
+  - `loading`
+  - `promise`
+  - `update`
+  - `close`
+
+## Size Scale
+
+Toast surfaces use the shared scale:
+
+- `xs`
+- `sm`
+- `md` (default)
+- `lg`
+- `xl`
+
+You can set `size` on `ToastProvider` and override per toast root when needed.
+Resolution order:
+
+- explicit toast/root size
+- provider size
+- component default (`md`)
+
+The scale affects root density, viewport stacking rhythm, and action/close/content typography spacing.
+
+## Accessibility
+
+- Keep toast title/description explicit and concise.
+- Use action labels that describe outcome (`Undo delete`, not `Click here`).
+- Do not rely on toast color alone for severity; include clear text (`Error`, `Warning`, `Saved`).
+
+## SSR and RSC
+
+Toasts are client-side interaction surfaces. Wrap usage in client components.
+
+Provider and hook usage (`ToastProvider`, `useToast`) should not be called from Server Components.
+
+## Styling and Semantic Tokens
+
+Toast primitives use semantic tokens for surface and typography (`bg-popover`, `text-popover-foreground`, `border-border`, `text-muted-foreground`).
+
+When customizing, keep token-based classes so stack behavior remains visually consistent in all themes.
+
+## Troubleshooting
+
+- Toasts never appear: ensure `ToastProvider` exists above components calling `useToast`.
+- Close button is hard to see: verify overrides did not remove `text-muted-foreground`/hover token styles.
+- Toast stack overlaps important UI: customize `ToastViewport` placement classes.
+
+## Related Docs
+
+- [Alert](/docs/components/alert)
+- [Dialog](/docs/components/dialog)
+- [Accessibility Foundation](/docs/foundations/accessibility)

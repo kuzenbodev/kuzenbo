@@ -1,0 +1,116 @@
+---
+title: "QR Code"
+description: "Client-side SVG QR generation in @kuzenbo/core with semantic theme defaults and configurable error correction."
+section: "components"
+package: "core"
+status: "stable"
+order: 60
+surface: "component"
+seoTitle: "QR Code | Kuzenbo Docs"
+seoDescription: "Client-side SVG QR generation in @kuzenbo/core with semantic theme defaults and configurable error correction."
+ogImage: "/docs-og/components/qr-code"
+ogImageAlt: "QR Code documentation"
+aliases:
+  - "/docs/components/display/qr-code"
+---
+
+## Overview
+
+`QRCode` renders an SVG QR code from a string value. It reads semantic theme variables by default (`--kb-foreground`, `--kb-background`) and falls back to safe defaults when explicit colors are not supplied.
+
+Use it for share links, onboarding handoff, device pairing, and export/download deep links.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { QRCode } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { QRCode } from "@kuzenbo/core";
+
+export function ShareQRCode() {
+  return (
+    <div className="size-32 rounded-md border border-border p-2">
+      <QRCode data="https://kuzenbo.com/docs" />
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { QRCode } from "@kuzenbo/core";
+
+export function PairingQRCode() {
+  return (
+    <div className="w-44 space-y-2 rounded-md bg-muted p-3">
+      <div className="aspect-square w-full">
+        <QRCode
+          background="oklch(0.99 0 0)"
+          className="rounded-sm"
+          data="otpauth://totp/Acme:alice@example.com?secret=ABC123"
+          foreground="oklch(0.28 0.06 265)"
+          robustness="H"
+        />
+      </div>
+      <div className="text-sm text-muted-foreground">
+        Scan with your authenticator app.
+      </div>
+    </div>
+  );
+}
+```
+
+## API Reference
+
+- `QRCode`: QR renderer component.
+
+Props:
+
+- `data` (required): encoded string payload.
+- `foreground`: optional dark color (expects `oklch(...)` format when provided).
+- `background`: optional light color (expects `oklch(...)` format when provided).
+- `robustness`: QR correction level (`L`, `M`, `Q`, `H`), default `M`.
+- `className` and `div` props: style/attribute pass-through on the wrapper node.
+
+## Accessibility
+
+- QR graphics alone are not enough. Provide nearby human-readable fallback text or copyable URL.
+- If QR is the only route to continue, include clear instructions for screen-reader users.
+- Use meaningful context around the component (`Scan to pair`, `Scan to download`).
+
+## SSR and RSC Notes
+
+- `QRCode` is client-only and generates SVG after mount.
+- Initial render can be empty while SVG is generated, so wrap with a fixed-size container to avoid layout shift.
+- In App Router, render it from a Client Component boundary.
+
+## Styling and Tokens
+
+- Default color behavior follows semantic theme variables from the document root.
+- Prefer semantic wrappers (`bg-background`, `border-border`, `text-muted-foreground`).
+- When overriding colors, keep contrast high for scanner reliability.
+
+## Troubleshooting
+
+- QR not visible: ensure parent container has explicit width/height.
+- Color override ignored: `foreground`/`background` parser expects `oklch(...)` input.
+- Hydration mismatch concern: render inside a client boundary and avoid random payload generation in render.
+- Scanner fails frequently: raise `robustness` to `Q` or `H` for denser or noisier environments.
+
+## Related Docs
+
+- [Spinner](/docs/components/spinner)
+- [Card](/docs/components/card)
+- [Typography](/docs/components/typography)
+- [Color Primitives](/docs/foundations/color-primitives)

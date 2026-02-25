@@ -1,0 +1,170 @@
+---
+title: "Donut Chart"
+description: "Prebuilt DonutChart with center labels, label modes, semicircle support, and legend/tooltip coordination."
+section: "components"
+package: "charts"
+status: "stable"
+order: 31
+surface: "component"
+seoTitle: "Donut Chart | Kuzenbo Docs"
+seoDescription: "Render donut and semicircle visualizations with @kuzenbo/charts DonutChart using typed data keys and semantic chart colors."
+ogImage: "/docs-og/components/donut-chart"
+ogImageAlt: "Donut Chart documentation"
+---
+
+## Overview
+
+`DonutChart` is the complete radial chart for part-to-whole distribution. It supports:
+
+- donut and semicircle modes
+- center label rendering
+- percentage/value labels
+- legend-driven highlighting and tooltip behavior
+
+Use it when each datum represents a segment and the total matters.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import {
+  DonutChart,
+  type DonutCenterLabelContext,
+  type DonutChartProps,
+} from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { DonutChart } from "@kuzenbo/charts";
+
+const data = [
+  { name: "Direct", value: 430 },
+  { name: "Organic", value: 290 },
+  { name: "Paid", value: 180 },
+  { name: "Partners", value: 120 },
+];
+
+const series = [
+  { name: "Direct", label: "Direct", color: "var(--color-chart-1)" },
+  { name: "Organic", label: "Organic", color: "var(--color-chart-2)" },
+  { name: "Paid", label: "Paid", color: "var(--color-chart-3)" },
+  { name: "Partners", label: "Partners", color: "var(--color-chart-4)" },
+];
+
+export function DonutChartBasic() {
+  return (
+    <DonutChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="value"
+      series={series}
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { DonutChart, type DonutCenterLabelContext } from "@kuzenbo/charts";
+
+const data = [
+  { name: "Direct", value: 430 },
+  { name: "Organic", value: 290 },
+  { name: "Paid", value: 180 },
+  { name: "Partners", value: 120 },
+];
+
+const series = [
+  { name: "Direct", label: "Direct", color: "var(--color-chart-1)" },
+  { name: "Organic", label: "Organic", color: "var(--color-chart-2)" },
+  { name: "Paid", label: "Paid", color: "var(--color-chart-3)" },
+  { name: "Partners", label: "Partners", color: "var(--color-chart-4)" },
+];
+
+const centerLabel = ({ total }: DonutCenterLabelContext) => `${total} total`;
+
+export function DonutChartAdvanced() {
+  return (
+    <DonutChart
+      centerLabel={centerLabel}
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="value"
+      labelMode="percent"
+      paddingAngle={2}
+      series={series}
+      size="84%"
+      strokeColor="var(--color-background)"
+      strokeWidth={2}
+      thickness={22}
+      tooltipSource="segment"
+      withLabelLine
+      withLabels
+      withLegend
+    />
+  );
+}
+```
+
+## API Reference
+
+- `DonutChart`
+  Required:
+  - `data`
+  - `dataKey`
+
+  Common options:
+  - `series`, `nameKey`
+  - `centerLabel`
+  - `labelMode`, `labelPosition`, `withLabels`, `withLabelLine`
+  - `size`, `thickness`, `paddingAngle`, `strokeColor`, `strokeWidth`
+  - `isSemicircle`, `startAngle`, `endAngle`
+  - `withLegend`, `withTooltip`, `tooltipSource`
+  - `pieProps`, `pieChartProps`
+
+  Compatibility alias:
+  - `chartProps` is supported for migration, but `pieChartProps` is the canonical prop.
+
+- Exported types:
+  - `DonutChartProps`
+  - `DonutCenterLabelContext`
+
+## Accessibility
+
+- Recharts `accessibilityLayer` is enabled.
+- Keep legend labels human-readable so color segments have textual mapping.
+- Center labels should be short and informative, not decorative-only.
+
+## SSR and RSC Notes
+
+- `DonutChart` is client-only (`"use client"`).
+- In App Router, keep chart rendering in a client boundary and pass plain data from server components.
+
+## Styling and Tokens
+
+- Use semantic chart variables for segment colors: `var(--color-chart-1..n)`.
+- For separators between segments, prefer tokenized stroke colors such as `var(--color-background)`.
+- Keep center text aligned to foreground contrast (`var(--color-foreground)`).
+
+## Troubleshooting
+
+- Empty chart: ensure container height exists (`chartRootProps` or responsive container props).
+- Colors do not map as expected: confirm `series.name` matches segment identity (`nameKey`/datum names).
+- Center label missing: return a renderable string or node from `centerLabel`.
+- Unexpected tooltip grouping: set `tooltipSource` explicitly (`segment` vs `all`).
+
+## Related Docs
+
+- [Chart Primitives](/docs/components/chart)
+- [Pie Chart](/docs/components/pie-chart)
+- [Radial Bar Chart](/docs/components/radial-bar-chart)
+- [Funnel Chart](/docs/components/funnel-chart)

@@ -1,0 +1,214 @@
+---
+title: "Card"
+description: "Compose content blocks with header, action, body, and footer slots."
+section: "components"
+package: "core"
+status: "stable"
+order: 19
+surface: "component"
+seoTitle: "Card | Kuzenbo Docs"
+seoDescription: "Use Card slots to build consistent product surfaces with clear visual hierarchy."
+ogImage: "/docs-og/components/card"
+ogImageAlt: "Card documentation"
+aliases:
+  - "/docs/components/display/card"
+---
+
+## Purpose and boundaries
+
+`Card` is a structural container for grouped UI. It gives you slot-based layout primitives so teams can build consistent feature surfaces without ad-hoc spacing and border rules.
+
+Use it for:
+
+- Summaries and dashboard widgets
+- Settings panels and forms
+- Actionable content blocks with consistent title/description/body/footer rhythm
+
+`Card` is presentational. It does not manage state or behavior for inner controls.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@kuzenbo/core";
+
+export function BasicCard() {
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Quarterly revenue</CardTitle>
+        <CardDescription>Compared with the previous quarter</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">Up 14.2 percent.</p>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@kuzenbo/core";
+
+export function ActionCard() {
+  return (
+    <Card className="w-full max-w-lg" size="sm">
+      <CardHeader>
+        <CardTitle>Deploy preview</CardTitle>
+        <CardDescription>
+          Review checks before promoting to production.
+        </CardDescription>
+        <CardAction>
+          <button
+            className="rounded-md border border-border px-2 py-1 text-xs"
+            type="button"
+          >
+            Logs
+          </button>
+        </CardAction>
+      </CardHeader>
+
+      <CardContent>
+        <ul className="space-y-1 text-sm text-foreground">
+          <li>Typecheck passed</li>
+          <li>Tests passed</li>
+          <li>Boundaries passed</li>
+        </ul>
+      </CardContent>
+
+      <CardFooter className="border-t border-border">
+        <button
+          className="ml-auto rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground"
+          type="button"
+        >
+          Promote
+        </button>
+      </CardFooter>
+    </Card>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Card` now uses shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for Card surfaces:
+
+- Surface spacing (padding + gap) changes by size token.
+- Slot typography and horizontal padding (`CardHeader`, `CardContent`, `CardFooter`) follow root `Card` size.
+
+Precedence rule:
+
+`Card size ?? "md"`
+
+`Card` slots do not expose their own `size` prop, so root size is the source of truth.
+
+```tsx
+// Before
+<Card size="md">...</Card>
+
+// After
+<Card size="md">...</Card>
+```
+
+## API reference
+
+### `Card`
+
+- Root container.
+- Supports `size?: "xs" | "sm" | "md" | "lg" | "xl"`.
+- Accepts standard `div` props.
+
+### `CardHeader`
+
+Header layout region. Automatically adapts when `CardAction` and `CardDescription` are present.
+
+### `CardTitle`
+
+Title slot for the primary heading text.
+
+### `CardDescription`
+
+Secondary descriptive text slot.
+
+### `CardAction`
+
+Action region in header (for example icon button, menu trigger, status control).
+
+### `CardContent`
+
+Main body region for chart, copy, forms, or data rows.
+
+### `CardFooter`
+
+Bottom action/status region. Use with border utilities when visual separation is needed.
+
+## Accessibility notes
+
+- `Card` renders a `div`. Use semantic wrappers (`article`, `section`) around it when needed.
+- Use proper heading hierarchy inside `CardTitle`.
+- Ensure footer actions remain keyboard reachable and clearly labeled.
+
+## SSR and RSC notes
+
+- Card is render-only and works in server components.
+- Keep stateful content inside client children when required.
+
+## Styling and tokens
+
+- Default styles already use semantic tokens (`bg-card`, `text-card-foreground`, `border-border`).
+- Extend with semantic utilities only.
+- Avoid raw palette classes to preserve theme consistency.
+
+## Troubleshooting
+
+- Header action alignment is wrong: ensure `CardAction` is placed inside `CardHeader`.
+- Footer spacing looks off: use `CardFooter` instead of manual bottom padding.
+- Small variant not applying: pass `size="sm"` on `Card`, not child slots.
+
+## Related docs
+
+- [Button](/docs/components/button)
+- [Container](/docs/components/container)
+- [Typography](/docs/components/typography)
+- [Components index](/docs/components)

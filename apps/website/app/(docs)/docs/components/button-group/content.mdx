@@ -1,0 +1,123 @@
+---
+title: "Button Group"
+description: "Compose adjacent action controls with shared borders, orientation-aware layout, and helper subcomponents."
+section: "components"
+package: "core"
+status: "stable"
+order: 17
+surface: "component"
+seoTitle: "Button Group | Kuzenbo Docs"
+seoDescription: "Use ButtonGroup from @kuzenbo/core to align connected actions, separators, and inline text blocks."
+ogImage: "/docs-og/components/button-group"
+ogImageAlt: "Button Group documentation"
+aliases:
+  - "/docs/components/inputs/button-group"
+---
+
+## Overview
+
+`ButtonGroup` is a layout primitive for visually-connected controls.
+It handles border and radius merging for adjacent child slots and supports horizontal and vertical arrangements.
+
+Use this for grouped actions, segmented action rows, and compact control clusters. It does not manage selection state by itself.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  buttonGroupVariants,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Button, ButtonGroup } from "@kuzenbo/core";
+
+export function ButtonGroupBasicExample() {
+  return (
+    <ButtonGroup>
+      <Button variant="outline">Save</Button>
+      <Button variant="outline">Publish</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import {
+  Button,
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@kuzenbo/core";
+
+export function ButtonGroupAdvancedExample() {
+  return (
+    <ButtonGroup
+      orientation="vertical"
+      role="group"
+      aria-label="Editor actions"
+    >
+      <Button variant="outline">Undo</Button>
+      <ButtonGroupSeparator orientation="horizontal" />
+      <Button variant="outline">Redo</Button>
+      <ButtonGroupText render={<div />}>Auto-save enabled</ButtonGroupText>
+    </ButtonGroup>
+  );
+}
+```
+
+## API Notes
+
+- `ButtonGroup` accepts `orientation` from `buttonGroupVariants` (`horizontal` default, `vertical`).
+- `ButtonGroup` supports `size="xs" | "sm" | "md" | "lg" | "xl"` (`md` default).
+- `ButtonGroup` forwards native `div` props and adds `data-slot="button-group"` for styling hooks.
+- Child `Button` components inherit group size when their own `size` prop is omitted.
+- Child `Button` components keep explicit `size` overrides when provided.
+- `ButtonGroupSeparator` wraps `Separator` and defaults to `orientation="vertical"`.
+- `ButtonGroupSeparator` and `ButtonGroupText` also support optional `size` props.
+- `ButtonGroupText` uses Base UI `render` composition, so you can swap the rendered element while keeping Kuzenbo styles.
+- `buttonGroupVariants` is exported for class composition in custom wrappers.
+
+## Accessibility
+
+- Add `role="group"` and `aria-label` when the grouped controls form one named action cluster.
+- Use icon-only children only with accessible names (`aria-label` on each button).
+- Keep visible focus rings on grouped children; do not hide focus styles.
+
+## SSR and RSC
+
+- `ButtonGroup` itself is static markup and can render on the server.
+- Most child controls are interactive client components; keep the composed surface inside a client boundary in Next.js when needed.
+
+## Styling and Tokens
+
+- Prefer semantic utility classes when extending (`bg-background`, `text-foreground`, `border-border`).
+- Keep custom separators on semantic tokens (`bg-input`, `border-border`) to match theme behavior.
+- Avoid raw palette classes that break consistency across package themes.
+
+## Troubleshooting
+
+- Uneven borders between items: ensure children use Kuzenbo controls that respect group slot classes.
+- Vertical separators look wrong: set `ButtonGroupSeparator orientation="horizontal"` in vertical stacks.
+- Child buttons are too large/small: set group `size` and only use child `Button size={...}` when intentionally overriding.
+- Group does not stretch as expected: set explicit width on the container (`w-full`) because base defaults to `w-fit`.
+
+## Related Docs
+
+- [Button](/docs/components/button)
+- [Separator](/docs/components/separator)
+- [Tabs](/docs/components/tabs)
+- [Components Index](/docs/components)

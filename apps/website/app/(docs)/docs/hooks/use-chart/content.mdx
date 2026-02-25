@@ -1,0 +1,142 @@
+---
+title: "useChart"
+description: "Use chart runtime hooks for context, dimensions, and portal target wiring when building custom chart primitives."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 6
+surface: "hook"
+seoTitle: "useChart | Kuzenbo Docs"
+seoDescription: "Use chart runtime hooks for context, dimensions, and portal target wiring when building custom chart primitives."
+ogImage: "/docs-og/hooks/use-chart"
+ogImageAlt: "useChart documentation"
+---
+
+## Overview
+
+`useChart` is an alias of `useChartConfig`. This page also covers the adjacent runtime hooks exported with this surface: `useChartConfig`, `useChartWidth`, `useChartHeight`, and `useChartPortalTarget`.
+
+## What It Reads and Writes
+
+- `useChart` / `useChartConfig`: read chart context, write nothing.
+- `useChartWidth` / `useChartHeight`: read Recharts layout selectors, write nothing.
+- `useChartPortalTarget`: reads local `target` state and writes it via `targetRef`.
+
+## When to Use
+
+- Build custom chart UI that needs both Kuzenbo context and Recharts layout data.
+- Compose diagnostics/overlays around a chart without drilling context props.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import {
+  useChart,
+  useChartConfig,
+  useChartHeight,
+  useChartPortalTarget,
+  useChartWidth,
+} from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import {
+  Chart,
+  type ChartConfig,
+  useChart,
+  useChartHeight,
+  useChartPortalTarget,
+  useChartWidth,
+} from "@kuzenbo/charts";
+import { createPortal } from "react-dom";
+import { Line, LineChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", revenue: 172000 },
+  { month: "Feb", revenue: 186000 },
+  { month: "Mar", revenue: 201000 },
+];
+
+const config: ChartConfig = {
+  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+};
+
+const ChartRuntimePanel = () => {
+  const { chartId, config: chartConfig } = useChart();
+  const width = useChartWidth();
+  const height = useChartHeight();
+  const { target, targetRef } = useChartPortalTarget();
+
+  return (
+    <>
+      <Chart.PortalTarget ref={targetRef} />
+      {target
+        ? createPortal(
+            <div className="absolute right-2 top-2 rounded-md border border-border bg-background px-2 py-1 text-xs text-foreground">
+              {`${chartId} (${width ?? 0}x${height ?? 0})`}
+            </div>,
+            target
+          )
+        : null}
+      <p className="text-sm text-muted-foreground">
+        {`Series count: ${Object.keys(chartConfig).length}`}
+      </p>
+    </>
+  );
+};
+
+export function UseChartRuntimeExample() {
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <LineChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Line dataKey="revenue" dot={false} stroke="var(--color-revenue)" />
+      </LineChart>
+      <ChartRuntimePanel />
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contracts
+
+- `useChart()` / `useChartConfig()`:
+  - `chartId`
+  - `config`
+  - `seriesRegistry`
+  - `getSeriesColor`
+  - `getSeriesColorVar`
+  - `resolveColorExpression`
+- `useChartWidth()`: `number | undefined`
+- `useChartHeight()`: `number | undefined`
+- `useChartPortalTarget()`: `{ target: HTMLElement | null; targetRef: (node: HTMLElement | null) => void }`
+
+## Caveats
+
+- `useChart` and `useChartConfig` throw outside `Chart.Provider` / `Chart.Root`.
+- `useChartWidth` and `useChartHeight` return `undefined` outside chart layout context.
+- `useChartPortalTarget().target` is `null` before mount and after unmount.
+
+## SSR and RSC Notes
+
+- All hooks on this page are client-side hooks.
+- Call them only inside Client Components.
+
+## Related Docs
+
+- [useChartConfig](/docs/hooks/use-chart-config)
+- [useChartWidth](/docs/hooks/use-chart-width)
+- [useChartHeight](/docs/hooks/use-chart-height)
+- [useChartPortalTarget](/docs/hooks/use-chart-portal-target)
+- [Chart](/docs/components/chart)

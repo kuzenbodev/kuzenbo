@@ -1,0 +1,75 @@
+"use client";
+
+import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
+import { tv } from "tailwind-variants";
+
+import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import { useAccordionContext } from "./accordion-context";
+
+export type AccordionItemProps = AccordionPrimitive.Item.Props;
+
+const accordionItemVariants = tv({
+  base: "border-b border-border [&:last-child]:border-b-0",
+  compoundVariants: [
+    {
+      class: "px-2.5",
+      size: "xs",
+      variant: ["bordered", "ghost"],
+    },
+    {
+      class: "px-3",
+      size: "sm",
+      variant: ["bordered", "ghost"],
+    },
+    {
+      class: "px-4",
+      size: "md",
+      variant: ["bordered", "ghost"],
+    },
+    {
+      class: "px-5",
+      size: "lg",
+      variant: ["bordered", "ghost"],
+    },
+    {
+      class: "px-6",
+      size: "xl",
+      variant: ["bordered", "ghost"],
+    },
+  ],
+  variants: {
+    size: {
+      xs: "",
+      sm: "",
+      md: "",
+      lg: "",
+      xl: "",
+    },
+    variant: {
+      default: "",
+      bordered: "",
+      ghost: "border-0",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+    variant: "default",
+  },
+});
+
+const AccordionItem = ({ className, ...props }: AccordionItemProps) => {
+  const { size, variant } = useAccordionContext();
+
+  return (
+    <AccordionPrimitive.Item
+      className={mergeBaseUIClassName<AccordionPrimitive.Item.State>(
+        accordionItemVariants({ size, variant }),
+        className
+      )}
+      data-slot="accordion-item"
+      {...props}
+    />
+  );
+};
+
+export { AccordionItem };

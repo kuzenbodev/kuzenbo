@@ -1,0 +1,184 @@
+---
+title: "Avatar"
+description: "Render user identity with image, fallback, badge, and grouped avatar stacks."
+section: "components"
+package: "core"
+status: "stable"
+order: 11
+surface: "component"
+seoTitle: "Avatar | Kuzenbo Docs"
+seoDescription: "Use Avatar to display user photos with fallbacks, badges, and grouped layouts."
+ogImage: "/docs-og/components/avatar"
+ogImageAlt: "Avatar documentation"
+aliases:
+  - "/docs/components/display/avatar"
+---
+
+## Purpose and boundaries
+
+`Avatar` gives you a consistent identity primitive with slots for image, fallback initials, status badges, and compact grouped views.
+
+Use it when you need:
+
+- User or member identity in list rows, comments, headers, and cards
+- Graceful fallback when an image is unavailable
+- Dense stacks (`AvatarGroup`) with overflow count support (`AvatarGroupCount`)
+
+`Avatar` does not fetch image URLs for you. It only renders what you pass.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Avatar } from "@kuzenbo/core";
+
+export function AssigneeAvatar() {
+  return (
+    <Avatar>
+      <Avatar.Image
+        alt="Casey Nguyen"
+        src="https://i.pravatar.cc/150?u=casey"
+      />
+      <Avatar.Fallback>CN</Avatar.Fallback>
+    </Avatar>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarGroup,
+  AvatarGroupCount,
+} from "@kuzenbo/core";
+
+export function TeamAvatars() {
+  return (
+    <AvatarGroup aria-label="Active reviewers">
+      <Avatar size="sm">
+        <Avatar.Image alt="Ari" src="https://example.com/ari.png" />
+        <Avatar.Fallback>AR</Avatar.Fallback>
+        <AvatarBadge aria-hidden="true" />
+      </Avatar>
+
+      <Avatar size="sm">
+        <Avatar.Image alt="Mia" src="https://example.com/mia.png" />
+        <Avatar.Fallback>MI</Avatar.Fallback>
+      </Avatar>
+
+      <AvatarGroupCount>+4</AvatarGroupCount>
+    </AvatarGroup>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Avatar` uses shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for avatar surfaces:
+
+- Avatar visual box size scales from compact (`xs`) to large (`xl`).
+- `AvatarBadge` and `AvatarGroupCount` follow the root/avatar-group size token automatically.
+
+Precedence rule:
+
+`Avatar size ?? "md"`
+
+Slots inherit root size and do not expose independent size props.
+
+```tsx
+// Before
+<Avatar size="md">
+  <Avatar.Fallback>AB</Avatar.Fallback>
+</Avatar>
+
+// After
+<Avatar size="md">
+  <Avatar.Fallback>AB</Avatar.Fallback>
+</Avatar>
+```
+
+## API reference
+
+### `Avatar`
+
+- Root slot for identity rendering.
+- Supports `size?: "xs" | "sm" | "md" | "lg" | "xl"`.
+- Accepts Base UI Avatar root props.
+
+### `AvatarImage`
+
+- Image slot (Base UI `Avatar.Image` props).
+- Use `alt` text that identifies the person.
+
+### `AvatarFallback`
+
+- Fallback content slot (initials, icon, short label).
+
+### `AvatarBadge`
+
+- Absolute-positioned badge slot for status indicators.
+
+### `AvatarGroup`
+
+- Wrapper for overlapping avatar stacks.
+
+### `AvatarGroupCount`
+
+- Overflow count element for hidden members (for example `+3`).
+
+## Accessibility notes
+
+- Always provide descriptive `alt` text for `AvatarImage`.
+- Keep fallback text meaningful (`AB`, user initials, or role icon label).
+- If badge is purely decorative, set `aria-hidden="true"`.
+- Add a group label when avatars represent a set (`aria-label="Project members"`).
+
+## SSR and RSC notes
+
+- Avatar markup is SSR-safe and works well in server-rendered lists.
+- Keep fallback content present so layout and identity remain stable while images load.
+
+## Styling and tokens
+
+- Use semantic tokens when extending styles: `bg-muted`, `text-muted-foreground`, `ring-background`, `bg-primary`.
+- Avoid raw palette utility classes so dark/light theme parity stays intact.
+
+## Troubleshooting
+
+- Fallback never appears: verify `AvatarImage` URL is valid and accessible.
+- Badge clips unexpectedly: check parent overflow rules around the avatar.
+- Group spacing looks off: apply custom spacing on `AvatarGroup` instead of per-avatar margin hacks.
+
+## Related docs
+
+- [Pill](/docs/components/pill)
+- [Tooltip](/docs/components/tooltip)
+- [Card](/docs/components/card)
+- [Components index](/docs/components)

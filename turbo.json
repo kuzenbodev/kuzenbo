@@ -1,0 +1,296 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "boundaries": {
+    "implicitDependencies": ["tsdown"],
+    "tags": {
+      "hooks": {
+        "dependencies": {
+          "deny": [
+            "core",
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/core",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "core": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/code",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "charts": {
+        "dependencies": {
+          "deny": [
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "notifications": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "date": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "notifications",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "ai": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "notifications",
+            "date",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "datatable": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "code": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "tiptap": {
+        "dependencies": {
+          "deny": [
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "storybook": {
+        "dependencies": {
+          "deny": [
+            "core",
+            "hooks",
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "styles": {
+        "dependencies": {
+          "deny": [
+            "core",
+            "hooks",
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "storybook",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "theme": {
+        "dependencies": {
+          "deny": [
+            "core",
+            "hooks",
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "storybook",
+            "cli",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "cli": {
+        "dependencies": {
+          "deny": [
+            "core",
+            "hooks",
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "storybook",
+            "styles",
+            "theme",
+            "mcp",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "mcp": {
+        "dependencies": {
+          "deny": [
+            "core",
+            "hooks",
+            "charts",
+            "notifications",
+            "date",
+            "ai",
+            "datatable",
+            "code",
+            "tiptap",
+            "storybook",
+            "styles",
+            "theme",
+            "cli",
+            "website",
+            "@kuzenbo/website"
+          ]
+        }
+      },
+      "website": {
+        "dependencies": {
+          "deny": ["cli", "mcp", "website", "@kuzenbo/cli", "@kuzenbo/mcp"]
+        }
+      }
+    }
+  },
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*",
+        "!**/*.stories.js",
+        "!**/*.stories.jsx",
+        "!**/*.stories.ts",
+        "!**/*.stories.tsx",
+        "!**/*.stories.mdx"
+      ],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "build:storybook": {
+      "outputs": ["storybook-static/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "storybook": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

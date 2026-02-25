@@ -1,0 +1,96 @@
+{
+  "name": "@kuzenbo/theme",
+  "version": "0.0.1-alpha.4",
+  "private": false,
+  "description": "Theme tokens, runtime, and prebuilt themes for Kuzenbo.",
+  "keywords": [
+    "component-library",
+    "design-system",
+    "kuzenbo",
+    "react",
+    "tailwind",
+    "ui"
+  ],
+  "homepage": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono#readme",
+  "bugs": {
+    "url": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DobroslavRadosavljevic/kuzenbo-mono.git",
+    "directory": "packages/theme"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./default.css": "./src/default.css",
+    "./prebuilt/*.css": "./src/prebuilt/*.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      },
+      "./default.css": "./dist/default.css",
+      "./prebuilt/*.css": "./dist/prebuilt/*.css",
+      "./package.json": "./package.json"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsgo --noEmit --declaration false --declarationMap false",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "dependencies": {
+    "tailwindcss": "catalog:",
+    "tw-animate-css": "catalog:"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "catalog:",
+    "@happy-dom/global-registrator": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "bun-types": "catalog:",
+    "happy-dom": "catalog:",
+    "next-themes": "catalog:",
+    "publint": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next-themes": {
+      "optional": true
+    }
+  }
+}

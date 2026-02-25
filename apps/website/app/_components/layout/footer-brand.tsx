@@ -1,0 +1,14 @@
+import { Typography } from "@kuzenbo/core";
+
+export const FooterBrand = () => (
+  <div className="space-y-4">
+    <Typography.H5>Kuzenbo</Typography.H5>
+    <Typography.Muted className="max-w-sm text-sm">
+      Composable React primitives and polished components for building design
+      systems without losing flexibility.
+    </Typography.Muted>
+    <Typography.Small className="text-sm text-muted-foreground">
+      Jump into docs, browse examples, and ship consistent interfaces faster.
+    </Typography.Small>
+  </div>
+);

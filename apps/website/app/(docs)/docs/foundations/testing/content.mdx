@@ -1,0 +1,88 @@
+---
+title: "Testing"
+description: "Test Kuzenbo components and hooks with behavior-focused, user-facing coverage."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 13
+surface: "guide"
+seoTitle: "Testing | Kuzenbo Docs"
+seoDescription: "Practical testing guidance for Kuzenbo components, hooks, and integration flows."
+ogImage: "/docs-og/foundations/testing"
+ogImageAlt: "Testing documentation"
+aliases:
+  - "/docs/features/testing"
+---
+
+## Testing Approach
+
+Test the behavior your users rely on: keyboard interaction, focus handling, labels, validation, and visible state changes.
+Avoid brittle assertions tied to implementation details such as private class names.
+When testing Kuzenbo UI packages, keep `@kuzenbo/theme` installed and load your theme runtime in shared test setup when needed.
+
+## Recommended Test Stack
+
+Use any test runner that fits your app (Vitest, Jest, or Bun test) with Testing Library utilities.
+
+```bash
+bun add -d @testing-library/react @testing-library/user-event @testing-library/jest-dom happy-dom
+```
+
+## What To Cover First
+
+- Opening and closing overlays from keyboard and pointer interactions.
+- Disabled, loading, and validation states for form controls.
+- Accessible names, roles, and labels for interactive UI.
+- Regressions that previously caused production bugs.
+
+## Integration Test Example
+
+```tsx
+import { describe, expect, it } from "bun:test";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Button, Dialog } from "@kuzenbo/core";
+
+describe("settings dialog", () => {
+  it("opens and closes through user actions", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Dialog>
+        <Dialog.Trigger render={<Button variant="outline" />}>
+          Open settings
+        </Dialog.Trigger>
+        <Dialog.Portal>
+          <Dialog.Overlay />
+          <Dialog.Content>
+            <Dialog.Title>Settings</Dialog.Title>
+            <Dialog.Close render={<Button>Close</Button>} />
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog>
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open settings" }));
+    expect(
+      screen.getByRole("dialog", { name: "Settings" })
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expect(
+      screen.queryByRole("dialog", { name: "Settings" })
+    ).not.toBeInTheDocument();
+  });
+});
+```
+
+## Regression Checklist
+
+- Add or update a failing test before applying a bug fix.
+- Keep stories and tests aligned when component APIs change.
+- Prefer user-level assertions (`role`, `name`, visible text) over internals.
+
+## Related Docs
+
+- [Accessibility](/docs/foundations/accessibility)
+- [Composition Patterns](/docs/patterns/composition)
+- [Migration Patterns](/docs/patterns/migration)

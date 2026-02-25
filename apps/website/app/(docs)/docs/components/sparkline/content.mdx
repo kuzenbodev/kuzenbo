@@ -1,0 +1,152 @@
+---
+title: "Sparkline"
+description: "Visualize compact trend lines with @kuzenbo/charts Sparkline, including gradient, trend-color, and tooltip configuration."
+section: "components"
+package: "charts"
+status: "stable"
+order: 75
+surface: "component"
+seoTitle: "Sparkline | Kuzenbo Docs"
+seoDescription: "Sparkline usage in @kuzenbo/charts with trend semantics, sizing controls, and compact dashboard patterns."
+ogImage: "/docs-og/components/sparkline"
+ogImageAlt: "Sparkline documentation"
+---
+
+## Overview
+
+`Sparkline` is a compact prebuilt chart in `@kuzenbo/charts` for trend-at-a-glance visuals.
+
+It is built on Recharts `AreaChart`, includes optional tooltip rendering, and computes trend direction (`up`, `down`, `flat`) for semantic color handling.
+
+Use it in dense surfaces like KPI cards, activity summaries, and table-adjacent trend cells.
+
+Do not use it when users need rich axis labels and multi-series exploration; use a larger chart type instead.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { Sparkline } from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { Sparkline } from "@kuzenbo/charts";
+
+const revenueData = [
+  { day: "Mon", revenue: 1200 },
+  { day: "Tue", revenue: 1450 },
+  { day: "Wed", revenue: 1380 },
+  { day: "Thu", revenue: 1700 },
+  { day: "Fri", revenue: 1960 },
+] as const;
+
+export function RevenueSparkline() {
+  return (
+    <Sparkline
+      chartRootProps={{ className: "h-24 w-full" }}
+      data={revenueData}
+      dataKey="day"
+      label="Revenue"
+      valueKey="revenue"
+      valueFormatter={(value) => `$${value.toLocaleString("en-US")}`}
+      withTooltip
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Sparkline } from "@kuzenbo/charts";
+
+const churnRisk = [
+  { week: "W1", churnRisk: 0.41 },
+  { week: "W2", churnRisk: null },
+  { week: "W3", churnRisk: 0.57 },
+  { week: "W4", churnRisk: 0.62 },
+  { week: "W5", churnRisk: 0.48 },
+] as const;
+
+export function RiskSparkline() {
+  return (
+    <Sparkline
+      chartRootProps={{ className: "h-24 w-full" }}
+      connectNulls={false}
+      curveType="stepAfter"
+      data={churnRisk}
+      dataKey="week"
+      trendColors={{
+        down: "var(--color-success-foreground)",
+        flat: "var(--color-chart-3)",
+        up: "var(--color-danger-foreground)",
+      }}
+      valueKey="churnRisk"
+      withGradient={false}
+      withTooltip
+    />
+  );
+}
+```
+
+## API Notes
+
+Required props:
+
+- `data`
+- `dataKey`
+- `valueKey`
+
+Common options:
+
+- `curveType` (default `monotone`)
+- `connectNulls` (default `true`)
+- `withGradient` (default `true`)
+- `withTooltip` (default `true`)
+- `trendColors` and `enableTrendColors`
+- `chartRootProps` / `responsiveContainerProps` for sizing
+
+Runtime behavior:
+
+- Trend direction is computed from first/last valid values and attached as `data-trend-direction` on the rendered area.
+- Gradient stops are generated automatically unless you provide `gradientStops`.
+
+## Accessibility
+
+- Underlying chart uses Recharts accessibility layer.
+- Always provide nearby context (for example label text or card heading) so trend meaning is clear without visual-only cues.
+- If color indicates risk direction, include explicit copy or legend labels.
+
+## SSR and RSC
+
+`Sparkline` is client-only (`"use client"` in source) due Recharts runtime behavior.
+
+Use a client boundary in App Router and avoid direct server rendering.
+
+## Styling and Semantic Tokens
+
+Default trend colors map to semantic tokens:
+
+- up: `var(--color-success-foreground)`
+- down: `var(--color-danger-foreground)`
+
+When overriding colors, continue using semantic CSS variables rather than hardcoded palette values.
+
+## Troubleshooting
+
+- Nothing renders: provide explicit chart dimensions through `chartRootProps` or `responsiveContainerProps`.
+- Trend colors feel inverted for your metric: pass custom `trendColors` where "up" is not positive in your domain.
+- Line appears continuous across missing data: set `connectNulls={false}`.
+
+## Related Docs
+
+- [Chart](/docs/components/chart)
+- [Line Chart](/docs/components/line-chart)
+- [Charts Foundation](/docs/foundations/charts)

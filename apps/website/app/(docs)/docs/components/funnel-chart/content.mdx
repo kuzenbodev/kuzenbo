@@ -1,0 +1,164 @@
+---
+title: "Funnel Chart"
+description: "Render stage-dropoff funnels in @kuzenbo/charts with optional labels, legend highlighting, and tooltip strategies."
+section: "components"
+package: "charts"
+status: "stable"
+order: 38
+surface: "component"
+seoTitle: "Funnel Chart | Kuzenbo Docs"
+seoDescription: "Render stage-dropoff funnels in @kuzenbo/charts with optional labels, legend highlighting, and tooltip strategies."
+ogImage: "/docs-og/components/funnel-chart"
+ogImageAlt: "Funnel Chart documentation"
+---
+
+## Overview
+
+`FunnelChart` is the prebuilt chart for conversion and stage dropoff analysis.
+
+- Required: `data`, `dataKey`, and `series`.
+- Optional: labels, legend, tooltip behavior, and low-level Recharts prop passthrough.
+- Best fit: linear stage progression (for example Sessions -> Trials -> Paid).
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { FunnelChart, type CompleteChartSeries } from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { FunnelChart, type CompleteChartSeries } from "@kuzenbo/charts";
+
+const data = [
+  { name: "Sessions", value: 15400 },
+  { name: "Activated", value: 8740 },
+  { name: "Trials", value: 4280 },
+  { name: "Paid", value: 1920 },
+  { name: "Renewed", value: 1130 },
+];
+
+const series = [
+  { name: "Sessions", label: "Sessions", color: "var(--color-chart-1)" },
+  { name: "Activated", label: "Activated", color: "var(--color-chart-2)" },
+  { name: "Trials", label: "Trials", color: "var(--color-chart-3)" },
+  { name: "Paid", label: "Paid", color: "var(--color-chart-4)" },
+  { name: "Renewed", label: "Renewed", color: "var(--color-chart-5)" },
+] satisfies CompleteChartSeries[];
+
+export function ConversionFunnel() {
+  return (
+    <FunnelChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="value"
+      series={series}
+      withLabels
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  FunnelChart,
+  type CompleteChartSeries,
+  type FunnelChartProps,
+} from "@kuzenbo/charts";
+
+const data = [
+  { stage: "Lead", total: 6200 },
+  { stage: "Qualified", total: 2400 },
+  { stage: "Demo", total: 930 },
+  { stage: "Closed", total: 260 },
+];
+
+const series = [
+  { name: "Lead", label: "Lead", color: "var(--color-chart-1)" },
+  { name: "Qualified", label: "Qualified", color: "var(--color-chart-2)" },
+  { name: "Demo", label: "Demo", color: "var(--color-chart-3)" },
+  { name: "Closed", label: "Closed", color: "var(--color-chart-4)" },
+] satisfies CompleteChartSeries[];
+
+const formatCompact: FunnelChartProps<
+  (typeof data)[number]
+>["valueFormatter"] = (value) =>
+  `${Math.round(value as number).toLocaleString("en-US")}`;
+
+export function RevenuePipelineFunnel() {
+  return (
+    <FunnelChart
+      data={data}
+      dataKey="total"
+      enableLegendHighlight={false}
+      labelPosition="inside"
+      series={series}
+      tooltipSource="all"
+      valueFormatter={formatCompact}
+      withLabels
+      withLegend
+      withTooltip
+    />
+  );
+}
+```
+
+## API Reference
+
+- Required props:
+- `data`: funnel stage records.
+- `dataKey`: numeric key used for funnel area size.
+- `series`: complete-series config used for labels, legend, and colors.
+
+- Common behavior props:
+- `withLabels`, `labelPosition`, `withLegend`, `withTooltip`.
+- `tooltipSource`: controls shared vs segment tooltip behavior.
+- `enableLegendHighlight`: dims non-highlighted segments on legend hover.
+- `fillOpacity`: base opacity for segment fills.
+
+- Customization props:
+- `funnelProps`: passes through to Recharts `Funnel`.
+- `funnelChartProps`: canonical Recharts root passthrough.
+- `chartProps`: legacy alias for `funnelChartProps`.
+- `chartRootProps`, `responsiveContainerProps`, `legendProps`, `tooltipProps`.
+
+## Accessibility
+
+- The implementation enables Recharts `accessibilityLayer`.
+- Keep stage names clear and non-ambiguous (`Activated` instead of generic `Step 2`).
+- Provide textual summaries outside the chart when decisions depend on exact values.
+
+## SSR and RSC Notes
+
+- `FunnelChart` is a client component (`"use client"`).
+- Render chart data server-side if needed, but mount the chart in a client boundary.
+- To avoid layout shifts, set stable dimensions via `chartRootProps` or container styles.
+
+## Styling and Tokens
+
+- Prefer semantic chart variables (`var(--color-chart-1)` and related tokens) for series colors.
+- Keep surrounding card/background styling on semantic tokens (`bg-background`, `text-foreground`).
+- Avoid raw Tailwind palette classes in chart wrappers to preserve theme consistency.
+
+## Troubleshooting
+
+- Segments render in fallback colors: check that `series.name` values match resolved segment names.
+- Tooltip behavior seems wrong: verify `tooltipSource` (`segment` vs `all`) and custom `tooltipProps`.
+- Legend hover dimming is too aggressive: disable via `enableLegendHighlight={false}`.
+
+## Related Links
+
+- [Chart](/docs/components/chart)
+- [Bar Chart](/docs/components/bar-chart)
+- [Radar Chart](/docs/components/radar-chart)
+- [Composite Chart](/docs/components/composite-chart)

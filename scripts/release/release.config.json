@@ -1,0 +1,34 @@
+{
+  "lockstepScope": "packages/*",
+  "publishAllowlist": [
+    "@kuzenbo/core",
+    "@kuzenbo/hooks",
+    "@kuzenbo/charts",
+    "@kuzenbo/notifications",
+    "@kuzenbo/styles",
+    "@kuzenbo/theme"
+  ],
+  "publishBlocked": [
+    "@kuzenbo/ai",
+    "@kuzenbo/code",
+    "@kuzenbo/datatable",
+    "@kuzenbo/date",
+    "@kuzenbo/cli",
+    "@kuzenbo/mcp",
+    "@kuzenbo/tiptap"
+  ],
+  "neverPublish": ["@kuzenbo/storybook", "@kuzenbo/website"],
+  "releaseBranches": { "next": "main", "stable": "main" },
+  "channelToDistTag": { "next": "next", "stable": "latest" },
+  "requiredQualityCommands": [
+    "bun audit",
+    "bun run lint",
+    "bun run typecheck",
+    "bun run test",
+    "bun run boundaries"
+  ],
+  "trustedPublish": {
+    "workflowFile": "release.yml",
+    "environmentName": "npm-publish"
+  }
+}

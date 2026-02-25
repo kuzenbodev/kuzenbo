@@ -1,0 +1,166 @@
+---
+title: "Toolbar"
+description: "Composable action toolbar with grouped controls, separators, link/input slots, and button variant integration."
+section: "components"
+package: "core"
+status: "stable"
+order: 86
+surface: "component"
+seoTitle: "Toolbar | Kuzenbo Docs"
+seoDescription: "Build keyboard-friendly action bars with Toolbar primitives in @kuzenbo/core, including grouped actions and separator layout."
+ogImage: "/docs-og/components/toolbar"
+ogImageAlt: "Toolbar documentation"
+aliases:
+  - "/docs/components/navigation/toolbar"
+---
+
+## Overview
+
+`Toolbar` is an action cluster primitive for editor controls, quick command strips, and dense utility actions. It composes Base UI toolbar behavior with Kuzenbo button/link styling.
+
+Use toolbar when actions are peer-level controls in one horizontal command surface.
+It uses one size contract across toolbar surfaces: `xs | sm | md | lg | xl` (`md` default).
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Toolbar,
+  ToolbarButton,
+  ToolbarGroup,
+  ToolbarInput,
+  ToolbarLink,
+  ToolbarSeparator,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Toolbar } from "@kuzenbo/core";
+
+export function ToolbarBasic() {
+  return (
+    <Toolbar aria-label="Text formatting">
+      <Toolbar.Group>
+        <Toolbar.Button>Bold</Toolbar.Button>
+        <Toolbar.Button>Italic</Toolbar.Button>
+        <Toolbar.Button>Underline</Toolbar.Button>
+      </Toolbar.Group>
+
+      <Toolbar.Separator />
+
+      <Toolbar.Group>
+        <Toolbar.Button>Align Left</Toolbar.Button>
+        <Toolbar.Button>Align Center</Toolbar.Button>
+        <Toolbar.Button>Align Right</Toolbar.Button>
+      </Toolbar.Group>
+    </Toolbar>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Toolbar } from "@kuzenbo/core";
+
+export function ToolbarAdvanced() {
+  return (
+    <Toolbar aria-label="Document actions" className="w-full justify-between">
+      <Toolbar.Group>
+        <Toolbar.Button variant="outline">Undo</Toolbar.Button>
+        <Toolbar.Button variant="outline">Redo</Toolbar.Button>
+        <Toolbar.Separator />
+        <Toolbar.Link href="/docs/components/toolbar">Docs</Toolbar.Link>
+      </Toolbar.Group>
+
+      <Toolbar.Group>
+        <Toolbar.Input
+          aria-label="Search commands"
+          className="h-9 rounded-md border border-border bg-background px-3 text-sm"
+          placeholder="Search actions"
+        />
+      </Toolbar.Group>
+    </Toolbar>
+  );
+}
+```
+
+## Sizing
+
+`Toolbar` and child slots share one size contract:
+
+- Tokens: `xs | sm | md | lg | xl`
+- Default: `md`
+- Precedence: `explicit child size ?? nearest toolbar context (for example, Toolbar.Group) ?? root Toolbar size ?? "md"`
+
+```tsx
+<Toolbar size="xl" aria-label="Formatting actions">
+  <Toolbar.Group size="sm">
+    <Toolbar.Button size="xs">Bold</Toolbar.Button>
+    <Toolbar.Link href="/docs/components/toolbar">Docs</Toolbar.Link>
+    <Toolbar.Separator />
+    <Toolbar.Input aria-label="Search commands" size="lg" />
+  </Toolbar.Group>
+</Toolbar>
+```
+
+## API Reference
+
+- `Toolbar`
+  - Exported prop type: `ToolbarProps`.
+  - Root container (`data-slot="toolbar"`), supports `size`.
+- `ToolbarButton`
+  - Exported prop type: `ToolbarButtonProps`.
+  - Inherits Base UI toolbar button props and Kuzenbo button variants (`variant`) plus shared `size`.
+- `ToolbarGroup`
+  - Exported prop type: `ToolbarGroupProps`.
+  - Groups related controls and can scope an inherited `size`.
+- `ToolbarInput`
+  - Exported prop type: `ToolbarInputProps`.
+  - Input primitive for inline search/filter controls with optional shared `size`.
+- `ToolbarLink`
+  - Exported prop type: `ToolbarLinkProps`.
+  - Styled anchor for navigational actions with shared `size`.
+- `ToolbarSeparator`
+  - Exported prop type: `ToolbarSeparatorProps`.
+  - Vertical divider between action groups with shared `size`.
+
+## Accessibility
+
+- Add `aria-label` on `Toolbar` to describe intent.
+- Keep action names clear (`Bold`, `Undo`, `Insert link`).
+- For toggle-style buttons, expose state (`aria-pressed`) when applicable.
+- Maintain visible focus states for keyboard users.
+
+## SSR and RSC Notes
+
+- Toolbar behavior is interactive by nature; keep stateful/keyboard logic in client-rendered contexts.
+- Server-rendered structure is fine when actions are hydrated on the client.
+
+## Styling and Tokens
+
+- Root surface uses semantic tokens (`bg-popover`, `outline-border`).
+- `ToolbarButton` defaults to `ghost`; set `variant` intentionally for emphasis.
+- Style `ToolbarInput` with semantic tokens (`border-border`, `bg-background`, `text-foreground`).
+
+## Troubleshooting
+
+- Controls look too low contrast: choose explicit button variants (`outline`, `default`) per action priority.
+- Input appears unstyled: `ToolbarInput` is pass-through; provide className styles.
+- Keyboard flow feels broken: keep controls inside toolbar primitives (`ToolbarButton`, `ToolbarLink`, `ToolbarInput`).
+- Group spacing is off: tune each `ToolbarGroup` with `className`.
+
+## Related Docs
+
+- [Button](/docs/components/button)
+- [Menubar](/docs/components/menubar)
+- [Menu](/docs/components/menu)
+- [Command](/docs/components/command)

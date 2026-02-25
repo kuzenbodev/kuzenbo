@@ -1,0 +1,62 @@
+---
+title: "Form"
+description: "Base form root primitives in @kuzenbo/core for validation state, submit flow control, and structured form composition."
+section: "components"
+package: "core"
+status: "stable"
+order: 42
+surface: "component"
+seoTitle: "Form | Kuzenbo Docs"
+seoDescription: "Base form root primitives in @kuzenbo/core for validation state, submit flow control, and structured form composition."
+ogImage: "/docs-og/components/form"
+ogImageAlt: "Form documentation"
+aliases:
+  - "/docs/components/inputs/form"
+---
+
+## Overview
+
+`Form` is the canonical form root primitive in `@kuzenbo/core`.
+It wraps Base UI form behavior and standardizes layout, validation wiring, and submit handling.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Form } from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Button, Field, Form, Input } from "@kuzenbo/core";
+
+export function AccountForm() {
+  return (
+    <Form noValidate>
+      <Field>
+        <Field.Label htmlFor="email">Email</Field.Label>
+        <Field.Control render={<Input id="email" type="email" />} />
+      </Field>
+      <Button type="submit">Save</Button>
+    </Form>
+  );
+}
+```
+
+## API Notes
+
+- `Form`: main root export.
+- `FormRoot`: explicit root primitive for composition-heavy wrappers.
+- Base UI form props are supported (`onSubmit`, `onInvalid`, validation mode controls).
+
+## Related Docs
+
+- [Field](/docs/components/field)
+- [Fieldset](/docs/components/fieldset)
+- [Forms Pattern](/docs/patterns/forms)

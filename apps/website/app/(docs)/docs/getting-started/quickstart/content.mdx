@@ -1,0 +1,80 @@
+---
+title: "Quickstart"
+description: "Build your first Kuzenbo page in about 5 minutes."
+section: "getting-started"
+package: "core"
+status: "stable"
+order: 5
+surface: "guide"
+seoTitle: "Quickstart | Kuzenbo Docs"
+seoDescription: "Ship a production-ready Kuzenbo starter screen in minutes."
+ogImage: "/docs-og/getting-started/quickstart"
+ogImageAlt: "Kuzenbo quickstart"
+---
+
+## Build your first page in 5 minutes
+
+This quickstart walks you through a simple dashboard-style screen with an announcement banner, card, and buttons.
+
+## 1. Install
+
+```bash
+npm i @kuzenbo/core @kuzenbo/theme @kuzenbo/styles react react-dom next-themes
+```
+
+See [Installation](/docs/getting-started/installation) for pnpm, yarn, and bun.
+
+## 2. Import styles
+
+Theme CSS loads the design tokens; baseline styles add scrollbars, focus rings, and polish. Import theme first:
+
+```tsx
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+```
+
+## 3. Create a starter screen
+
+This example shows a banner, card, and two buttons:
+
+```tsx
+import {
+  Announcement,
+  AnnouncementTag,
+  AnnouncementTitle,
+  Button,
+  Card,
+} from "@kuzenbo/core";
+
+export function QuickstartScreen() {
+  return (
+    <main className="bg-background text-foreground min-h-screen p-6">
+      <div className="mx-auto grid max-w-3xl gap-4">
+        <Announcement themed>
+          <AnnouncementTag>Release</AnnouncementTag>
+          <AnnouncementTitle>Kuzenbo is wired and ready.</AnnouncementTitle>
+        </Announcement>
+
+        <Card className="p-6">
+          <h1 className="text-xl font-semibold">Project Dashboard</h1>
+          <p className="text-muted-foreground mt-2">
+            Start with semantic tokens and composition-safe primitives.
+          </p>
+          <div className="mt-4 flex gap-2">
+            <Button>Create Report</Button>
+            <Button variant="outline">View Logs</Button>
+          </div>
+        </Card>
+      </div>
+    </main>
+  );
+}
+```
+
+## 4. What's next
+
+- Add routing and layout primitives
+- Install [charts](/docs/components/chart), [date](/docs/components/calendar), or [notifications](/docs/components/toast) when you need them
+- Add tests and stories when you introduce custom variants
+
+**Tips:** Use semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`) instead of raw palette classes. Toggle light/dark mode to confirm contrast.

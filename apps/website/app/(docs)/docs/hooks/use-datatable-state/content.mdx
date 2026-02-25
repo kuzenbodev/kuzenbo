@@ -1,0 +1,109 @@
+---
+title: "useDatatableState"
+description: "Track local datatable page state with a lower-bound clamp that prevents pages below 1."
+section: "hooks"
+package: "datatable"
+status: "stable"
+order: 11
+surface: "hook"
+seoTitle: "useDatatableState | Kuzenbo Docs"
+seoDescription: "Use useDatatableState for local page state management with built-in clamp-at-1 behavior."
+ogImage: "/docs-og/hooks/use-datatable-state"
+ogImageAlt: "useDatatableState documentation"
+---
+
+## What this hook does
+
+`useDatatableState` is a lightweight pagination-state hook from `@kuzenbo/datatable`.
+It keeps the current page number and provides a setter that clamps values to `>= 1`.
+
+## Reads and writes
+
+- Reads: local React state (`page`).
+- Writes: internal state through `setPage(nextPage)`.
+
+## When to use it
+
+- Build simple paginated tables without external state libraries.
+- Keep page state colocated with list or table controls.
+- Enforce a minimum page value without extra guard code.
+
+## Import
+
+```tsx
+import { useDatatableState } from "@kuzenbo/datatable";
+```
+
+## Example: previous/next pager
+
+```tsx
+"use client";
+
+import { useDatatableState } from "@kuzenbo/datatable";
+
+export function TablePager() {
+  const { page, setPage } = useDatatableState();
+
+  return (
+    <div className="flex items-center gap-2 text-sm">
+      <button
+        className="rounded-md border border-border px-3 py-1"
+        onClick={() => setPage(page - 1)}
+        type="button"
+      >
+        Previous
+      </button>
+      <span>Page {page}</span>
+      <button
+        className="rounded-md border border-border px-3 py-1"
+        onClick={() => setPage(page + 1)}
+        type="button"
+      >
+        Next
+      </button>
+    </div>
+  );
+}
+```
+
+## Example: controlled jump input
+
+```tsx
+const { page, setPage } = useDatatableState();
+
+const jumpTo = (rawValue: string) => {
+  const parsed = Number(rawValue);
+  if (Number.isFinite(parsed)) {
+    setPage(Math.trunc(parsed));
+  }
+};
+```
+
+## Return contract and edge cases
+
+- Type:
+
+```tsx
+{
+  page: number;
+  setPage: (nextPage: number) => void;
+}
+```
+
+- Initial `page` is `1`.
+- `setPage(0)` or negative values resolve to `1`.
+- No upper bound is enforced.
+- `setPage` does not coerce to integers automatically.
+- Non-finite numbers (for example `NaN`) are not sanitized by this hook.
+
+## SSR and RSC caveats
+
+- Client-only hook (`useState`).
+- Keep pager controls in Client Components.
+- Server-rendered table containers should pass serializable inputs (data, totals) into the client pager.
+
+## Related docs
+
+- [Hooks Index](/docs/hooks)
+- [useAiSession](/docs/hooks/use-ai-session)
+- [useIsomorphicEffect](/docs/hooks/use-isomorphic-effect)

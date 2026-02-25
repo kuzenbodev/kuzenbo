@@ -1,0 +1,183 @@
+---
+title: "Empty"
+description: "Compose clear empty states with @kuzenbo/core Empty slots for media, title, description, and recovery actions."
+section: "components"
+package: "core"
+status: "stable"
+order: 36
+surface: "component"
+seoTitle: "Empty | Kuzenbo Docs"
+seoDescription: "Source-grounded Empty component guide for @kuzenbo/core, with slot composition, action patterns, and styling boundaries."
+ogImage: "/docs-og/components/empty"
+ogImageAlt: "Empty documentation"
+aliases:
+  - "/docs/components/display/empty"
+---
+
+## Overview
+
+`Empty` is a slot-based layout for "nothing to show" states.
+
+It gives you a consistent skeleton:
+
+- `Empty.Header` for media + copy
+- `Empty.Content` for actions or secondary guidance
+- optional `Empty.Media` treatment (`default` or `icon`)
+
+Use it for zero-result lists, first-run dashboards, and unconfigured integrations.
+
+Do not use `Empty` for loading states or fatal errors. Keep those flows separate.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from "@kuzenbo/core";
+
+export function EmptyProjectsState() {
+  return (
+    <Empty className="border border-dashed border-border">
+      <EmptyHeader>
+        <EmptyTitle>No projects yet</EmptyTitle>
+        <EmptyDescription>
+          Create your first project to start tracking releases.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Empty.Button>Create project</Empty.Button>
+      </EmptyContent>
+    </Empty>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@kuzenbo/core";
+
+export function EmptySearchState() {
+  return (
+    <Empty className="rounded-lg bg-muted/40">
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <span aria-hidden className="text-sm">
+            ?
+          </span>
+        </EmptyMedia>
+        <EmptyTitle>No matching issues</EmptyTitle>
+        <EmptyDescription>
+          Try removing filters or adjust the search query.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <div className="flex gap-2">
+          <Empty.Button variant="outline">Clear filters</Empty.Button>
+          <Empty.Button>Create issue</Empty.Button>
+        </div>
+      </EmptyContent>
+    </Empty>
+  );
+}
+```
+
+## Size Scale
+
+`Empty` supports `xs | sm | md | lg | xl` sizing on the root and all slots.
+
+```tsx
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@kuzenbo/core";
+
+export function SizedEmptyState() {
+  return (
+    <Empty size="lg">
+      <EmptyHeader>
+        <EmptyMedia variant="icon">?</EmptyMedia>
+        <EmptyTitle>No matching issues</EmptyTitle>
+        <EmptyDescription size="sm">
+          Try removing filters or adjust the search query.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Empty.Button>Create issue</Empty.Button>
+      </EmptyContent>
+    </Empty>
+  );
+}
+```
+
+## API Notes
+
+- `Empty` root manages overall vertical layout and center alignment, and supports optional `size` (`xs | sm | md | lg | xl`, default `md`).
+- `Empty.Media` supports `variant="default" | "icon"` plus optional `size` override.
+- `Empty.Title` and `Empty.Description` are lightweight text slots with optional `size` overrides.
+- `Empty.Content` is intended for calls-to-action or secondary controls and supports optional `size` override.
+- `Empty.Button` wraps `Button` and maps `Empty` `size` to button size automatically (`xs -> xs`, ..., `xl -> xl`) with optional slot-level `size` override.
+- `Empty.Header` supports optional `size` override for header grouping density.
+- The namespace pattern also works through static members (`Empty.Header`, `Empty.Title`, and so on).
+
+## Accessibility
+
+- Keep the message actionable: one clear title, one short description, and explicit next step controls.
+- Ensure action buttons have concrete labels (`Create project`, not just `Continue`).
+- If the empty state replaces dynamic list content, announce updates in the parent region when appropriate.
+
+## SSR and RSC
+
+`Empty` and all slots are render-only and safe in Server Components.
+
+## Styling and Semantic Tokens
+
+- Add a border explicitly when you want a dashed container (`border border-dashed border-border`).
+- Prefer semantic tokens for surfaces and copy (`bg-muted`, `text-foreground`, `text-muted-foreground`).
+- Use `Empty.Media variant="icon"` for token-aligned icon chips instead of custom ad-hoc wrappers.
+
+## Troubleshooting
+
+- Dashed outline is not visible: add `border` alongside `border-dashed`.
+- Actions are cramped on small screens: wrap buttons in a stack (`flex-col`) or responsive row.
+- Copy looks too wide: apply a width constraint (`max-w-sm`) on custom wrappers inside `Empty.Content`.
+
+## Related Docs
+
+- [Alert](/docs/components/alert)
+- [Card](/docs/components/card)
+- [Color Primitives](/docs/foundations/color-primitives)

@@ -1,0 +1,104 @@
+---
+title: "Label"
+description: "Semantic form label primitive for associating text with controls via htmlFor/id and disabled-state-aware styling."
+section: "components"
+package: "core"
+status: "stable"
+order: 46
+surface: "component"
+seoTitle: "Label | Kuzenbo Docs"
+seoDescription: "Use Label from @kuzenbo/core to connect form text to controls with accessible htmlFor/id wiring and semantic styling."
+ogImage: "/docs-og/components/label"
+ogImageAlt: "Label documentation"
+aliases:
+  - "/docs/components/inputs/label"
+---
+
+## Overview
+
+`Label` is the standard text label for form controls in `@kuzenbo/core`. It wraps native `<label>` semantics and includes disabled-aware styling hooks.
+
+Use it for input labels, checkbox captions, and form row descriptions that should be clickable/focus-linkable to a control.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Label } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Input, Label } from "@kuzenbo/core";
+
+export function EmailFieldLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" placeholder="name@company.com" />
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Input, Label } from "@kuzenbo/core";
+
+export function RequiredFieldLabel() {
+  return (
+    <div className="space-y-2">
+      <Label className="justify-between" htmlFor="workspace-name">
+        <span>Workspace name</span>
+        <span className="text-muted-foreground">Required</span>
+      </Label>
+      <Input id="workspace-name" placeholder="Kuzenbo Team" />
+    </div>
+  );
+}
+```
+
+## API Reference
+
+- `Label`
+  - Exported prop type: `LabelProps`.
+  - `LabelProps = ComponentProps<"label">`.
+  - Important props: `htmlFor`, `className`, and all native label attributes.
+  - Emits `data-slot="label"` for style targeting.
+
+## Accessibility
+
+- Always connect label and control using `htmlFor` + matching `id`.
+- Keep label text explicit. Avoid ambiguous labels like `Name` when context is unclear.
+- If extra helper text is needed, pair it with `aria-describedby` on the control.
+
+## SSR and RSC Notes
+
+- `Label` is implemented as a client module (`"use client"`).
+- In Next.js App Router, use it inside Client Components, especially when composing with interactive form state.
+
+## Styling and Tokens
+
+- Base styles already use semantic typography and disabled-state hooks.
+- Prefer token classes for overrides (`text-foreground`, `text-muted-foreground`) instead of palette classes.
+- Disabled styles react to group/peer disabled state (`group-data-[disabled=true]`, `peer-disabled`).
+
+## Troubleshooting
+
+- Clicking label does not focus input: check `htmlFor` and `id` mismatch.
+- Label appears dim unexpectedly: verify no parent group is carrying disabled state attributes.
+- Alignment drifts in inline layouts: override with `className` (for example `justify-between`, `items-start`).
+
+## Related Docs
+
+- [Input](/docs/components/input)
+- [Checkbox](/docs/components/checkbox)
+- [Field](/docs/components/field)
+- [Textarea](/docs/components/textarea)

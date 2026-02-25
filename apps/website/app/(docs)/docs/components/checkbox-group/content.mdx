@@ -1,0 +1,127 @@
+---
+title: "Checkbox Group"
+description: "Compose multiple checkbox choices with shared state and labeling using @kuzenbo/core CheckboxGroup."
+section: "components"
+package: "core"
+status: "stable"
+order: 23
+surface: "component"
+seoTitle: "Checkbox Group | Kuzenbo Docs"
+seoDescription: "Compose multiple checkbox choices with shared state and labeling using @kuzenbo/core CheckboxGroup."
+ogImage: "/docs-og/components/checkbox-group"
+ogImageAlt: "Checkbox Group documentation"
+aliases:
+  - "/docs/components/inputs/checkbox-group"
+---
+
+## Overview
+
+`CheckboxGroup` is a lightweight layout and state container around Base UI checkbox-group behavior.
+
+- It is ideal for selecting zero-to-many options.
+- It does not render checkbox controls for you.
+- Compose it with `Checkbox` and `Label` so each option is explicit and testable.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+
+export function NotificationChannels() {
+  return (
+    <CheckboxGroup defaultValue={["email"]} name="channels">
+      <Label className="flex items-center gap-2">
+        <Checkbox value="email" />
+        Email
+      </Label>
+
+      <Label className="flex items-center gap-2">
+        <Checkbox value="sms" />
+        SMS
+      </Label>
+    </CheckboxGroup>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+
+export function ControlledPreferences() {
+  const [selected, setSelected] = useState<string[]>(["security"]);
+
+  return (
+    <CheckboxGroup onValueChange={setSelected} value={selected}>
+      <Label className="flex items-center gap-2">
+        <Checkbox value="security" />
+        Security alerts
+      </Label>
+
+      <Label className="flex items-center gap-2">
+        <Checkbox value="product" />
+        Product updates
+      </Label>
+
+      <Label className="flex items-center gap-2">
+        <Checkbox disabled value="billing" />
+        Billing reports (admin only)
+      </Label>
+    </CheckboxGroup>
+  );
+}
+```
+
+## API Reference
+
+- `CheckboxGroup`: wrapper around Base UI checkbox-group root; supports controlled and uncontrolled usage.
+- Common root props: `value`, `defaultValue`, `onValueChange`, `name`, `disabled`, `required`.
+- Slot marker: root renders `data-slot="checkbox-group"` for styling and tests.
+
+## Accessibility
+
+- Pair each checkbox with readable text (`Label`) and an explicit value.
+- For form sections, add surrounding question text or `aria-labelledby` so screen readers announce group purpose.
+- Disabled options should explain why they are unavailable.
+
+## SSR and RSC Notes
+
+- Uncontrolled group markup can render on the server.
+- Controlled selection logic (`value` and `onValueChange`) belongs in client components.
+- In App Router, keep local preference state in a client leaf and submit selected values to server actions.
+
+## Styling and Tokens
+
+- `CheckboxGroup` defaults to a vertical stack with semantic spacing.
+- Keep option text on semantic tokens like `text-foreground` and helper text on `text-muted-foreground`.
+- Avoid raw palette classes; match surrounding form tokens.
+
+## Troubleshooting
+
+- Group appears but clicks do not persist: confirm each `Checkbox` has a unique `value`.
+- Form submission is missing values: pass a `name` on `CheckboxGroup` and use non-empty option values.
+- Layout looks collapsed: check whether parent containers are overriding the group's flex direction.
+
+## Related Links
+
+- [Checkbox](/docs/components/checkbox)
+- [Radio Group](/docs/components/radio-group)
+- [Field](/docs/components/field)
+- [Switch](/docs/components/switch)

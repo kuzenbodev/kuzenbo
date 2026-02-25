@@ -1,0 +1,106 @@
+---
+title: "Separator"
+description: "Use Separator from @kuzenbo/core for semantic visual division in horizontal and vertical layouts."
+section: "components"
+package: "core"
+status: "stable"
+order: 69
+surface: "component"
+seoTitle: "Separator | Kuzenbo Docs"
+seoDescription: "Use Separator from @kuzenbo/core for semantic visual division in horizontal and vertical layouts."
+ogImage: "/docs-og/components/separator"
+ogImageAlt: "Separator documentation"
+aliases:
+  - "/docs/components/layout/separator"
+---
+
+## Overview
+
+`Separator` is a minimal structural divider.
+
+- Use it to separate related UI regions.
+- Do not use it as spacing.
+- Choose orientation based on layout direction.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Separator } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Separator } from "@kuzenbo/core";
+
+export function ProfileSections() {
+  return (
+    <div className="flex w-full flex-col gap-4">
+      <p className="text-sm">Profile details</p>
+      <Separator />
+      <p className="text-sm">Security settings</p>
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Separator } from "@kuzenbo/core";
+
+export function InlineActionBar() {
+  return (
+    <div className="flex h-8 items-center gap-2 text-sm">
+      <span>Overview</span>
+      <Separator decorative orientation="vertical" />
+      <span>Activity</span>
+      <Separator decorative orientation="vertical" />
+      <span>Settings</span>
+    </div>
+  );
+}
+```
+
+## API Reference
+
+- `Separator`: Base UI separator wrapper with semantic defaults.
+- `orientation`: `"horizontal" | "vertical"` (defaults to `"horizontal"`).
+- `decorative`: set when divider is purely visual and should be ignored by assistive tech.
+- `className`: slot-level styling override (`data-slot="separator"`).
+
+## Accessibility
+
+- Use non-decorative separators only when they communicate real document structure.
+- For visual-only dividers in nav bars and toolbars, pass `decorative`.
+- Keep separators thin and low-emphasis so they support, not dominate, hierarchy.
+
+## SSR and RSC Notes
+
+- `Separator` is static and fully SSR-safe.
+- No client boundary is required unless surrounding layout logic depends on client state.
+
+## Styling and Tokens
+
+- Defaults use `bg-border` plus orientation-aware sizing.
+- Prefer semantic border tokens over hard-coded gray shades.
+- Avoid custom thickness changes unless your design system defines a matching divider scale.
+
+## Troubleshooting
+
+- Vertical separator is not visible: parent needs explicit height (`h-*`) and aligned children.
+- Divider stretches unexpectedly: check parent flex behavior and override `self-stretch` only when needed.
+- Screen readers announce decorative separators: set `decorative` for purely visual use.
+
+## Related Links
+
+- [Spacer](/docs/components/spacer)
+- [Typography](/docs/components/typography)
+- [Card](/docs/components/card)
+- [Table](/docs/components/table)

@@ -1,0 +1,144 @@
+---
+title: "Meter"
+description: "Display bounded measurement values with semantic label, value text, and progress indicator slots."
+section: "components"
+package: "core"
+status: "stable"
+order: 50
+surface: "component"
+seoTitle: "Meter | Kuzenbo Docs"
+seoDescription: "Use Meter for bounded values like storage, quota, or completion ratio with accessible semantics."
+ogImage: "/docs-og/components/meter"
+ogImageAlt: "Meter documentation"
+aliases:
+  - "/docs/components/display/meter"
+---
+
+## Purpose and boundaries
+
+`Meter` renders a bounded quantitative value using Base UI meter semantics plus Kuzenbo styling.
+
+Use it when you need:
+
+- Capacity or quota visualization (storage, budget, usage)
+- A value tied to a known range (`min` to `max`)
+- A compact indicator with optional text label/value
+
+Use `Progress` when the value represents task progress rather than measurement.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Meter,
+  MeterIndicator,
+  MeterLabel,
+  MeterTrack,
+  MeterValue,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Meter } from "@kuzenbo/core";
+
+export function StorageMeter() {
+  return (
+    <div className="w-64">
+      <Meter max={100} min={0} value={60}>
+        <div className="flex items-center justify-between">
+          <Meter.Label>Storage</Meter.Label>
+          <Meter.Value />
+        </div>
+      </Meter>
+    </div>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+import { Meter } from "@kuzenbo/core";
+
+export function QuotaMeter() {
+  const used = 840;
+  const max = 1200;
+
+  return (
+    <div className="w-72 space-y-2">
+      <Meter high={1000} low={300} max={max} min={0} optimum={500} value={used}>
+        <div className="flex items-center justify-between">
+          <Meter.Label>API quota</Meter.Label>
+          <Meter.Value>
+            {used} / {max}
+          </Meter.Value>
+        </div>
+      </Meter>
+
+      <p className="text-xs text-muted-foreground">Remaining: {max - used}</p>
+    </div>
+  );
+}
+```
+
+## API reference
+
+### `Meter`
+
+- Root meter primitive (`@base-ui/react/meter` root props).
+- Common props include `value`, `min`, `max`, plus optional range hints (`low`, `high`, `optimum`).
+- Renders a default `MeterTrack` + `MeterIndicator` pair internally.
+
+### `MeterLabel`
+
+Semantic label slot for naming the metric.
+
+### `MeterValue`
+
+Value text slot for current measurement output.
+
+### `MeterTrack`
+
+Track slot primitive (exported for advanced composition use cases).
+
+### `MeterIndicator`
+
+Filled indicator slot primitive (exported for advanced composition use cases).
+
+## Accessibility notes
+
+- Prefer visible labels (`MeterLabel`) that clearly name the metric.
+- Keep units explicit in nearby copy (for example MB, percent, requests).
+- Ensure any color-only threshold signal is backed by text.
+
+## SSR and RSC notes
+
+- Meter rendering is deterministic and safe for server output.
+- For live updates, keep stateful logic in a client boundary and pass plain numeric props.
+
+## Styling and tokens
+
+- Built-in slots use semantic color tokens (`bg-primary`, `bg-primary/20`).
+- Extend with semantic utility classes only.
+- Avoid direct palette classes so meter visuals stay theme-aligned.
+
+## Troubleshooting
+
+- Meter looks empty: verify `value` is within `min`/`max` bounds.
+- Value text is missing: render `Meter.Value` in children when you want visible text output.
+- Threshold semantics unclear: pair range props (`low`, `high`, `optimum`) with descriptive helper text.
+
+## Related docs
+
+- [Progress](/docs/components/progress)
+- [Typography](/docs/components/typography)
+- [Card](/docs/components/card)
+- [Components index](/docs/components)

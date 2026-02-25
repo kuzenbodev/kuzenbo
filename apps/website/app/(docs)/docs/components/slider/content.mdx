@@ -1,0 +1,282 @@
+---
+title: "Slider"
+description: "Use @kuzenbo/core Slider for single-value selection with orientation support, marks, and thumb labels."
+section: "components"
+package: "core"
+status: "stable"
+order: 73
+surface: "component"
+seoTitle: "Slider | Kuzenbo Docs"
+seoDescription: "Use @kuzenbo/core Slider for single-value selection with orientation support, marks, and thumb labels."
+ogImage: "/docs-og/components/slider"
+ogImageAlt: "Slider documentation"
+aliases:
+  - "/docs/components/inputs/slider"
+---
+
+## Purpose
+
+`Slider` is Kuzenbo's single-value drag input in `@kuzenbo/core`.
+
+Use it when you need one numeric value (volume, threshold, progress target). If you need a two-thumb range, use [`Range Slider`](/docs/components/range-slider).
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Slider } from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Slider } from "@kuzenbo/core";
+
+export function VolumeSlider() {
+  const [volume, setVolume] = useState(42);
+
+  return (
+    <div className="w-72 space-y-2 px-1">
+      <Slider
+        aria-label="Volume"
+        max={100}
+        min={0}
+        onChange={setVolume}
+        step={1}
+        value={volume}
+      />
+      <p className="text-xs text-muted-foreground">Volume: {volume}%</p>
+    </div>
+  );
+}
+```
+
+## Marks and thumb labels
+
+```tsx
+import { Slider } from "@kuzenbo/core";
+
+const marks = [
+  { value: 0, label: "0%" },
+  { value: 25, label: "25%" },
+  { value: 50, label: "50%" },
+  { value: 75, label: "75%" },
+  { value: 100, label: "100%" },
+] as const;
+
+export function ProgressSlider() {
+  return (
+    <div className="w-80 px-1">
+      <Slider
+        aria-label="Progress"
+        defaultValue={50}
+        label={(value) => `${value}%`}
+        labelAlwaysOn
+        marks={marks}
+        restrictToMarks
+        thumbLabel="Progress thumb"
+      />
+    </div>
+  );
+}
+```
+
+## Domain and scale behavior
+
+Use these props together when your storage value range and displayed value range differ.
+
+- `domain`: raw interaction bounds for drag/keyboard movement.
+- `min` / `max`: normalized output clamp for `value`, `defaultValue`, and callbacks.
+- `scale`: display transform for labels; callback values remain raw/normalized.
+
+```tsx
+import { Slider } from "@kuzenbo/core";
+
+export function ThroughputSlider() {
+  return (
+    <div className="w-80 px-1">
+      <Slider
+        aria-label="Throughput"
+        defaultValue={4500}
+        domain={[-1000, 11_000]}
+        label={(value) => `${value.toFixed(1)}k req/min`}
+        marks={[
+          { value: 0, label: "0k" },
+          { value: 5000, label: "5k" },
+          { value: 10_000, label: "10k" },
+        ]}
+        max={10_000}
+        min={0}
+        scale={(value) => value / 1000}
+        step={250}
+      />
+    </div>
+  );
+}
+```
+
+## Label transition props
+
+`labelTransitionProps` lets you tune thumb-label enter/exit motion without replacing the default label slot.
+
+```tsx
+import { Slider } from "@kuzenbo/core";
+
+export function SmoothLabelSlider() {
+  return (
+    <Slider
+      aria-label="Label transition"
+      defaultValue={35}
+      label={(value) => `${value}%`}
+      labelTransitionProps={{
+        delay: 40,
+        duration: 180,
+        timingFunction: "ease-out",
+      }}
+      showLabelOnHover
+    />
+  );
+}
+```
+
+## Form integration: name and hiddenInputProps
+
+Single sliders submit one hidden input using the same `name`. Submitted values are scaled values.
+
+```tsx
+"use client";
+
+import { Slider } from "@kuzenbo/core";
+
+export function SliderFormField() {
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        console.log(formData.get("volume"));
+      }}
+    >
+      <Slider
+        aria-label="Volume"
+        defaultValue={62}
+        hiddenInputProps={{ "data-testid": "volume-hidden-input" }}
+        name="volume"
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+## Color, size, and radius variants
+
+Use visual variants to adapt slider ergonomics while keeping semantic token styling.
+
+```tsx
+import { Slider } from "@kuzenbo/core";
+
+export function CompactSuccessSlider() {
+  return (
+    <Slider
+      aria-label="Compact success slider"
+      color="success"
+      defaultValue={55}
+      radius="lg"
+      size="sm"
+    />
+  );
+}
+```
+
+## Vertical support
+
+- `orientation="vertical"` is fully supported; set an explicit parent height.
+
+```tsx
+import { Slider } from "@kuzenbo/core";
+
+export function VerticalSlider() {
+  return (
+    <div className="h-56">
+      <Slider
+        aria-label="Vertical threshold"
+        defaultValue={35}
+        label={(value) => `${value}%`}
+        orientation="vertical"
+        showLabelOnHover={false}
+        thumbSize={18}
+      />
+    </div>
+  );
+}
+```
+
+## Migration from the legacy API
+
+The slider API is now split:
+
+- `Slider` is single-value (`number`)
+- `RangeSlider` is range-value (`[number, number]`)
+
+| Legacy API                                         | New API                                   |
+| -------------------------------------------------- | ----------------------------------------- |
+| `defaultValue={[50]}`                              | `defaultValue={50}`                       |
+| `value={[value]}`                                  | `value={value}`                           |
+| `onValueChange={(next) => setValue(next[0] ?? 0)}` | `onChange={setValue}`                     |
+| `onValueCommitted={(next) => save(next[0] ?? 0)}`  | `onChangeEnd={save}`                      |
+| `<Slider defaultValue={[20, 80]} />`               | `<RangeSlider defaultValue={[20, 80]} />` |
+
+## API reference
+
+- `value` / `defaultValue`: `number`
+- `onChange` / `onChangeEnd`: callbacks receiving a single `number`
+- `label`, `labelAlwaysOn`, `showLabelOnHover`: configure live thumb labels
+- `labelTransitionProps`: `{ duration?: number; timingFunction?: string; delay?: number }` for thumb-label transition tuning
+- `marks`: accepts `SliderMarkDefinition[]` for track markers
+- `restrictToMarks`: snaps movement to provided marks
+- `domain`, `min`, `max`, `scale`: configure raw bounds, normalized clamp, and display transform
+- `name`, `hiddenInputProps`: submit one hidden input with the same `name` using the scaled value; `hiddenInputProps` is forwarded to that hidden input
+- `color`, `size`, `radius`: visual variant controls
+- `thumbLabel`: accessible label for the thumb
+- `thumbProps`, `thumbChildren`, `thumbSize`: thumb customization surface
+- `Slider.Mark`, `Slider.Marks`, `Slider.ThumbLabel`: available as static helpers and named exports
+
+## Accessibility notes
+
+- Provide `aria-label` or `aria-labelledby` for the slider root.
+- Use a visible value readout when precision matters.
+- Keep thumb hit areas large enough for touch interaction.
+
+## SSR and RSC notes
+
+`Slider` is interactive and must render from a Client Component.
+
+## Styling and semantic tokens
+
+Use semantic tokens for wrappers and labels (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`) to keep theme parity.
+
+## Troubleshooting
+
+- Value does not update in controlled mode:
+  Ensure `onChange` updates the same state passed into `value`.
+- Marks are visible but drag does not snap:
+  Set `restrictToMarks`.
+- Vertical slider is not visible:
+  Give the parent container an explicit height.
+
+## Related links
+
+- [Range Slider](/docs/components/range-slider)
+- [Number Field](/docs/components/number-field)
+- [Input](/docs/components/input)
+- [Meter](/docs/components/meter)

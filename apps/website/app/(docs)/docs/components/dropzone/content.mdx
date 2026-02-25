@@ -1,0 +1,157 @@
+---
+title: "Dropzone"
+description: "Handle drag-and-drop file intake with @kuzenbo/core Dropzone, including accept/reject states, validation limits, and programmatic open control."
+section: "components"
+package: "core"
+status: "stable"
+order: 34
+surface: "component"
+seoTitle: "Dropzone | Kuzenbo Docs"
+seoDescription: "Handle drag-and-drop file intake with @kuzenbo/core Dropzone, including accept/reject states, validation limits, and programmatic open control."
+ogImage: "/docs-og/components/dropzone"
+ogImageAlt: "Dropzone documentation"
+aliases:
+  - "/docs/components/inputs/dropzone"
+---
+
+## Purpose
+
+`Dropzone` is the file-ingestion primitive in `@kuzenbo/core`, powered by `react-dropzone` under the hood. It provides typed callbacks, drag-state slots, validation controls, and semantic styling variants.
+
+Use it for:
+
+- Upload entry points (images, CSV, attachments).
+- Intake areas with explicit accept/reject feedback.
+- Controlled upload workflows with programmatic file picker opening.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Dropzone,
+  DropzoneAccept,
+  DropzoneContext,
+  DropzoneIdle,
+  DropzoneReject,
+  dropzoneVariants,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+`onDrop` is required.
+
+```tsx
+import { Dropzone } from "@kuzenbo/core";
+
+export function AvatarUploadDropzone() {
+  return (
+    <Dropzone
+      accept={["image/png", "image/jpeg"]}
+      maxFiles={1}
+      maxSize={2 * 1024 * 1024}
+      onDrop={(files) => {
+        console.log("accepted files", files);
+      }}
+      onReject={(rejections) => {
+        console.log("rejected files", rejections);
+      }}
+    >
+      <Dropzone.Idle>
+        Drop an avatar image here, or click to browse.
+      </Dropzone.Idle>
+      <Dropzone.Accept>Release to upload image.</Dropzone.Accept>
+      <Dropzone.Reject>Only PNG/JPEG up to 2 MB.</Dropzone.Reject>
+    </Dropzone>
+  );
+}
+```
+
+## Advanced usage: programmatic open and loading state
+
+```tsx
+import { useRef } from "react";
+
+import { Dropzone } from "@kuzenbo/core";
+
+export function CsvImportDropzone() {
+  const openRef = useRef<(() => void) | null>(null);
+
+  return (
+    <div className="space-y-3">
+      <button
+        className="rounded-md border border-border bg-background px-3 py-2 text-sm"
+        onClick={() => openRef.current?.()}
+        type="button"
+      >
+        Choose CSV
+      </button>
+
+      <Dropzone
+        activateOnClick={false}
+        maxFiles={3}
+        multiple
+        onDrop={(files) => {
+          console.log("ready to upload", files);
+        }}
+        openRef={openRef}
+        variant="filled"
+      >
+        <div className="text-sm text-muted-foreground">
+          Drag CSV files here. Keyboard and click activation are still available
+          through the external button.
+        </div>
+      </Dropzone>
+    </div>
+  );
+}
+```
+
+## API reference
+
+- `Dropzone`
+  Root component with file callback props and validation controls.
+  Important props: `onDrop`, `onDropAny`, `onReject`, `accept`, `maxFiles`, `maxSize`, `multiple`, `disabled`, `loading`, `openRef`, `activateOnClick`, `activateOnDrag`, `activateOnKeyboard`.
+- `DropzoneIdle`, `DropzoneAccept`, `DropzoneReject`
+  Context-aware slots shown for drag state.
+- `DropzoneContext`
+  Context export used by status slots; available for advanced composition.
+- `dropzoneVariants`
+  Tailwind Variants contract for `variant` (`default`, `filled`, `light`) and status styles.
+
+## Accessibility notes
+
+- Keep helper text explicit about accepted types and limits.
+- If click activation is disabled, provide an alternate keyboard-focusable control that calls `openRef`.
+- Use concise reject messages so errors are understandable without visual cues.
+
+## SSR and RSC notes
+
+`Dropzone` is interactive and browser API dependent. Render it only inside Client Components.
+
+## Styling and semantic tokens
+
+Dropzone variants use semantic tokens such as `bg-background`, `bg-muted`, `border-input`, `border-primary`, and status tokens (`danger`, `primary`). Continue with token classes for custom wrappers and copy.
+
+## Troubleshooting
+
+- Files are always rejected:
+  Check `accept`, `maxSize`, and `maxFiles` constraints.
+- Drop target looks disabled unexpectedly:
+  `loading` and `disabled` both disable interaction.
+- Clicking does not open file picker:
+  If `activateOnClick={false}`, trigger `openRef.current?.()` from another control.
+- Status copy never changes:
+  Ensure status components are children of the same `Dropzone` root.
+
+## Related links
+
+- [Input](/docs/components/input)
+- [Progress](/docs/components/progress)
+- [Toast](/docs/components/toast)

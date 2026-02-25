@@ -1,0 +1,170 @@
+---
+title: "Carousel"
+description: "Build swipeable or keyboard-driven slide sequences with @kuzenbo/core Carousel and Embla-backed controls."
+section: "components"
+package: "core"
+status: "stable"
+order: 20
+surface: "component"
+seoTitle: "Carousel | Kuzenbo Docs"
+seoDescription: "Build robust, keyboard-friendly carousels in @kuzenbo/core with Embla options, controls, and integration patterns."
+ogImage: "/docs-og/components/carousel"
+ogImageAlt: "Carousel documentation"
+aliases:
+  - "/docs/components/display/carousel"
+---
+
+## Overview
+
+`Carousel` is a composable slide container powered by Embla under the hood. It ships with first-class parts (`Content`, `Item`, `Previous`, `Next`) and exposes `useCarousel` for custom controls.
+
+Use it for short, sequential content blocks such as cards, gallery items, or onboarding steps.
+
+Do not use it for large, virtualized feeds. It is a slide UI primitive, not a data virtualization system.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  useCarousel,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@kuzenbo/core";
+
+export function BasicCarousel() {
+  return (
+    <Carousel className="w-72">
+      <CarouselContent>
+        <CarouselItem>
+          <div className="flex aspect-square items-center justify-center rounded-md bg-muted">
+            Slide 1
+          </div>
+        </CarouselItem>
+        <CarouselItem>
+          <div className="flex aspect-square items-center justify-center rounded-md bg-muted">
+            Slide 2
+          </div>
+        </CarouselItem>
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@kuzenbo/core";
+
+export function VerticalLoopCarousel() {
+  const [api, setApi] = useState<CarouselApi | null>(null);
+
+  return (
+    <div className="space-y-2">
+      <p className="text-sm text-muted-foreground">
+        Current index: {api?.selectedScrollSnap() ?? 0}
+      </p>
+      <Carousel
+        className="h-64 w-72"
+        opts={{ loop: true }}
+        orientation="vertical"
+        setApi={setApi}
+      >
+        <CarouselContent>
+          <CarouselItem className="basis-1/2">
+            <div className="rounded-md border border-border p-3">
+              Quarterly update
+            </div>
+          </CarouselItem>
+          <CarouselItem className="basis-1/2">
+            <div className="rounded-md border border-border p-3">
+              Release note
+            </div>
+          </CarouselItem>
+          <CarouselItem className="basis-1/2">
+            <div className="rounded-md border border-border p-3">
+              Retro summary
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+  );
+}
+```
+
+## API Notes
+
+- `Carousel` props include:
+  - `orientation?: "horizontal" | "vertical"` (default `horizontal`)
+  - `opts?` (Embla options)
+  - `plugins?` (Embla plugins)
+  - `setApi?` (gives access to runtime Embla API)
+- `CarouselContent` wires the internal Embla viewport and axis spacing.
+- `CarouselItem` is a single slide (`role="group"`, `aria-roledescription="slide"`).
+- `CarouselNext` and `CarouselPrevious` auto-disable when no movement is possible.
+- `useCarousel` gives direct access to carousel context for custom buttons, indicators, or keyboard shortcuts.
+
+## Accessibility
+
+- Root uses `role="region"` with `aria-roledescription="carousel"`.
+- Arrow keys are handled on the carousel root (`ArrowLeft` and `ArrowRight`).
+- Default next/previous buttons include `sr-only` labels. Keep equivalent labels if you replace controls.
+
+## SSR and RSC
+
+`Carousel` is client-only. It relies on React state/effects and Embla runtime behavior.
+
+Use it inside a client component boundary (`"use client"`) when working in App Router.
+
+## Styling and Semantic Tokens
+
+- Use semantic surface tokens inside slide content (`bg-muted`, `border-border`, `text-foreground`).
+- Keep spacing overrides on `CarouselItem` (for example `basis-*`) instead of overriding internal track structure.
+
+## Troubleshooting
+
+- `useCarousel must be used within a <Carousel />`: ensure your custom control is rendered inside the carousel tree.
+- Navigation buttons stay disabled: verify there are enough items to scroll and that item sizing allows overflow.
+- Vertical layout looks wrong: set `orientation="vertical"` and give the root an explicit height.
+
+## Related Docs
+
+- [Button](/docs/components/button)
+- [Scroll Area](/docs/components/scroll-area)
+- [Navigation Patterns](/docs/patterns/navigation-patterns)

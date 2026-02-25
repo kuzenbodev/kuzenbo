@@ -1,0 +1,128 @@
+---
+title: "Tooltip"
+description: "Attach contextual hints to focusable controls with provider-managed timing and side-aware popup placement."
+section: "components"
+package: "core"
+status: "stable"
+order: 87
+surface: "component"
+seoTitle: "Tooltip | Kuzenbo Docs"
+seoDescription: "Use Tooltip from @kuzenbo/core for accessible contextual hints with configurable delay and directional placement."
+ogImage: "/docs-og/components/tooltip"
+ogImageAlt: "Tooltip documentation"
+aliases:
+  - "/docs/components/overlays/tooltip"
+---
+
+## Overview
+
+`Tooltip` provides small contextual hints for controls and compact UI elements.
+The Kuzenbo wrapper includes a default provider and styled content with side-aware enter/exit animation classes.
+
+Use tooltips for supplementary text, not required instructions or core workflow content.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  Button,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Button, Tooltip } from "@kuzenbo/core";
+
+export function TooltipBasicExample() {
+  return (
+    <Tooltip>
+      <Tooltip.Trigger render={<Button variant="outline" />}>
+        Hover me
+      </Tooltip.Trigger>
+      <Tooltip.Content>This is a tooltip</Tooltip.Content>
+    </Tooltip>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { Button, Tooltip, TooltipProvider } from "@kuzenbo/core";
+
+export function TooltipAdvancedExample() {
+  return (
+    <TooltipProvider delay={250}>
+      <Tooltip>
+        <Tooltip.Trigger render={<Button variant="outline" />}>
+          More info
+        </Tooltip.Trigger>
+        <Tooltip.Content
+          align="start"
+          alignOffset={6}
+          side="right"
+          sideOffset={8}
+        >
+          Detailed hint on the right side.
+        </Tooltip.Content>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+```
+
+## API Notes
+
+- `Tooltip` composes `TooltipProvider` + `TooltipPrimitive.Root` automatically.
+- `Tooltip` supports `size="xs" | "sm" | "md" | "lg" | "xl"` (`md` default).
+- `TooltipProvider` defaults to `delay={0}` in Kuzenbo.
+- `TooltipTrigger` supports Base UI `render` composition for wrapping custom elements.
+- `TooltipContent` defaults:
+  - `side="top"`
+  - `sideOffset={4}`
+  - `align="center"`
+  - `alignOffset={0}`
+- `TooltipContent` and `TooltipPopup` accept optional `size` overrides when a specific surface should differ from root size.
+- Content renders through portal + positioner and includes an arrow element by default.
+
+## Accessibility
+
+- Ensure trigger controls are keyboard-focusable.
+- Do not use tooltip as the only source of required field/help text.
+- Keep tooltip copy concise and descriptive.
+
+## SSR and RSC
+
+- Tooltip behavior is client-side and should render in client components.
+- Server components can still render static structure around client tooltip controls.
+
+## Styling and Tokens
+
+- Default tooltip content uses semantic contrast tokens (`bg-foreground`, `text-background`).
+- Keep custom styling compatible with focus and readability.
+- Avoid hard-coded palette classes so tooltip visuals remain theme-stable.
+
+## Troubleshooting
+
+- Tooltip opens too fast: wrap surface with `TooltipProvider delay={...}`.
+- Tooltip not visible where expected: adjust `side`, `align`, `sideOffset`, and parent stacking contexts.
+- Tooltip feels too small or too large: set root `size` on `Tooltip` or override with `Tooltip.Content size={...}`.
+- Trigger does not open tooltip: check that the rendered trigger element is interactive and not disabled by pointer-events styles.
+
+## Related Docs
+
+- [Preview Card](/docs/components/preview-card)
+- [Popover](/docs/components/popover)
+- [Button](/docs/components/button)
+- [Components Index](/docs/components)

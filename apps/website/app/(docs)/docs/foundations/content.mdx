@@ -1,0 +1,51 @@
+---
+title: "Foundations"
+description: "How Kuzenbo is built — design principles, tokens, accessibility, and best practices."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 1
+surface: "guide"
+seoTitle: "Foundations | Kuzenbo Docs"
+seoDescription: "Kuzenbo design principles: tokens, accessibility, typography, and theming."
+ogImage: "/docs-og/foundations"
+ogImageAlt: "Foundations documentation"
+aliases:
+  - "/docs/features"
+---
+
+## How Kuzenbo is built
+
+Kuzenbo is built on design tokens, accessibility primitives, and consistent patterns. This section explains how to use them well.
+In almost all apps, pair the Kuzenbo UI packages you install with `@kuzenbo/theme`.
+
+## Core concepts
+
+- [Accessibility](/docs/foundations/accessibility) — focus, keyboard nav, ARIA
+- [Color Primitives](/docs/foundations/color-primitives) — semantic tokens and when to use them
+- [Typography System](/docs/foundations/typography-system) — text components and variants
+- [Dark Mode](/docs/foundations/dark-mode) — theme runtime and preference detection
+- [Theme Runtime](/docs/foundations/theme-runtime) — bootstrap script and provider behavior
+- [RTL](/docs/foundations/rtl) — right-to-left layout support
+- [Testing](/docs/foundations/testing) — component and hook testing patterns
+
+## Implementation order
+
+1. Install and wire `@kuzenbo/theme` (`ThemeBootstrapScript` + `ThemeProvider`)
+2. Import theme CSS, then optional `@kuzenbo/styles/recommended.css`
+3. Build screens with `@kuzenbo/core` and semantic tokens
+4. Add feature packages (charts, date, notifications, ai, datatable) when you need them, while keeping `@kuzenbo/theme` installed
+
+## Best practices
+
+- **Semantic tokens** — Use `bg-background`, `text-foreground`, `border-border` instead of raw Tailwind palettes so dark mode and themes stay consistent
+- **Typography** — Prefer Kuzenbo `Typography` components over ad-hoc class stacks on raw tags
+- **Base UI patterns** — Use the `render` prop for composition; avoid introducing new `asChild` usage
+
+## Continue
+
+- [Accessibility](/docs/foundations/accessibility)
+- [Color Primitives](/docs/foundations/color-primitives)
+- [RTL](/docs/foundations/rtl)
+- [Testing](/docs/foundations/testing)
+- [Typography System](/docs/foundations/typography-system)

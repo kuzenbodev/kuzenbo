@@ -1,0 +1,50 @@
+{
+  "name": "@kuzenbo/styles",
+  "version": "0.0.1-alpha.4",
+  "private": false,
+  "description": "Optional global baseline styles for Kuzenbo apps.",
+  "keywords": [
+    "component-library",
+    "design-system",
+    "kuzenbo",
+    "react",
+    "tailwind",
+    "ui"
+  ],
+  "homepage": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono#readme",
+  "bugs": {
+    "url": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DobroslavRadosavljevic/kuzenbo-mono.git",
+    "directory": "packages/styles"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    "./recommended.css": "./src/recommended.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      "./recommended.css": "./dist/recommended.css",
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch"
+  },
+  "dependencies": {
+    "tailwindcss": "catalog:"
+  }
+}

@@ -1,0 +1,49 @@
+---
+title: "Versioning"
+description: "Understand Kuzenbo version channels, lockstep package versions, and upgrade paths."
+section: "reference"
+package: "core"
+status: "stable"
+order: 5
+surface: "guide"
+seoTitle: "Versioning | Kuzenbo Docs"
+seoDescription: "Kuzenbo version channels and safe strategies for adopting updates."
+ogImage: "/docs-og/reference/versioning"
+ogImageAlt: "Versioning documentation"
+---
+
+## Versioning Model
+
+Kuzenbo uses lockstep versions for its public packages.
+That means related packages are published with the same version number to reduce compatibility guesswork.
+In almost all apps, keep `@kuzenbo/theme` versioned with the Kuzenbo UI packages you install.
+
+## Channels You May See
+
+- `latest`: stable production releases.
+- `next`: pre-release stream for early adopters.
+
+Use `next` only if you can validate changes in a staging environment before production.
+
+## Install By Channel
+
+```bash
+bun add @kuzenbo/core@latest @kuzenbo/theme@latest
+```
+
+```bash
+bun add @kuzenbo/core@next @kuzenbo/theme@next
+```
+
+## Upgrade Guidance
+
+- Upgrade core runtime packages together (`core`, `theme`, and any domain packages you use).
+- Keep `@kuzenbo/theme` in every UI package upgrade batch in almost all app setups.
+- Read changelog entries before moving between channels.
+- Prefer smaller version jumps over large jumps.
+
+## Related Docs
+
+- [Changelog](/docs/reference/changelog)
+- [Compatibility](/docs/reference/compatibility)
+- [FAQ](/docs/reference/faq)

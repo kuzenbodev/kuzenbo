@@ -1,0 +1,99 @@
+---
+title: "Composition"
+description: "Compose Kuzenbo interfaces with explicit slots, render-prop polymorphism, and package-safe ownership boundaries."
+section: "patterns"
+package: "core"
+status: "stable"
+order: 2
+surface: "guide"
+seoTitle: "Composition | Kuzenbo Docs"
+seoDescription: "Opinionated composition patterns for Kuzenbo primitives and multi-package UI surfaces."
+ogImage: "/docs-og/patterns/composition"
+ogImageAlt: "Composition documentation"
+aliases:
+  - "/docs/features/composition"
+---
+
+## Composition Principles
+
+Kuzenbo components are intentionally granular.
+You should compose behavior from explicit parts instead of relying on opaque, auto-wired wrappers.
+
+## The Preferred Pattern
+
+- Start from a root primitive (`Dialog`, `Drawer`, `Form`, `Chart.Root`).
+- Add only the slots your surface needs.
+- Use `render` composition when you need custom trigger or element types.
+- Keep custom wrappers thin and domain-specific.
+
+## `render` Over `asChild`
+
+New code should use Base UI `render` composition.
+This keeps ownership clear and avoids legacy `asChild` edge cases.
+
+```tsx
+import { Button, Dialog } from "@kuzenbo/core";
+
+export function ConfirmDialog() {
+  return (
+    <Dialog>
+      <Dialog.Trigger render={<Button variant="outline" />}>
+        Delete report
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Title>Delete report?</Dialog.Title>
+          <Dialog.Description>This action cannot be undone.</Dialog.Description>
+          <Dialog.Footer>
+            <Dialog.Close render={<Button variant="outline" />}>
+              Cancel
+            </Dialog.Close>
+            <Button variant="destructive">Delete</Button>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog>
+  );
+}
+```
+
+## Multi-Package Composition
+
+Compose cross-domain screens by responsibility, not convenience:
+
+- Layout + core controls from `@kuzenbo/core`
+- Charting from `@kuzenbo/charts`
+- Date/calendar workflows from `@kuzenbo/date`
+- Toast feedback from `@kuzenbo/notifications`
+- Reusable behavior extracted to `@kuzenbo/hooks`
+
+This prevents `@kuzenbo/core` from becoming a monolith again.
+
+## Wrapper Design Rules
+
+When creating product-level wrappers:
+
+1. Keep the wrapper API focused on domain language.
+2. Forward structural slots rather than hiding them.
+3. Re-export only stable behavior, not private internals.
+4. Add tests and stories whenever wrapper behavior diverges from base primitives.
+
+## Common Anti-Patterns
+
+- One giant component that bundles data loading, layout, and all interaction.
+- Wrappers that remove access to trigger/content slots.
+- Moving chart/date/toast concerns back into `@kuzenbo/core`.
+
+## Composition Checklist
+
+- Slot hierarchy is explicit.
+- Trigger/content relationships are test-covered.
+- Keyboard and focus behavior still matches accessibility expectations.
+- Package imports respect monorepo boundaries.
+
+## Related Docs
+
+- [Foundations](/docs/foundations)
+- [Migration Patterns](/docs/patterns/migration)
+- [Testing](/docs/foundations/testing)

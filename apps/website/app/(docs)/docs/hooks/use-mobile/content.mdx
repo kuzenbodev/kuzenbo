@@ -1,0 +1,85 @@
+---
+title: "useMobile"
+description: "Detect whether viewport width is below 768px using matchMedia-driven updates in the browser."
+section: "hooks"
+package: "hooks"
+status: "stable"
+order: 15
+surface: "hook"
+seoTitle: "useMobile | Kuzenbo Docs"
+seoDescription: "Use useIsMobile to branch UI behavior at the 768px breakpoint with automatic media-query updates."
+ogImage: "/docs-og/hooks/use-mobile"
+ogImageAlt: "useMobile documentation"
+aliases:
+  - "/docs/hooks/responsive/use-mobile"
+---
+
+## What this hook does
+
+This page documents `useIsMobile` from `@kuzenbo/hooks`.
+The route slug is `use-mobile`, but the public hook name is `useIsMobile`.
+
+`useIsMobile` tracks `window.innerWidth` against a fixed breakpoint (`768px`) and updates on media-query change events.
+
+## Reads and writes
+
+- Reads: `window.innerWidth` and `window.matchMedia("(max-width: 767px)")`.
+- Writes: internal boolean state that reflects mobile vs non-mobile viewport.
+
+## When to use it
+
+- Switch navigation patterns (drawer vs sidebar).
+- Toggle compact table/chart layouts on narrow screens.
+- Gate optional UI that should only render on handheld breakpoints.
+
+## Import
+
+```tsx
+import { useIsMobile } from "@kuzenbo/hooks";
+```
+
+## Example: responsive shell switch
+
+```tsx
+"use client";
+
+import { useIsMobile } from "@kuzenbo/hooks";
+
+export function AppShellLayout() {
+  const isMobile = useIsMobile();
+
+  return isMobile ? (
+    <div data-layout="mobile">Mobile drawer layout</div>
+  ) : (
+    <div data-layout="desktop">Desktop sidebar layout</div>
+  );
+}
+```
+
+## Example: stable derived flags
+
+```tsx
+const isMobile = useIsMobile();
+const showDenseTable = isMobile;
+const showInlineFilters = !isMobile;
+```
+
+## Return contract and edge cases
+
+- Type: `boolean`
+- Breakpoint rule: `< 768` returns `true`, `>= 768` returns `false`.
+- The hook initializes from internal undefined state and coerces to `false` until the first effect run.
+- Listener cleanup is handled on unmount.
+- Breakpoint is fixed in source (`MOBILE_BREAKPOINT = 768`), not configurable at call site.
+
+## SSR and RSC caveats
+
+- Browser-only logic (`window`, `matchMedia`), so use in Client Components only.
+- On server render, you cannot read viewport width. Plan for an initial non-mobile fallback.
+- If first-paint mobile fidelity is critical, pair with CSS-first responsive rules and use this hook for behavior only.
+
+## Related docs
+
+- [useFullscreen](/docs/hooks/use-fullscreen)
+- [useIsomorphicEffect](/docs/hooks/use-isomorphic-effect)
+- [Hooks Index](/docs/hooks)

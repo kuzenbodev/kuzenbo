@@ -1,0 +1,94 @@
+---
+title: "Styles Baseline"
+description: "How to apply @kuzenbo/styles/recommended.css as an optional app-level baseline."
+section: "foundations"
+package: "styles"
+status: "stable"
+order: 12
+surface: "utility"
+seoTitle: "Styles Baseline | Kuzenbo Docs"
+seoDescription: "Production guidance for importing and operating @kuzenbo/styles/recommended.css."
+ogImage: "/docs-og/foundations/styles-baseline"
+ogImageAlt: "Styles baseline guidance"
+---
+
+## What `recommended.css` Is For
+
+`@kuzenbo/styles/recommended.css` is an optional global baseline for app shells. It does not define component APIs. It standardizes low-level behavior so components from public packages render consistently.
+
+Current baseline includes:
+
+- Global border and outline token defaults.
+- Color-scheme alignment (`light`/`dark`) for browser-native UI.
+- Scrollbar appearance alignment with semantic border tokens and pointer-aware sizing.
+- Font smoothing defaults on `html`.
+- Reduced-motion-aware smooth scrolling with explicit reduce fallback.
+- Scroll behavior guard when Base UI applies scroll lock.
+- Root-level overscroll policy and stable scrollbar gutter.
+- Global focus-visible baseline with fallback and forced-colors support.
+- Long-text overflow protection for common content elements.
+- Readable underline defaults for links.
+- High-contrast semantic text selection colors.
+- Optional sticky-header anchor offset hook via `--kb-anchor-offset`.
+
+## Import Order Contract
+
+Import order matters. Theme tokens must load first, then the optional baseline.
+
+```tsx
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+```
+
+Do this once in your app shell or root layout.
+
+If your app has a sticky header, set an offset once so hash links and focus targets are not hidden:
+
+```css
+:root {
+  --kb-anchor-offset: 5rem;
+}
+```
+
+## When To Use It
+
+- You want a consistent global baseline across product pages.
+- You are building a docs or dashboard app with many Kuzenbo surfaces.
+- You do not want to maintain your own scrollbar and global outline baseline.
+
+## When To Skip It
+
+- You need a highly custom global reset and already own all base styles.
+- You are building an embedded widget where host-page global styles must stay untouched.
+
+## Accessibility Notes
+
+- Keep reduced-motion behavior intact; do not force smooth scrolling globally.
+- Preserve visible focus rings when customizing outlines.
+- In forced-colors mode, prefer targeted adjustments only.
+- Validate contrast and focus behavior after introducing additional global CSS.
+
+## Performance Notes
+
+- Import the baseline once. Repeated imports do not provide value and can complicate style debugging.
+- Keep app-specific overrides small and layered after `recommended.css`.
+- Avoid overriding semantic tokens with hardcoded palette values.
+
+## Testing Notes
+
+- Validate baseline effects in at least one light and one dark theme scenario.
+- Add regression checks for scroll lock and focus visibility in overlay-heavy pages.
+- Keep docs and app previews aligned with the same theme and baseline order.
+
+## Troubleshooting
+
+- If borders or outlines look inconsistent, verify that theme CSS is loaded before `recommended.css`.
+- If smooth scrolling behaves unexpectedly during dialogs, confirm `html[data-base-ui-scroll-locked]` is not being overridden.
+- If scrollbar styling disappears, check for competing global scrollbar rules in your app stylesheets.
+- If native inputs/scrollbars look mismatched between themes, check where the `dark` class is applied on `html`.
+
+## Related Docs
+
+- [Theming](/docs/foundations/theming)
+- [Theme Runtime](/docs/foundations/theme-runtime)
+- [Performance](/docs/foundations/performance)

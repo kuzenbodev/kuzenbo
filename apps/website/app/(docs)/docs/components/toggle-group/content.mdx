@@ -1,0 +1,126 @@
+---
+title: "Toggle Group"
+description: "Segmented single- or multi-select toggle controls in @kuzenbo/core with shared size, variant, spacing, and orientation context."
+section: "components"
+package: "core"
+status: "stable"
+order: 85
+surface: "component"
+seoTitle: "Toggle Group | Kuzenbo Docs"
+seoDescription: "Segmented single- or multi-select toggle controls in @kuzenbo/core with shared size, variant, spacing, and orientation context."
+ogImage: "/docs-og/components/toggle-group"
+ogImageAlt: "Toggle Group documentation"
+aliases:
+  - "/docs/components/inputs/toggle-group"
+---
+
+## Overview
+
+`ToggleGroup` is the segmented-control primitive in `@kuzenbo/core`. It builds on Base UI Toggle Group and reuses Kuzenbo toggle variants for consistent size/variant behavior.
+
+Use it for view mode switches, compact filters, and icon/text segment controls.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  ToggleGroup,
+  ToggleGroupContext,
+  ToggleGroupItem,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { ToggleGroup } from "@kuzenbo/core";
+
+export function TextAlignToggle() {
+  return (
+    <ToggleGroup defaultValue={["left"]} multiple={false}>
+      <ToggleGroup.Item value="left">Left</ToggleGroup.Item>
+      <ToggleGroup.Item value="center">Center</ToggleGroup.Item>
+      <ToggleGroup.Item value="right">Right</ToggleGroup.Item>
+    </ToggleGroup>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { ToggleGroup } from "@kuzenbo/core";
+import { useState } from "react";
+
+export function DashboardFilterToggles() {
+  const [activeFilters, setActiveFilters] = useState<string[]>(["paid"]);
+
+  return (
+    <ToggleGroup
+      multiple
+      onValueChange={setActiveFilters}
+      orientation="vertical"
+      size="sm"
+      spacing={1}
+      value={activeFilters}
+      variant="outline"
+    >
+      <ToggleGroup.Item value="organic">Organic</ToggleGroup.Item>
+      <ToggleGroup.Item value="paid">Paid</ToggleGroup.Item>
+      <ToggleGroup.Item value="partners">Partners</ToggleGroup.Item>
+    </ToggleGroup>
+  );
+}
+```
+
+## API Reference
+
+- `ToggleGroup`: root control with shared `variant`, `size`, `spacing`, and `orientation` context.
+- `ToggleGroupItem`: option item that inherits group-level variant/size unless overridden.
+- `ToggleGroupContext`: exported React context used internally for style/data propagation.
+
+Key behavior:
+
+- Set `multiple={false}` for single-select segments.
+- Set `multiple` for multi-select behavior with array values.
+- `spacing={0}` creates connected segmented styling.
+- `orientation="vertical"` switches to stacked layout.
+
+## Accessibility
+
+- Provide a nearby label that describes what the group controls.
+- Keep item text concise and stateful (`Table`, `Board`, `Timeline`).
+- Validate keyboard usage across items (arrow navigation and toggle activation).
+- Do not rely on selected color alone; include clear text labels.
+
+## SSR and RSC Notes
+
+- `ToggleGroup` is interactive and should be used in Client Components.
+- It can still be embedded in server-rendered layout shells with client islands.
+- Keep initial value consistent between server snapshot and hydrated client state.
+
+## Styling and Tokens
+
+- Group/item styling is derived from core toggle variants and semantic tokens.
+- Use `variant`/`size` props before custom class overrides.
+- Prefer semantic wrappers (`bg-background`, `border-border`, `text-foreground`) around group containers.
+
+## Troubleshooting
+
+- Items are not sharing style state: use `ToggleGroup.Item` inside `ToggleGroup` so context applies.
+- Segments show doubled borders: set `spacing={0}` with `variant="outline"` for connected look.
+- State not updating: control `value` with `onValueChange` in controlled mode.
+- Vertical layout not applied: confirm `orientation="vertical"` on root.
+
+## Related Docs
+
+- [Toggle](/docs/components/toggle)
+- [Tabs](/docs/components/tabs)
+- [Radio Group](/docs/components/radio-group)
+- [Button Group](/docs/components/button-group)

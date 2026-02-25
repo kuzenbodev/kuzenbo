@@ -1,0 +1,195 @@
+---
+title: "Alert Dialog"
+description: "Confirmation-focused modal dialogs in @kuzenbo/core for destructive or irreversible actions."
+section: "components"
+package: "core"
+status: "stable"
+order: 6
+surface: "component"
+seoTitle: "Alert Dialog | Kuzenbo Docs"
+seoDescription: "Confirmation-focused modal dialogs in @kuzenbo/core for destructive or irreversible actions."
+ogImage: "/docs-og/components/alert-dialog"
+ogImageAlt: "Alert Dialog documentation"
+aliases:
+  - "/docs/components/overlays/alert-dialog"
+---
+
+## Overview
+
+`AlertDialog` is the confirmation dialog surface in `@kuzenbo/core`. Use it when the user is about to run an action that cannot be easily undone (delete, revoke, overwrite, leave flow).
+
+`AlertDialog` is intentionally opinionated for confirmation UX:
+
+- action-first footer (`Cancel` + `Action`)
+- modal focus management through Base UI primitives
+- optional media slot for severity or context icons
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogOverlay,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { AlertDialog, Button } from "@kuzenbo/core";
+
+export function DeleteProjectDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialog.Trigger render={<Button variant="outline" />}>
+        Delete project
+      </AlertDialog.Trigger>
+
+      <AlertDialog.Content>
+        <AlertDialog.Header>
+          <AlertDialog.Title>Delete this project?</AlertDialog.Title>
+          <AlertDialog.Description>
+            This removes project settings and members permanently.
+          </AlertDialog.Description>
+        </AlertDialog.Header>
+
+        <AlertDialog.Footer>
+          <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+          <AlertDialog.Action variant="danger">Delete</AlertDialog.Action>
+        </AlertDialog.Footer>
+      </AlertDialog.Content>
+    </AlertDialog>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Delete02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { AlertDialog, Button } from "@kuzenbo/core";
+
+export function ConfirmAccountRemoval() {
+  return (
+    <AlertDialog>
+      <AlertDialog.Trigger render={<Button variant="danger" />}>
+        Remove account
+      </AlertDialog.Trigger>
+
+      <AlertDialog.Content size="sm">
+        <AlertDialog.Header>
+          <AlertDialog.Media className="bg-danger text-danger-foreground">
+            <HugeiconsIcon icon={Delete02Icon} strokeWidth={2} />
+          </AlertDialog.Media>
+          <AlertDialog.Title>Remove account access?</AlertDialog.Title>
+          <AlertDialog.Description>
+            We will sign you out of all devices and revoke active API keys.
+          </AlertDialog.Description>
+        </AlertDialog.Header>
+
+        <AlertDialog.Footer>
+          <AlertDialog.Cancel variant="outline">
+            Keep account
+          </AlertDialog.Cancel>
+          <AlertDialog.Action isLoading={false} variant="danger">
+            Remove access
+          </AlertDialog.Action>
+        </AlertDialog.Footer>
+      </AlertDialog.Content>
+    </AlertDialog>
+  );
+}
+```
+
+## Unified Size Contract
+
+Alert dialog sizing now follows shared `UISize` guidance (`xs | sm | md | lg | xl`) with `md` as the default token.
+
+Family-specific metrics for this surface:
+
+- Popup width, inner padding, and vertical gap scale together by size token.
+- Header/footer spacing tracks popup size so visual rhythm stays consistent.
+
+Precedence rules:
+
+- Panel surface: `explicit AlertDialog.Popup size ?? AlertDialog.Content size ?? "md"`.
+- Action controls: `explicit AlertDialog.Action/Cancel button size ?? Button default ("md")`.
+
+Migration guidance:
+
+```tsx
+// Before
+<AlertDialog.Content size="md">...</AlertDialog.Content>
+
+// After
+<AlertDialog.Content size="md">...</AlertDialog.Content>
+```
+
+If you need the full `xs` through `xl` range, use `AlertDialog.Popup` directly inside the standard portal/backdrop/viewport composition.
+
+## API Reference
+
+- `AlertDialog`: root state container (open state, focus behavior, dismissal).
+- `AlertDialogTrigger`: opener element. Supports Base UI `render` composition.
+- `AlertDialogPortal`: portal mount for dialog layers.
+- `AlertDialogOverlay`: backdrop behind the modal content.
+- `AlertDialogContent`: modal panel convenience wrapper (default `md`, commonly used with `sm`; use `AlertDialogPopup` for full `xs`..`xl` control).
+- `AlertDialogPopup`: low-level popup primitive with shared `UISize` support (`xs | sm | md | lg | xl`).
+- `AlertDialogHeader`: title/description/media layout wrapper.
+- `AlertDialogMedia`: optional icon/media slot in the header.
+- `AlertDialogTitle`: accessible dialog title.
+- `AlertDialogDescription`: accessible supporting text.
+- `AlertDialogFooter`: action row wrapper.
+- `AlertDialogCancel`: cancel button wrapper (defaults to `outline` button styling).
+- `AlertDialogAction`: confirm button wrapper (inherits `Button` props like `variant`, `size`, `isLoading`).
+
+## Accessibility
+
+- Always provide `AlertDialogTitle`; pair with `AlertDialogDescription` for full context.
+- Keep destructive wording explicit (action label should describe the outcome).
+- Ensure trigger text is specific (`Delete project`, not `Open`).
+- Test keyboard flow: open with keyboard, tab through actions, close with `Esc`.
+
+## SSR and RSC Notes
+
+- Use `AlertDialog` in Client Components because it is interactive.
+- Server-rendered pages can still include the trigger shell, but dialog state and events run on the client.
+- Keep dialog text deterministic to avoid hydration mismatch in title/description content.
+
+## Styling and Tokens
+
+- Prefer semantic tokens: `bg-background`, `text-foreground`, `border-border`, `text-muted-foreground`, `bg-danger`.
+- Use semantic danger styles on confirm actions for destructive flows (`variant="danger"`).
+- Avoid raw palette utilities so theme switching stays consistent.
+
+## Troubleshooting
+
+- Dialog does not open: confirm trigger is inside `AlertDialog` and not disabled.
+- Confirm button style looks wrong: check `AlertDialogAction` props (it uses `Button` variants).
+- Layering issues: verify portal/overlay are not overridden by app-level z-index resets.
+- Missing title announcement in screen readers: ensure `AlertDialogTitle` is rendered.
+
+## Related Docs
+
+- [Dialog](/docs/components/dialog)
+- [Button](/docs/components/button)
+- [Context Menu](/docs/components/context-menu)
+- [Color Primitives](/docs/foundations/color-primitives)

@@ -1,0 +1,106 @@
+---
+title: "Skeleton"
+description: "Accessible loading placeholders with semantic token styling in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 72
+surface: "component"
+seoTitle: "Skeleton | Kuzenbo Docs"
+seoDescription: "Accessible loading placeholders with semantic token styling in @kuzenbo/core."
+ogImage: "/docs-og/components/skeleton"
+ogImageAlt: "Skeleton documentation"
+aliases:
+  - "/docs/components/display/skeleton"
+---
+
+## Skeleton at a Glance
+
+`Skeleton` is a lightweight loading placeholder.
+It renders a rounded block with pulse animation and semantic muted background.
+
+Use it while data is loading.
+Replace it with real content as soon as data is available.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Skeleton } from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Skeleton } from "@kuzenbo/core";
+
+export function ProfileHeaderSkeleton() {
+  return (
+    <div className="space-y-2">
+      <Skeleton className="h-6 w-40" />
+      <Skeleton className="h-4 w-64" />
+    </div>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { Skeleton } from "@kuzenbo/core";
+
+export function FeedSkeleton() {
+  return (
+    <section
+      aria-busy="true"
+      aria-live="polite"
+      className="space-y-3 rounded-lg border border-border bg-card p-4"
+    >
+      <span className="sr-only">Loading activity feed</span>
+      <Skeleton aria-hidden="true" className="h-5 w-48" />
+      <Skeleton aria-hidden="true" className="h-4 w-full" />
+      <Skeleton aria-hidden="true" className="h-4 w-[90%]" />
+    </section>
+  );
+}
+```
+
+## API Details
+
+- `Skeleton` accepts native `div` props (`ComponentProps<"div">`).
+- Default behavior includes `animate-pulse`, rounded corners, and muted background tone.
+- Root includes `data-slot="skeleton"` for predictable test targeting.
+
+## Accessibility
+
+- Mark decorative skeleton blocks as `aria-hidden="true"`.
+- Signal container loading state with `aria-busy`.
+- Provide an off-screen status message (`sr-only`) when users need context.
+
+## SSR and RSC Notes
+
+- `Skeleton` is server-safe and useful for streaming/placeholder shells.
+- Keep dimensions stable between loading and loaded states to reduce layout shift.
+
+## Styling and Tokens
+
+- Use semantic tokens from defaults (`bg-muted`) and shape via spacing utilities.
+- Size skeletons to match final content structure, not arbitrary widths.
+- Keep borders/backgrounds on outer wrappers (`border-border`, `bg-card`) for visual consistency.
+
+## Troubleshooting
+
+- If nothing appears, verify explicit width/height classes are present.
+- If pulse animation is undesirable, override with `animate-none`.
+- If layout jumps on content load, align skeleton and final content dimensions.
+
+## Related Docs
+
+- [Card](/docs/components/card)
+- [Performance](/docs/foundations/performance)
+- [Testing](/docs/foundations/testing)

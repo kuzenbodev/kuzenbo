@@ -1,0 +1,135 @@
+---
+title: "Mock Data Table"
+description: "Render typed demo tables quickly with @kuzenbo/datatable MockDataTable and TanStack column definitions."
+section: "components"
+package: "datatable"
+status: "stable"
+order: 51
+surface: "component"
+seoTitle: "Mock Data Table | Kuzenbo Docs"
+seoDescription: "MockDataTable guide for @kuzenbo/datatable with typed columns, example data shaping, and demo-first workflows."
+ogImage: "/docs-og/components/mock-data-table"
+ogImageAlt: "Mock Data Table documentation"
+---
+
+## Overview
+
+`MockDataTable` is a lightweight table wrapper for demos, docs, and quick scaffolding. It uses TanStack Table core row modeling and renders headers/cells from your provided column definitions.
+
+Use it when you need a typed tabular view fast.
+
+Do not treat it as a full datagrid engine. Sorting, pagination, column resizing, and advanced interactions are outside this mock surface.
+
+## Installation
+
+```npm
+npm i @kuzenbo/datatable @tanstack/react-table
+```
+
+## Import
+
+```tsx
+import { MockDataTable, createMockColumns } from "@kuzenbo/datatable";
+```
+
+## Basic Example
+
+```tsx
+import { MockDataTable, createMockColumns } from "@kuzenbo/datatable";
+
+type MetricRow = {
+  id: string;
+  metric: string;
+  value: number;
+};
+
+const data: MetricRow[] = [
+  { id: "1", metric: "Revenue", value: 124000 },
+  { id: "2", metric: "Sessions", value: 8942 },
+];
+
+const columns = createMockColumns<MetricRow>([
+  { accessorKey: "metric", header: "Metric" },
+  {
+    accessorKey: "value",
+    header: "Value",
+    cell: ({ getValue }) => Number(getValue()).toLocaleString("en-US"),
+  },
+]);
+
+export function MetricsTable() {
+  return <MockDataTable columns={columns} data={data} />;
+}
+```
+
+## Advanced Example
+
+```tsx
+import type { ColumnDef } from "@tanstack/react-table";
+
+import { MockDataTable } from "@kuzenbo/datatable";
+
+type BuildRow = {
+  id: string;
+  status: "queued" | "running" | "failed" | "passed";
+  durationMs: number;
+};
+
+const columns: ColumnDef<BuildRow>[] = [
+  { accessorKey: "status", header: "Status" },
+  {
+    accessorKey: "durationMs",
+    header: "Duration",
+    cell: ({ row }) => `${Math.round(row.original.durationMs / 1000)}s`,
+  },
+];
+
+export function BuildTable({ rows }: { rows: BuildRow[] }) {
+  if (rows.length === 0) {
+    return <p className="text-sm text-muted-foreground">No builds yet.</p>;
+  }
+
+  return (
+    <MockDataTable className="bg-background" columns={columns} data={rows} />
+  );
+}
+```
+
+## API Notes
+
+- `MockDataTable<TData extends object>` props:
+  - `columns: ColumnDef<TData>[]`
+  - `data: TData[]`
+  - `className?: string`
+- `createMockColumns` is a typed identity helper. It keeps column definitions explicit without changing runtime behavior.
+- Table root sets `data-slot="mock-data-table"` for tests and visual targeting.
+
+## Accessibility
+
+- Header cells are rendered as semantic `<th>` elements.
+- Keep column labels concise and descriptive.
+- For empty data, render an explicit empty-state message outside or around the table (the component does not inject one by default).
+
+## SSR and RSC
+
+`MockDataTable` is a client component (`"use client"`) because it uses `useReactTable`.
+
+Render it inside a client boundary in App Router projects.
+
+## Styling and Semantic Tokens
+
+- Root shell uses tokenized border styling (`border-border`).
+- Header row uses tokenized muted treatment (`bg-muted/40`).
+- Prefer semantic classes when customizing row/cell visuals instead of raw palette scales.
+
+## Troubleshooting
+
+- Cells render empty: confirm each column has a valid `accessorKey` or custom `cell` renderer.
+- Header text is missing: ensure `header` is provided and not returning `null`.
+- Hydration/client errors in RSC trees: move table rendering into a client component.
+
+## Related Docs
+
+- [useDatatableState](/docs/hooks/use-datatable-state)
+- [Table](/docs/components/table)
+- [Datatable Architecture](/docs/foundations/datatable-architecture)

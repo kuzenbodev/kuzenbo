@@ -1,0 +1,109 @@
+---
+title: "Layout and Spacing"
+description: "Practical layout composition with @kuzenbo/core primitives such as Container, Card, Separator, Spacer, and AspectRatio."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 8
+surface: "guide"
+seoTitle: "Layout and Spacing | Kuzenbo Docs"
+seoDescription: "Use Kuzenbo layout primitives to create consistent page rhythm and responsive structure."
+ogImage: "/docs-og/foundations/layout-and-spacing"
+ogImageAlt: "Layout and Spacing documentation"
+aliases:
+  - "/docs/features/layout-and-spacing"
+---
+
+## Layout philosophy in Kuzenbo
+
+Kuzenbo favors composable primitives over one-off utility clusters. Use stable layout building blocks (`Container`, `Card`, `Item`, `Separator`, `Spacer`) so spacing decisions remain consistent as pages grow.
+
+## Primitive roles
+
+- `Container`: shared page width and horizontal gutters (`max-w-[86rem]` with responsive paddings).
+- `Card`: bounded content surface with predictable internal spacing variants.
+- `Item`: list-oriented content shell with header/content/footer subparts.
+- `Separator`: semantic structural divider with horizontal and vertical orientation.
+- `Spacer`: flexible or fixed gap element for layout flow control.
+- `AspectRatio`: media block with fixed ratio to avoid content jump.
+
+## Recommended page skeleton
+
+```tsx
+import {
+  AspectRatio,
+  Card,
+  Container,
+  Separator,
+  Spacer,
+  Typography,
+} from "@kuzenbo/core";
+
+export function MarketingSection() {
+  return (
+    <Container className="py-8">
+      <Card>
+        <Card.Header>
+          <Card.Title>Release highlights</Card.Title>
+          <Card.Description>
+            Stable spacing and alignment across breakpoints.
+          </Card.Description>
+        </Card.Header>
+
+        <Card.Content className="grid gap-4 md:grid-cols-[2fr_1fr]">
+          <AspectRatio
+            ratio={16 / 9}
+            className="overflow-hidden rounded-md border border-border"
+          >
+            <img
+              alt="Feature preview"
+              className="size-full object-cover"
+              src="https://placehold.co/800x450"
+            />
+          </AspectRatio>
+
+          <div className="flex flex-col">
+            <Typography.P>Use semantic spacing in content blocks.</Typography.P>
+            <Spacer />
+            <Typography.P className="text-muted-foreground">
+              Spacer defaults to flexible fill in horizontal layouts.
+            </Typography.P>
+          </div>
+        </Card.Content>
+
+        <Separator />
+
+        <Card.Footer>
+          <Typography.Small>Last updated today</Typography.Small>
+        </Card.Footer>
+      </Card>
+    </Container>
+  );
+}
+```
+
+## Spacing rules that scale
+
+1. Use component-level layout APIs first (`Card.*`, `Item.*`, `Container`) before custom wrappers.
+2. Keep gap values intentional and reusable across screens (`gap-2`, `gap-4`, `gap-6` patterns).
+3. Use `Separator` for structure, not decorative borders.
+4. Use fixed-size `Spacer` only when semantic layout primitives are insufficient.
+
+## Accessibility and readability
+
+- Keep line length under control with `Container` and narrow variants for text-heavy pages.
+- Preserve semantic order in DOM even when visual order changes at breakpoints.
+- Avoid dense vertical rhythm in forms and settings pages; reserve compact spacing for high-density dashboards.
+
+## Performance and testing
+
+- Limit deeply nested wrappers that add no semantic meaning.
+- Keep responsive layout logic in class composition, not effect-driven JavaScript.
+- In tests, verify critical layout shells via `data-slot` selectors (`container`, `separator`, `spacer`) and role-based assertions for content semantics.
+
+## Related docs
+
+- [Container component](/docs/components/container)
+- [Card component](/docs/components/card)
+- [Separator component](/docs/components/separator)
+- [Typography system](/docs/foundations/typography-system)

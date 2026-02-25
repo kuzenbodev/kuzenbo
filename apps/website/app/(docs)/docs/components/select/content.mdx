@@ -1,0 +1,167 @@
+---
+title: "Select"
+description: "Typed single- and multi-select primitives in @kuzenbo/core built on Base UI Select."
+section: "components"
+package: "core"
+status: "stable"
+order: 68
+surface: "component"
+seoTitle: "Select | Kuzenbo Docs"
+seoDescription: "Typed single- and multi-select primitives in @kuzenbo/core built on Base UI Select."
+ogImage: "/docs-og/components/select"
+ogImageAlt: "Select documentation"
+aliases:
+  - "/docs/components/inputs/select"
+---
+
+## Overview
+
+`Select` provides typed option picking for forms and settings flows. It wraps Base UI Select with Kuzenbo defaults for trigger styles, popup transitions, grouped lists, keyboard behavior, and scroll controls.
+
+Use it for constrained choices where free text is not allowed.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+  type SelectOption,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Select } from "@kuzenbo/core";
+
+export function LocaleSelect() {
+  return (
+    <Select defaultValue="en">
+      <Select.Trigger className="min-w-52">
+        <Select.Value placeholder="Choose language" />
+      </Select.Trigger>
+
+      <Select.Content>
+        <Select.Item value="en">English</Select.Item>
+        <Select.Item value="de">German</Select.Item>
+        <Select.Item value="es">Spanish</Select.Item>
+      </Select.Content>
+    </Select>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Select, SelectSeparator, type SelectOption } from "@kuzenbo/core";
+import { useState } from "react";
+
+const teamOptions: SelectOption<string>[] = [
+  { value: "design", label: "Design" },
+  { value: "engineering", label: "Engineering" },
+  { value: "support", label: "Support" },
+];
+
+export function TeamFilterSelect() {
+  const [team, setTeam] = useState<string>("engineering");
+
+  return (
+    <Select onValueChange={setTeam} value={team}>
+      <Select.Trigger size="sm" className="min-w-56">
+        <Select.Value placeholder="Select team" />
+      </Select.Trigger>
+
+      <Select.Content align="start" sideOffset={6}>
+        <Select.Group>
+          <Select.Label>Teams</Select.Label>
+          {teamOptions.map((option) => (
+            <Select.Item key={option.value} value={option.value}>
+              {option.label}
+            </Select.Item>
+          ))}
+        </Select.Group>
+
+        <SelectSeparator />
+
+        <Select.Group>
+          <Select.Label>Status</Select.Label>
+          <Select.Item value="active">Active only</Select.Item>
+          <Select.Item value="archived" disabled>
+            Include archived (coming soon)
+          </Select.Item>
+        </Select.Group>
+      </Select.Content>
+    </Select>
+  );
+}
+```
+
+## Sizing
+
+- Supported size tokens: `xs`, `sm`, `md`, `lg`, `xl`.
+- `Select` root `size` drives trigger and popup child surfaces by default.
+- `Select.Content size` overrides root size for popup descendants.
+- Child overrides are supported on `Select.Popup`, `Select.Group`, `Select.Label`, `Select.Item`, `Select.ScrollUpButton`, and `Select.ScrollDownButton`.
+- Precedence: explicit child `size` -> `Select.Content size` -> root `size` -> default `md`.
+
+## API Reference
+
+- `Select`: root controller (single or `multiple` mode).
+- `SelectTrigger`: combobox trigger (`size` supports `xs`, `sm`, `md`, `lg`, `xl`).
+- `SelectValue`: selected-value renderer and placeholder host.
+- `SelectContent`: popup list wrapper (`align`, `side`, offsets).
+- `SelectGroup`: grouped option section wrapper.
+- `SelectLabel`: group title label.
+- `SelectItem`: selectable option row.
+- `SelectSeparator`: divider between sections.
+- `SelectScrollUpButton`: top scroll affordance for long lists.
+- `SelectScrollDownButton`: bottom scroll affordance for long lists.
+
+## Accessibility
+
+- Always provide a visible label near the select trigger in form contexts.
+- Keep option labels concise and unambiguous.
+- Use disabled state for unavailable options instead of removing them silently.
+- Validate keyboard interactions: open, arrow navigation, select, and escape close.
+
+## SSR and RSC Notes
+
+- `Select` is client-interactive and should run inside a Client Component.
+- You can server-render surrounding form layout while hydrating only select logic.
+- Keep default/controlled values stable between server and client to avoid mismatch.
+
+## Styling and Tokens
+
+- Trigger and content already consume semantic tokens (`border-input`, `bg-popover`, `text-popover-foreground`).
+- Prefer `size` prop and slot className overrides instead of hand-rolled select wrappers.
+- Use semantic text colors for labels and placeholders (`text-muted-foreground`).
+
+## Troubleshooting
+
+- No options visible: ensure `Select.Item` is inside `Select.Content`.
+- Value not updating: for controlled mode, wire both `value` and `onValueChange`.
+- Dropdown width is wrong: trigger width controls popup width via anchor sizing.
+- Scroll buttons never show: they appear only when content overflows.
+
+## Related Docs
+
+- [Combobox](/docs/components/combobox)
+- [Autocomplete](/docs/components/autocomplete)
+- [Field](/docs/components/field)
+- [Input](/docs/components/input)

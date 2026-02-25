@@ -1,0 +1,162 @@
+---
+title: "Combobox"
+description: "Searchable single and multi-select composition with the @kuzenbo/core Combobox API."
+section: "components"
+package: "core"
+status: "stable"
+order: 25
+surface: "component"
+seoTitle: "Combobox | Kuzenbo Docs"
+seoDescription: "Searchable single and multi-select composition with the @kuzenbo/core Combobox API."
+ogImage: "/docs-og/components/combobox"
+ogImageAlt: "Combobox documentation"
+aliases:
+  - "/docs/components/inputs/combobox"
+---
+
+## Combobox at a Glance
+
+`Combobox` is a client-side select-and-search primitive with a namespace API.
+It supports inline triggers, searchable popups, collection rendering, and optional chips-style composition.
+
+Use it when users need fast filtering or mixed keyboard/mouse selection.
+Prefer `Select` when options are short and search is unnecessary.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Combobox,
+  ComboboxChip,
+  ComboboxChipRemove,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxClear,
+  ComboboxCollection,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxLabel,
+  ComboboxList,
+  ComboboxSeparator,
+  ComboboxTrigger,
+  ComboboxValue,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+"use client";
+
+import { Combobox } from "@kuzenbo/core";
+
+export function FrameworkCombobox() {
+  return (
+    <Combobox defaultValue="react">
+      <Combobox.Trigger>
+        <Combobox.Value placeholder="Select framework" />
+      </Combobox.Trigger>
+
+      <Combobox.Content>
+        <Combobox.List>
+          <Combobox.Item value="react">React</Combobox.Item>
+          <Combobox.Item value="vue">Vue</Combobox.Item>
+          <Combobox.Item value="svelte">Svelte</Combobox.Item>
+        </Combobox.List>
+      </Combobox.Content>
+    </Combobox>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { Combobox } from "@kuzenbo/core";
+
+const skills = [
+  { value: "ts", label: "TypeScript" },
+  { value: "react", label: "React" },
+  { value: "tailwind", label: "Tailwind CSS" },
+];
+
+export function SearchableCombobox() {
+  return (
+    <Combobox itemToString={(item) => item?.label ?? ""} items={skills}>
+      <Combobox.Label>Primary skill</Combobox.Label>
+      <Combobox.Input placeholder="Search skills" showClear />
+
+      <Combobox.Content>
+        <Combobox.Collection>
+          {(item) => (
+            <Combobox.Item key={item.value} value={item}>
+              {item.label}
+            </Combobox.Item>
+          )}
+        </Combobox.Collection>
+        <Combobox.Empty>No matching skill</Combobox.Empty>
+      </Combobox.Content>
+    </Combobox>
+  );
+}
+```
+
+## API Details
+
+- `Combobox<ItemValue, Multiple>` is generic and typed from Base UI root props. It also accepts `size` (`xs|sm|md|lg|xl`) for control and overlay sizing defaults.
+- Core slots: `Trigger`, `Value`, `Content`, `List`, `Item`, `Label`, `Separator`, `Empty`.
+- Search/field helpers: `Input`, `Clear`, `Collection`. `Combobox.Input` supports `size` override.
+- Chips surface (multi-value layouts): `Chips`, `ChipsInput`, `Chip`, `ChipRemove`. `Combobox.Chips` supports `size` override.
+- `ComboboxContent` supports positioning props (`side`, `align`, offsets, and optional `anchor`) plus optional `size` override for popup descendants.
+
+## Sizing
+
+- Supported size tokens: `xs`, `sm`, `md`, `lg`, `xl`.
+- Root `Combobox size` drives default sizing for `Combobox.Input`, chips composition, and popup child surfaces.
+- `Combobox.Content size` overrides root size for popup descendants.
+- Explicit child overrides are supported on `Combobox.Input`, `Combobox.Chips`, `Combobox.Popup`, `Combobox.List`, `Combobox.Item`, `Combobox.ItemIndicator`, `Combobox.Row`, `Combobox.GroupLabel`, `Combobox.Status`, and `Combobox.Empty`.
+- Precedence:
+  - Input/chips: explicit child `size` -> root `size` -> default `md`.
+  - Overlay children: explicit child `size` -> `Combobox.Content size` -> root `size` -> default `md`.
+- Clear/trigger/chip-remove icon buttons scale with size (`xl` uses larger icon button sizing).
+- Combobox list height math is size-aware, so popup viewport density tracks the same token as the trigger/input.
+
+## Accessibility
+
+- Always provide a visible label (`Combobox.Label`) or an accessible name.
+- Keep keyboard flow intact: trigger focus, arrow navigation, enter selection, escape close.
+- Disabled and invalid states are wired via data/ARIA states; avoid removing those attributes.
+
+## SSR and RSC Notes
+
+- `Combobox` is client-only and must be rendered inside a client boundary.
+- Server components can render parent layout, but interactive combobox logic must live in client children.
+
+## Styling and Tokens
+
+- Defaults use semantic tokens like `bg-popover`, `text-popover-foreground`, `border-input`, and `ring-ring/50`.
+- Prefer slot-level `className` overrides (`Combobox.Content`, `Combobox.Item`) instead of global selectors.
+- Keep danger/error styling tied to semantic states (`aria-invalid`) rather than hardcoded palette values.
+
+## Troubleshooting
+
+- If object items do not render, verify `items` and `Combobox.Collection` are paired.
+- If popup width/position looks off in chips mode, pass a shared anchor to `Combobox.Content`.
+- If clear/trigger controls are missing, check `showClear` and `showTrigger` on `Combobox.Input`.
+
+## Related Docs
+
+- [Autocomplete](/docs/components/autocomplete)
+- [Select](/docs/components/select)
+- [Form Patterns](/docs/patterns/forms)

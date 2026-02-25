@@ -1,0 +1,133 @@
+---
+title: "Portal"
+description: "Render UI outside normal DOM flow with shared or custom target nodes."
+section: "components"
+package: "core"
+status: "stable"
+order: 58
+surface: "component"
+seoTitle: "Portal | Kuzenbo Docs"
+seoDescription: "Use Portal to mount overlays into document.body or custom containers safely."
+ogImage: "/docs-og/components/portal"
+ogImageAlt: "Portal documentation"
+aliases:
+  - "/docs/components/layout/portal"
+---
+
+## Purpose and boundaries
+
+`Portal` mounts children into a DOM node outside the current React subtree. This is useful for overlays that should escape clipping and stacking contexts.
+
+Use it for:
+
+- Modal/popover/drawer layers
+- Global toasts and flyouts
+- Any content that should render in `document.body` or a dedicated overlay root
+
+`Portal` only handles mount target and lifecycle. It does not manage focus trapping, dismissal, or keyboard semantics.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Portal } from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+"use client";
+
+import { Portal } from "@kuzenbo/core";
+
+export function BodyPortalExample() {
+  return (
+    <div className="relative rounded-md border border-border p-4">
+      <p>Normal layout flow content.</p>
+
+      <Portal>
+        <div className="fixed right-4 top-4 rounded-md bg-popover px-3 py-2 text-sm shadow-md">
+          Rendered through document.body
+        </div>
+      </Portal>
+    </div>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+"use client";
+
+import { useRef } from "react";
+
+import { Portal } from "@kuzenbo/core";
+
+export function CustomPortalTarget() {
+  const targetRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <>
+      <div id="overlay-root" ref={targetRef} />
+
+      <Portal
+        className="z-50"
+        id="my-portal-node"
+        reuseTargetNode={false}
+        target="#overlay-root"
+      >
+        <div className="rounded-md border border-border bg-background p-3 text-sm text-foreground">
+          Mounted inside #overlay-root
+        </div>
+      </Portal>
+    </>
+  );
+}
+```
+
+## API reference
+
+### `Portal`
+
+- `children: ReactNode` (required)
+- `target?: HTMLElement | string | RefObject<HTMLElement | null>`
+  Mount target element, selector, or ref.
+- `reuseTargetNode?: boolean`
+  Defaults to `true`. Reuses a shared portal host node when no explicit target is provided.
+- Also supports standard `div` attributes (`id`, `className`, `style`) for created host nodes.
+
+## Accessibility notes
+
+- Portal placement does not provide accessibility behavior automatically.
+- For dialogs/menus, pair with correct ARIA roles and focus management primitives.
+- Ensure screen reader order still makes sense with announced open/close state.
+
+## SSR and RSC notes
+
+- `Portal` is a client component and returns `null` until mounted.
+- Use client boundaries for any portal content in App Router.
+- The delayed mount is expected and avoids server `document` access.
+
+## Styling and tokens
+
+- Style portaled children with semantic tokens (`bg-popover`, `text-foreground`, `border-border`).
+- Use explicit `z-index` strategy for layered surfaces.
+
+## Troubleshooting
+
+- Nothing appears: verify target exists and component is inside a client boundary.
+- Duplicate portal hosts: set `reuseTargetNode` according to whether you want shared or isolated host nodes.
+- Overlay clipped unexpectedly: ensure content itself is fixed/absolute as needed after portaling.
+
+## Related docs
+
+- [Affix](/docs/components/affix)
+- [Dialog](/docs/components/dialog)
+- [Popover](/docs/components/popover)
+- [Components index](/docs/components)

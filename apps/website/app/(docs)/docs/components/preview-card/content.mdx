@@ -1,0 +1,104 @@
+---
+title: "Preview Card"
+description: "Contextual preview overlays with trigger, popup, portal, viewport, and positioning primitives in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 58
+surface: "component"
+seoTitle: "Preview Card | Kuzenbo Docs"
+seoDescription: "Contextual preview overlays with trigger, popup, portal, viewport, and positioning primitives in @kuzenbo/core."
+ogImage: "/docs-og/components/preview-card"
+ogImageAlt: "Preview Card documentation"
+aliases:
+  - "/docs/components/overlays/preview-card"
+---
+
+## Overview
+
+`PreviewCard` is the canonical contextual preview surface in `@kuzenbo/core`.
+Use it for supplemental metadata, profile summaries, and lightweight preview content near a trigger.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Button,
+  PreviewCard,
+  PreviewCardArrow,
+  PreviewCardBackdrop,
+  PreviewCardContent,
+  PreviewCardPopup,
+  PreviewCardPortal,
+  PreviewCardPositioner,
+  PreviewCardTrigger,
+  PreviewCardViewport,
+  createPreviewCardHandle,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { PreviewCard } from "@kuzenbo/core";
+
+export function TeamPreview() {
+  return (
+    <PreviewCard>
+      <PreviewCard.Trigger>Hover me</PreviewCard.Trigger>
+      <PreviewCard.Content>Preview content appears here.</PreviewCard.Content>
+    </PreviewCard>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { Button, PreviewCard } from "@kuzenbo/core";
+
+export function ProfilePreviewCard() {
+  return (
+    <PreviewCard>
+      <PreviewCard.Trigger render={<Button variant="outline" />}>
+        Team member
+      </PreviewCard.Trigger>
+      <PreviewCard.Content
+        align="start"
+        alignOffset={8}
+        side="right"
+        sideOffset={8}
+      >
+        <div className="space-y-1">
+          <p className="text-sm font-medium text-foreground">A. Rivera</p>
+          <p className="text-sm text-muted-foreground">Platform engineer</p>
+        </div>
+      </PreviewCard.Content>
+    </PreviewCard>
+  );
+}
+```
+
+## API Notes
+
+- `PreviewCard` maps to `PreviewCard.Root` and forwards root props.
+- Slot primitives: `PreviewCardTrigger`, `PreviewCardContent`, `PreviewCardPopup`, `PreviewCardPortal`, `PreviewCardPositioner`, `PreviewCardArrow`, `PreviewCardBackdrop`, `PreviewCardViewport`.
+- Programmatic handle helper: `createPreviewCardHandle`.
+
+## Accessibility
+
+- Keep trigger copy meaningful and keyboard reachable.
+- Keep critical actions outside hover-only content.
+- Ensure focus styles remain visible for interactive triggers.
+
+## Related Docs
+
+- [Tooltip](/docs/components/tooltip)
+- [Popover](/docs/components/popover)
+- [Dialog](/docs/components/dialog)

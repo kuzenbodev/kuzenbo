@@ -1,0 +1,134 @@
+---
+title: "Collapsible"
+description: "Build controlled or uncontrolled disclosure panels with smooth height transitions and find-in-page support."
+section: "components"
+package: "core"
+status: "stable"
+order: 24
+surface: "component"
+seoTitle: "Collapsible | Kuzenbo Docs"
+seoDescription: "Use Collapsible from @kuzenbo/core for disclosure content with keepMounted and hiddenUntilFound behavior."
+ogImage: "/docs-og/components/collapsible"
+ogImageAlt: "Collapsible documentation"
+aliases:
+  - "/docs/components/navigation/collapsible"
+---
+
+## Overview
+
+`Collapsible` is a disclosure primitive built on Base UI `Collapsible.Root` and `Collapsible.Panel`.
+Use it for progressive disclosure where content is optional but contextually related to the trigger.
+
+This component is ideal for inline details, advanced filters, and optional sections inside forms.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  Typography,
+} from "@kuzenbo/core";
+
+export function CollapsibleBasicExample() {
+  return (
+    <Collapsible className="w-96 rounded-md border border-border bg-background p-4">
+      <CollapsibleTrigger className="inline-flex rounded-md border border-border px-3 py-1.5">
+        <Typography.Text render={<span />}>Toggle details</Typography.Text>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="pt-2">
+        <Typography.Body>Hidden content that can be expanded.</Typography.Body>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { useState } from "react";
+
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  Typography,
+} from "@kuzenbo/core";
+
+export function CollapsibleAdvancedExample() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Collapsible onOpenChange={setOpen} open={open}>
+      <CollapsibleTrigger className="inline-flex rounded-md border border-border px-3 py-1.5">
+        <Typography.Text render={<span />}>Search metadata</Typography.Text>
+      </CollapsibleTrigger>
+      <CollapsibleContent hiddenUntilFound keepMounted>
+        <Typography.Body>
+          This panel remains mounted and can be revealed by browser find.
+        </Typography.Body>
+      </CollapsibleContent>
+      <Typography.Muted className="pt-2">
+        Panel state: {open ? "open" : "closed"}
+      </Typography.Muted>
+    </Collapsible>
+  );
+}
+```
+
+## API Notes
+
+- `Collapsible` supports controlled (`open`, `onOpenChange`) and uncontrolled (`defaultOpen`) usage.
+- `disabled` prevents toggling and keeps trigger `aria-expanded` unchanged.
+- `CollapsibleContent` maps to Base UI panel props and supports `keepMounted`.
+- `hiddenUntilFound` on `CollapsibleContent` renders `hidden="until-found"` for find-in-page reveal flows.
+- `CollapsibleTrigger` maps to Base UI trigger props and keeps cursor/focus styling contracts.
+
+## Accessibility
+
+- Use a clear trigger label; screen readers announce expanded/collapsed state through `aria-expanded`.
+- Keep trigger as an interactive element (button semantics from Base UI trigger).
+- For content that stays mounted, ensure hidden state is still visually and semantically clear.
+
+## SSR and RSC
+
+- Collapsible behavior is interactive and should run in client components.
+- Server-rendered shells can still host a client `Collapsible` subtree.
+
+## Styling and Tokens
+
+- Keep container styles on semantic tokens (`bg-background`, `border-border`, `text-foreground`).
+- `CollapsibleContent` already includes height transition wiring via `--collapsible-panel-height`.
+- Avoid custom hard-coded colors; prefer semantic utilities for theme parity.
+
+## Troubleshooting
+
+- Panel never opens: verify `open` is updated when using controlled mode.
+- Hidden content disappears unexpectedly: use `keepMounted` when you need stateful descendants to persist.
+- Browser find does not reveal content: ensure `hiddenUntilFound` is set on `CollapsibleContent`.
+- Trigger click does nothing: confirm component is not `disabled`.
+
+## Related Docs
+
+- [Accordion](/docs/components/accordion)
+- [Tabs](/docs/components/tabs)
+- [Typography](/docs/components/typography)
+- [Components Index](/docs/components)

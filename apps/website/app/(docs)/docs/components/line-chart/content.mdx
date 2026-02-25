@@ -1,0 +1,145 @@
+---
+title: "Line Chart"
+description: "Render trend and time-series lines with gradient mode, dual axes, legend highlighting, and point-label controls."
+section: "components"
+package: "charts"
+status: "stable"
+order: 47
+surface: "component"
+seoTitle: "Line Chart | Kuzenbo Docs"
+seoDescription: "Use LineChart from @kuzenbo/charts for trend visualization with complete cartesian shell behavior and Recharts pass-through support."
+ogImage: "/docs-og/components/line-chart"
+ogImageAlt: "Line Chart documentation"
+---
+
+## Overview
+
+`LineChart` is the complete cartesian line preset from `@kuzenbo/charts`.
+It provides built-in tooltip, legend, reference lines, and responsive chart shell behavior while keeping per-series customization.
+
+Use this when your primary goal is trend comparison over an ordered axis (time, sequence, stage).
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { LineChart } from "@kuzenbo/charts";
+```
+
+## Basic Usage
+
+```tsx
+import { LineChart } from "@kuzenbo/charts";
+
+const data = [
+  { month: "Jan", revenue: 172000, target: 180000 },
+  { month: "Feb", revenue: 186000, target: 190000 },
+  { month: "Mar", revenue: 201000, target: 205000 },
+];
+
+const series = [
+  { name: "revenue", label: "Revenue", color: "var(--color-chart-1)" },
+  { name: "target", label: "Target", color: "var(--color-chart-4)" },
+] as const;
+
+export function LineChartBasicExample() {
+  return (
+    <LineChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="month"
+      series={series}
+      valueFormatter={(value) => `$${value.toLocaleString()}`}
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { LineChart } from "@kuzenbo/charts";
+
+const gradientData = [
+  { month: "Jan", baseline: 148000, booked: 156500 },
+  { month: "Feb", baseline: 152000, booked: 161200 },
+  { month: "Mar", baseline: 157000, booked: 167400 },
+  { month: "Apr", baseline: 160500, booked: 172000 },
+];
+
+const gradientSeries = [
+  { name: "baseline", label: "Baseline", curveType: "stepAfter" },
+  { name: "booked", label: "Booked", curveType: "natural" },
+] as const;
+
+export function LineChartAdvancedExample() {
+  return (
+    <LineChart
+      activeDotProps={{ r: 6 }}
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={gradientData}
+      dataKey="month"
+      dotProps={{ r: 4, strokeWidth: 1 }}
+      gradientStops={[
+        { offset: 0, color: "var(--color-chart-5)" },
+        { offset: 50, color: "var(--color-chart-2)" },
+        { offset: 100, color: "var(--color-chart-1)" },
+      ]}
+      series={gradientSeries}
+      type="gradient"
+      withDots
+      withLegend
+      withPointLabels
+    />
+  );
+}
+```
+
+## API Notes
+
+- Required inputs are `data`, `dataKey`, and `series`.
+- `type` supports `default` and `gradient`.
+- `lineChartProps` is the canonical Recharts prop pass-through. `chartProps` is the deprecated alias.
+- `lineProps` accepts either a shared object or `(series) => props` callback.
+- `withDots` defaults to `true`; disable it for dense data or performance-sensitive views.
+- `connectNulls` defaults to `true`; set `false` when missing points should visually break the line.
+- `withRightYAxis` with `rightYAxisProps` enables dual-axis setups.
+- `enableLegendHighlight` defaults to `true` and dims non-highlighted lines on legend hover.
+- Tick formatter precedence: explicit `yAxisProps.tickFormatter` / `rightYAxisProps.tickFormatter` overrides inferred formatting from `valueFormatter`.
+
+## Accessibility
+
+- Recharts `accessibilityLayer` is enabled for chart semantics.
+- Use clear series labels and reference line labels to improve non-visual interpretation.
+- Avoid line-only differentiation for critical series; combine color with labels or dash patterns.
+
+## SSR and RSC
+
+- Render Line Chart in client components (`"use client"`) in Next.js App Router.
+- Server components should pass pre-fetched data into a client chart leaf.
+
+## Styling and Tokens
+
+- Use semantic chart color vars for series and gradient stops (`var(--color-chart-*)`).
+- Keep wrappers and text on semantic tokens (`bg-background`, `text-foreground`, `border-border`).
+- Avoid hard-coded palette values that break theme consistency.
+
+## Troubleshooting
+
+- Gradient not visible: ensure `type="gradient"` is set; gradient stops are ignored in default mode.
+- Unexpectedly connected gaps: set `connectNulls={false}` for sparse datasets.
+- Legend hover dimming is undesirable: set `enableLegendHighlight={false}`.
+- Axis values look wrong in dual-axis mode: align `series[].yAxisId` with axis IDs in `yAxisProps` and `rightYAxisProps`.
+
+## Related Docs
+
+- [Area Chart](/docs/components/area-chart)
+- [Pie Chart](/docs/components/pie-chart)
+- [Chart](/docs/components/chart)
+- [Components Index](/docs/components)

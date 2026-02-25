@@ -1,0 +1,158 @@
+---
+title: "Heatmap"
+description: "Calendar-style Heatmap for date/value datasets with month splitting, outside-date handling, and custom domain/color mapping."
+section: "components"
+package: "charts"
+status: "stable"
+order: 39
+surface: "component"
+seoTitle: "Heatmap | Kuzenbo Docs"
+seoDescription: "Render calendar heatmaps with @kuzenbo/charts Heatmap using date keys, value keys, color domains, and tooltip formatters."
+ogImage: "/docs-og/components/heatmap"
+ogImageAlt: "Heatmap documentation"
+---
+
+## Overview
+
+`Heatmap` renders a calendar-like grid from date/value pairs. It is optimized for daily activity and streak-style analytics, not arbitrary matrix data.
+
+Use `Heatmap` when your data is naturally tied to dates and you want quick intensity scanning over weeks and months.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { Heatmap, type HeatmapProps } from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { Heatmap } from "@kuzenbo/charts";
+
+const activity = [
+  { date: "2026-01-03", value: 4 },
+  { date: "2026-01-08", value: 7 },
+  { date: "2026-01-12", value: 11 },
+  { date: "2026-01-19", value: 9 },
+  { date: "2026-01-24", value: 14 },
+];
+
+export function HeatmapBasic() {
+  return (
+    <Heatmap
+      data={activity}
+      dateKey="date"
+      endDate="2026-01-31"
+      startDate="2026-01-01"
+      valueFormatter={(value) => `${value} tasks`}
+      valueKey="value"
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Heatmap } from "@kuzenbo/charts";
+
+const quality = [
+  { date: "2026-01-01", value: 0 },
+  { date: "2026-01-02", value: 15 },
+  { date: "2026-01-03", value: 35 },
+  { date: "2026-01-04", value: 65 },
+  { date: "2026-01-05", value: 95 },
+  { date: "2026-01-06", value: 100 },
+  { date: "2026-01-07", value: 40 },
+];
+
+const tooltipLabelFormatter = ({
+  isoDate,
+  value,
+}: {
+  isoDate: string;
+  value: number | null;
+}) => `${isoDate} • quality ${value ?? "no data"}`;
+
+export function HeatmapAdvanced() {
+  return (
+    <Heatmap
+      colorDomain={[0, 100]}
+      colorRange={[
+        "var(--color-muted)",
+        "var(--color-chart-5)",
+        "var(--color-chart-4)",
+        "var(--color-chart-3)",
+        "var(--color-chart-1)",
+      ]}
+      data={quality}
+      dateKey="date"
+      endDate="2026-01-07"
+      splitMonths
+      startDate="2026-01-01"
+      tooltipLabelFormatter={tooltipLabelFormatter}
+      valueFormatter={(value) => `${value}%`}
+      valueKey="value"
+      weekStartsOn={1}
+      withOutsideDates={false}
+    />
+  );
+}
+```
+
+## API Reference
+
+- `Heatmap`
+  Required:
+  - `data`
+  - `dateKey`
+  - `valueKey`
+
+  Common options:
+  - Range and calendar controls: `startDate`, `endDate`, `weekStartsOn`.
+  - Cell appearance: `cellSize`, `gap`, `radius`, `emptyCellColor`.
+  - Coloring: `colorDomain`, `colorRange`.
+  - Labels/layout: `withMonthLabels`, `withWeekdayLabels`, `splitMonths`.
+  - Data visibility: `withOutsideDates`.
+  - Formatting: `valueFormatter`, `tooltipLabelFormatter`, `locale`.
+
+- Exported types:
+  - `HeatmapProps`
+  - `HeatmapCellRuntime`
+
+## Accessibility
+
+- Cells render as `role="gridcell"` and expose labels for visible dates.
+- Provide a nearby text legend for color intensity meaning; color alone is insufficient.
+- Keep tooltip labels concise and informative for assistive tech users.
+
+## SSR and RSC Notes
+
+- `Heatmap` is a Client Component (`"use client"`).
+- In Next.js App Router, fetch/prepare data on the server, then pass a serializable array to a client wrapper.
+
+## Styling and Tokens
+
+- Prefer semantic color variables in `colorRange`, such as `var(--color-chart-*)` and `var(--color-muted)`.
+- Hidden outside dates use tokenized border fallback (`var(--color-border)`).
+- Keep tooltip text and surrounding UI aligned with foreground/background semantic tokens.
+
+## Troubleshooting
+
+- No visible cells: verify date parsing and `startDate`/`endDate` include your data window.
+- Cells look uniformly colored: tune `colorDomain` so values are not compressed into one band.
+- Outside dates still visible: set `withOutsideDates={false}`.
+- Split month labels missing: enable both `splitMonths` and `withMonthLabels`.
+
+## Related Docs
+
+- [Chart Primitives](/docs/components/chart)
+- [Calendar](/docs/components/calendar)
+- [Donut Chart](/docs/components/donut-chart)
+- [Line Chart](/docs/components/line-chart)

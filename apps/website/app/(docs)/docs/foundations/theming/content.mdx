@@ -1,0 +1,99 @@
+---
+title: "Theming"
+description: "Production theming guidance for @kuzenbo/theme, including prepaint bootstrap and runtime provider setup."
+section: "foundations"
+package: "theme"
+status: "stable"
+order: 15
+surface: "guide"
+seoTitle: "Theming | Kuzenbo Docs"
+seoDescription: "How to configure @kuzenbo/theme for flicker-free SSR, cookie/storage sync, and accessible theme switching."
+ogImage: "/docs-og/foundations/theming"
+ogImageAlt: "Theming foundation guidance"
+aliases:
+  - "/docs/features/theming"
+---
+
+## Theme Stack Overview
+
+`@kuzenbo/theme` provides three pieces that should be wired together:
+
+- CSS tokens and semantic utilities (`@kuzenbo/theme/prebuilt/kuzenbo.css`).
+- A prepaint bootstrap script (`ThemeBootstrapScript`) to apply theme before hydration.
+- A runtime provider (`ThemeProvider`) built on `next-themes`.
+
+Use all three in production Next.js apps to avoid flash and keep server/client theme state aligned.
+
+## Recommended App Router Setup
+
+```tsx
+import type { ReactNode } from "react";
+
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeBootstrapScript />
+      </head>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+## How Theme Resolution Works
+
+The bootstrap runtime resolves theme in this order:
+
+1. Cookie (`kuzenbo-theme`) if present.
+2. Local storage key (`kuzenbo-theme`) or legacy key (`theme`).
+3. Default setting (`system`) resolved via `prefers-color-scheme`.
+
+When needed, it syncs storage and cookie values to keep state consistent for future navigations.
+
+## Runtime Utilities You Can Use
+
+- `applyThemeToRootElement(theme)` toggles `.dark` and `color-scheme` on `document.documentElement`.
+- `persistThemeCookie(theme)` writes a one-year cookie for SSR-friendly preference persistence.
+- `parseThemePreference(value)` validates user-provided values to `light` or `dark`.
+- `resolveThemeBootstrapPlan(...)` allows deterministic testing of cookie/storage/system decision logic.
+
+## CSP and Nonce Support
+
+If your app enforces Content Security Policy nonces, set `THEME_BOOTSTRAP_NONCE` and let `ThemeBootstrapScript` use it automatically through `getThemeBootstrapScriptNonce()`.
+
+## Accessibility Notes
+
+- Keep both visual theme and browser `color-scheme` in sync for form controls and built-in surfaces.
+- Do not hide theme changes behind color alone when theme toggles are user-facing.
+- Preserve focus visibility and contrast after custom token overrides.
+
+## Performance Notes
+
+- Render bootstrap script in `<head>` to avoid late theme mutation.
+- Avoid recalculating theme tokens in component render paths.
+- Keep theme toggles client-side, but prefer server-resolved defaults for initial paint.
+
+## Testing Notes
+
+- Unit test cookie/storage precedence through `resolveThemeBootstrapPlan`.
+- Verify no hydration warnings when navigating between light and dark pages.
+- Add visual checks for both themes on critical pages and overlay components.
+
+## Troubleshooting
+
+- If dark mode flashes on first paint, check that `ThemeBootstrapScript` is included before app hydration.
+- If persisted theme is ignored, inspect cookie path/domain settings and storage key collisions.
+- If theme updates but controls still look wrong, verify `root.style.colorScheme` is being updated.
+
+## Related Docs
+
+- [Theme Runtime](/docs/foundations/theme-runtime)
+- [Styles Baseline](/docs/foundations/styles-baseline)
+- [Dark Mode](/docs/foundations/dark-mode)
+- [Performance](/docs/foundations/performance)

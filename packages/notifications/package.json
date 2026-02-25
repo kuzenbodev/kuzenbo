@@ -1,0 +1,111 @@
+{
+  "name": "@kuzenbo/notifications",
+  "version": "0.0.1-alpha.4",
+  "private": false,
+  "description": "Toast and notification primitives for Kuzenbo.",
+  "keywords": [
+    "kuzenbo",
+    "notifications",
+    "react",
+    "toast",
+    "ui"
+  ],
+  "homepage": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono#readme",
+  "bugs": {
+    "url": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DobroslavRadosavljevic/kuzenbo-mono.git",
+    "directory": "packages/notifications"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./toast": {
+      "types": "./src/ui/toast/toast.tsx",
+      "import": "./src/ui/toast/toast.tsx",
+      "default": "./src/ui/toast/toast.tsx"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      },
+      "./toast": {
+        "types": "./dist/toast.d.ts",
+        "import": "./dist/toast.js",
+        "default": "./dist/toast.js"
+      },
+      "./package.json": "./package.json"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsgo --noEmit --declaration false --declarationMap false",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "storybook": "storybook dev --port 6103 --config-dir .storybook",
+    "build:storybook": "storybook build --config-dir .storybook"
+  },
+  "dependencies": {
+    "@base-ui/react": "catalog:",
+    "@hugeicons/core-free-icons": "catalog:",
+    "@hugeicons/react": "catalog:",
+    "@kuzenbo/core": "workspace:*",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "catalog:",
+    "@happy-dom/global-registrator": "catalog:",
+    "@kuzenbo/storybook": "workspace:*",
+    "@kuzenbo/styles": "workspace:*",
+    "@kuzenbo/theme": "workspace:*",
+    "@storybook/addon-a11y": "catalog:",
+    "@storybook/addon-docs": "catalog:",
+    "@storybook/addon-themes": "catalog:",
+    "@storybook/react": "catalog:",
+    "@storybook/react-vite": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "bun-types": "catalog:",
+    "happy-dom": "catalog:",
+    "publint": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "storybook": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@kuzenbo/core": "^0.0.1-alpha.4",
+    "@kuzenbo/theme": "^0.0.1-alpha.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

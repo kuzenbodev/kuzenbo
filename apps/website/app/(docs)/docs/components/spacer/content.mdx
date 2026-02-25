@@ -1,0 +1,122 @@
+---
+title: "Spacer"
+description: "Create flexible or fixed whitespace in horizontal and vertical layouts."
+section: "components"
+package: "core"
+status: "stable"
+order: 74
+surface: "component"
+seoTitle: "Spacer | Kuzenbo Docs"
+seoDescription: "Use Spacer for predictable layout gaps without one-off margin hacks."
+ogImage: "/docs-og/components/spacer"
+ogImageAlt: "Spacer documentation"
+aliases:
+  - "/docs/components/layout/spacer"
+---
+
+## Purpose and boundaries
+
+`Spacer` is a small layout primitive for inserting empty space between siblings.
+
+Use it when you need:
+
+- A flexible gap that expands in a row (`orientation="horizontal"` with no `size`)
+- A fixed-distance separator in row or column layouts
+- Cleaner spacing logic than repeated margin overrides
+
+`Spacer` is not decorative content. It should not carry semantic meaning.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Spacer } from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Spacer } from "@kuzenbo/core";
+
+export function ToolbarLayout() {
+  return (
+    <div className="flex items-center rounded-md border border-border px-3 py-2">
+      <span className="text-sm">Filters</span>
+      <Spacer />
+      <button className="text-sm text-primary" type="button">
+        Reset
+      </button>
+    </div>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+import { Spacer } from "@kuzenbo/core";
+
+export function VerticalSpacingExample() {
+  return (
+    <div className="rounded-md border border-border p-4">
+      <section>
+        <h3 className="text-sm font-medium">Summary</h3>
+        <p className="text-sm text-muted-foreground">
+          Production checks are green.
+        </p>
+      </section>
+
+      <Spacer orientation="vertical" size={16} />
+
+      <section>
+        <h3 className="text-sm font-medium">Notes</h3>
+        <p className="text-sm text-muted-foreground">Deploy can proceed.</p>
+      </section>
+    </div>
+  );
+}
+```
+
+## API reference
+
+### `Spacer`
+
+- `orientation?: "horizontal" | "vertical"`
+  Defaults to `"horizontal"`.
+- `size?: string | number`
+  Fixed gap size. Numeric values are treated as pixels by CSS.
+- Without `size` in horizontal mode, `Spacer` becomes flexible (`flex: 1`).
+- Accepts standard `div` props.
+
+## Accessibility notes
+
+- Spacer is presentational and should not be focusable.
+- If needed, set `aria-hidden="true"` when used in complex interactive containers.
+
+## SSR and RSC notes
+
+- Spacer is render-only and SSR-safe.
+- No client-only hooks are required.
+
+## Styling and tokens
+
+- Spacer usually remains invisible. If you style it, use semantic tokens only.
+- Prefer explicit `size` instead of ad-hoc margin chains for maintainable layout rules.
+
+## Troubleshooting
+
+- Spacer does not grow in a row: ensure `orientation` is horizontal and `size` is not set.
+- Vertical spacing looks like a line: remove accidental borders/background from custom className.
+- Unexpected layout collapse: confirm parent container has the intended flex direction.
+
+## Related docs
+
+- [Container](/docs/components/container)
+- [Separator](/docs/components/separator)
+- [Card](/docs/components/card)
+- [Components index](/docs/components)

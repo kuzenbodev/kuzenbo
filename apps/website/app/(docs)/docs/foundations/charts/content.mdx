@@ -1,0 +1,116 @@
+---
+title: "Charts"
+description: "How to use @kuzenbo/charts primitives and prebuilt charts in production apps."
+section: "foundations"
+package: "charts"
+status: "stable"
+order: 4
+surface: "utility"
+seoTitle: "Charts | Kuzenbo Docs"
+seoDescription: "Production guidance for @kuzenbo/charts primitives, prebuilt wrappers, and accessibility."
+ogImage: "/docs-og/foundations/charts"
+ogImageAlt: "Charts foundation guidance"
+aliases:
+  - "/docs/features/charts"
+---
+
+## Overview
+
+`@kuzenbo/charts` provides two ways to build data visualizations:
+
+- Prebuilt components for faster implementation (`LineChart`, `BarChart`, `CompositeChart`, `DonutChart`).
+- Primitive composition (`Chart.Root`, `Chart.Tooltip`, `Chart.Legend`) for custom behavior.
+
+Use prebuilt components when speed matters, then move to primitives when you need custom layout or interaction.
+
+## Install
+
+```bash
+bun add @kuzenbo/charts @kuzenbo/theme recharts
+```
+
+In almost all apps, install `@kuzenbo/theme` together with `@kuzenbo/charts`.
+
+## Public API Shape
+
+- `@kuzenbo/charts`: full surface (prebuilt + primitives).
+- `@kuzenbo/charts/primitives`: primitives only.
+- `@kuzenbo/charts/prebuilt`: prebuilt wrappers only.
+- `Chart.Preset.*`: namespaced access to prebuilt chart patterns.
+
+## Primitive Example
+
+```tsx
+import { Chart } from "@kuzenbo/charts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+
+const config = {
+  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+} as const;
+
+const data = [
+  { month: "Jan", revenue: 172_000 },
+  { month: "Feb", revenue: 186_000 },
+  { month: "Mar", revenue: 201_000 },
+];
+
+export const RevenueChart = () => (
+  <Chart.Root className="h-72 w-full" config={config}>
+    <BarChart accessibilityLayer data={data} responsive>
+      <CartesianGrid vertical={false} />
+      <XAxis dataKey="month" />
+      <YAxis />
+      <Chart.Tooltip content={<Chart.TooltipContent />} />
+      <Chart.Legend content={<Chart.LegendContent />} />
+      <Bar dataKey="revenue" fill="var(--color-revenue)" radius={8} />
+    </BarChart>
+  </Chart.Root>
+);
+```
+
+## Prebuilt Example
+
+```tsx
+import { LineChart } from "@kuzenbo/charts";
+
+const data = [
+  { month: "Jan", revenue: 172_000, target: 180_000 },
+  { month: "Feb", revenue: 186_000, target: 190_000 },
+  { month: "Mar", revenue: 201_000, target: 205_000 },
+];
+
+export const RevenueVsTarget = () => (
+  <LineChart
+    chartRootProps={{ className: "h-72 w-full" }}
+    data={data}
+    dataKey="month"
+    series={[
+      { name: "revenue", label: "Revenue" },
+      { name: "target", label: "Target", yAxisId: "right-axis" },
+    ]}
+    valueFormatter={(value) => `$${value.toLocaleString()}`}
+    withLegend
+    withRightYAxis
+    rightYAxisProps={{ yAxisId: "right-axis" }}
+  />
+);
+```
+
+## Accessibility Notes
+
+- Keep `accessibilityLayer` enabled for Recharts primitives.
+- Use readable `series` labels so tooltips and legends communicate meaning.
+- Do not rely on color alone to communicate important differences.
+
+## Troubleshooting
+
+- Missing colors usually means `@kuzenbo/theme` is not installed or theme CSS was not loaded.
+- `useChart` and related hooks must run inside `Chart.Root` or `Chart.Provider`.
+- If tooltip or legend overlays clip, mount them through a portal target.
+
+## Related Docs
+
+- [Foundations](/docs/foundations)
+- [Performance](/docs/foundations/performance)
+- [Theming](/docs/foundations/theming)
+- [Patterns](/docs/patterns)

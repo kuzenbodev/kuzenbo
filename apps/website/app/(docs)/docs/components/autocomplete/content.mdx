@@ -1,0 +1,194 @@
+---
+title: "Autocomplete"
+description: "Build search-first suggestion UIs with @kuzenbo/core Autocomplete, including grouped options, async filtering, and status feedback."
+section: "components"
+package: "core"
+status: "stable"
+order: 10
+surface: "component"
+seoTitle: "Autocomplete | Kuzenbo Docs"
+seoDescription: "Build search-first suggestion UIs with @kuzenbo/core Autocomplete, including grouped options, async filtering, and status feedback."
+ogImage: "/docs-og/components/autocomplete"
+ogImageAlt: "Autocomplete documentation"
+aliases:
+  - "/docs/components/inputs/autocomplete"
+---
+
+## Purpose
+
+`Autocomplete` is the composable suggestion primitive in `@kuzenbo/core`. It supports inline combobox patterns, modal-command layouts, grouping, async filtering, and status messaging without leaving the same API surface.
+
+Use it for:
+
+- Search boxes with suggestion lists.
+- Command palettes with grouped actions.
+- Controlled async lookups (remote or debounced local filters).
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteEmpty,
+  AutocompleteInput,
+  AutocompleteItem,
+  AutocompleteList,
+  AutocompleteStatus,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Autocomplete } from "@kuzenbo/core";
+
+const frameworks = ["Next.js", "Nuxt", "Remix", "SvelteKit"];
+
+export function FrameworkSearch() {
+  return (
+    <Autocomplete defaultValue="Next.js" items={frameworks}>
+      <Autocomplete.Input placeholder="Search frameworks..." />
+      <Autocomplete.Content>
+        <Autocomplete.Empty>No framework found.</Autocomplete.Empty>
+        <Autocomplete.List>
+          {(item: string) => (
+            <Autocomplete.Item key={item} value={item}>
+              {item}
+            </Autocomplete.Item>
+          )}
+        </Autocomplete.List>
+      </Autocomplete.Content>
+    </Autocomplete>
+  );
+}
+```
+
+## Advanced usage: controlled async suggestions
+
+This pattern keeps filtering outside the component.
+
+```tsx
+import { useEffect, useState } from "react";
+import { Autocomplete } from "@kuzenbo/core";
+
+const allItems = ["Next.js", "Nuxt", "Remix", "SvelteKit", "Astro"];
+
+export function AsyncAutocomplete() {
+  const [value, setValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [filteredItems, setFilteredItems] = useState(allItems);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timeoutId = setTimeout(() => {
+      const query = value.trim().toLowerCase();
+      const nextItems = query
+        ? allItems.filter((item) => item.toLowerCase().includes(query))
+        : allItems;
+
+      setFilteredItems(nextItems);
+      setIsLoading(false);
+    }, 250);
+
+    return () => clearTimeout(timeoutId);
+  }, [value]);
+
+  return (
+    <Autocomplete
+      filteredItems={filteredItems}
+      items={allItems}
+      onValueChange={setValue}
+      value={value}
+    >
+      <Autocomplete.Input placeholder="Search frameworks..." />
+      <Autocomplete.Content>
+        <Autocomplete.Empty>
+          {isLoading ? "Loading suggestions..." : `No results for \"${value}\"`}
+        </Autocomplete.Empty>
+        <Autocomplete.List>
+          {(item: string) => (
+            <Autocomplete.Item key={item} value={item}>
+              {item}
+            </Autocomplete.Item>
+          )}
+        </Autocomplete.List>
+        <Autocomplete.Status>
+          {isLoading
+            ? "Fetching suggestions..."
+            : `${filteredItems.length} suggestion(s) available`}
+        </Autocomplete.Status>
+      </Autocomplete.Content>
+    </Autocomplete>
+  );
+}
+```
+
+## API reference
+
+- `Autocomplete`
+  Root component. Accepts Base UI autocomplete root props plus `size` (`xs|sm|md|lg|xl`) for control and overlay sizing defaults.
+- Input and trigger layer
+  `AutocompleteInput`, `AutocompleteTrigger`, `AutocompleteValue`, `AutocompleteIcon`, `AutocompleteClear`. `AutocompleteInput` supports `size` override.
+- List and option layer
+  `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteRow`, `AutocompleteSeparator`, `AutocompleteEmpty`, `AutocompleteStatus`. `AutocompleteContent` and child surfaces accept optional `size` overrides.
+- Grouping and structure
+  `AutocompleteCollection`, `AutocompleteGroup`, `AutocompleteGroupLabel`.
+- Overlay positioning
+  `AutocompletePortal`, `AutocompletePositioner`, `AutocompleteBackdrop`, `AutocompleteArrow`.
+
+## Sizing
+
+- Supported size tokens: `xs`, `sm`, `md`, `lg`, `xl`.
+- `Autocomplete` root `size` drives input and popup child surfaces by default.
+- `Autocomplete.Content size` overrides root size for popup descendants.
+- Child overrides are supported on `Autocomplete.Popup`, `Autocomplete.Item`, `Autocomplete.Row`, `Autocomplete.GroupLabel`, `Autocomplete.Status`, and `Autocomplete.Empty`.
+- `Autocomplete.Input size` overrides only input size.
+- Precedence:
+  - Input: explicit input `size` -> root `size` -> default `md`.
+  - Overlay children: explicit child `size` -> `Autocomplete.Content size` -> root `size` -> default `md`.
+
+## Accessibility notes
+
+- Provide meaningful placeholder text and clear empty-state copy.
+- Keep option labels unique when possible so keyboard and screen-reader navigation is unambiguous.
+- If you use grouped options, keep group labels concise and descriptive.
+
+## SSR and RSC notes
+
+`Autocomplete` is interactive and should be rendered in a Client Component boundary.
+
+For server-rendered pages, compute initial `items`/`defaultValue` on the server, then hand them to a client wrapper for runtime filtering.
+
+## Styling and semantic tokens
+
+Autocomplete slots in `@kuzenbo/core` already use semantic tokens. For custom styling, prefer:
+
+- `bg-background` and `bg-popover` for surfaces.
+- `text-foreground` and `text-muted-foreground` for copy hierarchy.
+- `border-border` and `ring-ring` for focus and separators.
+
+Avoid raw color scales to keep themes consistent.
+
+## Troubleshooting
+
+- List does not render:
+  Make sure `items` is provided and `Autocomplete.List` returns `Autocomplete.Item` nodes.
+- Selection updates but input does not change:
+  In controlled mode, keep `value` and `onValueChange` wired together.
+- Async results flicker:
+  Debounce updates and show `Autocomplete.Status` so users understand loading state.
+- Overlay clipping inside containers:
+  Use `AutocompletePortal` and `AutocompletePositioner` to move the popup out of clipped parents.
+
+## Related links
+
+- [Combobox](/docs/components/combobox)
+- [Command](/docs/components/command)
+- [Select](/docs/components/select)

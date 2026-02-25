@@ -1,0 +1,19 @@
+@import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+@import "@kuzenbo/styles/recommended.css";
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body,
+  #storybook-root,
+  .docs-story {
+    background-color: var(--kb-background);
+    color: var(--kb-foreground);
+  }
+}

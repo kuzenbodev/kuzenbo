@@ -1,0 +1,178 @@
+---
+title: "Scatter Chart"
+description: "Plot two numeric dimensions across one or more series with formatters, labels, and reference lines."
+section: "components"
+package: "charts"
+status: "stable"
+order: 66
+surface: "component"
+seoTitle: "Scatter Chart | Kuzenbo Docs"
+seoDescription: "Use ScatterChart for correlation-style visuals with multi-series legend and tooltip support."
+ogImage: "/docs-og/components/scatter-chart"
+ogImageAlt: "Scatter Chart documentation"
+---
+
+## Purpose and boundaries
+
+`ScatterChart` is the prebuilt scatter surface from `@kuzenbo/charts` for plotting two numeric axes (`xKey` and `yKey`) across one or more named series.
+
+Use it for:
+
+- Correlation analysis
+- Effort vs impact prioritization maps
+- Segment comparison on two quantitative dimensions
+
+If you need custom marks or non-standard cartesian rendering, use lower-level Recharts primitives directly.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { ScatterChart } from "@kuzenbo/charts";
+```
+
+## Basic usage
+
+```tsx
+"use client";
+
+import { ScatterChart } from "@kuzenbo/charts";
+
+const series = [
+  {
+    name: "enterprise",
+    label: "Enterprise",
+    color: "var(--color-chart-1)",
+    data: [
+      { effort: 1.2, impact: 42 },
+      { effort: 2.1, impact: 56 },
+      { effort: 3.4, impact: 68 },
+    ],
+  },
+  {
+    name: "smb",
+    label: "SMB",
+    color: "var(--color-chart-3)",
+    data: [
+      { effort: 0.9, impact: 34 },
+      { effort: 1.6, impact: 47 },
+      { effort: 2.7, impact: 61 },
+    ],
+  },
+] as const;
+
+export function EffortImpactScatter() {
+  return (
+    <ScatterChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      series={series}
+      withLegend
+      xKey="effort"
+      xUnit="h"
+      yKey="impact"
+      yUnit="pts"
+    />
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+"use client";
+
+import { ScatterChart } from "@kuzenbo/charts";
+
+export function ScatterWithFormatting() {
+  return (
+    <ScatterChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      series={[
+        {
+          name: "priority",
+          label: "Priority initiatives",
+          color: "var(--color-chart-4)",
+          data: [
+            { complexity: 2.1, value: 78, score: 9.2 },
+            { complexity: 1.4, value: 66, score: 8.1 },
+            { complexity: 3.2, value: 91, score: 9.8 },
+          ],
+        },
+      ]}
+      xKey="complexity"
+      yKey="value"
+      withLegend
+      withPointLabels
+      pointLabelDataKey="score"
+      pointLabelFormatter={(value) => `Score ${value}`}
+      xValueFormatter={(value) => `${value}x`}
+      yValueFormatter={(value) => `${value}%`}
+      referenceLines={[
+        { x: 2.5, label: "Complexity limit" },
+        { y: 80, label: "Value threshold" },
+      ]}
+      scatterProps={(item) =>
+        item.name === "priority" ? { isAnimationActive: false, r: 6 } : {}
+      }
+    />
+  );
+}
+```
+
+## API reference
+
+### `ScatterChart`
+
+Required props:
+
+- `series`: named series array, each with its own `data`
+- `xKey`: numeric x-field name
+- `yKey`: numeric y-field name
+
+Common controls:
+
+- Display toggles: `withLegend`, `withTooltip`, `withXAxis`, `withYAxis`, `withPointLabels`
+- Formatting: `valueFormatter`, `xValueFormatter`, `yValueFormatter`, `pointLabelFormatter`
+- Labels and units: `xAxisLabel`, `yAxisLabel`, `xUnit`, `yUnit`
+- Render customization: `scatterProps` (object or callback per series)
+- Layout and behavior: `gridAxis`, `tickLine`, `referenceLines`, `enableLegendHighlight`
+
+Backward-compatibility alias:
+
+- `chartProps` is supported but deprecated in favor of `scatterChartProps`.
+
+## Accessibility notes
+
+- The chart enables Recharts `accessibilityLayer`.
+- Provide nearby explanatory text for what each axis represents.
+- Do not encode categories by color only. Keep clear legend labels.
+
+## SSR and RSC notes
+
+- `ScatterChart` is a client component.
+- Render inside a client boundary in App Router.
+- Provide stable dimensions via `chartRootProps` or `responsiveContainerProps`.
+
+## Styling and tokens
+
+- Use chart CSS variables (`var(--color-chart-1)` etc) for series color.
+- Keep container and helper text on semantic tokens (`bg-background`, `text-foreground`, `border-border`).
+
+## Troubleshooting
+
+- No points rendered: check `xKey`/`yKey` names against series data rows.
+- Tooltip values are confusing: define explicit axis/value formatter functions.
+- Series disappears on legend hover: this is expected when `enableLegendHighlight` is true.
+- Axis labels overlap: simplify formatter output or adjust axis props (ticks, width).
+
+## Related docs
+
+- [Chart primitives](/docs/components/chart)
+- [Composite Chart](/docs/components/composite-chart)
+- [Bubble Chart](/docs/components/bubble-chart)
+- [Components index](/docs/components)

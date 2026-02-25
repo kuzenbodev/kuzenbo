@@ -1,0 +1,89 @@
+---
+title: "Typography System"
+description: "Use Kuzenbo typography primitives for semantic hierarchy, consistent variants, and composable render targets."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 16
+surface: "guide"
+seoTitle: "Typography System | Kuzenbo Docs"
+seoDescription: "Typography primitives, variant strategy, and accessibility rules for Kuzenbo UI composition."
+ogImage: "/docs-og/foundations/typography-system"
+ogImageAlt: "Typography System documentation"
+aliases:
+  - "/docs/features/typography-system"
+---
+
+## Typography Contract
+
+Kuzenbo typography is built around semantic primitives, not ad-hoc class recipes.
+Use `Typography` APIs so scale, hierarchy, and readability stay consistent across packages.
+
+## Primitive Layers
+
+`Typography` provides two composition layers:
+
+- Semantic shortcuts: `Typography.H1`..`Typography.H6`, `Typography.P`, `Typography.Blockquote`, `Typography.Link`
+- Variant primitives: `Typography.Heading` and `Typography.Text`
+
+Use standalone `Code` from `@kuzenbo/core` for inline or block code snippets.
+
+Variant primitives are useful when you need explicit control while preserving the token-backed variant system.
+
+## Variant Model
+
+Heading variants: `display`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `subheading`
+
+Text variants: `body`, `lead`, `muted`, `small`, `caption`, `overline`, `eyebrow`
+
+These are exported as `typographyHeadingVariants` and `typographyTextVariants`.
+
+## Composition Example
+
+Use `render` when typography must integrate with framework links or custom elements.
+
+```tsx
+import Link from "next/link";
+import { Typography } from "@kuzenbo/core";
+
+export function DocsHeroCopy() {
+  return (
+    <header>
+      <Typography.H1>Build UI with predictable contracts.</Typography.H1>
+      <Typography.Lead>
+        Kuzenbo keeps theme, component, and package boundaries explicit.
+      </Typography.Lead>
+      <Typography.Link
+        render={<Link href="/docs/getting-started/installation" />}
+      >
+        Start with installation
+      </Typography.Link>
+    </header>
+  );
+}
+```
+
+## Accessibility Rules
+
+- Keep one clear `H1` per page-level surface.
+- Do not skip heading levels for visual styling reasons.
+- Preserve readable contrast for all text variants in light and dark themes.
+- Prefer semantic typography components over raw tags with utility-heavy className stacks.
+
+## Performance and Maintenance Notes
+
+- Centralized typography variants reduce style drift across packages.
+- Reusing primitives keeps docs and app surfaces visually aligned.
+- If you need a new text role, extend the typography variant system instead of scattering one-off utilities.
+
+## Common Pitfalls
+
+- Styling raw `<h2>` and `<p>` tags directly when equivalent `Typography` primitives exist.
+- Using heading variants for small helper text instead of text variants.
+- Mixing raw palette color classes with semantic typography classes.
+
+## Related Docs
+
+- [Color Primitives](/docs/foundations/color-primitives)
+- [Accessibility](/docs/foundations/accessibility)
+- [Composition Patterns](/docs/patterns/composition)

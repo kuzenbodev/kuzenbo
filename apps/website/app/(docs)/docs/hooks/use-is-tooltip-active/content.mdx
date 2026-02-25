@@ -1,0 +1,87 @@
+---
+title: "useIsTooltipActive"
+description: "Read whether the Recharts tooltip is currently active for the current chart interaction state."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 13
+surface: "hook"
+seoTitle: "useIsTooltipActive | Kuzenbo Docs"
+seoDescription: "Use useIsTooltipActive to branch chart UI based on whether tooltip interaction is currently active."
+ogImage: "/docs-og/hooks/use-is-tooltip-active"
+ogImageAlt: "useIsTooltipActive documentation"
+---
+
+## What this hook does
+
+`useIsTooltipActive` is a Recharts v3 interaction hook re-exported by `@kuzenbo/charts`.
+It reports whether tooltip interaction is currently active.
+
+## Reads and writes
+
+- Reads: tooltip interaction flag from Recharts chart state.
+- Writes: nothing. This hook is read-only.
+
+## When to use it
+
+- Show hover-only helper UI when tooltip interaction is active.
+- Skip expensive tooltip-dependent calculations when inactive.
+- Coordinate custom tooltip content with chart cursor behavior.
+
+## Import
+
+```tsx
+import { useIsTooltipActive } from "@kuzenbo/charts";
+```
+
+## Example: interaction-aware helper text
+
+```tsx
+"use client";
+
+import { useIsTooltipActive } from "@kuzenbo/charts";
+
+export function TooltipStateBadge() {
+  const active = useIsTooltipActive();
+
+  return (
+    <span className="rounded-md border border-border px-2 py-1 text-xs">
+      Tooltip: {active ? "active" : "idle"}
+    </span>
+  );
+}
+```
+
+## Example: pair with active payload hook
+
+```tsx
+import {
+  useActiveTooltipDataPoints,
+  useIsTooltipActive,
+} from "@kuzenbo/charts";
+
+const active = useIsTooltipActive();
+const points = useActiveTooltipDataPoints<{ value: number }>();
+const visiblePoints = active ? (points ?? []) : [];
+```
+
+## Return contract and edge cases
+
+- Type: `boolean`
+- Returns `true` only while tooltip interaction is active.
+- Returns `false` when interaction is inactive.
+- Returns `false` when called outside chart context.
+- Recharts expects one tooltip per chart; multiple tooltips can produce unpredictable state.
+
+## SSR and RSC caveats
+
+- Client-only runtime behavior.
+- Keep interaction-driven rendering inside `"use client"` components.
+- Use conservative fallbacks for initial render (`false`).
+
+## Related docs
+
+- [useActiveTooltipDataPoints](/docs/hooks/use-active-tooltip-data-points)
+- [useActiveTooltipCoordinate](/docs/hooks/use-active-tooltip-coordinate)
+- [useActiveTooltipLabel](/docs/hooks/use-active-tooltip-label)
+- [Hooks Index](/docs/hooks)

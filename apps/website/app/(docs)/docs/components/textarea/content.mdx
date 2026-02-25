@@ -1,0 +1,135 @@
+---
+title: "Textarea"
+description: "Auto-resizing multiline input powered by @kuzenbo/core Textarea."
+section: "components"
+package: "core"
+status: "stable"
+order: 80
+surface: "component"
+seoTitle: "Textarea | Kuzenbo Docs"
+seoDescription: "Auto-resizing multiline input powered by @kuzenbo/core Textarea."
+ogImage: "/docs-og/components/textarea"
+ogImageAlt: "Textarea documentation"
+aliases:
+  - "/docs/components/inputs/textarea"
+---
+
+## Textarea at a Glance
+
+`Textarea` wraps `react-textarea-autosize` and keeps Kuzenbo input styling contracts.
+It grows with content while preserving semantic input states (`disabled`, `aria-invalid`, focus ring).
+
+Use it for multi-line freeform input.
+If you only need one-line values, use `Input` instead.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Textarea } from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Textarea } from "@kuzenbo/core";
+
+export function IncidentNotesField() {
+  return (
+    <div className="space-y-2">
+      <label
+        className="text-sm font-medium text-foreground"
+        htmlFor="incident-notes"
+      >
+        Incident Notes
+      </label>
+      <Textarea
+        id="incident-notes"
+        placeholder="Describe what happened..."
+        rows={4}
+      />
+    </div>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Textarea } from "@kuzenbo/core";
+
+const MAX_LENGTH = 500;
+
+export function AutoResizingTextarea() {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="space-y-2">
+      <Textarea
+        maxLength={MAX_LENGTH}
+        maxRows={10}
+        onChange={(event) => setValue(event.currentTarget.value)}
+        placeholder="Write a detailed update"
+        rows={3}
+        value={value}
+      />
+      <p className="text-sm text-muted-foreground">
+        {value.length}/{MAX_LENGTH}
+      </p>
+    </div>
+  );
+}
+```
+
+## API Details
+
+- `TextareaProps` are inherited from `react-textarea-autosize`.
+- `rows` maps to `minRows` internally (default `3`).
+- `size` supports `xs`, `sm`, `md`, `lg`, `xl` (default `md`).
+- Additional autosize props like `maxRows` pass through unchanged.
+- Root includes `data-slot="textarea"`.
+
+## Sizing
+
+- Supported size tokens: `xs`, `sm`, `md`, `lg`, `xl`.
+- `size` changes padding, radius, text density, and baseline min-height.
+- Autosize behavior still follows `rows`/`minRows` and `maxRows`.
+
+## Accessibility
+
+- Pair with a `<label>` or `Field.Label` primitive.
+- Expose validation state via `aria-invalid` and helper/error text.
+- Keep placeholder text supplemental; labels should carry primary meaning.
+
+## SSR and RSC Notes
+
+- Markup can be server-rendered.
+- Autosize measurement happens on the client after hydration.
+- For consistent initial layout, set a deliberate `rows` baseline.
+
+## Styling and Tokens
+
+- Defaults are token-aligned: `border-input`, `focus-visible:ring-ring/50`, `placeholder:text-muted-foreground`.
+- Prefer container-level spacing and width utilities over direct color overrides.
+- Keep error styling semantic through ARIA state instead of custom red classes.
+
+## Troubleshooting
+
+- If auto-growth feels capped, check `maxRows` and parent height constraints.
+- If focus ring is missing, verify no parent CSS is clipping outlines/rings.
+- If field appears too short on load, increase `rows` for your content profile.
+
+## Related Docs
+
+- [Input](/docs/components/input)
+- [Field](/docs/components/field)
+- [Form Patterns](/docs/patterns/forms)

@@ -1,0 +1,183 @@
+---
+title: "Menu"
+description: "Context action menus with checkbox, radio, link items, and submenu composition in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 33
+surface: "component"
+seoTitle: "Menu | Kuzenbo Docs"
+seoDescription: "Context action menus with checkbox, radio, link items, and submenu composition in @kuzenbo/core."
+ogImage: "/docs-og/components/menu"
+ogImageAlt: "Menu documentation"
+aliases:
+  - "/docs/components/overlays/menu"
+---
+
+## Menu at a Glance
+
+`Menu` is the canonical contextual action surface in `@kuzenbo/core`.
+It supports checkbox/radio rows, submenu trees, link items, and slot-level composition primitives for custom layouts.
+
+Use it for command lists and per-item action menus.
+If you need persistent settings content, prefer `Dialog`, `Popover`, or `Sheet`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Button,
+  Menu,
+  MenuArrow,
+  MenuBackdrop,
+  MenuCheckboxItem,
+  MenuContent,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuLinkItem,
+  MenuPopup,
+  MenuPortal,
+  MenuPositioner,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuShortcut,
+  MenuSubmenuContent,
+  MenuSubmenuRoot,
+  MenuSubmenuTrigger,
+  MenuTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Button, Menu } from "@kuzenbo/core";
+
+export function ProjectActionsMenu() {
+  return (
+    <Menu>
+      <Menu.Trigger render={<Button variant="outline" />}>Actions</Menu.Trigger>
+
+      <Menu.Content align="end">
+        <Menu.Item>Rename</Menu.Item>
+        <Menu.Item>Duplicate</Menu.Item>
+        <Menu.Separator />
+        <Menu.Item variant="danger">Delete</Menu.Item>
+      </Menu.Content>
+    </Menu>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Button, Menu } from "@kuzenbo/core";
+
+export function ViewPreferencesMenu() {
+  const [showHidden, setShowHidden] = useState(false);
+  const [density, setDensity] = useState("comfortable");
+
+  return (
+    <Menu>
+      <Menu.Trigger render={<Button variant="outline" />}>View</Menu.Trigger>
+
+      <Menu.Content align="end" sideOffset={6}>
+        <Menu.GroupLabel>Display</Menu.GroupLabel>
+
+        <Menu.CheckboxItem checked={showHidden} onCheckedChange={setShowHidden}>
+          Show hidden files
+        </Menu.CheckboxItem>
+
+        <Menu.Separator />
+
+        <Menu.RadioGroup onValueChange={setDensity} value={density}>
+          <Menu.RadioItem value="compact">Compact</Menu.RadioItem>
+          <Menu.RadioItem value="comfortable">Comfortable</Menu.RadioItem>
+        </Menu.RadioGroup>
+
+        <Menu.Separator />
+
+        <Menu.SubmenuRoot>
+          <Menu.SubmenuTrigger>More Actions</Menu.SubmenuTrigger>
+          <Menu.SubmenuContent>
+            <Menu.Item variant="danger">Archive Project</Menu.Item>
+          </Menu.SubmenuContent>
+        </Menu.SubmenuRoot>
+      </Menu.Content>
+    </Menu>
+  );
+}
+```
+
+## Size Scaling
+
+`Menu` supports `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
+
+- Root-driven default: `Menu size` sets the baseline for popup, label, item, shortcut, and submenu surfaces.
+- Content override: `Menu.Content size` overrides root size for overlay descendants.
+- Child override: item-level props (`Menu.Item size`, `Menu.Label size`, etc.) override both content and root.
+
+Precedence:
+
+- Overlay descendants: `explicit child size ?? nearest content size ?? root size ?? "md"`.
+
+```tsx
+<Menu size="sm">
+  <Menu.Trigger>Actions</Menu.Trigger>
+  <Menu.Content size="lg">
+    <Menu.Item size="xl">Delete</Menu.Item>
+  </Menu.Content>
+</Menu>
+```
+
+## API Details
+
+- Root: `Menu`.
+- Trigger/content: `MenuTrigger`, `MenuContent`.
+- Portal and positioning: `MenuPortal`, `MenuPopup`, `MenuPositioner`, `MenuArrow`, `MenuBackdrop`.
+- Item primitives: `MenuItem`, `MenuCheckboxItem`, `MenuRadioItem`, `MenuLinkItem`.
+- Grouping helpers: `MenuGroup`, `MenuGroupLabel`, `MenuSeparator`, `MenuShortcut`.
+- Nested menus: `MenuSubmenuRoot`, `MenuSubmenuTrigger`, `MenuSubmenuContent`.
+
+## Accessibility
+
+- Keep trigger labels explicit so screen readers can identify intent.
+- Preserve visible focus states for keyboard users.
+- Use clear wording for destructive actions.
+- Keep menu items concise and action-oriented.
+
+## SSR and RSC Notes
+
+- Menu interactions are client-side.
+- Server rendering is safe for shell markup, while open/close and selection behavior need a client boundary.
+
+## Styling and Tokens
+
+- Menu surfaces use semantic overlay tokens (`bg-popover`, `text-popover-foreground`, `ring-foreground/10`).
+- Prefer semantic variants (`variant="danger"`) over hard-coded palette classes.
+- Use slot-level overrides on content and item primitives for controlled customization.
+
+## Troubleshooting
+
+- If clipping occurs, check ancestor overflow styles and portal usage.
+- If submenu alignment feels off, tune `alignOffset` and `sideOffset` on submenu content.
+- If an item should stay open on select, handle `onSelect` and prevent default close behavior.
+
+## Related Docs
+
+- [Menubar](/docs/components/menubar)
+- [Context Menu](/docs/components/context-menu)
+- [Overlay Patterns](/docs/patterns/overlay-patterns)

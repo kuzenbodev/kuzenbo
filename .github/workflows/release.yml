@@ -1,0 +1,178 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Release source branch
+        required: true
+        type: choice
+        default: main
+        options:
+          - main
+      version:
+        description: Lockstep package version to publish
+        required: true
+        type: string
+      channel:
+        description: Release channel
+        required: true
+        type: choice
+        options:
+          - next
+          - stable
+      dry_run:
+        description: Validate and pack without publishing
+        required: true
+        type: boolean
+        default: true
+      publish_mode:
+        description: Publish mode for real publish runs
+        required: true
+        type: choice
+        default: normal
+        options:
+          - normal
+          - recovery
+      confirm_phrase:
+        description: Must match release-<version>-<channel>
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release-${{ inputs.channel }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Validate lockstep release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate confirmation phrase
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="release-${{ inputs.version }}-${{ inputs.channel }}"
+          if [[ "${{ inputs.confirm_phrase }}" != "${expected}" ]]; then
+            echo "Invalid confirm phrase. Expected '${expected}'"
+            exit 1
+          fi
+
+      - name: Validate channel and ref mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ inputs.channel }}" in
+            next) expected_ref="main" ;;
+            stable) expected_ref="main" ;;
+            *)
+              echo "Unsupported channel: ${{ inputs.channel }}"
+              exit 1
+              ;;
+          esac
+
+          if [[ "${{ inputs.ref }}" != "${expected_ref}" ]]; then
+            echo "Channel '${{ inputs.channel }}' must publish from '${expected_ref}', got '${{ inputs.ref }}'"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+          registry-url: https://registry.npmjs.org
+
+      - name: Ensure modern npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Validate release state
+        run: bun run release:validate -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
+
+      - name: Run quality gates
+        run: bun scripts/release/quality.ts
+
+      - name: Build all workspaces
+        run: bun run build
+
+      - name: Pack dry-run allowlist packages
+        run: bun run release:dry-run -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
+
+  publish:
+    name: Publish allowlist packages
+    if: ${{ inputs.dry_run == false || inputs.dry_run == 'false' }}
+    needs: preflight
+    runs-on: ubuntu-latest
+    environment: npm-publish
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+          registry-url: https://registry.npmjs.org
+
+      - name: Ensure modern npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Validate release state
+        run: bun run release:validate -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
+
+      - name: Publish allowlist packages
+        run: bun scripts/release/publish.ts --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}" --mode "${{ inputs.publish_mode }}" --provenance
+
+      - name: Create and push git tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v${{ inputs.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rev-parse "${tag}" >/dev/null 2>&1 && {
+            echo "Tag ${tag} already exists"
+            exit 1
+          }
+          git tag -a "${tag}" -m "Release ${tag}"
+          git push origin "${tag}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v${{ inputs.version }}"
+          notes_file="docs/releases/${{ inputs.version }}.md"
+          gh release create "${tag}" \
+            --title "${tag}" \
+            --notes-file "${notes_file}"

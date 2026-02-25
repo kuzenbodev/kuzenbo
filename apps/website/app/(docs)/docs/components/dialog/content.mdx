@@ -1,0 +1,162 @@
+---
+title: "Dialog"
+description: "Build modal interactions in @kuzenbo/core with composable Dialog slots and Base UI render-based triggers."
+section: "components"
+package: "core"
+status: "stable"
+order: 30
+surface: "component"
+seoTitle: "Dialog | Kuzenbo Docs"
+seoDescription: "Build modal interactions in @kuzenbo/core with composable Dialog slots and Base UI render-based triggers."
+ogImage: "/docs-og/components/dialog"
+ogImageAlt: "Dialog documentation"
+aliases:
+  - "/docs/components/overlays/dialog"
+---
+
+## Overview
+
+`Dialog` is the general-purpose modal surface for form edits, confirmations, and contextual workflows.
+
+Use it when content needs focused attention and temporary focus trapping. If the action is destructive or irreversible, prefer `AlertDialog`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@kuzenbo/core";
+
+export function EditProfileDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Edit profile
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>
+            Update your profile details, then save changes.
+          </DialogDescription>
+        </DialogHeader>
+
+        <DialogFooter>
+          <Button>Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@kuzenbo/core";
+
+export function CloseControlledDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Open preferences
+      </DialogTrigger>
+
+      <DialogContent showCloseButton={false}>
+        <DialogHeader>
+          <DialogTitle>Preferences</DialogTitle>
+          <DialogDescription>
+            This dialog hides the corner close button and uses footer actions.
+          </DialogDescription>
+        </DialogHeader>
+
+        <DialogFooter showCloseButton>
+          <Button>Save</Button>
+          <DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## API Reference
+
+- `Dialog`: root state container (`open`, `defaultOpen`, `onOpenChange`).
+- `DialogTrigger`: opener with Base UI `render` composition.
+- `DialogContent`: popup surface; `showCloseButton` defaults to `true`.
+- `DialogHeader`, `DialogTitle`, `DialogDescription`: semantic heading and supporting copy.
+- `DialogFooter`: action area; optional `showCloseButton` adds a default close action.
+- `DialogClose`: explicit close control for custom layouts.
+- `DialogOverlay`, `DialogPortal`: overlay and portal primitives.
+
+## Accessibility
+
+- Always provide `DialogTitle`; include `DialogDescription` when context is non-trivial.
+- Keep focusable content inside the dialog and ensure at least one clear close path.
+- Trigger labels should describe intent (`Edit profile`, `Open settings`) rather than generic `Open`.
+
+## SSR and RSC Notes
+
+- `Dialog` is interactive and should be mounted from client components.
+- Render dialog triggers in server components only if the trigger delegates to a client child.
+- Avoid client-only conditional rendering that changes title/description IDs after hydration.
+
+## Styling and Tokens
+
+- Dialog surfaces use semantic tokens by default (`bg-background`, `text-foreground`, `ring-foreground/10`).
+- Keep overlays subtle and semantic; do not replace with fixed palette values.
+- Prefer slot-level class overrides (`DialogContent`, `DialogFooter`) instead of wrapping with extra positioned containers.
+
+## Troubleshooting
+
+- Dialog opens but cannot close: verify a `DialogClose` path or default close button is available.
+- Trigger does not look interactive: pass an interactive element via `render` (for example `Button`).
+- Footer actions wrap unexpectedly: check custom width constraints on `DialogContent` and parent containers.
+
+## Related Links
+
+- [Alert Dialog](/docs/components/alert-dialog)
+- [Sheet](/docs/components/sheet)
+- [Drawer](/docs/components/drawer)
+- [Popover](/docs/components/popover)

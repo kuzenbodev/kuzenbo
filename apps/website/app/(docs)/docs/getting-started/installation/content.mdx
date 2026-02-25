@@ -1,0 +1,163 @@
+---
+title: "Installation"
+description: "Add Kuzenbo to your React or Next.js app in a few steps."
+section: "getting-started"
+package: "core"
+status: "stable"
+order: 2
+surface: "guide"
+seoTitle: "Installation | Kuzenbo Docs"
+seoDescription: "Install Kuzenbo for React and Next.js with theme runtime and baseline styles."
+ogImage: "/docs-og/getting-started/installation"
+ogImageAlt: "Kuzenbo installation guide"
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@kuzenbo/core";
+
+## Requirements
+
+- React 19
+- Node 18+
+- npm, pnpm, yarn, or bun
+
+## Install core packages
+
+Choose your package manager:
+
+<Tabs defaultValue="npm">
+  <TabsList>
+    <TabsTrigger value="npm">npm</TabsTrigger>
+    <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+    <TabsTrigger value="yarn">yarn</TabsTrigger>
+    <TabsTrigger value="bun">bun</TabsTrigger>
+  </TabsList>
+  <TabsContent value="npm">
+
+```bash
+npm i @kuzenbo/core @kuzenbo/theme @kuzenbo/styles react react-dom next-themes
+```
+
+  </TabsContent>
+  <TabsContent value="pnpm">
+
+```bash
+pnpm add @kuzenbo/core @kuzenbo/theme @kuzenbo/styles react react-dom next-themes
+```
+
+  </TabsContent>
+  <TabsContent value="yarn">
+
+```bash
+yarn add @kuzenbo/core @kuzenbo/theme @kuzenbo/styles react react-dom next-themes
+```
+
+  </TabsContent>
+  <TabsContent value="bun">
+
+```bash
+bun add @kuzenbo/core @kuzenbo/theme @kuzenbo/styles react react-dom next-themes
+```
+
+  </TabsContent>
+</Tabs>
+
+In almost all cases, keep `@kuzenbo/theme` installed with every Kuzenbo UI package you use.
+
+## Add styles
+
+Import theme CSS first, then optional baseline styles. In your main entry or global CSS file:
+
+```tsx
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+```
+
+Theme CSS must come first so tokens load before the baseline overrides.
+
+## Set up theme
+
+For apps with SSR (e.g. Next.js App Router), add the bootstrap script and provider to your root layout:
+
+```tsx
+import type { ReactNode } from "react";
+
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeBootstrapScript />
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+The script runs before React hydrates so dark mode applies on first paint without a flash.
+
+## Verify your setup
+
+Try rendering a button and card:
+
+```tsx
+import { Button, Card } from "@kuzenbo/core";
+
+export function InstallSmokeTest() {
+  return (
+    <Card>
+      <Button>Install verified</Button>
+    </Card>
+  );
+}
+```
+
+If you see them styled correctly, you're good to go.
+
+## Add more packages
+
+Install feature packages only when you need them, and keep `@kuzenbo/theme` in your dependency set:
+
+<Tabs defaultValue="npm">
+  <TabsList>
+    <TabsTrigger value="npm">npm</TabsTrigger>
+    <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+    <TabsTrigger value="yarn">yarn</TabsTrigger>
+    <TabsTrigger value="bun">bun</TabsTrigger>
+  </TabsList>
+  <TabsContent value="npm">
+
+```bash
+npm i @kuzenbo/theme @kuzenbo/charts @kuzenbo/date @kuzenbo/notifications @kuzenbo/ai @kuzenbo/datatable
+```
+
+  </TabsContent>
+  <TabsContent value="pnpm">
+
+```bash
+pnpm add @kuzenbo/theme @kuzenbo/charts @kuzenbo/date @kuzenbo/notifications @kuzenbo/ai @kuzenbo/datatable
+```
+
+  </TabsContent>
+  <TabsContent value="yarn">
+
+```bash
+yarn add @kuzenbo/theme @kuzenbo/charts @kuzenbo/date @kuzenbo/notifications @kuzenbo/ai @kuzenbo/datatable
+```
+
+  </TabsContent>
+  <TabsContent value="bun">
+
+```bash
+bun add @kuzenbo/theme @kuzenbo/charts @kuzenbo/date @kuzenbo/notifications @kuzenbo/ai @kuzenbo/datatable
+```
+
+  </TabsContent>
+</Tabs>
+
+## Troubleshooting
+
+- **Components look unstyled** — `@kuzenbo/theme` must be installed with `@kuzenbo/core`. Import theme CSS before baseline styles.
+- **Wrong theme on first load** — Ensure `ThemeBootstrapScript` runs before your app content (e.g. in `head` or top of `body`).
+- **Legacy CSS paths** — Older paths like `@kuzenbo/core/styles.css` were removed. Use `@kuzenbo/theme/prebuilt/kuzenbo.css` and `@kuzenbo/styles/recommended.css`.

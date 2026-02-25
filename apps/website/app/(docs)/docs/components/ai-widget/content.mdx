@@ -1,0 +1,121 @@
+---
+title: "AI Widget"
+description: "Build lightweight assistant surfaces with @kuzenbo/ai AiWidget, including title handling, composition guidance, and runtime boundaries."
+section: "components"
+package: "ai"
+status: "stable"
+order: 4
+surface: "component"
+seoTitle: "AI Widget | Kuzenbo Docs"
+seoDescription: "Source-grounded guide for AiWidget in @kuzenbo/ai, with practical usage, API behavior, and SSR/client notes."
+ogImage: "/docs-og/components/ai-widget"
+ogImageAlt: "AI Widget documentation"
+---
+
+## Overview
+
+`AiWidget` is a presentational shell for assistant content. It gives you a consistent card surface (`section` root, title row, and body copy styling) without owning chat transport, streaming, or message history.
+
+Use it when you need a compact assistant block in forms, dashboards, or docs UI.
+
+Do not use it as a full chat framework. For state and lifecycle, pair it with package utilities like `useAiSession`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/ai
+```
+
+## Import
+
+```tsx
+import { AiWidget } from "@kuzenbo/ai";
+```
+
+## Basic Example
+
+```tsx
+import { AiWidget } from "@kuzenbo/ai";
+
+export function ProductHint() {
+  return (
+    <AiWidget title="Assistant">
+      Ask for a summary before publishing this release note.
+    </AiWidget>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { AiWidget, useAiSession } from "@kuzenbo/ai";
+
+export function SessionAwareWidget() {
+  const session = useAiSession();
+
+  return (
+    <AiWidget
+      aria-live="polite"
+      className="border-border bg-card text-card-foreground"
+      title={session.active ? "Assistant (active)" : "Assistant"}
+    >
+      Messages in this session: {session.messages}
+      <div className="mt-3 flex gap-2">
+        <button
+          className="rounded-md border border-border px-2 py-1 text-sm"
+          onClick={session.start}
+          type="button"
+        >
+          Send prompt
+        </button>
+        <button
+          className="rounded-md border border-border px-2 py-1 text-sm"
+          onClick={session.reset}
+          type="button"
+        >
+          Reset
+        </button>
+      </div>
+    </AiWidget>
+  );
+}
+```
+
+## API Notes
+
+- `AiWidget` extends `ComponentProps<"section">`.
+- `title?: string` defaults to `"AI Widget"`.
+- Children are rendered inside a muted body wrapper (`text-muted-foreground`).
+- The component sets `data-slot="ai-widget"` for styling and test selectors.
+
+## Accessibility
+
+- The title is rendered as an internal heading (`h3`). Keep titles descriptive and unique when multiple widgets appear on one page.
+- If content updates dynamically, add `aria-live="polite"` or `aria-live="assertive"` based on urgency.
+- Keep any action buttons in the body keyboard reachable and clearly labeled.
+
+## SSR and RSC
+
+- `AiWidget` itself has no hooks and can render in Server Components.
+- Hooks from `@kuzenbo/ai` (for example `useAiSession`) require a client boundary.
+
+## Styling and Semantic Tokens
+
+`AiWidget` ships with semantic defaults (`border-border`, `bg-card`, `text-card-foreground`, `text-muted-foreground`).
+
+When customizing, keep token-based classes so the surface stays correct across light/dark and themed environments.
+
+## Troubleshooting
+
+- Widget title is missing: check whether `title` was intentionally omitted (it falls back to `AI Widget`).
+- Styles look too dim: verify you did not override `text-card-foreground` on the root with low-contrast classes.
+- Session count never changes: ensure the surrounding component is client-rendered before using `useAiSession`.
+
+## Related Docs
+
+- [AI Prompting Foundation](/docs/foundations/ai-prompting)
+- [useAiSession Hook](/docs/hooks/use-ai-session)
+- [Composition Patterns](/docs/patterns/composition)

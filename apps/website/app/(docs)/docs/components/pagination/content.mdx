@@ -1,0 +1,199 @@
+---
+title: "Pagination"
+description: "Composable pagination navigation primitives with active link semantics, boundary controls, and ellipsis support."
+section: "components"
+package: "core"
+status: "stable"
+order: 54
+surface: "component"
+seoTitle: "Pagination | Kuzenbo Docs"
+seoDescription: "Build accessible page navigation with Pagination primitives in @kuzenbo/core, including active states and ellipsis patterns."
+ogImage: "/docs-og/components/pagination"
+ogImageAlt: "Pagination documentation"
+aliases:
+  - "/docs/components/navigation/pagination"
+---
+
+## Overview
+
+`Pagination` is a structural navigation primitive set. It gives you semantic and styled building blocks, but it does not calculate page ranges for you.
+
+Use it when routing already defines current page and total pages, and you need predictable navigation UI.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@kuzenbo/core";
+
+export function PaginationBasic() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="?page=1" />
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink href="?page=1" isActive>
+            1
+          </PaginationLink>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink href="?page=2">2</PaginationLink>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationNext href="?page=2" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@kuzenbo/core";
+
+export function PaginationWithEllipsis() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="?page=7" />
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink href="?page=1">1</PaginationLink>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink href="?page=8" isActive>
+            8
+          </PaginationLink>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationLink href="?page=9">9</PaginationLink>
+        </PaginationItem>
+
+        <PaginationItem>
+          <PaginationNext href="?page=9" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+```
+
+## API Reference
+
+- `Pagination`
+  - Root `<nav>` with `aria-label="pagination"` and `data-slot="pagination"`.
+- `PaginationContent`
+  - `<ul>` wrapper for item ordering.
+- `PaginationItem`
+  - `<li>` wrapper.
+- `PaginationLink`
+  - Anchor-backed link with button styling.
+  - `isActive?: boolean` sets `aria-current="page"` and active visual state.
+  - `size` defaults to `"icon"`.
+- `PaginationPrevious`
+  - Preconfigured previous-link variant.
+- `PaginationNext`
+  - Preconfigured next-link variant.
+- `PaginationEllipsis`
+  - Non-interactive overflow marker with screen-reader text.
+
+## Size Scale
+
+`Pagination` follows the shared size scale:
+
+- `xs`
+- `sm`
+- `md` (default)
+- `lg`
+- `xl`
+
+`Pagination` root drives default size for descendant surfaces.
+Resolution order is:
+
+- explicit child `size`
+- nearest pagination container size
+- root `size`
+- component default (`md`)
+
+`PaginationContent`, `PaginationLink`, `PaginationPrevious`, `PaginationNext`, and `PaginationEllipsis` all participate in this cascade.
+
+## Accessibility
+
+- Mark only one current page via `isActive`.
+- Keep previous/next links keyboard reachable and clearly labeled.
+- Use real links (`href`) for navigation targets.
+- Keep `PaginationEllipsis` non-clickable; it is a visual gap marker.
+
+## SSR and RSC Notes
+
+- Pagination primitives are render-safe in server output.
+- Compute pagination ranges in server logic if needed, then render static structure or hydrate client routing wrappers.
+
+## Styling and Tokens
+
+- `PaginationLink` inherits semantic button variants (`ghost`, `outline` when active).
+- Preserve semantic contrast with token-based overrides (`bg-background`, `text-foreground`, `border-border`).
+- If you keep next/previous text visible on mobile, adjust utility overrides intentionally.
+
+## Troubleshooting
+
+- Active page style missing: set `isActive` on the current `PaginationLink`.
+- Nav is present but not announced correctly: ensure root `Pagination` is used (it sets `aria-label="pagination"`).
+- Previous/next labels appear hidden on small screens: this is by design (`hidden sm:block`); override only when required.
+- Broken page transitions: verify generated `href` values and query params.
+
+## Related Docs
+
+- [Navigation Menu](/docs/components/navigation-menu)
+- [Breadcrumb](/docs/components/breadcrumb)
+- [Button](/docs/components/button)
+- [Components Index](/docs/components)

@@ -1,0 +1,108 @@
+---
+title: "useChartPortalTarget"
+description: "Create a portal mount target for chart overlays with a ref callback and nullable HTMLElement state."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 9
+surface: "hook"
+seoTitle: "useChartPortalTarget | Kuzenbo Docs"
+seoDescription: "Create a portal mount target for chart overlays with a ref callback and nullable HTMLElement state."
+ogImage: "/docs-og/hooks/use-chart-portal-target"
+ogImageAlt: "useChartPortalTarget documentation"
+---
+
+## Overview
+
+`useChartPortalTarget` manages a local DOM target for portal-rendered chart UI (for example custom tooltip cards, hover details, or pinned annotations).
+
+## What It Reads and Writes
+
+- Reads: internal hook state (`target`).
+- Writes: updates `target` whenever `targetRef` receives a mount/unmount node.
+
+## When to Use
+
+- Render extra UI into a controlled node inside the chart container.
+- Avoid attaching overlays to `document.body` when local stacking and clipping matter.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import { useChartPortalTarget } from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import { Chart, useChartPortalTarget } from "@kuzenbo/charts";
+import { createPortal } from "react-dom";
+import { Line, LineChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", revenue: 172000 },
+  { month: "Feb", revenue: 186000 },
+  { month: "Mar", revenue: 201000 },
+];
+
+const config = {
+  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+} as const;
+
+export function ChartPortalTargetExample() {
+  const { target, targetRef } = useChartPortalTarget();
+
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <LineChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Line dataKey="revenue" dot={false} stroke="var(--color-revenue)" />
+      </LineChart>
+
+      <Chart.PortalTarget className="relative" ref={targetRef} />
+
+      {target
+        ? createPortal(
+            <div className="pointer-events-none absolute right-2 top-2 rounded-md border border-border bg-background px-2 py-1 text-xs text-foreground">
+              External overlay rendered via portal
+            </div>,
+            target
+          )
+        : null}
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contract
+
+`useChartPortalTarget()` returns:
+
+- `target: HTMLElement | null`
+- `targetRef: (node: HTMLElement | null) => void`
+
+## Caveats
+
+- `target` starts as `null` until the first ref commit.
+- `target` becomes `null` again when the target node unmounts.
+- This hook does not query the DOM for you; attach `targetRef` to a real element.
+
+## SSR and RSC Notes
+
+- Use in Client Components only.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [Chart](/docs/components/chart)
+- [useChart](/docs/hooks/use-chart)
+- [useChartConfig](/docs/hooks/use-chart-config)

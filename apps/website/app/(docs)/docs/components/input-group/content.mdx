@@ -1,0 +1,186 @@
+---
+title: "Input Group"
+description: "Compose text fields, addons, buttons, and textarea controls with @kuzenbo/core Input Group for structured form input layouts."
+section: "components"
+package: "core"
+status: "stable"
+order: 42
+surface: "component"
+seoTitle: "Input Group | Kuzenbo Docs"
+seoDescription: "Compose text fields, addons, buttons, and textarea controls with @kuzenbo/core Input Group for structured form input layouts."
+ogImage: "/docs-og/components/input-group"
+ogImageAlt: "Input Group documentation"
+aliases:
+  - "/docs/components/inputs/input-group"
+---
+
+## Purpose
+
+`InputGroup` is a composition shell for multi-part form controls in `@kuzenbo/core`. It gives you a single bordered focus ring while combining inputs, static prefixes/suffixes, buttons, or textareas.
+
+Use it when a single field requires structure such as:
+
+- URL prefixes (`https://`).
+- Currency and unit suffixes.
+- Inline action buttons.
+- Block-level helper rows around the same control.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { InputGroup } from "@kuzenbo/core";
+
+export function WebsiteField() {
+  return (
+    <InputGroup>
+      <InputGroup.Addon align="inline-start">
+        <InputGroup.Text>https://</InputGroup.Text>
+      </InputGroup.Addon>
+      <InputGroup.Input placeholder="example.com" />
+    </InputGroup>
+  );
+}
+```
+
+## Advanced usage: addons, action button, and textarea mode
+
+```tsx
+import { InputGroup } from "@kuzenbo/core";
+
+export function StructuredFields() {
+  return (
+    <div className="space-y-4">
+      <InputGroup>
+        <InputGroup.Addon align="inline-start">
+          <InputGroup.Text>$</InputGroup.Text>
+        </InputGroup.Addon>
+
+        <InputGroup.Input placeholder="0.00" type="number" />
+
+        <InputGroup.Addon align="inline-end">
+          <InputGroup.Text>USD</InputGroup.Text>
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputGroup>
+        <InputGroup.Input placeholder="Search docs..." />
+        <InputGroup.Addon align="inline-end">
+          <InputGroup.Button type="submit">Search</InputGroup.Button>
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputGroup>
+        <InputGroup.Addon align="block-start">
+          <InputGroup.Text>Release notes</InputGroup.Text>
+        </InputGroup.Addon>
+        <InputGroup.Textarea placeholder="Write update details..." rows={4} />
+      </InputGroup>
+    </div>
+  );
+}
+```
+
+## Sizing behavior
+
+`InputGroup` uses the same size tokens as core `Button` and `Input`:
+
+- `xs`
+- `sm`
+- `md` (default)
+- `lg`
+- `xl`
+
+Set `size` on the root group to drive slot defaults.
+
+- `InputGroup.Input` inherits root `size` unless overridden.
+- `InputGroup.Addon` inherits root `size` unless overridden.
+- `InputGroup.Button` keeps explicit `size` if passed, otherwise maps by root size:
+  - `xs | sm | md | lg` -> default button size `xs`
+  - `xl` -> default button size `sm`
+
+```tsx
+import { InputGroup } from "@kuzenbo/core";
+
+export function SizedGroups() {
+  return (
+    <div className="space-y-3">
+      <InputGroup size="xl">
+        <InputGroup.Addon align="inline-start">
+          <InputGroup.Text>https://</InputGroup.Text>
+        </InputGroup.Addon>
+        <InputGroup.Input placeholder="docs.kuzenbo.com" />
+        <InputGroup.Addon align="inline-end">
+          <InputGroup.Button>Open</InputGroup.Button>
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputGroup size="xl">
+        <InputGroup.Input placeholder="Root xl, input override sm" size="sm" />
+      </InputGroup>
+    </div>
+  );
+}
+```
+
+## API reference
+
+- `InputGroup`
+  Root wrapper (`role="group"`) with unified border/focus handling and `size` support (`xs | sm | md | lg | xl`).
+- `InputGroupInput`
+  Input control that inherits group shell styling and root size by default.
+- `InputGroupTextarea`
+  Textarea control for multiline group layouts.
+- `InputGroupAddon`
+  Structural slot. `align` values: `inline-start`, `inline-end`, `block-start`, `block-end`; supports inherited or explicit size.
+- `InputGroupText`
+  Lightweight text slot for labels/prefix/suffix content.
+- `InputGroupButton`
+  Button slot (defaults to `type="button"`). Explicit `size` wins; otherwise root-size mapping picks the default.
+
+## Accessibility notes
+
+- Keep visible labels outside the group for full form semantics.
+- Prefix/suffix text should clarify units and format, not repeat label text.
+- For invalid state, apply field-level validation attributes (`aria-invalid`) on the control so group ring state reflects errors.
+
+## SSR and RSC notes
+
+`InputGroup` and slot components are client exports. Render form interactions from Client Components in App Router.
+
+## Styling and semantic tokens
+
+The group uses semantic tokens (`border-input`, `ring-ring`, `bg-input`, `text-muted-foreground`). For custom styles, stay in token space and avoid raw palette classes.
+
+## Troubleshooting
+
+- Button steals input focus unexpectedly:
+  This is expected for actionable controls. For passive addons, prefer `InputGroup.Text`.
+- Disabled visuals do not apply:
+  Set disabled state on control elements (`InputGroup.Input disabled`) and/or `data-disabled="true"` on root when needed.
+- Border ring appears twice:
+  Avoid additional outer wrappers with their own focus ring around the same field.
+
+## Related links
+
+- [Input](/docs/components/input)
+- [Textarea](/docs/components/textarea)
+- [Field](/docs/components/field)

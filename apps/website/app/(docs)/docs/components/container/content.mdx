@@ -1,0 +1,112 @@
+---
+title: "Container"
+description: "Use Container from @kuzenbo/core to apply consistent max-width and horizontal gutters across app sections."
+section: "components"
+package: "core"
+status: "stable"
+order: 28
+surface: "component"
+seoTitle: "Container | Kuzenbo Docs"
+seoDescription: "Container layout contract for @kuzenbo/core, including max-width behavior, gutters, and override strategies."
+ogImage: "/docs-og/components/container"
+ogImageAlt: "Container documentation"
+aliases:
+  - "/docs/components/layout/container"
+---
+
+## Overview
+
+`Container` is the shared width wrapper for page-level layout alignment. It applies:
+
+- centered layout (`mx-auto`)
+- full-width behavior (`w-full`)
+- default max width (`max-w-[86rem]`)
+- responsive gutters (`px-4 sm:px-6 lg:px-8`)
+
+Use it to keep sections aligned to the same content column.
+
+Do not use it as a spacing utility for vertical rhythm. Pair it with section-level padding/margins as needed.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Container } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Container } from "@kuzenbo/core";
+
+export function MarketingSection() {
+  return (
+    <section className="py-10">
+      <Container>
+        <h2 className="text-xl font-semibold">Release notes</h2>
+        <p className="mt-2 text-muted-foreground">
+          Weekly changes from the platform team.
+        </p>
+      </Container>
+    </section>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Container } from "@kuzenbo/core";
+
+export function ReadingWidthSection() {
+  return (
+    <section className="bg-muted/30 py-12">
+      <Container className="max-w-3xl">
+        <article className="rounded-lg border border-border bg-card p-6 text-card-foreground">
+          <h3 className="text-lg font-medium">Design handoff checklist</h3>
+          <p className="mt-2 text-muted-foreground">
+            This section narrows the default container width for long-form text.
+          </p>
+        </article>
+      </Container>
+    </section>
+  );
+}
+```
+
+## API Notes
+
+- `Container` accepts `ContainerProps = ComponentProps<"div">`.
+- `className` is merged with default width and gutter classes.
+- Component sets `data-slot="container"` for targeting in tests or style overrides.
+
+## Accessibility
+
+`Container` is layout-only and renders a `div`. It does not add landmark semantics.
+
+Wrap it inside semantic elements (`main`, `section`, `nav`, `footer`) when document structure matters.
+
+## SSR and RSC
+
+`Container` has no client-only behavior and is safe in Server Components.
+
+## Styling and Semantic Tokens
+
+`Container` does not apply color tokens directly. Keep color and typography decisions on child surfaces (`bg-card`, `text-foreground`, `border-border`, `text-muted-foreground`).
+
+## Troubleshooting
+
+- Content still spans too wide: confirm you did not override with `max-w-none` upstream.
+- Gutters seem missing on mobile: check for child elements with negative margins that cancel padding.
+- Full-bleed backgrounds are clipped: place background styles on an outer wrapper, then nest `Container` inside.
+
+## Related Docs
+
+- [Layout and Spacing](/docs/foundations/layout-and-spacing)
+- [Spacer](/docs/components/spacer)
+- [Card](/docs/components/card)

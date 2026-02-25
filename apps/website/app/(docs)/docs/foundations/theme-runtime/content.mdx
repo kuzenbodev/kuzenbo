@@ -1,0 +1,109 @@
+---
+title: "Theme Runtime"
+description: "Reference for @kuzenbo/theme runtime APIs, bootstrap behavior, and persistence strategy."
+section: "foundations"
+package: "theme"
+status: "stable"
+order: 14
+surface: "utility"
+seoTitle: "Theme Runtime | Kuzenbo Docs"
+seoDescription: "Understand cookie and storage reconciliation, bootstrap script behavior, and runtime theming APIs."
+ogImage: "/docs-og/foundations/theme-runtime"
+ogImageAlt: "Theme Runtime documentation"
+---
+
+## Runtime responsibilities
+
+`@kuzenbo/theme` owns theme state resolution and prepaint application. It is responsible for:
+
+- resolving the initial preference (`light`, `dark`, or default from system),
+- syncing cookie and local storage when they disagree,
+- setting both `document.documentElement.classList` and `color-scheme`,
+- exposing a client provider for runtime theme toggles.
+
+## Bootstrap algorithm
+
+At startup, the runtime checks:
+
+1. cookie theme (`kuzenbo-theme`)
+2. local storage (`kuzenbo-theme`), then legacy storage key (`theme`)
+3. system preference fallback (`prefers-color-scheme`)
+
+`resolveThemeBootstrapPlan` returns:
+
+- `resolvedTheme`
+- `shouldWriteCookie`
+- `shouldWriteStorage`
+
+This makes reconciliation explicit and testable.
+
+## API map
+
+- `getThemeBootstrapScript`: returns inline JS that applies theme before hydration.
+- `ThemeBootstrapScript`: React wrapper for injecting bootstrap script in server layouts.
+- `ThemeProvider`: `next-themes` wrapper configured for Kuzenbo defaults (`attribute="class"`, system-enabled, transition-safe).
+- `applyThemeToRootElement`: imperative helper for direct runtime updates.
+- `parseThemePreference`: validates persisted values (`light` or `dark` only).
+- `getThemeBootstrapScriptNonce`: reads nonce from `THEME_BOOTSTRAP_NONCE`.
+
+## Integration pattern
+
+```tsx
+// app/layout.tsx
+import type { ReactNode } from "react";
+
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeBootstrapScript />
+      </head>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+```tsx
+// app/theme-actions.ts
+"use client";
+
+import {
+  applyThemeToRootElement,
+  persistThemeCookie,
+  type ThemePreference,
+} from "@kuzenbo/theme";
+
+export function applyThemePreference(theme: ThemePreference) {
+  applyThemeToRootElement(theme);
+  persistThemeCookie(theme);
+}
+```
+
+## Migration and compatibility
+
+- Legacy storage key support is built in (`LEGACY_THEME_STORAGE_KEY = "theme"`).
+- If older apps stored theme under `theme`, bootstrap can still recover and resync to `kuzenbo-theme`.
+- Keep cookie key and storage key unchanged unless you are planning a coordinated migration.
+
+## Accessibility and UX
+
+- `color-scheme` is set with the resolved theme to align browser-native controls.
+- Do not animate full-page color transitions during hydration; `ThemeProvider` already disables transition glitches on theme change.
+- Validate contrast for semantic tokens in both modes.
+
+## Testing guidance
+
+- Test parser strictness (`parseThemePreference` rejects invalid values).
+- Test reconciliation priority (cookie over storage, storage over fallback).
+- Test script generation with explicit default theme overrides.
+
+## Related docs
+
+- [Dark mode](/docs/foundations/dark-mode)
+- [Theming foundation](/docs/foundations/theming)
+- [Server Components guidance](/docs/foundations/server-components)

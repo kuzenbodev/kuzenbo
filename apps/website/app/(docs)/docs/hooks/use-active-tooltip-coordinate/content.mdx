@@ -1,0 +1,115 @@
+---
+title: "useActiveTooltipCoordinate"
+description: "Read the active tooltip x/y coordinate from Recharts chart state so custom overlays can follow pointer interaction."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 2
+surface: "hook"
+seoTitle: "useActiveTooltipCoordinate | Kuzenbo Docs"
+seoDescription: "Read the active tooltip x/y coordinate from Recharts chart state so custom overlays can follow pointer interaction."
+ogImage: "/docs-og/hooks/use-active-tooltip-coordinate"
+ogImageAlt: "useActiveTooltipCoordinate documentation"
+---
+
+## Overview
+
+`useActiveTooltipCoordinate` re-exports Recharts tooltip state for the current chart. It returns the active tooltip coordinate as `{ x, y }`, or `undefined` when no point is active.
+
+## What It Reads and Writes
+
+- Reads: tooltip coordinate from Recharts chart context.
+- Writes: nothing. This hook is read-only.
+
+## When to Use
+
+- Build custom overlays that need the same pointer location as the tooltip.
+- Align external UI (for example labels or indicators) with the active chart point.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import { useActiveTooltipCoordinate } from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import {
+  Chart,
+  type ChartConfig,
+  useActiveTooltipCoordinate,
+} from "@kuzenbo/charts";
+import { Line, LineChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", revenue: 172000 },
+  { month: "Feb", revenue: 186000 },
+  { month: "Mar", revenue: 201000 },
+];
+
+const config: ChartConfig = {
+  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+};
+
+const TooltipCoordinateReadout = () => {
+  const coordinate = useActiveTooltipCoordinate();
+
+  if (!coordinate) {
+    return <p className="text-sm text-muted-foreground">Hover the chart.</p>;
+  }
+
+  return (
+    <p className="text-sm text-foreground">
+      {`Tooltip x=${Math.round(coordinate.x)}, y=${Math.round(coordinate.y)}`}
+    </p>
+  );
+};
+
+export function TooltipCoordinateExample() {
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <LineChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Line dataKey="revenue" dot={false} stroke="var(--color-revenue)" />
+        <Chart.Tooltip content={<Chart.TooltipContent />} />
+      </LineChart>
+      <TooltipCoordinateReadout />
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contract
+
+- Type: `Coordinate | undefined`
+- `undefined` means either:
+  - the tooltip is not active yet, or
+  - the hook is called outside chart context.
+- When defined, `x` and `y` are numeric coordinates in chart-local space.
+
+## Caveats
+
+- Recharts supports one tooltip interaction state per chart; avoid multiple competing tooltips in one chart tree.
+- Coordinates are relative to the chart surface, not page-level absolute coordinates.
+
+## SSR and RSC Notes
+
+- Use this hook in Client Components only.
+- Do not call it from React Server Components.
+
+## Related Docs
+
+- [useActiveTooltipLabel](/docs/hooks/use-active-tooltip-label)
+- [useActiveTooltipDataPoints](/docs/hooks/use-active-tooltip-data-points)
+- [useIsTooltipActive](/docs/hooks/use-is-tooltip-active)
+- [Chart](/docs/components/chart)

@@ -1,0 +1,106 @@
+---
+title: "Navigation Patterns"
+description: "Choose and compose Kuzenbo navigation primitives for global IA, local context, and app command flows."
+section: "patterns"
+package: "core"
+status: "stable"
+order: 5
+surface: "guide"
+seoTitle: "Navigation Patterns | Kuzenbo Docs"
+seoDescription: "Practical navigation architecture with NavigationMenu, Breadcrumb, Menubar, Tabs, Sidebar, and Pagination."
+ogImage: "/docs-og/patterns/navigation-patterns"
+ogImageAlt: "Navigation Patterns documentation"
+aliases:
+  - "/docs/features/navigation-patterns"
+---
+
+## Pick navigation by scope
+
+| Primitive        | Scope                     | Best use                                     |
+| ---------------- | ------------------------- | -------------------------------------------- |
+| `NavigationMenu` | Site or product IA        | Top-level discovery and grouped destinations |
+| `Breadcrumb`     | Current location          | Hierarchical context and backtracking        |
+| `Menubar`        | Application commands      | Desktop-like action menus (File, Edit, View) |
+| `Tabs`           | Local view switching      | Peer content areas on one screen             |
+| `Sidebar`        | Persistent app navigation | Workspace navigation and grouped sections    |
+| `Pagination`     | Long collections          | Explicit page traversal in data-heavy views  |
+
+## Composition example: global plus local
+
+```tsx
+import {
+  Breadcrumb,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@kuzenbo/core";
+
+export function DocsHeader() {
+  return (
+    <header className="grid gap-4">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Guides</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuLink href="/docs/foundations">
+                Foundations
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/docs/patterns">
+                Patterns
+              </NavigationMenuLink>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="/docs/components">
+              Components
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+
+      <Breadcrumb>
+        <Breadcrumb.List>
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="/docs">Docs</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator />
+          <Breadcrumb.Item>
+            <Breadcrumb.Page>Navigation Patterns</Breadcrumb.Page>
+          </Breadcrumb.Item>
+        </Breadcrumb.List>
+      </Breadcrumb>
+    </header>
+  );
+}
+```
+
+## Accessibility defaults to preserve
+
+- `Breadcrumb` renders navigation semantics with a discoverable landmark.
+- `Tabs` exposes keyboard arrow navigation and active tab semantics.
+- `Menubar` and `NavigationMenu` depend on proper trigger/content composition for assistive technology.
+
+Do not replace these primitives with plain `div` structures if keyboard and aria behavior matters.
+
+## Responsive strategy
+
+- Keep `NavigationMenu` content concise on small screens.
+- Use `Sidebar` collapse patterns for dense app navigation.
+- Combine `Tabs` with `Pagination` carefully: tabs switch context, pagination traverses data within context.
+
+## Performance and testing
+
+- Lazy-load large submenu content when needed.
+- Keep menu item trees shallow for faster first interaction.
+- Test with user interactions (`click`, keyboard arrows, tab focus) and role-based assertions (`navigation`, `menuitem`, `tab`).
+
+## Related docs
+
+- [NavigationMenu component](/docs/components/navigation-menu)
+- [Breadcrumb component](/docs/components/breadcrumb)
+- [Menubar component](/docs/components/menubar)
+- [Tabs component](/docs/components/tabs)

@@ -1,0 +1,145 @@
+---
+title: "Area Chart"
+description: "Build multi-series area visualizations with legend highlighting, gradient fills, stacking modes, and dual-axis support."
+section: "components"
+package: "charts"
+status: "stable"
+order: 8
+surface: "component"
+seoTitle: "Area Chart | Kuzenbo Docs"
+seoDescription: "Use AreaChart from @kuzenbo/charts for default, stacked, percent, and split area visualizations with production-ready composition."
+ogImage: "/docs-og/components/area-chart"
+ogImageAlt: "Area Chart documentation"
+---
+
+## Overview
+
+`AreaChart` is the complete cartesian area preset from `@kuzenbo/charts`.
+Use it when you need production chart behavior without rebuilding legend, tooltip, axis formatting, and responsive wiring from scratch.
+
+This page is focused on the prebuilt `AreaChart` API. For lower-level chart primitives, use `Chart`, `ChartTooltip`, and related exports.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { AreaChart } from "@kuzenbo/charts";
+```
+
+## Basic Usage
+
+```tsx
+import { AreaChart } from "@kuzenbo/charts";
+
+const revenueData = [
+  { month: "Jan", newMrr: 86000, retainedMrr: 73000 },
+  { month: "Feb", newMrr: 91200, retainedMrr: 77000 },
+  { month: "Mar", newMrr: 97100, retainedMrr: 81400 },
+];
+
+const revenueSeries = [
+  { name: "newMrr", label: "New MRR", color: "var(--color-chart-1)" },
+  {
+    name: "retainedMrr",
+    label: "Retained MRR",
+    color: "var(--color-chart-3)",
+  },
+] as const;
+
+export function AreaChartBasicExample() {
+  return (
+    <AreaChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={revenueData}
+      dataKey="month"
+      series={revenueSeries}
+      valueFormatter={(value) => `$${value.toLocaleString()}`}
+      withGradient
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { AreaChart } from "@kuzenbo/charts";
+
+const mixData = [
+  { quarter: "Q1", product: 44, services: 32, support: 24 },
+  { quarter: "Q2", product: 46, services: 31, support: 23 },
+  { quarter: "Q3", product: 48, services: 30, support: 22 },
+  { quarter: "Q4", product: 50, services: 29, support: 21 },
+];
+
+const mixSeries = [
+  { name: "product", label: "Product", color: "var(--color-chart-1)" },
+  { name: "services", label: "Services", color: "var(--color-chart-3)" },
+  { name: "support", label: "Support", color: "var(--color-chart-5)" },
+] as const;
+
+export function AreaChartPercentDualAxisExample() {
+  return (
+    <AreaChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={mixData}
+      dataKey="quarter"
+      rightYAxisProps={{ ticks: [0, 0.5, 1], width: 56, yAxisId: "mix-right" }}
+      series={mixSeries}
+      tooltipProps={{ defaultIndex: 2, trigger: "click" }}
+      type="percent"
+      withLegend
+      withRightYAxis
+      yAxisProps={{ ticks: [0, 0.5, 1], width: 56, yAxisId: "mix-left" }}
+    />
+  );
+}
+```
+
+## API Notes
+
+- `data`, `dataKey`, and `series` are required.
+- `type` controls stacking semantics: `default`, `stacked`, `percent`, `split`.
+- `areaChartProps` is the canonical Recharts pass-through. `chartProps` remains as a deprecated alias.
+- `withGradient`, `gradientStops`, `withDots`, `dotProps`, and `activeDotProps` control point and fill rendering.
+- `areaProps` accepts either one shared object or a callback `(series) => props` for per-series overrides.
+- `withRightYAxis` plus `rightYAxisProps` enables dual-axis layouts.
+- `enableLegendHighlight` is `true` by default; non-highlighted series are dimmed during legend hover.
+- Explicit `yAxisProps.tickFormatter` and `rightYAxisProps.tickFormatter` override inferred formatters.
+
+## Accessibility
+
+- Recharts `accessibilityLayer` is enabled in this preset.
+- Keep legend labels clear and domain-specific so screen-reader users can identify each series.
+- Use `referenceLines` labels when a threshold is business-critical.
+
+## SSR and RSC
+
+- Render chart usage in client components in Next.js (`"use client"`) because Recharts relies on browser runtime behavior.
+- Server components can still pass data down to a client chart boundary.
+
+## Styling and Tokens
+
+- Use semantic chart color variables for `series.color` (`var(--color-chart-1)`, `var(--color-chart-2)`, etc.).
+- Keep surrounding layout on semantic tokens (`bg-background`, `text-foreground`, `border-border`).
+- Avoid raw palette utilities so chart theming stays consistent across light/dark themes.
+
+## Troubleshooting
+
+- Percent mode not showing percent labels: use `type="percent"` and verify axis ticks are normalized (`0` to `1`).
+- Gradient fill missing: enable `withGradient` and provide valid `series.name` keys that match data fields.
+- Tooltip appears on wrong axis: align `series[].yAxisId` with `yAxisProps.yAxisId` and `rightYAxisProps.yAxisId`.
+- Custom series styling not applying: if using callback props, confirm the callback handles every series name.
+
+## Related Docs
+
+- [Line Chart](/docs/components/line-chart)
+- [Pie Chart](/docs/components/pie-chart)
+- [Charts Package](/docs/components/chart)
+- [Components Index](/docs/components)

@@ -1,0 +1,65 @@
+name: Docs Improvement
+description: Report missing, unclear, or incorrect documentation
+title: "[Docs]: "
+labels:
+  - documentation
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our docs. Clear reproduction paths and suggested wording are very helpful.
+
+  - type: input
+    id: page
+    attributes:
+      label: Docs Page or File
+      description: Which page/file needs updates?
+      placeholder: docs/contributors.md
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      options:
+        - Missing content
+        - Incorrect content
+        - Unclear wording
+        - Outdated information
+        - Broken link or example
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: What is wrong today?
+      description: Explain what a reader currently sees and why it is a problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed Improvement
+      description: Share exact wording, structure, or code examples if possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra-context
+    attributes:
+      label: Additional Context
+      description: Links, screenshots, or related issues.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I verified the issue still exists on the latest main branch.
+          required: true
+        - label: I searched for existing docs issues before filing this.
+          required: true

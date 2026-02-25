@@ -1,0 +1,109 @@
+---
+title: "Server Components"
+description: "Use Kuzenbo packages safely with Next.js Server Components and explicit client boundaries."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 11
+surface: "guide"
+seoTitle: "Server Components | Kuzenbo Docs"
+seoDescription: "Practical boundary patterns for combining Kuzenbo UI with Next.js server-first rendering."
+ogImage: "/docs-og/foundations/server-components"
+ogImageAlt: "Server Components documentation"
+aliases:
+  - "/docs/features/server-components"
+---
+
+## Why this matters
+
+`apps/website` uses Next.js App Router with `cacheComponents: true`. That setup rewards strict separation between server data work and client interactivity.
+
+Kuzenbo components can be rendered in server trees, but any interactive behavior still runs in client boundaries.
+
+## Boundary rules
+
+1. Fetch data in server components.
+2. Pass only serializable props into client components.
+3. Use hooks (`useState`, `useEffect`, Kuzenbo hooks) only in files marked with `"use client"`.
+4. Keep theme bootstrap in server layout and theme toggles in client leaves.
+
+## Recommended split
+
+```tsx
+// app/dashboard/page.tsx (server component)
+import { Card } from "@kuzenbo/core";
+
+import { DashboardClient } from "./dashboard-client";
+
+export default async function DashboardPage() {
+  const metrics = await fetch("https://example.com/api/metrics", {
+    next: { revalidate: 60 },
+  }).then((res) => res.json());
+
+  return (
+    <Card>
+      <Card.Header>
+        <Card.Title>Team dashboard</Card.Title>
+      </Card.Header>
+      <Card.Content>
+        <DashboardClient initialMetrics={metrics} />
+      </Card.Content>
+    </Card>
+  );
+}
+```
+
+```tsx
+// app/dashboard/dashboard-client.tsx (client component)
+"use client";
+
+import { useState } from "react";
+
+import { Button, Tabs } from "@kuzenbo/core";
+
+export function DashboardClient({
+  initialMetrics,
+}: {
+  initialMetrics: { total: number };
+}) {
+  const [count, setCount] = useState(initialMetrics.total);
+
+  return (
+    <Tabs defaultValue="summary">
+      <Tabs.List>
+        <Tabs.Trigger value="summary">Summary</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="summary">
+        <p>Total: {count}</p>
+        <Button onClick={() => setCount((value) => value + 1)}>
+          Increment
+        </Button>
+      </Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+## Theme and hydration notes
+
+- Render `ThemeBootstrapScript` in the root layout head to set class and `color-scheme` before paint.
+- Use `ThemeProvider` as the client boundary for runtime theme switching.
+- Keep `suppressHydrationWarning` on the root html element when theme classes can differ between server and client.
+
+## Performance guidance
+
+- Use cache and revalidation for server data (`next: { revalidate }`) instead of client polling by default.
+- Keep large interactive islands narrow. Move only the necessary subtree behind `"use client"`.
+- Avoid passing class name generator functions or non-serializable objects from server components into client components.
+
+## Testing guidance
+
+- Unit test client components that own interaction logic.
+- Integration test server pages for expected static content and serialized props.
+- Add regression tests when moving code across server/client boundaries to catch hydration warnings early.
+
+## Related docs
+
+- [Theme runtime](/docs/foundations/theme-runtime)
+- [Dark mode](/docs/foundations/dark-mode)
+- [Getting started with Next.js](/docs/getting-started/nextjs)

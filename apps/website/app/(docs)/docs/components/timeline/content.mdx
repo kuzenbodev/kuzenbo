@@ -1,0 +1,204 @@
+---
+title: "Timeline"
+description: "Compose chronological or step-based flows with orientation, status, and alternate layout variants."
+section: "components"
+package: "core"
+status: "stable"
+order: 82
+surface: "component"
+seoTitle: "Timeline | Kuzenbo Docs"
+seoDescription: "Use Timeline slots for milestones, process steps, and release progression views."
+ogImage: "/docs-og/components/timeline"
+ogImageAlt: "Timeline documentation"
+aliases:
+  - "/docs/components/display/timeline"
+---
+
+## Purpose and boundaries
+
+`Timeline` is a composable sequence primitive for milestones and process steps. It supports vertical or horizontal layouts, plus a two-sided alternate variant.
+
+Use it for:
+
+- Product release milestones
+- Multi-step workflows
+- Status-oriented progress views with current step highlighting
+
+Timeline provides structure and state styling. It does not manage step transitions by itself.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Timeline,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDescription,
+  TimelineDot,
+  TimelineHeader,
+  TimelineItem,
+  TimelineTime,
+  TimelineTitle,
+  timelineVariants,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Timeline } from "@kuzenbo/core";
+
+export function ReleaseTimeline() {
+  return (
+    <Timeline activeIndex={1}>
+      <Timeline.Item index={0}>
+        <Timeline.Dot />
+        <Timeline.Connector />
+        <Timeline.Content>
+          <Timeline.Header>
+            <Timeline.Title>Design freeze</Timeline.Title>
+            <Timeline.Time dateTime="2026-01-08">Jan 8, 2026</Timeline.Time>
+          </Timeline.Header>
+          <Timeline.Description>Component APIs finalized.</Timeline.Description>
+        </Timeline.Content>
+      </Timeline.Item>
+
+      <Timeline.Item index={1}>
+        <Timeline.Dot />
+        <Timeline.Connector />
+        <Timeline.Content>
+          <Timeline.Header>
+            <Timeline.Title>QA pass</Timeline.Title>
+            <Timeline.Time dateTime="2026-01-12">Jan 12, 2026</Timeline.Time>
+          </Timeline.Header>
+          <Timeline.Description>
+            Regression suite is green.
+          </Timeline.Description>
+        </Timeline.Content>
+      </Timeline.Item>
+    </Timeline>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+import { Timeline } from "@kuzenbo/core";
+
+export function AlternateRoadmapTimeline() {
+  return (
+    <Timeline activeIndex={2} orientation="vertical" variant="alternate">
+      {[
+        {
+          date: "2026-02-01",
+          label: "Research",
+          note: "Requirements finalized",
+        },
+        {
+          date: "2026-02-08",
+          label: "Implementation",
+          note: "Core features shipped",
+        },
+        { date: "2026-02-14", label: "Launch", note: "General availability" },
+      ].map((item, index) => (
+        <Timeline.Item index={index} key={item.label}>
+          <Timeline.Dot />
+          <Timeline.Connector />
+          <Timeline.Content>
+            <Timeline.Header>
+              <Timeline.Title>{item.label}</Timeline.Title>
+              <Timeline.Time dateTime={item.date}>{item.date}</Timeline.Time>
+            </Timeline.Header>
+            <Timeline.Description>{item.note}</Timeline.Description>
+          </Timeline.Content>
+        </Timeline.Item>
+      ))}
+    </Timeline>
+  );
+}
+```
+
+## API reference
+
+### `Timeline`
+
+- Root ordered list (`ol`) for sequence rendering.
+- Props:
+  - `orientation?: "vertical" | "horizontal"`
+  - `variant?: "default" | "alternate"`
+  - `activeIndex?: number` to compute `completed`, `active`, `pending` item states
+  - `dir?: "ltr" | "rtl"`
+
+### `TimelineItem`
+
+- Sequence item wrapper.
+- Requires `index: number`.
+- Applies `aria-current="step"` when item status is active.
+
+### `TimelineDot`
+
+Status marker slot (pending/active/completed styles).
+
+### `TimelineConnector`
+
+Line segment between items. Hidden on last item unless forced.
+
+### `TimelineContent`
+
+Body region for title/time/description content.
+
+### `TimelineHeader`
+
+Grouped heading region for title + time.
+
+### `TimelineTitle`
+
+Primary label slot.
+
+### `TimelineTime`
+
+`time` element slot. Pass `dateTime` for semantic time metadata.
+
+### `TimelineDescription`
+
+Secondary descriptive text slot.
+
+### `timelineVariants`
+
+Tailwind Variants helper for root-level timeline styling contracts.
+
+## Accessibility notes
+
+- Keep `TimelineTime` `dateTime` values machine-readable.
+- `activeIndex` marks current step via `aria-current="step"` on the matching item.
+- Do not communicate status only by color. Include explicit titles and descriptions.
+
+## SSR and RSC notes
+
+- Timeline is safe for server-rendered content and static milestone pages.
+- If milestone state comes from client data, compute `activeIndex` in a client parent and pass it down.
+
+## Styling and tokens
+
+- Timeline slots use semantic tokens for status and text (`bg-primary`, `border-border`, `text-muted-foreground`).
+- Extend via slot class names and `timelineVariants` instead of raw palette utilities.
+
+## Troubleshooting
+
+- Status styling is wrong: verify each `Timeline.Item` has the correct zero-based `index`.
+- Alternate layout is misaligned: use `variant="alternate"` on the root and keep slot order consistent.
+- Connector missing unexpectedly: last item hides connector by default.
+
+## Related docs
+
+- [Card](/docs/components/card)
+- [Typography](/docs/components/typography)
+- [Separator](/docs/components/separator)
+- [Components index](/docs/components)

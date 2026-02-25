@@ -1,0 +1,88 @@
+---
+title: "Performance"
+description: "Performance guidance for Kuzenbo package consumption, runtime setup, and regression prevention."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 9
+surface: "guide"
+seoTitle: "Performance | Kuzenbo Docs"
+seoDescription: "Production performance guidance for Kuzenbo apps, from imports and caching to UI composition."
+ogImage: "/docs-og/foundations/performance"
+ogImageAlt: "Performance foundation guidance"
+aliases:
+  - "/docs/features/performance"
+---
+
+## Performance Model
+
+Kuzenbo performance is a system concern across package exports, runtime configuration, and UI composition decisions.
+
+## Baseline App Setup
+
+Use a single global setup for theme and optional baseline styles.
+
+```tsx
+import type { ReactNode } from "react";
+
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeBootstrapScript />
+      </head>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+## High-Impact Rules
+
+1. Import from the narrowest surface that matches your need.
+2. Keep expensive transforms out of render and memoize stable chart/table config.
+3. Keep client components small and push data fetching to server components when possible.
+4. Avoid recreating formatter functions and large object literals in hot paths.
+5. Keep overlays and animations respectful of reduced-motion preferences.
+
+## Package-Specific Notes
+
+- `@kuzenbo/charts`: stabilize `data`, `series`, and formatter references before passing them to prebuilt charts.
+- `@kuzenbo/datatable`: memoize column definitions and avoid re-instantiating rows in render.
+- `@kuzenbo/theme`: keep prepaint bootstrap active to avoid theme flicker and color-scheme jumps.
+- `@kuzenbo/styles`: import once at the app shell level; do not repeatedly import in leaf components.
+
+## Accessibility and Performance Together
+
+Fast UI is not enough if interaction is unclear. Keep these paired checks:
+
+- Keyboard path remains predictable after lazy loading or conditional rendering.
+- Tooltip and dialog content remain readable with semantic colors in light and dark themes.
+- Motion-heavy surfaces degrade gracefully when reduced motion is enabled.
+
+## Consumer Verification Checklist
+
+Before shipping performance-sensitive changes in your app:
+
+- Run your app's normal build and test pipeline.
+- Validate key flows in realistic screen sizes and slow-network scenarios.
+- Compare before/after rendering behavior in the UI surfaces you changed.
+
+## Troubleshooting
+
+- If bundle size jumps after a change, audit import paths first and remove broad root imports that are not needed.
+- If you see theme flicker, confirm `ThemeBootstrapScript` runs before client hydration.
+- If chart/table views feel slow, memoize computed props and avoid recomputing large datasets in render.
+
+## Related Docs
+
+- [Server Components](/docs/foundations/server-components)
+- [Theming](/docs/foundations/theming)
+- [Styles Baseline](/docs/foundations/styles-baseline)
+- [Testing](/docs/foundations/testing)

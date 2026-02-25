@@ -1,0 +1,87 @@
+---
+title: "useChartWidth"
+description: "Read the current chart container width from Recharts layout state inside chart context."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 10
+surface: "hook"
+seoTitle: "useChartWidth | Kuzenbo Docs"
+seoDescription: "Use useChartWidth to adapt chart UI behavior to available horizontal space in Recharts context."
+ogImage: "/docs-og/hooks/use-chart-width"
+ogImageAlt: "useChartWidth documentation"
+---
+
+## What this hook does
+
+`useChartWidth` is a Recharts layout hook re-exported by `@kuzenbo/charts`.
+It returns the chart width in pixels from chart state.
+
+## Reads and writes
+
+- Reads: chart width from Recharts layout state.
+- Writes: nothing. This hook is read-only.
+
+## When to use it
+
+- Collapse labels when the chart becomes narrow.
+- Toggle dense axis ticks at mobile widths.
+- Size custom overlays to the current chart container width.
+
+## Import
+
+```tsx
+import { useChartWidth } from "@kuzenbo/charts";
+```
+
+## Example: width-driven tick density
+
+```tsx
+"use client";
+
+import { useChartWidth } from "@kuzenbo/charts";
+
+export function WidthAwareTickStrategy() {
+  const chartWidth = useChartWidth();
+
+  if (chartWidth === undefined) {
+    return null;
+  }
+
+  const sparseTicks = chartWidth < 480;
+
+  return (
+    <p className="text-sm text-muted-foreground">
+      Tick strategy: {sparseTicks ? "sparse" : "full"} ({chartWidth}px)
+    </p>
+  );
+}
+```
+
+## Example: fallback value for detached previews
+
+```tsx
+const chartWidth = useChartWidth();
+const effectiveWidth = chartWidth ?? 640;
+```
+
+## Return contract and edge cases
+
+- Type: `number | undefined`
+- `undefined` when used outside chart context.
+- `undefined` before layout size is available.
+- Width includes the full chart container area, not only the plot area.
+- Value is stable against data zoom level changes.
+
+## SSR and RSC caveats
+
+- Use in Client Components only.
+- In App Router, keep width-driven rendering inside client boundaries.
+- Branch for `undefined` before running width-dependent math.
+
+## Related docs
+
+- [useChartHeight](/docs/hooks/use-chart-height)
+- [usePlotArea](/docs/hooks/use-plot-area)
+- [useOffset](/docs/hooks/use-offset)
+- [Hooks Index](/docs/hooks)

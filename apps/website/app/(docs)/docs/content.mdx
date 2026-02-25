@@ -1,0 +1,71 @@
+---
+title: "Documentation"
+description: "Kuzenbo docs for developers — React UI library with design tokens, dark mode, and modular packages."
+section: "overview"
+package: "core"
+status: "stable"
+order: 0
+surface: "guide"
+seoTitle: "Documentation | Kuzenbo Docs"
+seoDescription: "Kuzenbo docs — React UI library with design tokens, dark mode, and modular packages. Setup guides, components, and API reference."
+ogImage: "/docs-og"
+ogImageAlt: "Kuzenbo documentation home"
+---
+
+## Welcome
+
+Kuzenbo is a React UI library built on Base UI and Tailwind, with design tokens, dark mode out of the box, and modular packages. Install only what you need and build fast.
+In almost all apps, install `@kuzenbo/theme` alongside the Kuzenbo UI packages you use.
+
+## Quick links
+
+- [Installation](/docs/getting-started/installation) — add Kuzenbo to your project
+- [Quickstart](/docs/getting-started/quickstart) — build your first page in minutes
+- [Next.js](/docs/getting-started/nextjs) — set up with App Router
+- [Foundations](/docs/foundations) — design tokens, theming, accessibility
+- [Components](/docs/components) and [Hooks](/docs/hooks) — browse the API
+- [Showcase](/showcase) — inspect live compositions
+
+## What's included
+
+Kuzenbo ships as separate packages so you can keep bundles lean:
+
+- **core** — buttons, inputs, dialogs, menus, forms, layout
+- **charts** — prebuilt charts + Recharts primitives
+- **date** — calendar and date pickers
+- **notifications** — toast system
+- **ai** — AI widget and session hooks
+- **datatable** — table primitives with TanStack
+- **theme** — tokens and light/dark runtime
+- **styles** — optional global baseline CSS
+
+## Quick setup
+
+Add theme CSS and the provider to your root. For Next.js App Router:
+
+```tsx
+import type { ReactNode } from "react";
+
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeBootstrapScript />
+      </head>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+## Need help?
+
+- [Support](/docs/reference/support)
+- [FAQ](/docs/reference/faq)
+- [Contributing](https://github.com/DobroslavRadosavljevic/kuzenbo-mono/blob/main/CONTRIBUTING.md)

@@ -1,0 +1,144 @@
+---
+title: "Rating"
+description: "Read-only and editable star ratings with fractional display in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 64
+surface: "component"
+seoTitle: "Rating | Kuzenbo Docs"
+seoDescription: "Read-only and editable star ratings with fractional display in @kuzenbo/core."
+ogImage: "/docs-og/components/rating"
+ogImageAlt: "Rating documentation"
+aliases:
+  - "/docs/components/inputs/rating"
+---
+
+## Rating at a Glance
+
+`Rating` renders a star scale with optional editing and numeric readout.
+It supports whole and fractional display values, size variants, and controlled state updates via `onRatingChange`.
+
+Use it for reviews and quality signals.
+For strict numeric input workflows, prefer a field component.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Rating,
+  RatingStar,
+  ratingValueVariants,
+  ratingVariants,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Rating } from "@kuzenbo/core";
+
+export function ProductRating() {
+  return <Rating rating={4.5} showValue />;
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Rating } from "@kuzenbo/core";
+
+export function EditableRating() {
+  const [rating, setRating] = useState(3);
+
+  return (
+    <div className="space-y-2">
+      <Rating
+        editable
+        maxRating={10}
+        onRatingChange={setRating}
+        rating={rating}
+        showValue
+        size="lg"
+      />
+      <p className="text-sm text-muted-foreground">
+        Current score: {rating.toFixed(1)}
+      </p>
+    </div>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Rating` now follows the shared `UISize` scale:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for rating surfaces:
+
+- Star icon box size.
+- Gap between stars.
+- Numeric value text size (`showValue` mode).
+
+Precedence rule:
+
+`Rating.Star size ?? Rating size ?? "md"`
+
+```tsx
+// Before
+<Rating rating={4.5} size="md" />
+
+// After
+<Rating rating={4.5} size="md" />
+```
+
+## API Details
+
+- Required prop: `rating` (`number`).
+- Optional props:
+  `maxRating` (default `5`), `showValue` (default `false`), `editable` (default `false`), `onRatingChange`, `size` (`xs | sm | md | lg | xl`), `starClassName`.
+- Fractional values are rendered visually (half-star state).
+- `Rating.Star` is exposed for custom composition scenarios.
+- `ratingVariants` and `ratingValueVariants` expose variant contracts.
+
+## Accessibility
+
+- Each star button exposes an accessible label (`Filled`, `Half-filled`, `Empty`).
+- Keep surrounding context text so users understand what the score represents.
+- When editable, place the control near a clear heading/label.
+
+## SSR and RSC Notes
+
+- `Rating` is client-side.
+- Server components can pass initial numeric values, but interaction state must live in client boundaries.
+
+## Styling and Tokens
+
+- Root/value text align with semantic typography classes.
+- Use `size` for consistent spacing before custom `className` overrides.
+- If you override star visuals via `starClassName`, keep contrast and active-state clarity.
+
+## Troubleshooting
+
+- If clicks do nothing, ensure `editable` is set and `onRatingChange` is provided.
+- If value text is missing, set `showValue`.
+- If fractional display appears wrong, confirm `rating` is a number and not a string.
+
+## Related Docs
+
+- [Input](/docs/components/input)
+- [Number Field](/docs/components/number-field)
+- [Accessibility](/docs/foundations/accessibility)

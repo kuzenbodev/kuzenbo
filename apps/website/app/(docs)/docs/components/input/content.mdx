@@ -1,0 +1,296 @@
+---
+title: "Input"
+description: "Use Input, InputGroup, and InputOTP from @kuzenbo/core for standard fields, add-on compositions, and verification code entry."
+section: "components"
+package: "core"
+status: "stable"
+order: 41
+surface: "component"
+seoTitle: "Input | Kuzenbo Docs"
+seoDescription: "Source-grounded Input docs for @kuzenbo/core, covering plain fields, InputGroup composition, and OTP slot patterns."
+ogImage: "/docs-og/components/input"
+ogImageAlt: "Input documentation"
+aliases:
+  - "/docs/components/inputs/input"
+---
+
+## Overview
+
+This surface covers three related input primitives:
+
+- `Input` for standard single-line fields
+- `InputGroup` for add-ons, prefixed text, and inline controls
+- `InputOTP` for segmented one-time-code entry
+
+Use `Input` when plain field semantics are enough.
+
+Use `InputGroup` when you need tightly integrated controls (prefix/suffix, inline button, textarea variation) that should share one visual boundary.
+
+Use `InputOTP` for fixed-length verification flows where each character is presented in a slot.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@kuzenbo/core";
+```
+
+## Global Kuzenbo Provider
+
+Use `KuzenboProvider` once at the app root to set global defaults for size, radius, motion preference, and component-level `defaultProps`.
+
+`size` precedence stays:
+
+`explicit component size ?? nearest local context size ?? provider component default ?? global provider default ?? "md"`
+
+```tsx
+import type { ReactNode } from "react";
+
+import { KuzenboProvider } from "@kuzenbo/core/provider";
+import { ThemeProvider } from "@kuzenbo/theme";
+
+export function AppRoot({ children }: { children: ReactNode }) {
+  return (
+    <ThemeProvider>
+      <KuzenboProvider
+        components={{
+          Input: {
+            defaultProps: {
+              size: "sm",
+            },
+          },
+        }}
+        defaultRadius="0.75rem"
+        defaultSize="lg"
+        reducedMotion
+      >
+        {children}
+      </KuzenboProvider>
+    </ThemeProvider>
+  );
+}
+```
+
+`KuzenboProvider` should wrap your app root. Migrated UI components throw an explicit error when provider context is missing.
+
+## Global Size Switch Playground
+
+Use this pattern in docs/playgrounds to verify end-to-end density switching with a single provider value.
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Button, Input } from "@kuzenbo/core";
+import { KuzenboProvider, type UISize } from "@kuzenbo/core/provider";
+import { ThemeProvider } from "@kuzenbo/theme";
+
+const sizeOptions: UISize[] = ["xs", "sm", "md", "lg", "xl"];
+
+export function GlobalSizePlayground() {
+  const [size, setSize] = useState<UISize>("md");
+
+  return (
+    <ThemeProvider>
+      <KuzenboProvider defaultSize={size}>
+        <div className="grid gap-3">
+          <label className="grid gap-1.5">
+            <span className="text-sm font-medium">Global size</span>
+            <select
+              className="h-9 rounded-md border border-input bg-background px-3 text-sm"
+              onChange={(event) => setSize(event.target.value as UISize)}
+              value={size}
+            >
+              {sizeOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <Input placeholder="Inherits global size" />
+          <Button>Inherits global size</Button>
+        </div>
+      </KuzenboProvider>
+    </ThemeProvider>
+  );
+}
+```
+
+## Basic Example
+
+```tsx
+import { Input } from "@kuzenbo/core";
+
+export function EmailField() {
+  return (
+    <label className="grid gap-2">
+      <span className="text-sm font-medium">Email</span>
+      <Input autoComplete="email" placeholder="you@example.com" type="email" />
+    </label>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { InputGroup, InputOTP } from "@kuzenbo/core";
+
+export function CompositeInputExamples() {
+  return (
+    <div className="grid gap-4">
+      <InputGroup>
+        <InputGroup.Addon align="inline-start">
+          <InputGroup.Text>https://</InputGroup.Text>
+        </InputGroup.Addon>
+        <InputGroup.Input placeholder="docs.kuzenbo.com" />
+        <InputGroup.Addon align="inline-end">
+          <InputGroup.Button>Open</InputGroup.Button>
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputOTP maxLength={6}>
+        <InputOTP.Group>
+          <InputOTP.Slot index={0} />
+          <InputOTP.Slot index={1} />
+          <InputOTP.Slot index={2} />
+        </InputOTP.Group>
+        <InputOTP.Separator />
+        <InputOTP.Group>
+          <InputOTP.Slot index={3} />
+          <InputOTP.Slot index={4} />
+          <InputOTP.Slot index={5} />
+        </InputOTP.Group>
+      </InputOTP>
+    </div>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Input` and `InputGroup` use the shared `UISize` scale:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: legacy `size='default'` becomes `size="md"`
+
+Family-specific metrics for this surface:
+
+- Field height (`h-*`) controls physical control height.
+- Field text (`text-*`) controls readable density across tokens.
+- Grouped slots (`InputGroup.Input`, `.Button`, `.Text`, `.Textarea`) stay on the same size family by default.
+
+Precedence rule for grouped controls:
+
+`explicit child size ?? InputGroup size ?? global provider default ?? "md"`
+
+Compact-control exception: when mixing `Input` with `Checkbox`/`RadioGroup.Item`/`Switch`, do not force compact controls to input heights. Keep compact controls on their own visual + hit-target scale.
+
+```tsx
+import { Input, InputGroup } from "@kuzenbo/core";
+
+export function InputSizes() {
+  return (
+    <div className="grid gap-3">
+      <Input placeholder="Standalone input" size="md" />
+
+      <InputGroup size="xl">
+        <InputGroup.Addon align="inline-start">
+          <InputGroup.Text>https://</InputGroup.Text>
+        </InputGroup.Addon>
+        <InputGroup.Input placeholder="inherits xl" />
+        <InputGroup.Addon align="inline-end">
+          <InputGroup.Button>Open</InputGroup.Button>
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputGroup size="xl">
+        <InputGroup.Input placeholder="child override to sm" size="sm" />
+      </InputGroup>
+    </div>
+  );
+}
+```
+
+Migration example:
+
+```tsx
+// Before
+const legacySize = "default";
+<Input size={legacySize} />
+
+// After
+<Input size="md" />
+```
+
+## API Notes
+
+- `Input` wraps Base UI input semantics and supports regular `input` props.
+- `Input` supports `size` tokens (`xs | sm | md | lg | xl`).
+- Use `htmlSize` when you need the native HTML input width attribute (`<input size={...}>`).
+- `InputGroup` exposes both named and namespace access:
+  - `InputGroupAddon` / `InputGroup.Addon`
+  - `InputGroupButton` / `InputGroup.Button`
+  - `InputGroupInput` / `InputGroup.Input`
+  - `InputGroupText` / `InputGroup.Text`
+  - `InputGroupTextarea` / `InputGroup.Textarea`
+- `InputGroup` supports the same `size` tokens and cascades to group slots by default.
+- `InputGroupAddon` supports `align` values:
+  - `inline-start`
+  - `inline-end`
+  - `block-start`
+  - `block-end`
+- `InputOTP` composes segmented slots and includes `Group`, `Separator`, and `Slot` helpers.
+
+## Accessibility
+
+- Always pair fields with visible labels or `aria-label`.
+- For grouped controls, keep helper text or error text associated to the actual input element.
+- OTP fields should include context in nearby copy (for example: "Enter the 6-digit code sent by email").
+- Do not rely on placeholder text as the only accessible label.
+
+## SSR and RSC
+
+- `Input` can render in Server Components.
+- `InputGroup` and `InputOTP` are client components (`"use client"` in source) and must be used inside a client boundary.
+
+## Styling and Semantic Tokens
+
+- Default states use semantic tokens (`border-input`, `placeholder:text-muted-foreground`, `focus-visible:ring-ring/50`).
+- Invalid styling is already wired with `aria-invalid` token paths (`border-danger`, `ring-danger/20`).
+- For custom controls inside `InputGroup`, keep `data-slot="input-group-control"` semantics when replacing internals so group-level focus and invalid rings still work.
+
+## Troubleshooting
+
+- Group does not show shared focus ring: ensure the focused control is one of the supported group controls.
+- OTP slots do not render characters: verify `maxLength` matches the number of `InputOTP.Slot` entries.
+- Disabled visual state is inconsistent: set `disabled` on the actual input and avoid overriding disabled classes with custom utilities.
+
+## Related Docs
+
+- [Input Group](/docs/components/input-group)
+- [Input OTP](/docs/components/input-otp)
+- [Field](/docs/components/field)

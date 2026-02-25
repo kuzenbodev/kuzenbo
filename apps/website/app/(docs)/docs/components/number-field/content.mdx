@@ -1,0 +1,168 @@
+---
+title: "Number Field"
+description: "Compose numeric inputs with steppers, scrub controls, and min/max boundaries using @kuzenbo/core NumberField."
+section: "components"
+package: "core"
+status: "stable"
+order: 53
+surface: "component"
+seoTitle: "Number Field | Kuzenbo Docs"
+seoDescription: "Compose numeric inputs with steppers, scrub controls, and min/max boundaries using @kuzenbo/core NumberField."
+ogImage: "/docs-og/components/number-field"
+ogImageAlt: "Number Field documentation"
+aliases:
+  - "/docs/components/inputs/number-field"
+---
+
+## Overview
+
+`NumberField` is intentionally composable. The root does not auto-render input or buttons.
+
+You decide the exact UI by composing slots:
+
+- `NumberField.Group`
+- `NumberField.Decrement`
+- `NumberField.Input`
+- `NumberField.Increment`
+- Optional `NumberField.ScrubArea` and `NumberField.ScrubAreaCursor`
+
+This design keeps numeric controls predictable across cart quantity, budget entry, and read-only review states.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Label,
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldScrubArea,
+  NumberFieldScrubAreaCursor,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Label, NumberField } from "@kuzenbo/core";
+
+export function QuantityField() {
+  const id = "order-quantity";
+
+  return (
+    <NumberField defaultValue={1} id={id} min={1}>
+      <Label htmlFor={id}>Order quantity</Label>
+
+      <NumberField.Group>
+        <NumberField.Decrement />
+        <NumberField.Input />
+        <NumberField.Increment />
+      </NumberField.Group>
+    </NumberField>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { useCallback, useState } from "react";
+
+import { Label, NumberField } from "@kuzenbo/core";
+
+export function BudgetField() {
+  const id = "monthly-budget";
+  const [value, setValue] = useState<number | null>(2500);
+
+  const handleValueChange = useCallback((next: number | null) => {
+    setValue(next ?? 0);
+  }, []);
+
+  return (
+    <NumberField
+      format={{ style: "currency", currency: "USD" }}
+      id={id}
+      largeStep={500}
+      min={0}
+      onValueChange={handleValueChange}
+      smallStep={10}
+      step={50}
+      value={value}
+    >
+      <NumberField.ScrubArea className="flex items-center gap-2">
+        <Label className="cursor-ew-resize" htmlFor={id}>
+          Monthly budget
+        </Label>
+        <NumberField.ScrubAreaCursor />
+      </NumberField.ScrubArea>
+
+      <NumberField.Group>
+        <NumberField.Decrement />
+        <NumberField.Input />
+        <NumberField.Increment />
+      </NumberField.Group>
+    </NumberField>
+  );
+}
+```
+
+## API Reference
+
+- `NumberField`: root container; supports controlled and uncontrolled values plus `size` (`xs|sm|md|lg|xl`).
+- Common root props: `value`, `defaultValue`, `onValueChange`, `min`, `max`, `step`, `name`, `readOnly`, `disabled`, `format`, `smallStep`, `largeStep`.
+- `NumberFieldGroup`: wraps controls and input into one accessible cluster.
+- `NumberFieldInput`: numeric text entry with tabular number styling and optional `size` override.
+- `NumberFieldDecrement` and `NumberFieldIncrement`: stepper buttons with default icons and optional `size` override.
+- `NumberFieldScrubArea`: drag zone for horizontal scrubbing.
+- `NumberFieldScrubAreaCursor`: visual cursor indicator for scrub interactions.
+
+## Sizing
+
+- Supported size tokens: `xs`, `sm`, `md`, `lg`, `xl`.
+- Root `NumberField size` sets default size for input and steppers.
+- `NumberField.Input`, `NumberField.Decrement`, and `NumberField.Increment` can override size.
+- Precedence: explicit child `size` -> root `size` -> default `md`.
+- Width behavior remains stable by default; size changes focus on control height and icon rhythm.
+
+## Accessibility
+
+- Pair the input with a `Label` using `id` and `htmlFor`.
+- Preserve visible labels even when using scrub interactions.
+- For read-only review states, keep value visible and explain why editing is disabled.
+
+## SSR and RSC Notes
+
+- Static composition can render on the server.
+- Controlled updates (`value` and `onValueChange`) should run in client components.
+- In form-heavy routes, you can SSR defaults and hydrate only the numeric interaction leaf.
+
+## Styling and Tokens
+
+- Slots are tokenized by default (`bg-background`, `border-input`, `text-foreground`, `ring-ring`).
+- Focus treatment is unified at the `NumberField.Group` level, so the center input focus does not render a second nested ring.
+- Prefer slot class overrides over replacing the whole control with custom wrappers.
+- Keep numeric text readable with tabular alignment, especially in dense tables.
+
+## Troubleshooting
+
+- Nothing appears except label: compose `NumberField.Group`, `NumberField.Input`, and stepper parts explicitly.
+- Increment/decrement ignores boundaries: verify `min`, `max`, and `step` values are numbers, not strings.
+- Controlled field jumps to empty: normalize `null` inside `onValueChange` before storing state.
+- Form submission misses value: pass a `name` prop on `NumberField`.
+
+## Related Links
+
+- [Input](/docs/components/input)
+- [Slider](/docs/components/slider)
+- [Field](/docs/components/field)
+- [Checkbox Group](/docs/components/checkbox-group)

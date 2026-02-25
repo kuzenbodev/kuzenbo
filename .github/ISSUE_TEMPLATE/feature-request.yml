@@ -1,0 +1,76 @@
+name: Feature Request
+description: Suggest a new capability or improvement
+title: "[Feature]: "
+labels:
+  - enhancement
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing an idea. Good feature requests explain the user problem and why this change helps.
+
+  - type: dropdown
+    id: target-area
+    attributes:
+      label: Target Area
+      options:
+        - "@kuzenbo/ai"
+        - "@kuzenbo/charts"
+        - "@kuzenbo/core"
+        - "@kuzenbo/datatable"
+        - "@kuzenbo/date"
+        - "@kuzenbo/hooks"
+        - "@kuzenbo/notifications"
+        - "@kuzenbo/cli"
+        - "@kuzenbo/mcp"
+        - "docs"
+        - "contributor tooling"
+        - "other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem are you trying to solve?
+      placeholder: As a ..., I want ..., so that ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the behavior/API/docs you would like to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What alternatives have you considered?
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success Criteria
+      description: How should we evaluate if this feature is complete?
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add examples, design references, or related issues.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and discussions before creating this request.
+          required: true
+        - label: This request is in scope for one of the Kuzenbo workspace packages.
+          required: true

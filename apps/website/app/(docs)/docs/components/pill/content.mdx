@@ -1,0 +1,138 @@
+---
+title: "Pill"
+description: "Compact status chips with avatars, indicators, deltas, and actions in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 56
+surface: "component"
+seoTitle: "Pill | Kuzenbo Docs"
+seoDescription: "Compact status chips with avatars, indicators, deltas, and actions in @kuzenbo/core."
+ogImage: "/docs-og/components/pill"
+ogImageAlt: "Pill documentation"
+aliases:
+  - "/docs/components/display/pill"
+---
+
+## Pill at a Glance
+
+`Pill` is a compact status/tag primitive built on top of `Badge`.
+It ships a composition surface for avatars, status indicators, delta arrows, icons, and inline actions.
+
+Use it for metadata labels, filters, and status chips.
+Do not rely on it as a full form control by itself.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Pill,
+  PillAvatar,
+  PillAvatarGroup,
+  PillButton,
+  PillDelta,
+  PillIcon,
+  PillIndicator,
+  PillStatus,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Pill } from "@kuzenbo/core";
+
+export function EnvironmentPill() {
+  return (
+    <Pill>
+      <Pill.Status>
+        <Pill.Indicator variant="success" />
+        Active
+      </Pill.Status>
+      Production
+    </Pill>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Pill } from "@kuzenbo/core";
+
+export function TeamOwnershipPill() {
+  const [visible, setVisible] = useState(true);
+
+  if (!visible) {
+    return null;
+  }
+
+  return (
+    <Pill className="max-w-full" variant="secondary">
+      <Pill.AvatarGroup>
+        <Pill.Avatar alt="Alex" fallback="A" src="https://placehold.co/32x32" />
+        <Pill.Avatar alt="Mina" fallback="M" src="https://placehold.co/32x32" />
+      </Pill.AvatarGroup>
+      Search Team
+      <Pill.Delta delta={1.8} />
+      <Pill.Button
+        aria-label="Remove team filter"
+        onClick={() => setVisible(false)}
+      >
+        x
+      </Pill.Button>
+    </Pill>
+  );
+}
+```
+
+## API Details
+
+- `Pill` accepts `Badge` props and keeps rounded-chip defaults.
+- `Pill` supports `size="xs" | "sm" | "md" | "lg" | "xl"` (`md` default).
+- `PillStatus` creates a separated leading segment for status context.
+- `PillIndicator` supports `variant`: `success | error | warning | info`, with optional `pulse`.
+- `PillAvatar` and `PillAvatarGroup` support dense user/group labeling patterns.
+- `PillDelta` renders directional trend icons from numeric delta values.
+- `PillButton` is an icon-sized action slot for removable pills.
+- Subparts scale with the root size contract (status, indicator, icon, delta, avatar, and action slot).
+
+## Accessibility
+
+- Treat decorative status dots/icons as supplemental, not the only meaning channel.
+- Ensure `PillButton` has an explicit `aria-label`.
+- Keep readable text labels even when using avatars and iconography.
+
+## SSR and RSC Notes
+
+- Static pill layouts are server-safe.
+- Dismiss actions and dynamic chip state belong in client components.
+
+## Styling and Tokens
+
+- `Pill` inherits badge semantics, so prefer badge variants before custom classes.
+- Keep wrappers token-aligned (`bg-card`, `text-foreground`, `border-border`).
+- Use class overrides on subparts for spacing/layout, not hardcoded theme-breaking palettes.
+
+## Troubleshooting
+
+- If close actions look clipped, check parent overflow and the negative margin on `PillButton`.
+- If group avatars overlap too aggressively, override spacing on `PillAvatarGroup`.
+- If the chip feels too dense, use a larger `size` token (`lg` or `xl`) before custom class overrides.
+- If trend direction is unclear, pair `PillDelta` with explicit text (`+1.8%`, `-0.7%`).
+
+## Related Docs
+
+- [Badge](/docs/components/badge)
+- [Avatar](/docs/components/avatar)
+- [Color Primitives](/docs/foundations/color-primitives)

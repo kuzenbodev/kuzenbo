@@ -1,0 +1,112 @@
+---
+title: "Datatable Architecture"
+description: "Architecture guidance for @kuzenbo/datatable and how to extend its current public surface safely."
+section: "foundations"
+package: "datatable"
+status: "stable"
+order: 7
+surface: "utility"
+seoTitle: "Datatable Architecture | Kuzenbo Docs"
+seoDescription: "Production guidance for @kuzenbo/datatable architecture, extension boundaries, testing, and performance."
+ogImage: "/docs-og/foundations/datatable-architecture"
+ogImageAlt: "Datatable architecture guidance"
+---
+
+## Current Scope
+
+`@kuzenbo/datatable` is currently a focused foundation package, not a full enterprise grid framework. Its public exports are intentionally small:
+
+- `MockDataTable` for UI composition with TanStack Table core row modeling.
+- `useDatatableState` for minimal pagination state (`page` with a lower bound of `1`).
+- `createMockColumns` for typed column passthrough scaffolding.
+
+This keeps the package publishable today while leaving room for iterative expansion.
+
+## Architectural Intent
+
+- Keep table wiring predictable and lightweight.
+- Avoid coupling with `@kuzenbo/core` internals.
+- Provide a stable base that product teams can wrap with domain-specific sorting, filtering, selection, and server data behaviors.
+
+## Practical Integration Example
+
+```tsx
+"use client";
+
+import { useMemo } from "react";
+import {
+  createMockColumns,
+  MockDataTable,
+  useDatatableState,
+} from "@kuzenbo/datatable";
+
+interface Row {
+  id: string;
+  customer: string;
+  spend: number;
+}
+
+const rows: Row[] = [
+  { id: "1", customer: "Acme", spend: 1200 },
+  { id: "2", customer: "Northwind", spend: 860 },
+];
+
+export function CustomersTable() {
+  const { page, setPage } = useDatatableState();
+  const columns = useMemo(
+    () =>
+      createMockColumns<Row>([
+        { accessorKey: "customer", header: "Customer" },
+        { accessorKey: "spend", header: "Spend" },
+      ]),
+    []
+  );
+
+  return (
+    <section className="space-y-3">
+      <MockDataTable columns={columns} data={rows} />
+      <button onClick={() => setPage(page + 1)} type="button">
+        Next page ({page})
+      </button>
+    </section>
+  );
+}
+```
+
+## Recommended Extension Path
+
+1. Keep `MockDataTable` as a base renderer and add product behavior in wrapper components.
+2. Add richer datatable hooks in `@kuzenbo/datatable` only when they are reusable across domains.
+3. Keep package exports explicit in `packages/datatable/src/index.ts`.
+4. Add stories and regression tests with each behavior expansion.
+
+## Accessibility Guidance
+
+- Always render semantic table elements (`table`, `thead`, `tbody`, `th`, `td`) for screen-reader compatibility.
+- Ensure column headers are human-readable and unique.
+- Keep keyboard focus styles visible for pagination and row actions in wrapper components.
+
+## Performance Guidance
+
+- Memoize column definitions to avoid unnecessary table instance churn.
+- Avoid recreating row arrays during render for large datasets.
+- Move expensive transforms to server components or data hooks, then render the prepared dataset in client components.
+
+## Testing Guidance
+
+- Keep unit coverage for `useDatatableState` clamping behavior.
+- Add UI tests for row/header rendering in `MockDataTable`.
+- Add integration tests in consuming packages for sorting/filtering flows you layer on top.
+
+## Troubleshooting
+
+- If page state resets unexpectedly, check that wrapper components are not remounting on every route transition.
+- If rows do not render, validate that `columns` accessor keys match your data shape.
+- If styling drifts, confirm semantic token classes (`border-border`, `bg-muted`, `text-foreground`) are still applied.
+
+## Related Docs
+
+- [Foundations](/docs/foundations)
+- [Testing](/docs/foundations/testing)
+- [Patterns](/docs/patterns)
+- [Support](/docs/reference/support)

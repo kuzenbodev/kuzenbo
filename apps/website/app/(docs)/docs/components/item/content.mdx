@@ -1,0 +1,203 @@
+---
+title: "Item"
+description: "Structured list-row primitive in @kuzenbo/core for media, title, description, metadata, and row actions."
+section: "components"
+package: "core"
+status: "stable"
+order: 44
+surface: "component"
+seoTitle: "Item | Kuzenbo Docs"
+seoDescription: "Structured list-row primitive in @kuzenbo/core for media, title, description, metadata, and row actions."
+ogImage: "/docs-og/components/item"
+ogImageAlt: "Item documentation"
+aliases:
+  - "/docs/components/display/item"
+---
+
+## Overview
+
+`Item` is a composable row/card primitive for feed entries, list records, command results, and settings rows. It gives consistent spacing, title/description hierarchy, media slots, and actions while staying flexible through Base UI `render` composition.
+
+Use `ItemGroup` when rendering collections to keep gap and list semantics consistent.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
+  ItemGroup,
+  ItemHeader,
+  ItemMedia,
+  ItemSeparator,
+  ItemTitle,
+  itemVariants,
+  Button,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Item } from "@kuzenbo/core";
+
+export function BasicItemRow() {
+  return (
+    <Item variant="outline">
+      <Item.Header>
+        <Item.Title>Starter plan</Item.Title>
+      </Item.Header>
+
+      <Item.Content>
+        <Item.Description>
+          Includes 3 seats, basic analytics, and community support.
+        </Item.Description>
+      </Item.Content>
+    </Item>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Button, Item, ItemGroup } from "@kuzenbo/core";
+
+const products = [
+  {
+    id: "starter",
+    name: "Starter",
+    seats: "3 seats",
+    href: "/pricing/starter",
+  },
+  { id: "growth", name: "Growth", seats: "10 seats", href: "/pricing/growth" },
+];
+
+export function ProductItemGroup() {
+  return (
+    <ItemGroup>
+      {products.map((product) => (
+        <Item
+          key={product.id}
+          render={<a href={product.href} />}
+          role="listitem"
+          size="sm"
+          variant="muted"
+        >
+          <Item.Media variant="icon">
+            <HugeiconsIcon icon={ArrowRight02Icon} strokeWidth={2} />
+          </Item.Media>
+
+          <Item.Content>
+            <Item.Title>{product.name}</Item.Title>
+            <Item.Description>{product.seats}</Item.Description>
+          </Item.Content>
+
+          <Item.Actions>
+            <Button size="sm" variant="outline">
+              Compare
+            </Button>
+          </Item.Actions>
+        </Item>
+      ))}
+
+      <ItemSeparator />
+
+      <Item>
+        <Item.Footer>
+          <Item.Description>Need enterprise controls?</Item.Description>
+          <Item.Actions>
+            <Button size="sm">Talk to sales</Button>
+          </Item.Actions>
+        </Item.Footer>
+      </Item>
+    </ItemGroup>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Item` uses shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for item rows:
+
+- Row spacing and padding scale with the selected token.
+- `ItemMedia` image/icon boxes inherit root item size.
+- `ItemGroup` gap tightens for compact tokens.
+
+Precedence rule:
+
+`Item size ?? "md"`
+
+Slot surfaces derive from root size; there is no per-slot `size` override on `Item.Media`, `Item.Title`, or `Item.Description`.
+
+```tsx
+// Before
+<Item size="md" variant="outline">...</Item>
+
+// After
+<Item size="md" variant="outline">...</Item>
+```
+
+## API Reference
+
+- `Item`: root primitive with `variant` (`default`, `outline`, `muted`) and `size` (`xs | sm | md | lg | xl`). Supports `render` for semantic element overrides.
+- `itemVariants`: exported style contract helper for custom composition.
+- `ItemGroup`: collection wrapper with `role="list"` and size-aware spacing.
+- `ItemHeader`: top row for title and metadata.
+- `ItemContent`: body column for description and supporting rows.
+- `ItemFooter`: bottom row for summary/actions.
+- `ItemTitle`: main title slot.
+- `ItemDescription`: supporting text slot.
+- `ItemMedia`: media/icon/avatar slot (`variant` includes `icon` and `image`).
+- `ItemActions`: action button/icon container.
+- `ItemSeparator`: row separator helper.
+
+## Accessibility
+
+- Use semantic wrappers through `render` (`a`, `button`, `article`) when row intent is interactive.
+- Keep one clear primary label in `ItemTitle` for assistive technology scanning.
+- If the whole row is clickable, avoid nested conflicting interactive targets unless intentional.
+- For grouped content, ensure each row has list semantics (`ItemGroup` + `role="listitem"`).
+
+## SSR and RSC Notes
+
+- `Item` is server-safe and does not require client state by itself.
+- Interactive children (`Button`, custom handlers) can run in Client Components as needed.
+- `render` composition is a good fit for RSC shells where only some row actions hydrate.
+
+## Styling and Tokens
+
+- Stick to semantic utilities: `border-border`, `bg-muted`, `text-foreground`, `text-muted-foreground`.
+- Use `variant` and `size` props before adding custom row classes.
+- Keep media and title contrast accessible across light/dark tokens.
+
+## Troubleshooting
+
+- Row spacing is inconsistent: wrap siblings in `ItemGroup` instead of ad-hoc margins.
+- Title truncation too aggressive: override `ItemTitle` line-clamp utilities with className.
+- Entire row not keyboard reachable: use `render` with semantic interactive element.
+- Actions wrap unexpectedly: switch to `size="sm"` or move secondary actions to footer.
+
+## Related Docs
+
+- [Card](/docs/components/card)
+- [Navigation Menu](/docs/components/navigation-menu)
+- [Button](/docs/components/button)
+- [Typography](/docs/components/typography)

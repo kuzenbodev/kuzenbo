@@ -1,0 +1,154 @@
+@layer base {
+  /* Global baseline for token-driven borders/outlines + Firefox scrollbar defaults. */
+  * {
+    /* Firefox scrollbar width + color (thumb, track). */
+    scrollbar-width: thin;
+    scrollbar-color: var(--kb-border) transparent;
+    /* Keep global border/ring token alignment for element defaults. */
+    @apply border-border outline-ring/50;
+    outline-color: oklch(from var(--kb-ring) l c h / 0.5);
+  }
+
+  /* Optional tuning knobs for sticky-anchor offsets and text-selection contrast. */
+  :root {
+    /* App shells can override this to match sticky header height (for example, 5rem). */
+    --kb-anchor-offset: 0px;
+    /* Use primary tokens for a stronger, high-contrast text selection highlight. */
+    --kb-selection-background: var(--kb-primary);
+    --kb-selection-foreground: var(--kb-primary-foreground);
+  }
+
+  /* Root baseline: native UI color mode, font smoothing, scrolling, and gutter stability. */
+  html {
+    /* Hint browser-native controls/scrollbars for light theme. */
+    color-scheme: light;
+    /* Improve text rendering on macOS/iOS + WebKit/Blink. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Remove iOS tap flash for cleaner interactive polish. */
+    -webkit-tap-highlight-color: transparent;
+    /* Prevent root scroll chaining + pull-to-refresh style overscroll effects. */
+    overscroll-behavior: none;
+    /* Reserve scrollbar space (classic scrollbars) to reduce layout shifts. */
+    scrollbar-gutter: stable;
+    /* Optional anchor/focus target offset for sticky app headers. */
+    scroll-padding-top: var(--kb-anchor-offset);
+
+    /* Global background color. */
+    background-color: var(--kb-background);
+    /* Global foreground color. */
+    color: var(--kb-foreground);
+  }
+
+  /* Dark mode native UI hint (when the app applies .dark on html). */
+  html.dark {
+    color-scheme: dark;
+  }
+
+  /* Avoid layout breakage from long URLs/tokens in common content containers. */
+  :where(p, li, td, th, figcaption, blockquote, pre, code) {
+    overflow-wrap: anywhere;
+  }
+
+  /* Improve readability for underlined links in prose and docs-heavy surfaces. */
+  :where(a) {
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.12em;
+  }
+
+  /* Keep native text selection aligned with semantic accent tokens. */
+  ::-moz-selection {
+    background-color: var(--kb-selection-background);
+    color: var(--kb-selection-foreground);
+    text-shadow: none;
+  }
+
+  /* Duplicate selection style for engines using the standard pseudo-element. */
+  ::selection {
+    background-color: var(--kb-selection-background);
+    color: var(--kb-selection-foreground);
+    text-shadow: none;
+  }
+
+  /* Ensure hash links and focused targets are not hidden behind sticky headers. */
+  :where(h1, h2, h3, h4, h5, h6, [id]) {
+    scroll-margin-top: var(--kb-anchor-offset);
+  }
+
+  /* Keyboard-focus baseline: visible ring only when UA decides focus should be shown. */
+  :focus-visible {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--kb-ring);
+  }
+
+  /* Compatibility fallback for environments without :focus-visible support. */
+  @supports not selector(:focus-visible) {
+    :focus {
+      outline-style: solid;
+      outline-width: 2px;
+      outline-offset: 2px;
+      outline-color: var(--kb-ring);
+    }
+  }
+
+  /* Respect user motion preference: enable smooth scroll only when allowed. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Explicit reduced-motion branch to force non-animated scroll behavior. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Disable smooth scroll while Base UI is locking page scroll (dialogs/drawers). */
+  html[data-base-ui-scroll-locked] {
+    scroll-behavior: auto;
+  }
+
+  /* High-contrast mode tweak: use system highlight color for focus visibility. */
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline-color: Highlight;
+    }
+
+    /* Fallback for browsers without :focus-visible in forced-colors mode. */
+    @supports not selector(:focus-visible) {
+      :focus {
+        outline-color: Highlight;
+      }
+    }
+  }
+
+  /* On coarse pointers, avoid overly thin Firefox scrollbars for better touch usability. */
+  @media (pointer: coarse) {
+    * {
+      scrollbar-width: auto;
+    }
+  }
+
+  /* On fine pointers, keep compact but usable WebKit scrollbar dimensions. */
+  @media (pointer: fine) {
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  /* Transparent track keeps scrollbar visuals subtle against themed backgrounds. */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Thumb uses semantic border token to stay consistent across themes. */
+  ::-webkit-scrollbar-thumb {
+    background: var(--kb-border);
+    border-radius: 4px;
+  }
+}

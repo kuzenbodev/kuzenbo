@@ -1,0 +1,95 @@
+---
+title: "Overlay Patterns"
+description: "Production overlay patterns for dialogs, drawers, sheets, popovers, tooltips, and menu surfaces in @kuzenbo/core."
+section: "patterns"
+package: "core"
+status: "stable"
+order: 6
+surface: "guide"
+seoTitle: "Overlay Patterns | Kuzenbo Docs"
+seoDescription: "How to choose and implement overlay primitives in @kuzenbo/core with accessible focus and layering behavior."
+ogImage: "/docs-og/patterns/overlay-patterns"
+ogImageAlt: "Overlay pattern guidance"
+aliases:
+  - "/docs/features/overlay-patterns"
+---
+
+## Choose The Right Overlay Primitive
+
+Use intent, not visual style, to choose an overlay:
+
+- `Dialog`: blocking confirmation and focused task flows.
+- `Drawer`: mobile-first or contextual task panels.
+- `Sheet`: side panel workflows that still map to dialog semantics.
+- `Popover`: anchored contextual content.
+- `Tooltip`: brief, non-critical hints.
+- `Menu` and `ContextMenu`: command menus and action lists.
+
+## Standard Dialog Composition
+
+```tsx
+import { Button, Dialog } from "@kuzenbo/core";
+
+export const ArchiveDialog = () => (
+  <Dialog>
+    <Dialog.Trigger render={<Button variant="outline" />}>
+      Archive project
+    </Dialog.Trigger>
+    <Dialog.Content>
+      <Dialog.Header>
+        <Dialog.Title>Archive project</Dialog.Title>
+        <Dialog.Description>
+          Archived projects are hidden from active dashboards.
+        </Dialog.Description>
+      </Dialog.Header>
+      <Dialog.Footer showCloseButton>
+        <Button variant="warning">Confirm archive</Button>
+      </Dialog.Footer>
+    </Dialog.Content>
+  </Dialog>
+);
+```
+
+## Trigger And Composition Rules
+
+- Prefer `render` composition on trigger and close primitives to keep semantic elements explicit.
+- Keep one clear open action per overlay root when possible.
+- Avoid nested modal stacks unless product behavior truly requires them.
+
+## Focus And Accessibility Rules
+
+- Opening an overlay must move focus to meaningful content.
+- Closing must return focus to the invoking control.
+- ESC handling and outside interaction policy must match intent.
+- Tooltips should never be the only place critical information is available.
+
+## Layering And Portal Strategy
+
+- Use built-in portal primitives (`Dialog.Portal`, `Drawer.Portal`, `Sheet.Portal`) for predictable stacking.
+- Keep z-index policies centralized; avoid local one-off z-index escalation.
+- For chart overlays rendered outside chart bounds, wire `Chart.PortalTarget` and portal there intentionally.
+
+## Performance Guidance
+
+- Lazy-load heavy overlay content when it is not immediately needed.
+- Keep hidden overlay trees small to reduce idle layout cost.
+- Avoid expensive derived state in overlay render paths.
+
+## Testing Guidance
+
+- Add keyboard interaction tests: open, tab order, escape close, and focus return.
+- Add pointer interaction tests: trigger, outside click, and dismiss behavior.
+- Add tests for modal, non-modal, nested, and mobile breakpoints.
+
+## Troubleshooting
+
+- If focus escapes the dialog, verify the primitive root/content pairing is correct.
+- If scroll lock feels broken, inspect global baseline styles and overlay portal placement.
+- If overlays render under sticky headers or nav, audit portal container stacking context.
+
+## Related Docs
+
+- [Patterns](/docs/patterns)
+- [Navigation Patterns](/docs/patterns/navigation-patterns)
+- [Accessibility](/docs/foundations/accessibility)
+- [Support](/docs/reference/support)

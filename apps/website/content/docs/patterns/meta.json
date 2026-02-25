@@ -1,0 +1,13 @@
+{
+  "description": "Reusable implementation patterns for teams scaling Kuzenbo usage.",
+  "icon": "Layers01",
+  "pages": [
+    "index",
+    "composition",
+    "forms",
+    "migration",
+    "navigation-patterns",
+    "overlay-patterns"
+  ],
+  "title": "Patterns"
+}

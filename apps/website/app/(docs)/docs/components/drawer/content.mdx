@@ -1,0 +1,202 @@
+---
+title: "Drawer"
+description: "Compose bottom sheets and side drawers with detachable triggers, provider indentation, and swipe-direction control."
+section: "components"
+package: "core"
+status: "stable"
+order: 32
+surface: "component"
+seoTitle: "Drawer | Kuzenbo Docs"
+seoDescription: "Use Drawer from @kuzenbo/core for bottom-sheet and side-panel UX with compound composition and imperative handles."
+ogImage: "/docs-og/components/drawer"
+ogImageAlt: "Drawer documentation"
+aliases:
+  - "/docs/components/overlays/drawer"
+---
+
+## Overview
+
+`Drawer` is a compound overlay system built on Base UI Drawer Preview primitives.
+It supports bottom sheets, side drawers, nested stacks, detached triggers, and provider-driven indent effects.
+
+Use Drawer when you need touch-friendly, swipe-aware overlays. For simpler modal dialogs without swipe behavior, use `Dialog`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Drawer,
+  DrawerBackdrop,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerPortal,
+  DrawerPopup,
+  DrawerTitle,
+  DrawerTrigger,
+  DrawerViewport,
+  createDrawerHandle,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import {
+  Button,
+  Drawer,
+  DrawerBackdrop,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerPortal,
+  DrawerPopup,
+  DrawerTitle,
+  DrawerTrigger,
+  DrawerViewport,
+} from "@kuzenbo/core";
+
+export function DrawerBasicExample() {
+  return (
+    <Drawer.Root>
+      <DrawerTrigger render={<Button variant="outline" size="xl" />}>
+        Open drawer
+      </DrawerTrigger>
+
+      <DrawerPortal>
+        <DrawerBackdrop />
+        <DrawerViewport>
+          <DrawerPopup>
+            <DrawerContent>
+              <DrawerTitle>Notifications</DrawerTitle>
+              <DrawerDescription>You are all caught up.</DrawerDescription>
+              <DrawerClose render={<Button variant="outline" size="xl" />}>
+                Close
+              </DrawerClose>
+            </DrawerContent>
+          </DrawerPopup>
+        </DrawerViewport>
+      </DrawerPortal>
+    </Drawer.Root>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { useMemo } from "react";
+
+import {
+  Button,
+  Drawer,
+  DrawerBackdrop,
+  DrawerContent,
+  DrawerPortal,
+  DrawerPopup,
+  DrawerTitle,
+  DrawerTrigger,
+  DrawerViewport,
+  createDrawerHandle,
+} from "@kuzenbo/core";
+
+const profileHandle = createDrawerHandle<{ title: string }>();
+
+export function DrawerDetachedTriggerExample() {
+  return (
+    <>
+      <DrawerTrigger
+        handle={profileHandle}
+        payload={{ title: "Profile" }}
+        render={<Button variant="outline" size="xl" />}
+      >
+        Open profile drawer
+      </DrawerTrigger>
+
+      <Drawer.Root handle={profileHandle} swipeDirection="right">
+        {({ payload }) => (
+          <DrawerPortal>
+            <DrawerBackdrop />
+            <DrawerViewport>
+              <DrawerPopup>
+                <DrawerContent>
+                  <DrawerTitle>{payload?.title}</DrawerTitle>
+                </DrawerContent>
+              </DrawerPopup>
+            </DrawerViewport>
+          </DrawerPortal>
+        )}
+      </Drawer.Root>
+    </>
+  );
+}
+```
+
+## API Notes
+
+- `Drawer` is a namespace around `Drawer.Root` and all compound parts.
+- `Drawer.Root` supports controlled and uncontrolled state (`open`, `defaultOpen`, `onOpenChange`).
+- `onOpenChangeComplete` fires after open/close transitions finish.
+- `swipeDirection` controls placement and dismissal direction (`down`, `up`, `left`, `right`).
+- `modal={false}` enables non-modal mode; pair with `disablePointerDismissal` when outside-click should not close.
+- `createDrawerHandle` enables detached triggers and payload-driven drawers.
+- `actionsRef` exposes imperative actions (`close`, `unmount`) when integration needs out-of-band control.
+- `DrawerPortal` accepts a custom `container` for mounting into non-default DOM roots.
+- `DrawerProvider`, `DrawerIndent`, and `DrawerIndentBackground` provide the indented page-shell effect when drawers are active.
+
+## Size Scale
+
+`Drawer` uses the shared size scale:
+
+- `xs`
+- `sm`
+- `md` (default)
+- `lg`
+- `xl`
+
+`Drawer.Root` drives default sizing for drawer surfaces and controls.
+Precedence follows:
+
+- explicit child `size`
+- nearest drawer container/content size
+- root `size`
+- component default (`md`)
+
+Size-aware parts include `DrawerPopup`, `DrawerContent`, `DrawerHeader`, `DrawerTitle`, `DrawerDescription`, `DrawerActions`, `DrawerTrigger`, `DrawerClose`, and `DrawerHandle`.
+
+## Accessibility
+
+- Keep `DrawerTitle` and `DrawerDescription` present for contextual dialog semantics.
+- Use clear close affordances (`DrawerClose`) in addition to gesture dismissal.
+- For nested drawers, keep each layer title specific so context remains clear during focus transitions.
+
+## SSR and RSC
+
+- Drawer is interactive and should be rendered in client components.
+- `Drawer.Root` does not render a root DOM node by itself; visible structure comes from composed parts inside portal/viewport.
+
+## Styling and Tokens
+
+- Keep surface styles on semantic tokens (`bg-card`, `text-card-foreground`, `border-border`).
+- Backdrop and popup classes already include transition and swipe state variables; only override class names when necessary.
+- If you customize `DrawerPopup`, preserve swipe-related behavior classes to avoid regressions.
+
+## Troubleshooting
+
+- Drawer never appears: ensure you rendered `DrawerPortal`, `DrawerViewport`, and `DrawerPopup`.
+- Detached trigger does not open root: verify trigger and root share the same handle instance.
+- Non-modal drawer closes unexpectedly: set `modal={false}` and optionally `disablePointerDismissal`.
+- Portal layering issues: pass a dedicated `container` to `DrawerPortal` when embedding in custom layout roots.
+
+## Related Docs
+
+- [Dialog](/docs/components/dialog)
+- [Sidebar](/docs/components/sidebar)
+- [Tooltip](/docs/components/tooltip)
+- [Components Index](/docs/components)

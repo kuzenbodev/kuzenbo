@@ -1,0 +1,3 @@
+@import "@kuzenbo/storybook/preview.css";
+
+@source "../src/**/*.{ts,tsx,mdx}";

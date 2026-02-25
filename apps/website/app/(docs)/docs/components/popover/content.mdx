@@ -1,0 +1,153 @@
+---
+title: "Popover"
+description: "Use @kuzenbo/core Popover for contextual overlays with render-prop triggers, aligned positioning, and structured content sections."
+section: "components"
+package: "core"
+status: "stable"
+order: 57
+surface: "component"
+seoTitle: "Popover | Kuzenbo Docs"
+seoDescription: "Use @kuzenbo/core Popover for contextual overlays with render-prop triggers, aligned positioning, and structured content sections."
+ogImage: "/docs-og/components/popover"
+ogImageAlt: "Popover documentation"
+aliases:
+  - "/docs/components/overlays/popover"
+---
+
+## Purpose
+
+`Popover` is the contextual overlay primitive in `@kuzenbo/core`. It is ideal for compact, task-focused content that should stay anchored to a trigger (filters, quick settings, inline help).
+
+This component uses Base UI composition and supports render-prop trigger composition via `PopoverTrigger`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Button, Popover } from "@kuzenbo/core";
+
+export function FilterPopover() {
+  return (
+    <Popover>
+      <Popover.Trigger render={<Button variant="outline" />}>
+        Filters
+      </Popover.Trigger>
+
+      <Popover.Content>
+        <Popover.Header>
+          <Popover.Title>Filter by status</Popover.Title>
+          <Popover.Description>
+            Select one or more states for the list.
+          </Popover.Description>
+        </Popover.Header>
+
+        <div className="text-sm text-muted-foreground">
+          Filter controls go here.
+        </div>
+      </Popover.Content>
+    </Popover>
+  );
+}
+```
+
+## Advanced usage: controlled open and custom positioning
+
+```tsx
+import { useState } from "react";
+
+import { Button, Popover } from "@kuzenbo/core";
+
+export function ControlledPopover() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Popover onOpenChange={setOpen} open={open}>
+      <Popover.Trigger render={<Button variant="outline" />}>
+        Team info
+      </Popover.Trigger>
+
+      <Popover.Content align="start" side="right" sideOffset={8}>
+        <Popover.Header>
+          <Popover.Title>Workspace owners</Popover.Title>
+        </Popover.Header>
+
+        <ul className="space-y-1 text-sm text-foreground">
+          <li>Ana</li>
+          <li>Jordan</li>
+          <li>Priya</li>
+        </ul>
+
+        <p className="text-xs text-muted-foreground">
+          Popover is currently {open ? "open" : "closed"}.
+        </p>
+      </Popover.Content>
+    </Popover>
+  );
+}
+```
+
+## API reference
+
+- `Popover`
+  Root component controlling open state and interactions. Supports `size="xs" | "sm" | "md" | "lg" | "xl"` (`md` default).
+- `PopoverTrigger`
+  Trigger surface. Supports Base UI `render` composition for custom elements.
+- `PopoverContent`
+  Popup container with positioning props: `side`, `align`, `sideOffset`, `alignOffset`, and optional `size` override.
+- `PopoverPopup`
+  Low-level popup surface used in composed anatomy; supports optional `size` override.
+- `PopoverHeader`
+  Structural wrapper for title/description area.
+- `PopoverTitle`
+  Popover heading.
+- `PopoverDescription`
+  Supporting text under the title.
+
+## Accessibility notes
+
+- Trigger text should describe what opens (for example, `Filters`, `Team info`).
+- Keep title/description concise so announcements stay clear.
+- Avoid placing critical, multi-step forms in popovers; use `Dialog` for larger workflows.
+
+## SSR and RSC notes
+
+`Popover` is interactive and portal-based. Render from Client Components.
+
+## Styling and semantic tokens
+
+Popover content defaults to semantic tokens (`bg-popover`, `text-popover-foreground`, tokenized ring/shadow) and a root-driven size contract. Extend with semantic utilities for custom sections.
+
+## Troubleshooting
+
+- Popover opens in wrong position:
+  Adjust `side`, `align`, `sideOffset`, and `alignOffset` on `Popover.Content`.
+- Popup density is too compact or too spacious:
+  Set `size` on `Popover` for shared defaults, or override per surface with `Popover.Content size={...}` / `Popover.Popup size={...}`.
+- Trigger styling does not apply:
+  Use `render` on `Popover.Trigger` when composing with another component.
+- Content clipped by parent:
+  Verify parent layout overflow rules; popover content uses a portal but clipped ancestors can still affect perception.
+
+## Related links
+
+- [Preview Card](/docs/components/preview-card)
+- [Dialog](/docs/components/dialog)
+- [Tooltip](/docs/components/tooltip)

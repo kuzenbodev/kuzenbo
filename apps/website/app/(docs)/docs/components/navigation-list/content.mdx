@@ -1,0 +1,176 @@
+---
+title: "Navigation List"
+description: "Aside navigation rows with active states, sections, and collapsible nesting in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 53
+surface: "component"
+seoTitle: "Navigation List | Kuzenbo Docs"
+seoDescription: "Use NavigationList from @kuzenbo/core to build structured aside navigation with active rows, left/right sections, and collapsible nested links."
+ogImage: "/docs-og/components/navigation-list"
+ogImageAlt: "Navigation List documentation"
+aliases:
+  - "/docs/components/navigation/navigation-list"
+---
+
+## Overview
+
+`NavigationList` is a compound navigation surface for side panels and dense in-app navigation trees.
+
+It brings nav-link ergonomics to Kuzenbo conventions: active row styling, optional left/right sections, badge/action slots, and parent-row collapsible disclosure.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core @kuzenbo/theme
+```
+
+`@kuzenbo/theme` should be installed alongside `@kuzenbo/core` in almost all app setups.
+
+## Import
+
+```tsx
+import {
+  NavigationList,
+  NavigationListAction,
+  NavigationListBadge,
+  NavigationListLink,
+  NavigationListSub,
+  NavigationListSubLink,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { NavigationList } from "@kuzenbo/core";
+
+export function DocsSidebarNavigation() {
+  return (
+    <NavigationList className="w-72">
+      <NavigationList.Content>
+        <NavigationList.Group>
+          <NavigationList.GroupLabel>Main</NavigationList.GroupLabel>
+          <NavigationList.GroupContent>
+            <NavigationList.Item>
+              <NavigationList.Link active label="Overview" />
+            </NavigationList.Item>
+
+            <NavigationList.Item collapsible defaultOpened>
+              <NavigationList.Link label="Guides" />
+              <NavigationList.Sub>
+                <NavigationList.SubItem>
+                  <NavigationList.SubLink href="#" active>
+                    Installation
+                  </NavigationList.SubLink>
+                </NavigationList.SubItem>
+                <NavigationList.SubItem>
+                  <NavigationList.SubLink href="#">
+                    Patterns
+                  </NavigationList.SubLink>
+                </NavigationList.SubItem>
+              </NavigationList.Sub>
+            </NavigationList.Item>
+          </NavigationList.GroupContent>
+        </NavigationList.Group>
+      </NavigationList.Content>
+    </NavigationList>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { NavigationList } from "@kuzenbo/core";
+
+export function ProductNavigationList() {
+  return (
+    <NavigationList className="w-80" tone="sidebar" variant="light">
+      <NavigationList.Content>
+        <NavigationList.Group>
+          <NavigationList.GroupLabel>Workspace</NavigationList.GroupLabel>
+          <NavigationList.GroupContent>
+            <NavigationList.Item>
+              <NavigationList.Link
+                active
+                description="Daily summary"
+                label="Dashboard"
+              />
+              <NavigationList.Badge>7</NavigationList.Badge>
+            </NavigationList.Item>
+
+            <NavigationList.Item collapsible>
+              <NavigationList.Link label="Projects" />
+              <NavigationList.Action aria-label="Create project">
+                +
+              </NavigationList.Action>
+              <NavigationList.Sub keepMounted={false}>
+                <NavigationList.SubItem>
+                  <NavigationList.SubLink href="#">
+                    Frontend
+                  </NavigationList.SubLink>
+                </NavigationList.SubItem>
+                <NavigationList.SubItem>
+                  <NavigationList.SubLink href="#">
+                    Backend
+                  </NavigationList.SubLink>
+                </NavigationList.SubItem>
+              </NavigationList.Sub>
+            </NavigationList.Item>
+          </NavigationList.GroupContent>
+        </NavigationList.Group>
+      </NavigationList.Content>
+    </NavigationList>
+  );
+}
+```
+
+## Size and Variant Contracts
+
+`NavigationList` uses the shared `UISize` scale: `xs | sm | md | lg | xl` with `md` as default.
+
+Precedence:
+
+- `explicit slot size ?? item size ?? root size ?? "md"`
+- `explicit slot tone ?? item tone ?? root tone ?? "surface"`
+- `explicit slot variant ?? item variant ?? root variant ?? "light"`
+
+## Behavior Notes
+
+- `NavigationList.Item collapsible` toggles from parent row clicks.
+- Collapsible parent rows are disclosure triggers and render with button semantics.
+- Do not use `href` on collapsible parent rows; place navigation in `NavigationList.SubLink` items or explicit row actions.
+- Non-collapsible rows preserve normal link/button navigation semantics.
+- Active styling is applied by either `active` prop or `aria-current="page"`.
+- A default chevron is rendered for collapsible rows when `rightSection` is not provided.
+- Set `rightSection={null}` to suppress the default chevron.
+
+## Compound API
+
+- Root: `NavigationList`
+- Structure: `NavigationList.Content`, `NavigationList.Group`, `NavigationList.GroupLabel`, `NavigationList.GroupContent`
+- Rows: `NavigationList.Item`, `NavigationList.Link`, `NavigationList.Action`, `NavigationList.Badge`
+- Nested rows: `NavigationList.Sub`, `NavigationList.SubItem`, `NavigationList.SubLink`
+- Utility: `NavigationList.Separator`, `NavigationList.Skeleton`
+
+## Styling and Tokens
+
+- `tone="surface"`: `bg-background`, `text-foreground`, `border-border`
+- `tone="sidebar"`: `bg-sidebar`, `text-sidebar-foreground`, `border-sidebar-border`
+- Hover and active states use semantic token classes only.
+
+## Accessibility
+
+- Use semantic labels for every row (`label`, text children, or both).
+- Link-like rows and `NavigationList.SubLink` automatically set `aria-current="page"` when `active` is true (unless you provide `aria-current` directly).
+- Compose framework router links (for example Next.js `Link`) via the `render` prop on non-collapsible rows.
+- For icon-heavy rows, include visible text labels instead of icon-only affordances.
+
+## Related Docs
+
+- [Sidebar](/docs/components/sidebar)
+- [Navigation Menu](/docs/components/navigation-menu)
+- [Menu](/docs/components/menu)
+- [Components Index](/docs/components)

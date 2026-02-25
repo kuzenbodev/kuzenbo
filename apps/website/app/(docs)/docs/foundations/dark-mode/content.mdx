@@ -1,0 +1,105 @@
+---
+title: "Dark Mode"
+description: "Implement dark mode in Next.js with @kuzenbo/theme bootstrap, provider wiring, and storage sync."
+section: "foundations"
+package: "theme"
+status: "stable"
+order: 6
+surface: "guide"
+seoTitle: "Dark Mode | Kuzenbo Docs"
+seoDescription: "Avoid theme flash and keep cookie plus storage state in sync with @kuzenbo/theme."
+ogImage: "/docs-og/foundations/dark-mode"
+ogImageAlt: "Dark Mode documentation"
+aliases:
+  - "/docs/features/dark-mode"
+---
+
+## Why dark mode is a runtime concern
+
+Kuzenbo dark mode is not only a styling switch. It is a runtime contract that keeps three sources of truth aligned before paint:
+
+1. Cookie (`kuzenbo-theme`) for SSR and server-visible preference.
+2. Local storage (`kuzenbo-theme`, with legacy fallback `theme`) for client persistence.
+3. System preference (`prefers-color-scheme`) for default behavior.
+
+The runtime applies both the `dark` class and `color-scheme` to `document.documentElement`.
+
+## Resolution order
+
+`resolveThemeBootstrapPlan` follows this order:
+
+1. Cookie wins if present.
+2. Local storage is used when cookie is missing.
+3. System preference (or explicit default) is the fallback.
+
+When sources disagree, the bootstrap script syncs them so subsequent requests and client transitions stay consistent.
+
+## Next.js integration pattern
+
+```tsx
+// app/layout.tsx (server component)
+import type { ReactNode } from "react";
+
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeBootstrapScript />
+      </head>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+```tsx
+// app/theme-toggle.tsx (client component)
+"use client";
+
+import { useTheme } from "next-themes";
+
+import { Button } from "@kuzenbo/core";
+
+export function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
+
+  return (
+    <Button onClick={() => setTheme(nextTheme)}>Switch to {nextTheme}</Button>
+  );
+}
+```
+
+## CSP and security
+
+- `ThemeBootstrapScript` supports CSP nonces through `getThemeBootstrapScriptNonce()`.
+- Use the `THEME_BOOTSTRAP_NONCE` environment variable when your app enforces strict inline script policy.
+- Keep script injection centralized; do not duplicate bootstrap logic in app code.
+
+## Accessibility notes
+
+- Setting `color-scheme` improves default form control rendering for both themes.
+- Ensure contrast is verified in both themes, especially status colors and muted text.
+- Respect user preference. Do not force theme changes during navigation without explicit user action.
+
+## Testing checklist
+
+- Theme parsing accepts only `"light"` and `"dark"` (`parseThemePreference`).
+- Bootstrap plan prioritizes cookie over storage and storage over fallback.
+- Toggle actions update both visual class and persistence.
+
+## Troubleshooting
+
+- Flash of wrong theme on first load: verify `<ThemeBootstrapScript />` is in `<head>`.
+- Theme resets between requests: confirm cookie writes are enabled and not blocked by path/domain mismatch.
+- Hydration mismatch warnings: keep `suppressHydrationWarning` on the root html element for theme class transitions.
+
+## Related docs
+
+- [Theme runtime](/docs/foundations/theme-runtime)
+- [Theming foundation](/docs/foundations/theming)
+- [Server Components guidance](/docs/foundations/server-components)

@@ -1,0 +1,160 @@
+---
+title: "Sheet"
+description: "Dialog-based side panel with trigger, content, overlay, and side-aware layout controls for workflows and settings panels."
+section: "components"
+package: "core"
+status: "stable"
+order: 70
+surface: "component"
+seoTitle: "Sheet | Kuzenbo Docs"
+seoDescription: "Build accessible side panels with Sheet in @kuzenbo/core, including trigger composition, custom close controls, and side placement."
+ogImage: "/docs-og/components/sheet"
+ogImageAlt: "Sheet documentation"
+aliases:
+  - "/docs/components/overlays/sheet"
+---
+
+## Overview
+
+`Sheet` is a dialog-based panel that slides from `top`, `right`, `bottom`, or `left`. It is ideal for non-destructive contextual flows like filters, settings, and detail sidebars.
+
+`Sheet` is built from Base UI dialog primitives and provides slot exports for predictable composition.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Button,
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Button, Sheet } from "@kuzenbo/core";
+
+export function SheetBasic() {
+  return (
+    <Sheet>
+      <Sheet.Trigger render={<Button variant="outline" />}>
+        Open Sheet
+      </Sheet.Trigger>
+
+      <Sheet.Content>
+        <Sheet.Header>
+          <Sheet.Title>Workspace settings</Sheet.Title>
+          <Sheet.Description>
+            Manage members, notifications, and integrations.
+          </Sheet.Description>
+        </Sheet.Header>
+
+        <Sheet.Footer>
+          <Button>Save changes</Button>
+        </Sheet.Footer>
+      </Sheet.Content>
+    </Sheet>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Button, Sheet } from "@kuzenbo/core";
+
+export function SheetAdvanced() {
+  return (
+    <Sheet>
+      <Sheet.Trigger render={<Button />}>Open command panel</Sheet.Trigger>
+
+      <Sheet.Content side="left" showCloseButton={false}>
+        <Sheet.Header>
+          <Sheet.Title>Command panel</Sheet.Title>
+          <Sheet.Description>
+            Quick actions for navigation and workspace maintenance.
+          </Sheet.Description>
+        </Sheet.Header>
+
+        <div className="p-4 text-sm text-muted-foreground">
+          Add custom form fields or command content here.
+        </div>
+
+        <Sheet.Footer className="flex-row justify-end">
+          <Sheet.Close render={<Button variant="outline" />}>
+            Cancel
+          </Sheet.Close>
+          <Button>Run action</Button>
+        </Sheet.Footer>
+      </Sheet.Content>
+    </Sheet>
+  );
+}
+```
+
+## API Reference
+
+- `Sheet`
+  - Root state container (`open`, `defaultOpen`, `onOpenChange`).
+- `SheetTrigger`
+  - Trigger element; supports Base UI `render` composition.
+- `SheetContent`
+  - Main panel surface.
+  - Additional props:
+    - `side?: "top" | "right" | "bottom" | "left"` (default `"right"`)
+    - `showCloseButton?: boolean` (default `true`)
+- `SheetHeader`, `SheetFooter`
+  - Layout containers for structured content.
+- `SheetTitle`, `SheetDescription`
+  - Accessible heading/description wiring for dialog semantics.
+- `SheetClose`
+  - Explicit close action.
+- `SheetOverlay`, `SheetPortal`
+  - Overlay and portal primitives.
+
+## Accessibility
+
+- Always include `SheetTitle`; include `SheetDescription` when extra context is needed.
+- Ensure trigger text is explicit (`Open filters`, not only `Open`).
+- Keep close actions keyboard reachable and clearly named.
+- Avoid trapping critical actions behind hidden content without visible focus progression.
+
+## SSR and RSC Notes
+
+- `Sheet` is implemented as client-side primitives (`"use client"`).
+- In App Router, keep open-state and interactive content in a Client Component.
+
+## Styling and Tokens
+
+- Default panel and overlay styles already use semantic tokens (`bg-background`, `text-foreground`, border tokens).
+- Override with semantic classes only.
+- Keep panel widths responsive; defaults include side-specific sizing (`w-3/4`, `sm:max-w-sm`).
+
+## Troubleshooting
+
+- Panel never opens: confirm `Sheet.Trigger` is inside `Sheet` and not conditionally unmounted.
+- Duplicate close controls: set `showCloseButton={false}` when providing a custom `Sheet.Close`.
+- Wrong entrance direction: verify valid `side` value (`top`, `right`, `bottom`, `left`).
+- Focus behavior seems off: ensure no custom element breaks dialog focus management.
+
+## Related Docs
+
+- [Dialog](/docs/components/dialog)
+- [Drawer](/docs/components/drawer)
+- [Popover](/docs/components/popover)
+- [Toolbar](/docs/components/toolbar)

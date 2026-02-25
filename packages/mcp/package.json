@@ -1,0 +1,65 @@
+{
+  "name": "@kuzenbo/mcp",
+  "version": "0.0.1-alpha.4",
+  "private": true,
+  "description": "Placeholder package for future Kuzenbo MCP tooling.",
+  "keywords": [
+    "kuzenbo",
+    "mcp",
+    "server"
+  ],
+  "homepage": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono#readme",
+  "bugs": {
+    "url": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DobroslavRadosavljevic/kuzenbo-mono.git",
+    "directory": "packages/mcp"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.mts",
+        "import": "./dist/index.mjs",
+        "default": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    },
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsgo --noEmit --declaration false --declarationMap false",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "catalog:",
+    "bun-types": "catalog:",
+    "publint": "catalog:",
+    "typescript": "catalog:"
+  }
+}

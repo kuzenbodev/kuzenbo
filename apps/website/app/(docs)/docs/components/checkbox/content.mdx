@@ -1,0 +1,150 @@
+---
+title: "Checkbox"
+description: "Binary and indeterminate checkbox control with Base UI semantics, plus CheckboxGroup composition for preference sets."
+section: "components"
+package: "core"
+status: "stable"
+order: 22
+surface: "component"
+seoTitle: "Checkbox | Kuzenbo Docs"
+seoDescription: "Use Checkbox and CheckboxGroup in @kuzenbo/core for accessible boolean and mixed-state selection patterns."
+ogImage: "/docs-og/components/checkbox"
+ogImageAlt: "Checkbox documentation"
+aliases:
+  - "/docs/components/inputs/checkbox"
+---
+
+## Overview
+
+`Checkbox` is the boolean selection control in `@kuzenbo/core`. It supports:
+
+- unchecked and checked states
+- indeterminate (mixed) state
+- semantic invalid and disabled styling
+
+`CheckboxGroup` provides a vertical layout wrapper for grouped checkbox rows.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Checkbox, Label } from "@kuzenbo/core";
+
+export function TermsCheckbox() {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id="terms" />
+      <Label htmlFor="terms">Accept terms and conditions</Label>
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+
+export function NotificationPreferences() {
+  return (
+    <CheckboxGroup className="gap-2">
+      <Label className="flex items-center gap-2" htmlFor="alerts">
+        <Checkbox defaultChecked id="alerts" />
+        Product alerts
+      </Label>
+
+      <Label className="flex items-center gap-2" htmlFor="digest">
+        <Checkbox id="digest" indeterminate />
+        Weekly digest (partially configured)
+      </Label>
+
+      <Label className="flex items-center gap-2" htmlFor="outage">
+        <Checkbox disabled id="outage" />
+        Outage SMS (disabled by policy)
+      </Label>
+    </CheckboxGroup>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Checkbox` follows shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for checkbox controls:
+
+- Compact visual box scales by size token.
+- Indicator icon scales with the same token.
+- Hit target expands independently to stay accessible.
+
+Precedence rule:
+
+`CheckboxIndicator size ?? Checkbox size ?? "md"`
+
+Compact-control exception: checkboxes intentionally do not match input field heights. Do not force `Checkbox` to `h-9`/`h-10` patterns just to align with text inputs.
+
+```tsx
+// Before
+<Checkbox size="md" />
+
+// After
+<Checkbox size="md" />
+```
+
+## API Reference
+
+- `Checkbox`
+  - Exported prop type: `CheckboxProps`.
+  - Based on `CheckboxPrimitive.Root.Props`.
+  - Commonly used props include `checked`, `defaultChecked`, `onCheckedChange`, `disabled`, `indeterminate`, and `size`.
+- `CheckboxGroup`
+  - Exported prop type: `CheckboxGroupProps`.
+  - Based on `ComponentProps<typeof BaseCheckboxGroup>`.
+  - Adds grouped layout and shared semantics for checkbox sets.
+
+## Accessibility
+
+- Always provide an accessible name with visible text (`Label`) or `aria-label`.
+- Use `htmlFor` and matching `id` so clicking label text toggles the control.
+- For grouped options, use a `fieldset` and `legend` when the group has one question prompt.
+- Indeterminate is visual and semantic; still map it explicitly to your domain state.
+
+## SSR and RSC Notes
+
+- Checkbox interaction happens in the browser; use client boundaries for controlled state logic.
+- Server-rendered markup is fine for initial structure, but event handling must execute client-side.
+
+## Styling and Tokens
+
+- Default states use semantic tokens (`border-input`, `data-checked:bg-primary`, `text-primary-foreground`).
+- Invalid styling is driven by ARIA state (`aria-invalid:*` classes).
+- Prefer token classes when overriding, not raw Tailwind palette colors.
+
+## Troubleshooting
+
+- Checkbox does not change when clicked: check for controlled props without updating state in `onCheckedChange`.
+- Label click does nothing: verify `Label htmlFor` matches checkbox `id`.
+- Mixed state icon missing: pass `indeterminate` explicitly.
+- Group spacing is too tight: override with `CheckboxGroup className`.
+
+## Related Docs
+
+- [Checkbox Group](/docs/components/checkbox-group)
+- [Label](/docs/components/label)
+- [Switch](/docs/components/switch)
+- [Radio Group](/docs/components/radio-group)

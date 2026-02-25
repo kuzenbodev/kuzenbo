@@ -1,0 +1,185 @@
+---
+title: "Command"
+description: "Create command palettes and searchable action lists with @kuzenbo/core Command and CommandDialog composition."
+section: "components"
+package: "core"
+status: "stable"
+order: 26
+surface: "component"
+seoTitle: "Command | Kuzenbo Docs"
+seoDescription: "Create command palettes and searchable action lists with @kuzenbo/core Command and CommandDialog composition."
+ogImage: "/docs-og/components/command"
+ogImageAlt: "Command documentation"
+aliases:
+  - "/docs/components/overlays/command"
+---
+
+## Purpose
+
+`Command` is the searchable command surface in `@kuzenbo/core`, built on `cmdk` and designed for command palettes, quick jump menus, and keyboard-first action launchers.
+
+Use `CommandDialog` when the command surface should open in a modal. Use plain `Command` when embedding directly inside a panel.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { Command } from "@kuzenbo/core";
+
+export function InlineCommandMenu() {
+  return (
+    <Command className="w-80 rounded-lg border">
+      <Command.Input placeholder="Search actions..." />
+      <Command.List>
+        <Command.Empty>No action found.</Command.Empty>
+
+        <Command.Group heading="Navigation">
+          <Command.Item>Open dashboard</Command.Item>
+          <Command.Item>Go to billing</Command.Item>
+        </Command.Group>
+
+        <Command.Separator />
+
+        <Command.Group heading="Workspace">
+          <Command.Item>
+            Invite member
+            <Command.Shortcut>Cmd+I</Command.Shortcut>
+          </Command.Item>
+        </Command.Group>
+      </Command.List>
+    </Command>
+  );
+}
+```
+
+## Advanced usage: command palette dialog
+
+```tsx
+import { useState } from "react";
+import { Command, CommandDialog } from "@kuzenbo/core";
+
+export function CommandPalette() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        className="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+        onClick={() => setOpen(true)}
+        type="button"
+      >
+        Open command palette
+      </button>
+
+      <CommandDialog
+        description="Type to filter actions"
+        onOpenChange={setOpen}
+        open={open}
+        showCloseButton={false}
+        title="Command palette"
+      >
+        <Command>
+          <Command.Input placeholder="Search project commands..." />
+          <Command.List>
+            <Command.Empty>No command found.</Command.Empty>
+            <Command.Group heading="Project">
+              <Command.Item>Open roadmap</Command.Item>
+              <Command.Item>Create task</Command.Item>
+            </Command.Group>
+            <Command.Group heading="Settings">
+              <Command.Item>Theme preferences</Command.Item>
+            </Command.Group>
+          </Command.List>
+        </Command>
+      </CommandDialog>
+    </>
+  );
+}
+```
+
+## API reference
+
+- `Command`
+  Root command container. Accepts `cmdk` root props plus `size` (`xs|sm|md|lg|xl`) with default `md`.
+- `CommandInput`
+  Search input tied to filtering. Supports optional `size` override.
+- `CommandList`
+  List wrapper for groups and items. Supports optional `size` override.
+- `CommandGroup`
+  Group related commands. Supports optional `size` override.
+- `CommandItem`
+  Selectable command row. Supports optional `size` override.
+- `CommandEmpty`
+  Empty state shown when filtering has no matches. Supports optional `size` override.
+- `CommandSeparator`
+  Visual separator between groups.
+- `CommandShortcut`
+  Shortcut hint slot rendered inside items. Supports optional `size` override.
+- `CommandDialog`
+  Dialog wrapper for command surfaces. Supports `title`, `description`, and `showCloseButton` in addition to dialog open-state props.
+
+## Sizing
+
+- Supported size tokens: `xs`, `sm`, `md`, `lg`, `xl`.
+- `Command` root default is `md`.
+- Root `Command size` cascades to `Command.Input`, `Command.List`, `Command.Group`, `Command.Item`, `Command.Empty`, and `Command.Shortcut`.
+- Child overrides are supported per slot and take precedence.
+- Precedence:
+  - Most children: explicit child `size` -> root `size` -> default `md`.
+  - `Command.Shortcut`: explicit shortcut `size` -> nearest `Command.Item size` -> root `size` -> default `md`.
+
+## Accessibility notes
+
+- Always provide meaningful `placeholder` text in `CommandInput`.
+- Keep item labels action-oriented and unique for clear keyboard navigation.
+- In dialog mode, keep the hidden title/description meaningful because they are announced by assistive tech.
+
+## SSR and RSC notes
+
+`Command` and `CommandDialog` are interactive client-side components. Render from a Client Component boundary.
+
+## Styling and semantic tokens
+
+Command defaults already map to semantic surfaces (`bg-popover`, `text-popover-foreground`). Keep customizations in the same token family:
+
+- `border-border` for shell boundaries.
+- `bg-popover` and `bg-background` for layered surfaces.
+- `text-muted-foreground` for hint text.
+
+## Troubleshooting
+
+- Filtering does not update:
+  Ensure `CommandInput` is inside the same `Command` root.
+- Trigger/input looks smaller than command rows:
+  Apply a single `size` on `Command` so input and list/item surfaces scale together.
+- Empty state never appears:
+  Place `CommandEmpty` inside `CommandList`.
+- Dialog opens but content looks clipped:
+  Make sure parent layout does not force overflow clipping on portals or dialog containers.
+
+## Related links
+
+- [Autocomplete](/docs/components/autocomplete)
+- [Dialog](/docs/components/dialog)
+- [Popover](/docs/components/popover)

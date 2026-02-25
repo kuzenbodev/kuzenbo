@@ -1,0 +1,125 @@
+---
+title: "Aspect Ratio"
+description: "Maintain stable media layouts with ratio-locked containers in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 9
+surface: "component"
+seoTitle: "Aspect Ratio | Kuzenbo Docs"
+seoDescription: "Maintain stable media layouts with ratio-locked containers in @kuzenbo/core."
+ogImage: "/docs-og/components/aspect-ratio"
+ogImageAlt: "Aspect Ratio documentation"
+aliases:
+  - "/docs/components/layout/aspect-ratio"
+---
+
+## Aspect Ratio at a Glance
+
+`AspectRatio` gives media containers predictable height before images or videos load.
+It solves layout shift by setting a `--ratio` CSS variable and applying `aspect-(--ratio)` on the root.
+
+Use this primitive when you need a stable frame.
+Do not use it as a media renderer; child elements still control object-fit, loading behavior, and accessibility text.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { AspectRatio } from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { AspectRatio } from "@kuzenbo/core";
+
+export function VideoThumbnail() {
+  return (
+    <AspectRatio
+      ratio={16 / 9}
+      className="overflow-hidden rounded-lg border border-border bg-muted"
+    >
+      <img
+        alt="Release recap thumbnail"
+        className="size-full object-cover"
+        src="https://placehold.co/1280x720"
+      />
+    </AspectRatio>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { AspectRatio } from "@kuzenbo/core";
+
+export function ResponsiveMediaGrid() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      <AspectRatio
+        ratio={1}
+        className="overflow-hidden rounded-md border border-border bg-card"
+      >
+        <img
+          alt="Square preview"
+          className="size-full object-cover"
+          src="https://placehold.co/600x600"
+        />
+      </AspectRatio>
+
+      <AspectRatio
+        ratio={21 / 9}
+        className="overflow-hidden rounded-md border border-border bg-card"
+      >
+        <img
+          alt="Cinematic preview"
+          className="size-full object-cover"
+          src="https://placehold.co/1200x514"
+        />
+      </AspectRatio>
+    </div>
+  );
+}
+```
+
+## API Details
+
+- `AspectRatio` props: `ComponentProps<"div"> & { ratio: number }`.
+- `ratio` is required and controls the rendered aspect ratio.
+- `className`, `id`, `data-*`, and other native `div` props pass through.
+- Root element includes `data-slot="aspect-ratio"` for targeting tests and styles.
+
+## Accessibility
+
+- `AspectRatio` itself is structural; accessible names come from child content.
+- Always provide meaningful `alt` text for images and labels/transcripts for media.
+- Keep focusable children reachable and visible inside clipped containers.
+
+## SSR and RSC Notes
+
+- This component is server-safe and does not require a client boundary.
+- It is a good fit for server-rendered cards because ratio is resolved from static styles.
+
+## Styling and Tokens
+
+- Prefer semantic tokens around the frame: `bg-card`, `border-border`, `text-foreground`, `bg-muted`.
+- Keep media-specific styles on children (`object-cover`, `object-contain`) instead of on `AspectRatio` itself.
+
+## Troubleshooting
+
+- If the box collapses, confirm `ratio` is defined and numeric.
+- If media looks stretched, adjust child `object-fit` behavior.
+- If content clips unexpectedly, check `overflow-*` utilities on the wrapper.
+
+## Related Docs
+
+- [Components Index](/docs/components)
+- [Layout and Spacing](/docs/foundations/layout-and-spacing)
+- [Server Components](/docs/foundations/server-components)

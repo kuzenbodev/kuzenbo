@@ -1,0 +1,104 @@
+---
+title: "Color Primitives"
+description: "Define and evolve Kuzenbo color tokens through @kuzenbo/theme while keeping semantic class usage stable across packages."
+section: "foundations"
+package: "theme"
+status: "stable"
+order: 5
+surface: "guide"
+seoTitle: "Color Primitives | Kuzenbo Docs"
+seoDescription: "Use semantic color primitives in Kuzenbo and evolve tokens safely through @kuzenbo/theme."
+ogImage: "/docs-og/foundations/color-primitives"
+ogImageAlt: "Color Primitives documentation"
+aliases:
+  - "/docs/features/color-primitives"
+---
+
+## Token-First Color System
+
+Kuzenbo color is a two-layer contract:
+
+1. `@kuzenbo/theme` owns raw token values (`--kb-*`) and semantic mappings (`--color-*`).
+2. Components and apps consume semantic utility classes (`bg-background`, `text-foreground`, `border-border`, `text-muted-foreground`).
+
+This split is what allows package-level consistency without forcing every app to share the same visual brand.
+
+## Where Color Lives
+
+- Source of truth: `packages/theme/src/default.css`
+- Runtime class application: `ThemeBootstrapScript` and `ThemeProvider`
+- Optional global polish: `@kuzenbo/styles/recommended.css` (not token ownership)
+
+## Editing Tokens Safely
+
+When introducing or changing a color role:
+
+1. Add or adjust `--kb-*` values in both light and dark scopes.
+2. Map the role into `@theme inline` as `--color-*`.
+3. Consume only semantic class names in component code.
+4. Verify contrast and regression snapshots before merge.
+
+```css
+:root {
+  --kb-info: oklch(0.974 0.012 244.25);
+  --kb-info-foreground: oklch(0.562 0.182 255.12);
+  --kb-info-border: oklch(0.927 0.032 265.82);
+}
+
+@theme inline {
+  --color-info: var(--kb-info);
+  --color-info-foreground: var(--kb-info-foreground);
+  --color-info-border: var(--kb-info-border);
+}
+```
+
+## Runtime Theme Resolution
+
+The theme runtime resolves preference from cookie/storage/system and applies classes before hydration.
+If first paint looks wrong, inspect bootstrap placement before touching token files.
+
+```tsx
+import type { ReactNode } from "react";
+
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export function AppThemeBoundary({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <ThemeBootstrapScript />
+      <ThemeProvider>{children}</ThemeProvider>
+    </>
+  );
+}
+```
+
+## Semantic Class Policy
+
+Approved examples:
+
+- `bg-background`
+- `text-foreground`
+- `bg-primary`
+- `text-muted-foreground`
+- `border-border`
+- status primitives like `bg-danger`, `text-warning-foreground`, `border-success-border`
+
+Avoid raw palette classes (`text-gray-500`, `bg-slate-900`, `from-blue-500`) because they bypass the theme contract.
+
+## Accessibility and Contrast
+
+- Validate contrast in both light and dark themes for text, borders, and interactive states.
+- Confirm focus indicators remain visible when token values change.
+- Check status colors with icon + text, not color-only communication.
+
+## Troubleshooting
+
+- Token changed but UI did not: verify semantic class usage in component markup.
+- Dark mode mismatch: check `.dark` token block and bootstrap ordering.
+- Chart colors off-brand: confirm `--color-chart-*` mappings and series fallback order.
+
+## Related Docs
+
+- [Theming](/docs/getting-started/theming)
+- [Theme Runtime](/docs/foundations/theme-runtime)
+- [Styles Baseline](/docs/foundations/styles-baseline)

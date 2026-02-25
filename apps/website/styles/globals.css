@@ -1,0 +1,28 @@
+@import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+@import "@kuzenbo/styles/recommended.css";
+
+@source "./**/*.{ts,tsx,mdx}";
+@source "../node_modules/@kuzenbo/ai/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/charts/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/core/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/code/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/datatable/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/date/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/notifications/src/**/*.{ts,tsx}";
+@source "../node_modules/@kuzenbo/tiptap/src/**/*.{ts,tsx}";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  --kb-anchor-offset: 5rem;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-geist-sans);
+    scroll-padding-top: var(--kb-anchor-offset);
+  }
+}

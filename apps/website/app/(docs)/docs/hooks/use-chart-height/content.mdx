@@ -1,0 +1,87 @@
+---
+title: "useChartHeight"
+description: "Read the current chart container height from Recharts layout state inside chart context."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 8
+surface: "hook"
+seoTitle: "useChartHeight | Kuzenbo Docs"
+seoDescription: "Use useChartHeight to access current chart height and adapt interaction UI to available vertical space."
+ogImage: "/docs-og/hooks/use-chart-height"
+ogImageAlt: "useChartHeight documentation"
+---
+
+## What this hook does
+
+`useChartHeight` is a Recharts layout hook re-exported by `@kuzenbo/charts`.
+It returns the chart height in pixels from chart state.
+
+## Reads and writes
+
+- Reads: chart height from Recharts layout state.
+- Writes: nothing. This hook is read-only.
+
+## When to use it
+
+- Switch tooltip/legend density based on available vertical space.
+- Size custom overlays that should match full chart height.
+- Build responsive chart internals without reading DOM manually.
+
+## Import
+
+```tsx
+import { useChartHeight } from "@kuzenbo/charts";
+```
+
+## Example: compact mode when the chart is short
+
+```tsx
+"use client";
+
+import { useChartHeight } from "@kuzenbo/charts";
+
+export function HeightAwareLegendMode() {
+  const chartHeight = useChartHeight();
+
+  if (chartHeight === undefined) {
+    return null;
+  }
+
+  const compact = chartHeight < 280;
+
+  return (
+    <p className="text-sm text-muted-foreground">
+      Legend mode: {compact ? "compact" : "full"} ({chartHeight}px)
+    </p>
+  );
+}
+```
+
+## Example: safe fallback outside chart context
+
+```tsx
+const chartHeight = useChartHeight();
+const effectiveHeight = chartHeight ?? 240;
+```
+
+## Return contract and edge cases
+
+- Type: `number | undefined`
+- `undefined` when used outside chart context.
+- `undefined` before Recharts has reported chart size.
+- Height includes chart container space (axes and legend areas are still within this number).
+- Value does not scale with zoom level; it represents layout pixels.
+
+## SSR and RSC caveats
+
+- Client-only hook for components rendered inside chart trees.
+- Keep chart runtime UI inside `"use client"` files.
+- Always handle `undefined` to avoid hydration mismatches.
+
+## Related docs
+
+- [useChartWidth](/docs/hooks/use-chart-width)
+- [usePlotArea](/docs/hooks/use-plot-area)
+- [useOffset](/docs/hooks/use-offset)
+- [Hooks Index](/docs/hooks)

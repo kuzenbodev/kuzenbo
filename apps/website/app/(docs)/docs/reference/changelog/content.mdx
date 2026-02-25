@@ -1,0 +1,44 @@
+---
+title: "Changelog"
+description: "Track Kuzenbo release notes and understand what changed before you upgrade."
+section: "reference"
+package: "core"
+status: "stable"
+order: 4
+surface: "guide"
+seoTitle: "Changelog | Kuzenbo Docs"
+seoDescription: "Where to find Kuzenbo release notes and how to evaluate updates safely."
+ogImage: "/docs-og/reference/changelog"
+ogImageAlt: "Changelog documentation"
+---
+
+## Where To Read Changes
+
+Use these sources when planning an upgrade:
+
+1. [GitHub Releases](https://github.com/DobroslavRadosavljevic/kuzenbo-mono/releases) for version notes.
+2. Repository `CHANGELOG.md` for a quick timeline view.
+3. Package release pages on npm for published version history.
+
+## What To Check In Each Release
+
+- Breaking changes and migration notes.
+- Component or hook API updates.
+- Styling and theme runtime changes.
+- Minimum framework/runtime updates.
+
+## Upgrade Tip
+
+Install explicit versions when validating large upgrades in your app:
+
+```bash
+bun add @kuzenbo/core@<version> @kuzenbo/theme@<version>
+```
+
+In almost all apps, upgrade `@kuzenbo/theme` together with the Kuzenbo UI packages you are validating.
+
+## Related Docs
+
+- [Versioning](/docs/reference/versioning)
+- [Compatibility](/docs/reference/compatibility)
+- [Support](/docs/reference/support)

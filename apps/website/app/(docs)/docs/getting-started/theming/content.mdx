@@ -1,0 +1,72 @@
+---
+title: "Theming"
+description: "Light and dark mode, how theme is picked, and custom integration."
+section: "getting-started"
+package: "theme"
+status: "stable"
+order: 8
+surface: "guide"
+seoTitle: "Theming | Kuzenbo Docs"
+seoDescription: "Set up Kuzenbo theme runtime with cookie/localStorage fallbacks and SSR-safe class application."
+ogImage: "/docs-og/getting-started/theming"
+ogImageAlt: "Kuzenbo theming runtime"
+---
+
+## Light and dark mode
+
+Kuzenbo’s theme runtime applies light or dark mode before your app hydrates. It uses CSS variables (design tokens) and adds `.dark` to `<html>` so components look correct on first paint.
+
+## Set it up
+
+Import the theme CSS and wrap your app:
+
+```tsx
+import type { ReactNode } from "react";
+
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeBootstrapScript />
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+Most apps use `@kuzenbo/theme/prebuilt/kuzenbo.css`. Use `@kuzenbo/theme/default.css` only if you want the raw default token set instead of the Kuzenbo prebuilt theme.
+
+## How it picks a theme
+
+The runtime resolves the theme in this order:
+
+1. Cookie (if your app sets it)
+2. Local storage (`localStorage` key)
+3. Legacy storage key (`theme`)
+4. System preference (`prefers-color-scheme`)
+
+It then applies `.dark` to `<html>` and sets `color-scheme` to match.
+
+## Custom integration
+
+If you need to control theme outside the default provider, use the low-level APIs:
+
+```tsx
+import {
+  DEFAULT_THEME_SETTING,
+  applyThemeToRootElement,
+  parseThemePreference,
+} from "@kuzenbo/theme";
+```
+
+See [Theme Runtime](/docs/foundations/theme-runtime) for details.
+
+## Troubleshooting
+
+- **Theme not persisted** — Your app may be overwriting the storage keys; check that you’re not clearing them.
+- **Wrong theme on first paint** — Ensure `ThemeBootstrapScript` runs before your app content.
+- **Dark classes but wrong colors** — Theme CSS may not be loaded; verify the import path.

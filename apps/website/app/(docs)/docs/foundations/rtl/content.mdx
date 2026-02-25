@@ -1,0 +1,87 @@
+---
+title: "RTL"
+description: "Ship reliable right-to-left experiences in Kuzenbo by combining document direction, logical layout decisions, and component-level verification."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 10
+surface: "guide"
+seoTitle: "RTL | Kuzenbo Docs"
+seoDescription: "Practical right-to-left layout and interaction guidance for Kuzenbo apps and component composition."
+ogImage: "/docs-og/foundations/rtl"
+ogImageAlt: "RTL documentation"
+aliases:
+  - "/docs/features/rtl"
+---
+
+## RTL Implementation Model
+
+RTL support is not a late-stage visual tweak.
+Treat direction as a layout and interaction requirement from the first component composition pass.
+
+## Set Direction at the Correct Boundary
+
+- Prefer document-level direction (`<html dir="rtl">`) for fully RTL products.
+- Use section-level `dir` only when mixing LTR and RTL regions in one page.
+- Keep text alignment and spacing logical (`text-start`, `text-end`) instead of hardcoded left/right assumptions.
+
+## Component Composition Example
+
+`Timeline` supports explicit direction, which is useful in mixed-direction dashboards.
+
+```tsx
+import { Timeline } from "@kuzenbo/core";
+
+export function ReleaseTimeline() {
+  return (
+    <Timeline dir="rtl" orientation="vertical">
+      <Timeline.Item>
+        <Timeline.Header>
+          <Timeline.Title>Release candidate</Timeline.Title>
+          <Timeline.Time>09:00</Timeline.Time>
+        </Timeline.Header>
+        <Timeline.Content>
+          <Timeline.Description>
+            Package verification finished.
+          </Timeline.Description>
+        </Timeline.Content>
+      </Timeline.Item>
+    </Timeline>
+  );
+}
+```
+
+## Overlay and Navigation Notes
+
+For dialogs, drawers, and menus in RTL locales:
+
+- Verify entry/exit animation direction still feels natural.
+- Ensure keyboard navigation order remains predictable.
+- Confirm close and action controls are not visually mirrored into confusing positions.
+
+## Styling Guidance
+
+- Use semantic spacing and container composition instead of one-off directional overrides.
+- Prefer CSS logical properties in custom styles (`margin-inline-start`, `padding-inline-end`) when utilities are not enough.
+- Avoid transform hacks that flip entire containers unless the content is purely decorative.
+
+## Testing Strategy
+
+Run at least one integration test per critical flow in both directions:
+
+- LTR baseline (`dir="ltr"`)
+- RTL scenario (`dir="rtl"`)
+
+Also perform visual QA for charts, pagination, and step-based components where directional cues matter most.
+
+## Common RTL Regressions
+
+- Icons imply direction but are never mirrored.
+- Keyboard focus order follows DOM that no longer matches visual order.
+- Text is RTL while interactive layout remains LTR.
+
+## Related Docs
+
+- [Layout and Spacing](/docs/foundations/layout-and-spacing)
+- [Accessibility](/docs/foundations/accessibility)
+- [Navigation Patterns](/docs/patterns/navigation-patterns)

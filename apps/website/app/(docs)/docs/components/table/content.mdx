@@ -1,0 +1,196 @@
+---
+title: "Table"
+description: "Semantic table primitive with built-in scroll container, slot-based subcomponents, and token-aligned row/cell styling."
+section: "components"
+package: "core"
+status: "stable"
+order: 78
+surface: "component"
+seoTitle: "Table | Kuzenbo Docs"
+seoDescription: "Build accessible data tables with @kuzenbo/core Table primitives, including captions, sticky-friendly structure, and responsive overflow handling."
+ogImage: "/docs-og/components/table"
+ogImageAlt: "Table documentation"
+aliases:
+  - "/docs/components/display/table"
+---
+
+## Overview
+
+`Table` is a semantic table composition with built-in horizontal/vertical scroll container behavior. It is designed for readable tabular data while preserving native table semantics.
+
+Use it for structured records where row/column relationships matter. For advanced sorting/filtering state, pair with `@kuzenbo/datatable`.
+Table surfaces support a unified size contract: `xs | sm | md | lg | xl` (`md` default).
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Table } from "@kuzenbo/core";
+
+export function TableBasic() {
+  return (
+    <Table className="min-w-96">
+      <Table.Caption>Monthly recurring revenue by plan</Table.Caption>
+
+      <Table.Header>
+        <Table.Row>
+          <Table.Head>Plan</Table.Head>
+          <Table.Head>MRR</Table.Head>
+        </Table.Row>
+      </Table.Header>
+
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>Starter</Table.Cell>
+          <Table.Cell>$4,200</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Growth</Table.Cell>
+          <Table.Cell>$12,800</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Table } from "@kuzenbo/core";
+
+export function TableAdvanced() {
+  return (
+    <Table className="min-w-[42rem]">
+      <Table.Caption>Q1 pipeline health</Table.Caption>
+
+      <Table.Header>
+        <Table.Row>
+          <Table.Head>Region</Table.Head>
+          <Table.Head>Open Deals</Table.Head>
+          <Table.Head>Weighted Pipeline</Table.Head>
+        </Table.Row>
+      </Table.Header>
+
+      <Table.Body>
+        <Table.Row data-state="selected">
+          <Table.Cell>North America</Table.Cell>
+          <Table.Cell>28</Table.Cell>
+          <Table.Cell>$1.8M</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Europe</Table.Cell>
+          <Table.Cell>19</Table.Cell>
+          <Table.Cell>$1.1M</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+
+      <Table.Footer>
+        <Table.Row>
+          <Table.Cell>Total</Table.Cell>
+          <Table.Cell>47</Table.Cell>
+          <Table.Cell>$2.9M</Table.Cell>
+        </Table.Row>
+      </Table.Footer>
+    </Table>
+  );
+}
+```
+
+## Sizing
+
+`Table` and table-part surfaces (`Table.Header`, `Table.Row`, `Table.Head`, `Table.Cell`, `Table.Footer`, `Table.Caption`) share one size contract:
+
+- Tokens: `xs | sm | md | lg | xl`
+- Default: `md`
+- Precedence: `explicit child size ?? nearest table context ?? root Table size ?? "md"`
+
+```tsx
+<Table size="xl" className="min-w-[42rem]">
+  <Table.Header size="sm">
+    <Table.Row>
+      <Table.Head size="xs">Region</Table.Head>
+      <Table.Head>Pipeline</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row size="sm">
+      <Table.Cell size="sm">North America</Table.Cell>
+      <Table.Cell>$1.8M</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+```
+
+## API Reference
+
+- `Table`
+  - Root table wrapped in a scroll-area container (`data-slot="table-container"`), supports `size`.
+- `TableHeader`
+  - `<thead>` wrapper with optional inherited `size`.
+- `TableBody`
+  - `<tbody>` wrapper with optional inherited `size`.
+- `TableRow`
+  - `<tr>` with hover/selected state styling and optional inherited `size`.
+- `TableHead`
+  - `<th>` header cell with optional shared `size`.
+- `TableCell`
+  - `<td>` data cell with optional shared `size`.
+- `TableFooter`
+  - `<tfoot>` summary row area with optional inherited `size`.
+- `TableCaption`
+  - `<caption>` for table context with optional shared `size`.
+
+`Table.*` static composition is available for all listed parts.
+
+## Accessibility
+
+- Include a meaningful `Table.Caption` for context.
+- Keep header cells in `TableHead` to preserve column semantics.
+- Use native interactive controls inside cells instead of making rows non-semantic clickable surfaces.
+- Avoid hiding critical values behind color-only encoding.
+
+## SSR and RSC Notes
+
+- `Table` is safe for server rendering and static generation.
+- Interactive row behaviors (selection, expansion) should be handled in client logic layered on top.
+
+## Styling and Tokens
+
+- Container uses semantic surface tokens (`bg-card`, `border-border`).
+- Row hover/selection styles use semantic muted tokens.
+- Keep overrides token-based to preserve theme consistency.
+
+## Troubleshooting
+
+- Horizontal scroll not visible: provide a table min-width (`className="min-w-*"`) larger than viewport.
+- Header/body alignment issues: avoid mixing non-table elements directly under `TableHeader` or `TableBody`.
+- Selection state not visible: set `data-state="selected"` on the `TableRow`.
+- Dense layouts clipping content: adjust cell padding with `className` on `TableHead`/`TableCell`.
+
+## Related Docs
+
+- [Data Table (Mock)](/docs/components/mock-data-table)
+- [Pagination](/docs/components/pagination)
+- [Typography](/docs/components/typography)
+- [Card](/docs/components/card)

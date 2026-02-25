@@ -1,0 +1,10 @@
+import type { UISize } from "../shared/size/size-system";
+
+import { createSizeContext } from "../shared/size/size-context";
+
+export type TableSize = UISize;
+
+const { SizeContext: TableSizeContext, useResolvedSize: useTableResolvedSize } =
+  createSizeContext();
+
+export { TableSizeContext, useTableResolvedSize };

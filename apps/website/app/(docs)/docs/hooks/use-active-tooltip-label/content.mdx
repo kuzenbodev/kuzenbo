@@ -1,0 +1,111 @@
+---
+title: "useActiveTooltipLabel"
+description: "Read the active tooltip label from Recharts interaction state to drive custom headers, badges, or synchronized UI."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 4
+surface: "hook"
+seoTitle: "useActiveTooltipLabel | Kuzenbo Docs"
+seoDescription: "Read the active tooltip label from Recharts interaction state to drive custom headers, badges, or synchronized UI."
+ogImage: "/docs-og/hooks/use-active-tooltip-label"
+ogImageAlt: "useActiveTooltipLabel documentation"
+---
+
+## Overview
+
+`useActiveTooltipLabel` exposes the current tooltip label (for example an x-axis category like `"Feb"`) from Recharts state.
+
+## What It Reads and Writes
+
+- Reads: active tooltip label from chart interaction state.
+- Writes: nothing. This hook is read-only.
+
+## When to Use
+
+- Show a small "currently hovered" label above or below a chart.
+- Sync nearby UI to the same category/value currently highlighted by the tooltip.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import { useActiveTooltipLabel } from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import {
+  Chart,
+  type ChartConfig,
+  useActiveTooltipLabel,
+} from "@kuzenbo/charts";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", visits: 120 },
+  { month: "Feb", visits: 148 },
+  { month: "Mar", visits: 170 },
+];
+
+const config: ChartConfig = {
+  visits: { label: "Visits", color: "var(--color-chart-2)" },
+};
+
+const ActiveLabelBadge = () => {
+  const activeLabel = useActiveTooltipLabel();
+
+  return (
+    <p className="text-sm text-foreground">
+      {activeLabel === undefined
+        ? "No active point"
+        : `Active label: ${String(activeLabel)}`}
+    </p>
+  );
+};
+
+export function ActiveTooltipLabelExample() {
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <BarChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Bar dataKey="visits" fill="var(--color-visits)" radius={6} />
+        <Chart.Tooltip content={<Chart.TooltipContent />} />
+      </BarChart>
+      <ActiveLabelBadge />
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contract
+
+- Type: `string | number | undefined`
+- `undefined` means no active interaction or missing chart context.
+- For category charts, labels are usually strings. Numeric domains may produce numbers.
+
+## Caveats
+
+- Label values come from tooltip state, so they depend on chart type and axis configuration.
+- If you need the exact hovered datum payload, pair this hook with `useActiveTooltipDataPoints`.
+
+## SSR and RSC Notes
+
+- Use in Client Components only.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [useActiveTooltipCoordinate](/docs/hooks/use-active-tooltip-coordinate)
+- [useActiveTooltipDataPoints](/docs/hooks/use-active-tooltip-data-points)
+- [useIsTooltipActive](/docs/hooks/use-is-tooltip-active)
+- [Chart](/docs/components/chart)

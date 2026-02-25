@@ -1,0 +1,166 @@
+---
+title: "Radar Chart"
+description: "Compare multi-series metrics across categories with @kuzenbo/charts RadarChart and polar axis controls."
+section: "components"
+package: "charts"
+status: "stable"
+order: 61
+surface: "component"
+seoTitle: "Radar Chart | Kuzenbo Docs"
+seoDescription: "Compare multi-series metrics across categories with @kuzenbo/charts RadarChart and polar axis controls."
+ogImage: "/docs-og/components/radar-chart"
+ogImageAlt: "Radar Chart documentation"
+---
+
+## Overview
+
+`RadarChart` visualizes how multiple series perform across the same set of dimensions.
+
+- Required: `data`, `dataKey`, `series`.
+- Built for side-by-side shape comparisons (score vs benchmark, team A vs team B).
+- Includes optional dots, polar axes, legend highlighting, and Recharts-level customization.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { RadarChart, type CompleteChartSeries } from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { RadarChart, type CompleteChartSeries } from "@kuzenbo/charts";
+
+const data = [
+  { metric: "Reliability", score: 84, benchmark: 90 },
+  { metric: "Performance", score: 79, benchmark: 88 },
+  { metric: "Security", score: 91, benchmark: 93 },
+  { metric: "Usability", score: 76, benchmark: 82 },
+  { metric: "Support", score: 81, benchmark: 85 },
+  { metric: "Integrations", score: 73, benchmark: 80 },
+];
+
+const series = [
+  { name: "score", label: "Score", color: "var(--color-chart-1)" },
+  {
+    name: "benchmark",
+    label: "Benchmark",
+    color: "var(--color-chart-3)",
+    strokeDasharray: "5 3",
+  },
+] satisfies CompleteChartSeries[];
+
+export function ProductHealthRadar() {
+  return (
+    <RadarChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="metric"
+      series={series}
+      withDots
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  RadarChart,
+  type CompleteChartSeries,
+  type RadarSeriesProps,
+} from "@kuzenbo/charts";
+
+const data = [
+  { metric: "Quality", actual: 74, target: 88 },
+  { metric: "Velocity", actual: 69, target: 82 },
+  { metric: "Reliability", actual: 81, target: 90 },
+  { metric: "Coverage", actual: 66, target: 78 },
+  { metric: "DX", actual: 72, target: 84 },
+];
+
+const series = [
+  { name: "actual", label: "Actual", color: "var(--color-chart-1)" },
+  { name: "target", label: "Target", color: "var(--color-chart-4)" },
+] satisfies CompleteChartSeries[];
+
+const radarPropsBySeries: RadarSeriesProps = (seriesItem) => ({
+  fillOpacity: seriesItem.name === "target" ? 0.1 : 0.35,
+  strokeDasharray: seriesItem.name === "target" ? "6 3" : undefined,
+});
+
+export function TeamRadarComparison() {
+  return (
+    <RadarChart
+      data={data}
+      dataKey="metric"
+      enableLegendHighlight={false}
+      radarProps={radarPropsBySeries}
+      series={series}
+      strokeWidth={2}
+      withDots
+      withLegend
+      withPolarRadiusAxis
+    />
+  );
+}
+```
+
+## API Reference
+
+- Required props:
+- `data`: axis-category records.
+- `dataKey`: field used by `PolarAngleAxis` (for example `metric`).
+- `series`: named series definitions that map to value keys in each datum.
+
+- Core options:
+- `withDots`, `dotProps`, `activeDotProps`.
+- `withPolarGrid`, `withPolarAngleAxis`, `withPolarRadiusAxis`.
+- `withLegend`, `withTooltip`, `enableLegendHighlight`.
+- `fillOpacity`, `strokeWidth`.
+
+- Customization hooks:
+- `radarProps`: object or per-series callback for low-level radar overrides.
+- `radarChartProps`: canonical Recharts chart passthrough.
+- `chartProps`: legacy alias for `radarChartProps`.
+- `valueFormatter`, `legendProps`, `tooltipProps`, `chartRootProps`, `responsiveContainerProps`.
+
+## Accessibility
+
+- `RadarChart` enables Recharts `accessibilityLayer`.
+- Use clear metric labels and short series names so tooltip and legend output stay readable.
+- For critical decision-making screens, include a tabular fallback under the chart.
+
+## SSR and RSC Notes
+
+- `RadarChart` is a client component (`"use client"`).
+- In App Router, compute data on the server but render the chart in a client boundary.
+- Keep dimensions stable to reduce hydration shifts.
+
+## Styling and Tokens
+
+- Drive series color through semantic chart CSS variables (`--color-chart-*`).
+- Keep chart containers on semantic UI tokens (`bg-background`, `text-foreground`).
+- Avoid raw palette classes around chart legends and tooltips.
+
+## Troubleshooting
+
+- Radar polygons are missing: ensure series names match keys present in each `data` item.
+- Axis labels are wrong: verify `dataKey` points to your category field.
+- Hover dimming is unexpected: set `enableLegendHighlight={false}`.
+- Per-series style callback has no effect: confirm `radarProps` is a function returning valid `Radar` props.
+
+## Related Links
+
+- [Chart](/docs/components/chart)
+- [Funnel Chart](/docs/components/funnel-chart)
+- [Line Chart](/docs/components/line-chart)
+- [Composite Chart](/docs/components/composite-chart)

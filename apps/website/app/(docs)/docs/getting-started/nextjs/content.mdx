@@ -1,0 +1,78 @@
+---
+title: "Next.js"
+description: "Set up Kuzenbo in Next.js App Router with SSR-safe theming."
+section: "getting-started"
+package: "core"
+status: "stable"
+order: 4
+surface: "guide"
+seoTitle: "Next.js | Kuzenbo Docs"
+seoDescription: "Set up Kuzenbo in Next.js App Router with correct layout, theme runtime, and CSS flow."
+ogImage: "/docs-og/getting-started/nextjs"
+ogImageAlt: "Kuzenbo Next.js setup"
+---
+
+## Set up Kuzenbo with Next.js
+
+Add Kuzenbo to your Next.js App Router app so theme applies on first paint without a flash.
+
+## Install
+
+```bash
+npm i @kuzenbo/core @kuzenbo/theme @kuzenbo/styles next-themes
+```
+
+See [Installation](/docs/getting-started/installation) for other package managers.
+
+## Add global styles
+
+In `app/globals.css`:
+
+```css
+@import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+@import "@kuzenbo/styles/recommended.css";
+```
+
+## Configure root layout
+
+In `app/layout.tsx`, add the bootstrap script and provider. The script runs before React hydrates so dark mode is correct on first paint:
+
+```tsx
+import type { ReactNode } from "react";
+
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+import "./globals.css";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeBootstrapScript />
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+`suppressHydrationWarning` on `<html>` avoids React warnings when theme classes are applied before hydration.
+
+## Add your first component
+
+```tsx
+import { Button } from "@kuzenbo/core";
+
+export default function Page() {
+  return (
+    <main className="bg-background text-foreground min-h-screen p-6">
+      <Button>Hello Next.js</Button>
+    </main>
+  );
+}
+```
+
+## Troubleshooting
+
+- **Theme flashes on load** — Ensure `ThemeBootstrapScript` is rendered before `ThemeProvider` content.
+- **Hydration warning** — Keep `suppressHydrationWarning` on `<html>`.
+- **Missing styles** — Confirm theme CSS is imported in your global stylesheet.

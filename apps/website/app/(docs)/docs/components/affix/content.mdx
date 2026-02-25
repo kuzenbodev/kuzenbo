@@ -1,0 +1,142 @@
+---
+title: "Affix"
+description: "Pin UI to viewport edges with optional portal mounting and explicit position/z-index control."
+section: "components"
+package: "core"
+status: "stable"
+order: 3
+surface: "component"
+seoTitle: "Affix | Kuzenbo Docs"
+seoDescription: "Use Affix to anchor controls to viewport edges with portal and z-index control."
+ogImage: "/docs-og/components/affix"
+ogImageAlt: "Affix documentation"
+aliases:
+  - "/docs/components/layout/affix"
+---
+
+## Purpose and boundaries
+
+`Affix` is a fixed-position wrapper for UI that should stay visible while users scroll, like support buttons, floating actions, or quick navigation controls.
+
+Use it when you need:
+
+- A stable viewport anchor (`top`, `right`, `bottom`, `left`)
+- Optional portal mounting to `document.body` or a custom container
+- Predictable stacking with explicit `zIndex`
+
+Do not use `Affix` for sticky-in-container behavior. It is `position: fixed`, not `position: sticky`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Affix, affixVariants } from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+"use client";
+
+import { Affix } from "@kuzenbo/core";
+
+export function HelpAffix() {
+  return (
+    <Affix position={{ bottom: 16, right: 16 }} withinPortal={false}>
+      <button
+        className="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-xs"
+        type="button"
+      >
+        Need help?
+      </button>
+    </Affix>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+"use client";
+
+import { useRef } from "react";
+
+import { Affix } from "@kuzenbo/core";
+
+export function OverlayAffix() {
+  const overlayRootRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <>
+      <div id="overlay-root" ref={overlayRootRef} />
+
+      <Affix
+        position={{ top: 20, right: "max(16px, env(safe-area-inset-right))" }}
+        portalProps={{ target: "#overlay-root" }}
+        zIndex={500}
+      >
+        <button
+          className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground"
+          type="button"
+        >
+          Feedback
+        </button>
+      </Affix>
+    </>
+  );
+}
+```
+
+## API reference
+
+### `Affix`
+
+- `position?: { top?: number | string; bottom?: number | string; left?: number | string; right?: number | string }`
+  Default is `{ bottom: 0, right: 0 }`.
+- `withinPortal?: boolean`
+  Defaults to `true`. Set `false` for local rendering (for example in tests).
+- `portalProps?: BasePortalProps`
+  Passed to the underlying `Portal` when `withinPortal` is enabled.
+- `zIndex?: number`
+  Defaults to `200`.
+- Also accepts standard `div` props and Base UI `render` composition.
+
+### `affixVariants`
+
+Tailwind Variants helper for the root slot classes. Useful when you need style extension that stays aligned with Kuzenbo slot contracts.
+
+## Accessibility notes
+
+- `Affix` is only a layout wrapper. Accessibility comes from the child element.
+- Use native interactive elements (`button`, `a`) and provide an accessible name.
+- Verify focus visibility at all supported zoom levels and viewport sizes.
+
+## SSR and RSC notes
+
+- `Affix` is a client component.
+- With portal mounting enabled, it renders after mount. This is expected and prevents server-side `document` access.
+- If you need deterministic test markup, set `withinPortal={false}`.
+
+## Styling and tokens
+
+- Start from semantic tokens: `bg-background`, `text-foreground`, `border-border`, `bg-primary`.
+- Avoid raw palette classes so the affixed control stays theme-safe.
+- `affixVariants` controls fixed positioning and CSS-variable-driven offsets/z-index.
+
+## Troubleshooting
+
+- Affix is not visible: check `zIndex` and verify parent overlays are not covering it.
+- Position does not move: ensure `position` keys are valid (`top`, `right`, `bottom`, `left`) and values include units for strings.
+- Unexpected mount target: verify `portalProps.target` resolves to an existing element.
+
+## Related docs
+
+- [Portal](/docs/components/portal)
+- [Dialog](/docs/components/dialog)
+- [Sheet](/docs/components/sheet)
+- [Components index](/docs/components)

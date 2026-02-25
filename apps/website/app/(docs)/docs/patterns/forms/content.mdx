@@ -1,0 +1,120 @@
+---
+title: "Forms"
+description: "Form composition patterns with canonical Form, Field, and Fieldset primitives, plus Kuzenbo input controls and validation flows."
+section: "patterns"
+package: "core"
+status: "stable"
+order: 3
+surface: "guide"
+seoTitle: "Forms | Kuzenbo Docs"
+seoDescription: "Build production-ready forms with Kuzenbo Form, Field, Fieldset, and input control primitives."
+ogImage: "/docs-og/patterns/forms"
+ogImageAlt: "Forms documentation"
+aliases:
+  - "/docs/features/forms"
+---
+
+## Pattern goal
+
+A Kuzenbo form should be easy to scan, keyboard-safe, and explicit about validation state. The recommended approach is composition-first: use `Form` as the root, `Field` for row-level semantics, and `Fieldset` for grouped sections.
+
+## Preferred stack
+
+1. `Form` for submit and validation state orchestration.
+2. `Field` for label, control, description, and error composition.
+3. Control primitives (`Input`, `Textarea`, `Select`, `NumberField`, `Checkbox`, `RadioGroup`) for interaction.
+4. `Fieldset` + `Fieldset.Legend` for related control groups.
+
+## Baseline composition
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Button, Field, Form, Input, NumberField } from "@kuzenbo/core";
+
+export function CheckoutForm() {
+  const [email, setEmail] = useState("");
+  const [quantity, setQuantity] = useState<number | null>(1);
+  const emailError = email.includes("@")
+    ? null
+    : "Enter a valid email address.";
+
+  return (
+    <Form className="grid gap-5" noValidate>
+      <Field>
+        <Field.Label htmlFor="checkout-email">Email</Field.Label>
+        <Field.Control
+          render={
+            <Input
+              aria-invalid={Boolean(emailError)}
+              id="checkout-email"
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+            />
+          }
+        />
+        <Field.Description>
+          Order confirmation is sent to this address.
+        </Field.Description>
+        {emailError ? <Field.Error>{emailError}</Field.Error> : null}
+      </Field>
+
+      <Field>
+        <Field.Label htmlFor="checkout-quantity">Quantity</Field.Label>
+        <Field.Item>
+          <NumberField
+            min={1}
+            onValueChange={setQuantity}
+            step={1}
+            value={quantity}
+          >
+            <NumberField.Group>
+              <NumberField.Decrement />
+              <NumberField.Input id="checkout-quantity" />
+              <NumberField.Increment />
+            </NumberField.Group>
+          </NumberField>
+        </Field.Item>
+      </Field>
+
+      <Button type="submit">Submit order</Button>
+    </Form>
+  );
+}
+```
+
+## Orientation and density
+
+- Use vertical field rows for most pages.
+- Use grouped `Fieldset` sections when choices are related.
+- Avoid packing unrelated controls into a single horizontal row unless scan speed improves.
+
+## Validation strategy
+
+- Set `aria-invalid` on controls when invalid.
+- Keep messages close to the associated control using `Field.Error` and `Field.Description`.
+- Use `Field.Validity` for non-error status hints when needed.
+
+## Accessibility checklist
+
+- Associate labels and controls (`htmlFor` plus `id`).
+- Preserve keyboard order for grouped controls.
+- Do not rely on color alone for invalid state.
+- Keep submit and async error feedback programmatically discoverable.
+
+## Testing guidance
+
+- Assert by role and label text instead of class names.
+- Cover invalid and valid transitions in the same test suite.
+- Add regression tests for the exact bug shape when form behavior breaks.
+
+## Related docs
+
+- [Form component](/docs/components/form)
+- [Field component](/docs/components/field)
+- [Fieldset component](/docs/components/fieldset)
+- [Input component](/docs/components/input)
+- [NumberField component](/docs/components/number-field)
+- [Testing foundation](/docs/foundations/testing)

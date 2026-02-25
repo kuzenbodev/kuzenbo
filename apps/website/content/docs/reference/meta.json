@@ -1,0 +1,14 @@
+{
+  "description": "Operational references, support paths, and FAQ guidance.",
+  "icon": "Book02",
+  "pages": [
+    "index",
+    "faq",
+    "support",
+    "changelog",
+    "versioning",
+    "compatibility",
+    "troubleshooting"
+  ],
+  "title": "Reference"
+}

@@ -1,0 +1,193 @@
+---
+title: "Emoji Picker"
+description: "Compose searchable emoji selection UIs with list, search, empty/loading, and skin-tone controls."
+section: "components"
+package: "core"
+status: "stable"
+order: 35
+surface: "component"
+seoTitle: "Emoji Picker | Kuzenbo Docs"
+seoDescription: "Build emoji input workflows with composable slots and theme-aligned styling."
+ogImage: "/docs-og/components/emoji-picker"
+ogImageAlt: "Emoji Picker documentation"
+aliases:
+  - "/docs/components/inputs/emoji-picker"
+---
+
+## Purpose and boundaries
+
+`EmojiPicker` is a composed wrapper over `frimousse` primitives with Kuzenbo styling and slot contracts.
+
+Use it when you need:
+
+- Searchable emoji selection in chat, comments, and status editors
+- Standardized loading and empty states
+- Optional active-emoji preview and skin-tone selector
+
+It does not manage your product state by itself. Handle selected emoji in your app logic.
+The picker and slot surfaces share a unified `size` contract: `xs | sm | md | lg | xl` (`md` default).
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  EmojiPicker,
+  EmojiPickerActiveEmoji,
+  EmojiPickerActiveEmojiPreview,
+  EmojiPickerContent,
+  EmojiPickerEmpty,
+  EmojiPickerList,
+  EmojiPickerLoading,
+  EmojiPickerSearch,
+  EmojiPickerSkinTone,
+  EmojiPickerSkinToneSelector,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { EmojiPicker } from "@kuzenbo/core";
+
+export function BasicEmojiPicker() {
+  return (
+    <EmojiPicker>
+      <EmojiPicker.Search placeholder="Search emoji" />
+      <EmojiPicker.Content>
+        <EmojiPicker.List />
+      </EmojiPicker.Content>
+      <EmojiPicker.SkinToneSelector />
+    </EmojiPicker>
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+import { EmojiPicker } from "@kuzenbo/core";
+
+export function EmojiPickerWithStates() {
+  return (
+    <EmojiPicker className="w-80">
+      <EmojiPicker.Search
+        placeholder="Find reaction"
+        wrapperClassName="border-b border-border"
+      />
+
+      <EmojiPicker.Content>
+        <EmojiPicker.Loading>Loading emoji catalog...</EmojiPicker.Loading>
+        <EmojiPicker.Empty>No emoji matched your query.</EmojiPicker.Empty>
+        <EmojiPicker.List />
+      </EmojiPicker.Content>
+
+      <EmojiPicker.ActiveEmojiPreview emptyText="Move through the list to preview details" />
+
+      <div className="flex items-center justify-end border-t border-border px-2 py-1.5">
+        <EmojiPicker.SkinToneSelector />
+      </div>
+    </EmojiPicker>
+  );
+}
+```
+
+## Sizing
+
+`EmojiPicker` and size-owning slot surfaces (`Search`, `Content`, `List`, `Loading`, `Empty`, `ActiveEmojiPreview`, `SkinToneSelector`, `SkinTone`) share one size contract:
+
+- Tokens: `xs | sm | md | lg | xl`
+- Default: `md`
+- Precedence: `explicit child size ?? nearest picker context ?? root EmojiPicker size ?? "md"`
+
+```tsx
+<EmojiPicker size="xl" className="w-80">
+  <EmojiPicker.Search size="sm" placeholder="Find reaction" />
+  <EmojiPicker.Content size="lg">
+    <EmojiPicker.Loading>Loading emoji catalog...</EmojiPicker.Loading>
+    <EmojiPicker.Empty size="md">
+      No emoji matched your query.
+    </EmojiPicker.Empty>
+    <EmojiPicker.List size="sm" />
+  </EmojiPicker.Content>
+  <EmojiPicker.ActiveEmojiPreview size="xs" />
+  <EmojiPicker.SkinToneSelector />
+</EmojiPicker>
+```
+
+## API reference
+
+### `EmojiPicker`
+
+Root wrapper for the picker surface. Accepts `frimousse` root props plus `size`, and renders children slots.
+
+### `EmojiPickerSearch`
+
+Search input slot. Supports `size`, `wrapperClassName`, and native search/input props.
+
+### `EmojiPickerContent`
+
+Viewport wrapper around scrollable picker content; can scope inherited `size`.
+
+### `EmojiPickerList`
+
+Virtualized/list-rendered emoji catalog slot with optional inherited `size`.
+
+### `EmojiPickerLoading`
+
+Overlay-like loading state rendered inside content viewport with optional `size`.
+
+### `EmojiPickerEmpty`
+
+Empty-results state rendered inside content viewport with optional `size`.
+
+### `EmojiPickerActiveEmoji`
+
+Low-level active item state hook component.
+
+### `EmojiPickerActiveEmojiPreview`
+
+Convenience preview UI for hovered/active emoji with `emptyText` fallback and optional `size`.
+
+### `EmojiPickerSkinToneSelector`
+
+Skin tone selector trigger/control slot with optional `size`.
+
+### `EmojiPickerSkinTone`
+
+Low-level skin tone primitive for custom selector compositions with optional `size`.
+
+## Accessibility notes
+
+- Treat emoji picker trigger and result insertion as a normal form interaction with clear labels.
+- Keep search placeholder and surrounding labels descriptive.
+- Ensure keyboard users can open picker, move through results, and confirm selection without a mouse.
+
+## SSR and RSC notes
+
+- `EmojiPicker` is a client component.
+- Render it inside a client boundary in App Router.
+- Keep server-rendered shells stable and mount the picker where interaction is needed.
+
+## Styling and tokens
+
+- Kuzenbo slots already use semantic classes such as `bg-popover`, `border-border`, `text-muted-foreground`.
+- Extend with semantic tokens only. Do not introduce raw palette utilities.
+
+## Troubleshooting
+
+- List does not appear: ensure `EmojiPicker.Content` and `EmojiPicker.List` are both rendered.
+- Search styles are missing: pass styles via `wrapperClassName` and `className` to `EmojiPicker.Search`.
+- Empty/loading messages never show: confirm they are nested inside `EmojiPicker.Content`.
+
+## Related docs
+
+- [Input](/docs/components/input)
+- [Popover](/docs/components/popover)
+- [Command](/docs/components/command)
+- [Components index](/docs/components)

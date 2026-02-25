@@ -1,0 +1,111 @@
+---
+title: "Spinner"
+description: "Lightweight loading indicator in @kuzenbo/core with built-in status semantics and icon-based rendering."
+section: "components"
+package: "core"
+status: "stable"
+order: 76
+surface: "component"
+seoTitle: "Spinner | Kuzenbo Docs"
+seoDescription: "Lightweight loading indicator in @kuzenbo/core with built-in status semantics and icon-based rendering."
+ogImage: "/docs-og/components/spinner"
+ogImageAlt: "Spinner documentation"
+aliases:
+  - "/docs/components/display/spinner"
+---
+
+## Overview
+
+`Spinner` is the loading indicator primitive in `@kuzenbo/core`. It renders a rotating icon with accessible defaults (`role="status"`, `aria-label="Loading"`) and accepts standard SVG props.
+
+Use it for short async waits, inline fetching states, and button-loading affordances.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Spinner } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Spinner } from "@kuzenbo/core";
+
+export function InlineLoadingState() {
+  return (
+    <div className="inline-flex items-center gap-2 text-muted-foreground">
+      <Spinner size="sm" />
+      Loading workspace data...
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Button, Spinner } from "@kuzenbo/core";
+
+export function SaveButton({ isSaving }: { isSaving: boolean }) {
+  return (
+    <Button disabled={isSaving} variant="default">
+      {isSaving ? (
+        <div className="inline-flex items-center gap-2">
+          <Spinner size="sm" strokeWidth={2.5} />
+          Saving
+        </div>
+      ) : (
+        "Save changes"
+      )}
+    </Button>
+  );
+}
+```
+
+## API Reference
+
+- `Spinner`: icon-based loading indicator.
+
+Useful props:
+
+- `size`: visual scale (`xs`, `sm`, `md`, `lg`, `xl`), default `md`.
+- `className`: additional size/color control (`size-*`, `text-*`) for fine-grained overrides.
+- `strokeWidth`: thickness of icon stroke.
+- Any SVG attributes (`data-testid`, `aria-*`, etc.) are forwarded.
+
+## Accessibility
+
+- Spinner defaults are announced as a loading status.
+- If spinner is purely decorative, set `aria-hidden` and provide status text elsewhere.
+- Pair longer loading states with readable context (`Uploading file`, `Syncing invoices`).
+
+## SSR and RSC Notes
+
+- `Spinner` is server-safe and has no client-only hooks.
+- It is suitable in both Server and Client Components.
+- For transition-heavy interactions, combine with client state from parent components.
+
+## Styling and Tokens
+
+- Use semantic text tokens for spinner color (`text-foreground`, `text-muted-foreground`, `text-primary`).
+- Keep contrast strong on tinted backgrounds.
+- Avoid raw palette classes in shared UI surfaces.
+
+## Troubleshooting
+
+- Spinner is too small or too large: use `size` (`xs` to `xl`) first, then `className` for custom overrides.
+- Stroke looks too thin on high-DPI displays: increase `strokeWidth`.
+- Screen readers announce too often: avoid rendering/remounting spinner repeatedly in rapid loops.
+
+## Related Docs
+
+- [Button](/docs/components/button)
+- [Alert](/docs/components/alert)
+- [Skeleton](/docs/components/skeleton)
+- [QR Code](/docs/components/qr-code)

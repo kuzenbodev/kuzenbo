@@ -1,0 +1,100 @@
+---
+title: "useSeriesColor"
+description: "Resolve a series color string from Chart config and active theme using Chart context."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 18
+surface: "hook"
+seoTitle: "useSeriesColor | Kuzenbo Docs"
+seoDescription: "Use useSeriesColor to resolve theme-aware chart series colors from Chart config by series key."
+ogImage: "/docs-og/hooks/use-series-color"
+ogImageAlt: "useSeriesColor documentation"
+---
+
+## What this hook does
+
+`useSeriesColor` reads the resolved runtime color for a series key from Kuzenbo chart context.
+Unlike Recharts layout hooks, this hook is implemented in `@kuzenbo/charts` and depends on `Chart.Provider`/`Chart.Root`.
+
+## Reads and writes
+
+- Reads: `ChartContext` config, series registry, and current light/dark theme context.
+- Writes: nothing. This hook is read-only.
+
+## When to use it
+
+- Render custom legends with the same resolved colors as chart primitives.
+- Resolve theme-aware series colors for annotations or external badges.
+- Keep color access centralized instead of repeating manual theme checks.
+
+## Import
+
+```tsx
+import { useSeriesColor } from "@kuzenbo/charts";
+```
+
+## Example: custom legend swatch
+
+```tsx
+"use client";
+
+import { Chart, useSeriesColor } from "@kuzenbo/charts";
+
+const config = {
+  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+  target: { label: "Target", color: "var(--color-chart-2)" },
+};
+
+function LegendSwatch({ seriesKey }: { seriesKey: string }) {
+  const resolved = useSeriesColor(seriesKey) ?? "var(--color-muted)";
+
+  return (
+    <span className="inline-flex items-center gap-2 text-sm">
+      <span
+        className="h-2.5 w-2.5 rounded-full"
+        style={{ backgroundColor: resolved }}
+      />
+      {seriesKey}
+    </span>
+  );
+}
+
+export function LegendExample() {
+  return (
+    <Chart.Provider config={config}>
+      <div className="flex gap-4">
+        <LegendSwatch seriesKey="revenue" />
+        <LegendSwatch seriesKey="target" />
+      </div>
+    </Chart.Provider>
+  );
+}
+```
+
+## Example: fallback path for unknown keys
+
+```tsx
+const cpuColor = useSeriesColor("cpu") ?? "var(--color-cpu)";
+```
+
+## Return contract and edge cases
+
+- Signature: `useSeriesColor(seriesKey: string): string | undefined`
+- Returns a resolved color string for known keys.
+- Returns `undefined` if the series key is not in `Chart` config.
+- Throws an error when used outside `Chart.Provider` or `Chart.Root`.
+- Theme resolution checks the chart root and document dark mode class at runtime.
+
+## SSR and RSC caveats
+
+- Client-only usage in chart UI layers.
+- In server rendering paths, treat this as unavailable and defer color resolution to client render.
+- If you need always-available CSS variable references, use `useSeriesColorVar`.
+
+## Related docs
+
+- [useSeriesColorVar](/docs/hooks/use-series-color-var)
+- [useChartConfig](/docs/hooks/use-chart-config)
+- [useChart](/docs/hooks/use-chart)
+- [Hooks Index](/docs/hooks)

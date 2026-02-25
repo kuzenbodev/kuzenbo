@@ -1,0 +1,126 @@
+---
+title: "useOffset"
+description: "Read chart offset (top, right, bottom, left) from Recharts to place custom layers relative to the plot area."
+section: "hooks"
+package: "charts"
+status: "stable"
+order: 16
+surface: "hook"
+seoTitle: "useOffset | Kuzenbo Docs"
+seoDescription: "Read chart offset (top, right, bottom, left) from Recharts to place custom layers relative to the plot area."
+ogImage: "/docs-og/hooks/use-offset"
+ogImageAlt: "useOffset documentation"
+---
+
+## Overview
+
+`useOffset` exposes Recharts chart offset values. Offset is the blank space reserved around the plot area for margins, axes, legends, and brush UI.
+
+## What It Reads and Writes
+
+- Reads: chart offset selector from Recharts context.
+- Writes: nothing. This hook is read-only.
+
+## When to Use
+
+- Position custom graphics relative to the plot area.
+- Compute plot-area bounds together with chart width/height.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts recharts
+```
+
+## Import
+
+```tsx
+import { useOffset } from "@kuzenbo/charts";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import {
+  Chart,
+  type ChartConfig,
+  useChartHeight,
+  useChartWidth,
+  useOffset,
+} from "@kuzenbo/charts";
+import { Area, AreaChart, XAxis, YAxis } from "recharts";
+
+const data = [
+  { month: "Jan", sessions: 180 },
+  { month: "Feb", sessions: 215 },
+  { month: "Mar", sessions: 198 },
+];
+
+const config: ChartConfig = {
+  sessions: { label: "Sessions", color: "var(--color-chart-4)" },
+};
+
+const PlotAreaBounds = () => {
+  const offset = useOffset();
+  const width = useChartWidth();
+  const height = useChartHeight();
+
+  if (!offset || width === undefined || height === undefined) {
+    return (
+      <p className="text-sm text-muted-foreground">No chart context yet.</p>
+    );
+  }
+
+  const plotWidth = width - offset.left - offset.right;
+  const plotHeight = height - offset.top - offset.bottom;
+
+  return (
+    <p className="text-sm text-foreground">
+      {`Plot area: ${plotWidth}x${plotHeight} (offset l:${offset.left} t:${offset.top} r:${offset.right} b:${offset.bottom})`}
+    </p>
+  );
+};
+
+export function UseOffsetExample() {
+  return (
+    <Chart.Root className="h-72 w-full" config={config}>
+      <AreaChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Area
+          dataKey="sessions"
+          fill="var(--color-sessions)"
+          stroke="var(--color-sessions)"
+        />
+      </AreaChart>
+      <PlotAreaBounds />
+    </Chart.Root>
+  );
+}
+```
+
+## Return Contract
+
+- Type: `ChartOffset | undefined`
+- Shape: `{ top: number; right: number; bottom: number; left: number }`
+- `undefined` when called outside chart context.
+
+## Caveats
+
+- Offset values are distances, not absolute page coordinates.
+- `offset.bottom` and `offset.right` can validly be `0`.
+- Use `usePlotArea` when you want `{ x, y, width, height }` directly.
+
+## SSR and RSC Notes
+
+- Use in Client Components only.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [usePlotArea](/docs/hooks/use-plot-area)
+- [useChartWidth](/docs/hooks/use-chart-width)
+- [useChartHeight](/docs/hooks/use-chart-height)
+- [Chart](/docs/components/chart)

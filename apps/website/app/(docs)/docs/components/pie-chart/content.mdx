@@ -1,0 +1,143 @@
+---
+title: "Pie Chart"
+description: "Visualize part-to-whole distributions with optional labels, legend highlighting, radial sizing, and tooltip source control."
+section: "components"
+package: "charts"
+status: "stable"
+order: 55
+surface: "component"
+seoTitle: "Pie Chart | Kuzenbo Docs"
+seoDescription: "Use PieChart from @kuzenbo/charts for segment distributions with value or percent labels and complete radial shell behavior."
+ogImage: "/docs-og/components/pie-chart"
+ogImageAlt: "Pie Chart documentation"
+---
+
+## Overview
+
+`PieChart` is the complete radial pie preset in `@kuzenbo/charts`.
+It wraps legend/tooltip shell behavior and handles segment key resolution, label formatting, and color fallback.
+
+Use Pie Chart for composition snapshots and category share views. For continuous trends, use line or area charts.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { PieChart } from "@kuzenbo/charts";
+```
+
+## Basic Usage
+
+```tsx
+import { PieChart } from "@kuzenbo/charts";
+
+const pieData = [
+  { name: "Product", value: 480 },
+  { name: "Services", value: 210 },
+  { name: "Support", value: 135 },
+  { name: "Other", value: 72 },
+];
+
+const pieSeries = [
+  { name: "Product", label: "Product", color: "var(--color-chart-1)" },
+  { name: "Services", label: "Services", color: "var(--color-chart-2)" },
+  { name: "Support", label: "Support", color: "var(--color-chart-3)" },
+  { name: "Other", label: "Other", color: "var(--color-chart-4)" },
+] as const;
+
+export function PieChartBasicExample() {
+  return (
+    <PieChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={pieData}
+      dataKey="value"
+      labelMode="value"
+      series={pieSeries}
+      withLabels
+      withLegend
+    />
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { PieChart } from "@kuzenbo/charts";
+
+const channelData = [
+  { channel: "Organic", sessions: 620 },
+  { channel: "Paid", sessions: 410 },
+  { channel: "Email", sessions: 170 },
+  { channel: "Referral", sessions: 96 },
+];
+
+export function PieChartAdvancedExample() {
+  return (
+    <PieChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={channelData}
+      dataKey="sessions"
+      labelMode="percent"
+      labelPosition="outside"
+      nameKey="channel"
+      paddingAngle={2}
+      size="82%"
+      strokeColor="var(--color-background)"
+      strokeWidth={2}
+      tooltipSource="all"
+      withLabelLine
+      withLabels
+      withLegend
+      withTooltip
+    />
+  );
+}
+```
+
+## API Notes
+
+- Required inputs: `data` and `dataKey`. `series` is optional but recommended for stable labels/colors.
+- `nameKey` defaults to `"name"`; this key is used for segment identity and legend labels.
+- `labelMode` supports `value` and `percent`.
+- `labelPosition` supports `inside`, `outside`, or `none`.
+- `withLabels` toggles label rendering; `withLabelLine` only affects outside labels.
+- `size` resolves pie radius (number or percentage; default is `"80%"`).
+- `tooltipSource` supports `segment` (default) and `all` (shared tooltip behavior).
+- `pieChartProps` is the canonical Recharts pass-through; `chartProps` remains as deprecated alias.
+
+## Accessibility
+
+- Recharts `accessibilityLayer` is enabled.
+- Keep segment names short and explicit so legend and tooltip text remain readable.
+- For many categories, consider alternative charts to reduce cognitive load.
+
+## SSR and RSC
+
+- Pie Chart is interactive and should render in client components.
+- Server components can prepare and pass normalized data into a client chart boundary.
+
+## Styling and Tokens
+
+- Prefer semantic chart color variables (`var(--color-chart-1)` etc.) for series colors.
+- Use semantic layout tokens around the chart (`bg-background`, `text-foreground`).
+- Avoid raw Tailwind palette classes so themes remain stable.
+
+## Troubleshooting
+
+- Labels overlap: switch to `labelPosition="inside"`, reduce segment count, or disable labels.
+- Legend colors do not match segments: ensure `series[].name` matches resolved segment keys.
+- Tooltip not sharing all segments: set `tooltipSource="all"` unless `tooltipProps.shared` is explicitly overridden.
+- Radius looks wrong: check `size` value type (`number` vs percentage string).
+
+## Related Docs
+
+- [Line Chart](/docs/components/line-chart)
+- [Area Chart](/docs/components/area-chart)
+- [Chart](/docs/components/chart)
+- [Components Index](/docs/components)

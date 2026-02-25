@@ -1,0 +1,127 @@
+---
+title: "Resizable"
+description: "Compose split layouts with @kuzenbo/core ResizablePanelGroup, ResizablePanel, and ResizableHandle for editor- and dashboard-style UIs."
+section: "components"
+package: "core"
+status: "stable"
+order: 65
+surface: "component"
+seoTitle: "Resizable | Kuzenbo Docs"
+seoDescription: "Compose split layouts with @kuzenbo/core ResizablePanelGroup, ResizablePanel, and ResizableHandle for editor- and dashboard-style UIs."
+ogImage: "/docs-og/components/resizable"
+ogImageAlt: "Resizable documentation"
+aliases:
+  - "/docs/components/layout/resizable"
+---
+
+## Purpose
+
+`ResizablePanelGroup` in `@kuzenbo/core` wraps `react-resizable-panels` primitives to create adjustable split layouts.
+
+Use it for:
+
+- Two-pane editors (navigation + content).
+- Dashboard regions with user-adjustable width/height.
+- Multi-panel workspaces with persistent layout settings.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { ResizablePanelGroup } from "@kuzenbo/core";
+
+export function TwoPaneLayout() {
+  return (
+    <ResizablePanelGroup className="h-56 rounded-md border">
+      <ResizablePanelGroup.Panel defaultSize={30}>
+        <div className="h-full border-r p-3 text-sm">Navigation</div>
+      </ResizablePanelGroup.Panel>
+
+      <ResizablePanelGroup.Handle />
+
+      <ResizablePanelGroup.Panel defaultSize={70}>
+        <div className="h-full p-3 text-sm">Document content</div>
+      </ResizablePanelGroup.Panel>
+    </ResizablePanelGroup>
+  );
+}
+```
+
+## Advanced usage: vertical direction and constrained panels
+
+```tsx
+import { ResizablePanelGroup } from "@kuzenbo/core";
+
+export function VerticalWorkspace() {
+  return (
+    <ResizablePanelGroup
+      autoSaveId="workspace-layout"
+      className="h-96 rounded-md border"
+      direction="vertical"
+    >
+      <ResizablePanelGroup.Panel defaultSize={60} minSize={40}>
+        <div className="h-full border-b p-3 text-sm">Primary editor</div>
+      </ResizablePanelGroup.Panel>
+
+      <ResizablePanelGroup.Handle withHandle />
+
+      <ResizablePanelGroup.Panel collapsible defaultSize={40} minSize={20}>
+        <div className="h-full p-3 text-sm">Terminal</div>
+      </ResizablePanelGroup.Panel>
+    </ResizablePanelGroup>
+  );
+}
+```
+
+## API reference
+
+- `ResizablePanelGroup`
+  Group container for split panes. Accepts `react-resizable-panels` group props (for example `direction`, `autoSaveId`, callbacks).
+- `ResizablePanel`
+  Pane item. Accepts panel props such as `defaultSize`, `minSize`, `maxSize`, and `collapsible`.
+- `ResizableHandle`
+  Separator between panels. `withHandle` adds a visible grip element.
+
+## Accessibility notes
+
+- Keep panel content order meaningful; keyboard and assistive users navigate pane content, not just handles.
+- Ensure drag handles remain visible against your chosen theme.
+- For critical workflows, provide fallback layout actions (reset layout) in case users collapse panels accidentally.
+
+## SSR and RSC notes
+
+`Resizable` primitives are client-side interactive components. Render from Client Component boundaries.
+
+## Styling and semantic tokens
+
+Handles and panels use semantic tokens like `bg-border` and `ring-ring`. Keep custom panel shells token-based (`border-border`, `bg-background`, `text-foreground`).
+
+## Troubleshooting
+
+- Panels do not resize:
+  Ensure a `ResizablePanelGroup.Handle` exists between panels.
+- Layout is not persisted:
+  Provide a stable `autoSaveId` value.
+- Vertical layout does not apply:
+  Pass `direction="vertical"` to `ResizablePanelGroup`.
+
+## Related links
+
+- [Sidebar](/docs/components/sidebar)
+- [Container](/docs/components/container)
+- [Tabs](/docs/components/tabs)

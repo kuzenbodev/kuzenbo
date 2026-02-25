@@ -1,0 +1,130 @@
+---
+title: "Announcement"
+description: "Inline announcement pill built on Badge with Tag/Title slots, themed mode, and production composition guidance."
+section: "components"
+package: "core"
+status: "stable"
+order: 7
+surface: "component"
+seoTitle: "Announcement | Kuzenbo Docs"
+seoDescription: "Use Announcement as an inline product update badge with Tag/Title slots, themed styling, and semantic token guidance."
+ogImage: "/docs-og/components/announcement"
+ogImageAlt: "Announcement documentation"
+aliases:
+  - "/docs/components/display/announcement"
+---
+
+## Overview
+
+`Announcement` is a compact inline status surface for product updates, release notes links, and feature callouts. It is a thin composition over `Badge` plus two optional slots (`AnnouncementTag`, `AnnouncementTitle`).
+
+Use `Announcement` when you need an inline signal inside page content. Do not use it as a replacement for blocking alerts, toasts, or modal announcements.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Announcement,
+  AnnouncementTag,
+  AnnouncementTitle,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  Announcement,
+  AnnouncementTag,
+  AnnouncementTitle,
+} from "@kuzenbo/core";
+
+export function FeatureAnnouncement() {
+  return (
+    <Announcement>
+      <AnnouncementTag>New</AnnouncementTag>
+      <AnnouncementTitle>
+        Chart presets are now available in docs.
+      </AnnouncementTitle>
+    </Announcement>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  Announcement,
+  AnnouncementTag,
+  AnnouncementTitle,
+} from "@kuzenbo/core";
+
+export function ReleaseAnnouncement() {
+  return (
+    <Announcement themed variant="outline" className="w-fit">
+      <AnnouncementTag>Beta</AnnouncementTag>
+      <AnnouncementTitle>
+        AI widget presets shipped.
+        <a
+          className="ml-1 text-foreground underline underline-offset-4"
+          href="/docs/components/ai-widget"
+        >
+          Read docs
+        </a>
+      </AnnouncementTitle>
+    </Announcement>
+  );
+}
+```
+
+## API Reference
+
+- `Announcement`
+  Accepts `AnnouncementProps`, which extend `ComponentProps<typeof Badge>`, and adds:
+  - `themed?: boolean` (default `false`) to enable themed slot styling.
+  - `variant` defaults to `"outline"`.
+- `AnnouncementTag`
+  - `AnnouncementTagProps = HTMLAttributes<HTMLDivElement>`.
+  - Designed for short, leading context like `New`, `Beta`, `Docs`.
+- `AnnouncementTitle`
+  - `AnnouncementTitleProps = HTMLAttributes<HTMLDivElement>`.
+  - Main inline text container.
+
+`Announcement.Tag` and `Announcement.Title` are also available via static composition on `Announcement`.
+
+## Accessibility
+
+- This component is visual by default. If announcement text changes dynamically, wrap it in an `aria-live="polite"` region.
+- Keep announcement text explicit; avoid icon-only messaging.
+- Ensure links inside `AnnouncementTitle` remain keyboard reachable and visibly focused.
+
+## SSR and RSC Notes
+
+- `Announcement` has no client-only state requirements by default and can render in server output.
+- If you add dismiss logic or interactive state around it, move that wrapper to a Client Component.
+
+## Styling and Tokens
+
+- Default styles already use semantic tokens such as `bg-background`.
+- Keep overrides token-based: `text-foreground`, `border-border`, `text-muted-foreground`.
+- `themed` adds the `announcement-themed` state class used by `AnnouncementTag` for adjusted contrast.
+
+## Troubleshooting
+
+- Tag background does not react in themed mode: confirm `themed` is set on `Announcement` (root), not only on `AnnouncementTag`.
+- Text gets clipped: `AnnouncementTitle` uses truncation defaults; add layout overrides (for example `whitespace-normal`) when multi-line copy is required.
+- Import errors: use `@kuzenbo/core` exports only, not internal source paths.
+
+## Related Docs
+
+- [Badge](/docs/components/badge)
+- [Alert](/docs/components/alert)
+- [Typography](/docs/components/typography)
+- [Components Index](/docs/components)

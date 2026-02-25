@@ -1,0 +1,149 @@
+---
+title: "Switch"
+description: "Use Switch from @kuzenbo/core for immediate binary settings with clear on/off semantics."
+section: "components"
+package: "core"
+status: "stable"
+order: 77
+surface: "component"
+seoTitle: "Switch | Kuzenbo Docs"
+seoDescription: "Use Switch from @kuzenbo/core for immediate binary settings with clear on/off semantics."
+ogImage: "/docs-og/components/switch"
+ogImageAlt: "Switch documentation"
+aliases:
+  - "/docs/components/inputs/switch"
+---
+
+## Overview
+
+`Switch` is a binary control for settings that can be toggled instantly.
+
+- Use it for immediate preference changes (`Enable notifications`).
+- Use `Checkbox` when the setting is part of a multi-field form submitted later.
+
+`Switch` uses the shared `UISize` scale and Base UI switch role semantics.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Label, Switch } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Label, Switch } from "@kuzenbo/core";
+
+export function AirplaneModeToggle() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="airplane-mode" />
+      <Label htmlFor="airplane-mode">Airplane mode</Label>
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { Label, Switch } from "@kuzenbo/core";
+
+export function NotificationSetting() {
+  const [enabled, setEnabled] = useState(true);
+
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <div className="space-y-1">
+        <Label htmlFor="release-updates">Release updates</Label>
+        <p className="text-sm text-muted-foreground">
+          Get a notification when a deployment reaches production.
+        </p>
+      </div>
+
+      <Switch
+        checked={enabled}
+        id="release-updates"
+        onCheckedChange={setEnabled}
+        size="sm"
+      />
+    </div>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Switch` supports:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for compact controls:
+
+- Track visual size scales with token.
+- Thumb visual size scales with token.
+- Hit target grows independently for accessibility.
+
+Precedence rule:
+
+`SwitchThumb size ?? Switch size ?? "md"`
+
+Compact-control exception: switches are not input-height-equal controls; do not force switch tracks to field heights.
+
+```tsx
+// Before
+<Switch size="md" />
+
+// After
+<Switch size="md" />
+```
+
+## API Reference
+
+- `Switch`: Base UI switch root wrapper.
+- Core props: `checked`, `defaultChecked`, `onCheckedChange`, `disabled`, `required`, `name`, `id`.
+- `size`: `"xs" | "sm" | "md" | "lg" | "xl"`.
+- Slot marker: root renders `data-slot="switch"`; thumb renders `data-slot="switch-thumb"`.
+
+## Accessibility
+
+- Always pair switches with visible labels.
+- Keep label text state-neutral (`Email notifications` instead of `Enable email notifications`) so checked state communicates on/off.
+- When disabled, provide context so users know why the option cannot change.
+
+## SSR and RSC Notes
+
+- `Switch` is interactive and should be used in client components.
+- For SSR pages, render label text on the server and isolate toggle state in a client leaf.
+- Keep controlled `checked` values stable between server and client to avoid hydration mismatch.
+
+## Styling and Tokens
+
+- Default styles use semantic tokens (`data-checked:bg-primary`, `data-unchecked:bg-input`, thumb `bg-background`).
+- Prefer `size` prop for density changes instead of custom transforms.
+- Use semantic helper text (`text-muted-foreground`) for setting descriptions.
+
+## Troubleshooting
+
+- Switch does not toggle: verify `onCheckedChange` updates state in controlled usage.
+- Click target is too small: keep label and switch in one row and use `htmlFor`/`id` pairing.
+- Checked state color looks off: confirm theme tokens are loaded and avoid raw color utility overrides.
+
+## Related Links
+
+- [Checkbox](/docs/components/checkbox)
+- [Checkbox Group](/docs/components/checkbox-group)
+- [Radio Group](/docs/components/radio-group)
+- [Field](/docs/components/field)

@@ -1,0 +1,68 @@
+---
+title: "Fieldset"
+description: "Group related controls with Fieldset primitives in @kuzenbo/core for accessible legends and section-level structure."
+section: "components"
+package: "core"
+status: "stable"
+order: 41
+surface: "component"
+seoTitle: "Fieldset | Kuzenbo Docs"
+seoDescription: "Group related controls with Fieldset primitives in @kuzenbo/core for accessible legends and section-level structure."
+ogImage: "/docs-og/components/fieldset"
+ogImageAlt: "Fieldset documentation"
+aliases:
+  - "/docs/components/inputs/fieldset"
+---
+
+## Overview
+
+`Fieldset` groups related form controls under a shared legend.
+Use it for option clusters like notification channels, billing preferences, or grouped security settings.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Fieldset, Field, Input } from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Fieldset, Field, Input } from "@kuzenbo/core";
+
+export function ContactPreferencesFieldset() {
+  return (
+    <Fieldset>
+      <Fieldset.Legend>Contact preferences</Fieldset.Legend>
+
+      <Field>
+        <Field.Label htmlFor="phone">Phone</Field.Label>
+        <Field.Control render={<Input id="phone" type="tel" />} />
+      </Field>
+
+      <Field>
+        <Field.Label htmlFor="email">Email</Field.Label>
+        <Field.Control render={<Input id="email" type="email" />} />
+      </Field>
+    </Fieldset>
+  );
+}
+```
+
+## API Notes
+
+- `Fieldset`: convenience root namespace.
+- `Fieldset.Root`: explicit root primitive.
+- `Fieldset.Legend`: legend primitive for group labeling.
+
+## Related Docs
+
+- [Form](/docs/components/form)
+- [Field](/docs/components/field)
+- [Forms Pattern](/docs/patterns/forms)

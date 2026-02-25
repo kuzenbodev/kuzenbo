@@ -1,0 +1,147 @@
+---
+title: "Button"
+description: "Action buttons, loading states, and grouped controls with @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 16
+surface: "component"
+seoTitle: "Button | Kuzenbo Docs"
+seoDescription: "Action buttons, loading states, and grouped controls with @kuzenbo/core."
+ogImage: "/docs-og/components/button"
+ogImageAlt: "Button documentation"
+aliases:
+  - "/docs/components/inputs/button"
+---
+
+import { ButtonPlayground } from "./_components/button-playground.client";
+
+## Button at a Glance
+
+`Button` is the action primitive in `@kuzenbo/core`.
+It adds a variant system, size scale, and loading behavior on top of Base UI composition.
+This page also covers `ButtonGroup`, `ButtonGroupSeparator`, and `ButtonGroupText` for grouped controls.
+
+Use `Button` for actions.
+Use links for navigation unless the interaction mutates state or triggers a command.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Button,
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  buttonGroupVariants,
+  buttonVariants,
+} from "@kuzenbo/core";
+```
+
+## Playground
+
+Use the controls to preview `Button` states and sizing in real time.
+Presets help you start from common production scenarios (`Default`, `Danger`, `Loading`).
+
+<ButtonPlayground />
+
+## Basic Usage
+
+```tsx
+import { Button } from "@kuzenbo/core";
+
+export function ButtonBasic() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button>Save</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="danger">Delete</Button> // [!code highlight]
+    </div>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import {
+  Button,
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@kuzenbo/core";
+
+export function ButtonAdvanced() {
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    await new Promise((resolve) => setTimeout(resolve, 900));
+    setSaving(false);
+  };
+
+  return (
+    <div className="space-y-4">
+      <ButtonGroup>
+        <Button variant="outline">Day</Button>
+        <Button variant="outline">Week</Button>
+        <Button variant="outline">Month</Button>
+        <ButtonGroupSeparator orientation="vertical" />
+        <ButtonGroupText>UTC</ButtonGroupText>
+      </ButtonGroup>
+
+      <Button isLoading={saving} onClick={handleSave}>
+        Save Changes
+      </Button>
+    </div>
+  );
+}
+```
+
+## Accessibility
+
+- Keep button labels explicit (`Delete workspace`, not only an icon).
+- For icon-only buttons, provide `aria-label`.
+- Prefer `disabled` while submitting to prevent duplicate actions.
+- For toggle-like actions, pair with `aria-pressed` when applicable.
+
+## SSR and RSC Notes
+
+- Buttons can render in server output.
+- Event handlers and loading state require client components.
+- Keep async action logic in client boundaries and pass serializable props from server parents.
+
+## Styling and Tokens
+
+- Built-in variants already rely on semantic tokens like `bg-primary`, `border-border`, and `text-foreground`.
+- Use `className` for layout (`w-full`, spacing, truncation) before introducing custom color overrides.
+- Avoid raw palette classes so theme contracts remain stable.
+
+## Troubleshooting
+
+- If loading UI does not appear, ensure `isLoading` is wired to component state.
+- If grouped controls show broken borders, confirm `ButtonGroup` wraps only supported slot children.
+- If keyboard focus looks clipped, remove parent `overflow-hidden` around focused buttons.
+
+## API
+
+<auto-type-table
+  path="../../../../../../packages/core/src/ui/button/button.tsx"
+  name="ButtonProps"
+/>
+
+## Related Docs
+
+- [Button Group](/docs/components/button-group)
+- [Form Patterns](/docs/patterns/forms)
+- [Color Primitives](/docs/foundations/color-primitives)

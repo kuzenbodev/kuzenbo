@@ -1,0 +1,321 @@
+---
+title: "Code Components"
+description: "Build code-focused docs and product surfaces with @kuzenbo/code blocks, tabs, diffs, terminals, and playground primitives."
+section: "components"
+package: "code"
+status: "stable"
+order: 24
+surface: "component"
+seoTitle: "Code Components | Kuzenbo Docs"
+seoDescription: "Build code-focused docs and product surfaces with @kuzenbo/code blocks, tabs, diffs, terminals, and playground primitives."
+ogImage: "/docs-og/components/code"
+ogImageAlt: "Code Components documentation"
+aliases:
+  - "/docs/components/display/code"
+  - "/docs/components/code-snippet"
+---
+
+## Overview
+
+`@kuzenbo/code` is the developer-experience package for docs, onboarding, and code-heavy product surfaces.
+It includes Shiki-backed highlighting, install-command UX, review views (diff/annotations/terminal), and a playground system.
+
+## Installation
+
+```bash
+bun add @kuzenbo/code @kuzenbo/core @kuzenbo/theme
+```
+
+In almost all apps, keep `@kuzenbo/theme` installed alongside `@kuzenbo/code` and `@kuzenbo/core`.
+
+## Import
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockToolbar,
+  CodeDiffBlock,
+  CodeLineHighlight,
+  CodePreview,
+  CodeTabs,
+  CodeWindow,
+  FileTree,
+  InlineCodeHighlight,
+  InstallCommandSnippet,
+  PackageManagerTabs,
+  Playground,
+  TerminalBlock,
+  definePlaygroundControls,
+  definePlaygroundPresets,
+  highlightCodeBlock,
+  highlightInlineCode,
+} from "@kuzenbo/code";
+```
+
+## Component Surface
+
+- `CodeBlock`, `InlineCodeHighlight`, `CodeBlockToolbar`: display and copy-ready code presentation.
+- `CodeTabs`, `PackageManagerTabs`, `InstallCommandSnippet`: alternate variants and package-manager install flows.
+- `CodeWindow`, `CodePreview`: screenshot-like shell and preview/code/split composition.
+- `CodeLineHighlight`, `CodeDiffBlock`, `TerminalBlock`, `FileTree`: review and teaching docs primitives.
+- `Playground.Root`, `Playground.Controls`, `Playground.PresetBar`, `Playground.Code`: generic live-preview playground building blocks.
+
+## Display Example
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockToolbar,
+  CodeWindow,
+  InlineCodeHighlight,
+} from "@kuzenbo/code";
+import { CopyButton } from "@kuzenbo/core";
+
+const sourceCode = `import { Button } from "@kuzenbo/core";
+
+export function SaveButton() {
+  return <Button>Save</Button>;
+}`;
+
+export function CodeDisplayExample() {
+  return (
+    <CodeWindow title="button.tsx">
+      <CodeBlock
+        code={sourceCode}
+        language="tsx"
+        toolbar={
+          <CodeBlockToolbar
+            language="tsx"
+            title="Button source"
+            end={<CopyButton size="xs" value={sourceCode} variant="ghost" />}
+          />
+        }
+      />
+
+      <p className="mt-4">
+        Use <InlineCodeHighlight code="CodeBlock" language="tsx" /> for inline
+        API references.
+      </p>
+    </CodeWindow>
+  );
+}
+```
+
+## Install Example
+
+```tsx
+import { InstallCommandSnippet, PackageManagerTabs } from "@kuzenbo/code";
+
+export function InstallExample() {
+  return (
+    <div className="space-y-4">
+      <PackageManagerTabs persistPreference>
+        {(manager) => (
+          <pre>{manager} add @kuzenbo/code @kuzenbo/core @kuzenbo/theme</pre>
+        )}
+      </PackageManagerTabs>
+
+      <InstallCommandSnippet
+        packages={["@kuzenbo/code", "@kuzenbo/core", "@kuzenbo/theme"]}
+      />
+    </div>
+  );
+}
+```
+
+## CodeTabs Example
+
+```tsx
+import { CodeBlock, CodeTabs } from "@kuzenbo/code";
+
+const tabs = [
+  {
+    value: "react",
+    label: "React",
+    content: (
+      <CodeBlock
+        code={`import { Button } from "@kuzenbo/core";
+
+export function SaveButton() {
+  return <Button variant="outline">Save</Button>;
+}`}
+        language="tsx"
+      />
+    ),
+  },
+  {
+    value: "api",
+    label: "API Route",
+    content: (
+      <CodeBlock
+        code={`import { NextResponse } from "next/server";
+
+export const GET = () => NextResponse.json({ ok: true });`}
+        language="ts"
+      />
+    ),
+  },
+] as const;
+
+export function CodeTabsExample() {
+  return <CodeTabs defaultValue="react" tabs={tabs} />;
+}
+```
+
+## Review Example
+
+```tsx
+import { CodeDiffBlock, CodeLineHighlight, TerminalBlock } from "@kuzenbo/code";
+
+const before = `export const status = "draft";`;
+const after = `export const status = "published";`;
+
+export function ReviewExample() {
+  return (
+    <div className="space-y-4">
+      <CodeLineHighlight
+        annotations={[{ line: 2, content: "Publish branch" }]}
+        code={`const branch = "main";\nconst branch = "next";`}
+        highlightedLines={[2]}
+        language="ts"
+      />
+
+      <CodeDiffBlock newCode={after} oldCode={before} viewMode="split" />
+
+      <TerminalBlock
+        command="bun test"
+        output={`PASS apps/website/tests/docs-code-highlight-regression.test.ts\nPASS apps/website/tests/docs-fence-language-audit.test.ts\nPASS apps/website/tests/docs-mdx-pre-adapter-integration.test.tsx`}
+        title="CI"
+      />
+    </div>
+  );
+}
+```
+
+## Playground Example
+
+```tsx
+"use client";
+
+import {
+  Playground,
+  definePlaygroundControls,
+  definePlaygroundPresets,
+} from "@kuzenbo/code";
+import { Button } from "@kuzenbo/core";
+
+const controls = definePlaygroundControls([
+  {
+    type: "string",
+    prop: "children",
+    label: "Label",
+    initialValue: "Run",
+    defaultValue: "Run",
+  },
+  {
+    type: "select",
+    prop: "variant",
+    label: "Variant",
+    initialValue: "default",
+    defaultValue: "default",
+    options: ["default", "secondary", "outline", "danger"],
+  },
+] as const);
+
+const presets = definePlaygroundPresets([
+  {
+    id: "cta",
+    label: "CTA",
+    values: { children: "Get started", variant: "default" },
+  },
+  {
+    id: "danger",
+    label: "Danger",
+    values: { children: "Delete", variant: "danger" },
+  },
+] as const);
+
+export function PlaygroundExample() {
+  return (
+    <Playground.Root
+      codeMode="minimal"
+      controls={controls}
+      preview={<Button />}
+      presets={presets}
+      template={`import { Button } from "@kuzenbo/core";
+
+export function Demo() {
+  return <Button{{props}}>{{children}}</Button>;
+}`}
+    />
+  );
+}
+```
+
+## Explorer Example
+
+```tsx
+import { CodeBlock, CodePreview, FileTree } from "@kuzenbo/code";
+
+const files = [
+  {
+    id: "src",
+    name: "src",
+    children: [
+      { id: "src-index", name: "index.ts" },
+      { id: "src-button", name: "button.tsx" },
+    ],
+  },
+];
+
+export function ExplorerExample() {
+  return (
+    <CodePreview
+      code={
+        <CodeBlock
+          code={`export { Button } from "@kuzenbo/core";`}
+          language="tsx"
+        />
+      }
+      minimalCode={
+        <CodeBlock
+          code={`export { Button } from "@kuzenbo/core";`}
+          language="tsx"
+        />
+      }
+      mode="split"
+      preview={<FileTree data={files} openByDefault />}
+      title="Source explorer"
+    />
+  );
+}
+```
+
+## Shiki Utilities
+
+- `highlightCodeBlock`: server-side block highlighting for docs and generated pages.
+- `highlightInlineCode`: inline token highlighting for compact code references.
+- `highlightCodeToHtml`: direct HTML generation when a raw highlighted string is required.
+
+## Breaking Changes
+
+`@kuzenbo/code` now uses a new canonical API surface.
+Legacy exports (`CodeSnippet`, `useCodeSnippetState`, `createMockSnippet`) are removed from the package entrypoint.
+
+## Accessibility
+
+- Copy interactions should keep explicit labels (`Copy install command`, `Copy source`).
+- Keep preview and code panels clearly titled in split surfaces.
+- Preserve line numbers when using review-focused views.
+
+## SSR and RSC Notes
+
+- `CodeBlock`, `InlineCodeHighlight`, and Shiki utilities can run in server output.
+- Interactive surfaces (`CodeTabs`, `PackageManagerTabs`, `InstallCommandSnippet`, `CodePreview`, `Playground.*`, `FileTree`) are client components.
+
+## Related Docs
+
+- [Components Index](/docs/components)
+- [Button](/docs/components/button)
+- [Typography](/docs/components/typography)
+- [Composition Patterns](/docs/patterns/composition)

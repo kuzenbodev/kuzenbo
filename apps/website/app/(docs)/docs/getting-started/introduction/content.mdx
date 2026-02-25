@@ -1,0 +1,62 @@
+---
+title: "Introduction"
+description: "What Kuzenbo is, why it's built this way, and which package to use when."
+section: "getting-started"
+package: "core"
+status: "stable"
+order: 3
+surface: "guide"
+seoTitle: "Introduction | Kuzenbo Docs"
+seoDescription: "Learn how Kuzenbo splits core UI, feature packages, and runtime theme ownership."
+ogImage: "/docs-og/getting-started/introduction"
+ogImageAlt: "Kuzenbo package architecture introduction"
+---
+
+## What is Kuzenbo?
+
+Kuzenbo is a React UI library built on [Base UI](https://base-ui.com/) and [Tailwind CSS](https://tailwindcss.com/). It gives you design tokens, dark mode out of the box, and components that stay accessible and composable.
+
+## Why Kuzenbo?
+
+- **Modular** — install only the packages you need; charts, date pickers, toasts, and AI widgets live in separate packages
+- **Design tokens** — semantic colors and spacing so themes stay consistent
+- **Accessible** — Base UI handles focus, keyboard nav, and ARIA
+- **Framework-friendly** — works with Next.js, Vite, Remix, and others
+
+## Packages at a glance
+
+| Package                  | What you get                                                   |
+| ------------------------ | -------------------------------------------------------------- |
+| `@kuzenbo/core`          | Buttons, inputs, dialogs, menus, forms, layout primitives      |
+| `@kuzenbo/charts`        | Prebuilt charts (line, bar, pie, etc.) and Recharts primitives |
+| `@kuzenbo/date`          | Calendar and date pickers                                      |
+| `@kuzenbo/notifications` | Toast and notification system                                  |
+| `@kuzenbo/ai`            | AI widget, session hooks, prompt utilities                     |
+| `@kuzenbo/datatable`     | Table primitives with TanStack Table                           |
+| `@kuzenbo/theme`         | Design tokens and light/dark theme runtime                     |
+| `@kuzenbo/styles`        | Optional global baseline CSS                                   |
+| `@kuzenbo/hooks`         | Standalone hooks (used by core; rarely imported directly)      |
+
+## Which package for what?
+
+- **Forms, dialogs, menus, layout** → start with `@kuzenbo/core`
+- **Analytics, dashboards** → add `@kuzenbo/charts`
+- **Scheduling, date selection** → add `@kuzenbo/date`
+- **Toasts, feedback messages** → add `@kuzenbo/notifications`
+- **LLM chat, AI features** → add `@kuzenbo/ai`
+- **Data tables, grids** → add `@kuzenbo/datatable`
+
+## Import example
+
+```tsx
+import { Button } from "@kuzenbo/core";
+import { Chart } from "@kuzenbo/charts";
+import { Toast } from "@kuzenbo/notifications";
+```
+
+## Related
+
+- [Installation](/docs/getting-started/installation)
+- [Quickstart](/docs/getting-started/quickstart)
+- [Foundations: Theming](/docs/foundations/theming)
+- [Components Index](/docs/components)

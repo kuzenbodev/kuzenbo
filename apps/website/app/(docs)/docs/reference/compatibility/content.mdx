@@ -1,0 +1,48 @@
+---
+title: "Compatibility"
+description: "Runtime and framework compatibility guidance for Kuzenbo package consumers."
+section: "reference"
+package: "core"
+status: "stable"
+order: 6
+surface: "guide"
+seoTitle: "Compatibility | Kuzenbo Docs"
+seoDescription: "Supported runtime and framework expectations for Kuzenbo integrations."
+ogImage: "/docs-og/reference/compatibility"
+ogImageAlt: "Compatibility documentation"
+---
+
+## Tested Baseline
+
+- React: `19.x`
+- Next.js: `16.x`
+- Node.js: `>=20.19.0`
+- Bun: `1.3.9`
+- TypeScript: `5.9.x`
+
+If your stack differs, validate critical UI flows before broad rollout.
+
+## Package Compatibility Notes
+
+- `@kuzenbo/core`: primary React UI primitives.
+- `@kuzenbo/hooks`: standalone hooks package.
+- `@kuzenbo/charts`: built on Recharts v3.
+- `@kuzenbo/date`: built on react-day-picker v9.
+- `@kuzenbo/datatable`: built on TanStack Table v8.
+
+## Browser Guidance
+
+Kuzenbo targets modern evergreen browsers (current stable Chromium, Firefox, and Safari).
+If your product supports older browsers, run your own browser matrix before release.
+
+## Integration Tips
+
+- Keep package versions aligned across Kuzenbo packages you install.
+- Prefer documented package entrypoints over deep internal imports.
+- Verify SSR theming setup when using Next.js.
+
+## Related Docs
+
+- [Versioning](/docs/reference/versioning)
+- [Troubleshooting](/docs/reference/troubleshooting)
+- [Support](/docs/reference/support)

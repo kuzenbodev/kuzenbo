@@ -1,0 +1,198 @@
+---
+title: "Context Menu"
+description: "Right-click and context-action menus in @kuzenbo/core with groups, check/radio items, and nested submenus."
+section: "components"
+package: "core"
+status: "stable"
+order: 29
+surface: "component"
+seoTitle: "Context Menu | Kuzenbo Docs"
+seoDescription: "Right-click and context-action menus in @kuzenbo/core with groups, check/radio items, and nested submenus."
+ogImage: "/docs-og/components/context-menu"
+ogImageAlt: "Context Menu documentation"
+aliases:
+  - "/docs/components/overlays/context-menu"
+---
+
+## Overview
+
+`ContextMenu` provides desktop-style context actions in `@kuzenbo/core`. It is best for object-level actions that should appear near the interaction target (file rows, canvas nodes, cards, list items).
+
+The component set supports:
+
+- plain command items
+- checkbox and radio selection rows
+- grouped sections and separators
+- nested submenu flows
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuPortal,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { ContextMenu } from "@kuzenbo/core";
+
+export function FileRowMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenu.Trigger className="flex h-32 w-full items-center justify-center rounded-md border border-dashed border-border">
+        Right-click this file row
+      </ContextMenu.Trigger>
+
+      <ContextMenu.Content>
+        <ContextMenu.Item>Open</ContextMenu.Item>
+        <ContextMenu.Item>Rename</ContextMenu.Item>
+        <ContextMenu.Separator />
+        <ContextMenu.Item variant="danger">Delete</ContextMenu.Item>
+      </ContextMenu.Content>
+    </ContextMenu>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { ContextMenu } from "@kuzenbo/core";
+import { useState } from "react";
+
+export function ProjectContextMenu() {
+  const [showHidden, setShowHidden] = useState(false);
+  const [density, setDensity] = useState("comfortable");
+
+  return (
+    <ContextMenu>
+      <ContextMenu.Trigger className="rounded-md border border-border bg-background px-4 py-8 text-sm text-foreground">
+        Right-click project board
+      </ContextMenu.Trigger>
+
+      <ContextMenu.Content align="start" sideOffset={4}>
+        <ContextMenu.Label>Board actions</ContextMenu.Label>
+        <ContextMenu.Group>
+          <ContextMenu.Item>Add card</ContextMenu.Item>
+          <ContextMenu.Item>Duplicate board</ContextMenu.Item>
+        </ContextMenu.Group>
+
+        <ContextMenu.Separator />
+
+        <ContextMenu.CheckboxItem
+          checked={showHidden}
+          onCheckedChange={setShowHidden}
+        >
+          Show hidden columns
+        </ContextMenu.CheckboxItem>
+
+        <ContextMenu.Sub>
+          <ContextMenu.SubTrigger inset>Density</ContextMenu.SubTrigger>
+          <ContextMenu.SubContent>
+            <ContextMenu.RadioGroup onValueChange={setDensity} value={density}>
+              <ContextMenu.RadioItem value="compact">
+                Compact
+              </ContextMenu.RadioItem>
+              <ContextMenu.RadioItem value="comfortable">
+                Comfortable
+              </ContextMenu.RadioItem>
+            </ContextMenu.RadioGroup>
+          </ContextMenu.SubContent>
+        </ContextMenu.Sub>
+
+        <ContextMenu.Separator />
+
+        <ContextMenu.Item variant="danger">
+          Archive board
+          <ContextMenu.Shortcut>Cmd+Backspace</ContextMenu.Shortcut>
+        </ContextMenu.Item>
+      </ContextMenu.Content>
+    </ContextMenu>
+  );
+}
+```
+
+## Size Scaling
+
+`ContextMenu` supports `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
+
+- Root-driven default: `ContextMenu size` sets trigger popup density and overlay child density.
+- Content override: `ContextMenu.Content size` overrides root for overlay descendants.
+- Child override: item/label/shortcut/submenu child `size` props override inherited values.
+
+Precedence:
+
+- Overlay descendants: `explicit child size ?? nearest content size ?? root size ?? "md"`.
+
+## API Reference
+
+- `ContextMenu`: root state container.
+- `ContextMenuTrigger`: target area for context interaction.
+- `ContextMenuContent`: popup surface (`align`, `side`, offsets).
+- `ContextMenuItem`: standard command row (`variant="danger"` supported).
+- `ContextMenuCheckboxItem`: boolean selection row.
+- `ContextMenuRadioGroup`: single-select group container.
+- `ContextMenuRadioItem`: single-select row inside radio group.
+- `ContextMenuGroup`: semantic grouping wrapper.
+- `ContextMenuLabel`: section label row.
+- `ContextMenuSeparator`: visual separator.
+- `ContextMenuShortcut`: right-aligned shortcut hint in an item row.
+- `ContextMenuSub`: nested menu root.
+- `ContextMenuSubTrigger`: parent row that opens submenu.
+- `ContextMenuSubContent`: submenu popup content.
+- `ContextMenuPortal`: portal wrapper for menu layers.
+
+## Accessibility
+
+- Trigger labels should describe the target region, not only the action.
+- Keep item names verb-first (`Open`, `Rename`, `Delete`).
+- Use `ContextMenuLabel` + separators for screen-reader-friendly grouping.
+- Ensure dangerous actions use clear wording and visual danger variant.
+
+## SSR and RSC Notes
+
+- `ContextMenu` is interactive and should live in a Client Component.
+- On touch-first interfaces, provide an alternate visible action path (buttons/menu icon).
+- Keep menu structure deterministic between renders to avoid hydration mismatch.
+
+## Styling and Tokens
+
+- The menu uses semantic surface tokens (`bg-popover`, `text-popover-foreground`, `border-border`).
+- Keep trigger surfaces semantic too (`bg-background`, `text-foreground`, `border-border`).
+- Use `variant="danger"` for destructive rows instead of custom palette classes.
+
+## Troubleshooting
+
+- Menu does not open: ensure you trigger a context event on `ContextMenuTrigger`.
+- Submenu not visible: verify `ContextMenuSub` wraps both trigger and content.
+- Checkbox/radio not updating: control with `checked`/`value` and change callbacks.
+- Shortcut text color is off on focus: keep shortcuts inside `ContextMenuItem` rows.
+
+## Related Docs
+
+- [Menu](/docs/components/menu)
+- [Menubar](/docs/components/menubar)
+- [Navigation Menu](/docs/components/navigation-menu)
+- [Alert Dialog](/docs/components/alert-dialog)

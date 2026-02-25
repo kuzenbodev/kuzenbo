@@ -1,0 +1,95 @@
+---
+title: "useIsomorphicEffect"
+description: "Run layout effects in the browser and automatically fall back to useEffect when document is unavailable."
+section: "hooks"
+package: "hooks"
+status: "stable"
+order: 14
+surface: "hook"
+seoTitle: "useIsomorphicEffect | Kuzenbo Docs"
+seoDescription: "Run layout effects in the browser and automatically fall back to useEffect when document is unavailable."
+ogImage: "/docs-og/hooks/use-isomorphic-effect"
+ogImageAlt: "useIsomorphicEffect documentation"
+aliases:
+  - "/docs/hooks/utilities/use-isomorphic-effect"
+---
+
+## Overview
+
+`useIsomorphicEffect` is an environment-aware alias:
+
+- browser: `useLayoutEffect`
+- non-browser (`document` unavailable): `useEffect`
+
+Use it when you need layout-style behavior in the browser but want to avoid server-side `useLayoutEffect` warnings.
+
+## What It Reads and Writes
+
+- Reads: whether `document` exists when the module is evaluated.
+- Writes: nothing directly. Effect lifecycle is delegated to React.
+
+## When to Use
+
+- Measure or sync DOM layout in client renders.
+- Share hook/component code across browser and SSR environments without conditional hook calls.
+
+## Installation
+
+```npm
+npm i @kuzenbo/hooks
+```
+
+## Import
+
+```tsx
+import { useIsomorphicEffect } from "@kuzenbo/hooks";
+```
+
+## Practical Example
+
+```tsx
+"use client";
+
+import { useRef, useState } from "react";
+
+import { useIsomorphicEffect } from "@kuzenbo/hooks";
+
+export function IsomorphicMeasurementExample() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [width, setWidth] = useState(0);
+
+  useIsomorphicEffect(() => {
+    const nextWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
+    setWidth(nextWidth);
+  }, []);
+
+  return (
+    <div className="space-y-2" ref={containerRef}>
+      <p className="text-sm text-muted-foreground">Measured width: {width}px</p>
+      <div className="h-10 rounded-md border border-border bg-muted" />
+    </div>
+  );
+}
+```
+
+## Return Contract
+
+- Signature: `(effect: EffectCallback, deps?: DependencyList) => void`
+- It accepts the same arguments as React `useEffect`/`useLayoutEffect`.
+
+## Edge Behavior and Caveats
+
+- In browser tests and real client runtime, this hook resolves to `useLayoutEffect`.
+- On server-like environments, it resolves to `useEffect`.
+- Heavy effects still block paint in browser because layout effect timing is preserved there.
+
+## SSR and RSC Notes
+
+- This hook helps with SSR warning avoidance, but it is still a React hook and must run in Client Components.
+- Do not call from React Server Components.
+
+## Related Docs
+
+- [useFullscreen](/docs/hooks/use-fullscreen)
+- [useMobile](/docs/hooks/use-mobile)
+- [Hooks Index](/docs/hooks)

@@ -1,0 +1,133 @@
+---
+title: "Field"
+description: "Label-control-description-error composition primitives in @kuzenbo/core for accessible form rows and validation messaging."
+section: "components"
+package: "core"
+status: "stable"
+order: 40
+surface: "component"
+seoTitle: "Field | Kuzenbo Docs"
+seoDescription: "Label-control-description-error composition primitives in @kuzenbo/core for accessible form rows and validation messaging."
+ogImage: "/docs-og/components/field"
+ogImageAlt: "Field documentation"
+aliases:
+  - "/docs/components/inputs/field"
+---
+
+## Overview
+
+`Field` is the canonical row-level form composition primitive in `@kuzenbo/core`.
+Use it to connect labels, controls, descriptions, validity hints, and error content with clear accessibility semantics.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Field,
+  FieldControl,
+  FieldDescription,
+  FieldError,
+  FieldItem,
+  FieldLabel,
+  FieldRoot,
+  FieldValidity,
+  Input,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Field, Input } from "@kuzenbo/core";
+
+export function EmailField({ invalid = false }: { invalid?: boolean }) {
+  return (
+    <Field>
+      <Field.Label htmlFor="email">Email</Field.Label>
+      <Field.Control
+        render={
+          <Input
+            aria-invalid={invalid || undefined}
+            id="email"
+            placeholder="you@example.com"
+            type="email"
+          />
+        }
+      />
+      <Field.Description>
+        We only use this for account updates.
+      </Field.Description>
+      <Field.Error match="valueMissing">Email is required.</Field.Error>
+    </Field>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { Field, NumberField } from "@kuzenbo/core";
+
+export function QuantityField() {
+  return (
+    <Field.Root>
+      <Field.Label htmlFor="qty">Quantity</Field.Label>
+      <Field.Item>
+        <NumberField defaultValue={1} min={1}>
+          <NumberField.Group>
+            <NumberField.Decrement />
+            <NumberField.Input id="qty" />
+            <NumberField.Increment />
+          </NumberField.Group>
+        </NumberField>
+      </Field.Item>
+      <Field.Validity state="valid">Looks good.</Field.Validity>
+    </Field.Root>
+  );
+}
+```
+
+## Unified Size Contract
+
+`FieldControl` follows shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for Field rows:
+
+- Field height controls (`h-6` through `h-11` across `xs` to `xl`).
+- Field text density classes for readable labels/values.
+
+Precedence rule:
+
+`explicit Field.Control size ?? rendered control size context ?? "md"`
+
+```tsx
+// Before
+<Field.Control size="md" render={<Input />} />
+
+// After
+<Field.Control size="md" render={<Input />} />
+```
+
+Compact-control exception: if a `Field.Item` contains `Checkbox`, `RadioGroup.Item`, or `Switch`, keep those controls on their compact metrics instead of forcing field-height parity.
+
+## API Notes
+
+- `Field`: convenience namespace (`Field.Label`, `Field.Control`, `Field.Description`, `Field.Error`, `Field.Item`, `Field.Validity`).
+- `FieldRoot` and `FieldLabel` are exported for direct composition.
+- `FieldControl` supports render composition for custom input primitives.
+
+## Related Docs
+
+- [Form](/docs/components/form)
+- [Fieldset](/docs/components/fieldset)
+- [Forms Pattern](/docs/patterns/forms)

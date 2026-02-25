@@ -1,0 +1,192 @@
+---
+title: "Composite Chart"
+description: "Combine line, bar, and area series in one chart surface with shared tooltip/legend runtime."
+section: "components"
+package: "charts"
+status: "stable"
+order: 27
+surface: "component"
+seoTitle: "Composite Chart | Kuzenbo Docs"
+seoDescription: "Build mixed line/bar/area charts with axis control, labels, and series-level overrides."
+ogImage: "/docs-og/components/composite-chart"
+ogImageAlt: "Composite Chart documentation"
+---
+
+## Purpose and boundaries
+
+`CompositeChart` is the high-level mixed-series cartesian chart from `@kuzenbo/charts`. It supports line, bar, and area series in one visualization with shared legend, tooltip, and axis controls.
+
+Use it for:
+
+- Revenue + conversion + pipeline style dashboards
+- Mixed-scale reporting with optional right y-axis
+- Charts that need per-series render overrides
+
+Use lower-level Recharts primitives directly when you need full custom rendering beyond this contract.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { CompositeChart } from "@kuzenbo/charts";
+```
+
+## Basic usage
+
+```tsx
+"use client";
+
+import { CompositeChart } from "@kuzenbo/charts";
+
+const data = [
+  { month: "Jan", revenue: 91000, conversionRate: 12.4, pipeline: 143000 },
+  { month: "Feb", revenue: 97600, conversionRate: 12.9, pipeline: 149000 },
+  { month: "Mar", revenue: 104500, conversionRate: 13.5, pipeline: 158000 },
+] as const;
+
+const series = [
+  { name: "revenue", label: "Revenue", type: "bar", yAxisId: "revenue-axis" },
+  {
+    name: "conversionRate",
+    label: "Conversion",
+    type: "line",
+    yAxisId: "conversion-axis",
+  },
+  {
+    name: "pipeline",
+    label: "Pipeline",
+    type: "area",
+    yAxisId: "revenue-axis",
+  },
+] as const;
+
+export function RevenueCompositeChart() {
+  return (
+    <CompositeChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="month"
+      series={series}
+      withLegend
+      withRightYAxis
+      yAxisProps={{ yAxisId: "revenue-axis", width: 64 }}
+      rightYAxisProps={{ yAxisId: "conversion-axis", width: 56 }}
+    />
+  );
+}
+```
+
+## Advanced usage
+
+```tsx
+"use client";
+
+import { CompositeChart } from "@kuzenbo/charts";
+
+export function CompositeChartWithFormatters() {
+  return (
+    <CompositeChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={[
+        {
+          month: "Jan",
+          revenue: 91000,
+          conversionRate: 12.4,
+          pipeline: 143000,
+        },
+        { month: "Feb", revenue: 0, conversionRate: 0, pipeline: 0 },
+        {
+          month: "Mar",
+          revenue: 104500,
+          conversionRate: 13.5,
+          pipeline: 158000,
+        },
+      ]}
+      dataKey="month"
+      series={[
+        { name: "revenue", label: "Revenue", type: "bar", yAxisId: "left" },
+        {
+          name: "conversionRate",
+          label: "Conversion",
+          type: "line",
+          yAxisId: "right",
+        },
+        { name: "pipeline", label: "Pipeline", type: "area", yAxisId: "left" },
+      ]}
+      withLegend
+      withPointLabels
+      withBarValueLabel
+      withRightYAxis
+      yAxisProps={{ yAxisId: "left" }}
+      rightYAxisProps={{ yAxisId: "right" }}
+      referenceLines={[{ y: 100000, label: "Revenue target" }]}
+      valueFormatter={(value, seriesKey) =>
+        seriesKey === "conversionRate"
+          ? `${value}%`
+          : `$${value.toLocaleString()}`
+      }
+      lineProps={(item) =>
+        item.name === "conversionRate" ? { strokeWidth: 3 } : {}
+      }
+    />
+  );
+}
+```
+
+## API reference
+
+### `CompositeChart`
+
+Required props:
+
+- `data`: array of cartesian rows
+- `dataKey`: x-axis field (for example `"month"`)
+- `series`: mixed series definition (`type: "line" | "bar" | "area"`)
+
+Common controls:
+
+- Display toggles: `withLegend`, `withTooltip`, `withXAxis`, `withYAxis`, `withRightYAxis`, `withPointLabels`, `withBarValueLabel`
+- Formatting: `valueFormatter(value, seriesKey, datum)`, `unit`, axis labels
+- Axis/grid: `xAxisProps`, `yAxisProps`, `rightYAxisProps`, `gridAxis`, `tickLine`
+- Series customization: `lineProps`, `barProps`, `areaProps`, `dotProps`, `activeDotProps`
+- Runtime behavior: `enableLegendHighlight`, `connectNulls`, `referenceLines`
+
+Backward-compatibility alias:
+
+- `chartProps` is supported but deprecated in favor of `composedChartProps`.
+
+## Accessibility notes
+
+- The chart enables Recharts `accessibilityLayer`.
+- Provide surrounding context (`h2`, summary text, or table fallback) so non-visual users can interpret trends.
+- Do not rely only on color to communicate meaning. Use labels and legend text.
+
+## SSR and RSC notes
+
+- `CompositeChart` is a client component.
+- Render it inside a client boundary in Next.js App Router.
+- Set explicit chart dimensions (`chartRootProps` or `responsiveContainerProps`) to avoid layout collapse.
+
+## Styling and tokens
+
+- Prefer CSS vars and semantic palette tokens for series (`var(--color-chart-1)` etc).
+- Keep surrounding chrome theme-safe with `bg-background`, `text-foreground`, `border-border`.
+
+## Troubleshooting
+
+- Empty plot: verify each series `name` exists on every data row.
+- Right axis missing: set both `withRightYAxis` and matching `rightYAxisProps.yAxisId`.
+- Labels overlap: reduce label usage (`withPointLabels`, `withBarValueLabel`) or simplify formatter output.
+- Unexpected tooltip values: confirm `valueFormatter` handles every series key.
+
+## Related docs
+
+- [Chart primitives](/docs/components/chart)
+- [Line Chart](/docs/components/line-chart)
+- [Bar Chart](/docs/components/bar-chart)
+- [Area Chart](/docs/components/area-chart)

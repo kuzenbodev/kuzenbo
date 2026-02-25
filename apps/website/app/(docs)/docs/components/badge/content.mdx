@@ -1,0 +1,119 @@
+---
+title: "Badge"
+description: "Use Badge in @kuzenbo/core for compact status, taxonomy, and inline metadata labels with semantic variant support."
+section: "components"
+package: "core"
+status: "stable"
+order: 12
+surface: "component"
+seoTitle: "Badge | Kuzenbo Docs"
+seoDescription: "Badge API, variant guidance, and accessibility patterns for compact status labels in @kuzenbo/core."
+ogImage: "/docs-og/components/badge"
+ogImageAlt: "Badge documentation"
+aliases:
+  - "/docs/components/display/badge"
+---
+
+## Overview
+
+`Badge` is a compact label component for status and categorical metadata (for example: `success`, `warning`, `beta`, or `team`).
+
+Use it for short text snippets that complement nearby UI.
+
+Do not use `Badge` as a primary button replacement. If users need an action target, use `Button` or compose `Badge` with `render` only when the interaction is genuinely inline.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { Badge, badgeVariants } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { Badge } from "@kuzenbo/core";
+
+export function ServiceStatusBadges() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Badge>Default</Badge>
+      <Badge variant="success">Healthy</Badge>
+      <Badge variant="warning">Degraded</Badge>
+      <Badge variant="danger">Incident</Badge>
+    </div>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { Badge } from "@kuzenbo/core";
+
+export function ReleaseBadge() {
+  return (
+    <Badge render={<a href="/changelog" />} variant="outline">
+      v2.4.1
+    </Badge>
+  );
+}
+```
+
+This pattern keeps badge visuals while delegating element semantics to the rendered anchor.
+
+## API Notes
+
+- `Badge` supports Base UI render composition through `render`.
+- `variant` options:
+  - `default`
+  - `secondary`
+  - `outline`
+  - `ghost`
+  - `link`
+  - `success`
+  - `warning`
+  - `info`
+  - `danger`
+- `size` options:
+  - `xs`
+  - `sm`
+  - `md` (default)
+  - `lg`
+  - `xl`
+- `badgeVariants` returns the class recipe used by `Badge`, useful for custom wrappers that must stay visually aligned.
+
+## Accessibility
+
+- For non-interactive labels, keep the default `span` semantics.
+- If using `render` for links, provide meaningful destination text and ensure the surrounding sentence still reads clearly for screen readers.
+- Keep badge text short and explicit; do not rely on color alone to communicate status.
+
+## SSR and RSC
+
+`Badge` is stateless and safe in Server Components.
+
+No client boundary is required unless the surrounding parent needs client-only behavior.
+
+## Styling and Semantic Tokens
+
+Badge variants are token-driven (`bg-primary`, `text-primary-foreground`, `border-success-border`, and related semantic classes).
+
+When creating custom variants, prefer semantic tokens over raw color-scale utilities so theme switching remains consistent.
+
+## Troubleshooting
+
+- Variant styles do not apply: verify `variant` matches a supported value.
+- Focus ring is missing on interactive badge: ensure you used `render` to produce a focusable element (for example `<a>`).
+- Badge wraps unexpectedly: keep content short, or move to a larger `size` token (`lg`/`xl`) for more room.
+
+## Related Docs
+
+- [Button](/docs/components/button)
+- [Color Primitives](/docs/foundations/color-primitives)
+- [Composition Patterns](/docs/patterns/composition)

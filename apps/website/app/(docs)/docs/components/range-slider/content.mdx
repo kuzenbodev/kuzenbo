@@ -1,0 +1,298 @@
+---
+title: "Range Slider"
+description: "Use @kuzenbo/core RangeSlider for two-thumb tuple range selection with marks, constraints, and orientation support."
+section: "components"
+package: "core"
+status: "stable"
+order: 74
+surface: "component"
+seoTitle: "Range Slider | Kuzenbo Docs"
+seoDescription: "Use @kuzenbo/core RangeSlider for two-thumb tuple range selection with marks, constraints, and orientation support."
+ogImage: "/docs-og/components/range-slider"
+ogImageAlt: "Range Slider documentation"
+aliases:
+  - "/docs/components/inputs/range-slider"
+---
+
+## Purpose
+
+`RangeSlider` is Kuzenbo's two-thumb range input in `@kuzenbo/core`.
+
+Use it when you need a lower and upper bound (price, date offsets, score ranges). Values are always handled as a tuple: `[from, to]`.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+```
+
+## Basic usage
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+
+export function PriceRangeSlider() {
+  return (
+    <div className="w-80 px-1">
+      <RangeSlider
+        defaultValue={[20, 80]}
+        max={100}
+        min={0}
+        step={5}
+        thumbFromLabel="Minimum price"
+        thumbToLabel="Maximum price"
+      />
+    </div>
+  );
+}
+```
+
+## Controlled tuple state
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+import { RangeSlider } from "@kuzenbo/core";
+
+export function ControlledRangeSlider() {
+  const [range, setRange] = useState<[number, number]>([25, 75]);
+
+  return (
+    <div className="w-96 space-y-2 px-1">
+      <RangeSlider
+        onChange={setRange}
+        value={range}
+        thumbFromLabel="Range start"
+        thumbToLabel="Range end"
+      />
+      <p className="text-xs text-muted-foreground">
+        Selected range: {range[0]} - {range[1]}
+      </p>
+    </div>
+  );
+}
+```
+
+## Marks and range constraints
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+
+const marks = [
+  { value: 0, label: "$0" },
+  { value: 25, label: "$25" },
+  { value: 50, label: "$50" },
+  { value: 75, label: "$75" },
+  { value: 100, label: "$100" },
+] as const;
+
+export function FilterRangeSlider() {
+  return (
+    <div className="w-96 px-1">
+      <RangeSlider
+        defaultValue={[20, 70]}
+        label={(value) => `$${value}`}
+        marks={marks}
+        maxRange={60}
+        minRange={20}
+        pushOnOverlap={false}
+        restrictToMarks
+        thumbFromLabel="Minimum budget"
+        thumbToLabel="Maximum budget"
+      />
+    </div>
+  );
+}
+```
+
+## Domain and scale behavior
+
+Use `domain` and `scale` when your interaction bounds differ from your stored/output range.
+
+- `domain`: raw interaction bounds for drag/keyboard movement.
+- `min` / `max`: normalized range for tuple values and callbacks.
+- `scale`: display transform for thumb labels; callback tuple values remain normalized.
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+
+export function ThroughputRangeSlider() {
+  return (
+    <div className="w-96 px-1">
+      <RangeSlider
+        defaultValue={[250, 850]}
+        domain={[-100, 1100]}
+        label={(value) => `${value.toFixed(1)}k`}
+        marks={[
+          { value: 0, label: "0k" },
+          { value: 500, label: "5k" },
+          { value: 1000, label: "10k" },
+        ]}
+        max={1000}
+        min={0}
+        scale={(value) => value / 100}
+        step={25}
+      />
+    </div>
+  );
+}
+```
+
+## Label transition props
+
+`labelTransitionProps` allows tuning enter/exit motion for both thumb labels.
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+
+export function SmoothRangeLabelSlider() {
+  return (
+    <RangeSlider
+      defaultValue={[30, 70]}
+      label={(value) => `${value}%`}
+      labelTransitionProps={{
+        delay: 40,
+        duration: 180,
+        timingFunction: "ease-out",
+      }}
+      showLabelOnHover
+    />
+  );
+}
+```
+
+## Form integration: name and hiddenInputProps
+
+Range sliders submit two hidden inputs. With `name="budget"`, submitted keys are `budget_from` and `budget_to`, each using raw tuple values.
+
+```tsx
+"use client";
+
+import { RangeSlider } from "@kuzenbo/core";
+
+export function RangeSliderFormField() {
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        console.log(formData.get("budget_from"));
+        console.log(formData.get("budget_to"));
+      }}
+    >
+      <RangeSlider
+        defaultValue={[20, 80]}
+        hiddenInputProps={{ "data-testid": "budget-hidden-input" }}
+        name="budget"
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+## Color, size, and radius variants
+
+Use visual variants to align range-slider ergonomics with surrounding surfaces while staying semantic-token driven.
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+
+export function CompactSuccessRangeSlider() {
+  return (
+    <RangeSlider
+      color="success"
+      defaultValue={[25, 75]}
+      radius="lg"
+      size="sm"
+    />
+  );
+}
+```
+
+## Vertical support
+
+- `orientation="vertical"` is supported; parent height must be explicit.
+
+```tsx
+import { RangeSlider } from "@kuzenbo/core";
+
+export function VerticalRangeSlider() {
+  return (
+    <div className="h-56">
+      <RangeSlider
+        defaultValue={[30, 70]}
+        label={(value) => `${value}%`}
+        orientation="vertical"
+      />
+    </div>
+  );
+}
+```
+
+## Migration from legacy range usage
+
+If you previously used multi-thumb `Slider`, migrate to `RangeSlider`:
+
+| Legacy API                                               | New API                                                   |
+| -------------------------------------------------------- | --------------------------------------------------------- |
+| `<Slider defaultValue={[20, 80]} />`                     | `<RangeSlider defaultValue={[20, 80]} />`                 |
+| `value: number[]`                                        | `value: [number, number]`                                 |
+| `onValueChange={(next) => setRange([next[0], next[1]])}` | `onChange={setRange}`                                     |
+| `onValueCommitted={(next) => save([next[0], next[1]])}`  | `onChangeEnd={save}`                                      |
+| One `aria-label` for both thumbs                         | Keep root label and add `thumbFromLabel` + `thumbToLabel` |
+
+## API reference
+
+- `value` / `defaultValue`: `[number, number]`
+- `onChange` / `onChangeEnd`: callbacks receiving `[number, number]`
+- `labelTransitionProps`: `{ duration?: number; timingFunction?: string; delay?: number }` for thumb-label transition tuning
+- `minRange` / `maxRange`: constrain the distance between thumbs
+- `pushOnOverlap`: when `true`, thumbs can push each other; when `false`, overlap is blocked
+- `marks`, `restrictToMarks`: define mark points and optional snapping
+- `domain`, `min`, `max`, `scale`: configure raw bounds, normalized clamp, and display transform
+- `name`, `hiddenInputProps`: submit `name_from` and `name_to` using raw tuple values; `hiddenInputProps` is one input-props object forwarded to both hidden inputs
+- `color`, `size`, `radius`: visual variant controls
+- `thumbFromLabel`, `thumbToLabel`: explicit accessible labels per thumb
+- `thumbProps`: function form for per-thumb customization (`index` 0/1)
+- `thumbChildren`: shared or per-thumb custom content (`ReactNode | [ReactNode, ReactNode]`)
+- `thumbSize`: override thumb size (`number` px or CSS length string)
+- `RangeSlider.Mark`, `RangeSlider.Marks`, `RangeSlider.ThumbLabel`: available as static helpers and named exports
+
+## Accessibility notes
+
+- Label both thumbs with `thumbFromLabel` and `thumbToLabel`.
+- Pair the control with visible numeric text when users need exact values.
+- Keep keyboard navigation enabled and avoid wrapping the control in disabled pointer-only shells.
+
+## SSR and RSC notes
+
+`RangeSlider` is interactive and should be rendered from Client Components.
+
+## Styling and semantic tokens
+
+Use semantic token classes for container UI (`bg-background`, `border-border`, `text-foreground`, `text-muted-foreground`) and keep slider visuals theme-aware.
+
+## Troubleshooting
+
+- Thumbs collapse into one value unexpectedly:
+  Increase `minRange` or set `pushOnOverlap={false}`.
+- Range jumps to nearest marks:
+  This is expected when `restrictToMarks` is enabled.
+- Vertical range slider appears clipped:
+  Set an explicit parent height before using `orientation="vertical"`.
+
+## Related links
+
+- [Slider](/docs/components/slider)
+- [Number Field](/docs/components/number-field)
+- [Input](/docs/components/input)
+- [Meter](/docs/components/meter)

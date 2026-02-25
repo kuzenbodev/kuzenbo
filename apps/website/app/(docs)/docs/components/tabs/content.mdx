@@ -1,0 +1,204 @@
+---
+title: "Tabs"
+description: "Switch between related content panels with default, line, and pill list variants on the unified UISize scale."
+section: "components"
+package: "core"
+status: "stable"
+order: 79
+surface: "component"
+seoTitle: "Tabs | Kuzenbo Docs"
+seoDescription: "Use Tabs from @kuzenbo/core for accessible panel switching with default, line, and pill variants plus unified UISize controls."
+ogImage: "/docs-og/components/tabs"
+ogImageAlt: "Tabs documentation"
+aliases:
+  - "/docs/components/navigation/tabs"
+---
+
+## Overview
+
+`Tabs` is a Base UI-powered tab system with Kuzenbo styling and compound subcomponents.
+It supports horizontal and vertical orientation, className callbacks, and optional animated indicator composition.
+
+Use tabs when users should switch between sibling content panels without route changes.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  Tabs,
+  TabsContent,
+  TabsIndicator,
+  TabsList,
+  TabsTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Usage
+
+```tsx
+import { Tabs } from "@kuzenbo/core";
+
+export function TabsBasicExample() {
+  return (
+    <Tabs defaultValue="overview">
+      <Tabs.List variant="default">
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
+        <Tabs.Trigger value="account">Account</Tabs.Trigger>
+        <Tabs.Indicator />
+      </Tabs.List>
+
+      <Tabs.Content value="overview">Overview panel content.</Tabs.Content>
+      <Tabs.Content value="projects">Projects panel content.</Tabs.Content>
+      <Tabs.Content value="account">Account panel content.</Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+## Full-Width Tabs
+
+```tsx
+import { Tabs } from "@kuzenbo/core";
+
+export function TabsFullWidthExample() {
+  return (
+    <Tabs defaultValue="overview">
+      <Tabs.List fullWidth variant="line">
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
+        <Tabs.Trigger value="account">Account</Tabs.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content value="overview">Overview panel content.</Tabs.Content>
+      <Tabs.Content value="projects">Projects panel content.</Tabs.Content>
+      <Tabs.Content value="account">Account panel content.</Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+## Advanced Usage
+
+```tsx
+import { Tabs } from "@kuzenbo/core";
+
+export function TabsAdvancedExample() {
+  return (
+    <Tabs
+      className="rounded-md border border-border p-2"
+      defaultValue="overview"
+    >
+      <Tabs.List activateOnFocus variant="line">
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
+        <Tabs.Trigger value="account">Account</Tabs.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content value="overview">Overview panel content.</Tabs.Content>
+      <Tabs.Content value="projects">Projects panel content.</Tabs.Content>
+      <Tabs.Content value="account">Account panel content.</Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+## Unified Size Contract
+
+`Tabs.List` uses shared `UISize` tokens:
+
+- `xs | sm | md | lg | xl`
+- default is `md`
+- migration rule: replace `size="md"` with `size="md"`
+
+Family-specific metrics for tab surfaces:
+
+- List minimum row height per token.
+- Trigger height/padding/text density per token.
+- Indicator radius/density follows the same token.
+
+Precedence rule:
+
+`Tabs.Trigger/Tabs.Indicator size ?? Tabs.List size ?? "md"`
+
+`Tabs.Trigger` and `Tabs.Indicator` inherit from `Tabs.List`; size is set at list level.
+
+```tsx
+// Before
+<Tabs.List size="md" variant="pill">...</Tabs.List>
+
+// After
+<Tabs.List size="md" variant="pill">...</Tabs.List>
+```
+
+## Variants and Sizes
+
+```tsx
+import { Tabs } from "@kuzenbo/core";
+
+export function TabsVariantsAndSizes() {
+  return (
+    <Tabs
+      className="rounded-md border border-border p-2"
+      defaultValue="overview"
+    >
+      <Tabs.List size="lg" variant="pill">
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
+        <Tabs.Trigger value="account">Account</Tabs.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content value="overview">Overview panel content.</Tabs.Content>
+      <Tabs.Content value="projects">Projects panel content.</Tabs.Content>
+      <Tabs.Content value="account">Account panel content.</Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+## API Notes
+
+- `Tabs` root supports controlled/uncontrolled patterns (`value`, `defaultValue`, `onValueChange`).
+- `orientation` defaults to `horizontal`; set `orientation="vertical"` for side-by-side layouts.
+- `TabsList` supports `variant="default" | "line" | "pill"`, `size="xs" | "sm" | "md" | "lg" | "xl"`, and `fullWidth` for equal-width tab triggers.
+- `TabsTrigger` requires `value` and supports disabled behavior.
+- `TabsIndicator` is optional and mainly used with `variant="default"` for animated selected-state visuals.
+- `TabsIndicator` is visually suppressed in `line` and `pill` variants.
+- Tabs class names support callback forms for state-aware styling (covered by tests).
+
+## Accessibility
+
+- Base UI handles ARIA tabs semantics (`tablist`, `tab`, `tabpanel`).
+- Keep trigger labels concise and unique.
+- Disabled triggers should remain visibly disabled and excluded from activation flow.
+
+## SSR and RSC
+
+- Tabs interactions are client-side.
+- `TabsIndicator` uses `renderBeforeHydration` to reduce hydration mismatch risk for indicator position.
+
+## Styling and Tokens
+
+- Tabs list/trigger defaults are tokenized (`bg-muted`, `text-muted-foreground`, `text-foreground`, `border-border`).
+- Keep custom tab surfaces on semantic tokens and avoid raw palette classes.
+- For vertical tabs, use layout classes on root and wrap content in a flexible container.
+
+## Troubleshooting
+
+- Panel does not render: ensure every `Tabs.Content` value matches an existing trigger value.
+- Indicator not visible in default variant: include `<Tabs.Indicator />` inside `Tabs.List`.
+- Arrow keys move focus but do not activate: set `activateOnFocus` on `Tabs.List`.
+- Disabled tab still switching: verify `disabled` is applied on `Tabs.Trigger`.
+
+## Related Docs
+
+- [Accordion](/docs/components/accordion)
+- [Collapsible](/docs/components/collapsible)
+- [Radio Group](/docs/components/radio-group)
+- [Components Index](/docs/components)

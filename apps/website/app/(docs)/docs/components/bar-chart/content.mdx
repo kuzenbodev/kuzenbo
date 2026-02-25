@@ -1,0 +1,149 @@
+---
+title: "Bar Chart"
+description: "Prebuilt Recharts bar visualizations in @kuzenbo/charts with legend, tooltip, stacking, and waterfall support."
+section: "components"
+package: "charts"
+status: "stable"
+order: 13
+surface: "component"
+seoTitle: "Bar Chart | Kuzenbo Docs"
+seoDescription: "Prebuilt Recharts bar visualizations in @kuzenbo/charts with legend, tooltip, stacking, and waterfall support."
+ogImage: "/docs-og/components/bar-chart"
+ogImageAlt: "Bar Chart documentation"
+---
+
+## Overview
+
+`BarChart` is the complete, production-ready bar chart component from `@kuzenbo/charts`. It wraps Recharts with Kuzenbo defaults for tooltips, legends, axis formatting, semantic-token colors, and responsive shell behavior.
+
+Use it when you want business charts quickly without rebuilding chart chrome each time.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import { BarChart, type CompleteChartSeries } from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { BarChart, type CompleteChartSeries } from "@kuzenbo/charts";
+
+const data = [
+  { month: "Jan", organic: 310, paid: 180 },
+  { month: "Feb", organic: 340, paid: 196 },
+  { month: "Mar", organic: 365, paid: 205 },
+];
+
+const series = [
+  { name: "organic", label: "Organic", color: "var(--color-chart-1)" },
+  { name: "paid", label: "Paid", color: "var(--color-chart-2)" },
+] satisfies CompleteChartSeries[];
+
+export function TrafficBarChart() {
+  return (
+    <BarChart
+      chartRootProps={{ className: "h-72 w-full" }}
+      data={data}
+      dataKey="month"
+      series={series}
+      withLegend
+      withTooltip
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { BarChart, type CompleteChartSeries } from "@kuzenbo/charts";
+
+const data = [
+  { quarter: "Q1", enterprise: 0.42, smb: 0.58 },
+  { quarter: "Q2", enterprise: 0.39, smb: 0.61 },
+  { quarter: "Q3", enterprise: 0.35, smb: 0.65 },
+];
+
+const series = [
+  {
+    name: "enterprise",
+    label: "Enterprise",
+    stackId: "mix",
+    color: "var(--color-chart-3)",
+  },
+  { name: "smb", label: "SMB", stackId: "mix", color: "var(--color-chart-1)" },
+] satisfies CompleteChartSeries[];
+
+export function PercentMixBarChart() {
+  return (
+    <BarChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      data={data}
+      dataKey="quarter"
+      gridAxis="y"
+      series={series}
+      tooltipProps={{ shared: true }}
+      type="percent"
+      valueFormatter={(value, key) => `${key}: ${(value * 100).toFixed(1)}%`}
+      withBarValueLabel
+      withLegend
+      yAxisProps={{ width: 56 }}
+    />
+  );
+}
+```
+
+## API Reference
+
+- `BarChart`: prebuilt cartesian bar chart.
+
+Key props used most often:
+
+- `data`: row array for chart rendering.
+- `dataKey`: category key for the x-axis (or y-axis in vertical layout).
+- `series`: metadata per metric (`name`, `label`, optional `color`, `stackId`, `yAxisId`).
+- `type`: `default`, `stacked`, `percent`, or `waterfall`.
+- `withLegend`, `withTooltip`, `withBarValueLabel`: display controls.
+- `valueFormatter`: value formatting callback for tooltip and labels.
+- `barChartProps`: direct pass-through to Recharts `BarChart`.
+- `chartRootProps`: sizing/className on the chart root wrapper.
+
+## Accessibility
+
+- Recharts `accessibilityLayer` is enabled in the implementation.
+- Pair chart visuals with surrounding explanatory text for non-visual users.
+- Keep series labels human-readable (`Revenue`, not internal keys).
+- Do not rely on color alone; use legend labels and tooltip text.
+
+## SSR and RSC Notes
+
+- `BarChart` is a Client Component (`"use client"` path).
+- In App Router, render it inside a client boundary and provide stable data shape.
+- Reserve chart height through `chartRootProps.className` to avoid layout shift.
+
+## Styling and Tokens
+
+- Use semantic color vars for series (`var(--color-chart-1)` through chart tokens).
+- Chart shell already maps axis/grid text to semantic tokens (`text-muted-foreground`, `border-border`).
+- Keep app wrappers on semantic utilities (`bg-background`, `text-foreground`).
+
+## Troubleshooting
+
+- Empty chart: verify `dataKey` exists in every datum and matches the category field.
+- Legend labels are wrong: define `label` in `series` for each metric.
+- Percent axis formatting unexpected: set `type="percent"` and use explicit `yAxisProps` ticks/width.
+- Bars overlap oddly: confirm `stackId` usage and `type` (`stacked` vs `default`).
+
+## Related Docs
+
+- [Chart](/docs/components/chart)
+- [Line Chart](/docs/components/line-chart)
+- [Area Chart](/docs/components/area-chart)
+- [Color Primitives](/docs/foundations/color-primitives)

@@ -1,0 +1,170 @@
+---
+title: "Bubble Chart"
+description: "Prebuilt BubbleChart for multi-series x/y/z comparisons with legend highlighting, reference lines, and formatter controls."
+section: "components"
+package: "charts"
+status: "stable"
+order: 15
+surface: "component"
+seoTitle: "Bubble Chart | Kuzenbo Docs"
+seoDescription: "Build x/y/z bubble visualizations with @kuzenbo/charts BubbleChart, including point labels, custom ranges, and tooltip formatting."
+ogImage: "/docs-og/components/bubble-chart"
+ogImageAlt: "Bubble Chart documentation"
+---
+
+## Overview
+
+`BubbleChart` is a prebuilt complete chart for 3-dimensional comparisons:
+
+- `xKey` controls horizontal position.
+- `yKey` controls vertical position.
+- `zKey` controls bubble size.
+
+Use it when your dataset needs magnitude and relationship in one view. If you need low-level Recharts composition, use chart primitives instead.
+
+## Installation
+
+```npm
+npm i @kuzenbo/charts
+```
+
+## Import
+
+```tsx
+import {
+  BubbleChart,
+  type BubbleChartSeries,
+  type BubbleChartProps,
+} from "@kuzenbo/charts";
+```
+
+## Basic Example
+
+```tsx
+import { BubbleChart, type BubbleChartSeries } from "@kuzenbo/charts";
+
+const series = [
+  {
+    name: "enterprise",
+    label: "Enterprise",
+    color: "var(--color-chart-1)",
+    data: [
+      { satisfaction: 72, velocity: 3.1, volume: 140 },
+      { satisfaction: 83, velocity: 3.9, volume: 230 },
+      { satisfaction: 91, velocity: 4.8, volume: 320 },
+    ],
+  },
+] satisfies BubbleChartSeries[];
+
+export function BubbleChartBasic() {
+  return (
+    <BubbleChart
+      chartRootProps={{ className: "h-80 w-full" }}
+      series={series}
+      withLegend
+      xAxisLabel="Satisfaction"
+      xKey="satisfaction"
+      yAxisLabel="Delivery Velocity"
+      yKey="velocity"
+      zKey="volume"
+    />
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { BubbleChart, type BubbleChartSeries } from "@kuzenbo/charts";
+
+const series = [
+  {
+    name: "priority",
+    label: "Priority Accounts",
+    color: "var(--color-chart-4)",
+    data: [
+      { complexity: 1.8, value: 68, potential: 44, score: "A" },
+      { complexity: 3.0, value: 79, potential: 76, score: "B" },
+      { complexity: 3.5, value: 86, potential: 92, score: "C" },
+    ],
+  },
+] satisfies BubbleChartSeries[];
+
+export function BubbleChartAdvanced() {
+  return (
+    <BubbleChart
+      bubbleRange={[40, 420]}
+      chartRootProps={{ className: "h-80 w-full" }}
+      pointLabelDataKey="score"
+      referenceLines={[
+        { color: "var(--color-border)", label: "Complexity cap", x: 3 },
+        { color: "var(--color-border)", label: "Value goal", y: 80 },
+      ]}
+      series={series}
+      tooltipProps={{ defaultIndex: 0, trigger: "click" }}
+      withPointLabels
+      xKey="complexity"
+      yKey="value"
+      yValueFormatter={(v) => `${v}%`}
+      zKey="potential"
+      zValueFormatter={(v) => `${v} opportunities`}
+    />
+  );
+}
+```
+
+## API Reference
+
+- `BubbleChart`
+  Required:
+  - `series`
+  - `xKey`
+  - `yKey`
+  - `zKey`
+
+  Common options:
+  - `bubbleRange` for min/max symbol size.
+  - `withLegend`, `withTooltip`, `withPointLabels`, `withXAxis`, `withYAxis`.
+  - `xValueFormatter`, `yValueFormatter`, `zValueFormatter`.
+  - `referenceLines`.
+  - `bubbleProps` object or per-series callback.
+  - `bubbleChartProps` for direct `ScatterChart` passthrough.
+
+  Compatibility alias:
+  - `chartProps` remains supported, but `bubbleChartProps` is the canonical prop.
+
+- Exported types:
+  - `BubbleChartProps`
+  - `BubbleChartSeries`
+  - `BubbleChartDatum`
+
+## Accessibility
+
+- The component enables Recharts `accessibilityLayer`.
+- Provide meaningful axis labels and legend labels so screen-reader users get context.
+- Do not rely on color alone to separate series; use labels and tooltip text.
+
+## SSR and RSC Notes
+
+- `BubbleChart` is a Client Component (`"use client"`).
+- In Next.js App Router, render it inside a client boundary and pass serializable data from server components.
+
+## Styling and Tokens
+
+- Use semantic chart tokens for series colors, for example `var(--color-chart-1)`.
+- Use semantic neutral tokens for guides and references, for example `var(--color-border)`.
+- Keep text and label colors aligned to `var(--color-foreground)` when customizing labels.
+
+## Troubleshooting
+
+- Blank chart area: set explicit dimensions (`chartRootProps={{ className: "h-80 w-full" }}`) or responsive container props.
+- Points not rendering: verify every datum has valid numeric values for `xKey`, `yKey`, and `zKey`.
+- Bubble sizes look extreme: normalize with `bubbleRange`.
+- Tooltip formatting inconsistent: set axis-specific and z-specific formatters explicitly.
+
+## Related Docs
+
+- [Chart Primitives](/docs/components/chart)
+- [Scatter Chart](/docs/components/scatter-chart)
+- [Line Chart](/docs/components/line-chart)
+- [Bar Chart](/docs/components/bar-chart)

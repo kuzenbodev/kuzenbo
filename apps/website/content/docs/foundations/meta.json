@@ -1,0 +1,23 @@
+{
+  "description": "Architecture and platform guidance for resilient Kuzenbo integrations.",
+  "icon": "Layers01",
+  "pages": [
+    "index",
+    "accessibility",
+    "ai-prompting",
+    "charts",
+    "color-primitives",
+    "dark-mode",
+    "datatable-architecture",
+    "layout-and-spacing",
+    "performance",
+    "rtl",
+    "server-components",
+    "styles-baseline",
+    "testing",
+    "theme-runtime",
+    "theming",
+    "typography-system"
+  ],
+  "title": "Foundations"
+}

@@ -1,0 +1,6 @@
+# Default ownership for the repository
+* @DobroslavRadosavljevic
+
+# Package-specific ownership
+/packages/core/ @DobroslavRadosavljevic
+/packages/hooks/ @DobroslavRadosavljevic

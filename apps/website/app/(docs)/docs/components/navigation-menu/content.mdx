@@ -1,0 +1,213 @@
+---
+title: "Navigation Menu"
+description: "Composable top-level navigation with trigger/content patterns in @kuzenbo/core."
+section: "components"
+package: "core"
+status: "stable"
+order: 52
+surface: "component"
+seoTitle: "Navigation Menu | Kuzenbo Docs"
+seoDescription: "Composable top-level navigation with trigger/content patterns in @kuzenbo/core."
+ogImage: "/docs-og/components/navigation-menu"
+ogImageAlt: "Navigation Menu documentation"
+aliases:
+  - "/docs/components/navigation/navigation-menu"
+---
+
+## Overview
+
+`NavigationMenu` is the app-level navigation primitive in `@kuzenbo/core` for grouped links, hover/click disclosure panels, and multi-column docs/product menus.
+
+It wraps Base UI navigation-menu behavior with Kuzenbo styling for trigger states, popup transitions, and focus rings.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuPositioner,
+  NavigationMenuTrigger,
+} from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@kuzenbo/core";
+
+export function DocsNav() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="/docs/installation">
+              Installation
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/docs/quick-start">
+              Quick Start
+            </NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/docs/components">
+            Components
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@kuzenbo/core";
+
+const sections = [
+  {
+    label: "Product",
+    links: [
+      {
+        href: "/features",
+        title: "Features",
+        desc: "Explore product capabilities.",
+      },
+      {
+        href: "/security",
+        title: "Security",
+        desc: "Review compliance and controls.",
+      },
+    ],
+  },
+  {
+    label: "Developers",
+    links: [
+      {
+        href: "/docs",
+        title: "Documentation",
+        desc: "Integration guides and API references.",
+      },
+      {
+        href: "/changelog",
+        title: "Changelog",
+        desc: "Track release updates.",
+      },
+    ],
+  },
+];
+
+export function ProductNavigationMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        {sections.map((section) => (
+          <NavigationMenuItem key={section.label}>
+            <NavigationMenuTrigger>{section.label}</NavigationMenuTrigger>
+            <NavigationMenuContent className="grid w-[420px] gap-1 md:grid-cols-2">
+              {section.links.map((link) => (
+                <NavigationMenuLink key={link.href} href={link.href}>
+                  <div className="font-medium text-foreground">
+                    {link.title}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {link.desc}
+                  </div>
+                </NavigationMenuLink>
+              ))}
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+
+      <NavigationMenuIndicator />
+    </NavigationMenu>
+  );
+}
+```
+
+## Size Scaling
+
+`NavigationMenu` supports `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
+
+- Root-driven default: root size scales triggers, list spacing, indicator, popup, and default content surfaces.
+- Content override: `NavigationMenu.Content size` overrides root for content descendants such as `NavigationMenu.Link`.
+- Child override: explicit child `size` props override inherited values.
+
+Precedence:
+
+- Root surfaces: `explicit child size ?? root size ?? "md"`.
+- Content descendants: `explicit child size ?? nearest content size ?? root size ?? "md"`.
+
+## API Reference
+
+- `NavigationMenu`: root container. Includes default popup positioner internally.
+- `NavigationMenuList`: list wrapper for first-level items.
+- `NavigationMenuItem`: item wrapper that can contain trigger/content or direct link.
+- `NavigationMenuTrigger`: disclosure trigger for nested content.
+- `NavigationMenuContent`: popup content panel.
+- `NavigationMenuLink`: navigable link row/card within menu structures.
+- `NavigationMenuIndicator`: active-item indicator marker.
+- `NavigationMenuPositioner`: low-level portal/positioner export for custom composition needs.
+
+## Accessibility
+
+- Keep trigger labels short and specific (`Product`, `Developers`, `Pricing`).
+- Ensure keyboard access for all trigger and link rows.
+- Use visible focus styles on links inside content panels.
+- Preserve logical heading/link order inside each panel.
+
+## SSR and RSC Notes
+
+- Interactive trigger/content behavior requires Client Components.
+- For server-rendered nav shells, keep stable link arrays to avoid hydration mismatch.
+- Use semantic links (`href`) for SEO and prefetch behavior.
+
+## Styling and Tokens
+
+- Menu primitives already use semantic popover tokens (`bg-popover`, `text-popover-foreground`, `ring-foreground/10`).
+- Keep surrounding navbar styles semantic (`bg-background`, `border-border`, `text-foreground`).
+- Prefer slot-level className overrides on content/link primitives instead of global selectors.
+
+## Troubleshooting
+
+- Content panel does not appear: check that `NavigationMenuTrigger` and `NavigationMenuContent` are siblings inside the same `NavigationMenuItem`.
+- Link styling inconsistent: use `NavigationMenuLink` for rows rather than raw anchors.
+- Positioning looks clipped: ensure parent containers do not hide overflow unexpectedly.
+- Indicator not visible: render `NavigationMenuIndicator` within `NavigationMenu` and verify contrast.
+
+## Related Docs
+
+- [Menubar](/docs/components/menubar)
+- [Context Menu](/docs/components/context-menu)
+- [Tabs](/docs/components/tabs)
+- [Typography](/docs/components/typography)

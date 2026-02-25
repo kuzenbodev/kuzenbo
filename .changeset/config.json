@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": false,
+  "commit": false,
+  "fixed": [
+    [
+      "@kuzenbo/ai",
+      "@kuzenbo/charts",
+      "@kuzenbo/cli",
+      "@kuzenbo/core",
+      "@kuzenbo/code",
+      "@kuzenbo/datatable",
+      "@kuzenbo/date",
+      "@kuzenbo/hooks",
+      "@kuzenbo/mcp",
+      "@kuzenbo/notifications",
+      "@kuzenbo/storybook",
+      "@kuzenbo/styles",
+      "@kuzenbo/theme",
+      "@kuzenbo/tiptap"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

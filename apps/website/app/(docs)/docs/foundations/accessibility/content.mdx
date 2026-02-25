@@ -1,0 +1,127 @@
+---
+title: "Accessibility"
+description: "Build accessible Kuzenbo interfaces with semantic primitives, robust keyboard support, and testable interaction contracts."
+section: "foundations"
+package: "core"
+status: "stable"
+order: 2
+surface: "guide"
+seoTitle: "Accessibility | Kuzenbo Docs"
+seoDescription: "Practical accessibility guidance for Kuzenbo components, overlays, forms, and testing workflows."
+ogImage: "/docs-og/foundations/accessibility"
+ogImageAlt: "Accessibility documentation"
+aliases:
+  - "/docs/features/accessibility"
+---
+
+## Accessibility Baseline
+
+Kuzenbo components are designed to expose semantic structure by default, but accessibility still depends on how you compose them.
+The contract is simple: keep names, roles, and focus flow explicit at the call site.
+
+## Form Semantics First
+
+Use `Field` slots so labels, descriptions, and errors stay structurally linked.
+
+```tsx
+import { Field, Input } from "@kuzenbo/core";
+
+export function EmailField({ invalid = false }: { invalid?: boolean }) {
+  return (
+    <Field>
+      <Field.Label htmlFor="email">Email address</Field.Label>
+      <Field.Control
+        render={
+          <Input
+            aria-describedby={invalid ? "email-error" : undefined}
+            aria-invalid={invalid || undefined}
+            id="email"
+            type="email"
+          />
+        }
+      />
+      <Field.Error id="email-error">Use a valid email format.</Field.Error>
+    </Field>
+  );
+}
+```
+
+Practical rule: if an input can fail validation, wire an error `id` and connect it with `aria-describedby`.
+
+## Overlay Interaction Contract
+
+For dialogs, drawers, menus, and tooltips:
+
+- Ensure every trigger has a readable label.
+- Keep focus inside the active overlay until it closes.
+- Return focus to the original trigger after close.
+- Avoid nested overlays unless interaction order is intentional and tested.
+
+`Dialog.Trigger` and similar APIs should use Base UI `render` composition instead of `asChild`.
+
+## Keyboard and Pointer Parity
+
+Support equivalent keyboard flows for every pointer-only affordance:
+
+- `Enter` or `Space` activates trigger controls.
+- `Escape` closes dismissible overlays.
+- Tab order follows visual reading order.
+- Focus states remain visible in both light and dark themes.
+
+## Content and Typography Guidance
+
+Use `Typography` primitives for text semantics (`H1`..`H6`, `P`, `Link`, `Small`, `Caption`) rather than ad-hoc heading classes.
+This keeps heading hierarchy and readable contrast aligned with the design token system.
+
+## Accessibility Testing Workflow
+
+At minimum, pair interaction tests with keyboard expectations:
+
+```tsx
+import { describe, expect, it } from "bun:test";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Dialog, Button } from "@kuzenbo/core";
+
+describe("dialog accessibility", () => {
+  it("moves focus into the dialog and returns it to trigger on close", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Dialog>
+        <Dialog.Trigger render={<Button variant="outline" />}>
+          Open settings
+        </Dialog.Trigger>
+        <Dialog.Portal>
+          <Dialog.Overlay />
+          <Dialog.Content>
+            <Dialog.Title>Settings</Dialog.Title>
+            <Dialog.Close render={<Button>Close</Button>} />
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog>
+    );
+
+    await user.click(screen.getByRole("button", { name: "Open settings" }));
+    expect(
+      screen.getByRole("dialog", { name: "Settings" })
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expect(screen.getByRole("button", { name: "Open settings" })).toHaveFocus();
+  });
+});
+```
+
+## Common Failure Patterns
+
+- Label text is visible, but not programmatically linked to the control.
+- Error copy is rendered visually, but never announced.
+- Trigger icon buttons have no accessible name.
+- Focus ring styles are removed by custom classes.
+
+## Related Docs
+
+- [Typography System](/docs/foundations/typography-system)
+- [Testing](/docs/foundations/testing)
+- [Composition Patterns](/docs/patterns/composition)

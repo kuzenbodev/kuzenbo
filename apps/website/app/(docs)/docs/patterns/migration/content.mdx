@@ -1,0 +1,76 @@
+---
+title: "Migration"
+description: "Migrate Kuzenbo codebases safely across package splits and runtime setup updates."
+section: "patterns"
+package: "core"
+status: "stable"
+order: 4
+surface: "guide"
+seoTitle: "Migration | Kuzenbo Docs"
+seoDescription: "Step-by-step migration strategy for Kuzenbo package imports, runtime setup, and styling contracts."
+ogImage: "/docs-og/patterns/migration"
+ogImageAlt: "Migration documentation"
+aliases:
+  - "/docs/features/migration"
+---
+
+## Migration Strategy
+
+Migrate in small, verifiable steps.
+Start with imports and runtime setup, then update feature areas one domain at a time.
+In almost all apps, keep `@kuzenbo/theme` paired with Kuzenbo UI packages throughout the migration.
+
+## Package Mapping
+
+| Legacy usage                       | Recommended package                                                                  |
+| ---------------------------------- | ------------------------------------------------------------------------------------ |
+| chart APIs from `@kuzenbo/core`    | `@kuzenbo/charts`                                                                    |
+| toast APIs from `@kuzenbo/core`    | `@kuzenbo/notifications`                                                             |
+| calendar APIs from `@kuzenbo/core` | `@kuzenbo/date`                                                                      |
+| legacy core CSS entrypoint         | `@kuzenbo/theme/prebuilt/kuzenbo.css` (+ optional `@kuzenbo/styles/recommended.css`) |
+
+## Install Updated Packages
+
+```bash
+bun add @kuzenbo/core @kuzenbo/theme @kuzenbo/charts @kuzenbo/notifications @kuzenbo/date
+```
+
+If you split work into multiple migration PRs, include `@kuzenbo/theme` in each UI package batch.
+
+## Import Migration Example
+
+```tsx
+// before
+import { Calendar, LineChart, Toast } from "@kuzenbo/core";
+
+// after
+import { LineChart } from "@kuzenbo/charts";
+import { Toast } from "@kuzenbo/notifications";
+import { Calendar } from "@kuzenbo/date";
+```
+
+## Runtime and CSS Setup
+
+```tsx
+import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+import "@kuzenbo/styles/recommended.css";
+```
+
+```tsx
+import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+```
+
+Render `ThemeBootstrapScript` before app content to avoid theme flicker on first paint.
+
+## Migration Checklist
+
+- Replace deep or legacy imports with package entrypoints.
+- Update chart/date/notification usage to domain packages.
+- Keep stories and tests aligned with API changes.
+- Ship migrations in small pull requests for easier rollback.
+
+## Related Docs
+
+- [Composition Patterns](/docs/patterns/composition)
+- [Foundations](/docs/foundations)
+- [Reference FAQ](/docs/reference/faq)

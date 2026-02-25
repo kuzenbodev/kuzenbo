@@ -1,0 +1,101 @@
+---
+title: "AI Prompting"
+description: "Practical prompting patterns for @kuzenbo/ai using buildAiPrompt, useAiSession, and AiWidget."
+section: "foundations"
+package: "ai"
+status: "stable"
+order: 3
+surface: "utility"
+seoTitle: "AI Prompting | Kuzenbo Docs"
+seoDescription: "Use @kuzenbo/ai prompt utilities and session state safely in production UI flows."
+ogImage: "/docs-og/foundations/ai-prompting"
+ogImageAlt: "AI Prompting documentation"
+---
+
+## What this foundation covers
+
+`@kuzenbo/ai` is intentionally small: one prompt utility, one session hook, and one presentational widget. This page shows how to combine them into predictable UI behavior without hidden prompt formatting or state drift.
+
+## Package contract
+
+- `buildAiPrompt` trims `instruction` and `subject`, then outputs `instruction + "\n\nSubject: " + subject`.
+- `useAiSession` tracks local session state with:
+  - `active` boolean
+  - `messages` counter incremented by `start()`
+  - `reset()` that clears both values
+- `AiWidget` is a styled `section` wrapper with semantic token classes and an optional title.
+
+## Build deterministic prompts
+
+Use `buildAiPrompt` when prompt text is assembled from user input or dynamic context. Keeping prompt assembly in one utility makes testing straightforward and prevents ad hoc string templates from drifting across screens.
+
+```tsx
+import { buildAiPrompt } from "@kuzenbo/ai";
+
+const prompt = buildAiPrompt({
+  instruction: "Summarize release risk in 3 bullets.",
+  subject: "February canary build",
+});
+```
+
+## Compose prompt UI with session state
+
+```tsx
+"use client";
+
+import { useMemo } from "react";
+
+import { AiWidget, buildAiPrompt, useAiSession } from "@kuzenbo/ai";
+import { Button } from "@kuzenbo/core";
+
+export function ReleaseAssistant({ scope }: { scope: string }) {
+  const session = useAiSession();
+
+  const prompt = useMemo(
+    () =>
+      buildAiPrompt({
+        instruction: "Summarize release risk in 3 bullets.",
+        subject: scope,
+      }),
+    [scope]
+  );
+
+  return (
+    <AiWidget aria-live="polite" title="Release assistant">
+      <p>{prompt}</p>
+      <div className="mt-3 flex gap-2">
+        <Button onClick={session.start} size="sm">
+          Run prompt ({session.messages})
+        </Button>
+        <Button onClick={session.reset} size="sm" variant="outline">
+          Reset
+        </Button>
+      </div>
+    </AiWidget>
+  );
+}
+```
+
+## Accessibility and UX guidance
+
+- Keep generated output in a readable region (`aria-live="polite"` is a good default for refreshed text).
+- Preserve heading hierarchy in the surrounding page; `AiWidget` title renders as `h3`.
+- Do not use prompt text as the only state signal. Keep explicit loading, success, and error UI.
+
+## Testing guidance
+
+- Unit test prompt formatting with exact string assertions (`buildAiPrompt` is deterministic).
+- For `useAiSession`, assert `start()` increments `messages` and sets `active` to `true`.
+- For `AiWidget`, test title rendering and slotted children with Testing Library text queries.
+
+## Common mistakes
+
+- Building prompt strings inline instead of using `buildAiPrompt`.
+- Treating `messages` as backend message count. It is local UI session state.
+- Skipping trim behavior in custom utilities and introducing whitespace bugs.
+
+## Related docs
+
+- [useAiSession hook](/docs/hooks/use-ai-session)
+- [AiWidget component](/docs/components/ai-widget)
+- [Testing foundation](/docs/foundations/testing)

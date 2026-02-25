@@ -1,0 +1,112 @@
+---
+title: "Scroll Area"
+description: "Use ScrollArea from @kuzenbo/core to add consistent custom scrollbars and viewport focus behavior around overflow content."
+section: "components"
+package: "core"
+status: "stable"
+order: 67
+surface: "component"
+seoTitle: "Scroll Area | Kuzenbo Docs"
+seoDescription: "ScrollArea and ScrollBar docs for @kuzenbo/core, including viewport structure, orientation, and overflow troubleshooting."
+ogImage: "/docs-og/components/scroll-area"
+ogImageAlt: "Scroll Area documentation"
+aliases:
+  - "/docs/components/layout/scroll-area"
+---
+
+## Overview
+
+`ScrollArea` wraps overflowing content with a styled viewport and token-aligned scrollbar primitives.
+
+It is useful for bounded panels like activity feeds, filter lists, and docs side blocks where native overflow styling needs to match your theme.
+
+Do not use it as virtualization. It renders all children in the viewport.
+
+## Installation
+
+```npm
+npm i @kuzenbo/core
+```
+
+## Import
+
+```tsx
+import { ScrollArea, ScrollBar } from "@kuzenbo/core";
+```
+
+## Basic Example
+
+```tsx
+import { ScrollArea } from "@kuzenbo/core";
+
+export function RecentEventsPanel() {
+  return (
+    <ScrollArea className="h-40 rounded-md border border-border">
+      <div className="space-y-2 p-3">
+        {Array.from({ length: 16 }).map((_, index) => (
+          <p className="text-sm" key={index}>
+            Event #{index + 1}
+          </p>
+        ))}
+      </div>
+    </ScrollArea>
+  );
+}
+```
+
+## Advanced Example
+
+```tsx
+import { ScrollArea, ScrollBar } from "@kuzenbo/core";
+
+export function HorizontalTagScroller() {
+  return (
+    <ScrollArea className="w-80 rounded-md border border-border">
+      <div className="flex w-max gap-2 p-3">
+        {Array.from({ length: 20 }).map((_, index) => (
+          <span className="rounded-md bg-muted px-2 py-1 text-sm" key={index}>
+            Tag {index + 1}
+          </span>
+        ))}
+      </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
+  );
+}
+```
+
+You can also access the scrollbar as `ScrollArea.Bar`.
+
+## API Notes
+
+- `ScrollArea` composes Base UI Root + Viewport + Corner + a default `ScrollBar`.
+- `ScrollBar` accepts scrollbar props, including `orientation` (`vertical` default, `horizontal` optional).
+- Root sets `data-slot="scroll-area"`; scrollbar/thumb expose dedicated data slots for styling and tests.
+
+## Accessibility
+
+- Viewport has focus-visible ring handling; keep keyboard focus enabled for interactive child content.
+- Ensure content order remains logical when users navigate with keyboard or screen readers.
+- Avoid putting essential controls outside scroll reach in short containers.
+
+## SSR and RSC
+
+`ScrollArea` is render-safe in Server Components (no local React hooks in wrapper code).
+
+## Styling and Semantic Tokens
+
+- Thumb uses `bg-border`.
+- Viewport and focus ring use semantic ring tokens.
+- Keep container surfaces token-based (`border-border`, `bg-muted`) for theme consistency.
+
+## Troubleshooting
+
+- Scrollbar is not visible: make sure content actually overflows and the container has constrained height/width.
+- Horizontal bar does not appear: set `orientation="horizontal"` and ensure child width exceeds container width.
+- Focus outline seems clipped: verify parent wrappers are not applying `overflow-hidden` unexpectedly.
+
+## Related Docs
+
+- [Container](/docs/components/container)
+- [Table](/docs/components/table)
+- [Layout and Spacing](/docs/foundations/layout-and-spacing)
