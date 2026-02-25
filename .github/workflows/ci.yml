@@ -42,7 +42,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore Bun package cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.bun/install/cache
           key: bun-cache-${{ runner.os }}-${{ env.BUN_VERSION }}-${{ hashFiles('bun.lock') }}
@@ -51,7 +51,7 @@ jobs:
             bun-cache-${{ runner.os }}-
 
       - name: Restore Turborepo local cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .turbo/cache
           key: turbo-cache-${{ runner.os }}-${{ github.ref_name }}-${{ hashFiles('turbo.json', 'bun.lock', '**/package.json') }}
