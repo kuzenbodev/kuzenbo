@@ -83,6 +83,23 @@ describe("trusted publishing workflow assertions", () => {
     expect(workflow.includes("node-version: 22.14.0")).toBe(true);
   });
 
+  it("caches Bun packages and Turborepo local cache in release jobs", () => {
+    const workflow = fs.readFileSync(workflowPath, "utf8");
+    expect(workflow.includes("Restore Bun package cache")).toBe(true);
+    expect(workflow.includes("~/.bun/install/cache")).toBe(true);
+    expect(workflow.includes("Restore Turborepo local cache")).toBe(true);
+    expect(workflow.includes(".turbo/cache")).toBe(true);
+    expect(workflow.includes("actions/cache@")).toBe(true);
+  });
+
+  it("supports optional Turborepo remote cache env wiring", () => {
+    const workflow = fs.readFileSync(workflowPath, "utf8");
+    expect(workflow.includes("TURBO_TOKEN")).toBe(true);
+    expect(workflow.includes("secrets.TURBO_TOKEN")).toBe(true);
+    expect(workflow.includes("TURBO_TEAM")).toBe(true);
+    expect(workflow.includes("vars.TURBO_TEAM")).toBe(true);
+  });
+
   it("uses channel-scoped concurrency group", () => {
     const workflow = fs.readFileSync(workflowPath, "utf8");
     expect(workflow.includes("group: release-")).toBe(true);

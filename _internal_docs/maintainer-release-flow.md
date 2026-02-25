@@ -37,6 +37,12 @@ Notes:
 - Run quality gates before any publish attempt.
 - Run `release:dry-run` before any real publish.
 
+## Workflow Runtime Notes
+
+- `.github/workflows/release.yml` restores Bun package cache (`~/.bun/install/cache`) in both preflight and publish jobs.
+- The workflow restores local Turborepo cache (`.turbo/cache`) in both jobs to speed repeated release runs.
+- Optional remote Turborepo cache can be enabled through repo secret `TURBO_TOKEN` and repo variable `TURBO_TEAM`.
+
 ## Required Commands
 
 Run from repo root:
