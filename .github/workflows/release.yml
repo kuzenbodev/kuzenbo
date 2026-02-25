@@ -101,7 +101,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22.14.0
-          registry-url: https://registry.npmjs.org
 
       - name: Restore Bun package cache
         uses: actions/cache@v5
@@ -121,9 +120,6 @@ jobs:
             turbo-cache-${{ runner.os }}-release-${{ inputs.ref }}-
             turbo-cache-${{ runner.os }}-release-
             turbo-cache-${{ runner.os }}-
-
-      - name: Ensure modern npm for trusted publishing
-        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
