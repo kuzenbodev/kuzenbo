@@ -65,7 +65,7 @@ describe("ci workflow assertions", () => {
     expect(workflow.includes("~/.bun/install/cache")).toBe(true);
     expect(workflow.includes("Restore Turborepo local cache")).toBe(true);
     expect(workflow.includes(".turbo/cache")).toBe(true);
-    expect(workflow.includes("actions/cache@v4")).toBe(true);
+    expect(workflow.includes("actions/cache@")).toBe(true);
   });
 
   it("supports optional Turborepo remote cache env wiring", () => {

@@ -9,5 +9,4 @@ This file is a lightweight index for Kuzenbo releases.
 
 ## Unreleased
 
-- Migrated release versioning internals to native Changesets workflow.
-- Enforced two-channel release lanes (`next` prerelease and `stable`), both from `main`.
+- No entries yet.
