@@ -10,11 +10,11 @@ const workflowPath = path.resolve(
 );
 
 describe("ci workflow assertions", () => {
-  it("runs on pull_request and push for release branches", () => {
+  it("runs on pull_request only for main", () => {
     const workflow = fs.readFileSync(workflowPath, "utf8");
     expect(workflow.includes("pull_request:")).toBe(true);
-    expect(workflow.includes("push:")).toBe(true);
-    expect(workflow.includes("workflow_dispatch:")).toBe(true);
+    expect(workflow.includes("push:")).toBe(false);
+    expect(workflow.includes("workflow_dispatch:")).toBe(false);
     expect(workflow.includes("- main")).toBe(true);
     expect(workflow.includes("- alpha")).toBe(false);
     expect(workflow.includes("- beta")).toBe(false);
@@ -34,14 +34,16 @@ describe("ci workflow assertions", () => {
     expect(workflow.includes("required:")).toBe(true);
   });
 
-  it("runs expected quality commands", () => {
+  it("delegates quality execution to shared ci:quality script", () => {
     const workflow = fs.readFileSync(workflowPath, "utf8");
-    expect(workflow.includes("bun audit")).toBe(true);
-    expect(workflow.includes("bun run lint")).toBe(true);
-    expect(workflow.includes("bun run typecheck")).toBe(true);
-    expect(workflow.includes("bun run test")).toBe(true);
-    expect(workflow.includes("bun run boundaries")).toBe(true);
-    expect(workflow.includes("bun run build")).toBe(true);
+    expect(workflow.includes("Run CI quality commands")).toBe(true);
+    expect(workflow.includes("bun run ci:quality")).toBe(true);
+    expect(workflow.includes("Run dependency audit")).toBe(false);
+    expect(workflow.includes("Run lint")).toBe(false);
+    expect(workflow.includes("Run typecheck")).toBe(false);
+    expect(workflow.includes("Run test")).toBe(false);
+    expect(workflow.includes("Run boundaries")).toBe(false);
+    expect(workflow.includes("Run build")).toBe(false);
   });
 
   it("defines required aggregator job with quality dependency", () => {
