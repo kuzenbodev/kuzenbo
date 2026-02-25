@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/datatable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Datatable primitives and state helpers for Kuzenbo.",
   "keywords": [
@@ -90,8 +90,8 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@kuzenbo/core": "^0.0.1",
-    "@kuzenbo/theme": "^0.0.1",
+    "@kuzenbo/core": "^0.0.2",
+    "@kuzenbo/theme": "^0.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
