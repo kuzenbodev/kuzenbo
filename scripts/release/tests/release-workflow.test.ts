@@ -98,6 +98,14 @@ describe("trusted publishing workflow assertions", () => {
     expect(workflow.includes("node-version: 22.14.0")).toBe(true);
   });
 
+  it("upgrades npm runtime for trusted publishing", () => {
+    const workflow = fs.readFileSync(workflowPath, "utf8");
+    expect(workflow.includes("Ensure trusted publishing npm runtime")).toBe(
+      true
+    );
+    expect(workflow.includes("npm install --global npm@11.5.1")).toBe(true);
+  });
+
   it("caches Bun packages and Turborepo local cache in release jobs", () => {
     const workflow = fs.readFileSync(workflowPath, "utf8");
     expect(workflow.includes("Restore Bun package cache")).toBe(true);

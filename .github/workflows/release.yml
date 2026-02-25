@@ -124,6 +124,14 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Ensure trusted publishing npm runtime
+        if: ${{ inputs.dry_run == false || inputs.dry_run == 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --global npm@11.5.1
+          npm --version
+
       - name: Validate release state
         run: bun run release:validate -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
 

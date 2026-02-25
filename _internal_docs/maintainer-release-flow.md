@@ -44,6 +44,7 @@ Notes:
 - `.github/workflows/release.yml` restores Bun package cache (`~/.bun/install/cache`) in the merged `release` job.
 - The workflow restores local Turborepo cache (`.turbo/cache`) in the merged `release` job to speed repeated release runs.
 - Optional remote Turborepo cache can be enabled through repo secret `TURBO_TOKEN` and repo variable `TURBO_TEAM`.
+- Real publish runs upgrade npm to `11.5.1` before `npm publish --provenance` so trusted publishing OIDC auth works reliably.
 
 ## Required Commands
 
@@ -189,6 +190,7 @@ Use workflow input `publish_mode=recovery` only when:
 | `Stable channel requires non-prerelease version` | Stable run used prerelease version                                 | Use a plain `X.Y.Z` version and exit prerelease mode           |
 | `Channel next requires a prerelease suffix`      | Next run used stable version                                       | Use `X.Y.Z-<prerelease>`                                       |
 | `Unsupported release ref`                        | Ref not `main`                                                     | Set `--ref main` and workflow `ref=main`                       |
+| `npm error code ENEEDAUTH` during publish        | Trusted publishing auth not activated by runtime npm               | Ensure workflow uses npm `11.5.1+` before publish              |
 | Packed artifact validation failure               | `workspace:` / `catalog:` or broken entrypoints in packed manifest | Fix package manifests/build output and rerun `release:dry-run` |
 
 ## Maintainer Notes
