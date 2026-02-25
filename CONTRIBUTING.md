@@ -68,7 +68,7 @@ Run these before opening a PR:
 
 ## GitHub CI Expectations
 
-- GitHub Actions workflow `.github/workflows/ci.yml` runs on `pull_request` for `main` only.
+- GitHub Actions workflow `.github/workflows/ci.yml` runs on `pull_request` for `main` and supports manual `workflow_dispatch`.
 - CI runs a single `Quality` job that executes shared `ci:quality` commands (audit, lint, typecheck, test, boundaries, build) after one shared setup/install.
 - CI restores Bun cache (`~/.bun/install/cache`) and Turborepo cache (`.turbo/cache`) for faster reruns.
 - Optional remote Turbo cache can be enabled via repo secret `TURBO_TOKEN` and repo variable `TURBO_TEAM`.

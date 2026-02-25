@@ -10,11 +10,11 @@ const workflowPath = path.resolve(
 );
 
 describe("ci workflow assertions", () => {
-  it("runs on pull_request only for main", () => {
+  it("runs on pull_request for main and supports workflow_dispatch", () => {
     const workflow = fs.readFileSync(workflowPath, "utf8");
     expect(workflow.includes("pull_request:")).toBe(true);
     expect(workflow.includes("push:")).toBe(false);
-    expect(workflow.includes("workflow_dispatch:")).toBe(false);
+    expect(workflow.includes("workflow_dispatch:")).toBe(true);
     expect(workflow.includes("- main")).toBe(true);
     expect(workflow.includes("- alpha")).toBe(false);
     expect(workflow.includes("- beta")).toBe(false);
