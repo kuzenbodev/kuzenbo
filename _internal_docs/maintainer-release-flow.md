@@ -37,6 +37,14 @@ Notes:
 - Run quality gates before any publish attempt.
 - Run `release:dry-run` before any real publish.
 
+## Workflow Runtime Notes
+
+- `.github/workflows/release.yml` runs a single `release` job that merges preflight and publish paths to avoid duplicated setup work.
+- The `release` job uses a conditional environment: real publish runs target `npm-publish`, while dry-run executions target `release-dry-run`.
+- `.github/workflows/release.yml` restores Bun package cache (`~/.bun/install/cache`) in the merged `release` job.
+- The workflow restores local Turborepo cache (`.turbo/cache`) in the merged `release` job to speed repeated release runs.
+- Optional remote Turborepo cache can be enabled through repo secret `TURBO_TOKEN` and repo variable `TURBO_TEAM`.
+
 ## Required Commands
 
 Run from repo root:

@@ -112,6 +112,7 @@
     "lint": "ultracite check",
     "format": "ultracite fix",
     "boundaries": "turbo boundaries --ui=stream",
+    "ci:quality": "bun scripts/ci/quality.ts",
     "size:verify": "bun scripts/size/verify-size-compliance.ts",
     "release:status": "bun scripts/release/status.ts",
     "release:changeset": "bun scripts/release/create-release-changeset.ts",
