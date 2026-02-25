@@ -8,14 +8,14 @@
     "mcp",
     "server"
   ],
-  "homepage": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono#readme",
+  "homepage": "https://github.com/kuzenbodev/kuzenbo#readme",
   "bugs": {
-    "url": "https://github.com/DobroslavRadosavljevic/kuzenbo-mono/issues"
+    "url": "https://github.com/kuzenbodev/kuzenbo/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DobroslavRadosavljevic/kuzenbo-mono.git",
+    "url": "git+https://github.com/kuzenbodev/kuzenbo.git",
     "directory": "packages/mcp"
   },
   "files": [

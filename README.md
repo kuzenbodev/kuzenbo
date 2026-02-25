@@ -1,7 +1,7 @@
 # Kuzenbo
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](./LICENSE)
-[![CI](https://github.com/DobroslavRadosavljevic/kuzenbo-mono/actions/workflows/ci.yml/badge.svg)](https://github.com/DobroslavRadosavljevic/kuzenbo-mono/actions/workflows/ci.yml)
+[![CI](https://github.com/kuzenbodev/kuzenbo/actions/workflows/ci.yml/badge.svg)](https://github.com/kuzenbodev/kuzenbo/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/badge/docs-kuzenbo.com-16a34a)](https://kuzenbo.com/docs)
 [![Bun](https://img.shields.io/badge/bun-1.3.9-f9f1e1)](https://bun.sh)
 [![Monorepo](https://img.shields.io/badge/monorepo-Turborepo-ef4444)](https://turbo.build)
