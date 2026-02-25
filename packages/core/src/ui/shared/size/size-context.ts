@@ -9,12 +9,12 @@ export interface SizeContextValue {
   size?: UISize;
 }
 
-interface InternalSizeContextValue extends SizeContextValue {
-  hasFallbackDefault?: true;
-}
-
 export const createSizeContext = (defaultSize: UISize = DEFAULT_UI_SIZE) => {
-  const SizeContext = createContext<InternalSizeContextValue>({
+  const SizeContext = createContext<
+    SizeContextValue & {
+      hasFallbackDefault?: true;
+    }
+  >({
     size: defaultSize,
     hasFallbackDefault: true,
   });

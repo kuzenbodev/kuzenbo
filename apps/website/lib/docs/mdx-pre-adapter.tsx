@@ -5,7 +5,7 @@ import {
   resolveShikiLanguage,
   SHIKI_FALLBACK_LANGUAGE,
 } from "@kuzenbo/code";
-import { Children, cache, isValidElement } from "react";
+import { Children, isValidElement } from "react";
 
 import { docsShikiThemeStyles } from "./mdx-shiki-theme-styles";
 
@@ -180,24 +180,24 @@ const highlightCodeWithShiki = async (
   }
 };
 
-const createHighlightedCodeHtml = cache(
-  async (
-    code: string,
-    language: string,
-    highlightedLineSignature: string
-  ): Promise<string> => {
-    const highlightedLines =
-      highlightedLineSignature.length === 0
-        ? []
-        : highlightedLineSignature
-            .split(",")
-            .map((value) => Number.parseInt(value, 10))
-            .filter((value) => Number.isInteger(value) && value > 0);
+const createHighlightedCodeHtml = async (
+  code: string,
+  language: string,
+  highlightedLineSignature: string
+): Promise<string> => {
+  "use cache";
 
-    const highlightedHtml = await highlightCodeWithShiki(code, language);
-    return applyHighlightedLineMarkup(highlightedHtml, highlightedLines);
-  }
-);
+  const highlightedLines =
+    highlightedLineSignature.length === 0
+      ? []
+      : highlightedLineSignature
+          .split(",")
+          .map((value) => Number.parseInt(value, 10))
+          .filter((value) => Number.isInteger(value) && value > 0);
+
+  const highlightedHtml = await highlightCodeWithShiki(code, language);
+  return applyHighlightedLineMarkup(highlightedHtml, highlightedLines);
+};
 
 type MdxPreAdapterProps = ComponentPropsWithoutRef<"pre">;
 

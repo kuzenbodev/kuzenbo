@@ -31,7 +31,7 @@
     },
     "apps/website": {
       "name": "@kuzenbo/website",
-      "version": "0.1.1-alpha.1",
+      "version": "0.1.1-alpha.2",
       "dependencies": {
         "@hugeicons/core-free-icons": "catalog:",
         "@hugeicons/react": "catalog:",
@@ -78,7 +78,7 @@
     },
     "packages/ai": {
       "name": "@kuzenbo/ai",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "tailwind-merge": "catalog:",
         "tailwind-variants": "catalog:",
@@ -108,15 +108,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/charts": {
       "name": "@kuzenbo/charts",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@kuzenbo/core": "workspace:*",
         "recharts": "catalog:",
@@ -148,15 +148,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/cli": {
       "name": "@kuzenbo/cli",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "devDependencies": {
         "@arethetypeswrong/core": "catalog:",
         "bun-types": "catalog:",
@@ -166,7 +166,7 @@
     },
     "packages/code": {
       "name": "@kuzenbo/code",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@kuzenbo/core": "workspace:*",
         "@shikijs/transformers": "catalog:",
@@ -205,15 +205,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/core": {
       "name": "@kuzenbo/core",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@base-ui/react": "catalog:",
         "@hugeicons/core-free-icons": "catalog:",
@@ -238,6 +238,7 @@
         "@happy-dom/global-registrator": "catalog:",
         "@kuzenbo/storybook": "workspace:*",
         "@kuzenbo/styles": "workspace:*",
+        "@kuzenbo/theme": "workspace:*",
         "@storybook/addon-a11y": "catalog:",
         "@storybook/addon-docs": "catalog:",
         "@storybook/addon-themes": "catalog:",
@@ -258,14 +259,14 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/datatable": {
       "name": "@kuzenbo/datatable",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@tanstack/react-table": "catalog:",
         "tailwind-merge": "catalog:",
@@ -296,15 +297,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/date": {
       "name": "@kuzenbo/date",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@hugeicons/core-free-icons": "catalog:",
         "@hugeicons/react": "catalog:",
@@ -339,15 +340,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/hooks": {
       "name": "@kuzenbo/hooks",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "devDependencies": {
         "@arethetypeswrong/core": "catalog:",
         "@happy-dom/global-registrator": "catalog:",
@@ -377,7 +378,7 @@
     },
     "packages/mcp": {
       "name": "@kuzenbo/mcp",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "devDependencies": {
         "@arethetypeswrong/core": "catalog:",
         "bun-types": "catalog:",
@@ -387,7 +388,7 @@
     },
     "packages/notifications": {
       "name": "@kuzenbo/notifications",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@base-ui/react": "catalog:",
         "@hugeicons/core-free-icons": "catalog:",
@@ -421,15 +422,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/storybook": {
       "name": "@kuzenbo/storybook",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@kuzenbo/styles": "workspace:*",
         "@kuzenbo/theme": "workspace:*",
@@ -444,14 +445,14 @@
     },
     "packages/styles": {
       "name": "@kuzenbo/styles",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "tailwindcss": "catalog:",
       },
     },
     "packages/theme": {
       "name": "@kuzenbo/theme",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "tailwindcss": "catalog:",
         "tw-animate-css": "catalog:",
@@ -481,7 +482,7 @@
     },
     "packages/tiptap": {
       "name": "@kuzenbo/tiptap",
-      "version": "0.0.1-alpha.4",
+      "version": "0.0.1-alpha.5",
       "dependencies": {
         "@kuzenbo/core": "workspace:*",
         "@tiptap/core": "catalog:",
@@ -531,8 +532,8 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.1-alpha.4",
-        "@kuzenbo/theme": "^0.0.1-alpha.4",
+        "@kuzenbo/core": "^0.0.1-alpha.5",
+        "@kuzenbo/theme": "^0.0.1-alpha.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },

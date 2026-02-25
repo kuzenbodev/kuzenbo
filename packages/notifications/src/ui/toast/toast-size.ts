@@ -1,3 +1,5 @@
+import type { Context } from "react";
+
 import {
   createSizeContext,
   DEFAULT_UI_SIZE,
@@ -6,8 +8,17 @@ import {
   type UISize,
 } from "@kuzenbo/core/provider";
 
-const { SizeContext: ToastSizeContext, useResolvedSize: useResolvedToastSize } =
-  createSizeContext(DEFAULT_UI_SIZE);
+interface ToastSizeContextValue {
+  size?: UISize;
+}
+
+const {
+  SizeContext: ToastSizeContext,
+  useResolvedSize: useResolvedToastSize,
+}: {
+  SizeContext: Context<ToastSizeContextValue>;
+  useResolvedSize: (...candidates: (UISize | undefined | null)[]) => UISize;
+} = createSizeContext(DEFAULT_UI_SIZE);
 
 export {
   DEFAULT_UI_SIZE,

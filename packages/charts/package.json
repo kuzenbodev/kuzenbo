@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/charts",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "private": false,
   "description": "Chart primitives and prebuilt charts for Kuzenbo.",
   "keywords": [
@@ -111,8 +111,8 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@kuzenbo/core": "^0.0.1-alpha.4",
-    "@kuzenbo/theme": "^0.0.1-alpha.4",
+    "@kuzenbo/core": "^0.0.1-alpha.5",
+    "@kuzenbo/theme": "^0.0.1-alpha.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
