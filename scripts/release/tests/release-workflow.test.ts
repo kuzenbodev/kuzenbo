@@ -61,6 +61,15 @@ describe("trusted publishing workflow assertions", () => {
     expect(workflow.includes("environment: npm-publish")).toBe(true);
   });
 
+  it("builds workspaces in publish job before publishing", () => {
+    const workflow = fs.readFileSync(workflowPath, "utf8");
+    expect(
+      /publish:[\s\S]*- name: Build all workspaces[\s\S]*run: bun run build[\s\S]*- name: Publish allowlist packages/.test(
+        workflow
+      )
+    ).toBe(true);
+  });
+
   it("supports dedicated recovery publish mode", () => {
     const workflow = fs.readFileSync(workflowPath, "utf8");
     expect(workflow.includes("publish_mode:")).toBe(true);

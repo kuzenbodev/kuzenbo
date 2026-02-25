@@ -148,6 +148,9 @@ jobs:
       - name: Validate release state
         run: bun run release:validate -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
 
+      - name: Build all workspaces
+        run: bun run build
+
       - name: Publish allowlist packages
         run: bun scripts/release/publish.ts --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}" --mode "${{ inputs.publish_mode }}" --provenance
 
