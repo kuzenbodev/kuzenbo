@@ -228,5 +228,5 @@ const FunnelChart = <TData extends CompleteChartDatum = CompleteChartDatum>({
   );
 };
 
-export type { FunnelChartProps, FunnelLabelPosition };
+export type { CompleteChartSeries, FunnelChartProps, FunnelLabelPosition };
 export { FunnelChart };

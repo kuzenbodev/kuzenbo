@@ -215,5 +215,5 @@ const RadarChart = <TData extends CompleteChartDatum = CompleteChartDatum>({
   );
 };
 
-export type { RadarChartProps, RadarSeriesProps };
+export type { CompleteChartSeries, RadarChartProps, RadarSeriesProps };
 export { RadarChart };

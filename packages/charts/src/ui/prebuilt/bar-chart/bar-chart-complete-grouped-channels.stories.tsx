@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { BarChart } from "./bar-chart";
@@ -13,7 +13,7 @@ import {
 const formatGroupedValue = (value: number) => formatNumberCompact(value);
 
 const BarChartCompleteGroupedChannelsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BarChart
       barProps={{ strokeOpacity: 0.5, strokeWidth: 1 }}
       chartRootProps={{ className: "h-80 w-full" }}

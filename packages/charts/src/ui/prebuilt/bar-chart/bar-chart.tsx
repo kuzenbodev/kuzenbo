@@ -275,4 +275,4 @@ const BarChart = <TData extends CompleteChartDatum = CompleteChartDatum>({
 
 export { BarChart };
 
-export type { BarChartProps } from "../shared/complete-types";
+export type { BarChartProps, CompleteChartSeries } from "../shared/complete-types";

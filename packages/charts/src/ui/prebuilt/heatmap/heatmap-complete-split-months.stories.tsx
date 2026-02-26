@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { Heatmap } from "./heatmap";
 import { heatmapReleaseCycleData } from "./heatmap-story-data";
 
 const HeatmapCompleteSplitMonthsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <Heatmap
       data={heatmapReleaseCycleData}
       dateKey="date"

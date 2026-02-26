@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
 } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
@@ -10,7 +10,7 @@ import { lineDefaultData, lineDefaultSeries } from "./line-chart-story-data";
 const formatLineValue = (value: number) => formatCurrencyCompact(value);
 
 const LineChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <LineChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={lineDefaultData}

@@ -1,8 +1,12 @@
-export const completeChartShellClassName =
-  "mx-auto w-full max-w-5xl rounded-2xl border border-border bg-background p-4";
+import { tv } from "tailwind-variants";
 
-export const completeChartCompactShellClassName =
-  "mx-auto w-full max-w-md rounded-2xl border border-border bg-background p-3";
+export const completeChartShellVariants = tv({
+  base: "mx-auto w-full max-w-5xl rounded-2xl border border-border bg-background p-4",
+});
+
+export const completeChartCompactShellVariants = tv({
+  base: "mx-auto w-full max-w-md rounded-2xl border border-border bg-background p-3",
+});
 
 const compactNumberFormatter = new Intl.NumberFormat("en-US", {
   notation: "compact",

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
 } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
@@ -13,7 +13,7 @@ import {
 const formatForecastValue = (value: number) => formatCurrencyCompact(value);
 
 const LineChartCompleteForecastGapsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <LineChart
       lineChartProps={{ margin: { top: 8, right: 12, left: 4, bottom: 0 } }}
       chartRootProps={{ className: "h-80 w-full" }}

@@ -1,13 +1,9 @@
-import type { TsdownInputOption } from "tsdown";
-
 import { defineConfig } from "tsdown";
 
-const entries: TsdownInputOption = {
-  "ui/calendar": "src/ui/calendar/calendar.tsx",
-};
-
 export default defineConfig({
-  entry: entries,
+  entry: {
+    "ui/calendar": "src/ui/calendar/calendar.tsx",
+  },
   format: ["esm"],
   dts: {
     sourcemap: true,

@@ -1,13 +1,9 @@
-import type { TsdownInputOption } from "tsdown";
-
 import { defineConfig } from "tsdown";
 
-const entries: TsdownInputOption = {
-  index: "src/index.ts",
-};
-
 export default defineConfig({
-  entry: entries,
+  entry: {
+    index: "src/index.ts",
+  },
   format: ["esm"],
   dts: {
     sourcemap: true,

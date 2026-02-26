@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
@@ -24,7 +24,7 @@ const formatCompositeValue = (value: number, seriesKey: string) => {
 };
 
 const CompositeChartCompleteHighlightDotsValueLabelsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <CompositeChart
       activeDotProps={{ r: 6, strokeWidth: 2 }}
       chartRootProps={{ className: "h-80 w-full" }}

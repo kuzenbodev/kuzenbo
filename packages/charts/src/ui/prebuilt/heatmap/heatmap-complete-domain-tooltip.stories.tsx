@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { Heatmap, type HeatmapTooltipLabelArgs } from "./heatmap";
 import { heatmapQualityData } from "./heatmap-story-data";
 
@@ -17,7 +17,7 @@ const heatmapQualityTooltipLabelFormatter = ({
   `${isoDate} • quality ${formatHeatmapQualityTooltipValue(value)}`;
 
 const HeatmapCompleteDomainTooltipDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <Heatmap
       colorDomain={[0, 100]}
       colorRange={[

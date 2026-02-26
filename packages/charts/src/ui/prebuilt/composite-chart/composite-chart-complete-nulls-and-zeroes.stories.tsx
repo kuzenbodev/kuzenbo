@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
   formatPercent,
 } from "../stories/complete-chart-story-shared";
@@ -20,7 +20,7 @@ const formatNullAndZeroValue = (value: number, seriesKey: string) => {
 };
 
 const CompositeChartCompleteNullsAndZeroesDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <CompositeChart
       chartRootProps={{ className: "h-80 w-full" }}
       connectNulls={false}

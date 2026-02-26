@@ -1,16 +1,13 @@
-import type { TsdownInputOption } from "tsdown";
-
 import { defineConfig } from "tsdown";
 
-const entries: TsdownInputOption = {
-  "use-clipboard": "src/use-clipboard/use-clipboard.ts",
-  "use-fullscreen": "src/use-fullscreen/use-fullscreen.ts",
-  "use-isomorphic-effect": "src/use-isomorphic-effect/use-isomorphic-effect.ts",
-  "use-mobile": "src/use-mobile/use-mobile.ts",
-};
-
 export default defineConfig({
-  entry: entries,
+  entry: {
+    "use-clipboard": "src/use-clipboard/use-clipboard.ts",
+    "use-fullscreen": "src/use-fullscreen/use-fullscreen.ts",
+    "use-isomorphic-effect":
+      "src/use-isomorphic-effect/use-isomorphic-effect.ts",
+    "use-mobile": "src/use-mobile/use-mobile.ts",
+  },
   format: ["esm"],
   dts: {
     sourcemap: true,

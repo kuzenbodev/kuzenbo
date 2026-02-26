@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
@@ -19,7 +19,7 @@ const formatKpiValue = (value: number, seriesKey: string) => {
 };
 
 const LineChartCompleteKpiDualAxisDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <LineChart
       lineChartProps={{ margin: { top: 8, right: 8, left: 0, bottom: 0 } }}
       chartRootProps={{ className: "h-80 w-full" }}

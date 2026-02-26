@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
   formatPercent,
 } from "../stories/complete-chart-story-shared";
@@ -17,7 +17,7 @@ const formatCompositeValue = (value: number, seriesKey: string) =>
     : formatCurrencyCompact(value);
 
 const CompositeChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <CompositeChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={compositeDefaultData}

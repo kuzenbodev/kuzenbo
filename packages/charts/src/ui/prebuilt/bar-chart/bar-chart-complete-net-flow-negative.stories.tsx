@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatSignedNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { BarChart } from "./bar-chart";
@@ -13,7 +13,7 @@ import {
 const formatNetFlowValue = (value: number) => formatSignedNumberCompact(value);
 
 const BarChartCompleteNetFlowNegativeDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BarChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={barNetFlowNegativeData}

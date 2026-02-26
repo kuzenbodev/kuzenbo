@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { FunnelChart } from "./funnel-chart";
@@ -11,7 +11,7 @@ import {
 } from "./funnel-chart-story-data";
 
 const FunnelChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <FunnelChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={funnelDefaultData}

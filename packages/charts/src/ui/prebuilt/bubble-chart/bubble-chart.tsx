@@ -252,4 +252,8 @@ const BubbleChart = <TData extends BubbleChartDatum = BubbleChartDatum>({
 
 export { BubbleChart };
 
-export type { BubbleChartProps } from "./bubble-chart-types";
+export type {
+  BubbleChartDatum,
+  BubbleChartProps,
+  BubbleChartSeries,
+} from "./bubble-chart-types";

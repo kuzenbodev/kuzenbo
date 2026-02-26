@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatPercent,
 } from "../stories/complete-chart-story-shared";
 import { RadialBarChart } from "./radial-bar-chart";
@@ -11,7 +11,7 @@ import {
 } from "./radial-bar-chart-story-data";
 
 const RadialBarChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <RadialBarChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={radialBarDefaultData}

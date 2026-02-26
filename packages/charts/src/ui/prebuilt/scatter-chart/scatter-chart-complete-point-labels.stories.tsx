@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { ScatterChart } from "./scatter-chart";
@@ -12,7 +12,7 @@ const formatValue = (value: number, key: string) =>
   key === "complexity" ? value.toFixed(1) : formatNumberCompact(value);
 
 const ScatterChartCompletePointLabelsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <ScatterChart
       chartRootProps={{ className: "h-80 w-full" }}
       pointLabelDataKey="score"

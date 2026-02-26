@@ -1,12 +1,12 @@
 # @kuzenbo/charts
 
-Chart primitives and prebuilt chart components for Kuzenbo.
+Ready-made chart components for Kuzenbo.
 
 > ✅ **Status: Public**
 
 ## ✨ What This Package Solves
 
-`@kuzenbo/charts` combines low-level chart primitives with prebuilt chart components for trend, comparison, and distribution visualizations.
+`@kuzenbo/charts` ships production-ready charts for trend, comparison, and distribution visualizations.
 
 ## 📦 Install
 
@@ -43,7 +43,7 @@ yarn add @kuzenbo/charts @kuzenbo/core @kuzenbo/theme recharts
 ```tsx
 "use client";
 
-import { LineChart } from "@kuzenbo/charts/ui/chart";
+import { LineChart } from "@kuzenbo/charts/ui/line-chart";
 
 const data = [
   { month: "Jan", revenue: 172000, target: 180000 },
@@ -72,14 +72,23 @@ export function ChartsQuickExample() {
 
 ## 🧱 Key Surface
 
-- Primitive composition: `ChartRoot`, `ChartProvider`, `ChartFrame`, `ChartAutoSize`, `ChartTooltipContent`, `ChartLegendContent`
-- Prebuilt charts: `LineChart`, `AreaChart`, `BarChart`, `PieChart`, `DonutChart`, `RadarChart`, `ScatterChart`, `Heatmap`, `Sparkline`
-- Hooks: `useChart`, `useChartConfig`, `useSeriesColor`, `usePlotArea`
+- ✅ `@kuzenbo/charts/ui/area-chart`
+- ✅ `@kuzenbo/charts/ui/bar-chart`
+- ✅ `@kuzenbo/charts/ui/bubble-chart`
+- ✅ `@kuzenbo/charts/ui/composite-chart`
+- ✅ `@kuzenbo/charts/ui/donut-chart`
+- ✅ `@kuzenbo/charts/ui/funnel-chart`
+- ✅ `@kuzenbo/charts/ui/heatmap`
+- ✅ `@kuzenbo/charts/ui/line-chart`
+- ✅ `@kuzenbo/charts/ui/pie-chart`
+- ✅ `@kuzenbo/charts/ui/radar-chart`
+- ✅ `@kuzenbo/charts/ui/radial-bar-chart`
+- ✅ `@kuzenbo/charts/ui/scatter-chart`
+- ✅ `@kuzenbo/charts/ui/sparkline`
 
 ## 📚 Docs And Playgrounds
 
 - [Charts Foundation](https://kuzenbo.com/docs/foundations/charts)
-- [Chart Primitive](https://kuzenbo.com/docs/components/chart)
 - [Line Chart](https://kuzenbo.com/docs/components/line-chart)
 - [Bar Chart](https://kuzenbo.com/docs/components/bar-chart)
 

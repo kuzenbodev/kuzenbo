@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
@@ -17,7 +17,7 @@ const campaignLineProps = (seriesItem: { key?: string; name?: string }) => ({
 });
 
 const LineChartCompleteCampaignVsTargetDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <LineChart
       lineChartProps={{ margin: { top: 12, right: 12, left: 4, bottom: 0 } }}
       chartRootProps={{ className: "h-80 w-full" }}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { BarChart } from "./bar-chart";
 
 const percentStackedData = [
@@ -19,7 +19,7 @@ const percentStackedSeries = [
 ];
 
 const BarChartCompletePercentStackedLabelsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BarChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={percentStackedData}

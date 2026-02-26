@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { Sparkline } from "./sparkline";
 import { sparklineChurnRiskData } from "./sparkline-story-data";
 
 const SparklineCompleteTrendColorsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <Sparkline
       chartRootProps={{ className: "h-24 w-full" }}
       data={sparklineChurnRiskData}

@@ -1,13 +1,9 @@
-import type { TsdownInputOption } from "tsdown";
-
 import { defineConfig } from "tsdown";
 
-const entries: TsdownInputOption = {
-  "ui/toast": "src/ui/toast/toast.tsx",
-};
-
 export default defineConfig({
-  entry: entries,
+  entry: {
+    "ui/toast": "src/ui/toast/toast.tsx",
+  },
   format: ["esm"],
   dts: {
     sourcemap: true,

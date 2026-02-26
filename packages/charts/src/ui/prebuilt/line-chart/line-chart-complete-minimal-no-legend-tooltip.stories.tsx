@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
 import { lineMinimalData, lineMinimalSeries } from "./line-chart-story-data";
 
 const LineChartCompleteMinimalNoLegendTooltipDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <LineChart
       lineChartProps={{ margin: { top: 8, right: 8, left: 0, bottom: 0 } }}
       chartRootProps={{ className: "h-72 w-full" }}

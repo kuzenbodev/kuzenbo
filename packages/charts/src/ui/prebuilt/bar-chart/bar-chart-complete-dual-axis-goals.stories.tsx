@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
@@ -20,7 +20,7 @@ const formatDualAxisValue = (value: number, seriesKey: string) => {
 };
 
 const BarChartCompleteDualAxisGoalsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BarChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={barDualAxisGoalsData}

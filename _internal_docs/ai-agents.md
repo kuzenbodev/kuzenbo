@@ -62,6 +62,7 @@ Active package scope is currently:
 - Preserve the `class`/`className` override contract for every `tv` surface.
 - Type component variants with `VariantProps<typeof variants>`. Use TypeScript utility types when a variant must be required.
 - Use `cn` by default for merge-aware class composition. Use `cx` only when merge behavior is intentionally not needed. Use `cnMerge` only when custom merge config is required.
+- Keep class payloads inline at JSX call sites (including `cn(...)`) or inside `tv(...)` definitions; do not store class payloads in constants.
 - Keep responsive behavior in class strings (`sm:`, `md:`, `lg:`). Do not use `responsiveVariants` with Tailwind CSS v4.
 - Do not introduce `tailwind-variants/lite` in a workspace unless there is an explicit package-level decision and migration note.
 - Keep `tailwind-merge` installed/resolvable for workspaces importing from `tailwind-variants`.

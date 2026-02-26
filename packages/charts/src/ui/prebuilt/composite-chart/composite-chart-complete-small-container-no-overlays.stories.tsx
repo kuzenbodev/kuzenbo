@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartCompactShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartCompactShellVariants } from "../stories/complete-chart-story-shared";
 import { CompositeChart } from "./composite-chart";
 import {
   compositeSmallContainerData,
@@ -8,7 +8,7 @@ import {
 } from "./composite-chart-story-data";
 
 const CompositeChartCompleteSmallContainerNoOverlaysDemo = () => (
-  <div className={completeChartCompactShellClassName}>
+  <div className={completeChartCompactShellVariants()}>
     <CompositeChart
       composedChartProps={{ margin: { top: 8, right: 4, left: -8, bottom: 0 } }}
       chartRootProps={{ className: "h-52 w-full" }}

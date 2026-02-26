@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
 } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
@@ -31,7 +31,7 @@ const gradientCurveSeries = [
 const formatRevenue = (value: number) => formatCurrencyCompact(value);
 
 const LineChartCompleteGradientCurvePointsDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <LineChart
       activeDotProps={{ r: 6 }}
       chartRootProps={{ className: "h-80 w-full" }}

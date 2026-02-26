@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { PieChart } from "./pie-chart";
@@ -11,7 +11,7 @@ const pieValueFormatter = (value: number): string =>
   `$${formatNumberCompact(value)}`;
 
 const PieChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <PieChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={pieDefaultData}

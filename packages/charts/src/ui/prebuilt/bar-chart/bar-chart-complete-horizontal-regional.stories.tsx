@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { BarChart } from "./bar-chart";
@@ -13,7 +13,7 @@ import {
 const formatRegionalValue = (value: number) => formatNumberCompact(value);
 
 const BarChartCompleteHorizontalRegionalDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BarChart
       barChartProps={{
         layout: "vertical",

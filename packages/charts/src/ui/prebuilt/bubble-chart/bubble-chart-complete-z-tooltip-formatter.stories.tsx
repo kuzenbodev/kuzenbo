@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { BubbleChart } from "./bubble-chart";
@@ -12,7 +12,7 @@ const formatVelocity = (value: number) => `${value.toFixed(1)} pts`;
 const formatVolume = (value: number) => `${formatNumberCompact(value)} accts`;
 
 const BubbleChartCompleteZTooltipFormatterDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BubbleChart
       chartRootProps={{ className: "h-80 w-full" }}
       series={bubbleDefaultSeries}

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
   formatPercent,
 } from "../stories/complete-chart-story-shared";
@@ -20,7 +20,7 @@ const formatFunnelValue = (value: number, seriesKey: string) => {
 };
 
 const CompositeChartCompleteFunnelBlendDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <CompositeChart
       areaProps={{ fillOpacity: 0.18 }}
       barProps={{ radius: [8, 8, 0, 0] }}

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
 } from "../stories/complete-chart-story-shared";
 import { AreaChart } from "./area-chart";
@@ -10,7 +10,7 @@ import { areaDefaultData, areaDefaultSeries } from "./area-chart-story-data";
 const formatAreaValue = (value: number) => formatCurrencyCompact(value);
 
 const AreaChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <AreaChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={areaDefaultData}

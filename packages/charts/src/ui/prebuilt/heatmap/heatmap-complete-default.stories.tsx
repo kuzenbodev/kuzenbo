@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { Heatmap } from "./heatmap";
 import { heatmapQuarterActivityData } from "./heatmap-story-data";
 
 const heatmapTaskValueFormatter = (value: number): string => `${value} tasks`;
 
 const HeatmapCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <Heatmap
       data={heatmapQuarterActivityData}
       dateKey="date"

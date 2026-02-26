@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { AreaChart } from "./area-chart";
 import {
   areaStackedDemandData,
@@ -8,7 +8,7 @@ import {
 } from "./area-chart-story-data";
 
 const AreaChartCompleteStackedGradientDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <AreaChart
       activeDotProps={{ r: 6 }}
       chartRootProps={{ className: "h-80 w-full" }}

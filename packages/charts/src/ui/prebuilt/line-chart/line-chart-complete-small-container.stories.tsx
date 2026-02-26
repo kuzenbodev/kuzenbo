@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartCompactShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartCompactShellVariants } from "../stories/complete-chart-story-shared";
 import { LineChart } from "./line-chart";
 import {
   lineSmallContainerData,
@@ -8,7 +8,7 @@ import {
 } from "./line-chart-story-data";
 
 const LineChartCompleteSmallContainerDemo = () => (
-  <div className={completeChartCompactShellClassName}>
+  <div className={completeChartCompactShellVariants()}>
     <LineChart
       lineChartProps={{
         margin: { top: 8, right: 4, left: -4, bottom: 0 },

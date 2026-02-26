@@ -78,10 +78,8 @@ This document explains how the monorepo is structured and why package boundaries
 
 ### Extracted UI packages
 
-- `@kuzenbo/charts` exposes both primitive chart composition (`Chart.Provider`, `Chart.Frame`, `Chart.AutoSize`, `Chart.Root`, tooltip/legend primitives) and prebuilt chart wrappers (`LineChart`, `BarChart`, `CompositeChart`) from `packages/charts/src/index.ts`.
+- `@kuzenbo/charts` exposes ready-made chart components through per-chart subpaths (for example `@kuzenbo/charts/ui/line-chart`, `@kuzenbo/charts/ui/bar-chart`, `@kuzenbo/charts/ui/composite-chart`).
 - `@kuzenbo/charts`, `@kuzenbo/notifications`, `@kuzenbo/date`, `@kuzenbo/ai`, and `@kuzenbo/datatable` may depend on `@kuzenbo/core` for shared runtime size contracts when they expose size-aware surfaces.
-- `@kuzenbo/charts/primitives` is the primitive-only subpath.
-- `@kuzenbo/charts/prebuilt` is the prebuilt-wrapper-only subpath.
 - Internally, charts are grouped by responsibility: prebuilt component folders (`line-chart`, `bar-chart`, `composite-chart`) plus shared complete-chart internals, and primitives grouped by kernel domains (`root`, `provider`, `tooltip`, `legend`, `style`, `payload`, etc.).
 - `@kuzenbo/notifications` exposes toast APIs from `packages/notifications/src/index.ts`.
 - `@kuzenbo/date` exposes calendar APIs from `packages/date/src/index.ts`.

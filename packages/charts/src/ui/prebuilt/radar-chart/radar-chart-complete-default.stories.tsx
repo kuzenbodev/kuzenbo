@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { RadarChart } from "./radar-chart";
 import { radarDefaultData, radarDefaultSeries } from "./radar-chart-story-data";
 
 const RadarChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <RadarChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={radarDefaultData}

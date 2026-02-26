@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
 import { DonutChart, type DonutCenterLabelContext } from "./donut-chart";
@@ -11,7 +11,7 @@ const donutCenterLabel = ({ total }: DonutCenterLabelContext): string =>
   formatNumberCompact(total);
 
 const DonutChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <DonutChart
       centerLabel={donutCenterLabel}
       chartRootProps={{ className: "h-80 w-full" }}

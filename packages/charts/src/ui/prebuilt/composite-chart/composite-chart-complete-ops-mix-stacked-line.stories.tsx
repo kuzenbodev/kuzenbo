@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatCurrencyCompact,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
@@ -32,7 +32,7 @@ const opsLineProps = (seriesItem: { key?: string; name?: string }) =>
   (seriesItem.name ?? seriesItem.key) === "incidents" ? { strokeWidth: 3 } : {};
 
 const CompositeChartCompleteOpsMixStackedLineDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <CompositeChart
       areaProps={opsAreaProps}
       barProps={opsBarProps}

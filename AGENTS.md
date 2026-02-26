@@ -350,7 +350,7 @@ Useful scoped Turbo invocation pattern:
 - One component per file, one hook per file maximum is required: reject or fix changes that define multiple component or hook implementations in a single source file across the monorepo.
 - Import style compliance is required: never use namespace imports like `React.ReactNode`, `React.FC`, or `React.forwardRef`. Always use direct named imports (e.g., `import { ReactNode, forwardRef } from "react"`). Apply the same rule to all external libraries—import types and symbols directly, not via namespace prefix.
 - Tailwind Variants compliance is required: for variantable components, use `tv` with typed `VariantProps`, prefer `slots`/`compoundVariants`/`extend`, avoid `responsiveVariants`, and avoid unapproved `tailwind-variants/lite` imports.
-- Classname placement compliance is required: keep class strings inline at JSX call sites or within `cn`/merge calls; do not store class strings in local constants unless the constant is exported and reused across multiple files.
+- Classname placement compliance is required: keep class strings inline at JSX call sites (including `cn(...)` composition) or inside `tv(...)` definitions; do not store class payloads in constants (local or exported).
 - Zod schema naming compliance is required: locally declared Zod schema constants must use PascalCase (for example `UserSchema` and `DocsSectionSchema`).
 - Zod schema naming must be enforced through code review and code edits only; do not add CLI/script/lint/CI automation for this rule.
 

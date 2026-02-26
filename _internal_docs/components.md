@@ -52,7 +52,7 @@ Common patterns in this repo:
 - Preserve the consumer override contract: every variant function should allow `class`/`className` call-site overrides.
 - Keep responsive behavior directly in class strings (`sm:`, `md:`, `lg:`). Do not use `responsiveVariants` with Tailwind CSS v4.
 - Use `cn` as the default class combiner for conflict-aware merges. Use `cx` only when merge resolution is intentionally unnecessary. Use `cnMerge` only when you need custom merge config behavior.
-- Keep class payloads inline at usage sites (or in shared exported constants) to match repository classname placement policy.
+- Keep class payloads inline at usage sites (including `cn(...)` composition) or inside `tv(...)` definitions; do not store class payloads in constants.
 - Use `VariantProps<typeof componentVariants>` for typed component APIs. If a variant must be required, enforce it with utility types (`Omit` + `Required<Pick<...>>`).
 - Normalize size tokens to `md` as the baseline variant value. Do not publish or consume `size=\"default\"`.
 - Normalize destructive/severity tokens to `danger` across related component families.

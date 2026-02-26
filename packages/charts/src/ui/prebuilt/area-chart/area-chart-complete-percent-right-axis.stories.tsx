@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  completeChartShellClassName,
+  completeChartShellVariants,
   formatPercent,
 } from "../stories/complete-chart-story-shared";
 import { AreaChart } from "./area-chart";
@@ -13,7 +13,7 @@ import {
 const formatPercentValue = (value: number) => formatPercent(value);
 
 const AreaChartCompletePercentRightAxisDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <AreaChart
       chartRootProps={{ className: "h-80 w-full" }}
       data={areaPercentMixData}

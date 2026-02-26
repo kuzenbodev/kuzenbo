@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { BubbleChart } from "./bubble-chart";
 import { bubbleDefaultSeries } from "./bubble-chart-story-data";
 
 const BubbleChartCompleteDefaultDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <BubbleChart
       chartRootProps={{ className: "h-80 w-full" }}
       series={bubbleDefaultSeries}

@@ -1,13 +1,13 @@
 ---
 title: "Charts"
-description: "How to use @kuzenbo/charts primitives and prebuilt charts in production apps."
+description: "How to use ready-made @kuzenbo/charts components in production apps."
 section: "foundations"
 package: "charts"
 status: "stable"
 order: 4
 surface: "utility"
 seoTitle: "Charts | Kuzenbo Docs"
-seoDescription: "Production guidance for @kuzenbo/charts primitives, prebuilt wrappers, and accessibility."
+seoDescription: "Production guidance for ready-made @kuzenbo/charts components and accessibility."
 ogImage: "/docs-og/foundations/charts"
 ogImageAlt: "Charts foundation guidance"
 aliases:
@@ -16,12 +16,7 @@ aliases:
 
 ## Overview
 
-`@kuzenbo/charts` provides two ways to build data visualizations:
-
-- Prebuilt components for faster implementation (`LineChart`, `BarChart`, `CompositeChart`, `DonutChart`).
-- Primitive composition (`Chart.Root`, `Chart.Tooltip`, `Chart.Legend`) for custom behavior.
-
-Use prebuilt components when speed matters, then move to primitives when you need custom layout or interaction.
+`@kuzenbo/charts` provides ready-made chart components for fast implementation in product dashboards and reporting flows.
 
 ## Install
 
@@ -33,45 +28,24 @@ In almost all apps, install `@kuzenbo/theme` together with `@kuzenbo/charts`.
 
 ## Public API Shape
 
-- `@kuzenbo/charts`: full surface (prebuilt + primitives).
-- `@kuzenbo/charts/primitives`: primitives only.
-- `@kuzenbo/charts/prebuilt`: prebuilt wrappers only.
-- `Chart.Preset.*`: namespaced access to prebuilt chart patterns.
+- `@kuzenbo/charts/ui/area-chart`
+- `@kuzenbo/charts/ui/bar-chart`
+- `@kuzenbo/charts/ui/bubble-chart`
+- `@kuzenbo/charts/ui/composite-chart`
+- `@kuzenbo/charts/ui/donut-chart`
+- `@kuzenbo/charts/ui/funnel-chart`
+- `@kuzenbo/charts/ui/heatmap`
+- `@kuzenbo/charts/ui/line-chart`
+- `@kuzenbo/charts/ui/pie-chart`
+- `@kuzenbo/charts/ui/radar-chart`
+- `@kuzenbo/charts/ui/radial-bar-chart`
+- `@kuzenbo/charts/ui/scatter-chart`
+- `@kuzenbo/charts/ui/sparkline`
 
-## Primitive Example
-
-```tsx
-import { Chart } from "@kuzenbo/charts/ui/chart";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-
-const config = {
-  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
-} as const;
-
-const data = [
-  { month: "Jan", revenue: 172_000 },
-  { month: "Feb", revenue: 186_000 },
-  { month: "Mar", revenue: 201_000 },
-];
-
-export const RevenueChart = () => (
-  <Chart.Root className="h-72 w-full" config={config}>
-    <BarChart accessibilityLayer data={data} responsive>
-      <CartesianGrid vertical={false} />
-      <XAxis dataKey="month" />
-      <YAxis />
-      <Chart.Tooltip content={<Chart.TooltipContent />} />
-      <Chart.Legend content={<Chart.LegendContent />} />
-      <Bar dataKey="revenue" fill="var(--color-revenue)" radius={8} />
-    </BarChart>
-  </Chart.Root>
-);
-```
-
-## Prebuilt Example
+## Example
 
 ```tsx
-import { LineChart } from "@kuzenbo/charts/ui/chart";
+import { LineChart } from "@kuzenbo/charts/ui/line-chart";
 
 const data = [
   { month: "Jan", revenue: 172_000, target: 180_000 },
@@ -105,8 +79,7 @@ export const RevenueVsTarget = () => (
 ## Troubleshooting
 
 - Missing colors usually means `@kuzenbo/theme` is not installed or theme CSS was not loaded.
-- `useChart` and related hooks must run inside `Chart.Root` or `Chart.Provider`.
-- If tooltip or legend overlays clip, mount them through a portal target.
+- If a chart import fails, check that the subpath matches one of the public chart entrypoints.
 
 ## Related Docs
 

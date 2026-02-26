@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { completeChartShellClassName } from "../stories/complete-chart-story-shared";
+import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
 import { ScatterChart } from "./scatter-chart";
 import { scatterAxisFocusSeries } from "./scatter-chart-story-data";
 
@@ -8,7 +8,7 @@ const formatConversion = (value: number) => `${value.toFixed(1)}%`;
 const formatDays = (value: number) => `${Math.round(value)}d`;
 
 const ScatterChartCompleteAxisFormattersDemo = () => (
-  <div className={completeChartShellClassName}>
+  <div className={completeChartShellVariants()}>
     <ScatterChart
       chartRootProps={{ className: "h-80 w-full" }}
       series={scatterAxisFocusSeries}
