@@ -92,7 +92,6 @@ export interface ScatterChartProps<
         series: ScatterChartSeries<TData>
       ) => Partial<Omit<ScatterProps, "data" | "name" | "ref">>);
   scatterChartProps?: RechartsScatterChartProps;
-  /** @deprecated Use `scatterChartProps`. */
   chartProps?: RechartsScatterChartProps;
 }
 

@@ -61,7 +61,7 @@ describe("Complete LineChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <LineChart
-        chartProps={{ className: "line-chart-legacy-props" }}
+        chartProps={{ className: "line-chart-alias-props" }}
         data={completeLineTrendData}
         dataKey="month"
         responsiveContainerProps={chartSize}
@@ -69,7 +69,7 @@ describe("Complete LineChart", () => {
       />
     );
 
-    expect(container.querySelector(".line-chart-legacy-props")).not.toBeNull();
+    expect(container.querySelector(".line-chart-alias-props")).not.toBeNull();
   });
 
   it("renders line series and chart root slot", () => {

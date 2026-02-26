@@ -97,7 +97,7 @@ This document explains how the monorepo is structured and why package boundaries
 - Primitive UI layer: `TiptapEditor` compound API (`Root`, `Toolbar`, `ControlsGroup`, `Control`, `Content`, optional menus).
 - Shared UI composition: `@kuzenbo/tiptap` intentionally depends on `@kuzenbo/core` for reusable primitives used by editor controls/menus.
 - Feature helper layer: `createMentionExtension`, `createSlashExtension`, `createTaskListExtension`, `createLinkExtension`.
-- Legacy wrapper removed: `RichTextEditor` is no longer exported; consumers should compose `useKuzenboEditor` + `TiptapEditor`.
+- Previous wrapper removed: `RichTextEditor` is no longer exported; consumers should compose `useKuzenboEditor` + `TiptapEditor`.
 - Styling contract: package-owned editor CSS is exported as `@kuzenbo/tiptap/styles.css` and must stay semantic-token based.
 
 ## Build Model

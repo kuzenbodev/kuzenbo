@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-
 import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core/ui/alert";
 import { Badge } from "@kuzenbo/core/ui/badge";
 import { Button } from "@kuzenbo/core/ui/button";
@@ -68,14 +66,14 @@ export const ShowcaseComponentsClient = () => (
       <section className="flex flex-wrap gap-2">
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components"} />}
+          render={<Link href="/docs/components" />}
           variant="outline"
         >
           Browse component docs
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/showcase/playground"} />}
+          render={<Link href="/showcase/playground" />}
           variant="ghost"
         >
           Open playground

@@ -2,9 +2,9 @@ import { DocsMdxPage, createDocsPageMetadata } from "@/lib/docs/page-runtime";
 
 import Content from "./content.mdx";
 
-const title = "Dropdown Menu (Legacy Route)";
+const title = "Dropdown Menu (Previous Route)";
 const description =
-  "Legacy docs route kept for compatibility. Use the canonical Dropdown Menu page.";
+  "Previous docs route kept for compatibility. Use the canonical Dropdown Menu page.";
 const href = "/docs/components/dropdown-menu";
 
 export const metadata = createDocsPageMetadata({

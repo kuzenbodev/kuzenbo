@@ -24,12 +24,10 @@ export type CompleteChartDatum = Record<
 type CompleteChartSeriesIdentifier =
   | {
       name: string;
-      /** @deprecated Use `name` as canonical series identifier. */
       key?: string;
     }
   | {
       name?: string;
-      /** @deprecated Use `name` as canonical series identifier. */
       key: string;
     };
 
@@ -127,7 +125,6 @@ export type LineChartProps<
     ComponentProps<typeof RechartsLineChart>,
     "children" | "data" | "ref"
   >;
-  /** @deprecated Use `lineChartProps`. */
   chartProps?: Omit<
     ComponentProps<typeof RechartsLineChart>,
     "children" | "data" | "ref"
@@ -154,13 +151,11 @@ export type BarChartProps<
   radius?: BarProps["radius"];
   minBarSize?: number;
   maxBarWidth?: number;
-  /** @deprecated Use `maxBarWidth`. */
   maxBarSize?: number;
   barChartProps?: Omit<
     ComponentProps<typeof RechartsBarChart>,
     "children" | "data" | "ref"
   >;
-  /** @deprecated Use `barChartProps`. */
   chartProps?: Omit<
     ComponentProps<typeof RechartsBarChart>,
     "children" | "data" | "ref"
@@ -183,7 +178,6 @@ export type CompositeChartProps<
   enableLegendHighlight?: boolean;
   minBarSize?: number;
   maxBarWidth?: number;
-  /** @deprecated Use `maxBarWidth`. */
   maxBarSize?: number;
   lineProps?:
     | Partial<Omit<LineProps, "ref" | "dataKey">>
@@ -204,7 +198,6 @@ export type CompositeChartProps<
     ComponentProps<typeof RechartsComposedChart>,
     "children" | "data" | "ref"
   >;
-  /** @deprecated Use `composedChartProps`. */
   chartProps?: Omit<
     ComponentProps<typeof RechartsComposedChart>,
     "children" | "data" | "ref"

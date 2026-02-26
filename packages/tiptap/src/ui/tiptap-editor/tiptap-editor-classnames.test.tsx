@@ -82,12 +82,12 @@ describe("TiptapEditor className contract", () => {
   });
 
   it("does not support the removed controlsGroup classNames key", () => {
-    const legacyClassNames = {
-      controlsGroup: "legacy-group",
+    const compatibilityClassNames = {
+      controlsGroup: "group-compat",
     } as unknown as TiptapEditorClassNames;
 
     render(
-      <TiptapEditor.Root classNames={legacyClassNames} editor={null}>
+      <TiptapEditor.Root classNames={compatibilityClassNames} editor={null}>
         <TiptapEditor.Toolbar>
           <TiptapEditor.ControlsGroup data-testid="group" />
         </TiptapEditor.Toolbar>
@@ -95,7 +95,7 @@ describe("TiptapEditor className contract", () => {
     );
 
     const group = screen.getByTestId("group");
-    expect(group.className.includes("legacy-group")).toBe(false);
+    expect(group.className.includes("group-compat")).toBe(false);
     expect(group.className.includes("kb-tiptap-controls-group")).toBe(true);
   });
 

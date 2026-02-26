@@ -4,7 +4,7 @@ import Content from "./content.mdx";
 
 const title = "useClipboard";
 const description =
-  "Copy text with status lifecycle, accessibility announcements, and optional legacy execCommand fallback.";
+  "Copy text with status lifecycle and accessibility announcements.";
 const href = "/docs/hooks/use-clipboard";
 
 export const metadata = createDocsPageMetadata({

@@ -78,8 +78,8 @@ const exportMatrixTabs = [
     ),
   },
   {
-    value: "legacy",
-    label: "legacy",
+    value: "v1",
+    label: "v1",
     disabled: true,
     content: (
       <CodeBlock

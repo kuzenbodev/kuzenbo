@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import { Drawer } from "@kuzenbo/core/ui/drawer";
 import Link from "next/link";

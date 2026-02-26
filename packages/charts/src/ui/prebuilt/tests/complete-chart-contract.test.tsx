@@ -82,11 +82,11 @@ describe("Complete charts contract", () => {
 
   it("keeps key-only series as migration alias", () => {
     const config = createCompleteChartConfig([
-      { key: "legacyRevenue", label: "Legacy Revenue" },
+      { key: "revenueSeries", label: "Revenue Series" },
     ]);
 
-    expect(config.legacyRevenue?.label).toBe("Legacy Revenue");
-    expect(config.legacyRevenue?.color).toBe("var(--color-chart-1)");
+    expect(config.revenueSeries?.label).toBe("Revenue Series");
+    expect(config.revenueSeries?.color).toBe("var(--color-chart-1)");
   });
 
   it("cycles fallback colors deterministically after five series", () => {

@@ -11,17 +11,7 @@ const getStyleDeclarationsForTheme = (
       return [];
     }
 
-    const declarations = [
-      `  ${descriptor.varName}: ${descriptor.colorByTheme[theme]};`,
-    ];
-
-    if (descriptor.legacyVarName) {
-      declarations.push(
-        `  ${descriptor.legacyVarName}: ${descriptor.colorByTheme[theme]};`
-      );
-    }
-
-    return declarations;
+    return [`  ${descriptor.varName}: ${descriptor.colorByTheme[theme]};`];
   });
 
 export { getStyleDeclarationsForTheme };

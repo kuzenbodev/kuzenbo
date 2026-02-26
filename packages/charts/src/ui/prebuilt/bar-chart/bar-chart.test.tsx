@@ -86,7 +86,7 @@ describe("Complete BarChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <BarChart
-        chartProps={{ className: "bar-chart-legacy-props" }}
+        chartProps={{ className: "bar-chart-alias-props" }}
         data={completeBarGroupedData}
         dataKey="month"
         responsiveContainerProps={chartSize}
@@ -94,7 +94,7 @@ describe("Complete BarChart", () => {
       />
     );
 
-    expect(container.querySelector(".bar-chart-legacy-props")).not.toBeNull();
+    expect(container.querySelector(".bar-chart-alias-props")).not.toBeNull();
   });
 
   it("renders grouped bars with legend enabled", () => {

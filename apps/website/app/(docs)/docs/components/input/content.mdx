@@ -188,7 +188,7 @@ export function CompositeInputExamples() {
 
 - `xs | sm | md | lg | xl`
 - default is `md`
-- migration rule: legacy `size='default'` becomes `size="md"`
+- migration rule: previous `size='default'` becomes `size="md"`
 
 Family-specific metrics for this surface:
 
@@ -233,8 +233,8 @@ Migration example:
 
 ```tsx
 // Before
-const legacySize = "default";
-<Input size={legacySize} />
+const previousSize = "default";
+<Input size={previousSize} />
 
 // After
 <Input size="md" />

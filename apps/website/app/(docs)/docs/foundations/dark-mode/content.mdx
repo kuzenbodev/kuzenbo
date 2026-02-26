@@ -8,7 +8,7 @@ description: "Implement dark mode in Next.js with @kuzenbo/theme bootstrap, prov
 Kuzenbo dark mode is not only a styling switch. It is a runtime contract that keeps three sources of truth aligned before paint:
 
 1. Cookie (`kuzenbo-theme`) for SSR and server-visible preference.
-2. Local storage (`kuzenbo-theme`, with legacy fallback `theme`) for client persistence.
+2. Local storage (`kuzenbo-theme`, with previous fallback `theme`) for client persistence.
 3. System preference (`prefers-color-scheme`) for default behavior.
 
 The runtime applies both the `dark` class and `color-scheme` to `document.documentElement`.

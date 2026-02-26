@@ -32,7 +32,7 @@ describe("Complete FunnelChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <FunnelChart
-        chartProps={{ className: "funnel-chart-legacy-props" }}
+        chartProps={{ className: "funnel-chart-alias-props" }}
         data={completeFunnelStageData}
         dataKey="value"
         responsiveContainerProps={chartSize}
@@ -40,9 +40,7 @@ describe("Complete FunnelChart", () => {
       />
     );
 
-    expect(
-      container.querySelector(".funnel-chart-legacy-props")
-    ).not.toBeNull();
+    expect(container.querySelector(".funnel-chart-alias-props")).not.toBeNull();
   });
 
   it("supports value label formatter in runtime", () => {

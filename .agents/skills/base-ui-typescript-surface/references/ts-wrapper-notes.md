@@ -7,5 +7,5 @@
 
 ## Anti-patterns
 
-- Don’t widen event payload types (remove reasons/cancel helpers) unless explicitly adapting to a legacy boundary.
+- Don’t widen event payload types (remove reasons/cancel helpers) unless explicitly adapting to a previous boundary.
 - Don’t override focus lifecycle semantics to avoid breaking keyboard accessibility.

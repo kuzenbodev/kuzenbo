@@ -5,19 +5,15 @@ import type {
   ChartThemeName,
 } from "./constants";
 
-import {
-  getFallbackColor,
-  isSafeColorExpression,
-  isValidCssCustomPropertyName,
-} from "./constants";
-import { normalizeLegacyChartColor } from "./normalize-legacy-chart-color";
+import { getFallbackColor, isSafeColorExpression } from "./constants";
+import { normalizeChartColor } from "./normalize-chart-color";
 import { ensureUniqueSlug, slugifySeriesKey } from "./series-slug";
 
 const normalizeColorWithFallback = (
   value: string | undefined,
   fallback: string
 ) => {
-  const normalized = normalizeLegacyChartColor(value);
+  const normalized = normalizeChartColor(value);
 
   if (!normalized || !isSafeColorExpression(normalized)) {
     return fallback;
@@ -38,12 +34,6 @@ const createSeriesColorRegistry = (
     const baseSlug = slugifySeriesKey(key);
     const slug = ensureUniqueSlug(baseSlug, usedSlugs);
     const varName = `--color-${slug}`;
-    const legacyVarCandidate = `--color-${key}`;
-    const legacyVarName =
-      isValidCssCustomPropertyName(legacyVarCandidate) &&
-      legacyVarCandidate !== varName
-        ? legacyVarCandidate
-        : undefined;
 
     const fallback = getFallbackColor(index);
     const colorByTheme: Record<ChartThemeName, string> = itemConfig.theme
@@ -60,16 +50,11 @@ const createSeriesColorRegistry = (
       key,
       slug,
       varName,
-      legacyVarName,
       colorByTheme,
     };
 
     byKey[key] = descriptor;
     byVarName[varName] = key;
-
-    if (legacyVarName) {
-      byVarName[legacyVarName] = key;
-    }
 
     order.push(key);
   }

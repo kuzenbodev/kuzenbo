@@ -17,7 +17,7 @@ description: "Reference for @kuzenbo/theme runtime APIs, bootstrap behavior, and
 At startup, the runtime checks:
 
 1. cookie theme (`kuzenbo-theme`)
-2. local storage (`kuzenbo-theme`), then legacy storage key (`theme`)
+2. local storage (`kuzenbo-theme`)
 3. system preference fallback (`prefers-color-scheme`)
 
 `resolveThemeBootstrapPlan` returns:
@@ -77,8 +77,7 @@ export function applyThemePreference(theme: ThemePreference) {
 
 ## Migration and compatibility
 
-- Legacy storage key support is built in (`LEGACY_THEME_STORAGE_KEY = "theme"`).
-- If older apps stored theme under `theme`, bootstrap can still recover and resync to `kuzenbo-theme`.
+- Theme persistence reads only `kuzenbo-theme`.
 - Keep cookie key and storage key unchanged unless you are planning a coordinated migration.
 
 ## Accessibility and UX

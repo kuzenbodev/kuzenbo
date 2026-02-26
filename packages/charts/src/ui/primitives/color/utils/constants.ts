@@ -4,7 +4,6 @@ interface ChartSeriesColorDescriptor {
   key: string;
   slug: string;
   varName: string;
-  legacyVarName?: string;
   colorByTheme: Record<ChartThemeName, string>;
 }
 
@@ -23,8 +22,6 @@ const CHART_COLOR_FALLBACKS = [
 ] as const;
 
 const DEFAULT_CHART_COLOR_FALLBACK = "var(--color-chart-1)";
-const LEGACY_HSL_CHART_TOKEN_PATTERN =
-  /^hsl\(\s*var\(\s*(--(?:kb-chart|color-chart)-[a-zA-Z0-9_-]+)\s*\)\s*\)$/;
 const CSS_VAR_REFERENCE_PATTERN = /^var\(\s*(--[a-zA-Z0-9_-]+)\s*\)$/;
 const CSS_CUSTOM_PROPERTY_NAME_PATTERN = /^--[a-zA-Z_][a-zA-Z0-9_-]*$/;
 const UNSAFE_COLOR_EXPRESSION_PATTERN = /[;{}<>]|\r|\n/;
@@ -44,7 +41,6 @@ export {
   CSS_CUSTOM_PROPERTY_NAME_PATTERN,
   CSS_VAR_REFERENCE_PATTERN,
   DEFAULT_CHART_COLOR_FALLBACK,
-  LEGACY_HSL_CHART_TOKEN_PATTERN,
   UNSAFE_COLOR_EXPRESSION_PATTERN,
   getFallbackColor,
   isSafeColorExpression,

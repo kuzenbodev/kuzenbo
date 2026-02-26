@@ -97,7 +97,6 @@ export interface BubbleChartProps<
         series: BubbleChartSeries<TData>
       ) => Partial<Omit<ScatterProps, "data" | "name" | "ref">>);
   bubbleChartProps?: RechartsBubbleChartProps;
-  /** @deprecated Use `bubbleChartProps`. */
   chartProps?: RechartsBubbleChartProps;
 }
 

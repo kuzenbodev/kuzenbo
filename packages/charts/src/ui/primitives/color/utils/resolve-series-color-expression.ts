@@ -2,7 +2,7 @@ import type { ChartSeriesColorRegistry } from "./constants";
 
 import { CSS_VAR_REFERENCE_PATTERN } from "./constants";
 import { getChartThemeFromDom } from "./get-chart-theme-from-dom";
-import { normalizeLegacyChartColor } from "./normalize-legacy-chart-color";
+import { normalizeChartColor } from "./normalize-chart-color";
 
 interface ResolveSeriesColorExpressionOptions {
   value: string | undefined;
@@ -33,7 +33,7 @@ const resolveSeriesColorExpression = ({
   registry,
   chartId,
 }: ResolveSeriesColorExpressionOptions) => {
-  const normalized = normalizeLegacyChartColor(value);
+  const normalized = normalizeChartColor(value);
 
   if (!normalized) {
     if (!fallbackSeriesKey) {

@@ -11,12 +11,12 @@ In almost all apps, keep `@kuzenbo/theme` paired with Kuzenbo UI packages throug
 
 ## Package Mapping
 
-| Legacy usage                       | Recommended package                                                                  |
+| Previous usage                     | Recommended package                                                                  |
 | ---------------------------------- | ------------------------------------------------------------------------------------ |
 | chart APIs from `@kuzenbo/core`    | `@kuzenbo/charts`                                                                    |
 | toast APIs from `@kuzenbo/core`    | `@kuzenbo/notifications`                                                             |
 | calendar APIs from `@kuzenbo/core` | `@kuzenbo/date`                                                                      |
-| legacy core CSS entrypoint         | `@kuzenbo/theme/prebuilt/kuzenbo.css` (+ optional `@kuzenbo/styles/recommended.css`) |
+| previous core CSS entrypoint       | `@kuzenbo/theme/prebuilt/kuzenbo.css` (+ optional `@kuzenbo/styles/recommended.css`) |
 
 ## Install Updated Packages
 
@@ -29,7 +29,7 @@ If you split work into multiple migration PRs, include `@kuzenbo/theme` in each 
 ## Import Migration Example
 
 ```tsx
-// legacy (before, root import)
+// previous (before, root import)
 import { Calendar, LineChart, Toast } from "@kuzenbo/core";
 
 // after (folder-mirrored subpaths)
@@ -53,7 +53,7 @@ Render `ThemeBootstrapScript` before app content to avoid theme flicker on first
 
 ## Migration Checklist
 
-- Replace deep or legacy imports with package entrypoints.
+- Replace deep or previous imports with package entrypoints.
 - Update chart/date/notification usage to domain packages.
 - Keep stories and tests aligned with API changes.
 - Ship migrations in small pull requests for easier rollback.

@@ -61,7 +61,7 @@ describe("Complete ScatterChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <ScatterChart
-        chartProps={{ className: "scatter-chart-legacy-props" }}
+        chartProps={{ className: "scatter-chart-alias-props" }}
         responsiveContainerProps={chartSize}
         series={completeScatterSeries}
         xKey="effort"
@@ -70,7 +70,7 @@ describe("Complete ScatterChart", () => {
     );
 
     expect(
-      container.querySelector(".scatter-chart-legacy-props")
+      container.querySelector(".scatter-chart-alias-props")
     ).not.toBeNull();
   });
 

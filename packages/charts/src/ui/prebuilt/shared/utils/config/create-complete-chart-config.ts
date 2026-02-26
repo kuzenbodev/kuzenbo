@@ -1,7 +1,7 @@
 import type { ChartConfig } from "../../../../primitives/chart";
 import type { CompleteChartSeries } from "../../complete-types";
 
-import { normalizeLegacyChartColor } from "../../../../primitives/color/chart-color-resolver";
+import { normalizeChartColor } from "../../../../primitives/color/chart-color-resolver";
 import { getFallbackSeriesColor } from "../series/get-fallback-series-color";
 import { resolveCompleteSeriesName } from "../series/resolve-complete-series-name";
 
@@ -23,16 +23,16 @@ const createCompleteChartConfig = (
         ? {
             theme: {
               light:
-                normalizeLegacyChartColor(seriesItem.theme.light) ??
+                normalizeChartColor(seriesItem.theme.light) ??
                 seriesItem.theme.light,
               dark:
-                normalizeLegacyChartColor(seriesItem.theme.dark) ??
+                normalizeChartColor(seriesItem.theme.dark) ??
                 seriesItem.theme.dark,
             },
           }
         : {
             color:
-              normalizeLegacyChartColor(seriesItem.color) ??
+              normalizeChartColor(seriesItem.color) ??
               getFallbackSeriesColor(index),
           }),
     };

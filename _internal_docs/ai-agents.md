@@ -44,8 +44,8 @@ Active package scope is currently:
 - Preserve the universal size precedence rule: `explicit child size ?? nearest size context ?? root size ?? "md"`.
 - Use shared size metric families from `packages/core/src/ui/shared/size/size-system.ts` (field/row/compact/surface/text/icon maps) instead of ad-hoc class scales.
 - Keep compact-control exception: checkbox/radio/switch remain compact controls and must not be forced to input-height parity.
-- Migrate legacy `size="default"` usage to `size="md"` in code, tests, stories, and docs.
-- Run `bun run size:verify` before handoff on sizing migrations to catch `xxl` reintroduction, legacy `size="default"`, and missing `data-size` on size-aware slot owners.
+- Migrate previous `size="default"` usage to `size="md"` in code, tests, stories, and docs.
+- Run `bun run size:verify` before handoff on sizing migrations to catch `xxl` reintroduction, previous `size="default"`, and missing `data-size` on size-aware slot owners.
 - If a select-like component (`Select`, `Autocomplete`, `Combobox`, `Command`) exposes `size`, all popup/list/item child surfaces must participate in the same size contract.
 - For select-like surfaces, preserve precedence: `explicit child size ?? nearest content/container size ?? root size ?? "md"`.
 - Reject fixed popup density hacks (for example hardcoded list offsets or row heights) when a tokenized size contract exists.

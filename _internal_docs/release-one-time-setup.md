@@ -21,7 +21,7 @@ This guide configures trusted publishing for the active Kuzenbo release model.
 
 1. Enable trusted publishing for the package scope/repo.
 2. Confirm package visibility and ownership are correct for all allowlisted packages.
-3. Do not rely on legacy auth token fallback paths for publish.
+3. Do not rely on previous auth token fallback paths for publish.
 
 ## Repository Setup
 

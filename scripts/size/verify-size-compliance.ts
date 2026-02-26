@@ -20,7 +20,7 @@ const SIZE_PROP_PATTERN = /\bsize\?:\s*(UISize|InputSize|TiptapEditorSize)\b/;
 const DATA_SLOT_PATTERN = /data-slot\s*=/;
 const DATA_SIZE_PATTERN = /data-size\s*=/;
 const XXL_PATTERN = /\bxxl\b|size="xxl"|icon-xxl/;
-const LEGACY_DEFAULT_PATTERN = /size="default"/;
+const DEFAULT_SIZE_PATTERN = /size="default"/;
 
 const listFiles = (dir: string): string[] => {
   const entries = readdirSync(dir);
@@ -48,7 +48,7 @@ const scopedFiles = SCOPED_DIRS.flatMap((scopedDir) =>
 );
 
 const xxlViolations: string[] = [];
-const legacyDefaultViolations: string[] = [];
+const defaultSizeViolations: string[] = [];
 const missingDataSizeViolations: string[] = [];
 
 for (const absolutePath of scopedFiles) {
@@ -59,8 +59,8 @@ for (const absolutePath of scopedFiles) {
     xxlViolations.push(relativePath);
   }
 
-  if (LEGACY_DEFAULT_PATTERN.test(source)) {
-    legacyDefaultViolations.push(relativePath);
+  if (DEFAULT_SIZE_PATTERN.test(source)) {
+    defaultSizeViolations.push(relativePath);
   }
 
   if (
@@ -87,14 +87,14 @@ const formatViolations = (label: string, violations: string[]) => {
 
 if (
   xxlViolations.length > 0 ||
-  legacyDefaultViolations.length > 0 ||
+  defaultSizeViolations.length > 0 ||
   missingDataSizeViolations.length > 0
 ) {
   console.error("Size compliance verification failed.");
   formatViolations("Found forbidden xxl usage", xxlViolations);
   formatViolations(
     'Found forbidden size="default" usage',
-    legacyDefaultViolations
+    defaultSizeViolations
   );
   formatViolations(
     "Size-aware slot owners missing data-size",

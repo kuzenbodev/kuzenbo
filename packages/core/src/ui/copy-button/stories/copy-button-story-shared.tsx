@@ -12,7 +12,6 @@ export const baseMeta = {
     value: "pnpm add @kuzenbo/core @kuzenbo/theme",
     children: "Copy install command",
     timeout: 1200,
-    useLegacyFallback: true,
   },
   argTypes: {
     defaultStatus: {
@@ -24,7 +23,6 @@ export const baseMeta = {
       options: ["idle", "copying", "copied", "failed"],
     },
     timeout: { control: "number" },
-    useLegacyFallback: { control: "boolean" },
   },
 } satisfies Meta<typeof CopyButton>;
 
@@ -34,7 +32,6 @@ interface ControlledStatusStoryProps {
   children: string;
   status: CopyButtonStatus;
   timeout: number;
-  useLegacyFallback: boolean;
   value: string;
 }
 
@@ -42,7 +39,6 @@ const ControlledStatusStory = ({
   children,
   status,
   timeout,
-  useLegacyFallback,
   value,
 }: ControlledStatusStoryProps) => {
   const [currentStatus, setCurrentStatus] = useState<CopyButtonStatus>(status);
@@ -57,7 +53,6 @@ const ControlledStatusStory = ({
         onStatusChange={setCurrentStatus}
         status={currentStatus}
         timeout={timeout}
-        useLegacyFallback={useLegacyFallback}
         value={value}
       >
         {children}
@@ -75,11 +70,10 @@ export const ControlledStatus: Story = {
   args: {
     status: "idle",
   },
-  render: ({ children, status, timeout, useLegacyFallback, value }) => (
+  render: ({ children, status, timeout, value }) => (
     <ControlledStatusStory
       status={status ?? "idle"}
       timeout={timeout ?? 1200}
-      useLegacyFallback={useLegacyFallback ?? true}
       value={value}
     >
       {typeof children === "string" ? children : "Copy install command"}

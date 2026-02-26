@@ -5,26 +5,26 @@ import { Chart } from "../chart";
 import {
   createSeriesColorRegistry,
   getStyleDeclarationsForTheme,
-  normalizeLegacyChartColor,
+  normalizeChartColor,
   resolveSeriesColorExpression,
 } from "./chart-color-resolver";
 
 afterEach(cleanup);
 
 describe("Chart color regression", () => {
-  it("normalizes legacy hsl(var(--kb-chart-*))) expressions", () => {
-    expect(normalizeLegacyChartColor("hsl(var(--kb-chart-1))")).toBe(
-      "var(--kb-chart-1)"
+  it("normalizes chart color values by trimming only", () => {
+    expect(normalizeChartColor("hsl(var(--kb-chart-1))")).toBe(
+      "hsl(var(--kb-chart-1))"
     );
-    expect(normalizeLegacyChartColor("hsl(var(--color-chart-2))")).toBe(
-      "var(--color-chart-2)"
+    expect(normalizeChartColor("hsl(var(--color-chart-2))")).toBe(
+      "hsl(var(--color-chart-2))"
     );
-    expect(normalizeLegacyChartColor("oklch(0.56 0.12 150)")).toBe(
+    expect(normalizeChartColor("oklch(0.56 0.12 150)")).toBe(
       "oklch(0.56 0.12 150)"
     );
   });
 
-  it("creates safe color variables and keeps legacy aliases for safe keys", () => {
+  it("creates safe color variables with deterministic keys", () => {
     const registry = createSeriesColorRegistry({
       "Revenue Total": { color: "hsl(var(--kb-chart-1))" },
       revenue_total: { color: "var(--color-chart-2)" },
@@ -33,16 +33,15 @@ describe("Chart color regression", () => {
     expect(registry.byKey["Revenue Total"]?.varName).toBe(
       "--color-revenue-total"
     );
-    expect(registry.byKey["Revenue Total"]?.legacyVarName).toBeUndefined();
-    expect(registry.byKey.revenue_total?.legacyVarName).toBe(
-      "--color-revenue_total"
+    expect(registry.byKey.revenue_total?.varName).toBe(
+      "--color-revenue-total-2"
     );
     expect(registry.byKey["Revenue Total"]?.colorByTheme.light).toBe(
-      "var(--kb-chart-1)"
+      "hsl(var(--kb-chart-1))"
     );
   });
 
-  it("prioritizes theme light/dark colors and normalizes legacy theme values", () => {
+  it("prioritizes theme light/dark colors", () => {
     const registry = createSeriesColorRegistry({
       revenue: {
         theme: {
@@ -53,14 +52,14 @@ describe("Chart color regression", () => {
     });
 
     expect(registry.byKey.revenue?.colorByTheme.light).toBe(
-      "var(--kb-chart-3)"
+      "hsl(var(--kb-chart-3))"
     );
     expect(registry.byKey.revenue?.colorByTheme.dark).toBe(
       "var(--color-chart-4)"
     );
 
     expect(getStyleDeclarationsForTheme(registry, "light")).toEqual([
-      "  --color-revenue: var(--kb-chart-3);",
+      "  --color-revenue: hsl(var(--kb-chart-3));",
     ]);
     expect(getStyleDeclarationsForTheme(registry, "dark")).toEqual([
       "  --color-revenue: var(--color-chart-4);",
@@ -206,7 +205,7 @@ describe("Chart color regression", () => {
     }
   });
 
-  it("injects normalized css variable declarations through Chart.Root", () => {
+  it("injects css variable declarations through Chart.Root", () => {
     const { container } = render(
       <Chart.Root
         config={{
@@ -221,10 +220,10 @@ describe("Chart color regression", () => {
 
     expect(styleTag).not.toBeNull();
     expect(
-      styleTag?.textContent?.includes("--color-visits: var(--kb-chart-1);")
+      styleTag?.textContent?.includes("--color-visits: hsl(var(--kb-chart-1));")
     ).toBe(true);
     expect(styleTag?.textContent?.includes("hsl(var(--kb-chart-1))")).toBe(
-      false
+      true
     );
   });
 });

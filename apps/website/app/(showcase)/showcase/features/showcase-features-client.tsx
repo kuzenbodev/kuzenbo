@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-
 import { AiWidget } from "@kuzenbo/ai/ui/ai-widget";
 import { Button } from "@kuzenbo/core/ui/button";
 import {
@@ -77,21 +75,21 @@ export const ShowcaseFeaturesClient = () => (
       <section className="flex flex-wrap gap-2">
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components/ai-widget"} />}
+          render={<Link href="/docs/components/ai-widget" />}
           variant="outline"
         >
           AI widget docs
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components/calendar"} />}
+          render={<Link href="/docs/components/calendar" />}
           variant="outline"
         >
           Calendar docs
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components/mock-data-table"} />}
+          render={<Link href="/docs/components/mock-data-table" />}
           variant="outline"
         >
           Datatable docs

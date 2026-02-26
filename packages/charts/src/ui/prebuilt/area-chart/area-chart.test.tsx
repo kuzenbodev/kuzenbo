@@ -60,7 +60,7 @@ describe("Complete AreaChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <AreaChart
-        chartProps={{ className: "area-chart-legacy-props" }}
+        chartProps={{ className: "area-chart-alias-props" }}
         data={completeAreaTrendData}
         dataKey="month"
         responsiveContainerProps={chartSize}
@@ -68,7 +68,7 @@ describe("Complete AreaChart", () => {
       />
     );
 
-    expect(container.querySelector(".area-chart-legacy-props")).not.toBeNull();
+    expect(container.querySelector(".area-chart-alias-props")).not.toBeNull();
   });
 
   it("renders area series and chart root slot", () => {

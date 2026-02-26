@@ -340,9 +340,9 @@ export const docsRouteEntries: DocsRouteEntry[] = [
   },
   {
     href: "/docs/components/dropdown-menu",
-    title: "Dropdown Menu (Legacy Route)",
+    title: "Dropdown Menu (Previous Route)",
     description:
-      "Legacy docs route kept for compatibility. Use the canonical Dropdown Menu page.",
+      "Previous docs route kept for compatibility. Use the canonical Dropdown Menu page.",
     order: 999,
     section: "components",
   },
@@ -396,9 +396,9 @@ export const docsRouteEntries: DocsRouteEntry[] = [
   },
   {
     href: "/docs/components/form-field",
-    title: "Form Field (Legacy Alias)",
+    title: "Form Field (Previous Alias)",
     description:
-      "Legacy route for the former FormField API. Use Form, Field, and Fieldset as canonical primitives.",
+      "Previous route for the former FormField API. Use Form, Field, and Fieldset as canonical primitives.",
     order: 999,
     section: "components",
   },
@@ -1059,7 +1059,7 @@ export const docsRouteEntries: DocsRouteEntry[] = [
     href: "/docs/hooks/use-clipboard",
     title: "useClipboard",
     description:
-      "Copy text with status lifecycle, accessibility announcements, and optional legacy execCommand fallback.",
+      "Copy text with status lifecycle, accessibility announcements, and optional previous execCommand fallback.",
     order: 6,
     section: "hooks",
   },

@@ -67,7 +67,7 @@ All size-aware component families should share one contract from `packages/core/
 
 - Canonical scale: `xs | sm | md | lg | xl`.
 - Default token: `md`.
-- Legacy `size="default"` is deprecated; use `size="md"` in all source, stories, tests, and docs.
+- Previous `size="default"` is previous; use `size="md"` in all source, stories, tests, and docs.
 - Use shared helpers from `packages/core/src/ui/shared/size/resolve-size.ts` and `packages/core/src/ui/shared/size/size-context.ts` for inheritance-safe sizing.
 
 Required precedence rule:
@@ -290,7 +290,7 @@ Use explicit composition:
 
 `Drawer.Provider -> Drawer.IndentBackground -> Drawer.Indent -> Drawer.Root -> Drawer.Trigger -> Drawer.Portal -> Drawer.Backdrop -> Drawer.Viewport -> Drawer.Popup -> Drawer.Handle (optional) -> Drawer.Header (optional) -> Drawer.Content -> Drawer.Actions (optional)`
 
-`Drawer.Overlay` and `Drawer.Footer` were removed as legacy Vaul-oriented
+`Drawer.Overlay` and `Drawer.Footer` were removed as previous Vaul-oriented
 parts. Prefer `Drawer.Backdrop` and `Drawer.Actions` for layout. Use
 `Drawer.Header` for top-of-popup blocks (handle + title) when needed.
 
@@ -336,7 +336,7 @@ Primitive namespace:
 - `Chart.TooltipContent`
 - `Chart.Legend`
 - `Chart.LegendContent`
-- `Chart.Style` (legacy compatibility surface)
+- `Chart.Style` (previous compatibility surface)
 - `Chart.PortalTarget`
 - `Chart.usePortalTarget`
 - `Chart.useConfig`
@@ -428,7 +428,7 @@ fallback order:
 - `series.color`
 - `var(--color-chart-1..5)` cycle
 
-Legacy `hsl(var(--kb-chart-*)))` color inputs are normalized to
+Previous `hsl(var(--kb-chart-*)))` color inputs are normalized to
 `var(--kb-chart-*)` for backward compatibility.
 
 Use Recharts v3 interaction props (`defaultIndex`, `trigger`, `axisId`) through

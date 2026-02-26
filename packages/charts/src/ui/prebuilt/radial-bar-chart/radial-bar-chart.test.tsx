@@ -34,7 +34,7 @@ describe("Complete RadialBarChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <RadialBarChart
-        chartProps={{ className: "radial-bar-chart-legacy-props" }}
+        chartProps={{ className: "radial-bar-chart-alias-props" }}
         data={completeRadialBarData}
         dataKey="value"
         responsiveContainerProps={chartSize}
@@ -43,7 +43,7 @@ describe("Complete RadialBarChart", () => {
     );
 
     expect(
-      container.querySelector(".radial-bar-chart-legacy-props")
+      container.querySelector(".radial-bar-chart-alias-props")
     ).not.toBeNull();
   });
 

@@ -19,16 +19,11 @@ const createNamedError = (name: string): Error => {
 
 describe("useClipboard", () => {
   let originalClipboardDescriptor: PropertyDescriptor | undefined;
-  let originalExecCommandDescriptor: PropertyDescriptor | undefined;
 
   beforeEach(() => {
     originalClipboardDescriptor = Object.getOwnPropertyDescriptor(
       navigator,
       "clipboard"
-    );
-    originalExecCommandDescriptor = Object.getOwnPropertyDescriptor(
-      document,
-      "execCommand"
     );
   });
 
@@ -41,16 +36,6 @@ describe("useClipboard", () => {
       );
     } else {
       Reflect.deleteProperty(navigator, "clipboard");
-    }
-
-    if (originalExecCommandDescriptor) {
-      Object.defineProperty(
-        document,
-        "execCommand",
-        originalExecCommandDescriptor
-      );
-    } else {
-      Reflect.deleteProperty(document, "execCommand");
     }
   });
 
@@ -67,20 +52,6 @@ describe("useClipboard", () => {
     });
 
     return writeTextMock;
-  };
-
-  const setExecCommand = (
-    impl: (command: string) => boolean
-  ): ReturnType<typeof mock> => {
-    const execCommandMock = mock(impl);
-
-    Object.defineProperty(document, "execCommand", {
-      configurable: true,
-      writable: true,
-      value: execCommandMock,
-    });
-
-    return execCommandMock;
   };
 
   it("returns clipboard state, helpers, and announcement props", () => {
@@ -188,15 +159,13 @@ describe("useClipboard", () => {
     expect(result.current.errorCode).toBeNull();
   });
 
-  it("fails with clipboard-unavailable when clipboard api is missing and fallback is disabled", async () => {
+  it("fails with clipboard-unavailable when clipboard api is missing", async () => {
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
       value: undefined,
     });
 
-    const { result } = renderHook(() =>
-      useClipboard({ useLegacyFallback: false })
-    );
+    const { result } = renderHook(() => useClipboard());
     let copyResult: ClipboardResult | undefined;
 
     await act(async () => {
@@ -209,80 +178,6 @@ describe("useClipboard", () => {
       errorCode: "clipboard-unavailable",
     });
     expect(result.current.errorCode).toBe("clipboard-unavailable");
-  });
-
-  it("uses legacy fallback when enabled and clipboard api is missing", async () => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: undefined,
-    });
-    const execCommandMock = setExecCommand(() => true);
-
-    const { result } = renderHook(() =>
-      useClipboard({ useLegacyFallback: true })
-    );
-    let copyResult: ClipboardResult | undefined;
-
-    await act(async () => {
-      copyResult = await result.current.copy("legacy");
-    });
-
-    expect(execCommandMock).toHaveBeenCalledWith("copy");
-    expect(copyResult).toEqual({
-      ok: true,
-      status: "copied",
-      errorCode: null,
-    });
-    expect(result.current.status).toBe("copied");
-  });
-
-  it("uses legacy fallback after writeText fails when enabled", async () => {
-    const writeTextMock = setClipboardWriteText(async () => {
-      throw createNamedError("UnknownError");
-    });
-    const execCommandMock = setExecCommand(() => true);
-
-    const { result } = renderHook(() =>
-      useClipboard({ useLegacyFallback: true })
-    );
-    let copyResult: ClipboardResult | undefined;
-
-    await act(async () => {
-      copyResult = await result.current.copy("fallback");
-    });
-
-    expect(writeTextMock).toHaveBeenCalledWith("fallback");
-    expect(execCommandMock).toHaveBeenCalledWith("copy");
-    expect(copyResult).toEqual({
-      ok: true,
-      status: "copied",
-      errorCode: null,
-    });
-  });
-
-  it("returns fallback-failed when legacy fallback is enabled but execCommand fails", async () => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: undefined,
-    });
-    setExecCommand(() => false);
-
-    const { result } = renderHook(() =>
-      useClipboard({ useLegacyFallback: true })
-    );
-    let copyResult: ClipboardResult | undefined;
-
-    await act(async () => {
-      copyResult = await result.current.copy("legacy");
-    });
-
-    expect(copyResult).toEqual({
-      ok: false,
-      status: "failed",
-      errorCode: "fallback-failed",
-    });
-    expect(result.current.status).toBe("failed");
-    expect(result.current.errorCode).toBe("fallback-failed");
   });
 
   it("reset clears status and error immediately", async () => {

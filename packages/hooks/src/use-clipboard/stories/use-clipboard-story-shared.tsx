@@ -14,16 +14,10 @@ export const baseMeta = {
 
 type Story = StoryObj<typeof baseMeta>;
 
-interface UseClipboardDemoProps {
-  useLegacyFallback?: boolean;
-}
-
-const UseClipboardDemo = ({
-  useLegacyFallback = false,
-}: UseClipboardDemoProps) => {
+const UseClipboardDemo = () => {
   const [value, setValue] = useState("bun add @kuzenbo/hooks");
   const { status, errorCode, copy, reset, announcement, announcementProps } =
-    useClipboard({ useLegacyFallback });
+    useClipboard();
 
   const handleValueChange = useCallback(
     (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -84,8 +78,6 @@ const UseClipboardDemo = ({
         <dd>{status}</dd>
         <dt className="font-medium">Error code</dt>
         <dd>{errorCode ?? "none"}</dd>
-        <dt className="font-medium">Legacy fallback</dt>
-        <dd>{String(useLegacyFallback)}</dd>
         <dt className="font-medium">Announcement</dt>
         <dd>{announcement || "none"}</dd>
       </dl>
@@ -97,8 +89,4 @@ const UseClipboardDemo = ({
 
 export const Default: Story = {
   render: () => <UseClipboardDemo />,
-};
-
-export const LegacyFallbackDemo: Story = {
-  render: () => <UseClipboardDemo useLegacyFallback />,
 };

@@ -1,6 +1,5 @@
 export const THEME_COOKIE_KEY = "kuzenbo-theme";
 export const THEME_STORAGE_KEY = "kuzenbo-theme";
-export const LEGACY_THEME_STORAGE_KEY = "theme";
 export const THEME_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 export const SYSTEM_DARK_MEDIA_QUERY = "(prefers-color-scheme: dark)";
 export const DEFAULT_THEME_SETTING = "system" as const;
@@ -133,7 +132,6 @@ export const getThemeBootstrapScript = ({
   var COOKIE_KEY = ${JSON.stringify(THEME_COOKIE_KEY)};
   var DEFAULT_THEME_SETTING = ${JSON.stringify(defaultThemeSetting)};
   var STORAGE_KEY = ${JSON.stringify(THEME_STORAGE_KEY)};
-  var LEGACY_STORAGE_KEY = ${JSON.stringify(LEGACY_THEME_STORAGE_KEY)};
   var COOKIE_MAX_AGE_SECONDS = ${THEME_COOKIE_MAX_AGE_SECONDS};
   var SYSTEM_DARK_QUERY = ${JSON.stringify(SYSTEM_DARK_MEDIA_QUERY)};
 
@@ -179,14 +177,12 @@ export const getThemeBootstrapScript = ({
   try {
     var cookieTheme = getCookieTheme(document.cookie || "", COOKIE_KEY);
     var storageTheme = null;
-    var legacyStorageTheme = null;
 
     try {
       storageTheme = parseTheme(window.localStorage.getItem(STORAGE_KEY));
-      legacyStorageTheme = parseTheme(window.localStorage.getItem(LEGACY_STORAGE_KEY));
     } catch (_storageReadError) {}
 
-    var storageCandidate = storageTheme || legacyStorageTheme;
+    var storageCandidate = storageTheme;
     var systemTheme = getSystemTheme();
     var resolvedTheme = resolveDefaultTheme(systemTheme);
     var shouldWriteCookie = false;
@@ -198,7 +194,6 @@ export const getThemeBootstrapScript = ({
     } else if (storageCandidate) {
       resolvedTheme = storageCandidate;
       shouldWriteCookie = true;
-      shouldWriteStorage = !storageTheme;
     }
 
     root.classList.toggle("dark", resolvedTheme === "dark");

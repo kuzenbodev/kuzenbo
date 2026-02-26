@@ -2,9 +2,9 @@ import { DocsMdxPage, createDocsPageMetadata } from "@/lib/docs/page-runtime";
 
 import Content from "./content.mdx";
 
-const title = "Form Field (Legacy Alias)";
+const title = "Form Field (Previous Alias)";
 const description =
-  "Legacy route for the former FormField API. Use Form, Field, and Fieldset as canonical primitives.";
+  "Previous route for the former FormField API. Use Form, Field, and Fieldset as canonical primitives.";
 const href = "/docs/components/form-field";
 
 export const metadata = createDocsPageMetadata({

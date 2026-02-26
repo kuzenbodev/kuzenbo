@@ -34,7 +34,7 @@ describe("Complete DonutChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <DonutChart
-        chartProps={{ className: "donut-chart-legacy-props" }}
+        chartProps={{ className: "donut-chart-alias-props" }}
         data={completeDonutTrafficData}
         dataKey="value"
         responsiveContainerProps={chartSize}
@@ -42,7 +42,7 @@ describe("Complete DonutChart", () => {
       />
     );
 
-    expect(container.querySelector(".donut-chart-legacy-props")).not.toBeNull();
+    expect(container.querySelector(".donut-chart-alias-props")).not.toBeNull();
   });
 
   it("passes pieProps through to the donut pie element", () => {

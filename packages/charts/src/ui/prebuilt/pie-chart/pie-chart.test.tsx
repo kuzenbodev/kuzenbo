@@ -34,7 +34,7 @@ describe("Complete PieChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <PieChart
-        chartProps={{ className: "pie-chart-legacy-props" }}
+        chartProps={{ className: "pie-chart-alias-props" }}
         data={completePieRevenueData}
         dataKey="value"
         responsiveContainerProps={chartSize}
@@ -42,7 +42,7 @@ describe("Complete PieChart", () => {
       />
     );
 
-    expect(container.querySelector(".pie-chart-legacy-props")).not.toBeNull();
+    expect(container.querySelector(".pie-chart-alias-props")).not.toBeNull();
   });
 
   it("passes pieProps through to the pie element", () => {

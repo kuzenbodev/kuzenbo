@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
@@ -25,12 +23,12 @@ export const HeroSection = () => (
       </Typography.Lead>
 
       <div className="mt-10 grid grid-cols-2 max-w-xs mx-auto w-full items-center justify-center gap-4">
-        <Button nativeButton={false} render={<Link href={"/docs"} />} size="xl">
+        <Button nativeButton={false} render={<Link href="/docs" />} size="xl">
           Get Started
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/showcase"} />}
+          render={<Link href="/showcase" />}
           size="xl"
           variant="outline"
         >

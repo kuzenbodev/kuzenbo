@@ -1,6 +1,6 @@
 ---
 title: "useClipboard"
-description: "Copy text with status lifecycle, accessibility announcements, and optional legacy execCommand fallback."
+description: "Copy text with status lifecycle and accessibility announcements."
 ---
 
 ## Overview
@@ -10,7 +10,6 @@ description: "Copy text with status lifecycle, accessibility announcements, and 
 - status lifecycle (`idle -> copying -> copied|failed`)
 - typed `errorCode` values for unavailable permission/runtime cases
 - `announcement` and `announcementProps` for screen-reader feedback
-- optional legacy fallback (`document.execCommand("copy")`)
 
 ## Installation
 
@@ -30,12 +29,11 @@ import { useClipboard } from "@kuzenbo/hooks/use-clipboard";
 
 - `copiedDurationMs?: number` (default `1600`)
 - `failedDurationMs?: number` (default `2200`)
-- `useLegacyFallback?: boolean` (default `false`)
 
 It returns:
 
 - `status: "idle" | "copying" | "copied" | "failed"`
-- `errorCode: "clipboard-unavailable" | "permission-denied" | "write-failed" | "fallback-failed" | null`
+- `errorCode: "clipboard-unavailable" | "permission-denied" | "write-failed" | null`
 - `announcement: string`
 - `announcementProps: { role: "status"; "aria-live": "polite" | "assertive"; "aria-atomic": true; children: string }`
 - `copy: (value: string) => Promise<{ ok: boolean; status; errorCode }>`
@@ -97,21 +95,21 @@ export function ClipboardButtonExample() {
 }
 ```
 
-## Fallback behavior
+## Copy behavior
 
 When `copy(value)` runs:
 
-| Scenario                                 | `useLegacyFallback: false`                                                                           | `useLegacyFallback: true`                                                         |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `navigator.clipboard.writeText` succeeds | returns `ok: true`, status `copied`                                                                  | same                                                                              |
-| Clipboard API throws                     | status `failed`, mapped error code (`permission-denied`, `clipboard-unavailable`, or `write-failed`) | attempts `execCommand("copy")`; success => `copied`, failure => `fallback-failed` |
-| Clipboard API missing                    | status `failed`, `clipboard-unavailable`                                                             | attempts `execCommand("copy")`; success => `copied`, failure => `fallback-failed` |
+| Scenario                                 | Result                                                                                               |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `navigator.clipboard.writeText` succeeds | returns `ok: true`, status `copied`                                                                  |
+| Clipboard API throws                     | status `failed`, mapped error code (`permission-denied`, `clipboard-unavailable`, or `write-failed`) |
+| Clipboard API missing                    | status `failed`, `clipboard-unavailable`                                                             |
 
 The hook auto-resets `copied`/`failed` states after the configured duration.
 
 ## SSR and RSC notes
 
-- Client-only hook: it depends on `navigator` and optional DOM fallback APIs.
+- Client-only hook: it depends on `navigator`.
 - Safe for SSR bundles because browser globals are read only inside runtime callbacks.
 - Use from Client Components only; do not call in React Server Components.
 

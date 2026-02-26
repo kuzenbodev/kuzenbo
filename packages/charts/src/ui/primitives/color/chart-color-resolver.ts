@@ -8,7 +8,7 @@ import type { ResolveSeriesColorExpressionOptions } from "./utils/resolve-series
 import { createSeriesColorRegistry } from "./utils/create-series-color-registry";
 import { getChartThemeFromDom } from "./utils/get-chart-theme-from-dom";
 import { getStyleDeclarationsForTheme } from "./utils/get-style-declarations-for-theme";
-import { normalizeLegacyChartColor } from "./utils/normalize-legacy-chart-color";
+import { normalizeChartColor } from "./utils/normalize-chart-color";
 import { resolveSeriesColorExpression as resolveSeriesColorExpressionFromRegistry } from "./utils/resolve-series-color-expression";
 import { slugifySeriesKey } from "./utils/series-slug";
 
@@ -57,7 +57,7 @@ export {
   getSeriesColor,
   getSeriesColorVarReference,
   getStyleDeclarationsForTheme,
-  normalizeLegacyChartColor,
+  normalizeChartColor,
   resolveSeriesColorExpression,
   slugifySeriesKey,
 };

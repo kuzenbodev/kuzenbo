@@ -41,7 +41,6 @@ export type AreaChartProps<
         series: CompleteChartSeries
       ) => Partial<Omit<AreaProps, "ref" | "dataKey">>);
   areaChartProps?: RechartsAreaChartProps;
-  /** @deprecated Use `areaChartProps`. */
   chartProps?: RechartsAreaChartProps;
 };
 

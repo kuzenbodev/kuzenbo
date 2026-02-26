@@ -8,7 +8,7 @@ import {
 import { createSeriesColorRegistry } from "./create-series-color-registry";
 import { getChartThemeFromDom } from "./get-chart-theme-from-dom";
 import { getStyleDeclarationsForTheme } from "./get-style-declarations-for-theme";
-import { normalizeLegacyChartColor } from "./normalize-legacy-chart-color";
+import { normalizeChartColor } from "./normalize-chart-color";
 import { resolveSeriesColorExpression } from "./resolve-series-color-expression";
 import { ensureUniqueSlug, slugifySeriesKey } from "./series-slug";
 
@@ -48,23 +48,23 @@ describe("color utils", () => {
     expect(ensureUniqueSlug("revenue", used)).toBe("revenue-3");
   });
 
-  it("normalizes legacy chart color expressions", () => {
-    expect(normalizeLegacyChartColor("hsl(var(--kb-chart-2))")).toBe(
-      "var(--kb-chart-2)"
+  it("normalizes chart color expressions", () => {
+    expect(normalizeChartColor("hsl(var(--kb-chart-2))")).toBe(
+      "hsl(var(--kb-chart-2))"
     );
-    expect(normalizeLegacyChartColor("  #123456  ")).toBe("#123456");
-    expect(normalizeLegacyChartColor("")).toBeUndefined();
+    expect(normalizeChartColor("  #123456  ")).toBe("#123456");
+    expect(normalizeChartColor("")).toBeUndefined();
   });
 
-  it("creates color registry with legacy aliases and unsafe fallbacks", () => {
+  it("creates color registry with unsafe fallbacks", () => {
     const registry = createSeriesColorRegistry({
       "Revenue Total": { color: "var(--brand-color)" },
       revenue_total: { color: "var(--brand-secondary)" },
       risky: { color: "var(--x);background:red" },
       themed: {
         theme: {
-          dark: "hsl(var(--kb-chart-4))",
-          light: "hsl(var(--kb-chart-3))",
+          dark: "var(--color-chart-4)",
+          light: "var(--color-chart-3)",
         },
       },
     });
@@ -72,24 +72,24 @@ describe("color utils", () => {
     expect(registry.byKey["Revenue Total"]?.varName).toBe(
       "--color-revenue-total"
     );
-    expect(registry.byKey.revenue_total?.legacyVarName).toBe(
-      "--color-revenue_total"
+    expect(registry.byKey.revenue_total?.varName).toBe(
+      "--color-revenue-total-2"
     );
     expect(registry.byKey.risky?.colorByTheme.light).toBe(
       "var(--color-chart-3)"
     );
-    expect(registry.byKey.themed?.colorByTheme.dark).toBe("var(--kb-chart-4)");
-    expect(registry.byVarName["--color-revenue_total"]).toBe("revenue_total");
+    expect(registry.byKey.themed?.colorByTheme.dark).toBe(
+      "var(--color-chart-4)"
+    );
   });
 
-  it("builds theme declarations including legacy var aliases", () => {
+  it("builds theme declarations with stable variable names", () => {
     const registry = createSeriesColorRegistry({
       revenue_total: { color: "var(--brand-secondary)" },
     });
 
     expect(getStyleDeclarationsForTheme(registry, "light")).toEqual([
       "  --color-revenue-total: var(--brand-secondary);",
-      "  --color-revenue_total: var(--brand-secondary);",
     ]);
   });
 

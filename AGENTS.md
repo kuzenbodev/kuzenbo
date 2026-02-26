@@ -204,7 +204,7 @@ Useful scoped Turbo invocation pattern:
 ### Base UI composition policy
 
 - Use Base UI `render` prop composition for custom element rendering and slot composition.
-- Do not introduce `asChild` in new code; treat it as a legacy composition pattern, not a Base UI pattern.
+- Do not introduce `asChild` in new code; treat it as a previous composition pattern, not a Base UI pattern.
 - When touching existing `asChild` usage, migrate it to Base UI `render` unless a migration would cause a verified regression; if deferred, document the blocker.
 - This rule applies to `packages/*`, `apps/*`, Storybook stories/tests, and docs examples.
 

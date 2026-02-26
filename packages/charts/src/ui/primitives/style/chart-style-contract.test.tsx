@@ -60,7 +60,7 @@ describe("Chart style contracts", () => {
     expect(root.className).toContain("min-h-[240px]");
   });
 
-  it("keeps style injection normalized for multi-series config without unsafe duplicates", () => {
+  it("keeps style injection stable for multi-series config without unsafe duplicates", () => {
     const { container } = render(
       <Chart.Root
         config={{
@@ -79,20 +79,17 @@ describe("Chart style contracts", () => {
 
     const styleTag = container.querySelector("style");
     const styleContent = getStyleTagContent(container);
-    const legacyAliasMatchCount = countMatches(
+    const revenueVarMatchCount = countMatches(
       styleContent,
-      /--color-revenue_total:/g
+      /--color-revenue-total:/g
     );
 
     expect(styleTag).not.toBeNull();
-    expect(styleContent.includes("hsl(var(--kb-chart-1))")).toBe(false);
+    expect(styleContent.includes("hsl(var(--kb-chart-1))")).toBe(true);
     expect(
-      styleContent.includes("--color-revenue-total: var(--kb-chart-1);")
+      styleContent.includes("--color-revenue-total: hsl(var(--kb-chart-1));")
     ).toBe(true);
-    expect(
-      styleContent.includes("--color-revenue_total: var(--color-chart-2);")
-    ).toBe(true);
-    expect(legacyAliasMatchCount).toBe(2);
+    expect(revenueVarMatchCount).toBe(2);
   });
 
   it("asserts legend labels without relying on item order", () => {

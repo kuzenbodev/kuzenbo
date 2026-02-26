@@ -61,7 +61,6 @@ export type CopyButtonProps = Omit<
 > & {
   value: string;
   timeout?: number;
-  useLegacyFallback?: boolean;
   status?: CopyButtonStatus;
   defaultStatus?: CopyButtonStatus;
   onStatusChange?: (status: CopyButtonStatus) => void;
@@ -86,7 +85,6 @@ const CopyButton = ({
   className,
   value,
   timeout = DEFAULT_TIMEOUT,
-  useLegacyFallback = true,
   status,
   defaultStatus = "idle",
   onStatusChange,
@@ -102,7 +100,6 @@ const CopyButton = ({
   const clipboard = useClipboard({
     copiedDurationMs: timeout,
     failedDurationMs: timeout,
-    useLegacyFallback,
   });
   const [internalStatus, setInternalStatus] =
     useState<CopyButtonStatus>(defaultStatus);

@@ -63,7 +63,7 @@ describe("Complete BubbleChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <BubbleChart
-        chartProps={{ className: "bubble-chart-legacy-props" }}
+        chartProps={{ className: "bubble-chart-alias-props" }}
         responsiveContainerProps={chartSize}
         series={completeBubbleSeries}
         xKey="satisfaction"
@@ -72,9 +72,7 @@ describe("Complete BubbleChart", () => {
       />
     );
 
-    expect(
-      container.querySelector(".bubble-chart-legacy-props")
-    ).not.toBeNull();
+    expect(container.querySelector(".bubble-chart-alias-props")).not.toBeNull();
   });
 
   it("renders multi-series bubbles, z-axis, and chart root slot", () => {

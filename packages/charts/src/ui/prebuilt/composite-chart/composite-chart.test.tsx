@@ -94,7 +94,7 @@ describe("Complete CompositeChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <CompositeChart
-        chartProps={{ className: "composite-chart-legacy-props" }}
+        chartProps={{ className: "composite-chart-alias-props" }}
         data={completeCompositeMixedData}
         dataKey="month"
         responsiveContainerProps={chartSize}
@@ -103,7 +103,7 @@ describe("Complete CompositeChart", () => {
     );
 
     expect(
-      container.querySelector(".composite-chart-legacy-props")
+      container.querySelector(".composite-chart-alias-props")
     ).not.toBeNull();
   });
 

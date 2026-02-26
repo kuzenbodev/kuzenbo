@@ -10,8 +10,7 @@ export type ClipboardStatus = "idle" | "copying" | "copied" | "failed";
 export type ClipboardErrorCode =
   | "clipboard-unavailable"
   | "permission-denied"
-  | "write-failed"
-  | "fallback-failed";
+  | "write-failed";
 
 export interface ClipboardResult {
   ok: boolean;
@@ -22,7 +21,6 @@ export interface ClipboardResult {
 export interface UseClipboardOptions {
   copiedDurationMs?: number;
   failedDurationMs?: number;
-  useLegacyFallback?: boolean;
 }
 
 export interface UseClipboardReturn {
@@ -101,57 +99,9 @@ const getAnnouncement = (
   return "Failed to copy to clipboard.";
 };
 
-const copyWithLegacyExecCommand = (value: string): boolean => {
-  if (
-    typeof document === "undefined" ||
-    typeof document.execCommand !== "function"
-  ) {
-    return false;
-  }
-
-  const targetDocument = document;
-  if (!targetDocument.body) {
-    return false;
-  }
-
-  const textarea = targetDocument.createElement("textarea");
-  textarea.value = value;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.top = "-9999px";
-  textarea.style.left = "-9999px";
-  textarea.style.opacity = "0";
-  targetDocument.body.append(textarea);
-
-  const selection = targetDocument.getSelection();
-  const previousRange =
-    selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
-
-  textarea.focus();
-  textarea.select();
-  textarea.setSelectionRange(0, textarea.value.length);
-
-  let copied = false;
-  try {
-    copied = targetDocument.execCommand("copy");
-  } catch {
-    copied = false;
-  }
-
-  textarea.remove();
-
-  if (selection && previousRange) {
-    selection.removeAllRanges();
-    selection.addRange(previousRange);
-  }
-
-  return copied;
-};
-
 export const useClipboard = ({
   copiedDurationMs = DEFAULT_COPIED_DURATION_MS,
   failedDurationMs = DEFAULT_FAILED_DURATION_MS,
-  useLegacyFallback = false,
 }: UseClipboardOptions = {}): UseClipboardReturn => {
   const [status, setStatus] = useState<ClipboardStatus>("idle");
   const [errorCode, setErrorCode] = useState<ClipboardErrorCode | null>(null);
@@ -207,60 +157,23 @@ export const useClipboard = ({
           return { ok: true, status: "copied", errorCode: null };
         } catch (error) {
           const mappedErrorCode = mapClipboardErrorCode(error);
-
-          if (!useLegacyFallback) {
-            setStatus("failed");
-            setErrorCode(mappedErrorCode);
-            scheduleReset(failedDurationMs);
-            return { ok: false, status: "failed", errorCode: mappedErrorCode };
-          }
-
-          const fallbackCopied = copyWithLegacyExecCommand(value);
-          if (fallbackCopied) {
-            setStatus("copied");
-            setErrorCode(null);
-            scheduleReset(copiedDurationMs);
-            return { ok: true, status: "copied", errorCode: null };
-          }
-
           setStatus("failed");
-          setErrorCode("fallback-failed");
+          setErrorCode(mappedErrorCode);
           scheduleReset(failedDurationMs);
-          return { ok: false, status: "failed", errorCode: "fallback-failed" };
+          return { ok: false, status: "failed", errorCode: mappedErrorCode };
         }
       }
 
-      if (!useLegacyFallback) {
-        setStatus("failed");
-        setErrorCode("clipboard-unavailable");
-        scheduleReset(failedDurationMs);
-        return {
-          ok: false,
-          status: "failed",
-          errorCode: "clipboard-unavailable",
-        };
-      }
-
-      const fallbackCopied = copyWithLegacyExecCommand(value);
-      if (fallbackCopied) {
-        setStatus("copied");
-        setErrorCode(null);
-        scheduleReset(copiedDurationMs);
-        return { ok: true, status: "copied", errorCode: null };
-      }
-
       setStatus("failed");
-      setErrorCode("fallback-failed");
+      setErrorCode("clipboard-unavailable");
       scheduleReset(failedDurationMs);
-      return { ok: false, status: "failed", errorCode: "fallback-failed" };
+      return {
+        ok: false,
+        status: "failed",
+        errorCode: "clipboard-unavailable",
+      };
     },
-    [
-      clearResetTimer,
-      copiedDurationMs,
-      failedDurationMs,
-      scheduleReset,
-      useLegacyFallback,
-    ]
+    [clearResetTimer, copiedDurationMs, failedDurationMs, scheduleReset]
   );
 
   const announcement = useMemo(

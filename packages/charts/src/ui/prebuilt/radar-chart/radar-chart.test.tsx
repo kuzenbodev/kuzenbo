@@ -51,7 +51,7 @@ describe("Complete RadarChart", () => {
   it("keeps chartProps alias support during migration", () => {
     const { container } = render(
       <RadarChart
-        chartProps={{ className: "radar-chart-legacy-props" }}
+        chartProps={{ className: "radar-chart-alias-props" }}
         data={completeRadarData}
         dataKey="metric"
         responsiveContainerProps={chartSize}
@@ -59,7 +59,7 @@ describe("Complete RadarChart", () => {
       />
     );
 
-    expect(container.querySelector(".radar-chart-legacy-props")).not.toBeNull();
+    expect(container.querySelector(".radar-chart-alias-props")).not.toBeNull();
   });
 
   it("renders radar polygons and radial axis", () => {

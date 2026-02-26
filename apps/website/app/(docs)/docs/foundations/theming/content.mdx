@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 The bootstrap runtime resolves theme in this order:
 
 1. Cookie (`kuzenbo-theme`) if present.
-2. Local storage key (`kuzenbo-theme`) or legacy key (`theme`).
+2. Local storage key (`kuzenbo-theme`) or previous key (`theme`).
 3. Default setting (`system`) resolved via `prefers-color-scheme`.
 
 When needed, it syncs storage and cookie values to keep state consistent for future navigations.

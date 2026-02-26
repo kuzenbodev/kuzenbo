@@ -25,8 +25,8 @@ describe("complete helper contracts", () => {
     expect(resolveCompleteSeriesName({ name: "revenue", key: "rev" })).toBe(
       "revenue"
     );
-    expect(resolveCompleteSeriesName({ key: "legacyRevenue" })).toBe(
-      "legacyRevenue"
+    expect(resolveCompleteSeriesName({ key: "revenueSeries" })).toBe(
+      "revenueSeries"
     );
   });
 

@@ -316,6 +316,6 @@ Use workflow input `publish_mode=recovery` only when:
 
 ## Maintainer Notes
 
-- A `legacy` dist-tag can be used for previous major maintenance lines when needed.
+- A `previous` dist-tag can be used for previous major maintenance lines when needed.
 - Kuzenbo currently automates `next` and `stable` only.
-- Add a dedicated legacy channel only when you intentionally support parallel long-lived majors.
+- Add a dedicated previous channel only when you intentionally support parallel long-lived majors.

@@ -37,7 +37,7 @@ The runtime resolves the theme in this order:
 
 1. Cookie (if your app sets it)
 2. Local storage (`localStorage` key)
-3. Legacy storage key (`theme`)
+3. Previous storage key (`theme`)
 4. System preference (`prefers-color-scheme`)
 
 It then applies `.dark` to `<html>` and sets `color-scheme` to match.
