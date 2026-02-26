@@ -25,7 +25,6 @@ const nextConfig: NextConfig = {
   // Enables "use cache" directive; excludes App Router data fetching from
   // pre-renders by default; enables Cache Components (PPR)
   cacheComponents: true,
-  typedRoutes: true,
   trailingSlash: false,
 
   experimental: {

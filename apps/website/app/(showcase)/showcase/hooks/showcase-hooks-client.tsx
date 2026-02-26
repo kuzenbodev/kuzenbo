@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import {
   Card,
@@ -93,14 +91,14 @@ export const ShowcaseHooksClient = () => {
         <section className="flex flex-wrap gap-2">
           <Button
             nativeButton={false}
-            render={<Link href={"/docs/hooks"} />}
+            render={<Link href="/docs/hooks" />}
             variant="outline"
           >
             Browse hooks docs
           </Button>
           <Button
             nativeButton={false}
-            render={<Link href={"/showcase/playground"} />}
+            render={<Link href="/showcase/playground" />}
             variant="ghost"
           >
             Try playground

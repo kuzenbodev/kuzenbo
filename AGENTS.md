@@ -50,7 +50,7 @@ npx opensrc <owner>/<repo>      # GitHub repo (e.g., npx opensrc vercel/ai)
 
 This repo is a Bun workspace + Turborepo monorepo:
 
-- `apps/website`: Next.js 16 App Router app used as the website/playground (`next dev --port 3000`).
+- `apps/website`: Vinext-powered, Next.js 16-compatible App Router app used as the website/playground (`vinext dev --port 3000`).
 - Shared Storybook setup package: `packages/storybook`.
 - Package-local Storybook wrappers: `packages/{core,charts,notifications,date,ai,code,datatable,tiptap,hooks}/.storybook`.
 - `packages/ai`: AI-oriented UI/hooks/utils package (`@kuzenbo/ai`).
@@ -267,7 +267,7 @@ Useful scoped Turbo invocation pattern:
 
 ### App notes (`apps/website`)
 
-- Uses App Router with `cacheComponents: true` and `typedRoutes: true`.
+- Uses App Router with `cacheComponents: true`.
 - `next.config.ts` enables several experimental/perf flags; treat config changes carefully during upgrades.
 - The app shell currently contains starter content (`app/page.tsx` is minimal), so this app is a safe place to add playground/docs pages for components.
 

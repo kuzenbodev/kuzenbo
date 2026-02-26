@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import { Container } from "@kuzenbo/core/ui/container";
 import { Typography } from "@kuzenbo/core/ui/typography";
@@ -23,16 +21,12 @@ export const CTASection = () => (
         </Typography.Lead>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Button
-            nativeButton={false}
-            render={<Link href={"/docs"} />}
-            size="lg"
-          >
+          <Button nativeButton={false} render={<Link href="/docs" />} size="lg">
             Get Started
           </Button>
           <Button
             nativeButton={false}
-            render={<Link href={"/showcase"} />}
+            render={<Link href="/showcase" />}
             size="lg"
             variant="outline"
           >

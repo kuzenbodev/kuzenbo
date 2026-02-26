@@ -4,9 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --port 3000",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vinext dev --port 3000",
+    "dev:next": "next dev --port 3000",
+    "build": "vinext build",
+    "build:next": "next build",
+    "start": "vinext start",
+    "start:next": "next start",
     "test": "bun test",
     "test:watch": "bun test --watch",
     "pretypecheck": "next typegen",
@@ -43,6 +46,7 @@
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "catalog:",
+    "@mdx-js/rollup": "catalog:",
     "@tailwindcss/postcss": "catalog:",
     "@tailwindcss/typography": "catalog:",
     "@testing-library/react": "catalog:",
@@ -50,9 +54,13 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@vitejs/plugin-rsc": "catalog:",
     "bun-types": "catalog:",
     "postcss": "catalog:",
+    "react-server-dom-webpack": "catalog:",
     "schema-dts": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vinext": "catalog:",
+    "vite": "catalog:"
   }
 }

@@ -10,7 +10,7 @@ This document explains how the monorepo is structured and why package boundaries
 
 ## Repository Layout
 
-- `apps/website`: Next.js app for docs/playground with file-based docs pages under `/docs/**`.
+- `apps/website`: Vinext-powered, Next.js API-compatible app for docs/playground with file-based docs pages under `/docs/**`.
 - Shared Storybook setup package: `packages/storybook`.
 - Package-local Storybook wrappers: `packages/{core,charts,notifications,date,ai,code,datatable,tiptap,hooks}/.storybook`.
 - `packages/ai`: `@kuzenbo/ai` package for AI-related UI/hooks/utils.
