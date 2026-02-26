@@ -1,17 +1,15 @@
 "use client";
 
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core/ui/alert";
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Container,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/card";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import { useCallback, useState } from "react";
 
 export const ShowcasePlaygroundClient = () => {

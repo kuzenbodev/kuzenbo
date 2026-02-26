@@ -42,14 +42,14 @@ import {
   DrawerTrigger,
   DrawerViewport,
   createDrawerHandle,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/drawer";
 ```
 
 ## Basic Usage
 
 ```tsx
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   Drawer,
   DrawerBackdrop,
   DrawerClose,
@@ -60,7 +60,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
   DrawerViewport,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/drawer";
 
 export function DrawerBasicExample() {
   return (
@@ -93,8 +93,8 @@ export function DrawerBasicExample() {
 ```tsx
 import { useMemo } from "react";
 
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   Drawer,
   DrawerBackdrop,
   DrawerContent,
@@ -104,7 +104,7 @@ import {
   DrawerTrigger,
   DrawerViewport,
   createDrawerHandle,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/drawer";
 
 const profileHandle = createDrawerHandle<{ title: string }>();
 

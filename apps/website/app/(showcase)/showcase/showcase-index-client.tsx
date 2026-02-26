@@ -2,7 +2,9 @@
 
 import type { Route } from "next";
 
-import { Button, Container, Typography } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
 
 export const ShowcaseIndexClient = () => (

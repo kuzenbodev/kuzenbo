@@ -39,13 +39,13 @@ import {
   ProgressLabel,
   ProgressTrack,
   ProgressValue,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/progress";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Progress } from "@kuzenbo/core";
+import { Progress } from "@kuzenbo/core/ui/progress";
 
 export function FileUploadProgress() {
   return (
@@ -60,7 +60,7 @@ export function FileUploadProgress() {
 ## Advanced Example
 
 ```tsx
-import { Progress } from "@kuzenbo/core";
+import { Progress } from "@kuzenbo/core/ui/progress";
 
 export function PipelineProgress({ active }: { active: boolean }) {
   return (

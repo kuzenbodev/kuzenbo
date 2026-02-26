@@ -28,8 +28,6 @@ const Tabs = ({
 Tabs.Content = TabsContent;
 Tabs.Indicator = TabsIndicator;
 Tabs.List = TabsList;
-Tabs.Panel = TabsContent;
-Tabs.Tab = TabsTrigger;
 Tabs.Trigger = TabsTrigger;
 
 export { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger };

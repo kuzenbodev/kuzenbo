@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/notifications",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Toast and notification primitives for Kuzenbo.",
   "keywords": [
@@ -26,40 +26,16 @@
   ],
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
-    "./toast": {
-      "types": "./src/ui/toast/toast.tsx",
-      "import": "./src/ui/toast/toast.tsx",
-      "default": "./src/ui/toast/toast.tsx"
-    },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./ui/toast": "./src/ui/toast/toast.tsx"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.js",
-        "default": "./dist/index.js"
-      },
-      "./toast": {
-        "types": "./dist/toast.d.ts",
-        "import": "./dist/toast.js",
-        "default": "./dist/toast.js"
-      },
-      "./package.json": "./package.json"
-    },
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+      "./package.json": "./package.json",
+      "./ui/toast": "./dist/ui/toast.js"
+    }
   },
   "scripts": {
     "build": "tsdown",
@@ -103,8 +79,8 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@kuzenbo/core": "^0.0.2",
-    "@kuzenbo/theme": "^0.0.2",
+    "@kuzenbo/core": "^0.0.3",
+    "@kuzenbo/theme": "^0.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

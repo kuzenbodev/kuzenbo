@@ -32,7 +32,11 @@ A Kuzenbo form should be easy to scan, keyboard-safe, and explicit about validat
 
 import { useState } from "react";
 
-import { Button, Field, Form, Input, NumberField } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Field } from "@kuzenbo/core/ui/field";
+import { Form } from "@kuzenbo/core/ui/form";
+import { Input } from "@kuzenbo/core/ui/input";
+import { NumberField } from "@kuzenbo/core/ui/number-field";
 
 export function CheckoutForm() {
   const [email, setEmail] = useState("");

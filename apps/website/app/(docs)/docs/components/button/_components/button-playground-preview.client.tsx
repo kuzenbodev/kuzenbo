@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
 
 import type { ButtonPlaygroundState } from "./button-playground.definition";
 

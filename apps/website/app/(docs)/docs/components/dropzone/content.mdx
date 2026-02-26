@@ -40,7 +40,7 @@ import {
   DropzoneIdle,
   DropzoneReject,
   dropzoneVariants,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/dropzone";
 ```
 
 ## Basic usage
@@ -48,7 +48,7 @@ import {
 `onDrop` is required.
 
 ```tsx
-import { Dropzone } from "@kuzenbo/core";
+import { Dropzone } from "@kuzenbo/core/ui/dropzone";
 
 export function AvatarUploadDropzone() {
   return (
@@ -78,7 +78,7 @@ export function AvatarUploadDropzone() {
 ```tsx
 import { useRef } from "react";
 
-import { Dropzone } from "@kuzenbo/core";
+import { Dropzone } from "@kuzenbo/core/ui/dropzone";
 
 export function CsvImportDropzone() {
   const openRef = useRef<(() => void) | null>(null);

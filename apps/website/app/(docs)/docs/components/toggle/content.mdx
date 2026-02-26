@@ -34,18 +34,14 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import {
-  Toggle,
-  ToggleGroup,
-  ToggleGroupItem,
-  toggleVariants,
-} from "@kuzenbo/core";
+import { Toggle, toggleVariants } from "@kuzenbo/core/ui/toggle";
+import { ToggleGroup, ToggleGroupItem } from "@kuzenbo/core/ui/toggle-group";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Toggle } from "@kuzenbo/core";
+import { Toggle } from "@kuzenbo/core/ui/toggle";
 
 export function PinToggle() {
   return (
@@ -63,7 +59,7 @@ export function PinToggle() {
 
 import { useState } from "react";
 
-import { ToggleGroup } from "@kuzenbo/core";
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 
 export function TextAlignPicker() {
   const [value, setValue] = useState<string[]>(["left"]);

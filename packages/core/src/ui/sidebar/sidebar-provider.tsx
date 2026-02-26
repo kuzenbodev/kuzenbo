@@ -2,7 +2,7 @@
 
 import type { ComponentProps, CSSProperties } from "react";
 
-import { useIsMobile } from "@kuzenbo/hooks";
+import { useIsMobile } from "@kuzenbo/hooks/use-mobile";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "tailwind-variants";
 

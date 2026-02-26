@@ -1,6 +1,6 @@
 "use client";
 
-import { CopyButton } from "@kuzenbo/core";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 import { useCallback } from "react";
 
 import { CodeBlockToolbar } from "../code-block-toolbar/code-block-toolbar";

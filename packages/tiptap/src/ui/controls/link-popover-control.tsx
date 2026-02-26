@@ -2,7 +2,9 @@
 
 import type { Editor } from "@tiptap/core";
 
-import { Button, Input, Popover } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Input } from "@kuzenbo/core/ui/input";
+import { Popover } from "@kuzenbo/core/ui/popover";
 import { useEffect, useState } from "react";
 
 import { TIPTAP_CONTROL_REQUIREMENTS } from "../../editor/capabilities";

@@ -36,13 +36,14 @@ import {
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/popover";
 ```
 
 ## Basic usage
 
 ```tsx
-import { Button, Popover } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Popover } from "@kuzenbo/core/ui/popover";
 
 export function FilterPopover() {
   return (
@@ -73,7 +74,8 @@ export function FilterPopover() {
 ```tsx
 import { useState } from "react";
 
-import { Button, Popover } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Popover } from "@kuzenbo/core/ui/popover";
 
 export function ControlledPopover() {
   const [open, setOpen] = useState(false);

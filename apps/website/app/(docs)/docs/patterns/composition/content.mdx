@@ -32,7 +32,8 @@ New code should use Base UI `render` composition.
 This keeps ownership clear and avoids legacy `asChild` edge cases.
 
 ```tsx
-import { Button, Dialog } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Dialog } from "@kuzenbo/core/ui/dialog";
 
 export function ConfirmDialog() {
   return (

@@ -2,21 +2,19 @@
 
 import type { Route } from "next";
 
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core/ui/alert";
+import { Badge } from "@kuzenbo/core/ui/badge";
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Badge,
-  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Container,
-  Input,
-  Label,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/card";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Input } from "@kuzenbo/core/ui/input";
+import { Label } from "@kuzenbo/core/ui/label";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
 
 export const ShowcaseComponentsClient = () => (

@@ -1,4 +1,6 @@
-import { Container, Input, Separator } from "@kuzenbo/core";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Input } from "@kuzenbo/core/ui/input";
+import { Separator } from "@kuzenbo/core/ui/separator";
 import Link from "next/link";
 
 import { ThemeToggle } from "@/components/theme-toggle";

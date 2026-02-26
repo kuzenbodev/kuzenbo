@@ -87,20 +87,20 @@ describe("Tabs", () => {
     expect(document.querySelector("[data-slot=tabs]")).toBeDefined();
   });
 
-  it("exposes Base UI aliases for tab and panel parts", () => {
+  it("exposes trigger and content parts on namespace API", () => {
     render(
       <Tabs defaultValue={TAB_ONE}>
         <Tabs.List>
-          <Tabs.Tab value={TAB_ONE}>Tab 1</Tabs.Tab>
-          <Tabs.Tab value={TAB_TWO}>Tab 2</Tabs.Tab>
+          <Tabs.Trigger value={TAB_ONE}>Tab 1</Tabs.Trigger>
+          <Tabs.Trigger value={TAB_TWO}>Tab 2</Tabs.Trigger>
         </Tabs.List>
-        <Tabs.Panel value={TAB_ONE}>Content 1</Tabs.Panel>
-        <Tabs.Panel value={TAB_TWO}>Content 2</Tabs.Panel>
+        <Tabs.Content value={TAB_ONE}>Content 1</Tabs.Content>
+        <Tabs.Content value={TAB_TWO}>Content 2</Tabs.Content>
       </Tabs>
     );
 
-    expect(Tabs.Tab).toBeDefined();
-    expect(Tabs.Panel).toBeDefined();
+    expect(Tabs.Trigger).toBeDefined();
+    expect(Tabs.Content).toBeDefined();
     expect(screen.getByRole("tab", { name: "Tab 1" })).toBeDefined();
     expect(screen.getByText("Content 1")).toBeDefined();
   });

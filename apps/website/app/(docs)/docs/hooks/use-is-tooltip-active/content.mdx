@@ -31,7 +31,7 @@ It reports whether tooltip interaction is currently active.
 ## Import
 
 ```tsx
-import { useIsTooltipActive } from "@kuzenbo/charts";
+import { useIsTooltipActive } from "@kuzenbo/charts/ui/chart";
 ```
 
 ## Example: interaction-aware helper text
@@ -39,7 +39,7 @@ import { useIsTooltipActive } from "@kuzenbo/charts";
 ```tsx
 "use client";
 
-import { useIsTooltipActive } from "@kuzenbo/charts";
+import { useIsTooltipActive } from "@kuzenbo/charts/ui/chart";
 
 export function TooltipStateBadge() {
   const active = useIsTooltipActive();
@@ -58,7 +58,7 @@ export function TooltipStateBadge() {
 import {
   useActiveTooltipDataPoints,
   useIsTooltipActive,
-} from "@kuzenbo/charts";
+} from "@kuzenbo/charts/ui/chart";
 
 const active = useIsTooltipActive();
 const points = useActiveTooltipDataPoints<{ value: number }>();

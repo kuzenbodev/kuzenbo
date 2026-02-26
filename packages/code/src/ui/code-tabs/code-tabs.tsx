@@ -2,7 +2,7 @@
 
 import type { KeyboardEvent, ReactNode } from "react";
 
-import { Tabs } from "@kuzenbo/core";
+import { Tabs } from "@kuzenbo/core/ui/tabs";
 import { useEffect, useMemo, useState } from "react";
 import { cn } from "tailwind-variants";
 

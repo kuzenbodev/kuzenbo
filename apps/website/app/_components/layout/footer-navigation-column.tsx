@@ -1,6 +1,6 @@
 import type { Route } from "next";
 
-import { Typography } from "@kuzenbo/core";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
 
 import type { FooterColumn } from "./footer.types";

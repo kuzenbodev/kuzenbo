@@ -35,7 +35,7 @@ npm i @kuzenbo/charts recharts
 ## Import
 
 ```tsx
-import { useSeriesColorVar } from "@kuzenbo/charts";
+import { useSeriesColorVar } from "@kuzenbo/charts/ui/chart";
 ```
 
 ## Practical Example
@@ -43,7 +43,11 @@ import { useSeriesColorVar } from "@kuzenbo/charts";
 ```tsx
 "use client";
 
-import { Chart, type ChartConfig, useSeriesColorVar } from "@kuzenbo/charts";
+import {
+  Chart,
+  type ChartConfig,
+  useSeriesColorVar,
+} from "@kuzenbo/charts/ui/chart";
 import { Line, LineChart, XAxis, YAxis } from "recharts";
 
 const data = [

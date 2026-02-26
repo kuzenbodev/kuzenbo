@@ -2,16 +2,16 @@
 
 import type { Route } from "next";
 
-import { AiWidget } from "@kuzenbo/ai";
+import { AiWidget } from "@kuzenbo/ai/ui/ai-widget";
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Container,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/card";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
 
 interface ReleaseRow {

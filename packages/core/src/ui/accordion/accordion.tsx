@@ -61,7 +61,6 @@ const Accordion = (incomingProps: AccordionProps) => {
 Accordion.Content = AccordionContent;
 Accordion.Header = AccordionHeader;
 Accordion.Item = AccordionItem;
-Accordion.Panel = AccordionContent;
 Accordion.Trigger = AccordionTrigger;
 
 export {

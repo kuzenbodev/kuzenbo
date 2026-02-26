@@ -2,7 +2,6 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import { Menu } from "../../index";
 import { DropdownMenu } from "./dropdown-menu";
 
 afterEach(cleanup);
@@ -132,23 +131,6 @@ describe("DropdownMenu", () => {
 
     expect(popup.dataset.size).toBe("sm");
     expect(item.dataset.size).toBe("lg");
-  });
-
-  it("keeps Menu alias behavior in sync with DropdownMenu sizing", () => {
-    render(
-      <Menu open size="xl">
-        <Menu.Trigger>Open</Menu.Trigger>
-        <Menu.Content>
-          <Menu.Item>Profile</Menu.Item>
-        </Menu.Content>
-      </Menu>
-    );
-
-    const popup = queryRequiredElement("[data-slot=dropdown-menu-content]");
-    const item = queryRequiredElement("[data-slot=dropdown-menu-item]");
-
-    expect(popup.dataset.size).toBe("xl");
-    expect(item.dataset.size).toBe("xl");
   });
 
   it("preserves class contracts for item, link item, and sub trigger", async () => {

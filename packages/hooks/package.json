@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Standalone React hooks for Kuzenbo.",
   "keywords": [
@@ -26,45 +26,22 @@
   ],
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
+    "./use-clipboard": "./src/use-clipboard/use-clipboard.ts",
+    "./use-fullscreen": "./src/use-fullscreen/use-fullscreen.ts",
+    "./use-isomorphic-effect": "./src/use-isomorphic-effect/use-isomorphic-effect.ts",
+    "./use-mobile": "./src/use-mobile/use-mobile.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.js",
-        "default": "./dist/index.js"
-      },
-      "./use-fullscreen": {
-        "types": "./dist/use-fullscreen.d.ts",
-        "import": "./dist/use-fullscreen.js",
-        "default": "./dist/use-fullscreen.js"
-      },
-      "./use-mobile": {
-        "types": "./dist/use-mobile.d.ts",
-        "import": "./dist/use-mobile.js",
-        "default": "./dist/use-mobile.js"
-      },
-      "./use-isomorphic-effect": {
-        "types": "./dist/use-isomorphic-effect.d.ts",
-        "import": "./dist/use-isomorphic-effect.js",
-        "default": "./dist/use-isomorphic-effect.js"
-      },
+      "./use-clipboard": "./dist/use-clipboard.js",
+      "./use-fullscreen": "./dist/use-fullscreen.js",
+      "./use-isomorphic-effect": "./dist/use-isomorphic-effect.js",
+      "./use-mobile": "./dist/use-mobile.js",
       "./package.json": "./package.json"
-    },
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "build": "tsdown",

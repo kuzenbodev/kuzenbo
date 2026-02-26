@@ -43,7 +43,8 @@ yarn add @kuzenbo/datatable @kuzenbo/core @kuzenbo/theme @tanstack/react-table
 ```tsx
 "use client";
 
-import { MockDataTable, createMockColumns } from "@kuzenbo/datatable";
+import { MockDataTable } from "@kuzenbo/datatable/ui/mock-data-table";
+import { createMockColumns } from "@kuzenbo/datatable/utils/create-mock-columns";
 
 type MetricRow = {
   id: string;

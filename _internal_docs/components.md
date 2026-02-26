@@ -38,7 +38,7 @@ Common patterns in this repo:
 - Export `XProps` from the same module that exports `X` (including compound/aggregate component modules).
 - For aggregate modules that re-export subcomponents, re-export subcomponent prop types from the same aggregate module.
 - Package entrypoints (`packages/*/src/index.ts`) must export canonical `type XProps` for canonical component exports.
-- Alias exports are exempt from alias props names. Example: `AccordionContent as AccordionPanel` keeps `AccordionContentProps` and does not require `AccordionPanelProps`.
+- Public exports should use canonical component names only; avoid introducing alias component exports.
 
 ## Tailwind Variants Patterns
 

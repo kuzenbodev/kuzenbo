@@ -21,7 +21,7 @@ import {
   useChartConfig,
   useSeriesColor,
   useSeriesColorVar,
-} from "../../../index";
+} from "../../chart/chart";
 import { AreaChart as CompleteAreaChart } from "../area-chart/area-chart";
 import { BarChart as CompleteBarChart } from "../bar-chart/bar-chart";
 import { BubbleChart as CompleteBubbleChart } from "../bubble-chart/bubble-chart";
@@ -126,7 +126,7 @@ describe("Complete charts contract", () => {
     expect(tickFormatter(1200)).toBe("1,200 USD");
   });
 
-  it("exports complete charts from the package root", () => {
+  it("exports complete charts from the chart subpath", () => {
     expect(AreaChart).toBe(CompleteAreaChart);
     expect(BubbleChart).toBe(CompleteBubbleChart);
     expect(LineChart).toBe(CompleteLineChart);

@@ -36,6 +36,9 @@ import {
   Alert,
   AlertAction,
   AlertDescription,
+  AlertTitle,
+} from "@kuzenbo/core/ui/alert";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -45,14 +48,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-  AlertTitle,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/alert-dialog";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core";
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core/ui/alert";
 
 export function AccountAlert() {
   return (
@@ -69,7 +71,7 @@ export function AccountAlert() {
 ## Tone and Appearance Example
 
 ```tsx
-import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core";
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core/ui/alert";
 
 export function ProductAnnouncementAlert() {
   return (
@@ -86,7 +88,7 @@ export function ProductAnnouncementAlert() {
 ## Dark Colored Example
 
 ```tsx
-import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core";
+import { Alert, AlertDescription, AlertTitle } from "@kuzenbo/core/ui/alert";
 
 export function DarkSuccessAlert() {
   return (
@@ -124,7 +126,7 @@ export function DarkSuccessAlert() {
 ## Advanced Example
 
 ```tsx
-import { Button } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -135,7 +137,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/alert-dialog";
 
 export function DeleteProjectDialog() {
   return (

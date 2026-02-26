@@ -43,7 +43,7 @@ yarn add @kuzenbo/charts @kuzenbo/core @kuzenbo/theme recharts
 ```tsx
 "use client";
 
-import { LineChart } from "@kuzenbo/charts";
+import { LineChart } from "@kuzenbo/charts/ui/chart";
 
 const data = [
   { month: "Jan", revenue: 172000, target: 180000 },

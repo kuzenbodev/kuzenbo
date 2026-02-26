@@ -41,14 +41,14 @@ import {
   ItemSeparator,
   ItemTitle,
   itemVariants,
-  Button,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/item";
+import { Button } from "@kuzenbo/core/ui/button";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Item } from "@kuzenbo/core";
+import { Item } from "@kuzenbo/core/ui/item";
 
 export function BasicItemRow() {
   return (
@@ -72,7 +72,8 @@ export function BasicItemRow() {
 ```tsx
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Button, Item, ItemGroup } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Item, ItemGroup } from "@kuzenbo/core/ui/item";
 
 const products = [
   {

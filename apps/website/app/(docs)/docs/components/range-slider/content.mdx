@@ -29,13 +29,13 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 ```
 
 ## Basic usage
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function PriceRangeSlider() {
   return (
@@ -60,7 +60,7 @@ export function PriceRangeSlider() {
 
 import { useState } from "react";
 
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function ControlledRangeSlider() {
   const [range, setRange] = useState<[number, number]>([25, 75]);
@@ -84,7 +84,7 @@ export function ControlledRangeSlider() {
 ## Marks and range constraints
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 const marks = [
   { value: 0, label: "$0" },
@@ -122,7 +122,7 @@ Use `domain` and `scale` when your interaction bounds differ from your stored/ou
 - `scale`: display transform for thumb labels; callback tuple values remain normalized.
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function ThroughputRangeSlider() {
   return (
@@ -151,7 +151,7 @@ export function ThroughputRangeSlider() {
 `labelTransitionProps` allows tuning enter/exit motion for both thumb labels.
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function SmoothRangeLabelSlider() {
   return (
@@ -176,7 +176,7 @@ Range sliders submit two hidden inputs. With `name="budget"`, submitted keys are
 ```tsx
 "use client";
 
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function RangeSliderFormField() {
   return (
@@ -204,7 +204,7 @@ export function RangeSliderFormField() {
 Use visual variants to align range-slider ergonomics with surrounding surfaces while staying semantic-token driven.
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function CompactSuccessRangeSlider() {
   return (
@@ -223,7 +223,7 @@ export function CompactSuccessRangeSlider() {
 - `orientation="vertical"` is supported; parent height must be explicit.
 
 ```tsx
-import { RangeSlider } from "@kuzenbo/core";
+import { RangeSlider } from "@kuzenbo/core/ui/range-slider";
 
 export function VerticalRangeSlider() {
   return (

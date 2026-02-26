@@ -16,7 +16,7 @@ aliases:
 
 ## Overview
 
-`Collapsible` is a disclosure primitive built on Base UI `Collapsible.Root` and `Collapsible.Panel`.
+`Collapsible` is a disclosure primitive built on Base UI `Collapsible.Root` and `Collapsible.Content`.
 Use it for progressive disclosure where content is optional but contextually related to the trigger.
 
 This component is ideal for inline details, advanced filters, and optional sections inside forms.
@@ -34,7 +34,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/collapsible";
 ```
 
 ## Basic Usage
@@ -44,8 +44,8 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/collapsible";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 export function CollapsibleBasicExample() {
   return (
@@ -70,8 +70,8 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/collapsible";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 export function CollapsibleAdvancedExample() {
   const [open, setOpen] = useState(false);

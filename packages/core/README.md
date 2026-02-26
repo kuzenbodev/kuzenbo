@@ -41,7 +41,8 @@ yarn add @kuzenbo/core @kuzenbo/theme
 ```tsx
 import "@kuzenbo/theme/prebuilt/kuzenbo.css";
 
-import { Button, Card } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Card } from "@kuzenbo/core/ui/card";
 import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
 
 export function CoreQuickExample() {
@@ -66,7 +67,7 @@ export function CoreQuickExample() {
 Use `CopyButton` when users need command-style clipboard actions with status feedback (`idle`, `copying`, `copied`, `failed`) and an accessible live region.
 
 ```tsx
-import { CopyButton } from "@kuzenbo/core";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 
 export function InstallCommandCopy() {
   return (
@@ -80,7 +81,7 @@ export function InstallCommandCopy() {
 ## 🧱 Key Surface
 
 - Forms and input controls (`Input`, `Select`, `Checkbox`, `RadioGroup`, `Textarea`, `NumberField`)
-- Navigation and layout (`Container`, `Tabs`, `Breadcrumb`, `Sidebar`, `Menu`)
+- Navigation and layout (`Container`, `Tabs`, `Breadcrumb`, `Sidebar`, `DropdownMenu`)
 - Overlay and feedback (`Dialog`, `Drawer`, `Popover`, `Tooltip`, `Alert`, `Progress`)
 - Data and composition (`Table`, `Card`, `Badge`, `Typography`, `Timeline`, `Toolbar`)
 - Advanced interaction (`Autocomplete`, `Combobox`, `Command`, `Slider`, `RangeSlider`)

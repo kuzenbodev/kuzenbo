@@ -1,14 +1,12 @@
 import type { ChangeEvent } from "react";
 
-import {
-  Button,
-  ButtonGroup,
-  Input,
-  Select,
-  Slider,
-  Switch,
-  Typography,
-} from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+import { Input } from "@kuzenbo/core/ui/input";
+import { Select } from "@kuzenbo/core/ui/select";
+import { Slider } from "@kuzenbo/core/ui/slider";
+import { Switch } from "@kuzenbo/core/ui/switch";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 import type {
   PlaygroundControl,

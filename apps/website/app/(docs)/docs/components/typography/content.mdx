@@ -30,8 +30,8 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Code } from "@kuzenbo/core/ui/code";
 import {
-  Code,
   Typography,
   TypographyBlockquote,
   TypographyBody,
@@ -58,13 +58,13 @@ import {
   TypographyText,
   typographyTextVariants,
   TypographyUl,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/typography";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Typography } from "@kuzenbo/core";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 export function TypographyBasic() {
   return (
@@ -83,7 +83,8 @@ export function TypographyBasic() {
 ## Advanced Usage
 
 ```tsx
-import { Code, Typography } from "@kuzenbo/core";
+import { Code } from "@kuzenbo/core/ui/code";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 export function TypographyAdvanced() {
   return (

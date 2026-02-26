@@ -31,25 +31,25 @@ In almost all apps, keep `@kuzenbo/theme` installed alongside `@kuzenbo/code` an
 ## Import
 
 ```tsx
+import { CodeBlock } from "@kuzenbo/code/ui/code-block";
+import { CodeBlockToolbar } from "@kuzenbo/code/ui/code-block-toolbar";
+import { CodeDiffBlock } from "@kuzenbo/code/ui/code-diff-block";
+import { CodeLineHighlight } from "@kuzenbo/code/ui/code-line-highlight";
+import { CodePreview } from "@kuzenbo/code/ui/code-preview";
+import { CodeTabs } from "@kuzenbo/code/ui/code-tabs";
+import { CodeWindow } from "@kuzenbo/code/ui/code-window";
+import { FileTree } from "@kuzenbo/code/ui/file-tree";
+import { InlineCodeHighlight } from "@kuzenbo/code/ui/inline-code-highlight";
+import { InstallCommandSnippet } from "@kuzenbo/code/ui/install-command-snippet";
+import { PackageManagerTabs } from "@kuzenbo/code/ui/package-manager-tabs";
+import { Playground } from "@kuzenbo/code/ui/playground";
+import { TerminalBlock } from "@kuzenbo/code/ui/terminal-block";
+import { definePlaygroundControls } from "@kuzenbo/code/playground/playground-control-model";
+import { definePlaygroundPresets } from "@kuzenbo/code/playground/playground-preset-model";
 import {
-  CodeBlock,
-  CodeBlockToolbar,
-  CodeDiffBlock,
-  CodeLineHighlight,
-  CodePreview,
-  CodeTabs,
-  CodeWindow,
-  FileTree,
-  InlineCodeHighlight,
-  InstallCommandSnippet,
-  PackageManagerTabs,
-  Playground,
-  TerminalBlock,
-  definePlaygroundControls,
-  definePlaygroundPresets,
-  highlightCodeBlock,
+  highlightCode,
   highlightInlineCode,
-} from "@kuzenbo/code";
+} from "@kuzenbo/code/shiki/highlight-code";
 ```
 
 ## Component Surface
@@ -63,13 +63,11 @@ import {
 ## Display Example
 
 ```tsx
-import {
-  CodeBlock,
-  CodeBlockToolbar,
-  CodeWindow,
-  InlineCodeHighlight,
-} from "@kuzenbo/code";
-import { CopyButton } from "@kuzenbo/core";
+import { CodeBlock } from "@kuzenbo/code/ui/code-block";
+import { CodeBlockToolbar } from "@kuzenbo/code/ui/code-block-toolbar";
+import { CodeWindow } from "@kuzenbo/code/ui/code-window";
+import { InlineCodeHighlight } from "@kuzenbo/code/ui/inline-code-highlight";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 
 const sourceCode = `import { Button } from "@kuzenbo/core";
 
@@ -104,7 +102,8 @@ export function CodeDisplayExample() {
 ## Install Example
 
 ```tsx
-import { InstallCommandSnippet, PackageManagerTabs } from "@kuzenbo/code";
+import { InstallCommandSnippet } from "@kuzenbo/code/ui/install-command-snippet";
+import { PackageManagerTabs } from "@kuzenbo/code/ui/package-manager-tabs";
 
 export function InstallExample() {
   return (
@@ -126,7 +125,8 @@ export function InstallExample() {
 ## CodeTabs Example
 
 ```tsx
-import { CodeBlock, CodeTabs } from "@kuzenbo/code";
+import { CodeBlock } from "@kuzenbo/code/ui/code-block";
+import { CodeTabs } from "@kuzenbo/code/ui/code-tabs";
 
 const tabs = [
   {
@@ -165,7 +165,9 @@ export function CodeTabsExample() {
 ## Review Example
 
 ```tsx
-import { CodeDiffBlock, CodeLineHighlight, TerminalBlock } from "@kuzenbo/code";
+import { CodeDiffBlock } from "@kuzenbo/code/ui/code-diff-block";
+import { CodeLineHighlight } from "@kuzenbo/code/ui/code-line-highlight";
+import { TerminalBlock } from "@kuzenbo/code/ui/terminal-block";
 
 const before = `export const status = "draft";`;
 const after = `export const status = "published";`;
@@ -197,12 +199,10 @@ export function ReviewExample() {
 ```tsx
 "use client";
 
-import {
-  Playground,
-  definePlaygroundControls,
-  definePlaygroundPresets,
-} from "@kuzenbo/code";
-import { Button } from "@kuzenbo/core";
+import { Playground } from "@kuzenbo/code/ui/playground";
+import { definePlaygroundControls } from "@kuzenbo/code/playground/playground-control-model";
+import { definePlaygroundPresets } from "@kuzenbo/code/playground/playground-preset-model";
+import { Button } from "@kuzenbo/core/ui/button";
 
 const controls = definePlaygroundControls([
   {
@@ -255,7 +255,9 @@ export function Demo() {
 ## Explorer Example
 
 ```tsx
-import { CodeBlock, CodePreview, FileTree } from "@kuzenbo/code";
+import { CodeBlock } from "@kuzenbo/code/ui/code-block";
+import { CodePreview } from "@kuzenbo/code/ui/code-preview";
+import { FileTree } from "@kuzenbo/code/ui/file-tree";
 
 const files = [
   {
@@ -293,7 +295,7 @@ export function ExplorerExample() {
 
 ## Shiki Utilities
 
-- `highlightCodeBlock`: server-side block highlighting for docs and generated pages.
+- `highlightCode`: server-side block highlighting for docs and generated pages.
 - `highlightInlineCode`: inline token highlighting for compact code references.
 - `highlightCodeToHtml`: direct HTML generation when a raw highlighted string is required.
 

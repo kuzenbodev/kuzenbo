@@ -35,14 +35,15 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-  Button,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/tooltip";
+import { Button } from "@kuzenbo/core/ui/button";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Button, Tooltip } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Tooltip } from "@kuzenbo/core/ui/tooltip";
 
 export function TooltipBasicExample() {
   return (
@@ -59,7 +60,8 @@ export function TooltipBasicExample() {
 ## Advanced Usage
 
 ```tsx
-import { Button, Tooltip, TooltipProvider } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Tooltip, TooltipProvider } from "@kuzenbo/core/ui/tooltip";
 
 export function TooltipAdvancedExample() {
   return (

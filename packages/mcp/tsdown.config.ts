@@ -1,7 +1,13 @@
+import type { TsdownInputOption } from "tsdown";
+
 import { defineConfig } from "tsdown";
 
+const entries: TsdownInputOption = {
+  index: "src/index.ts",
+};
+
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: entries,
   format: ["esm"],
   dts: {
     sourcemap: true,
@@ -13,5 +19,9 @@ export default defineConfig({
   attw: {
     profile: "esm-only",
     ignoreRules: ["no-resolution"],
+  },
+  exports: {
+    devExports: true,
+    packageJson: true,
   },
 });

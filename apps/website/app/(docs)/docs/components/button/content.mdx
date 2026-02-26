@@ -34,14 +34,13 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Button, buttonVariants } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   ButtonGroup,
   ButtonGroupSeparator,
   ButtonGroupText,
   buttonGroupVariants,
-  buttonVariants,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/button-group";
 ```
 
 ## Playground
@@ -54,7 +53,7 @@ Presets help you start from common production scenarios (`Default`, `Danger`, `L
 ## Basic Usage
 
 ```tsx
-import { Button } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
 
 export function ButtonBasic() {
   return (
@@ -74,12 +73,12 @@ export function ButtonBasic() {
 
 import { useState } from "react";
 
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   ButtonGroup,
   ButtonGroupSeparator,
   ButtonGroupText,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/button-group";
 
 export function ButtonAdvanced() {
   const [saving, setSaving] = useState(false);

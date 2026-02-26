@@ -42,7 +42,7 @@ yarn add @kuzenbo/notifications @kuzenbo/core @kuzenbo/theme
 ```tsx
 "use client";
 
-import { ToastProvider, useToast } from "@kuzenbo/notifications";
+import { ToastProvider, useToast } from "@kuzenbo/notifications/ui/toast";
 
 function SaveButton() {
   const toast = useToast();

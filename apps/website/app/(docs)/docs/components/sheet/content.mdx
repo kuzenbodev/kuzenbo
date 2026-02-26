@@ -29,8 +29,8 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   Sheet,
   SheetClose,
   SheetContent,
@@ -41,13 +41,14 @@ import {
   SheetPortal,
   SheetTitle,
   SheetTrigger,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/sheet";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Button, Sheet } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Sheet } from "@kuzenbo/core/ui/sheet";
 
 export function SheetBasic() {
   return (
@@ -76,7 +77,8 @@ export function SheetBasic() {
 ## Advanced Example
 
 ```tsx
-import { Button, Sheet } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Sheet } from "@kuzenbo/core/ui/sheet";
 
 export function SheetAdvanced() {
   return (

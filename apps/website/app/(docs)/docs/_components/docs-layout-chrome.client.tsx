@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 
-import { Container } from "@kuzenbo/core";
+import { Container } from "@kuzenbo/core/ui/container";
 import { useSelectedLayoutSegments } from "next/navigation";
 
 import { docsSectionEntries } from "@/lib/docs/docs-manifest";

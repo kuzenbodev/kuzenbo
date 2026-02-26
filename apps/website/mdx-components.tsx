@@ -5,8 +5,8 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/tabs";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 import { MdxPreAdapter } from "@/lib/docs/mdx-pre-adapter";
 

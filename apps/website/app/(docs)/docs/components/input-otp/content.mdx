@@ -40,7 +40,7 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/input-otp";
 ```
 
 ## Basic usage
@@ -48,7 +48,7 @@ import {
 ```tsx
 "use client";
 
-import { InputOTP } from "@kuzenbo/core";
+import { InputOTP } from "@kuzenbo/core/ui/input-otp";
 
 export function OtpSixDigits() {
   return (
@@ -73,7 +73,7 @@ export function OtpSixDigits() {
 
 import { useState } from "react";
 
-import { InputOTP } from "@kuzenbo/core";
+import { InputOTP } from "@kuzenbo/core/ui/input-otp";
 
 export function ControlledOtp() {
   const [value, setValue] = useState("");

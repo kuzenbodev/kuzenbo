@@ -1,6 +1,6 @@
 "use client";
 
-import { CopyButton } from "@kuzenbo/core";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 import { cn } from "tailwind-variants";
 
 import type { PlaygroundGeneratedCodeFile } from "../../utils/codegen/playground-codegen-model";

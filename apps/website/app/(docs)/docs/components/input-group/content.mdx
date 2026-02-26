@@ -41,13 +41,13 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/input-group";
 ```
 
 ## Basic usage
 
 ```tsx
-import { InputGroup } from "@kuzenbo/core";
+import { InputGroup } from "@kuzenbo/core/ui/input-group";
 
 export function WebsiteField() {
   return (
@@ -64,7 +64,7 @@ export function WebsiteField() {
 ## Advanced usage: addons, action button, and textarea mode
 
 ```tsx
-import { InputGroup } from "@kuzenbo/core";
+import { InputGroup } from "@kuzenbo/core/ui/input-group";
 
 export function StructuredFields() {
   return (
@@ -118,7 +118,7 @@ Set `size` on the root group to drive slot defaults.
   - `xl` -> default button size `sm`
 
 ```tsx
-import { InputGroup } from "@kuzenbo/core";
+import { InputGroup } from "@kuzenbo/core/ui/input-group";
 
 export function SizedGroups() {
   return (

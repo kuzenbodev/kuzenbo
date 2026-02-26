@@ -24,7 +24,8 @@ The contract is simple: keep names, roles, and focus flow explicit at the call s
 Use `Field` slots so labels, descriptions, and errors stay structurally linked.
 
 ```tsx
-import { Field, Input } from "@kuzenbo/core";
+import { Field } from "@kuzenbo/core/ui/field";
+import { Input } from "@kuzenbo/core/ui/input";
 
 export function EmailField({ invalid = false }: { invalid?: boolean }) {
   return (
@@ -81,7 +82,8 @@ At minimum, pair interaction tests with keyboard expectations:
 import { describe, expect, it } from "bun:test";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Dialog, Button } from "@kuzenbo/core";
+import { Dialog } from "@kuzenbo/core/ui/dialog";
+import { Button } from "@kuzenbo/core/ui/button";
 
 describe("dialog accessibility", () => {
   it("moves focus into the dialog and returns it to trigger on close", async () => {

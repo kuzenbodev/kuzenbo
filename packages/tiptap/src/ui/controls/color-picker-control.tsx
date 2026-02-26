@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Popover } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Popover } from "@kuzenbo/core/ui/popover";
 import { useMemo } from "react";
 
 import { TIPTAP_CONTROL_REQUIREMENTS } from "../../editor/capabilities";

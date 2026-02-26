@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/styles",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Optional global baseline styles for Kuzenbo apps.",
   "keywords": [
@@ -30,12 +30,14 @@
     "*.css"
   ],
   "exports": {
+    "./styles.css": "./src/recommended.css",
     "./recommended.css": "./src/recommended.css",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
+      "./styles.css": "./dist/recommended.css",
       "./recommended.css": "./dist/recommended.css",
       "./package.json": "./package.json"
     }

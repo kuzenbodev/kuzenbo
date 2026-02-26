@@ -37,14 +37,15 @@ import {
   FieldLabel,
   FieldRoot,
   FieldValidity,
-  Input,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/field";
+import { Input } from "@kuzenbo/core/ui/input";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Field, Input } from "@kuzenbo/core";
+import { Field } from "@kuzenbo/core/ui/field";
+import { Input } from "@kuzenbo/core/ui/input";
 
 export function EmailField({ invalid = false }: { invalid?: boolean }) {
   return (
@@ -72,7 +73,8 @@ export function EmailField({ invalid = false }: { invalid?: boolean }) {
 ## Advanced Usage
 
 ```tsx
-import { Field, NumberField } from "@kuzenbo/core";
+import { Field } from "@kuzenbo/core/ui/field";
+import { NumberField } from "@kuzenbo/core/ui/number-field";
 
 export function QuantityField() {
   return (

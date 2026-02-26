@@ -31,7 +31,7 @@ Kuzenbo components can be rendered in server trees, but any interactive behavior
 
 ```tsx
 // app/dashboard/page.tsx (server component)
-import { Card } from "@kuzenbo/core";
+import { Card } from "@kuzenbo/core/ui/card";
 
 import { DashboardClient } from "./dashboard-client";
 
@@ -59,7 +59,8 @@ export default async function DashboardPage() {
 
 import { useState } from "react";
 
-import { Button, Tabs } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Tabs } from "@kuzenbo/core/ui/tabs";
 
 export function DashboardClient({
   initialMetrics,

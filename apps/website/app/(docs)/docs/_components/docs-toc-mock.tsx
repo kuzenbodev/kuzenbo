@@ -1,4 +1,4 @@
-import { Typography } from "@kuzenbo/core";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 const TOC_MOCK_ITEMS = [
   "Overview",

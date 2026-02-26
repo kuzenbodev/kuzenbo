@@ -31,7 +31,7 @@ It tracks whether a session is active and how many times `start()` has been call
 ## Import
 
 ```tsx
-import { useAiSession } from "@kuzenbo/ai";
+import { useAiSession } from "@kuzenbo/ai/hooks/use-ai-session";
 ```
 
 ## Example: start and reset session state
@@ -39,7 +39,7 @@ import { useAiSession } from "@kuzenbo/ai";
 ```tsx
 "use client";
 
-import { useAiSession } from "@kuzenbo/ai";
+import { useAiSession } from "@kuzenbo/ai/hooks/use-ai-session";
 
 export function AiSessionControls() {
   const session = useAiSession();

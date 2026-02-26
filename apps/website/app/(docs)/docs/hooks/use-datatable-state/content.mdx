@@ -31,7 +31,7 @@ It keeps the current page number and provides a setter that clamps values to `>=
 ## Import
 
 ```tsx
-import { useDatatableState } from "@kuzenbo/datatable";
+import { useDatatableState } from "@kuzenbo/datatable/hooks/use-datatable-state";
 ```
 
 ## Example: previous/next pager
@@ -39,7 +39,7 @@ import { useDatatableState } from "@kuzenbo/datatable";
 ```tsx
 "use client";
 
-import { useDatatableState } from "@kuzenbo/datatable";
+import { useDatatableState } from "@kuzenbo/datatable/hooks/use-datatable-state";
 
 export function TablePager() {
   const { page, setPage } = useDatatableState();

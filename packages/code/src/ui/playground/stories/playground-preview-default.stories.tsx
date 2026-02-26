@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Typography } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import { cn } from "tailwind-variants";
 
 import { PlaygroundPreview } from "../playground-preview";

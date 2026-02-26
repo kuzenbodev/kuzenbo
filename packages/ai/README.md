@@ -42,7 +42,8 @@ yarn add @kuzenbo/ai @kuzenbo/core @kuzenbo/theme
 ```tsx
 "use client";
 
-import { AiWidget, useAiSession } from "@kuzenbo/ai";
+import { AiWidget } from "@kuzenbo/ai/ui/ai-widget";
+import { useAiSession } from "@kuzenbo/ai/hooks/use-ai-session";
 
 export function AiQuickExample() {
   const session = useAiSession();

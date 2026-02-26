@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@kuzenbo/core";
+import { Card } from "@kuzenbo/core/ui/card";
 import { useMemo, type ReactElement } from "react";
 
 import type {

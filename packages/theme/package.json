@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/theme",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Theme tokens, runtime, and prebuilt themes for Kuzenbo.",
   "keywords": [
@@ -29,30 +29,20 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
+    ".": "./src/index.ts",
+    "./package.json": "./package.json",
     "./default.css": "./src/default.css",
-    "./prebuilt/*.css": "./src/prebuilt/*.css",
-    "./package.json": "./package.json"
+    "./prebuilt/*.css": "./src/prebuilt/*.css"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.js",
-        "default": "./dist/index.js"
-      },
+      ".": "./dist/index.js",
+      "./package.json": "./package.json",
       "./default.css": "./dist/default.css",
-      "./prebuilt/*.css": "./dist/prebuilt/*.css",
-      "./package.json": "./package.json"
+      "./prebuilt/*.css": "./dist/prebuilt/*.css"
     },
     "main": "./dist/index.js",
     "module": "./dist/index.js",

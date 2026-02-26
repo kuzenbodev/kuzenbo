@@ -30,7 +30,7 @@ ogImageAlt: "AI Prompting documentation"
 Use `buildAiPrompt` when prompt text is assembled from user input or dynamic context. Keeping prompt assembly in one utility makes testing straightforward and prevents ad hoc string templates from drifting across screens.
 
 ```tsx
-import { buildAiPrompt } from "@kuzenbo/ai";
+import { buildAiPrompt } from "@kuzenbo/ai/utils/build-ai-prompt";
 
 const prompt = buildAiPrompt({
   instruction: "Summarize release risk in 3 bullets.",
@@ -45,8 +45,10 @@ const prompt = buildAiPrompt({
 
 import { useMemo } from "react";
 
-import { AiWidget, buildAiPrompt, useAiSession } from "@kuzenbo/ai";
-import { Button } from "@kuzenbo/core";
+import { AiWidget } from "@kuzenbo/ai/ui/ai-widget";
+import { buildAiPrompt } from "@kuzenbo/ai/utils/build-ai-prompt";
+import { useAiSession } from "@kuzenbo/ai/hooks/use-ai-session";
+import { Button } from "@kuzenbo/core/ui/button";
 
 export function ReleaseAssistant({ scope }: { scope: string }) {
   const session = useAiSession();

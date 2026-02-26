@@ -38,7 +38,7 @@ import {
   CalendarDayButton,
   CalendarRoot,
   CalendarWeekNumber,
-} from "@kuzenbo/date";
+} from "@kuzenbo/date/ui/calendar";
 ```
 
 ## Basic usage
@@ -46,7 +46,7 @@ import {
 Display-only calendar (no day buttons):
 
 ```tsx
-import { Calendar } from "@kuzenbo/date";
+import { Calendar } from "@kuzenbo/date/ui/calendar";
 
 export function BillingMonthPreview() {
   return (
@@ -59,7 +59,7 @@ Single-date selection mode:
 
 ```tsx
 import { useState } from "react";
-import { Calendar } from "@kuzenbo/date";
+import { Calendar } from "@kuzenbo/date/ui/calendar";
 
 export function SingleDatePicker() {
   const [selected, setSelected] = useState<Date | undefined>(new Date());
@@ -82,7 +82,7 @@ import type { DateRange } from "react-day-picker";
 import { useState } from "react";
 import { arSA } from "react-day-picker/locale";
 
-import { Calendar } from "@kuzenbo/date";
+import { Calendar } from "@kuzenbo/date/ui/calendar";
 
 export function ReportingCalendar() {
   const [range, setRange] = useState<DateRange | undefined>({

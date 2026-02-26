@@ -45,7 +45,7 @@ yarn add @kuzenbo/date @kuzenbo/core @kuzenbo/theme react-day-picker
 
 import { useState } from "react";
 
-import { Calendar } from "@kuzenbo/date";
+import { Calendar } from "@kuzenbo/date/ui/calendar";
 
 export function DateQuickExample() {
   const [selected, setSelected] = useState<Date | undefined>(new Date());

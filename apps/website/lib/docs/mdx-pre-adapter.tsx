@@ -1,10 +1,10 @@
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 
+import { highlightCodeToHtml } from "@kuzenbo/code/shiki/highlight-code";
 import {
-  highlightCodeToHtml,
   resolveShikiLanguage,
   SHIKI_FALLBACK_LANGUAGE,
-} from "@kuzenbo/code";
+} from "@kuzenbo/code/shiki/shiki-language-map";
 import { Children, isValidElement } from "react";
 
 import { docsShikiThemeStyles } from "./mdx-shiki-theme-styles";

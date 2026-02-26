@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-import { CopyButton } from "@kuzenbo/core";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 import { cn, tv } from "tailwind-variants";
 
 const codeBlockToolbarVariants = tv({

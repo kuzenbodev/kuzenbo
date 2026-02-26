@@ -1,6 +1,6 @@
 "use client";
 
-import { useIsomorphicEffect } from "@kuzenbo/hooks";
+import { useIsomorphicEffect } from "@kuzenbo/hooks/use-isomorphic-effect";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,

@@ -34,11 +34,9 @@ This keeps the package publishable today while leaving room for iterative expans
 "use client";
 
 import { useMemo } from "react";
-import {
-  createMockColumns,
-  MockDataTable,
-  useDatatableState,
-} from "@kuzenbo/datatable";
+import { createMockColumns } from "@kuzenbo/datatable/utils/create-mock-columns";
+import { MockDataTable } from "@kuzenbo/datatable/ui/mock-data-table";
+import { useDatatableState } from "@kuzenbo/datatable/hooks/use-datatable-state";
 
 interface Row {
   id: string;

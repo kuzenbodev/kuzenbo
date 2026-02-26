@@ -31,13 +31,17 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+import { Checkbox } from "@kuzenbo/core/ui/checkbox";
+import { CheckboxGroup } from "@kuzenbo/core/ui/checkbox-group";
+import { Label } from "@kuzenbo/core/ui/label";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+import { Checkbox } from "@kuzenbo/core/ui/checkbox";
+import { CheckboxGroup } from "@kuzenbo/core/ui/checkbox-group";
+import { Label } from "@kuzenbo/core/ui/label";
 
 export function NotificationChannels() {
   return (
@@ -63,7 +67,9 @@ export function NotificationChannels() {
 
 import { useState } from "react";
 
-import { Checkbox, CheckboxGroup, Label } from "@kuzenbo/core";
+import { Checkbox } from "@kuzenbo/core/ui/checkbox";
+import { CheckboxGroup } from "@kuzenbo/core/ui/checkbox-group";
+import { Label } from "@kuzenbo/core/ui/label";
 
 export function ControlledPreferences() {
   const [selected, setSelected] = useState<string[]>(["security"]);

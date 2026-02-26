@@ -41,7 +41,8 @@ bun add -d @testing-library/react @testing-library/user-event @testing-library/j
 import { describe, expect, it } from "bun:test";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Button, Dialog } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Dialog } from "@kuzenbo/core/ui/dialog";
 
 describe("settings dialog", () => {
   it("opens and closes through user actions", async () => {

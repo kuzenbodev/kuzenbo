@@ -2,7 +2,8 @@
 
 import type { Route } from "next";
 
-import { Button, Typography } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
 
 export const HeroSection = () => (

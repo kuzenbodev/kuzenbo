@@ -37,8 +37,8 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Label } from "@kuzenbo/core/ui/label";
 import {
-  Label,
   NumberField,
   NumberFieldDecrement,
   NumberFieldGroup,
@@ -46,13 +46,14 @@ import {
   NumberFieldInput,
   NumberFieldScrubArea,
   NumberFieldScrubAreaCursor,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/number-field";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Label, NumberField } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { NumberField } from "@kuzenbo/core/ui/number-field";
 
 export function QuantityField() {
   const id = "order-quantity";
@@ -78,7 +79,8 @@ export function QuantityField() {
 
 import { useCallback, useState } from "react";
 
-import { Label, NumberField } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { NumberField } from "@kuzenbo/core/ui/number-field";
 
 export function BudgetField() {
   const id = "monthly-budget";

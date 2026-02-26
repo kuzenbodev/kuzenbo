@@ -3,8 +3,7 @@ import type { TsdownInputOption } from "tsdown";
 import { defineConfig } from "tsdown";
 
 const entries: TsdownInputOption = {
-  index: "src/index.ts",
-  toast: "src/ui/toast/toast.tsx",
+  "ui/toast": "src/ui/toast/toast.tsx",
 };
 
 export default defineConfig({
@@ -20,5 +19,22 @@ export default defineConfig({
   attw: {
     profile: "esm-only",
     ignoreRules: ["no-resolution"],
+  },
+  exports: {
+    devExports: true,
+    packageJson: true,
+    customExports(currentExports) {
+      const rootExport = currentExports["."];
+      if (!rootExport) {
+        return currentExports;
+      }
+
+      const exportsWithoutRoot = { ...currentExports };
+      delete exportsWithoutRoot["."];
+      return {
+        ...exportsWithoutRoot,
+        "./ui/toast": rootExport,
+      };
+    },
   },
 });

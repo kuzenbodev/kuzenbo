@@ -31,7 +31,7 @@ It returns the chart height in pixels from chart state.
 ## Import
 
 ```tsx
-import { useChartHeight } from "@kuzenbo/charts";
+import { useChartHeight } from "@kuzenbo/charts/ui/chart";
 ```
 
 ## Example: compact mode when the chart is short
@@ -39,7 +39,7 @@ import { useChartHeight } from "@kuzenbo/charts";
 ```tsx
 "use client";
 
-import { useChartHeight } from "@kuzenbo/charts";
+import { useChartHeight } from "@kuzenbo/charts/ui/chart";
 
 export function HeightAwareLegendMode() {
   const chartHeight = useChartHeight();

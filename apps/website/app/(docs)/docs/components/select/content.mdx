@@ -41,13 +41,13 @@ import {
   SelectTrigger,
   SelectValue,
   type SelectOption,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/select";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Select } from "@kuzenbo/core";
+import { Select } from "@kuzenbo/core/ui/select";
 
 export function LocaleSelect() {
   return (
@@ -69,7 +69,11 @@ export function LocaleSelect() {
 ## Advanced Example
 
 ```tsx
-import { Select, SelectSeparator, type SelectOption } from "@kuzenbo/core";
+import {
+  Select,
+  SelectSeparator,
+  type SelectOption,
+} from "@kuzenbo/core/ui/select";
 import { useState } from "react";
 
 const teamOptions: SelectOption<string>[] = [

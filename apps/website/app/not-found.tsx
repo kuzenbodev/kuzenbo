@@ -1,4 +1,5 @@
-import { Container, Typography } from "@kuzenbo/core";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 import { createPageMetadata } from "@/lib/seo/metadata";
 

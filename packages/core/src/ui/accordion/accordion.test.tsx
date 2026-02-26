@@ -210,7 +210,7 @@ describe("Accordion", () => {
     );
 
     expect(Accordion.Header).toBeDefined();
-    expect(Accordion.Panel).toBeDefined();
+    expect(Accordion.Content).toBeDefined();
     expect(root?.className.includes("accordion-root-from-fn")).toBe(true);
     expect(item?.className.includes("accordion-item-from-fn")).toBe(true);
     expect(header?.className.includes("accordion-header-from-fn")).toBe(true);

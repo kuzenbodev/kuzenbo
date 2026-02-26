@@ -205,9 +205,9 @@ describe("Collapsible", () => {
         <Collapsible.Trigger className={TRIGGER_CLASS_NAME}>
           Toggle
         </Collapsible.Trigger>
-        <Collapsible.Panel className={CONTENT_CLASS_NAME} keepMounted>
+        <Collapsible.Content className={CONTENT_CLASS_NAME} keepMounted>
           Callback content
-        </Collapsible.Panel>
+        </Collapsible.Content>
       </Collapsible>
     );
 
@@ -226,6 +226,6 @@ describe("Collapsible", () => {
     expect(content?.className.includes("collapsible-content-from-fn")).toBe(
       true
     );
-    expect(Collapsible.Panel).toBeDefined();
+    expect(Collapsible.Content).toBeDefined();
   });
 });

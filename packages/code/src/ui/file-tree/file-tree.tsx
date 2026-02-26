@@ -2,7 +2,7 @@
 
 import type { CSSProperties } from "react";
 
-import { Button } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
 import { Tree } from "react-arborist";
 import { cn, tv } from "tailwind-variants";
 

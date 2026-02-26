@@ -28,8 +28,8 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   PreviewCard,
   PreviewCardArrow,
   PreviewCardBackdrop,
@@ -40,13 +40,13 @@ import {
   PreviewCardTrigger,
   PreviewCardViewport,
   createPreviewCardHandle,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/preview-card";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { PreviewCard } from "@kuzenbo/core";
+import { PreviewCard } from "@kuzenbo/core/ui/preview-card";
 
 export function TeamPreview() {
   return (
@@ -61,7 +61,8 @@ export function TeamPreview() {
 ## Advanced Usage
 
 ```tsx
-import { Button, PreviewCard } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { PreviewCard } from "@kuzenbo/core/ui/preview-card";
 
 export function ProfilePreviewCard() {
   return (

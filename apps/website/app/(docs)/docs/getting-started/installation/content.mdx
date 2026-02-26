@@ -12,7 +12,12 @@ ogImage: "/docs-og/getting-started/installation"
 ogImageAlt: "Kuzenbo installation guide"
 ---
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@kuzenbo/core";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@kuzenbo/core/ui/tabs";
 
 ## Requirements
 
@@ -102,7 +107,8 @@ The script runs before React hydrates so dark mode applies on first paint withou
 Try rendering a button and card:
 
 ```tsx
-import { Button, Card } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Card } from "@kuzenbo/core/ui/card";
 
 export function InstallSmokeTest() {
   return (

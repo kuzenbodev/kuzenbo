@@ -36,13 +36,13 @@ import {
   DonutChart,
   type DonutCenterLabelContext,
   type DonutChartProps,
-} from "@kuzenbo/charts";
+} from "@kuzenbo/charts/ui/chart";
 ```
 
 ## Basic Example
 
 ```tsx
-import { DonutChart } from "@kuzenbo/charts";
+import { DonutChart } from "@kuzenbo/charts/ui/chart";
 
 const data = [
   { name: "Direct", value: 430 },
@@ -74,7 +74,10 @@ export function DonutChartBasic() {
 ## Advanced Example
 
 ```tsx
-import { DonutChart, type DonutCenterLabelContext } from "@kuzenbo/charts";
+import {
+  DonutChart,
+  type DonutCenterLabelContext,
+} from "@kuzenbo/charts/ui/chart";
 
 const data = [
   { name: "Direct", value: 430 },

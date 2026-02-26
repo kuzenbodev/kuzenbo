@@ -2,7 +2,8 @@
 
 import type { ReactNode } from "react";
 
-import { Button, ButtonGroup } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "tailwind-variants";
 

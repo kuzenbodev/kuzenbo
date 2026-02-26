@@ -37,19 +37,21 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Input } from "@kuzenbo/core/ui/input";
 import {
-  Input,
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
+} from "@kuzenbo/core/ui/input-group";
+import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/input-otp";
 ```
 
 ## Global Kuzenbo Provider
@@ -99,7 +101,8 @@ Use this pattern in docs/playgrounds to verify end-to-end density switching with
 
 import { useState } from "react";
 
-import { Button, Input } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Input } from "@kuzenbo/core/ui/input";
 import { KuzenboProvider, type UISize } from "@kuzenbo/core/provider";
 import { ThemeProvider } from "@kuzenbo/theme";
 
@@ -139,7 +142,7 @@ export function GlobalSizePlayground() {
 ## Basic Example
 
 ```tsx
-import { Input } from "@kuzenbo/core";
+import { Input } from "@kuzenbo/core/ui/input";
 
 export function EmailField() {
   return (
@@ -156,7 +159,8 @@ export function EmailField() {
 ```tsx
 "use client";
 
-import { InputGroup, InputOTP } from "@kuzenbo/core";
+import { InputGroup } from "@kuzenbo/core/ui/input-group";
+import { InputOTP } from "@kuzenbo/core/ui/input-otp";
 
 export function CompositeInputExamples() {
   return (
@@ -210,7 +214,8 @@ Precedence rule for grouped controls:
 Compact-control exception: when mixing `Input` with `Checkbox`/`RadioGroup.Item`/`Switch`, do not force compact controls to input heights. Keep compact controls on their own visual + hit-target scale.
 
 ```tsx
-import { Input, InputGroup } from "@kuzenbo/core";
+import { Input } from "@kuzenbo/core/ui/input";
+import { InputGroup } from "@kuzenbo/core/ui/input-group";
 
 export function InputSizes() {
   return (

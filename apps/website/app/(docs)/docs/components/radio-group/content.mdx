@@ -30,13 +30,15 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Label, RadioGroup, RadioGroupItem } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { RadioGroup, RadioGroupItem } from "@kuzenbo/core/ui/radio-group";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Label, RadioGroup } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { RadioGroup } from "@kuzenbo/core/ui/radio-group";
 
 export function RadioGroupBasicExample() {
   return (
@@ -59,7 +61,8 @@ export function RadioGroupBasicExample() {
 ```tsx
 import { useState } from "react";
 
-import { Label, RadioGroup } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { RadioGroup } from "@kuzenbo/core/ui/radio-group";
 
 export function RadioGroupAdvancedExample() {
   const [value, setValue] = useState("weekly");

@@ -29,7 +29,7 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 ```
 
 ## Basic usage
@@ -39,7 +39,7 @@ import { Slider } from "@kuzenbo/core";
 
 import { useState } from "react";
 
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 export function VolumeSlider() {
   const [volume, setVolume] = useState(42);
@@ -63,7 +63,7 @@ export function VolumeSlider() {
 ## Marks and thumb labels
 
 ```tsx
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 const marks = [
   { value: 0, label: "0%" },
@@ -99,7 +99,7 @@ Use these props together when your storage value range and displayed value range
 - `scale`: display transform for labels; callback values remain raw/normalized.
 
 ```tsx
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 export function ThroughputSlider() {
   return (
@@ -129,7 +129,7 @@ export function ThroughputSlider() {
 `labelTransitionProps` lets you tune thumb-label enter/exit motion without replacing the default label slot.
 
 ```tsx
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 export function SmoothLabelSlider() {
   return (
@@ -155,7 +155,7 @@ Single sliders submit one hidden input using the same `name`. Submitted values a
 ```tsx
 "use client";
 
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 export function SliderFormField() {
   return (
@@ -183,7 +183,7 @@ export function SliderFormField() {
 Use visual variants to adapt slider ergonomics while keeping semantic token styling.
 
 ```tsx
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 export function CompactSuccessSlider() {
   return (
@@ -203,7 +203,7 @@ export function CompactSuccessSlider() {
 - `orientation="vertical"` is fully supported; set an explicit parent height.
 
 ```tsx
-import { Slider } from "@kuzenbo/core";
+import { Slider } from "@kuzenbo/core/ui/slider";
 
 export function VerticalSlider() {
   return (

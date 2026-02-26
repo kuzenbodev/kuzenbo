@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Container,
-  Typography,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/card";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 const features = [
   {

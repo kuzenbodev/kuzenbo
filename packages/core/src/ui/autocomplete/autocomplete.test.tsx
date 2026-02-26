@@ -3,8 +3,7 @@ import { act, cleanup, render, screen } from "@testing-library/react";
 import createUserEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import * as Core from "../../index";
-import { Autocomplete } from "./autocomplete";
+import { Autocomplete, useFilteredItems } from "./autocomplete";
 
 const items = ["Apple", "Banana", "Cherry"];
 function triggerClassName() {
@@ -161,8 +160,8 @@ describe("Autocomplete", () => {
     expect(popup?.className.includes("rounded-md")).toBe(true);
   });
 
-  it("exports useFilteredItems from @kuzenbo/core surface", () => {
-    expect(typeof Core.useFilteredItems).toBe("function");
+  it("exports useFilteredItems from @kuzenbo/core/ui/autocomplete surface", () => {
+    expect(typeof useFilteredItems).toBe("function");
   });
 
   it("uses md as the default input size token", () => {

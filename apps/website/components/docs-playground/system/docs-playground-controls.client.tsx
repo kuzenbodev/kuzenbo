@@ -1,6 +1,10 @@
 "use client";
 
-import { Button, ButtonGroup, Input, Switch, Typography } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+import { Input } from "@kuzenbo/core/ui/input";
+import { Switch } from "@kuzenbo/core/ui/switch";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import { type ChangeEvent, type MouseEvent, useCallback } from "react";
 import { tv } from "tailwind-variants";
 

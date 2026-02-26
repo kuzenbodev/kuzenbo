@@ -13,7 +13,7 @@ Developer-experience primitives for code blocks, docs, and playground-style UI.
 - 🪟 Visual shells (`CodeWindow`, `CodePreview`)
 - 🧪 Review tools (`CodeDiffBlock`, `CodeLineHighlight`, `TerminalBlock`, `FileTree`)
 - 🎛️ Playground system (`Playground.Root`, `Playground.Controls`, `Playground.PresetBar`, `Playground.Code`)
-- 🌈 Shiki server utilities (`highlightCodeBlock`, `highlightInlineCode`, `highlightCodeToHtml`)
+- 🌈 Shiki server utilities (`highlightCode`, `highlightInlineCode`, `highlightCodeToHtml`)
 
 ## 📦 Install (When Available)
 
@@ -53,8 +53,9 @@ yarn add @kuzenbo/code @kuzenbo/core @kuzenbo/theme
 ## ⚡ Quick Example
 
 ```tsx
-import { CodeBlock, CodeBlockToolbar } from "@kuzenbo/code";
-import { CopyButton } from "@kuzenbo/core";
+import { CodeBlock } from "@kuzenbo/code/ui/code-block";
+import { CodeBlockToolbar } from "@kuzenbo/code/ui/code-block-toolbar";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 
 const source = `export const ready = true;`;
 
@@ -80,8 +81,9 @@ export function CodeQuickExample() {
 ```tsx
 "use client";
 
-import { Playground, definePlaygroundControls } from "@kuzenbo/code";
-import { Button } from "@kuzenbo/core";
+import { Playground } from "@kuzenbo/code/ui/playground";
+import { definePlaygroundControls } from "@kuzenbo/code/playground/playground-control-model";
+import { Button } from "@kuzenbo/core/ui/button";
 
 const controls = definePlaygroundControls([
   {
@@ -121,7 +123,7 @@ export function Demo() {
 This package exposes only the current canonical API surface:
 
 - ✅ `CodeBlock`, `InstallCommandSnippet`, `CodePreview`, `Playground.*`
-- ✅ Shiki utilities (`highlightCodeBlock`, `highlightInlineCode`, `highlightCodeToHtml`)
+- ✅ Shiki utilities (`highlightCode`, `highlightInlineCode`, `highlightCodeToHtml`)
 
 ## 📚 Docs And Related Routes
 

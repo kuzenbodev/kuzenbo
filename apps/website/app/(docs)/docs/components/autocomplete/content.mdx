@@ -41,13 +41,13 @@ import {
   AutocompleteItem,
   AutocompleteList,
   AutocompleteStatus,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/autocomplete";
 ```
 
 ## Basic usage
 
 ```tsx
-import { Autocomplete } from "@kuzenbo/core";
+import { Autocomplete } from "@kuzenbo/core/ui/autocomplete";
 
 const frameworks = ["Next.js", "Nuxt", "Remix", "SvelteKit"];
 
@@ -76,7 +76,7 @@ This pattern keeps filtering outside the component.
 
 ```tsx
 import { useEffect, useState } from "react";
-import { Autocomplete } from "@kuzenbo/core";
+import { Autocomplete } from "@kuzenbo/core/ui/autocomplete";
 
 const allItems = ["Next.js", "Nuxt", "Remix", "SvelteKit", "Astro"];
 

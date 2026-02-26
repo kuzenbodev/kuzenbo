@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
 
 import { CodeBlockToolbar } from "../code-block-toolbar";
 

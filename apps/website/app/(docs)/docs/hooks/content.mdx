@@ -26,15 +26,13 @@ The Hooks section covers hook APIs from multiple public packages, not only `@kuz
 ## Import pattern
 
 ```tsx
-import { useAiSession } from "@kuzenbo/ai";
-import { useChart, useSeriesColor } from "@kuzenbo/charts";
-import { useDatatableState } from "@kuzenbo/datatable";
-import {
-  useClipboard,
-  useFullscreen,
-  useIsMobile,
-  useIsomorphicEffect,
-} from "@kuzenbo/hooks";
+import { useAiSession } from "@kuzenbo/ai/hooks/use-ai-session";
+import { useChart, useSeriesColor } from "@kuzenbo/charts/ui/chart";
+import { useDatatableState } from "@kuzenbo/datatable/hooks/use-datatable-state";
+import { useClipboard } from "@kuzenbo/hooks/use-clipboard";
+import { useFullscreen } from "@kuzenbo/hooks/use-fullscreen";
+import { useIsMobile } from "@kuzenbo/hooks/use-mobile";
+import { useIsomorphicEffect } from "@kuzenbo/hooks/use-isomorphic-effect";
 ```
 
 ## `@kuzenbo/hooks` boundary rule

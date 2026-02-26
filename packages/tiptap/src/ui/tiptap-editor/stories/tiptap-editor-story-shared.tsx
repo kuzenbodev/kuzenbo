@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { JSONContent } from "@tiptap/core";
 
-import { Badge, Typography } from "@kuzenbo/core";
+import { Badge } from "@kuzenbo/core/ui/badge";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import { Markdown } from "@tiptap/markdown";
 import { useMemo, useState } from "react";
 

@@ -3,9 +3,9 @@ import type { TsdownInputOption } from "tsdown";
 import { defineConfig } from "tsdown";
 
 const entries: TsdownInputOption = {
-  index: "src/index.ts",
-  primitives: "src/ui/primitives/chart.tsx",
-  prebuilt: "src/ui/prebuilt/index.ts",
+  "ui/chart": "src/ui/chart/chart.ts",
+  "ui/prebuilt": "src/ui/prebuilt/index.ts",
+  "ui/primitives/chart": "src/ui/primitives/chart.tsx",
 };
 
 export default defineConfig({
@@ -21,5 +21,9 @@ export default defineConfig({
   attw: {
     profile: "esm-only",
     ignoreRules: ["no-resolution"],
+  },
+  exports: {
+    devExports: true,
+    packageJson: true,
   },
 });

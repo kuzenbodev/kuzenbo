@@ -10,7 +10,7 @@ import {
   Tick02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useClipboard } from "@kuzenbo/hooks";
+import { useClipboard } from "@kuzenbo/hooks/use-clipboard";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "tailwind-variants";
 

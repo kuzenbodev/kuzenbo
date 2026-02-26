@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 
-import { Card } from "@kuzenbo/core";
+import { Card } from "@kuzenbo/core/ui/card";
 import { cn } from "tailwind-variants";
 
 export interface CodeWindowProps {

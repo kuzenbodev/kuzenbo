@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/ai",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "description": "AI-oriented UI, hooks, and utilities for Kuzenbo.",
   "keywords": [
@@ -26,30 +26,20 @@
   ],
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
+    "./hooks/use-ai-session": "./src/hooks/use-ai-session/use-ai-session.ts",
+    "./ui/ai-widget": "./src/ui/ai-widget/ai-widget.tsx",
+    "./utils/build-ai-prompt": "./src/utils/build-ai-prompt/build-ai-prompt.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.js",
-        "default": "./dist/index.js"
-      },
+      "./hooks/use-ai-session": "./dist/hooks/use-ai-session.js",
+      "./ui/ai-widget": "./dist/ui/ai-widget.js",
+      "./utils/build-ai-prompt": "./dist/utils/build-ai-prompt.js",
       "./package.json": "./package.json"
-    },
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "build": "tsdown",
@@ -89,8 +79,8 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@kuzenbo/core": "^0.0.2",
-    "@kuzenbo/theme": "^0.0.2",
+    "@kuzenbo/core": "^0.0.3",
+    "@kuzenbo/theme": "^0.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

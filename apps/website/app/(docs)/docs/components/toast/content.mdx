@@ -39,7 +39,7 @@ import {
   ToastProvider,
   ToastViewport,
   useToast,
-} from "@kuzenbo/notifications";
+} from "@kuzenbo/notifications/ui/toast";
 ```
 
 ## Basic Example
@@ -47,7 +47,7 @@ import {
 ```tsx
 "use client";
 
-import { ToastProvider, useToast } from "@kuzenbo/notifications";
+import { ToastProvider, useToast } from "@kuzenbo/notifications/ui/toast";
 
 function SaveButton() {
   const toast = useToast();
@@ -77,7 +77,7 @@ export function ToastBasicDemo() {
 ```tsx
 "use client";
 
-import { ToastProvider, useToast } from "@kuzenbo/notifications";
+import { ToastProvider, useToast } from "@kuzenbo/notifications/ui/toast";
 
 function PublishButton() {
   const toast = useToast();

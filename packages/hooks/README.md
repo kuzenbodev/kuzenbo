@@ -40,7 +40,7 @@ When combined with Kuzenbo UI packages (`core`, `ai`, `charts`, `date`, `notific
 ```tsx
 "use client";
 
-import { useIsMobile } from "@kuzenbo/hooks";
+import { useIsMobile } from "@kuzenbo/hooks/use-mobile";
 
 export function HookQuickExample() {
   const isMobile = useIsMobile();

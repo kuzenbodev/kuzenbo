@@ -42,7 +42,7 @@ npm i @kuzenbo/hooks
 ## Import
 
 ```tsx
-import { useFullscreen } from "@kuzenbo/hooks";
+import { useFullscreen } from "@kuzenbo/hooks/use-fullscreen";
 ```
 
 ## Practical Example
@@ -52,7 +52,7 @@ import { useFullscreen } from "@kuzenbo/hooks";
 
 import { useCallback, useState } from "react";
 
-import { useFullscreen } from "@kuzenbo/hooks";
+import { useFullscreen } from "@kuzenbo/hooks/use-fullscreen";
 
 export function FullscreenPanelExample() {
   const { ref, toggle, fullscreen } = useFullscreen<HTMLDivElement>();

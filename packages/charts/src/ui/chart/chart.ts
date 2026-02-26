@@ -12,7 +12,7 @@ import {
   RadialBarChart,
   ScatterChart,
   Sparkline,
-} from "./ui/prebuilt";
+} from "../prebuilt";
 import {
   ChartAutoSize,
   ChartFrame,
@@ -38,7 +38,7 @@ import {
   usePlotArea,
   useSeriesColor,
   useSeriesColorVar,
-} from "./ui/primitives/chart";
+} from "../primitives/chart";
 
 const Chart = Object.assign(PrimitiveChart, {
   Preset: {
@@ -137,7 +137,7 @@ export type {
   SparklineRuntimeSeries,
   SparklineTrendColors,
   SparklineTrendDirection,
-} from "./ui/prebuilt";
+} from "../prebuilt";
 
 export type {
   ChartAutoSizeProps,
@@ -153,4 +153,4 @@ export type {
   ChartTooltipProps,
   ChartTooltipContentProps,
   UseChartPortalTargetResult,
-} from "./ui/primitives/chart";
+} from "../primitives/chart";

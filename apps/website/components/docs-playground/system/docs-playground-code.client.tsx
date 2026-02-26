@@ -1,7 +1,10 @@
 "use client";
 
-import { CodeBlock } from "@kuzenbo/code";
-import { Button, ButtonGroup, CopyButton, Typography } from "@kuzenbo/core";
+import { CodeBlock } from "@kuzenbo/code/ui/code-block";
+import { Button } from "@kuzenbo/core/ui/button";
+import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+import { CopyButton } from "@kuzenbo/core/ui/copy-button";
+import { Typography } from "@kuzenbo/core/ui/typography";
 import { useCallback } from "react";
 import { tv } from "tailwind-variants";
 

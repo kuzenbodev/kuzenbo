@@ -3,7 +3,7 @@
 import type { Editor } from "@tiptap/core";
 import type { ComponentProps, MouseEvent, ReactNode } from "react";
 
-import { Toolbar } from "@kuzenbo/core";
+import { Toolbar } from "@kuzenbo/core/ui/toolbar";
 import { useEffect } from "react";
 import { cn, tv } from "tailwind-variants";
 

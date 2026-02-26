@@ -29,13 +29,13 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Spinner } from "@kuzenbo/core";
+import { Spinner } from "@kuzenbo/core/ui/spinner";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Spinner } from "@kuzenbo/core";
+import { Spinner } from "@kuzenbo/core/ui/spinner";
 
 export function InlineLoadingState() {
   return (
@@ -50,7 +50,8 @@ export function InlineLoadingState() {
 ## Advanced Example
 
 ```tsx
-import { Button, Spinner } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Spinner } from "@kuzenbo/core/ui/spinner";
 
 export function SaveButton({ isSaving }: { isSaving: boolean }) {
   return (

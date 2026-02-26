@@ -1,4 +1,5 @@
-import { Container, Tabs } from "@kuzenbo/core";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Tabs } from "@kuzenbo/core/ui/tabs";
 import Link from "next/link";
 import { cn } from "tailwind-variants";
 

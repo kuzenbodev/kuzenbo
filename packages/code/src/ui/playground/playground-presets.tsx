@@ -1,4 +1,5 @@
-import { Button, ButtonGroup } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
 
 import type { PlaygroundPreset } from "../../playground/playground-preset-model";
 

@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/charts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Chart primitives and prebuilt charts for Kuzenbo.",
   "keywords": [
@@ -26,50 +26,20 @@
   ],
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
-    "./primitives": {
-      "types": "./src/ui/primitives/chart.tsx",
-      "import": "./src/ui/primitives/chart.tsx",
-      "default": "./src/ui/primitives/chart.tsx"
-    },
-    "./prebuilt": {
-      "types": "./src/ui/prebuilt/index.ts",
-      "import": "./src/ui/prebuilt/index.ts",
-      "default": "./src/ui/prebuilt/index.ts"
-    },
+    "./ui/chart": "./src/ui/chart/chart.ts",
+    "./ui/prebuilt": "./src/ui/prebuilt/index.ts",
+    "./ui/primitives/chart": "./src/ui/primitives/chart.tsx",
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.js",
-        "default": "./dist/index.js"
-      },
-      "./primitives": {
-        "types": "./dist/primitives.d.ts",
-        "import": "./dist/primitives.js",
-        "default": "./dist/primitives.js"
-      },
-      "./prebuilt": {
-        "types": "./dist/prebuilt.d.ts",
-        "import": "./dist/prebuilt.js",
-        "default": "./dist/prebuilt.js"
-      },
+      "./ui/chart": "./dist/ui/chart.js",
+      "./ui/prebuilt": "./dist/ui/prebuilt.js",
+      "./ui/primitives/chart": "./dist/ui/primitives/chart.js",
       "./package.json": "./package.json"
-    },
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "build": "tsdown",
@@ -111,8 +81,8 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@kuzenbo/core": "^0.0.2",
-    "@kuzenbo/theme": "^0.0.2",
+    "@kuzenbo/core": "^0.0.3",
+    "@kuzenbo/theme": "^0.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

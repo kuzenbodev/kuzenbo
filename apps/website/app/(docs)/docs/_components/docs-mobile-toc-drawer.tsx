@@ -1,4 +1,5 @@
-import { Button, Drawer } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Drawer } from "@kuzenbo/core/ui/drawer";
 
 import { DocsTocMock } from "./docs-toc-mock";
 

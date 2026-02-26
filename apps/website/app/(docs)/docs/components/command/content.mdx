@@ -39,13 +39,13 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/command";
 ```
 
 ## Basic usage
 
 ```tsx
-import { Command } from "@kuzenbo/core";
+import { Command } from "@kuzenbo/core/ui/command";
 
 export function InlineCommandMenu() {
   return (
@@ -77,7 +77,7 @@ export function InlineCommandMenu() {
 
 ```tsx
 import { useState } from "react";
-import { Command, CommandDialog } from "@kuzenbo/core";
+import { Command, CommandDialog } from "@kuzenbo/core/ui/command";
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);

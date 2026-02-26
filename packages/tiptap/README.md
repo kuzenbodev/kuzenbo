@@ -41,7 +41,7 @@ yarn add @kuzenbo/tiptap @kuzenbo/core @kuzenbo/theme @tiptap/react
 ## ⚡ Quick Example
 
 ```tsx
-import { createTiptapExtensionsPreset } from "@kuzenbo/tiptap";
+import { createTiptapExtensionsPreset } from "@kuzenbo/tiptap/editor/create-tiptap-extensions-preset";
 
 const extensions = createTiptapExtensionsPreset("document", {
   placeholder: "Write your release notes...",

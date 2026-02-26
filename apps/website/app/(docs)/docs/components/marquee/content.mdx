@@ -37,13 +37,14 @@ import {
   MarqueeContent,
   MarqueeFade,
   MarqueeItem,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/marquee";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Badge, Marquee } from "@kuzenbo/core";
+import { Badge } from "@kuzenbo/core/ui/badge";
+import { Marquee } from "@kuzenbo/core/ui/marquee";
 
 export function LogoBand() {
   return (
@@ -71,7 +72,8 @@ export function LogoBand() {
 
 import { useEffect, useState } from "react";
 
-import { Marquee, Typography } from "@kuzenbo/core";
+import { Marquee } from "@kuzenbo/core/ui/marquee";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 export function NewsTicker() {
   const [reduceMotion, setReduceMotion] = useState(false);

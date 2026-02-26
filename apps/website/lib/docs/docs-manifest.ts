@@ -340,9 +340,9 @@ export const docsRouteEntries: DocsRouteEntry[] = [
   },
   {
     href: "/docs/components/dropdown-menu",
-    title: "Dropdown Menu (Legacy Alias)",
+    title: "Dropdown Menu (Legacy Route)",
     description:
-      "Legacy route for the former DropdownMenu API. Use Menu as the canonical surface.",
+      "Legacy docs route kept for compatibility. Use the canonical Dropdown Menu page.",
     order: 999,
     section: "components",
   },
@@ -484,7 +484,7 @@ export const docsRouteEntries: DocsRouteEntry[] = [
   },
   {
     href: "/docs/components/menu",
-    title: "Menu",
+    title: "Dropdown Menu",
     description:
       "Context action menus with checkbox, radio, link items, and submenu composition in @kuzenbo/core.",
     order: 33,

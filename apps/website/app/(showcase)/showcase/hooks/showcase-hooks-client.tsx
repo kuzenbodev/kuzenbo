@@ -2,20 +2,18 @@
 
 import type { Route } from "next";
 
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Container,
-  Typography,
-} from "@kuzenbo/core";
-import {
-  useFullscreen,
-  useIsMobile,
-  useIsomorphicEffect,
-} from "@kuzenbo/hooks";
+} from "@kuzenbo/core/ui/card";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
+import { useFullscreen } from "@kuzenbo/hooks/use-fullscreen";
+import { useIsomorphicEffect } from "@kuzenbo/hooks/use-isomorphic-effect";
+import { useIsMobile } from "@kuzenbo/hooks/use-mobile";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 

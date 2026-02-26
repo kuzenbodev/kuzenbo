@@ -1,6 +1,6 @@
 "use client";
 
-import { Command } from "@kuzenbo/core";
+import { Command } from "@kuzenbo/core/ui/command";
 
 import type { SlashCommandItem } from "../../extensions";
 

@@ -40,13 +40,13 @@ import {
   AccordionItem,
   AccordionTrigger,
   accordionVariants,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/accordion";
 ```
 
 ## Basic usage
 
 ```tsx
-import { Accordion } from "@kuzenbo/core";
+import { Accordion } from "@kuzenbo/core/ui/accordion";
 
 export function BillingAccordion() {
   return (
@@ -77,7 +77,7 @@ export function BillingAccordion() {
 `Accordion` exposes a variant contract in both runtime props and `accordionVariants`.
 
 ```tsx
-import { Accordion, accordionVariants } from "@kuzenbo/core";
+import { Accordion, accordionVariants } from "@kuzenbo/core/ui/accordion";
 
 export function SettingsAccordion() {
   return (
@@ -119,7 +119,7 @@ export function SettingsAccordion() {
 `Accordion` supports `xs | sm | md | lg | xl` sizing. The root `size` value cascades into trigger height/spacing and content spacing.
 
 ```tsx
-import { Accordion } from "@kuzenbo/core";
+import { Accordion } from "@kuzenbo/core/ui/accordion";
 
 export function CompactFaqAccordion() {
   return (
@@ -151,8 +151,6 @@ export function CompactFaqAccordion() {
   Interactive trigger for toggling each item.
 - `AccordionContent`
   Expandable panel content region.
-- `Accordion.Panel`
-  Alias of `AccordionContent` matching Base UI `Panel` naming.
 - `accordionVariants`
   Tailwind Variants helper used by root styling.
 

@@ -1,4 +1,4 @@
-import { Typography } from "@kuzenbo/core";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 export const FooterBrand = () => (
   <div className="space-y-4">

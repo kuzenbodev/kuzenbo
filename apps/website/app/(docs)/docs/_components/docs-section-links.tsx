@@ -1,6 +1,6 @@
 import type { Route } from "next";
 
-import { Button } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
 import Link from "next/link";
 
 import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";

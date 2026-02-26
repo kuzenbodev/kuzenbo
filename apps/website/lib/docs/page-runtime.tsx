@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { Typography } from "@kuzenbo/core";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 import { createPageMetadata } from "@/lib/seo/metadata";
 

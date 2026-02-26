@@ -1,4 +1,4 @@
-import { Card } from "@kuzenbo/core";
+import { Card } from "@kuzenbo/core/ui/card";
 
 import type {
   PlaygroundControl,

@@ -2,7 +2,7 @@
 
 import type { CSSProperties } from "react";
 
-import { Toolbar, type ToolbarProps } from "@kuzenbo/core";
+import { Toolbar, type ToolbarProps } from "@kuzenbo/core/ui/toolbar";
 import { cn, tv } from "tailwind-variants";
 
 import { useTiptapEditorContext } from "./tiptap-editor-context";

@@ -35,7 +35,7 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Portal } from "@kuzenbo/core";
+import { Portal } from "@kuzenbo/core/ui/portal";
 ```
 
 ## Basic usage
@@ -43,7 +43,7 @@ import { Portal } from "@kuzenbo/core";
 ```tsx
 "use client";
 
-import { Portal } from "@kuzenbo/core";
+import { Portal } from "@kuzenbo/core/ui/portal";
 
 export function BodyPortalExample() {
   return (
@@ -67,7 +67,7 @@ export function BodyPortalExample() {
 
 import { useRef } from "react";
 
-import { Portal } from "@kuzenbo/core";
+import { Portal } from "@kuzenbo/core/ui/portal";
 
 export function CustomPortalTarget() {
   const targetRef = useRef<HTMLDivElement>(null);

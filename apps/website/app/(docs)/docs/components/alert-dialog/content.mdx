@@ -46,14 +46,15 @@ import {
   AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
-  Button,
-} from "@kuzenbo/core";
+} from "@kuzenbo/core/ui/alert-dialog";
+import { Button } from "@kuzenbo/core/ui/button";
 ```
 
 ## Basic Example
 
 ```tsx
-import { AlertDialog, Button } from "@kuzenbo/core";
+import { AlertDialog } from "@kuzenbo/core/ui/alert-dialog";
+import { Button } from "@kuzenbo/core/ui/button";
 
 export function DeleteProjectDialog() {
   return (
@@ -85,7 +86,8 @@ export function DeleteProjectDialog() {
 ```tsx
 import { Delete02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { AlertDialog, Button } from "@kuzenbo/core";
+import { AlertDialog } from "@kuzenbo/core/ui/alert-dialog";
+import { Button } from "@kuzenbo/core/ui/button";
 
 export function ConfirmAccountRemoval() {
   return (

@@ -55,8 +55,9 @@ If you only consume `@kuzenbo/hooks` without Kuzenbo UI packages, `@kuzenbo/them
 ## Basic Composition Example
 
 ```tsx
-import { Button, Typography } from "@kuzenbo/core";
-import { Calendar } from "@kuzenbo/date";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Typography } from "@kuzenbo/core/ui/typography";
+import { Calendar } from "@kuzenbo/date/ui/calendar";
 
 export function PlannerPanel() {
   return (
@@ -77,8 +78,8 @@ export function PlannerPanel() {
 import "@kuzenbo/styles/recommended.css";
 import "@kuzenbo/theme/default.css";
 
-import { Button } from "@kuzenbo/core";
-import { Toast, useToast } from "@kuzenbo/notifications";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Toast, useToast } from "@kuzenbo/notifications/ui/toast";
 import { ThemeProvider } from "@kuzenbo/theme";
 
 const SaveButton = () => {

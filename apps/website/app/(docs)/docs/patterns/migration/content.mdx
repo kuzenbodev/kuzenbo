@@ -40,13 +40,13 @@ If you split work into multiple migration PRs, include `@kuzenbo/theme` in each 
 ## Import Migration Example
 
 ```tsx
-// before
+// legacy (before, root import)
 import { Calendar, LineChart, Toast } from "@kuzenbo/core";
 
-// after
-import { LineChart } from "@kuzenbo/charts";
-import { Toast } from "@kuzenbo/notifications";
-import { Calendar } from "@kuzenbo/date";
+// after (folder-mirrored subpaths)
+import { LineChart } from "@kuzenbo/charts/ui/chart";
+import { Toast } from "@kuzenbo/notifications/ui/toast";
+import { Calendar } from "@kuzenbo/date/ui/calendar";
 ```
 
 ## Runtime and CSS Setup

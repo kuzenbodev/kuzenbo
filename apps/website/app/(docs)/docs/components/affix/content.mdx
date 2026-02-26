@@ -35,7 +35,7 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Affix, affixVariants } from "@kuzenbo/core";
+import { Affix, affixVariants } from "@kuzenbo/core/ui/affix";
 ```
 
 ## Basic usage
@@ -43,7 +43,7 @@ import { Affix, affixVariants } from "@kuzenbo/core";
 ```tsx
 "use client";
 
-import { Affix } from "@kuzenbo/core";
+import { Affix } from "@kuzenbo/core/ui/affix";
 
 export function HelpAffix() {
   return (
@@ -66,7 +66,7 @@ export function HelpAffix() {
 
 import { useRef } from "react";
 
-import { Affix } from "@kuzenbo/core";
+import { Affix } from "@kuzenbo/core/ui/affix";
 
 export function OverlayAffix() {
   const overlayRootRef = useRef<HTMLDivElement>(null);

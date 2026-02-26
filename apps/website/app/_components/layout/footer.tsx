@@ -1,4 +1,5 @@
-import { Container, Separator } from "@kuzenbo/core";
+import { Container } from "@kuzenbo/core/ui/container";
+import { Separator } from "@kuzenbo/core/ui/separator";
 
 import { FooterBottom } from "./footer-bottom";
 import { FooterBrand } from "./footer-brand";

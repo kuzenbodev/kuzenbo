@@ -2,7 +2,8 @@
 
 import { Moon01Icon, Sun01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Button, Tooltip } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { Tooltip } from "@kuzenbo/core/ui/tooltip";
 import {
   applyThemeToRootElement,
   persistThemeCookie,

@@ -1,22 +1,22 @@
 ---
-title: "Menu"
+title: "Dropdown Menu"
 description: "Context action menus with checkbox, radio, link items, and submenu composition in @kuzenbo/core."
 section: "components"
 package: "core"
 status: "stable"
 order: 33
 surface: "component"
-seoTitle: "Menu | Kuzenbo Docs"
+seoTitle: "Dropdown Menu | Kuzenbo Docs"
 seoDescription: "Context action menus with checkbox, radio, link items, and submenu composition in @kuzenbo/core."
 ogImage: "/docs-og/components/menu"
-ogImageAlt: "Menu documentation"
+ogImageAlt: "Dropdown Menu documentation"
 aliases:
   - "/docs/components/overlays/menu"
 ---
 
-## Menu at a Glance
+## Dropdown Menu at a Glance
 
-`Menu` is the canonical contextual action surface in `@kuzenbo/core`.
+`DropdownMenu` is the canonical contextual action surface in `@kuzenbo/core`.
 It supports checkbox/radio rows, submenu trees, link items, and slot-level composition primitives for custom layouts.
 
 Use it for command lists and per-item action menus.
@@ -31,48 +31,51 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
+import { Button } from "@kuzenbo/core/ui/button";
 import {
-  Button,
-  Menu,
-  MenuArrow,
-  MenuBackdrop,
-  MenuCheckboxItem,
-  MenuContent,
-  MenuGroup,
-  MenuGroupLabel,
-  MenuItem,
-  MenuLinkItem,
-  MenuPopup,
-  MenuPortal,
-  MenuPositioner,
-  MenuRadioGroup,
-  MenuRadioItem,
-  MenuSeparator,
-  MenuShortcut,
-  MenuSubmenuContent,
-  MenuSubmenuRoot,
-  MenuSubmenuTrigger,
-  MenuTrigger,
-} from "@kuzenbo/core";
+  DropdownMenu,
+  DropdownMenuArrow,
+  DropdownMenuBackdrop,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuItem,
+  DropdownMenuLinkItem,
+  DropdownMenuPopup,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSubContent,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@kuzenbo/core/ui/dropdown-menu";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Button, Menu } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { DropdownMenu } from "@kuzenbo/core/ui/dropdown-menu";
 
 export function ProjectActionsMenu() {
   return (
-    <Menu>
-      <Menu.Trigger render={<Button variant="outline" />}>Actions</Menu.Trigger>
+    <DropdownMenu>
+      <DropdownMenu.Trigger render={<Button variant="outline" />}>
+        Actions
+      </DropdownMenu.Trigger>
 
-      <Menu.Content align="end">
-        <Menu.Item>Rename</Menu.Item>
-        <Menu.Item>Duplicate</Menu.Item>
-        <Menu.Separator />
-        <Menu.Item variant="danger">Delete</Menu.Item>
-      </Menu.Content>
-    </Menu>
+      <DropdownMenu.Content align="end">
+        <DropdownMenu.Item>Rename</DropdownMenu.Item>
+        <DropdownMenu.Item>Duplicate</DropdownMenu.Item>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Item variant="danger">Delete</DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu>
   );
 }
 ```
@@ -84,73 +87,85 @@ export function ProjectActionsMenu() {
 
 import { useState } from "react";
 
-import { Button, Menu } from "@kuzenbo/core";
+import { Button } from "@kuzenbo/core/ui/button";
+import { DropdownMenu } from "@kuzenbo/core/ui/dropdown-menu";
 
 export function ViewPreferencesMenu() {
   const [showHidden, setShowHidden] = useState(false);
   const [density, setDensity] = useState("comfortable");
 
   return (
-    <Menu>
-      <Menu.Trigger render={<Button variant="outline" />}>View</Menu.Trigger>
+    <DropdownMenu>
+      <DropdownMenu.Trigger render={<Button variant="outline" />}>
+        View
+      </DropdownMenu.Trigger>
 
-      <Menu.Content align="end" sideOffset={6}>
-        <Menu.GroupLabel>Display</Menu.GroupLabel>
+      <DropdownMenu.Content align="end" sideOffset={6}>
+        <DropdownMenu.Label>Display</DropdownMenu.Label>
 
-        <Menu.CheckboxItem checked={showHidden} onCheckedChange={setShowHidden}>
+        <DropdownMenu.CheckboxItem
+          checked={showHidden}
+          onCheckedChange={setShowHidden}
+        >
           Show hidden files
-        </Menu.CheckboxItem>
+        </DropdownMenu.CheckboxItem>
 
-        <Menu.Separator />
+        <DropdownMenu.Separator />
 
-        <Menu.RadioGroup onValueChange={setDensity} value={density}>
-          <Menu.RadioItem value="compact">Compact</Menu.RadioItem>
-          <Menu.RadioItem value="comfortable">Comfortable</Menu.RadioItem>
-        </Menu.RadioGroup>
+        <DropdownMenu.RadioGroup onValueChange={setDensity} value={density}>
+          <DropdownMenu.RadioItem value="compact">
+            Compact
+          </DropdownMenu.RadioItem>
+          <DropdownMenu.RadioItem value="comfortable">
+            Comfortable
+          </DropdownMenu.RadioItem>
+        </DropdownMenu.RadioGroup>
 
-        <Menu.Separator />
+        <DropdownMenu.Separator />
 
-        <Menu.SubmenuRoot>
-          <Menu.SubmenuTrigger>More Actions</Menu.SubmenuTrigger>
-          <Menu.SubmenuContent>
-            <Menu.Item variant="danger">Archive Project</Menu.Item>
-          </Menu.SubmenuContent>
-        </Menu.SubmenuRoot>
-      </Menu.Content>
-    </Menu>
+        <DropdownMenu.Sub>
+          <DropdownMenu.SubTrigger>More Actions</DropdownMenu.SubTrigger>
+          <DropdownMenu.SubContent>
+            <DropdownMenu.Item variant="danger">
+              Archive Project
+            </DropdownMenu.Item>
+          </DropdownMenu.SubContent>
+        </DropdownMenu.Sub>
+      </DropdownMenu.Content>
+    </DropdownMenu>
   );
 }
 ```
 
 ## Size Scaling
 
-`Menu` supports `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
+`DropdownMenu` supports `size="xs" | "sm" | "md" | "lg" | "xl"` with `md` as default.
 
-- Root-driven default: `Menu size` sets the baseline for popup, label, item, shortcut, and submenu surfaces.
-- Content override: `Menu.Content size` overrides root size for overlay descendants.
-- Child override: item-level props (`Menu.Item size`, `Menu.Label size`, etc.) override both content and root.
+- Root-driven default: `DropdownMenu size` sets the baseline for popup, label, item, shortcut, and submenu surfaces.
+- Content override: `DropdownMenu.Content size` overrides root size for overlay descendants.
+- Child override: item-level props (`DropdownMenu.Item size`, `DropdownMenu.Label size`, etc.) override both content and root.
 
 Precedence:
 
 - Overlay descendants: `explicit child size ?? nearest content size ?? root size ?? "md"`.
 
 ```tsx
-<Menu size="sm">
-  <Menu.Trigger>Actions</Menu.Trigger>
-  <Menu.Content size="lg">
-    <Menu.Item size="xl">Delete</Menu.Item>
-  </Menu.Content>
-</Menu>
+<DropdownMenu size="sm">
+  <DropdownMenu.Trigger>Actions</DropdownMenu.Trigger>
+  <DropdownMenu.Content size="lg">
+    <DropdownMenu.Item size="xl">Delete</DropdownMenu.Item>
+  </DropdownMenu.Content>
+</DropdownMenu>
 ```
 
 ## API Details
 
-- Root: `Menu`.
-- Trigger/content: `MenuTrigger`, `MenuContent`.
-- Portal and positioning: `MenuPortal`, `MenuPopup`, `MenuPositioner`, `MenuArrow`, `MenuBackdrop`.
-- Item primitives: `MenuItem`, `MenuCheckboxItem`, `MenuRadioItem`, `MenuLinkItem`.
-- Grouping helpers: `MenuGroup`, `MenuGroupLabel`, `MenuSeparator`, `MenuShortcut`.
-- Nested menus: `MenuSubmenuRoot`, `MenuSubmenuTrigger`, `MenuSubmenuContent`.
+- Root: `DropdownMenu`.
+- Trigger/content: `DropdownMenuTrigger`, `DropdownMenuContent`.
+- Portal and positioning: `DropdownMenuPortal`, `DropdownMenuPopup`, `DropdownMenuPositioner`, `DropdownMenuArrow`, `DropdownMenuBackdrop`.
+- Item primitives: `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioItem`, `DropdownMenuLinkItem`.
+- Grouping helpers: `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`.
+- Nested menus: `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent`.
 
 ## Accessibility
 

@@ -19,7 +19,6 @@ const Collapsible = ({ className, ...props }: CollapsibleProps) => (
 );
 
 Collapsible.Content = CollapsibleContent;
-Collapsible.Panel = CollapsibleContent;
 Collapsible.Trigger = CollapsibleTrigger;
 
 export { Collapsible, CollapsibleContent, CollapsibleTrigger };

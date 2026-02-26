@@ -32,13 +32,15 @@ npm i @kuzenbo/core
 ## Import
 
 ```tsx
-import { Label, Switch } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { Switch } from "@kuzenbo/core/ui/switch";
 ```
 
 ## Basic Example
 
 ```tsx
-import { Label, Switch } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { Switch } from "@kuzenbo/core/ui/switch";
 
 export function AirplaneModeToggle() {
   return (
@@ -57,7 +59,8 @@ export function AirplaneModeToggle() {
 
 import { useState } from "react";
 
-import { Label, Switch } from "@kuzenbo/core";
+import { Label } from "@kuzenbo/core/ui/label";
+import { Switch } from "@kuzenbo/core/ui/switch";
 
 export function NotificationSetting() {
   const [enabled, setEnabled] = useState(true);

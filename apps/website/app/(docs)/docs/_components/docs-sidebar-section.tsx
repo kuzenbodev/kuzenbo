@@ -1,6 +1,6 @@
 import type { Route } from "next";
 
-import { NavigationList } from "@kuzenbo/core";
+import { NavigationList } from "@kuzenbo/core/ui/navigation-list";
 import Link from "next/link";
 
 import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";

@@ -31,7 +31,7 @@ It returns the chart width in pixels from chart state.
 ## Import
 
 ```tsx
-import { useChartWidth } from "@kuzenbo/charts";
+import { useChartWidth } from "@kuzenbo/charts/ui/chart";
 ```
 
 ## Example: width-driven tick density
@@ -39,7 +39,7 @@ import { useChartWidth } from "@kuzenbo/charts";
 ```tsx
 "use client";
 
-import { useChartWidth } from "@kuzenbo/charts";
+import { useChartWidth } from "@kuzenbo/charts/ui/chart";
 
 export function WidthAwareTickStrategy() {
   const chartWidth = useChartWidth();
