@@ -3,8 +3,6 @@ import type { ReactNode } from "react";
 
 import { KuzenboProvider } from "@kuzenbo/core/provider";
 import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import {
@@ -59,8 +57,6 @@ export default function RootLayout({
   return (
     <html data-scroll-behavior="smooth" lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Analytics />
-        <SpeedInsights />
         <ThemeBootstrapScript />
         <script
           type="application/ld+json"

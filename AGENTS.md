@@ -268,6 +268,9 @@ Useful scoped Turbo invocation pattern:
 ### App notes (`apps/website`)
 
 - Uses App Router with `cacheComponents: true`.
+- Uses Vinext for local/dev runtime and production build (`vinext dev|build|start`).
+- Uses Nitro Vite plugin integration for Vercel-compatible Vinext build output (`NITRO_PRESET=vercel vinext build`).
+- Vercel deploys are pinned to framework `Other` via root `vercel.json` and use `bun run build:vercel` to stage Build Output API artifacts at repo root (`.vercel/output`).
 - `next.config.ts` enables several experimental/perf flags; treat config changes carefully during upgrades.
 - The app shell currently contains starter content (`app/page.tsx` is minimal), so this app is a safe place to add playground/docs pages for components.
 

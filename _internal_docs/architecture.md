@@ -11,6 +11,7 @@ This document explains how the monorepo is structured and why package boundaries
 ## Repository Layout
 
 - `apps/website`: Vinext-powered, Next.js API-compatible app for docs/playground with file-based docs pages under `/docs/**`.
+- `apps/website` deployment note: Vercel builds run through Vinext + Vite with Nitro preset (`NITRO_PRESET=vercel vinext build`) and are staged to repo-root `.vercel/output` via `bun run build:vercel` (framework preset `Other` from `vercel.json`) to avoid `next build`/`.next` coupling.
 - Shared Storybook setup package: `packages/storybook`.
 - Package-local Storybook wrappers: `packages/{core,charts,notifications,date,ai,code,datatable,tiptap,hooks}/.storybook`.
 - `packages/ai`: `@kuzenbo/ai` package for AI-related UI/hooks/utils.
