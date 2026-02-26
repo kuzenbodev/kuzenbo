@@ -7,6 +7,7 @@
     "dev": "vinext dev --port 3000",
     "dev:next": "next dev --port 3000",
     "build": "if [ \"$VERCEL\" = \"1\" ]; then NITRO_PRESET=vercel vinext build; else vinext build; fi",
+    "build:vercel": "NITRO_PRESET=vercel vinext build",
     "build:next": "next build",
     "start": "vinext start",
     "start:next": "next start",
