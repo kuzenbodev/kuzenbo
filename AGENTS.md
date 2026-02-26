@@ -94,6 +94,7 @@ Run these from repo root:
 - `bun run lint` (`ultracite check`)
 - `bun run format` (`ultracite fix`)
 - `bun run boundaries`
+- `bun audit`
 - `bun run release:status`
 - `bun run release:changeset`
 - `bun run release:notes`
@@ -280,6 +281,7 @@ Useful scoped Turbo invocation pattern:
 - Prefer Storybook built-ins for QA passes: viewport controls, measure & outline, and `play`-function interaction tests.
 - Run `bun ultracite fix` before finalizing to keep formatting/lint consistent with repo defaults.
 - If `ultracite` is unavailable locally, use `bun x ultracite fix` (or `bunx ultracite fix`).
+- Run `bun audit` before release-related handoff; treat reported vulnerabilities as release blockers unless explicitly approved by the maintainer.
 
 ### Agent guidance for this repo
 
@@ -339,7 +341,7 @@ Useful scoped Turbo invocation pattern:
 - If internal-only instructions appear in public docs, agents must remove or relocate them.
 - Any public install guidance for Kuzenbo UI packages that consume shared size/runtime utilities must explicitly state that `@kuzenbo/core` and `@kuzenbo/theme` should be paired in almost all app setups.
 - Full quality validation is required after an agent finishes implementation and before handoff/final response.
-- Run this required quality gate from repo root (or Turbo-equivalent scoped commands when explicitly requested): `bun run format`, `bun run lint`, `bun run typecheck`, `bun run test`, and `bun run boundaries`.
+- Run this required quality gate from repo root (or Turbo-equivalent scoped commands when explicitly requested): `bun run format`, `bun run lint`, `bun run typecheck`, `bun run test`, `bun run boundaries`, and `bun audit`.
 - Do not finalize while any required quality check is failing unless the user explicitly approves shipping with known failures.
 - If a required check cannot run (environment/tooling/time constraint), explicitly report what was skipped, why it was skipped, and the exact command the next agent/human should run.
 - Color primitive compliance is required: reject or fix changes that introduce raw Tailwind palette color classes instead of `@kuzenbo/core` semantic tokens.
