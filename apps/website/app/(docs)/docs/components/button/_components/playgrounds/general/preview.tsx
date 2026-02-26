@@ -2,7 +2,7 @@
 
 import { Button, type ButtonProps } from "@kuzenbo/core/ui/button";
 
-import type { ButtonPlaygroundState } from "./button-playground.definition";
+import type { State } from "./controls";
 
 type ButtonVariant = NonNullable<ButtonProps["variant"]>;
 type ButtonSize = Exclude<NonNullable<ButtonProps["size"]>, "icon">;
@@ -26,13 +26,13 @@ const resolveButtonVariant = (value: string): ButtonVariant =>
 const resolveButtonSize = (value: string): ButtonSize =>
   BUTTON_SIZES.has(value as ButtonSize) ? (value as ButtonSize) : "md";
 
-export const ButtonPlaygroundPreview = ({
+export const Preview = ({
   children,
   disabled,
   isLoading,
   size,
   variant,
-}: ButtonPlaygroundState) => (
+}: State) => (
   <Button
     disabled={disabled}
     isLoading={isLoading}

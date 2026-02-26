@@ -1,9 +1,4 @@
-import {
-  cloneElement,
-  isValidElement,
-  type ReactElement,
-  type ReactNode,
-} from "react";
+import { cloneElement, isValidElement, type ReactNode } from "react";
 
 import { injectPlaygroundPreviewProps } from "../../playground/inject-playground-preview-props";
 
@@ -13,7 +8,7 @@ export interface PlaygroundPreviewProps<
 > {
   state: TState;
   staticProps?: TStaticProps;
-  children: ReactElement<Record<string, unknown>>;
+  children: ReactNode;
   fallback?: ReactNode;
 }
 

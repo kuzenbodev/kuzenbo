@@ -1,7 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { Card } from "@kuzenbo/core/ui/card";
-import { useMemo, type ReactElement } from "react";
+import { useMemo } from "react";
 
 import type {
   PlaygroundControl,
@@ -27,7 +29,7 @@ export interface PlaygroundShellProps<
 > {
   controls: TControls;
   template: PlaygroundCodeTemplate;
-  preview: ReactElement<Record<string, unknown>>;
+  preview: ReactNode;
   presets?: PlaygroundPresetsFromControls<TControls, TPresetId>;
   initialPresetId?: TPresetId | null;
   previewProps?: Record<string, unknown>;
