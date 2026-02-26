@@ -1,29 +1,6 @@
 ---
 title: "FAQ"
 description: "Answers to common Kuzenbo questions about package scope, setup, theming, and upgrades."
-section: "reference"
-package: "core"
-status: "stable"
-order: 2
-surface: "guide"
-seoTitle: "FAQ | Kuzenbo Docs"
-seoDescription: "Kuzenbo FAQ covering package scope, installation choices, runtime setup, and upgrade expectations."
-ogImage: "/docs-og/reference/faq"
-ogImageAlt: "FAQ documentation"
-schemaType: "faq"
-faq:
-  - question: "Which packages are public and supported?"
-    answer: "The public scope is @kuzenbo/core, @kuzenbo/hooks, @kuzenbo/charts, @kuzenbo/notifications, @kuzenbo/date, @kuzenbo/ai, @kuzenbo/datatable, @kuzenbo/theme, and @kuzenbo/styles."
-  - question: "Are all workspace packages meant for public use?"
-    answer: "No. Some packages are internal tooling or still evolving. If a package is not documented under /docs, treat it as non-public."
-  - question: "Do I need both theme and styles packages?"
-    answer: "Use @kuzenbo/theme for token and runtime behavior. Add @kuzenbo/styles only when you want optional baseline global styles."
-  - question: "What replaced the old core CSS entrypoint?"
-    answer: "Use @kuzenbo/theme/prebuilt/kuzenbo.css for core styling, with optional @kuzenbo/styles/recommended.css for global baseline rules."
-  - question: "How should I choose package ownership for new code?"
-    answer: "Use @kuzenbo/core for UI primitives, @kuzenbo/hooks for reusable logic, and domain packages (charts, date, notifications, ai, datatable) for specialized features."
-  - question: "What should I verify before upgrading versions?"
-    answer: "Review changelog entries, confirm compatibility with your React/Next.js stack, and test critical user flows in your app."
 ---
 
 ## Quick Answers
