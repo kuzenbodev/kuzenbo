@@ -1,3 +1,5 @@
+"use client";
+
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";

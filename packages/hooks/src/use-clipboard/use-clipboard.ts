@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const DEFAULT_COPIED_DURATION_MS = 1600;

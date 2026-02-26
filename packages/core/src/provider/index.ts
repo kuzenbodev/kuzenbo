@@ -1,3 +1,5 @@
+"use client";
+
 export { createSizeContext } from "../ui/shared/size/size-context";
 export { DEFAULT_UI_SIZE, resolveSize } from "../ui/shared/size/resolve-size";
 export {

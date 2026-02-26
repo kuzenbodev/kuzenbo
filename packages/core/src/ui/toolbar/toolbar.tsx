@@ -1,3 +1,5 @@
+"use client";
+
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import { tv, type VariantProps } from "tailwind-variants";
 

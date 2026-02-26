@@ -1,3 +1,5 @@
+"use client";
+
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";

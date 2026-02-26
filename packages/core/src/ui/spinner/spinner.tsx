@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentProps } from "react";
 
 import { Loading03Icon } from "@hugeicons/core-free-icons";

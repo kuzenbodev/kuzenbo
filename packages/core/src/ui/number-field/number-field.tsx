@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentProps } from "react";
 
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";

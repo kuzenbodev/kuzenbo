@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentProps } from "react";
 
 import { CheckboxGroup as BaseCheckboxGroup } from "@base-ui/react/checkbox-group";

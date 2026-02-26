@@ -1,3 +1,5 @@
+"use client";
+
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 

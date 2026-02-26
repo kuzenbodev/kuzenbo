@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { MinusSignIcon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
