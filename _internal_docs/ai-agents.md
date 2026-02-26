@@ -90,6 +90,16 @@ Active package scope is currently:
 4. Update docs when workflows or public APIs change.
 5. Run validation commands before final response.
 
+## Release Workflow (Agents)
+
+For every version release, follow the no-skip checklist in [`./maintainer-release-flow.md`](./maintainer-release-flow.md):
+
+- Use `## AI Agent Step-by-Step Release Checklist (No-Skip)` as the canonical sequence.
+- Do not skip `bun audit`, `release:validate`, `release:notes`, or `release:dry-run`.
+- Do not commit or push without explicit maintainer approval.
+- Always request manual GitHub Actions approval for non-dry-run publish.
+- If publish/tag succeeds but GitHub release creation fails, complete manual release recovery steps from the same checklist.
+
 ## Validation Commands
 
 ```bash
