@@ -77,21 +77,21 @@ export const ShowcaseFeaturesClient = () => (
       <section className="flex flex-wrap gap-2">
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components/ai-widget" as Route} />}
+          render={<Link href={"/docs/components/ai-widget"} />}
           variant="outline"
         >
           AI widget docs
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components/calendar" as Route} />}
+          render={<Link href={"/docs/components/calendar"} />}
           variant="outline"
         >
           Calendar docs
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components/mock-data-table" as Route} />}
+          render={<Link href={"/docs/components/mock-data-table"} />}
           variant="outline"
         >
           Datatable docs

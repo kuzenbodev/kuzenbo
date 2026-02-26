@@ -1,81 +1,67 @@
+import {
+  applyPlaygroundPreset,
+  createPlaygroundStateSnapshot,
+  setPlaygroundControlValue,
+} from "@kuzenbo/code/playground/playground-state-model";
 import { expect, test } from "bun:test";
 
 import {
-  buildStateFromPreset,
-  getFixedKeys,
-  getInitialPresetId,
-  getPresetById,
-  updateControlState,
-} from "@/components/docs-playground/system/state";
-
-import {
-  buttonPlaygroundDefinition,
-  buttonPlaygroundInitialState,
-  type ButtonPlaygroundState,
+  buttonPlaygroundControls,
+  buttonPlaygroundInitialPresetId,
+  buttonPlaygroundPresets,
 } from "./button-playground.definition";
 
-test("preset selection resolves expected default preset", () => {
-  expect(getInitialPresetId(buttonPlaygroundDefinition.presets)).toBe(
-    "default"
-  );
+test("playground starts from default preset", () => {
+  const snapshot = createPlaygroundStateSnapshot({
+    controls: buttonPlaygroundControls,
+    initialPresetId: buttonPlaygroundInitialPresetId,
+    presets: buttonPlaygroundPresets,
+  });
+
+  expect(snapshot.activePresetId).toBe("default");
+  expect(snapshot.values.variant).toBe("default");
+  expect(snapshot.values.children).toBe("Button");
 });
 
-test("danger preset merges initial and fixed values", () => {
-  const dangerPreset = getPresetById(
-    buttonPlaygroundDefinition.presets,
+test("danger preset merges values and locks variant", () => {
+  const snapshot = applyPlaygroundPreset(
+    createPlaygroundStateSnapshot({
+      controls: buttonPlaygroundControls,
+      initialPresetId: buttonPlaygroundInitialPresetId,
+      presets: buttonPlaygroundPresets,
+    }),
+    {
+      controls: buttonPlaygroundControls,
+      presets: buttonPlaygroundPresets,
+    },
     "danger"
   );
 
-  const state = buildStateFromPreset(
-    buttonPlaygroundInitialState,
-    dangerPreset
-  );
+  expect(snapshot.activePresetId).toBe("danger");
+  expect(snapshot.values.variant).toBe("danger");
+  expect(snapshot.values.children).toBe("Delete project");
+  expect(snapshot.lockedProps.has("variant")).toBe(true);
 
-  expect(state.variant).toBe("danger");
-  expect(state.label).toBe("Delete project");
+  const next = setPlaygroundControlValue(snapshot, "variant", "outline");
+
+  expect(next.values.variant).toBe("danger");
 });
 
-test("fixed keys prevent updates for locked controls", () => {
-  const dangerPreset = getPresetById(
-    buttonPlaygroundDefinition.presets,
-    "danger"
-  );
-  const state = buildStateFromPreset(
-    buttonPlaygroundInitialState,
-    dangerPreset
-  );
-  const fixedKeys = getFixedKeys(dangerPreset);
-
-  const blockedUpdate = updateControlState(
-    state,
-    "variant",
-    "outline",
-    fixedKeys
-  );
-  const allowedUpdate = updateControlState(
-    state,
-    "label",
-    "Archive",
-    fixedKeys
-  );
-
-  expect(blockedUpdate.variant).toBe("danger");
-  expect(allowedUpdate.label).toBe("Archive");
-});
-
-test("default preset does not lock controls", () => {
-  const defaultPreset = getPresetById(
-    buttonPlaygroundDefinition.presets,
+test("default preset keeps controls editable", () => {
+  const snapshot = applyPlaygroundPreset(
+    createPlaygroundStateSnapshot({
+      controls: buttonPlaygroundControls,
+      initialPresetId: buttonPlaygroundInitialPresetId,
+      presets: buttonPlaygroundPresets,
+    }),
+    {
+      controls: buttonPlaygroundControls,
+      presets: buttonPlaygroundPresets,
+    },
     "default"
   );
-  const fixedKeys = getFixedKeys(defaultPreset);
 
-  const next = updateControlState<ButtonPlaygroundState, "variant">(
-    buttonPlaygroundInitialState,
-    "variant",
-    "outline",
-    fixedKeys
-  );
+  const next = setPlaygroundControlValue(snapshot, "variant", "outline");
 
-  expect(next.variant).toBe("outline");
+  expect(next.values.variant).toBe("outline");
 });

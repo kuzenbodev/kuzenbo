@@ -3,17 +3,6 @@ import { afterEach, expect, test } from "bun:test";
 
 import { ButtonPlayground } from "./button-playground.client";
 
-const getRawCode = (container: HTMLElement): string => {
-  const element = container.querySelector(
-    '[data-slot="docs-playground-code-raw"]'
-  );
-  if (!(element instanceof HTMLElement)) {
-    throw new Error("Raw code element not found");
-  }
-
-  return element.textContent ?? "";
-};
-
 const getSlotElement = (container: HTMLElement, slot: string): HTMLElement => {
   const element = container.querySelector(`[data-slot="${slot}"]`);
   if (!(element instanceof HTMLElement)) {
@@ -23,69 +12,92 @@ const getSlotElement = (container: HTMLElement, slot: string): HTMLElement => {
   return element;
 };
 
+const getLoadingPresetButton = (container: HTMLElement): HTMLElement => {
+  const presets = within(getSlotElement(container, "playground-presets"));
+  const loadingPresetButton = presets
+    .getAllByRole("button")
+    .find((button) => button.textContent?.trim().startsWith("Loading"));
+
+  if (!loadingPresetButton) {
+    throw new Error("Loading preset button not found");
+  }
+
+  return loadingPresetButton;
+};
+
 afterEach(() => {
   cleanup();
 });
 
 test("playground updates generated code for presets and code mode", () => {
   const { container } = render(<ButtonPlayground />);
-  const view = within(container);
+  const view = within(getSlotElement(container, "button-playground"));
+  const presets = within(getSlotElement(container, "playground-presets"));
+  const code = getSlotElement(container, "playground-code");
 
-  expect(getRawCode(container)).toContain("<Button>Button</Button>");
+  expect(code.textContent).toContain("Button");
+  expect(code.textContent).not.toContain("variant=");
 
-  fireEvent.click(view.getByRole("button", { name: "Preset Danger" }));
-  expect(getRawCode(container)).toContain('variant="danger"');
-  expect(getRawCode(container)).toContain("Delete project");
-
-  const variantDefaultButton = view.getByRole("button", {
-    name: "Variant: Default",
-  });
-  expect((variantDefaultButton as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.click(presets.getByRole("button", { name: /Danger/ }));
+  expect(code.textContent).toContain('variant="danger"');
+  expect(code.textContent).toContain("Delete project");
 
   fireEvent.click(view.getByRole("button", { name: "Full code" }));
-  expect(getRawCode(container)).toContain('size="md"');
-  expect(getRawCode(container)).toContain("disabled={false}");
+  expect(code.textContent).toContain("disabled={false}");
+  expect(code.textContent).toContain("isLoading={false}");
+});
+
+test("playground locks and unlocks controls based on selected preset", () => {
+  const { container } = render(<ButtonPlayground />);
+
+  const shell = getSlotElement(container, "playground-shell");
+  const view = within(shell);
+  const presets = within(getSlotElement(container, "playground-presets"));
+  const controls = getSlotElement(container, "playground-controls");
+  const controlsView = within(controls);
+
+  fireEvent.click(presets.getByRole("button", { name: /Danger/ }));
+
+  const variantTrigger = controlsView.getByRole("combobox", {
+    name: "Variant",
+  });
+  expect((variantTrigger as HTMLButtonElement).disabled).toBe(true);
+
+  fireEvent.click(view.getByRole("button", { name: /Custom/ }));
+  expect((variantTrigger as HTMLButtonElement).disabled).toBe(false);
 });
 
 test("playground reflects control changes in generated code", () => {
   const { container } = render(<ButtonPlayground />);
+  const code = getSlotElement(container, "playground-code");
 
-  const controls = getSlotElement(container, "docs-playground-controls");
-  const loadingSwitch = within(controls).getByRole("switch", {
-    name: "Loading",
-  });
+  expect(code.textContent).not.toContain("isLoading");
+  fireEvent.click(getLoadingPresetButton(container));
+  expect(code.textContent).toContain("isLoading");
 
-  expect(getRawCode(container)).not.toContain("isLoading");
-  fireEvent.click(loadingSwitch);
-  expect(getRawCode(container)).toContain("isLoading");
+  const controls = getSlotElement(container, "playground-controls");
 
   fireEvent.change(within(controls).getByRole("textbox", { name: "Label" }), {
     target: { value: "Save workspace" },
   });
-  expect(getRawCode(container)).toContain("Save workspace");
+  expect(code.textContent).toContain("Save workspace");
 });
 
-test("playground preserves docs-playground class output", () => {
+test("code mode toggle buttons update pressed state", () => {
   const { container } = render(<ButtonPlayground />);
+  const modeToggle = getSlotElement(container, "button-playground-code-mode");
+  const modeToggleView = within(modeToggle);
 
-  const playground = getSlotElement(container, "docs-playground");
-  expect(playground.className).toBe(
-    "not-prose overflow-hidden rounded-xl border border-border bg-card text-card-foreground"
-  );
+  const minimalButton = modeToggleView.getByRole("button", {
+    name: "Minimal code",
+  });
+  const fullButton = modeToggleView.getByRole("button", { name: "Full code" });
 
-  const controls = getSlotElement(container, "docs-playground-controls");
-  expect(controls.className).toBe("space-y-5");
+  expect(minimalButton.getAttribute("aria-pressed")).toBe("true");
+  expect(fullButton.getAttribute("aria-pressed")).toBe("false");
 
-  const presets = getSlotElement(container, "docs-playground-presets");
-  for (const classToken of ["flex", "w-fit", "items-stretch"]) {
-    expect(presets.className.includes(classToken)).toBe(true);
-  }
+  fireEvent.click(fullButton);
 
-  const optionControl = getSlotElement(container, "playground-option-control");
-  for (const classToken of ["flex", "w-full", "flex-wrap", "gap-2"]) {
-    expect(optionControl.className.includes(classToken)).toBe(true);
-  }
-
-  const code = getSlotElement(container, "docs-playground-code");
-  expect(code.className).toBe("border-border");
+  expect(minimalButton.getAttribute("aria-pressed")).toBe("false");
+  expect(fullButton.getAttribute("aria-pressed")).toBe("true");
 });

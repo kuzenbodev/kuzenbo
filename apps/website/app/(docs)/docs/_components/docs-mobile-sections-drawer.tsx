@@ -1,3 +1,5 @@
+import type { Route } from "next";
+
 import { Button } from "@kuzenbo/core/ui/button";
 import { Drawer } from "@kuzenbo/core/ui/drawer";
 
@@ -6,7 +8,7 @@ import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";
 import { DocsSectionLinks } from "./docs-section-links";
 
 export interface DocsMobileSectionsDrawerProps {
-  activeHref: string;
+  activeHref: Route;
   section: DocsSectionEntry;
 }
 

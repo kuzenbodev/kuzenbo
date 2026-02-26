@@ -1,5 +1,7 @@
+import type { Route } from "next";
+
 export interface FooterLink {
-  href: string;
+  href: Route;
   label: string;
 }
 

@@ -25,14 +25,14 @@ export const CTASection = () => (
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button
             nativeButton={false}
-            render={<Link href={"/docs" as Route} />}
+            render={<Link href={"/docs"} />}
             size="lg"
           >
             Get Started
           </Button>
           <Button
             nativeButton={false}
-            render={<Link href={"/showcase" as Route} />}
+            render={<Link href={"/showcase"} />}
             size="lg"
             variant="outline"
           >

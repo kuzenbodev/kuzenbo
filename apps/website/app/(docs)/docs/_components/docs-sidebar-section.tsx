@@ -8,7 +8,7 @@ import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";
 import { isDocsHrefActive } from "@/lib/docs/layout-state";
 
 export interface DocsSidebarSectionProps {
-  activeHref: string;
+  activeHref: Route;
   section: DocsSectionEntry;
 }
 
@@ -35,7 +35,7 @@ export const DocsSidebarSection = ({
                     active={isDocsHrefActive(activeHref, page.href)}
                     label={page.title}
                     noWrap
-                    render={<Link href={page.href as Route} />}
+                    render={<Link href={page.href} />}
                   />
                 </NavigationList.Item>
               ))}

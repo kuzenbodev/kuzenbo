@@ -9,7 +9,7 @@ import { DocsSidebarSection } from "@/app/(docs)/docs/_components/docs-sidebar-s
 
 const section: DocsSectionEntry = {
   description: "Components docs section",
-  href: "/docs/components" as Route,
+  href: "/docs/components",
   id: "components",
   title: "Components",
   pages: [

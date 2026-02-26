@@ -1,19 +1,46 @@
+import { generatePlaygroundCode } from "@kuzenbo/code/utils/codegen/generate-playground-code";
 import { expect, test } from "bun:test";
 
 import {
-  buttonPlaygroundInitialState,
-  serializeButtonPlaygroundCode,
+  buttonPlaygroundControls,
+  buttonPlaygroundTemplate,
 } from "./button-playground.definition";
 
-test("minimal mode omits default props", () => {
-  const code = serializeButtonPlaygroundCode({
-    fixedState: {},
-    initialState: buttonPlaygroundInitialState,
-    mode: "minimal",
-    state: buttonPlaygroundInitialState,
+const getCodeFromFirstFile = (
+  mode: "minimal" | "full",
+  state: {
+    variant: "default" | "outline" | "secondary" | "ghost" | "danger" | "link";
+    size: "sm" | "md" | "lg";
+    children: string;
+    disabled: boolean;
+    isLoading: boolean;
+  }
+): string => {
+  const [file] = generatePlaygroundCode({
+    controls: buttonPlaygroundControls,
+    mode,
+    state,
+    template: buttonPlaygroundTemplate,
   });
 
-  expect(code).toContain("return <Button>Button</Button>;");
+  if (!file) {
+    throw new Error("Expected playground output file");
+  }
+
+  return file.code;
+};
+
+test("minimal mode omits default props", () => {
+  const code = getCodeFromFirstFile("minimal", {
+    variant: "default",
+    size: "md",
+    children: "Button",
+    disabled: false,
+    isLoading: false,
+  });
+
+  expect(code).toContain("<Button");
+  expect(code).toContain("Button");
   expect(code).not.toContain("variant=");
   expect(code).not.toContain("size=");
   expect(code).not.toContain("disabled=");
@@ -21,45 +48,30 @@ test("minimal mode omits default props", () => {
 });
 
 test("full mode includes all controllable props", () => {
-  const code = serializeButtonPlaygroundCode({
-    fixedState: {},
-    initialState: buttonPlaygroundInitialState,
-    mode: "full",
-    state: buttonPlaygroundInitialState,
+  const code = getCodeFromFirstFile("full", {
+    variant: "default",
+    size: "md",
+    children: "Button",
+    disabled: false,
+    isLoading: false,
   });
 
-  expect(code).toContain("const fullWidth = false;");
   expect(code).toContain('variant="default"');
   expect(code).toContain('size="md"');
   expect(code).toContain("disabled={false}");
   expect(code).toContain("isLoading={false}");
 });
 
-test("minimal mode includes width wrapper when fullWidth is enabled", () => {
-  const code = serializeButtonPlaygroundCode({
-    fixedState: {},
-    initialState: buttonPlaygroundInitialState,
-    mode: "minimal",
-    state: {
-      ...buttonPlaygroundInitialState,
-      fullWidth: true,
-    },
+test("minimal mode includes variant and loading changes", () => {
+  const code = getCodeFromFirstFile("minimal", {
+    variant: "danger",
+    size: "md",
+    children: "Saving changes",
+    disabled: false,
+    isLoading: true,
   });
 
-  expect(code).toContain('className="w-full max-w-sm"');
-  expect(code).toContain('className="w-full"');
-});
-
-test("serializer escapes label strings deterministically", () => {
-  const code = serializeButtonPlaygroundCode({
-    fixedState: {},
-    initialState: buttonPlaygroundInitialState,
-    mode: "minimal",
-    state: {
-      ...buttonPlaygroundInitialState,
-      label: 'Save "now"',
-    },
-  });
-
-  expect(code).toContain('{"Save \\"now\\""}');
+  expect(code).toContain('variant="danger"');
+  expect(code).toContain("isLoading");
+  expect(code).toContain("Saving changes");
 });

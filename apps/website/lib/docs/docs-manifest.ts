@@ -11,7 +11,7 @@ export type DocsSectionId =
 
 export interface DocsRouteEntry {
   description: string;
-  href: string;
+  href: Route;
   order: number;
   section: DocsSectionId;
   title: string;

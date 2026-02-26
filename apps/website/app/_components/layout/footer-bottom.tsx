@@ -6,10 +6,7 @@ import Link from "next/link";
 export const FooterBottom = () => (
   <div className="flex flex-col p-4 gap-3 sm:flex-row sm:items-center sm:justify-between">
     <Typography.Muted className="text-xs">Kuzenbo.</Typography.Muted>
-    <Typography.Link
-      className="w-fit text-xs"
-      render={<Link href={"/docs" as Route} />}
-    >
+    <Typography.Link className="w-fit text-xs" render={<Link href={"/docs"} />}>
       Start building with Kuzenbo
     </Typography.Link>
   </div>

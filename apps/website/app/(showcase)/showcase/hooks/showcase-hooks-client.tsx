@@ -93,14 +93,14 @@ export const ShowcaseHooksClient = () => {
         <section className="flex flex-wrap gap-2">
           <Button
             nativeButton={false}
-            render={<Link href={"/docs/hooks" as Route} />}
+            render={<Link href={"/docs/hooks"} />}
             variant="outline"
           >
             Browse hooks docs
           </Button>
           <Button
             nativeButton={false}
-            render={<Link href={"/showcase/playground" as Route} />}
+            render={<Link href={"/showcase/playground"} />}
             variant="ghost"
           >
             Try playground

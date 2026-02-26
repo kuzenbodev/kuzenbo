@@ -68,14 +68,14 @@ export const ShowcaseComponentsClient = () => (
       <section className="flex flex-wrap gap-2">
         <Button
           nativeButton={false}
-          render={<Link href={"/docs/components" as Route} />}
+          render={<Link href={"/docs/components"} />}
           variant="outline"
         >
           Browse component docs
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/showcase/playground" as Route} />}
+          render={<Link href={"/showcase/playground"} />}
           variant="ghost"
         >
           Open playground

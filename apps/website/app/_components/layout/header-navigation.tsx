@@ -52,7 +52,7 @@ export const HeaderNavigation = () => (
           className="text-muted-foreground hover:text-foreground"
           key={item.label}
           nativeButton={false}
-          render={<Link href={item.href as Route} />}
+          render={<Link href={item.href} />}
           variant="link"
         >
           {item.label}
@@ -109,7 +109,7 @@ export const HeaderNavigation = () => (
                       <Button
                         className="w-full justify-start"
                         nativeButton={false}
-                        render={<Link href={item.href as Route} />}
+                        render={<Link href={item.href} />}
                         variant="ghost"
                       >
                         {item.label}

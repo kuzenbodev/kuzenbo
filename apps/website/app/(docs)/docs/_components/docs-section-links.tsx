@@ -8,7 +8,7 @@ import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";
 import { isDocsHrefActive } from "@/lib/docs/layout-state";
 
 export interface DocsSectionLinksProps {
-  activeHref: string;
+  activeHref: Route;
   section: DocsSectionEntry;
 }
 
@@ -23,7 +23,7 @@ export const DocsSectionLinks = ({
           <Button
             className="w-full justify-start"
             nativeButton={false}
-            render={<Link href={page.href as Route} />}
+            render={<Link href={page.href} />}
             size="sm"
             variant={
               isDocsHrefActive(activeHref, page.href) ? "outline" : "ghost"

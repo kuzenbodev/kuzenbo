@@ -46,7 +46,7 @@ export const ShowcaseIndexClient = () => (
         </Button>
         <Button
           nativeButton={false}
-          render={<Link href={"/docs" as Route} />}
+          render={<Link href={"/docs"} />}
           variant="link"
         >
           Documentation
