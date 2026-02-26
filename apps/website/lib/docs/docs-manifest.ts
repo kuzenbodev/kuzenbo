@@ -56,24 +56,7 @@ const SECTION_ORDER: readonly Exclude<DocsSectionId, "overview">[] = [
   "reference",
 ];
 
-export const docsHomePage: DocsRouteEntry = {
-  href: "/docs",
-  title: "Documentation",
-  description:
-    "Kuzenbo docs for developers — React UI library with design tokens, dark mode, and modular packages.",
-  order: 0,
-  section: "overview",
-};
-
 export const docsRouteEntries: DocsRouteEntry[] = [
-  {
-    href: "/docs",
-    title: "Documentation",
-    description:
-      "Kuzenbo docs for developers — React UI library with design tokens, dark mode, and modular packages.",
-    order: 0,
-    section: "overview",
-  },
   {
     href: "/docs/components",
     title: "Components",

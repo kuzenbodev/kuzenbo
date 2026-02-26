@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@kuzenbo/core/ui/button";
 import { Drawer } from "@kuzenbo/core/ui/drawer";
 

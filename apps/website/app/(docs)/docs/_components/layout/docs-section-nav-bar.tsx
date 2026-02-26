@@ -1,26 +1,20 @@
+"use client";
+
 import { Container } from "@kuzenbo/core/ui/container";
 import { Tabs } from "@kuzenbo/core/ui/tabs";
 import Link from "next/link";
 import { cn } from "tailwind-variants";
 
-import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";
-
 import { docsSectionEntries } from "@/lib/docs/docs-manifest";
 
-export interface DocsSectionNavBarProps {
-  activeSection: DocsSectionEntry;
-}
-
-export const DocsSectionNavBar = ({
-  activeSection,
-}: DocsSectionNavBarProps) => (
+export const DocsSectionNavBar = () => (
   <div className="sticky top-14 z-40 border-b bg-background">
     <Container className="flex items-center gap-4 border-x">
       <nav
         aria-label="Documentation sections"
         className="-mx-1 flex-1 overflow-x-auto px-1"
       >
-        <Tabs value={activeSection.id}>
+        <Tabs value="overview">
           <Tabs.List className="w-full min-w-max" variant="line">
             {docsSectionEntries.map((section, index) => (
               <Tabs.Trigger

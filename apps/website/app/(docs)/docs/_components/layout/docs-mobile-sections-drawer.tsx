@@ -1,21 +1,11 @@
-import type { Route } from "next";
+"use client";
 
 import { Button } from "@kuzenbo/core/ui/button";
 import { Drawer } from "@kuzenbo/core/ui/drawer";
 
-import type { DocsSectionEntry } from "@/lib/docs/docs-manifest";
-
 import { DocsSectionLinks } from "./docs-section-links";
 
-export interface DocsMobileSectionsDrawerProps {
-  activeHref: Route;
-  section: DocsSectionEntry;
-}
-
-export const DocsMobileSectionsDrawer = ({
-  activeHref,
-  section,
-}: DocsMobileSectionsDrawerProps) => (
+export const DocsMobileSectionsDrawer = () => (
   <Drawer.Root swipeDirection="down">
     <Drawer.Trigger
       aria-label="Open docs section navigation"
@@ -39,12 +29,12 @@ export const DocsMobileSectionsDrawer = ({
               <Drawer.Handle className="mb-0" />
             </div>
             <Drawer.Title className="text-base leading-none">
-              {section.title}
+              Sections
             </Drawer.Title>
             <Drawer.Description className="mt-2 mb-4 text-sm">
-              Jump to any page in this section.
+              Browse docs sections.
             </Drawer.Description>
-            <DocsSectionLinks activeHref={activeHref} section={section} />
+            <DocsSectionLinks />
           </Drawer.Content>
         </Drawer.Popup>
       </Drawer.Viewport>

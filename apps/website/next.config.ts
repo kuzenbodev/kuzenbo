@@ -42,8 +42,6 @@ const nextConfig: NextConfig = {
       "@kuzenbo/notifications",
       "@kuzenbo/tiptap",
     ],
-    // Enables forbidden() and unauthorized() APIs for auth error handling
-    authInterrupts: true,
     // Enables global-not-found.js for app-level 404 (multi-root layouts, unmatched routes)
     globalNotFound: true,
     // Cache fetch responses across HMR refreshes in dev (default: true)
@@ -54,6 +52,11 @@ const nextConfig: NextConfig = {
     staleTimes: { dynamic: 30, static: 180 },
     // Pinpoint CLS/LCP contributors for debugging
     webVitalsAttribution: ["CLS", "LCP"],
+
+    // Enable turbopack file system cache for build
+    turbopackFileSystemCacheForBuild: true,
+    // Enable turbopack file system cache for dev
+    turbopackFileSystemCacheForDev: true,
   },
   logging: {
     incomingRequests: { ignore: [/\/api\/.*\/health/] },

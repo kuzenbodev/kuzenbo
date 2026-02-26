@@ -7,14 +7,14 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "@/constants/website";
+import "@/styles/globals.css";
 import {
   createOrganizationJsonLd,
   createWebSiteJsonLd,
   serializeJsonLd,
 } from "@/lib/seo/json-ld";
-import { createRootMetadata, SITE_NAME } from "@/lib/seo/metadata";
 
-import "../styles/globals.css";
 import { Footer } from "./_components/layout/footer";
 import { Header } from "./_components/layout/header";
 
@@ -36,7 +36,42 @@ const webSiteJsonLd = createWebSiteJsonLd({
   url: "https://kuzenbo.com",
 });
 
-export const metadata: Metadata = createRootMetadata();
+export const metadata: Metadata = {
+  metadataBase: new URL("https://kuzenbo.com"),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+    index: true,
+  },
+};
 
 export const viewport: Viewport = {
   themeColor: [

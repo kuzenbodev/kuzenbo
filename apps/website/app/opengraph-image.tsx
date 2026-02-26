@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-import { SITE_NAME } from "@/lib/seo/metadata";
+import { SITE_NAME } from "@/constants/website";
 
 export const alt = `${SITE_NAME} Open Graph Image`;
 export const size = {
