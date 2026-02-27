@@ -15,7 +15,7 @@ export type AutocompletePopupProps = ComponentProps<
   VariantProps<typeof autocompletePopupVariants>;
 
 const autocompletePopupVariants = tv({
-  base: "relative z-50 max-h-[min(var(--available-height),20rem)] min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto overscroll-contain border border-border bg-popover text-popover-foreground shadow-md",
+  base: "relative z-overlay max-h-[min(var(--available-height),20rem)] min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto overscroll-contain border border-border bg-popover text-popover-foreground shadow-md",
   variants: {
     size: {
       xs: "rounded-[min(var(--radius-md),8px)] p-0.5",

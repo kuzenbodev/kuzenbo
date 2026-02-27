@@ -16,7 +16,7 @@ export type ButtonGroupProps = ComponentProps<"div"> &
   };
 
 const buttonGroupVariants = tv({
-  base: "group/button-group flex w-fit items-stretch overflow-hidden *:focus-visible:relative *:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-[inherit] [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
+  base: "group/button-group flex w-fit items-stretch overflow-hidden *:focus-visible:relative *:focus-visible:z-raised has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-[inherit] [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   variants: {
     orientation: {
       horizontal:

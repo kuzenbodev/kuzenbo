@@ -17,7 +17,7 @@ export type ToastRootProps = ComponentProps<typeof BaseToast.Root> & {
 };
 
 const toastRootVariants = tv({
-  base: "group/toast-root z-[calc(1000-var(--toast-index))] border border-border bg-popover text-popover-foreground shadow-lg",
+  base: "group/toast-root z-toast-stack border border-border bg-popover text-popover-foreground shadow-lg",
   variants: {
     anchored: {
       true: "w-max origin-(--transform-origin) rounded-md transition-[transform,scale,opacity] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",

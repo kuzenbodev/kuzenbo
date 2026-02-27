@@ -14,7 +14,7 @@ import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { SelectOverlayContext } from "./select-overlay-context";
 
 const selectScrollUpButtonVariants = tv({
-  base: "top-0 z-10 flex w-full cursor-pointer items-center justify-center bg-popover",
+  base: "top-0 z-raised flex w-full cursor-pointer items-center justify-center bg-popover",
   variants: {
     size: {
       xs: "py-0.5 [&_svg:not([class*='size-'])]:size-3",

@@ -67,14 +67,14 @@ const calendarClassNames = tv({
     week_number_header: "w-(--cell-size) select-none",
     week_number:
       "text-muted-foreground select-none group-data-[size=xs]/calendar:text-[0.7rem] group-data-[size=sm]/calendar:text-[0.75rem] group-data-[size=md]/calendar:text-[0.8rem] group-data-[size=lg]/calendar:text-sm group-data-[size=xl]/calendar:text-base",
-    day: "group/day relative flex size-(--cell-size) items-center justify-center p-0 text-center font-normal data-[focused=true]:z-20 group-data-[size=xs]/calendar:text-xs group-data-[size=sm]/calendar:text-xs group-data-[size=md]/calendar:text-sm group-data-[size=lg]/calendar:text-sm group-data-[size=xl]/calendar:text-base [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
+    day: "group/day relative flex size-(--cell-size) items-center justify-center p-0 text-center font-normal data-[focused=true]:z-elevated group-data-[size=xs]/calendar:text-xs group-data-[size=sm]/calendar:text-xs group-data-[size=md]/calendar:text-sm group-data-[size=lg]/calendar:text-sm group-data-[size=xl]/calendar:text-base [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
     day_button:
       "relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none",
     range_start:
-      "relative z-0 rounded-s-(--cell-radius) bg-muted after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-0 after:w-4 after:bg-muted",
+      "relative z-base rounded-s-(--cell-radius) bg-muted after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-base after:w-4 after:bg-muted",
     range_middle: "rounded-none",
     range_end:
-      "relative z-0 rounded-e-(--cell-radius) bg-muted after:pointer-events-none after:absolute after:inset-y-0 after:start-0 after:z-0 after:w-4 after:bg-muted",
+      "relative z-base rounded-e-(--cell-radius) bg-muted after:pointer-events-none after:absolute after:inset-y-0 after:start-0 after:z-base after:w-4 after:bg-muted",
     today:
       "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none",
     outside: "text-muted-foreground aria-selected:text-muted-foreground",

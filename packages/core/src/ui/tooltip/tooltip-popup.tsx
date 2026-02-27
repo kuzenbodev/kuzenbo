@@ -9,7 +9,7 @@ import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useResolvedTooltipSize } from "./tooltip-size-context";
 
 const tooltipPopupVariants = tv({
-  base: "z-50 w-fit origin-(--transform-origin) bg-foreground text-background data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-ending-style:animate-out data-ending-style:fade-out-0 data-ending-style:zoom-out-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-starting-style:animate-in data-starting-style:fade-in-0 data-starting-style:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+  base: "z-overlay w-fit origin-(--transform-origin) bg-foreground text-background data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-ending-style:animate-out data-ending-style:fade-out-0 data-ending-style:zoom-out-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-starting-style:animate-in data-starting-style:fade-in-0 data-starting-style:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   variants: {
     size: {
       xs: "max-w-40 rounded-[min(var(--radius-md),8px)] px-2 py-1 text-xs",

@@ -12,7 +12,7 @@ const ComboboxPositioner = ({
 }: ComboboxPositionerProps) => (
   <ComboboxPrimitive.Positioner
     className={mergeBaseUIClassName<ComboboxPrimitive.Positioner.State>(
-      "isolate z-50",
+      "isolate z-overlay",
       className
     )}
     data-slot="combobox-positioner"

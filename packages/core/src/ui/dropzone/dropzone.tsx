@@ -52,7 +52,7 @@ const dropzoneVariants = tv({
     overlay: [
       "absolute",
       "inset-0",
-      "z-10",
+      "z-raised",
       "flex",
       "items-center",
       "justify-center",

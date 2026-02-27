@@ -13,7 +13,7 @@ export type SelectPositionerProps = ComponentProps<
 const SelectPositioner = ({ className, ...props }: SelectPositionerProps) => (
   <SelectPrimitive.Positioner
     className={mergeBaseUIClassName<SelectPrimitive.Positioner.State>(
-      "isolate z-50",
+      "isolate z-overlay",
       className
     )}
     data-slot="select-positioner"

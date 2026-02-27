@@ -5,7 +5,7 @@ import { cn, tv } from "tailwind-variants";
 import { useTimeline, useTimelineItem } from "./use-timeline";
 
 const timelineConnectorVariants = tv({
-  base: ["absolute z-0", "group-last/timeline-item:hidden"],
+  base: ["absolute z-base", "group-last/timeline-item:hidden"],
   variants: {
     status: {
       completed: "bg-primary",

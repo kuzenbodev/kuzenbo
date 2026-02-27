@@ -66,7 +66,7 @@ export function CustomPortalTarget() {
       <div id="overlay-root" ref={targetRef} />
 
       <Portal
-        className="z-50"
+        className="z-overlay"
         id="my-portal-node"
         reuseTargetNode={false}
         target="#overlay-root"
@@ -106,7 +106,8 @@ export function CustomPortalTarget() {
 ## Styling and tokens
 
 - Style portaled children with semantic tokens (`bg-popover`, `text-foreground`, `border-border`).
-- Use explicit `z-index` strategy for layered surfaces.
+- Use semantic z-index utilities (`z-overlay`, `z-sticky`, `z-toast-viewport`) instead of one-off numeric values.
+- Configure global layer order through theme CSS variables (`--kb-z-*`) when app shells need custom stacking.
 
 ## Troubleshooting
 

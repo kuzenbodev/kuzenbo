@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { HeaderNavigation } from "./header-navigation";
 
 export const Header = () => (
-  <header className="sticky top-0 z-50 flex h-14 items-center bg-background border-b">
+  <header className="sticky top-0 z-overlay flex h-14 items-center bg-background border-b">
     <Container className="flex items-center justify-between gap-4 border-x h-full">
       <div className="flex items-center gap-6">
         <Link className="flex items-center gap-2" href="/">

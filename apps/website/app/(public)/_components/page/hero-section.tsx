@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const HeroSection = () => (
   <>
-    <div className="absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0 z-underlay overflow-hidden">
       <div className="absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 bg-gradient-to-b from-primary/20 via-primary/5 to-transparent blur-3xl" />
     </div>
     <section className="relative mx-auto max-w-5xl px-4 py-12 text-center">

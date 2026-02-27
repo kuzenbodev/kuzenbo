@@ -12,7 +12,7 @@ import { NavigationMenuContext } from "./navigation-menu-context";
 const navigationMenuIndicatorVariants = tv({
   slots: {
     arrow: "relative rotate-45 bg-border shadow-md",
-    root: "top-full z-[1] flex items-end justify-center overflow-hidden opacity-0 transition-opacity duration-200 data-popup-open:opacity-100",
+    root: "top-full z-inline flex items-end justify-center overflow-hidden opacity-0 transition-opacity duration-200 data-popup-open:opacity-100",
   },
   variants: {
     size: {

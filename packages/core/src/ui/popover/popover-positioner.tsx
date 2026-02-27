@@ -7,7 +7,7 @@ export type PopoverPositionerProps = PopoverPrimitive.Positioner.Props;
 
 const PopoverPositioner = ({ className, ...props }: PopoverPositionerProps) => (
   <PopoverPrimitive.Positioner
-    className={cn("isolate z-50", className)}
+    className={cn("isolate z-overlay", className)}
     data-slot="popover-positioner"
     {...props}
   />

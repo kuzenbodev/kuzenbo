@@ -57,6 +57,8 @@ export const ArchiveDialog = () => (
 
 - Use built-in portal primitives (`Dialog.Portal`, `Drawer.Portal`, `Sheet.Portal`) for predictable stacking.
 - Keep z-index policies centralized; avoid local one-off z-index escalation.
+- Prefer semantic layer utilities (`z-sticky`, `z-overlay`, `z-toast-viewport`, `z-immersive`) over numeric `z-*` classes.
+- Use global `--kb-z-*` variables when product shells need different layering defaults.
 - For chart overlays rendered outside chart bounds, wire `Chart.PortalTarget` and portal there intentionally.
 
 ## Performance Guidance

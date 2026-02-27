@@ -7,7 +7,7 @@ const DropdownMenuPositioner = ({
   ...props
 }: DropdownMenuPositionerProps) => (
   <MenuPrimitive.Positioner
-    className={cn("isolate z-50 outline-none", className)}
+    className={cn("isolate z-overlay outline-none", className)}
     data-slot="dropdown-menu-positioner"
     {...props}
   />

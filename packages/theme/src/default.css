@@ -35,6 +35,19 @@
   --kb-sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --kb-sidebar-border: oklch(0.92 0.004 286.32);
   --kb-sidebar-ring: oklch(0.705 0.015 286.067);
+  --kb-z-underlay: -10;
+  --kb-z-behind: -1;
+  --kb-z-base: 0;
+  --kb-z-inline: 1;
+  --kb-z-raised: 10;
+  --kb-z-elevated: 20;
+  --kb-z-floating: 30;
+  --kb-z-sticky: 40;
+  --kb-z-overlay: 50;
+  --kb-z-toast-viewport: 100;
+  --kb-z-affix: 200;
+  --kb-z-toast: 1000;
+  --kb-z-immersive: 9999;
 
   --kb-danger: oklch(0.966 0.016 16.278);
   --kb-danger-foreground: oklch(0.579 0.237 29.233);
@@ -145,6 +158,19 @@
   --color-success: var(--kb-success);
   --color-success-foreground: var(--kb-success-foreground);
   --color-success-border: var(--kb-success-border);
+  --z-index-underlay: var(--kb-z-underlay);
+  --z-index-behind: var(--kb-z-behind);
+  --z-index-base: var(--kb-z-base);
+  --z-index-inline: var(--kb-z-inline);
+  --z-index-raised: var(--kb-z-raised);
+  --z-index-elevated: var(--kb-z-elevated);
+  --z-index-floating: var(--kb-z-floating);
+  --z-index-sticky: var(--kb-z-sticky);
+  --z-index-overlay: var(--kb-z-overlay);
+  --z-index-toast-viewport: var(--kb-z-toast-viewport);
+  --z-index-affix: var(--kb-z-affix);
+  --z-index-immersive: var(--kb-z-immersive);
+  --z-index-toast-stack: calc(var(--kb-z-toast) - var(--toast-index, 0));
 }
 
 [data-kb-motion="reduce"],

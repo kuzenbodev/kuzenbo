@@ -19,7 +19,7 @@ export const fullScreenVariants = tv({
     "flex",
     "flex-col",
     "p-2",
-    "z-9999",
+    "z-immersive",
     "transition-opacity",
   ],
   variants: {

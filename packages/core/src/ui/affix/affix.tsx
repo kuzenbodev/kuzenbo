@@ -32,7 +32,7 @@ export const affixVariants = tv({
     // Layout: fixed positioning
     "fixed",
     // Z-index: from CSS variable
-    "z-(--affix-z-index)",
+    "z-affix",
     // Positioning: from CSS variables
     "top-(--affix-top)",
     "left-(--affix-left)",
@@ -62,20 +62,22 @@ export type AffixProps = AffixVariants &
     withinPortal?: boolean;
     /**
      * Custom z-index value
-     * @default 200
+     * @default token: --kb-z-affix
      */
-    zIndex?: number;
+    zIndex?: CSSProperties["zIndex"];
   };
 
 const DEFAULT_POSITION: AffixPosition = { bottom: 0, right: 0 };
 
 const buildPositionStyles = (
   position: AffixPosition,
-  zIndex: number
+  zIndex?: CSSProperties["zIndex"]
 ): CSSProperties & Record<`--${string}`, string> => {
-  const styles: CSSProperties & Record<`--${string}`, string> = {
-    "--affix-z-index": zIndex.toString(),
-  } as CSSProperties & Record<`--${string}`, string>;
+  const styles = {} as CSSProperties & Record<`--${string}`, string>;
+
+  if (zIndex !== undefined) {
+    styles.zIndex = zIndex;
+  }
 
   if (position.top !== undefined) {
     styles["--affix-top"] = getSpacing(position.top);
@@ -98,7 +100,7 @@ export const Affix = ({
   position = DEFAULT_POSITION,
   portalProps,
   withinPortal = true,
-  zIndex = 200,
+  zIndex,
   render,
   children,
   ...props

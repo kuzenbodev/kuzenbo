@@ -10,7 +10,7 @@ const PreviewCardPositioner = ({
   ...props
 }: PreviewCardPositionerProps) => (
   <PreviewCardPrimitive.Positioner
-    className={cn("isolate z-50", className)}
+    className={cn("isolate z-overlay", className)}
     data-slot="preview-card-positioner"
     {...props}
   />

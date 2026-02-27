@@ -64,6 +64,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 - Bootstrap utilities: `resolveThemeBootstrapPlan`, `getThemeBootstrapScript`, `applyThemeToRootElement`
 - CSS assets: `@kuzenbo/theme/prebuilt/*.css`
 
+## 🪜 Z-Index Layer Tokens
+
+`@kuzenbo/theme` also provides semantic z-index layer tokens so components can share consistent stacking and apps can override globally with CSS variables.
+
+- 🧱 Base layers: `z-underlay`, `z-behind`, `z-base`, `z-inline`
+- 🪄 Raised layers: `z-raised`, `z-elevated`, `z-floating`, `z-sticky`
+- 🧩 Overlay layers: `z-overlay`, `z-toast-viewport`, `z-affix`, `z-toast-stack`, `z-immersive`
+
+```css
+:root {
+  --kb-z-sticky: 60;
+  --kb-z-overlay: 80;
+  --kb-z-toast-viewport: 120;
+}
+```
+
 ## 📚 Docs And Playgrounds
 
 - [Theming Guide](https://kuzenbo.com/docs/getting-started/theming)

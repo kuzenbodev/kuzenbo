@@ -11,7 +11,7 @@ Use it when you need:
 
 - A stable viewport anchor (`top`, `right`, `bottom`, `left`)
 - Optional portal mounting to `document.body` or a custom container
-- Predictable stacking with explicit `zIndex`
+- Predictable stacking with the semantic `z-affix` layer token and optional `zIndex` override
 
 Do not use `Affix` for sticky-in-container behavior. It is `position: fixed`, not `position: sticky`.
 
@@ -67,7 +67,7 @@ export function OverlayAffix() {
       <Affix
         position={{ top: 20, right: "max(16px, env(safe-area-inset-right))" }}
         portalProps={{ target: "#overlay-root" }}
-        zIndex={500}
+        zIndex="var(--kb-z-floating)"
       >
         <button
           className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground"
@@ -91,8 +91,8 @@ export function OverlayAffix() {
   Defaults to `true`. Set `false` for local rendering (for example in tests).
 - `portalProps?: BasePortalProps`
   Passed to the underlying `Portal` when `withinPortal` is enabled.
-- `zIndex?: number`
-  Defaults to `200`.
+- `zIndex?: CSSProperties["zIndex"]`
+  Defaults to the semantic `z-affix` utility (`--kb-z-affix`).
 - Also accepts standard `div` props and Base UI `render` composition.
 
 ### `affixVariants`
@@ -116,6 +116,13 @@ Tailwind Variants helper for the root slot classes. Useful when you need style e
 - Start from semantic tokens: `bg-background`, `text-foreground`, `border-border`, `bg-primary`.
 - Avoid raw palette classes so the affixed control stays theme-safe.
 - `affixVariants` controls fixed positioning and CSS-variable-driven offsets/z-index.
+- Override global stacking with CSS variables when needed:
+
+```css
+:root {
+  --kb-z-affix: 260;
+}
+```
 
 ## Troubleshooting
 

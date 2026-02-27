@@ -7,7 +7,7 @@ export type SheetViewportProps = SheetPrimitive.Viewport.Props;
 
 const SheetViewport = ({ className, ...props }: SheetViewportProps) => (
   <SheetPrimitive.Viewport
-    className={cn("fixed inset-0 z-50", className)}
+    className={cn("fixed inset-0 z-overlay", className)}
     data-slot="sheet-viewport"
     {...props}
   />

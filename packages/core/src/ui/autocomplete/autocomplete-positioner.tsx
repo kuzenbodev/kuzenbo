@@ -14,7 +14,7 @@ export const AutocompletePositioner = ({
 }: AutocompletePositionerProps) => (
   <BaseAutocomplete.Positioner
     className={mergeBaseUIClassName<BaseAutocomplete.Positioner.State>(
-      "z-50",
+      "z-overlay",
       className
     )}
     data-slot="autocomplete-positioner"

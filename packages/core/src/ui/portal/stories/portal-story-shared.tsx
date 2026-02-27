@@ -23,7 +23,7 @@ export const Default: Story = {
         portaled to the viewport edge.
       </div>
       <Portal>
-        <div className="fixed right-4 bottom-4 z-50 rounded-lg border border-border bg-background px-3 py-2 text-sm shadow-lg">
+        <div className="fixed right-4 bottom-4 z-overlay rounded-lg border border-border bg-background px-3 py-2 text-sm shadow-lg">
           Invoice export finished for February usage.
         </div>
       </Portal>
@@ -79,7 +79,7 @@ export const LayeredWithDialog: Story = {
         </Dialog.Content>
       </Dialog>
       <Portal>
-        <div className="fixed top-4 left-4 z-50 rounded-md border border-border bg-background px-3 py-2 text-sm shadow-lg">
+        <div className="fixed top-4 left-4 z-overlay rounded-md border border-border bg-background px-3 py-2 text-sm shadow-lg">
           Incident bridge remains active for region us-east-1.
         </div>
       </Portal>

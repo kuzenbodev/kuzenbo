@@ -12,7 +12,7 @@ const DrawerIndentBackground = ({
 }: DrawerIndentBackgroundProps) => (
   <DrawerPrimitive.IndentBackground
     className={cn(
-      "absolute inset-0 -z-10 bg-foreground transition-opacity duration-300 data-[active]:opacity-100 [&:not([data-active])]:opacity-0",
+      "absolute inset-0 z-underlay bg-foreground transition-opacity duration-300 data-[active]:opacity-100 [&:not([data-active])]:opacity-0",
       className
     )}
     data-slot="drawer-indent-background"

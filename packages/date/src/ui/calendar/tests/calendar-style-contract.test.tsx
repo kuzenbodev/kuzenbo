@@ -133,7 +133,7 @@ describe("Calendar style contracts", () => {
     expect(day15.className).toContain(
       "group-data-[focused=true]/day:ring-inset"
     );
-    expect(day15Cell.className).toContain("data-[focused=true]:z-20");
+    expect(day15Cell.className).toContain("data-[focused=true]:z-elevated");
   });
 
   it("keeps default day selection rounding selector when week numbers are hidden", () => {

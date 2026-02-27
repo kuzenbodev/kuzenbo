@@ -14,7 +14,7 @@ export type TabsListProps = TabsPrimitive.List.Props &
   VariantProps<typeof tabsListVariants>;
 
 const tabsListVariants = tv({
-  base: "group/tabs-list relative z-0 inline-flex items-center justify-start text-muted-foreground group-data-[orientation=vertical]/tabs:flex-col group-data-[orientation=vertical]/tabs:items-stretch",
+  base: "group/tabs-list relative z-base inline-flex items-center justify-start text-muted-foreground group-data-[orientation=vertical]/tabs:flex-col group-data-[orientation=vertical]/tabs:items-stretch",
   variants: {
     fullWidth: {
       true: "w-full",

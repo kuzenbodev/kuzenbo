@@ -49,7 +49,7 @@ const SliderThumbLabel = ({
       {...props}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute z-30 whitespace-nowrap rounded-sm bg-foreground px-1.5 py-0.5 text-xs text-background shadow-sm transition-opacity group-data-[dragging]/slider:duration-0 motion-reduce:transition-none",
+        "pointer-events-none absolute z-floating whitespace-nowrap rounded-sm bg-foreground px-1.5 py-0.5 text-xs text-background shadow-sm transition-opacity group-data-[dragging]/slider:duration-0 motion-reduce:transition-none",
         orientation === "horizontal"
           ? "-top-[var(--slider-thumb-label-offset,2rem)] left-1/2 -translate-x-1/2"
           : "left-[var(--slider-thumb-label-offset-vertical,2rem)] top-1/2 -translate-y-1/2",

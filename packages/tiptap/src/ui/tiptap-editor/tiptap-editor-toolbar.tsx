@@ -22,7 +22,7 @@ const tiptapEditorToolbarVariants = tv({
       xl: "gap-1.5 p-2",
     },
     sticky: {
-      true: "sticky top-(--kb-tiptap-toolbar-offset) z-20",
+      true: "sticky top-(--kb-tiptap-toolbar-offset) z-elevated",
     },
     subtle: {
       true: "bg-transparent p-0 shadow-none outline-none",
