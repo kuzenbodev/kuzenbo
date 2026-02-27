@@ -306,12 +306,18 @@ Useful scoped Turbo invocation pattern:
 - Preserve hooks standalone boundary in `turbo.json` tag rules.
 - Preserve one-way code layering in `turbo.json`: allow `@kuzenbo/code -> @kuzenbo/core`, deny reverse `@kuzenbo/core -> @kuzenbo/code`.
 - Do not commit generated artifacts unless explicitly requested.
-- Parallelize by default: split work into independent tracks and run multiple subagents concurrently whenever safe.
-- Optimize for maximum parallel throughput on medium/large tasks: research, implementation, and verification should run in parallel when dependencies allow.
+- Parallelize at maximum capacity by default for every multi-agent workflow: split work into the smallest independent tracks and run all safe subagents concurrently.
+- Optimize for maximum parallel throughput on medium/large tasks: research and implementation should run in parallel whenever dependencies allow.
 - Assign explicit ownership per subagent (files/folders/tasks) to avoid overlap and merge conflicts.
 - Keep one coordinator agent responsible for plan, synchronization, and final integration.
 - Serialize only when a true dependency or safety risk exists; otherwise continue parallel execution.
-- Before finalizing, reconcile all subagent outputs and run a single integrated validation pass for the touched scope.
+- Enforce DRY collaboration by default: before writing new code, each agent must search for existing reusable implementations and prefer extension/composition over creating new duplicate logic.
+- Subagents working on related scopes must actively coordinate through the coordinator to share reusable primitives and avoid implementing parallel duplicate solutions.
+- Treat duplicate code introduction as a blocker in cooperative workflows; consolidate to one shared implementation before final quality validation.
+- During cooperative multi-agent execution, subagents must not run repo-level quality checks (`format`, `lint`, `typecheck`, `test`, `boundaries`, `audit`); they should focus on implementation and report what they changed.
+- Before finalizing, the coordinator must reconcile all subagent outputs and run a single integrated validation pass for the touched scope.
+- Quality checks are the final step after all cooperating subagents complete their implementation work.
+- If final quality checks fail, split remediation into new subagents by failing check type (`format`, `lint`, `typecheck`, `test`, `boundaries`, `audit`) and run those remediations in parallel where safe, then rerun failing checks and finish with one full integrated gate pass.
 - Mandatory self-review: after completing execution, each agent must review its output against the original plan and acceptance criteria.
 - If outcomes differ from plan, the agent must either close the gap before handoff or explicitly document the deviation and rationale.
 - When fixing issues, prioritize solving the actual root cause; avoid workaround-only or "hacky" fixes unless explicitly approved.
@@ -351,8 +357,13 @@ Useful scoped Turbo invocation pattern:
 - Internal contributor/maintainer workflows must be documented under `_internal_docs/**` or `CONTRIBUTING.md`, not in public docs.
 - If internal-only instructions appear in public docs, agents must remove or relocate them.
 - Any public install guidance for Kuzenbo UI packages that consume shared size/runtime utilities must explicitly state that `@kuzenbo/core` and `@kuzenbo/theme` should be paired in almost all app setups.
-- Full quality validation is required after an agent finishes implementation and before handoff/final response.
+- Full quality validation is required after all cooperative agent implementation is integrated and before handoff/final response.
 - Run this required quality gate from repo root (or Turbo-equivalent scoped commands when explicitly requested): `bun run format`, `bun run lint`, `bun run typecheck`, `bun run test`, `bun run boundaries`, and `bun audit`.
+- In multi-agent workflows, subagents must not run full quality gates while cooperation is in progress; the coordinator owns quality-gate execution as the final step.
+- If a required quality check fails, split follow-up fixes into new subagents by quality check type (`format`, `lint`, `typecheck`, `test`, `boundaries`, `audit`) with explicit ownership, then rerun failing checks and complete one final full gate pass.
+- DRY compliance is required across the monorepo: agents must not introduce duplicate components, hooks, utilities, styles, schemas, constants, or tests when an existing solution can be reused.
+- Reuse-discovery is required before adding new abstractions: agents must inspect the owning package and adjacent package surfaces for existing implementations and reuse or extend them whenever viable.
+- In cooperative multi-agent changes, the coordinator must resolve overlapping implementations and enforce one shared solution before final handoff.
 - Do not finalize while any required quality check is failing unless the user explicitly approves shipping with known failures.
 - If a required check cannot run (environment/tooling/time constraint), explicitly report what was skipped, why it was skipped, and the exact command the next agent/human should run.
 - Color primitive compliance is required: reject or fix changes that introduce raw Tailwind palette color classes instead of `@kuzenbo/core` semantic tokens.
