@@ -7,7 +7,7 @@ export { Month } from "./calendar/month";
 export { MonthLevel } from "./calendar/month-level";
 export { MonthLevelGroup } from "./calendar/month-level-group";
 export { MonthsList } from "./calendar/months-list";
-export { pickCalendarProps } from "./calendar/pick-calendar-props";
+export { pickCalendarProps } from "./calendar/utils/pick-calendar-props";
 export { WeekdaysRow } from "./calendar/weekdays-row";
 export { YearLevel } from "./calendar/year-level";
 export { YearLevelGroup } from "./calendar/year-level-group";
@@ -15,9 +15,9 @@ export { YearsList } from "./calendar/years-list";
 export { DateTimePicker } from "./date-time-picker";
 export { DateInput } from "./inputs/date-input";
 export { DatePickerInput } from "./inputs/date-picker-input";
-export { dateStringParser } from "./inputs/date-string-parser";
+export { dateStringParser } from "./inputs/utils/date-string-parser";
 export { HiddenDatesInput } from "./inputs/hidden-dates-input";
-export { isDateValid } from "./inputs/is-date-valid";
+export { isDateValid } from "./inputs/utils/is-date-valid";
 export { MonthPickerInput } from "./inputs/month-picker-input";
 export { PickerInputBase } from "./inputs/picker-input-base";
 export { YearPickerInput } from "./inputs/year-picker-input";
@@ -27,9 +27,9 @@ export { DatePicker } from "./pickers/date-picker";
 export { MonthPicker } from "./pickers/month-picker";
 export { YearPicker } from "./pickers/year-picker";
 export { PickerControl } from "./picker-control";
-export { isTimeAfter, isTimeBefore } from "./time/compare-time";
-export { getFormattedTime } from "./time/get-formatted-time";
-export { getMaxTime, getMinTime } from "./time/get-min-max-time";
+export { isTimeAfter, isTimeBefore } from "./time/utils/compare-time";
+export { getFormattedTime } from "./time/utils/get-formatted-time";
+export { getMaxTime, getMinTime } from "./time/utils/get-min-max-time";
 export { TimeGrid } from "./time/time-grid";
 export { TimeInput } from "./time/time-input";
 export { TimePicker } from "./time/time-picker";
@@ -48,5 +48,5 @@ export {
   secondsToTime,
   splitTimeString,
   timeToSeconds,
-} from "./time/time-utils";
+} from "./time/utils/time-utils";
 export { TimeValue } from "./time/time-value";

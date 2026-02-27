@@ -9,8 +9,8 @@ import { cn, tv } from "tailwind-variants";
 
 import { useDatesContext } from "../use-dates-context";
 import { CalendarHeader } from "./calendar-header";
-import { compareByLevel } from "./date-level-comparison";
 import { MonthsList } from "./months-list";
+import { compareByLevel } from "./utils/date-level-comparison";
 
 const yearLevelVariants = tv({
   base: "inline-flex flex-col gap-2",

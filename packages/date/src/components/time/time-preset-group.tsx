@@ -7,7 +7,7 @@ import type {
 } from "./time-picker-types";
 
 import { TimePresetControl } from "./time-preset-control";
-import { isSameTime } from "./time-utils";
+import { isSameTime } from "./utils/time-utils";
 
 const timePresetGroupVariants = tv({
   base: "space-y-1",

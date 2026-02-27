@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import { DateControlButton } from "../internal/date-control-button";
-import { padTime } from "./time-utils";
+import { padTime } from "./utils/time-utils";
 
 const timeControlsListVariants = tv({
   base: "max-h-40 overflow-auto rounded-md border border-border bg-card p-1",

@@ -69,6 +69,14 @@ export function BookingExample() {
 - Use `DatesProvider` root props (`locale`, `timeZone`, `firstDayOfWeek`, `weekendDays`, `direction`) for runtime configuration.
 - Import from `@kuzenbo/date` package root; avoid internal/deep imports.
 
+## 🗂️ Source Layout
+
+- 🧩 `src/components/**` keeps UI primitives grouped by feature (`calendar`, `inputs`, `pickers`, `time`)
+- 🛠️ Component-scoped helpers live next to their feature in `components/*/utils/**`
+- 🧪 Tests are colocated by ownership (`components/*/tests`, `hooks/tests`, `adapter/tests`, `utils/tests`)
+- 📚 Stories stay feature-local in `components/*/stories/**`
+- 🔧 Shared package utilities remain in `src/utils/**`
+
 ## 🧠 Adapter Model
 
 All date operations flow through one adapter boundary:

@@ -7,14 +7,14 @@ import type { ControlKeydownPayload } from "../../types";
 import type { DatePickerType, DatePickerValue } from "../types";
 
 import { useDatesContext } from "../use-dates-context";
+import { Day } from "./day";
 import {
   getNextPickerValue,
   isDateDisabled,
   isSelectedDate,
   normalizePickerValue,
-} from "./calendar-selection";
-import { Day } from "./day";
-import { getDateInTabOrder } from "./get-date-in-tab-order";
+} from "./utils/calendar-selection";
+import { getDateInTabOrder } from "./utils/get-date-in-tab-order";
 import { WeekdaysRow } from "./weekdays-row";
 
 const monthVariants = tv({

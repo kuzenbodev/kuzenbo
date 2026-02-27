@@ -5,9 +5,9 @@ import { cn, tv } from "tailwind-variants";
 
 import { PickerControl, type PickerControlProps } from "../picker-control";
 import { useDatesContext } from "../use-dates-context";
-import { getMonthInTabOrder } from "./get-month-in-tab-order";
-import { getMonthsData } from "./get-months-data";
-import { isMonthDisabled } from "./is-month-disabled";
+import { getMonthInTabOrder } from "./utils/get-month-in-tab-order";
+import { getMonthsData } from "./utils/get-months-data";
+import { isMonthDisabled } from "./utils/is-month-disabled";
 
 const monthsListVariants = tv({
   base: "grid grid-cols-3 gap-2",

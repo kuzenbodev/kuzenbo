@@ -15,12 +15,12 @@ import type {
 import { DateControlButton } from "../internal/date-control-button";
 import { AmPmInput } from "./am-pm-input";
 import { SpinInput } from "./spin-input";
+import { useTimePicker } from "./use-time-picker";
 import {
   clampTime,
   DEFAULT_TIME_AM_PM_LABELS,
   getTimeStringFromParts,
-} from "./time-utils";
-import { useTimePicker } from "./use-time-picker";
+} from "./utils/time-utils";
 
 const timeInputVariants = tv({
   base: "inline-flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1",

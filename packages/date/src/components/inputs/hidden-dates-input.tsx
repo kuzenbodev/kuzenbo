@@ -4,7 +4,7 @@ import type { DatePickerType, DatePickerValue } from "../types";
 
 import { resolvePickerType } from "../picker-mode";
 import { useDatesContext } from "../use-dates-context";
-import { serializePickerValue } from "./picker-input-utils";
+import { serializePickerValue } from "./utils/picker-input-utils";
 
 export type HiddenDatesInputProps = Omit<
   ComponentProps<"input">,

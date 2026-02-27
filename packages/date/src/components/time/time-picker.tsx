@@ -20,7 +20,7 @@ import {
   DEFAULT_TIME_AM_PM_LABELS,
   getTimeStringFromParts,
   parseFormattedTime,
-} from "./time-utils";
+} from "./utils/time-utils";
 
 const timePickerVariants = tv({
   base: "inline-flex w-full max-w-sm flex-col gap-2 rounded-lg border border-border bg-background p-2",

@@ -8,13 +8,13 @@ import type { CalendarLevel, DatePickerType, DatePickerValue } from "../types";
 
 import { resolvePickerType } from "../picker-mode";
 import { useDatesContext } from "../use-dates-context";
+import { DecadeLevelGroup } from "./decade-level-group";
+import { MonthLevelGroup } from "./month-level-group";
 import {
   getPrimaryDateFromValue,
   normalizePickerValue,
-} from "./calendar-selection";
-import { clampLevel } from "./clamp-level";
-import { DecadeLevelGroup } from "./decade-level-group";
-import { MonthLevelGroup } from "./month-level-group";
+} from "./utils/calendar-selection";
+import { clampLevel } from "./utils/clamp-level";
 import { YearLevelGroup } from "./year-level-group";
 
 const calendarVariants = tv({

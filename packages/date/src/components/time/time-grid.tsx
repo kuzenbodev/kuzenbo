@@ -10,13 +10,13 @@ import type {
   TimeFormat,
 } from "./time-picker-types";
 
-import { isTimeAfter, isTimeBefore } from "./compare-time";
 import { TimeGridControl } from "./time-grid-control";
+import { isTimeAfter, isTimeBefore } from "./utils/compare-time";
 import {
   DEFAULT_TIME_AM_PM_LABELS,
   getTimeRangeFromInterval,
   isSameTime,
-} from "./time-utils";
+} from "./utils/time-utils";
 
 const timeGridVariants = tv({
   base: "max-h-48 overflow-auto rounded-md border border-border bg-card p-1",

@@ -78,7 +78,7 @@ export { MonthLevelGroup } from "./components/calendar/month-level-group";
 export type { MonthLevelGroupProps } from "./components/calendar/month-level-group";
 export { MonthsList } from "./components/calendar/months-list";
 export type { MonthsListProps } from "./components/calendar/months-list";
-export { pickCalendarProps } from "./components/calendar/pick-calendar-props";
+export { pickCalendarProps } from "./components/calendar/utils/pick-calendar-props";
 export { WeekdaysRow } from "./components/calendar/weekdays-row";
 export type { WeekdaysRowProps } from "./components/calendar/weekdays-row";
 export { YearLevel } from "./components/calendar/year-level";
@@ -93,10 +93,10 @@ export { DateInput } from "./components/inputs/date-input";
 export type { DateInputProps } from "./components/inputs/date-input";
 export { DatePickerInput } from "./components/inputs/date-picker-input";
 export type { DatePickerInputProps } from "./components/inputs/date-picker-input";
-export { dateStringParser } from "./components/inputs/date-string-parser";
+export { dateStringParser } from "./components/inputs/utils/date-string-parser";
 export { HiddenDatesInput } from "./components/inputs/hidden-dates-input";
 export type { HiddenDatesInputProps } from "./components/inputs/hidden-dates-input";
-export { isDateValid } from "./components/inputs/is-date-valid";
+export { isDateValid } from "./components/inputs/utils/is-date-valid";
 export { MonthPickerInput } from "./components/inputs/month-picker-input";
 export type { MonthPickerInputProps } from "./components/inputs/month-picker-input";
 export { PickerInputBase } from "./components/inputs/picker-input-base";
@@ -115,9 +115,15 @@ export { YearPicker } from "./components/pickers/year-picker";
 export type { YearPickerProps } from "./components/pickers/year-picker";
 export { PickerControl } from "./components/picker-control";
 export type { PickerControlProps } from "./components/picker-control";
-export { isTimeAfter, isTimeBefore } from "./components/time/compare-time";
-export { getFormattedTime } from "./components/time/get-formatted-time";
-export { getMaxTime, getMinTime } from "./components/time/get-min-max-time";
+export {
+  isTimeAfter,
+  isTimeBefore,
+} from "./components/time/utils/compare-time";
+export { getFormattedTime } from "./components/time/utils/get-formatted-time";
+export {
+  getMaxTime,
+  getMinTime,
+} from "./components/time/utils/get-min-max-time";
 export { TimeGrid } from "./components/time/time-grid";
 export type { TimeGridProps } from "./components/time/time-grid";
 export { TimeInput } from "./components/time/time-input";
@@ -139,6 +145,6 @@ export {
   secondsToTime,
   splitTimeString,
   timeToSeconds,
-} from "./components/time/time-utils";
+} from "./components/time/utils/time-utils";
 export { TimeValue } from "./components/time/time-value";
 export type { TimeValueProps } from "./components/time/time-value";

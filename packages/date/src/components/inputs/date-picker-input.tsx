@@ -5,13 +5,13 @@ import { useMemo, useState } from "react";
 
 import type { DatePickerType, DatePickerValue } from "../types";
 
-import { normalizePickerValue } from "../calendar/calendar-selection";
+import { normalizePickerValue } from "../calendar/utils/calendar-selection";
 import { resolvePickerType } from "../picker-mode";
 import { DatePicker } from "../pickers/date-picker";
 import { useDatesContext } from "../use-dates-context";
 import { HiddenDatesInput } from "./hidden-dates-input";
 import { PickerInputBase } from "./picker-input-base";
-import { formatPickerValue } from "./picker-input-utils";
+import { formatPickerValue } from "./utils/picker-input-utils";
 
 export type DatePickerInputProps = Omit<
   ComponentProps<typeof PickerInputBase>,

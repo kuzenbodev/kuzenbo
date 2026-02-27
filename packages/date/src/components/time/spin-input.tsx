@@ -3,7 +3,7 @@ import type { ComponentProps, KeyboardEvent } from "react";
 import { forwardRef } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import { padTime } from "./time-utils";
+import { padTime } from "./utils/time-utils";
 
 const spinInputVariants = tv({
   base: "h-6 w-10 rounded-sm border border-input bg-background px-1 text-center text-xs text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[2px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50",

@@ -4,7 +4,7 @@ import { cn, tv } from "tailwind-variants";
 
 import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 
-import { getFormattedTime } from "./get-formatted-time";
+import { getFormattedTime } from "./utils/get-formatted-time";
 
 const timeValueVariants = tv({
   base: "inline-flex items-center rounded-md border border-border bg-card px-2 py-1 font-mono text-xs text-foreground",

@@ -4,9 +4,9 @@ import type { ComponentProps } from "react";
 import { useEffect, useMemo, useState } from "react";
 
 import { useDatesContext } from "../use-dates-context";
-import { dateStringParser } from "./date-string-parser";
-import { isDateValid } from "./is-date-valid";
 import { PickerInputBase } from "./picker-input-base";
+import { dateStringParser } from "./utils/date-string-parser";
+import { isDateValid } from "./utils/is-date-valid";
 
 export type DateInputProps = Omit<
   ComponentProps<typeof PickerInputBase>,

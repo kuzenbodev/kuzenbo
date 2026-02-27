@@ -9,7 +9,7 @@ import type { CalendarLevel } from "../types";
 
 import { DateControlButton } from "../internal/date-control-button";
 import { useDatesContext } from "../use-dates-context";
-import { getDecadeRange } from "./get-decade-range";
+import { getDecadeRange } from "./utils/get-decade-range";
 
 const calendarHeaderVariants = tv({
   base: "flex items-center justify-between gap-2",

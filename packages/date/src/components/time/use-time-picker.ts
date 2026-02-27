@@ -13,7 +13,7 @@ import {
   DEFAULT_TIME_AM_PM_LABELS,
   getTimeStringFromParts,
   parseFormattedTime,
-} from "./time-utils";
+} from "./utils/time-utils";
 
 interface UseTimePickerInput {
   value: string | undefined;

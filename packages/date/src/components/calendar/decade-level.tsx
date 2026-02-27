@@ -9,8 +9,8 @@ import { cn, tv } from "tailwind-variants";
 
 import { useDatesContext } from "../use-dates-context";
 import { CalendarHeader } from "./calendar-header";
-import { compareByLevel } from "./date-level-comparison";
-import { getDecadeRange } from "./get-decade-range";
+import { compareByLevel } from "./utils/date-level-comparison";
+import { getDecadeRange } from "./utils/get-decade-range";
 import { YearsList } from "./years-list";
 
 const decadeLevelVariants = tv({

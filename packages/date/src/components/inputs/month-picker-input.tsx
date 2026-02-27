@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import type { DatePickerType, DatePickerValue } from "../types";
 
-import { normalizePickerValue } from "../calendar/calendar-selection";
+import { normalizePickerValue } from "../calendar/utils/calendar-selection";
 import { resolvePickerType } from "../picker-mode";
 import { MonthPicker } from "../pickers/month-picker";
 import { useDatesContext } from "../use-dates-context";

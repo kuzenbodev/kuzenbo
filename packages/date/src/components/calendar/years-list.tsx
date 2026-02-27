@@ -5,9 +5,9 @@ import { cn, tv } from "tailwind-variants";
 
 import { PickerControl, type PickerControlProps } from "../picker-control";
 import { useDatesContext } from "../use-dates-context";
-import { getYearInTabOrder } from "./get-year-in-tab-order";
-import { getYearsData } from "./get-years-data";
-import { isYearDisabled } from "./is-year-disabled";
+import { getYearInTabOrder } from "./utils/get-year-in-tab-order";
+import { getYearsData } from "./utils/get-years-data";
+import { isYearDisabled } from "./utils/is-year-disabled";
 
 const yearsListVariants = tv({
   base: "grid grid-cols-3 gap-2",
