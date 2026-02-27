@@ -270,10 +270,13 @@ Useful scoped Turbo invocation pattern:
 - Uses App Router with `cacheComponents: true` and `typedRoutes: true`.
 - `next.config.ts` enables several experimental/perf flags; treat config changes carefully during upgrades.
 - The app shell currently contains starter content (`app/page.tsx` is minimal), so this app is a safe place to add playground/docs pages for components.
+- `apps/website` is a docs/playground runtime and must not contain direct test files (`*.test.*`, `*.spec.*`) or test harness directories (`tests/`, `__tests__/`).
+- Enforce the website test policy with `bun run policy:no-website-tests` (included in `bun run lint`).
 
 ### Testing and quality workflow
 
 - Prefer adding/maintaining colocated tests for component behavior.
+- Do not add tests under `apps/website`; add coverage in the owning package workspace instead.
 - Keep Storybook stories aligned with component API changes.
 - For UI behavior tests, rely on Testing Library interactions (`userEvent`) instead of implementation details.
 - Each package Storybook exposes a global toolbar theme switcher (`light` default, `dark` via `.dark` on preview `html`).

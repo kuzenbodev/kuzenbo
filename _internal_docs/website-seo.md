@@ -59,5 +59,4 @@ bun run typecheck
 bun run test
 bun run --cwd apps/website build
 bun run --cwd apps/website typecheck
-bun run --cwd apps/website test
 ```

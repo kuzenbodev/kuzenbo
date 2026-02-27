@@ -7,8 +7,6 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
-    "test": "bun test",
-    "test:watch": "bun test --watch",
     "pretypecheck": "next typegen",
     "typecheck": "tsgo --noEmit"
   },
@@ -42,10 +40,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "catalog:",
     "@tailwindcss/postcss": "catalog:",
     "@tailwindcss/typography": "catalog:",
-    "@testing-library/react": "catalog:",
     "@types/mdx": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",

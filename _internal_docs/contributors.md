@@ -75,10 +75,11 @@ bun run boundaries
 - Playground/site updates: `apps/website`
 - Stories live in the owning package under `src/**/*.stories.tsx`
 
-## Website Tests
+## Website Testing Policy
 
-- `apps/website` runs Bun tests with a Happy DOM preload at `apps/website/test/setup.ts`.
-- Run website tests directly with `bun run --cwd apps/website test`, or from root with `bun turbo run test --filter=@kuzenbo/website`.
+- `apps/website` must not contain direct test files (`*.test.*`, `*.spec.*`) or test harness folders (`tests/`, `__tests__/`).
+- Validate this policy with `bun run policy:no-website-tests` (it is included in `bun run lint`).
+- Add coverage for website-driven behavior in the owning package workspace (for example `packages/core` or `packages/hooks`) instead of `apps/website`.
 
 ## Typical PR Flow
 
