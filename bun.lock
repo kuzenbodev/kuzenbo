@@ -62,10 +62,8 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@happy-dom/global-registrator": "catalog:",
         "@tailwindcss/postcss": "catalog:",
         "@tailwindcss/typography": "catalog:",
-        "@testing-library/react": "catalog:",
         "@types/mdx": "catalog:",
         "@types/node": "catalog:",
         "@types/react": "catalog:",

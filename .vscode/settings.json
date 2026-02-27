@@ -66,5 +66,6 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "codeQL.githubDatabase.update": "never"
 }

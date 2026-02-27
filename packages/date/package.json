@@ -2,9 +2,8 @@
   "name": "@kuzenbo/date",
   "version": "0.0.4",
   "private": true,
-  "description": "Date and calendar primitives for Kuzenbo.",
+  "description": "Date primitives for Kuzenbo.",
   "keywords": [
-    "calendar",
     "date",
     "kuzenbo",
     "react",
@@ -27,14 +26,14 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    "./package.json": "./package.json",
-    "./ui/calendar": "./src/ui/calendar/calendar.tsx"
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
-      "./package.json": "./package.json",
-      "./ui/calendar": "./dist/ui/calendar.js"
+      ".": "./dist/index.js",
+      "./package.json": "./package.json"
     }
   },
   "scripts": {

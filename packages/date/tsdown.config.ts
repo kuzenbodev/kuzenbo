@@ -1,9 +1,7 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: {
-    "ui/calendar": "src/ui/calendar/calendar.tsx",
-  },
+  entry: { index: "src/index.ts" },
   format: ["esm"],
   dts: {
     sourcemap: true,
@@ -19,18 +17,5 @@ export default defineConfig({
   exports: {
     devExports: true,
     packageJson: true,
-    customExports(currentExports) {
-      const rootExport = currentExports["."];
-      if (!rootExport) {
-        return currentExports;
-      }
-
-      const exportsWithoutRoot = { ...currentExports };
-      delete exportsWithoutRoot["."];
-      return {
-        ...exportsWithoutRoot,
-        "./ui/calendar": rootExport,
-      };
-    },
   },
 });
