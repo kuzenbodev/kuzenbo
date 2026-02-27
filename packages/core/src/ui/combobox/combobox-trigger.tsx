@@ -16,7 +16,7 @@ const ComboboxTrigger = ({
 }: ComboboxTriggerProps) => (
   <ComboboxPrimitive.Trigger
     className={mergeBaseUIClassName<ComboboxPrimitive.Trigger.State>(
-      "cursor-pointer",
+      "cursor-clickable",
       className
     )}
     data-slot="combobox-trigger"

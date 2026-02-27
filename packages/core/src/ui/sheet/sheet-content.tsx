@@ -40,7 +40,7 @@ const SheetContent = ({
             data-slot="sheet-close"
             render={
               <Button
-                className="absolute top-4 right-4"
+                className="absolute top-4 right-4 cursor-clickable"
                 size="icon-sm"
                 variant="ghost"
               />

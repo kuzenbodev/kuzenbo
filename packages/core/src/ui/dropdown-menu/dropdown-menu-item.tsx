@@ -9,7 +9,7 @@ import { DropdownMenuContext } from "./dropdown-menu-context";
 import { DropdownMenuOverlayContext } from "./dropdown-menu-overlay-context";
 
 const dropdownMenuItemVariants = tv({
-  base: "group/dropdown-menu-item relative flex cursor-pointer items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  base: "group/dropdown-menu-item relative flex cursor-clickable items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     inset: {
       false: "",

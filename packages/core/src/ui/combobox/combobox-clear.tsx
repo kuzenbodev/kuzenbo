@@ -30,7 +30,7 @@ const ComboboxClear = ({ className, size, ...props }: ComboboxClearProps) => {
   return (
     <ComboboxPrimitive.Clear
       className={mergeBaseUIClassName<ComboboxPrimitive.Clear.State>(
-        undefined,
+        "cursor-clickable",
         className
       )}
       data-size={resolvedSize}

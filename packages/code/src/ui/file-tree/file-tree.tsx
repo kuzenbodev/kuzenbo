@@ -72,7 +72,7 @@ export const FileTree = ({
           >
             <Button
               aria-label={`Toggle ${node.data.name}`}
-              className="h-6 w-6 p-0 text-xs"
+              className="h-6 w-6 cursor-clickable p-0 text-xs"
               disabled={node.isLeaf}
               onClick={(event) => {
                 event.stopPropagation();
@@ -90,7 +90,7 @@ export const FileTree = ({
 
             <Button
               aria-label={`Select ${node.data.name}`}
-              className="h-auto min-h-0 min-w-0 flex-1 justify-start gap-2 px-1 py-1 text-left text-sm"
+              className="h-auto min-h-0 min-w-0 flex-1 cursor-clickable justify-start gap-2 px-1 py-1 text-left text-sm"
               onClick={() => {
                 node.select();
                 onSelect?.(node.data);

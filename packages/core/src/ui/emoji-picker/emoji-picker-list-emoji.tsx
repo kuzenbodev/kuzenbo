@@ -9,7 +9,7 @@ import type { UISize } from "../shared/size/size-system";
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerListEmojiVariants = tv({
-  base: "flex cursor-pointer items-center justify-center rounded-md data-active:bg-accent",
+  base: "flex cursor-clickable items-center justify-center rounded-md data-active:bg-accent",
   variants: {
     size: {
       xs: "size-6 text-sm",

@@ -6,7 +6,7 @@ export type TooltipTriggerProps = TooltipPrimitive.Trigger.Props;
 
 const TooltipTrigger = ({ className, ...props }: TooltipTriggerProps) => (
   <TooltipPrimitive.Trigger
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="tooltip-trigger"
     {...props}
   />

@@ -53,6 +53,29 @@ When needed, it syncs storage and cookie values to keep state consistent for fut
 - `parseThemePreference(value)` validates user-provided values to `light` or `dark`.
 - `resolveThemeBootstrapPlan(...)` allows deterministic testing of cookie/storage/system decision logic.
 
+## Cursor Token and Utility
+
+Theme CSS exposes a semantic cursor token and utility class for interactive UI:
+
+- Token: `--kb-cursor` (defaults to `pointer`).
+- Utility: `cursor-clickable` (resolves to `cursor: var(--kb-cursor)`).
+
+```css
+:root {
+  --kb-cursor: pointer;
+}
+
+.read-only-zone {
+  --kb-cursor: default;
+}
+```
+
+```tsx
+<button className="cursor-clickable">Open menu</button>
+```
+
+Use scoped overrides to switch interactive components to a default cursor in non-clickable or read-only contexts.
+
 ## CSP and Nonce Support
 
 If your app enforces Content Security Policy nonces, set `THEME_BOOTSTRAP_NONCE` and let `ThemeBootstrapScript` use it automatically through `getThemeBootstrapScriptNonce()`.

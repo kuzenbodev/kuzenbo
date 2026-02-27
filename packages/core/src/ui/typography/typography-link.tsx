@@ -6,7 +6,7 @@ import { typographyTextVariants } from "./typography-variants";
 
 const typographyLinkVariants = tv({
   extend: typographyTextVariants,
-  base: "cursor-pointer text-muted-foreground underline-offset-4 transition-colors duration-200 ease-out hover:text-foreground hover:underline",
+  base: "cursor-clickable text-muted-foreground underline-offset-4 transition-colors duration-200 ease-out hover:text-foreground hover:underline",
   variants: {
     variant: {
       ...typographyTextVariants.variants.variant,

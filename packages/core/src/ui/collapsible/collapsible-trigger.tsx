@@ -11,7 +11,7 @@ const CollapsibleTrigger = ({
 }: CollapsibleTriggerProps) => (
   <CollapsiblePrimitive.Trigger
     className={mergeBaseUIClassName<CollapsiblePrimitive.Root.State>(
-      "cursor-pointer",
+      "cursor-clickable",
       className
     )}
     data-slot="collapsible-trigger"

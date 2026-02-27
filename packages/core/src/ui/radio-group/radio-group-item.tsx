@@ -10,7 +10,7 @@ import { useComponentSize } from "../shared/size/size-provider";
 import { RadioGroupIndicator } from "./radio-group-indicator";
 
 const radioGroupItemVariants = tv({
-  base: "group/radio-group-item peer relative flex shrink-0 cursor-pointer rounded-full border border-input text-primary-foreground shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-danger-foreground aria-invalid:ring-[3px] aria-invalid:ring-danger-foreground/20 dark:bg-input/30 dark:aria-invalid:border-danger-foreground/50 dark:aria-invalid:ring-danger-foreground/40",
+  base: "group/radio-group-item peer relative flex shrink-0 cursor-clickable rounded-full border border-input text-primary-foreground shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-danger-foreground aria-invalid:ring-[3px] aria-invalid:ring-danger-foreground/20 dark:bg-input/30 dark:aria-invalid:border-danger-foreground/50 dark:aria-invalid:ring-danger-foreground/40",
   variants: {
     size: {
       xs: "aspect-square size-3 after:absolute after:-inset-1.5",

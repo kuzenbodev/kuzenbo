@@ -19,7 +19,7 @@ const CarouselNext = ({
   return (
     <Button
       className={cn(
-        "absolute touch-manipulation rounded-full",
+        "absolute touch-manipulation cursor-clickable rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -right-12 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",

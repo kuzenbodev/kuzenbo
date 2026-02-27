@@ -13,7 +13,7 @@ const contextMenuCheckboxItemVariants = tv({
   slots: {
     indicator:
       "pointer-events-none absolute flex items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
-    root: "relative flex cursor-pointer items-center rounded-md outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    root: "relative flex cursor-clickable items-center rounded-md outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   },
   variants: {
     size: {

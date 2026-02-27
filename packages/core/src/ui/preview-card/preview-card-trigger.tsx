@@ -10,7 +10,7 @@ const PreviewCardTrigger = ({
   ...props
 }: PreviewCardTriggerProps) => (
   <PreviewCardPrimitive.Trigger
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="preview-card-trigger"
     {...props}
   />

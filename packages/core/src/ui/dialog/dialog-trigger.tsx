@@ -7,7 +7,7 @@ export type DialogTriggerProps = DialogPrimitive.Trigger.Props;
 
 const DialogTrigger = ({ className, ...props }: DialogTriggerProps) => (
   <DialogPrimitive.Trigger
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="dialog-trigger"
     {...props}
   />

@@ -16,7 +16,7 @@ const commandItemVariants = tv({
   slots: {
     indicator:
       "ml-auto opacity-0 group-has-[[data-slot=command-shortcut]]/command-item:hidden group-data-[checked=true]/command-item:opacity-100 data-[selected=true]:*:[svg]:text-foreground",
-    root: "group/command-item relative flex cursor-pointer items-center rounded-sm outline-hidden select-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [[data-slot=dialog-content]_&]:rounded-lg!",
+    root: "group/command-item relative flex cursor-clickable items-center rounded-sm outline-hidden select-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [[data-slot=dialog-content]_&]:rounded-lg!",
   },
   variants: {
     size: {

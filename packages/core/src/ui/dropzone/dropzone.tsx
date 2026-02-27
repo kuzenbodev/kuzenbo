@@ -30,7 +30,7 @@ const dropzoneVariants = tv({
   slots: {
     root: [
       "relative",
-      "cursor-pointer",
+      "cursor-clickable",
       "select-none",
       "rounded-lg",
       "border",

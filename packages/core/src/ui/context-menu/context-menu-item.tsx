@@ -9,7 +9,7 @@ import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 
 const contextMenuItemVariants = tv({
-  base: "group/context-menu-item relative flex cursor-pointer items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  base: "group/context-menu-item relative flex cursor-clickable items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     inset: {
       false: "",

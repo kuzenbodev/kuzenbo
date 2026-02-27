@@ -6,7 +6,7 @@ export type PopoverTriggerProps = PopoverPrimitive.Trigger.Props;
 
 const PopoverTrigger = ({ className, ...props }: PopoverTriggerProps) => (
   <PopoverPrimitive.Trigger
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="popover-trigger"
     {...props}
   />

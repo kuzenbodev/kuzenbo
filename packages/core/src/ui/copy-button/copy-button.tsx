@@ -180,7 +180,7 @@ const CopyButton = ({
     <>
       <Button
         aria-label={resolvedAriaLabel}
-        className={cn("gap-2", className)}
+        className={cn("gap-2 cursor-clickable", className)}
         data-slot="copy-button"
         data-status={currentStatus}
         disabled={disabled || currentStatus === "copying"}

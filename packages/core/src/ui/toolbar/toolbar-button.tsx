@@ -33,7 +33,10 @@ export const ToolbarButton = ({
   return (
     <ToolbarPrimitive.Button
       className={mergeBaseUIClassName<ToolbarPrimitive.Button.State>(
-        cn(buttonVariants({ variant, size: resolvedSize }), "shrink-0"),
+        cn(
+          buttonVariants({ variant, size: resolvedSize }),
+          "shrink-0 cursor-clickable"
+        ),
         className
       )}
       data-size={resolvedSize}

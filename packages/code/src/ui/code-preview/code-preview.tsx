@@ -152,7 +152,11 @@ export const CodePreview = ({
             {hideModeControls ? null : (
               <Tabs.List aria-label="Preview mode" size="xs" variant="pill">
                 {(["preview", "code", "split"] as const).map((nextMode) => (
-                  <Tabs.Trigger key={nextMode} value={nextMode}>
+                  <Tabs.Trigger
+                    className="cursor-clickable"
+                    key={nextMode}
+                    value={nextMode}
+                  >
                     {previewModeLabelByValue[nextMode]}
                   </Tabs.Trigger>
                 ))}
@@ -175,8 +179,12 @@ export const CodePreview = ({
                 value={toSingleGroupValue(activeCodeMode)}
                 variant="outline"
               >
-                <ToggleGroup.Item value="minimal">Minimal</ToggleGroup.Item>
-                <ToggleGroup.Item value="full">Full</ToggleGroup.Item>
+                <ToggleGroup.Item className="cursor-clickable" value="minimal">
+                  Minimal
+                </ToggleGroup.Item>
+                <ToggleGroup.Item className="cursor-clickable" value="full">
+                  Full
+                </ToggleGroup.Item>
               </ToggleGroup>
             ) : null}
           </div>

@@ -16,7 +16,7 @@ import {
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListActionVariants = tv({
-  base: "absolute right-1 flex aspect-square cursor-pointer items-center justify-center rounded-md p-0 outline-hidden transition-transform group-data-[collapsible=true]/navigation-list-item:right-10 group-has-data-[slot=navigation-list-badge]/navigation-list-item:right-14 [&>svg]:shrink-0",
+  base: "absolute right-1 flex aspect-square cursor-clickable items-center justify-center rounded-md p-0 outline-hidden transition-transform group-data-[collapsible=true]/navigation-list-item:right-10 group-has-data-[slot=navigation-list-badge]/navigation-list-item:right-14 [&>svg]:shrink-0",
   variants: {
     size: {
       xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",

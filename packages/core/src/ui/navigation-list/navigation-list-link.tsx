@@ -23,7 +23,7 @@ import {
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListLinkVariants = tv({
-  base: "peer/navigation-list-link flex w-full cursor-pointer gap-2 overflow-hidden rounded-md text-left ring-offset-background outline-hidden transition-colors group-has-data-[slot=navigation-list-action]/navigation-list-item:pr-20 group-has-data-[slot=navigation-list-badge]/navigation-list-item:pr-20 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
+  base: "peer/navigation-list-link flex w-full cursor-clickable gap-2 overflow-hidden rounded-md text-left ring-offset-background outline-hidden transition-colors group-has-data-[slot=navigation-list-action]/navigation-list-item:pr-20 group-has-data-[slot=navigation-list-badge]/navigation-list-item:pr-20 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
   variants: {
     size: {
       xs: "min-h-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",

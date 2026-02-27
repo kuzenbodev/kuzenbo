@@ -6,7 +6,7 @@ export type SheetCloseProps = SheetPrimitive.Close.Props;
 
 const SheetClose = ({ className, ...props }: SheetCloseProps) => (
   <SheetPrimitive.Close
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="sheet-close"
     {...props}
   />

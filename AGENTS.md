@@ -193,6 +193,14 @@ Useful scoped Turbo invocation pattern:
 - If a semantic color is missing, add/update tokens in `packages/theme/src/default.css` first, then consume them through semantic utilities.
 - This rule applies to `packages/*`, `apps/*`, Storybook stories, tests, and docs examples.
 
+### Cursor primitives policy
+
+- Use `cursor-clickable` for shared clickable/interactable surfaces across the monorepo.
+- `cursor-clickable` is backed by the theme token `--kb-cursor` in `packages/theme/src/default.css`.
+- Configure platform-style behavior by overriding `--kb-cursor` (for example `pointer` for Windows-like behavior or `default` for Mac-like behavior).
+- Do not introduce raw `cursor-pointer` on shared component surfaces; keep specialized cursor classes (`cursor-text`, resize cursors, `cursor-default`, `cursor-not-allowed`) when semantically required.
+- This rule applies to `packages/*`, `apps/*`, Storybook stories, tests, and docs examples.
+
 ### Typography primitives policy
 
 - Prefer typography primitives/components from `@kuzenbo/core` for text rendering across the entire monorepo.
@@ -348,6 +356,7 @@ Useful scoped Turbo invocation pattern:
 - Do not finalize while any required quality check is failing unless the user explicitly approves shipping with known failures.
 - If a required check cannot run (environment/tooling/time constraint), explicitly report what was skipped, why it was skipped, and the exact command the next agent/human should run.
 - Color primitive compliance is required: reject or fix changes that introduce raw Tailwind palette color classes instead of `@kuzenbo/core` semantic tokens.
+- Cursor primitive compliance is required: reject or fix changes that introduce raw `cursor-pointer` on shared component surfaces instead of `cursor-clickable` + `--kb-cursor`.
 - Typography primitive compliance is required: reject or fix changes that use raw HTML typography tags with ad-hoc classnames when `@kuzenbo/core` typography components can be used.
 - Base UI composition compliance is required: reject or fix changes that introduce `asChild`; use Base UI `render` prop composition instead.
 - One component per file, one hook per file maximum is required: reject or fix changes that define multiple component or hook implementations in a single source file across the monorepo.

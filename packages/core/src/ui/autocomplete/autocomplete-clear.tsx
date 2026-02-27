@@ -14,7 +14,7 @@ export const AutocompleteClear = ({
 }: AutocompleteClearProps) => (
   <BaseAutocomplete.Clear
     className={mergeBaseUIClassName<BaseAutocomplete.Clear.State>(
-      "cursor-pointer",
+      "cursor-clickable",
       className
     )}
     data-slot="autocomplete-clear"

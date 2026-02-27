@@ -77,7 +77,7 @@ export const TiptapEditorColorPicker = ({
           {palette.map((color) => (
             <button
               aria-label={`Set color ${color}`}
-              className="size-7 rounded-md border border-border transition hover:scale-105"
+              className="size-7 cursor-clickable rounded-md border border-border transition hover:scale-105"
               key={color}
               onClick={() => applyColor(color)}
               style={{ backgroundColor: color }}
@@ -86,7 +86,12 @@ export const TiptapEditorColorPicker = ({
           ))}
         </div>
         <div className="flex justify-end">
-          <Button onClick={clearColor} size="sm" variant="outline">
+          <Button
+            className="cursor-clickable"
+            onClick={clearColor}
+            size="sm"
+            variant="outline"
+          >
             Clear
           </Button>
         </div>

@@ -8,7 +8,7 @@ import { useTabsStyleContext } from "./tabs-style-context";
 export type TabsTriggerProps = TabsPrimitive.Tab.Props;
 
 const tabsTriggerVariants = tv({
-  base: "relative inline-flex cursor-pointer items-center justify-center gap-1.5 border border-transparent font-medium break-keep whitespace-nowrap text-muted-foreground transition-colors outline-none select-none hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-active:text-foreground group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  base: "relative inline-flex cursor-clickable items-center justify-center gap-1.5 border border-transparent font-medium break-keep whitespace-nowrap text-muted-foreground transition-colors outline-none select-none hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-active:text-foreground group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   compoundVariants: [{ fullWidth: true, class: "min-w-0 flex-1" }],
   variants: {
     variant: {

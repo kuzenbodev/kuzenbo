@@ -5,6 +5,7 @@
 
 :root {
   --kb-radius: 0.625rem;
+  --kb-cursor: pointer;
   --kb-background: oklch(1 0 0);
   --kb-foreground: oklch(0.141 0.005 285.823);
   --kb-card: oklch(1 0 0);
@@ -48,7 +49,6 @@
   --kb-z-affix: 200;
   --kb-z-toast: 1000;
   --kb-z-immersive: 9999;
-
   --kb-danger: oklch(0.966 0.016 16.278);
   --kb-danger-foreground: oklch(0.579 0.237 29.233);
   --kb-danger-border: oklch(0.933 0.033 16.63);
@@ -183,4 +183,8 @@
   scroll-behavior: auto !important;
   transition-delay: 0ms !important;
   transition-duration: 0.01ms !important;
+}
+
+@utility cursor-clickable {
+  cursor: var(--kb-cursor);
 }

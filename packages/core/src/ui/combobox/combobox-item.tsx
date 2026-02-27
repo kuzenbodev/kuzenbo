@@ -15,7 +15,7 @@ import { ComboboxOverlayContext } from "./combobox-overlay-context";
 const comboboxItemVariants = tv({
   slots: {
     icon: "pointer-events-none",
-    root: "relative flex w-full cursor-pointer items-center rounded-md outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=danger]:data-highlighted:**:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    root: "relative flex w-full cursor-clickable items-center rounded-md outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=danger]:data-highlighted:**:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   },
   variants: {
     size: {

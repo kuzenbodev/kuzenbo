@@ -31,7 +31,7 @@ const toolbarButtonSizeByEditorSize: Record<
 };
 
 const tiptapEditorControlVariants = tv({
-  base: "kb-tiptap-control rounded-[min(var(--radius-md),10px)] text-muted-foreground hover:text-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground",
+  base: "kb-tiptap-control cursor-clickable rounded-[min(var(--radius-md),10px)] text-muted-foreground hover:text-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground",
   variants: {
     size: {
       xs: "h-6 min-w-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",

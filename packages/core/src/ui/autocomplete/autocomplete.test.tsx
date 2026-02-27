@@ -39,7 +39,7 @@ describe("Autocomplete", () => {
 
     const trigger = document.querySelector("[data-slot=autocomplete-trigger]");
     expect(trigger).toBeDefined();
-    expect(trigger?.className.includes("cursor-pointer")).toBe(true);
+    expect(trigger?.className.includes("cursor-clickable")).toBe(true);
     expect(trigger?.className.includes("callback-trigger")).toBe(true);
   });
 

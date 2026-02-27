@@ -7,7 +7,7 @@ const AlertDialogTrigger = ({
   ...props
 }: AlertDialogTriggerProps) => (
   <AlertDialogPrimitive.Trigger
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="alert-dialog-trigger"
     {...props}
   />

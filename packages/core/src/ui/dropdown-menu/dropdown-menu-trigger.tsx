@@ -7,7 +7,7 @@ const DropdownMenuTrigger = ({
   ...props
 }: DropdownMenuTriggerProps) => (
   <MenuPrimitive.Trigger
-    className={cn("cursor-pointer", className)}
+    className={cn("cursor-clickable", className)}
     data-slot="dropdown-menu-trigger"
     {...props}
   />

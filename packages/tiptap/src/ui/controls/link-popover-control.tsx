@@ -105,10 +105,15 @@ export const TiptapEditorLinkPopover = ({
           value={url}
         />
         <div className="flex items-center justify-end gap-2">
-          <Button onClick={clearLink} size="sm" variant="outline">
+          <Button
+            className="cursor-clickable"
+            onClick={clearLink}
+            size="sm"
+            variant="outline"
+          >
             {labels.unlink}
           </Button>
-          <Button onClick={saveLink} size="sm">
+          <Button className="cursor-clickable" onClick={saveLink} size="sm">
             Save
           </Button>
         </div>

@@ -8,7 +8,7 @@ import { NavigationMenuContext } from "./navigation-menu-context";
 import { NavigationMenuOverlayContext } from "./navigation-menu-overlay-context";
 
 const navigationMenuLinkVariants = tv({
-  base: "flex flex-col transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-md data-active:bg-muted/50 data-active:hover:bg-muted data-active:focus:bg-muted",
+  base: "flex cursor-clickable flex-col transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-md data-active:bg-muted/50 data-active:hover:bg-muted data-active:focus:bg-muted",
   variants: {
     size: {
       xs: "gap-1 rounded-[min(var(--radius-md),8px)] p-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",

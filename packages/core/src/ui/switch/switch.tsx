@@ -10,7 +10,7 @@ import { useComponentSize } from "../shared/size/size-provider";
 import { SwitchThumb } from "./switch-thumb";
 
 const switchVariants = tv({
-  base: "peer group/switch relative inline-flex shrink-0 cursor-pointer items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 data-checked:bg-primary data-disabled:cursor-not-allowed data-disabled:opacity-50 data-unchecked:bg-input dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 dark:data-unchecked:bg-input/80",
+  base: "peer group/switch relative inline-flex shrink-0 cursor-clickable items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 data-checked:bg-primary data-disabled:cursor-not-allowed data-disabled:opacity-50 data-unchecked:bg-input dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 dark:data-unchecked:bg-input/80",
   variants: {
     size: {
       xs: "h-3 w-5 after:absolute after:-inset-1.5",

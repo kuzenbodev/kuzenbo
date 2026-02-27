@@ -9,7 +9,7 @@ import { DropdownMenuTrigger } from "../dropdown-menu/dropdown-menu";
 import { MenubarContext } from "./menubar-context";
 
 const menubarTriggerVariants = tv({
-  base: "flex cursor-pointer items-center font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
+  base: "flex cursor-clickable items-center font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
   variants: {
     size: {
       xs: "h-5 rounded-[min(var(--radius-md),8px)] px-1.5 text-xs",

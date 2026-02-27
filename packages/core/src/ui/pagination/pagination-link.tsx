@@ -46,7 +46,7 @@ const PaginationLink = ({
 
   return (
     <Button
-      className={cn(className)}
+      className={cn("cursor-clickable", className)}
       data-size={resolvedSize}
       nativeButton={false}
       render={

@@ -7,7 +7,7 @@ export type AlertDialogActionProps = ComponentProps<typeof Button>;
 
 const AlertDialogAction = ({ className, ...props }: AlertDialogActionProps) => (
   <Button
-    className={cn(className)}
+    className={cn("cursor-clickable", className)}
     data-slot="alert-dialog-action"
     {...props}
   />

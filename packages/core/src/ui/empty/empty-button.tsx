@@ -1,5 +1,7 @@
 import type { ComponentProps } from "react";
 
+import { cn } from "tailwind-variants";
+
 import type { UISize } from "../shared/size/size-system";
 
 import { Button } from "../button/button";
@@ -12,11 +14,12 @@ export type EmptyButtonProps = Omit<ComponentProps<typeof Button>, "size"> & {
   size?: UISize;
 };
 
-const EmptyButton = ({ size, ...props }: EmptyButtonProps) => {
+const EmptyButton = ({ className, size, ...props }: EmptyButtonProps) => {
   const resolvedSize = useResolvedEmptySize(size);
 
   return (
     <Button
+      className={cn("cursor-clickable", className)}
       data-size={resolvedSize}
       data-slot="empty-button"
       size={resolvedSize}

@@ -99,6 +99,7 @@ export const CodeTabs = ({
         >
           {tabs.map((tab) => (
             <Tabs.Trigger
+              className="cursor-clickable"
               disabled={tab.disabled}
               key={tab.value}
               value={tab.value}

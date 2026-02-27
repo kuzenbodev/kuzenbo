@@ -15,7 +15,7 @@ export type AutocompleteItemProps = ComponentProps<
   VariantProps<typeof autocompleteItemVariants>;
 
 const autocompleteItemVariants = tv({
-  base: "relative flex w-full cursor-pointer items-center rounded-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='text-'])]:text-muted-foreground",
+  base: "relative flex w-full cursor-clickable items-center rounded-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='text-'])]:text-muted-foreground",
   variants: {
     size: {
       xs: "gap-1 px-1.5 py-1 text-xs [&_svg:not([class*='size-'])]:size-3",

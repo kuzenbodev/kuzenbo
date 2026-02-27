@@ -53,10 +53,16 @@ export const PlaygroundPresets = <
     value={toPresetGroupValue(activePresetId)}
     variant="outline"
   >
-    <ToggleGroup.Item value={CUSTOM_PRESET_VALUE}>Custom</ToggleGroup.Item>
+    <ToggleGroup.Item className="cursor-clickable" value={CUSTOM_PRESET_VALUE}>
+      Custom
+    </ToggleGroup.Item>
 
     {presets.map((preset) => (
-      <ToggleGroup.Item key={preset.id} value={preset.id}>
+      <ToggleGroup.Item
+        className="cursor-clickable"
+        key={preset.id}
+        value={preset.id}
+      >
         {preset.label}
       </ToggleGroup.Item>
     ))}

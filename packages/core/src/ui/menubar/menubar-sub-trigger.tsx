@@ -45,6 +45,7 @@ const MenubarSubTrigger = ({
   return (
     <DropdownMenuSubTrigger
       className={cn(
+        "cursor-clickable",
         menubarSubTriggerVariants({ size: resolvedSize }),
         className
       )}

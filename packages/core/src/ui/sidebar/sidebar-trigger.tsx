@@ -30,7 +30,7 @@ const SidebarTrigger = ({
 
   return (
     <Button
-      className={cn(className)}
+      className={cn("cursor-clickable", className)}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       onClick={handleClick}

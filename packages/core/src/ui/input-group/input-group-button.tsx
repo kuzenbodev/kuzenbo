@@ -56,6 +56,7 @@ const InputGroupButton = ({
     <Button
       className={cn(
         inputGroupButtonVariants({ size: resolvedSize }),
+        "cursor-clickable",
         className
       )}
       data-size={resolvedSize}

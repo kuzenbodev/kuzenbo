@@ -19,7 +19,7 @@ const AlertDialogCancel = ({
 
   return (
     <AlertDialogPrimitive.Close
-      className={cn(className)}
+      className={cn("cursor-clickable", className)}
       data-slot="alert-dialog-cancel"
       render={<Button size={size} variant={variant} />}
       {...props}

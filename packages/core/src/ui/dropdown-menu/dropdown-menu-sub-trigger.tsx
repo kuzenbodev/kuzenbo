@@ -13,7 +13,7 @@ import { DropdownMenuOverlayContext } from "./dropdown-menu-overlay-context";
 const dropdownMenuSubTriggerVariants = tv({
   slots: {
     icon: "ml-auto",
-    root: "flex cursor-pointer items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=danger]:focus:**:text-accent-foreground data-disabled:cursor-not-allowed data-open:bg-accent data-open:text-accent-foreground data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    root: "flex cursor-clickable items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=danger]:focus:**:text-accent-foreground data-disabled:cursor-not-allowed data-open:bg-accent data-open:text-accent-foreground data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   },
   variants: {
     inset: {

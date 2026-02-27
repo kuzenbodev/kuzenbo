@@ -10,7 +10,7 @@ import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 
 const menubarItemVariants = tv({
-  base: "group/menubar-item focus:bg-accent focus:text-accent-foreground data-[disabled]:opacity-50",
+  base: "group/menubar-item cursor-clickable focus:bg-accent focus:text-accent-foreground data-[disabled]:opacity-50",
   extend: dropdownMenuItemVariants,
   variants: {
     variant: {

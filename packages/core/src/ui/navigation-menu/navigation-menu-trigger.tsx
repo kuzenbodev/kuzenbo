@@ -11,7 +11,7 @@ import { NavigationMenuContext } from "./navigation-menu-context";
 const navigationMenuTriggerStyle = tv({
   slots: {
     icon: "relative top-[1px] ml-1 transition duration-300 group-data-open/navigation-menu-trigger:rotate-180 group-data-popup-open/navigation-menu-trigger:rotate-180",
-    root: "group/navigation-menu-trigger inline-flex w-max cursor-pointer items-center justify-center bg-background font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted",
+    root: "group/navigation-menu-trigger inline-flex w-max cursor-clickable items-center justify-center bg-background font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted",
   },
   variants: {
     size: {

@@ -318,7 +318,7 @@ describe("Combobox", () => {
 
     const trigger = screen.getByRole("combobox");
     expect(trigger.className.includes("trigger-callback")).toBe(true);
-    expect(trigger.className.includes("cursor-pointer")).toBe(true);
+    expect(trigger.className.includes("cursor-clickable")).toBe(true);
 
     const item = document.querySelector("[data-slot=combobox-item]");
     expect(item).not.toBeNull();

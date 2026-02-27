@@ -34,7 +34,7 @@ const ComboboxChipRemove = ({
   return (
     <ComboboxPrimitive.ChipRemove
       className={mergeBaseUIClassName<ComboboxPrimitive.ChipRemove.State>(
-        "-ml-1 opacity-50 hover:opacity-100",
+        "-ml-1 cursor-clickable opacity-50 hover:opacity-100",
         className
       )}
       data-size={resolvedSize}

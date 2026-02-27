@@ -14,7 +14,7 @@ export const AutocompleteTrigger = ({
 }: AutocompleteTriggerProps) => (
   <BaseAutocomplete.Trigger
     className={mergeBaseUIClassName<BaseAutocomplete.Trigger.State>(
-      "cursor-pointer",
+      "cursor-clickable",
       className
     )}
     data-slot="autocomplete-trigger"

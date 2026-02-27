@@ -13,7 +13,7 @@ export const ratingStarVariants = tv({
     // Layout: relative container for star
     "relative inline-flex shrink-0",
     // Cursor: clickable when editable
-    "cursor-pointer",
+    "cursor-clickable",
     // Transitions: smooth color transitions
     "transition-colors duration-150",
   ],

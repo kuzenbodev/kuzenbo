@@ -80,6 +80,29 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 }
 ```
 
+## 🖱️ Cursor Token Utility
+
+`@kuzenbo/theme` provides a semantic cursor token and utility for interactive surfaces:
+
+- Token: `--kb-cursor` (default: `pointer`)
+- Utility: `cursor-clickable` (`cursor: var(--kb-cursor)`)
+
+```css
+:root {
+  --kb-cursor: pointer;
+}
+
+.read-only-surface {
+  --kb-cursor: default;
+}
+```
+
+```tsx
+<button className="cursor-clickable">Open</button>
+```
+
+Use scoped overrides when a section should intentionally keep the default cursor while still consuming shared component utilities.
+
 ## 📚 Docs And Playgrounds
 
 - [Theming Guide](https://kuzenbo.com/docs/getting-started/theming)

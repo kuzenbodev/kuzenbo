@@ -17,7 +17,7 @@ export type NumberFieldIncrementProps = ComponentProps<
   VariantProps<typeof numberFieldIncrementVariants>;
 
 const numberFieldIncrementVariants = tv({
-  base: "flex cursor-pointer items-center justify-center border border-input bg-muted text-foreground transition-colors select-none hover:border-ring/70 disabled:pointer-events-none disabled:opacity-50",
+  base: "flex cursor-clickable items-center justify-center border border-input bg-muted text-foreground transition-colors select-none hover:border-ring/70 disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "size-6 rounded-r-[min(var(--radius-md),8px)]",

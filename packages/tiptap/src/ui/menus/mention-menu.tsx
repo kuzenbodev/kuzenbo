@@ -22,6 +22,7 @@ export const TiptapEditorMentionMenu = ({
       ) : (
         items.map((item) => (
           <Command.Item
+            className="cursor-clickable"
             key={item.id}
             onSelect={() => {
               onSelect(item);

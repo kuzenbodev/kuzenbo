@@ -16,7 +16,7 @@ import { SelectOverlayContext } from "./select-overlay-context";
 const selectItemVariants = tv({
   slots: {
     icon: "pointer-events-none",
-    root: "relative flex w-full cursor-pointer items-center rounded-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=danger]:focus:**:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center",
+    root: "relative flex w-full cursor-clickable items-center rounded-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=danger]:focus:**:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center",
   },
   variants: {
     size: {

@@ -27,7 +27,11 @@ const DialogFooter = ({
   >
     {children}
     {showCloseButton && (
-      <DialogClose render={<Button variant="outline" />}>Close</DialogClose>
+      <DialogClose
+        render={<Button className="cursor-clickable" variant="outline" />}
+      >
+        Close
+      </DialogClose>
     )}
   </div>
 );

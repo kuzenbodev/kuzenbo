@@ -90,7 +90,10 @@ export const PlaygroundControlField = ({
           }}
           value={String(value)}
         >
-          <Select.Trigger aria-label={controlLabel} className="min-w-40">
+          <Select.Trigger
+            aria-label={controlLabel}
+            className="min-w-40 cursor-clickable"
+          >
             <Select.Value placeholder={controlLabel} />
           </Select.Trigger>
           <Select.Content>
@@ -140,7 +143,11 @@ export const PlaygroundControlField = ({
           variant="outline"
         >
           {options.map((option) => (
-            <ToggleGroup.Item key={option.value} value={option.value}>
+            <ToggleGroup.Item
+              className="cursor-clickable"
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </ToggleGroup.Item>
           ))}
@@ -219,7 +226,7 @@ export const PlaygroundControlField = ({
             {swatches.map((swatchColor) => (
               <Button
                 aria-label={`${controlLabel} ${swatchColor}`}
-                className="h-6 w-6 rounded border border-border p-0"
+                className="h-6 w-6 cursor-clickable rounded border border-border p-0"
                 disabled={locked}
                 key={swatchColor}
                 onClick={() => {

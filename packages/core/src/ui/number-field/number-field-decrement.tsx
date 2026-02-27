@@ -17,7 +17,7 @@ export type NumberFieldDecrementProps = ComponentProps<
   VariantProps<typeof numberFieldDecrementVariants>;
 
 const numberFieldDecrementVariants = tv({
-  base: "flex cursor-pointer items-center justify-center border border-input bg-muted text-foreground transition-colors select-none hover:border-ring/70 disabled:pointer-events-none disabled:opacity-50",
+  base: "flex cursor-clickable items-center justify-center border border-input bg-muted text-foreground transition-colors select-none hover:border-ring/70 disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "size-6 rounded-l-[min(var(--radius-md),8px)]",

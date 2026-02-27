@@ -286,7 +286,7 @@ describe("NavigationList", () => {
         "group-has-data-[slot=navigation-list-badge]/navigation-list-item:pr-20"
       )
     ).toBe(true);
-    expect(action.className.includes("cursor-pointer")).toBe(true);
+    expect(action.className.includes("cursor-clickable")).toBe(true);
     expect(
       action.className.includes(
         "group-data-[collapsible=true]/navigation-list-item:right-10"
@@ -302,6 +302,22 @@ describe("NavigationList", () => {
         "group-data-[collapsible=true]/navigation-list-item:right-8"
       )
     ).toBe(true);
+  });
+
+  it("keeps cursor-clickable utility on link roots without action wrappers", () => {
+    render(
+      <NavigationList>
+        <NavigationList.Content>
+          <NavigationList.Item>
+            <NavigationList.Link href="/projects">Projects</NavigationList.Link>
+          </NavigationList.Item>
+        </NavigationList.Content>
+      </NavigationList>
+    );
+
+    const link = queryRequiredElement("[data-slot=navigation-list-link]");
+
+    expect(link.className.includes("cursor-clickable")).toBe(true);
   });
 
   it("supports controlled open state with onOpenedChange", async () => {

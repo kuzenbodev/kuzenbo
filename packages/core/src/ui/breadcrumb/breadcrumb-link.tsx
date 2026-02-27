@@ -7,7 +7,7 @@ import type { UISize } from "../shared/size/size-system";
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbLinkVariants = tv({
-  base: "cursor-pointer transition-colors hover:text-foreground",
+  base: "cursor-clickable transition-colors hover:text-foreground",
   variants: {
     size: {
       xs: "text-xs",
