@@ -197,7 +197,7 @@ export const docsRouteEntries: DocsRouteEntry[] = [
     href: "/docs/components/calendar",
     title: "Calendar",
     description:
-      "Use @kuzenbo/date Calendar for display-only and interactive date selection with single, range, locale, and week-number modes.",
+      "Use @kuzenbo/date Calendar for display-only and interactive date selection with provider-aware size precedence and week-number/locale modes.",
     order: 18,
     section: "components",
   },
@@ -501,7 +501,7 @@ export const docsRouteEntries: DocsRouteEntry[] = [
     href: "/docs/components/navigation-menu",
     title: "Navigation Menu",
     description:
-      "Composable top-level navigation with trigger/content patterns in @kuzenbo/core.",
+      "Composable top-level navigation with trigger/content patterns and route-aware active semantics in @kuzenbo/core.",
     order: 52,
     section: "components",
   },
@@ -621,7 +621,7 @@ export const docsRouteEntries: DocsRouteEntry[] = [
     href: "/docs/components/rating",
     title: "Rating",
     description:
-      "Read-only and editable star ratings with fractional display in @kuzenbo/core.",
+      "Read-only and editable star ratings with fractional display and provider-aware size precedence in @kuzenbo/core.",
     order: 64,
     section: "components",
   },

@@ -2,8 +2,8 @@
 
 import type { ReactNode } from "react";
 
-import { Button } from "@kuzenbo/core/ui/button";
-import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+import { Tabs } from "@kuzenbo/core/ui/tabs";
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "tailwind-variants";
 
@@ -41,6 +41,17 @@ const previewModeLabelByValue: Record<CodePreviewMode, string> = {
   preview: "Preview",
   code: "Code",
   split: "Split",
+};
+
+const toSingleGroupValue = (value: string): string[] => [value];
+
+const fromSingleGroupValue = (
+  values: readonly unknown[]
+): string | undefined => {
+  const [firstValue] = values;
+  return typeof firstValue === "string" && firstValue.length > 0
+    ? firstValue
+    : undefined;
 };
 
 export const CodePreview = ({
@@ -125,93 +136,99 @@ export const CodePreview = ({
     !hideCodeModeControls && (activeMode === "code" || activeMode === "split");
 
   return (
-    <CodeWindow
-      actions={
-        <div className={cn("flex items-center gap-2", controlsClassName)}>
-          {hideModeControls ? null : (
-            <ButtonGroup aria-label="Preview mode" role="group">
-              {(["preview", "code", "split"] as const).map((nextMode) => (
-                <Button
-                  aria-pressed={activeMode === nextMode}
-                  key={nextMode}
-                  onClick={() => {
-                    handleModeChange(nextMode);
-                  }}
-                  size="xs"
-                  type="button"
-                  variant={activeMode === nextMode ? "default" : "outline"}
-                >
-                  {previewModeLabelByValue[nextMode]}
-                </Button>
-              ))}
-            </ButtonGroup>
-          )}
-          {shouldShowCodeModeControls ? (
-            <ButtonGroup aria-label="Code detail level" role="group">
-              {(["minimal", "full"] as const).map((nextCodeMode) => (
-                <Button
-                  aria-pressed={activeCodeMode === nextCodeMode}
-                  key={nextCodeMode}
-                  onClick={() => {
-                    handleCodeModeChange(nextCodeMode);
-                  }}
-                  size="xs"
-                  type="button"
-                  variant={
-                    activeCodeMode === nextCodeMode ? "default" : "outline"
-                  }
-                >
-                  {nextCodeMode === "minimal" ? "Minimal" : "Full"}
-                </Button>
-              ))}
-            </ButtonGroup>
-          ) : null}
-        </div>
-      }
-      className={className}
-      title={title}
+    <Tabs
+      onValueChange={(nextMode) => {
+        if (!isPreviewMode(nextMode)) {
+          return;
+        }
+
+        handleModeChange(nextMode);
+      }}
+      value={activeMode}
     >
-      {activeMode === "preview" ? (
-        <div
-          className={cn(
-            "rounded-md border border-border p-3",
-            previewClassName
-          )}
-          data-slot="code-preview-preview"
-        >
-          {preview}
-        </div>
-      ) : null}
-      {activeMode === "code" ? (
-        <div
-          className={cn("rounded-md border border-border p-3", codeClassName)}
-          data-slot="code-preview-code"
-        >
-          {resolvedCode}
-        </div>
-      ) : null}
-      {activeMode === "split" ? (
-        <div
-          className="grid gap-3 md:grid-cols-2"
-          data-slot="code-preview-split"
-        >
+      <CodeWindow
+        actions={
+          <div className={cn("flex items-center gap-2", controlsClassName)}>
+            {hideModeControls ? null : (
+              <Tabs.List aria-label="Preview mode" size="xs" variant="pill">
+                {(["preview", "code", "split"] as const).map((nextMode) => (
+                  <Tabs.Trigger key={nextMode} value={nextMode}>
+                    {previewModeLabelByValue[nextMode]}
+                  </Tabs.Trigger>
+                ))}
+                <Tabs.Indicator />
+              </Tabs.List>
+            )}
+            {shouldShowCodeModeControls ? (
+              <ToggleGroup
+                aria-label="Code detail level"
+                multiple={false}
+                onValueChange={(nextValues) => {
+                  const nextCodeMode = fromSingleGroupValue(nextValues);
+                  if (!isCodeMode(nextCodeMode)) {
+                    return;
+                  }
+
+                  handleCodeModeChange(nextCodeMode);
+                }}
+                size="xs"
+                value={toSingleGroupValue(activeCodeMode)}
+                variant="outline"
+              >
+                <ToggleGroup.Item value="minimal">Minimal</ToggleGroup.Item>
+                <ToggleGroup.Item value="full">Full</ToggleGroup.Item>
+              </ToggleGroup>
+            ) : null}
+          </div>
+        }
+        className={className}
+        title={title}
+      >
+        <Tabs.Content value="preview">
           <div
             className={cn(
               "rounded-md border border-border p-3",
               previewClassName
             )}
-            data-slot="code-preview-split-preview"
+            data-slot="code-preview-preview"
           >
             {preview}
           </div>
+        </Tabs.Content>
+        <Tabs.Content value="code">
           <div
             className={cn("rounded-md border border-border p-3", codeClassName)}
-            data-slot="code-preview-split-code"
+            data-slot="code-preview-code"
           >
             {resolvedCode}
           </div>
-        </div>
-      ) : null}
-    </CodeWindow>
+        </Tabs.Content>
+        <Tabs.Content value="split">
+          <div
+            className="grid gap-3 md:grid-cols-2"
+            data-slot="code-preview-split"
+          >
+            <div
+              className={cn(
+                "rounded-md border border-border p-3",
+                previewClassName
+              )}
+              data-slot="code-preview-split-preview"
+            >
+              {preview}
+            </div>
+            <div
+              className={cn(
+                "rounded-md border border-border p-3",
+                codeClassName
+              )}
+              data-slot="code-preview-split-code"
+            >
+              {resolvedCode}
+            </div>
+          </div>
+        </Tabs.Content>
+      </CodeWindow>
+    </Tabs>
   );
 };

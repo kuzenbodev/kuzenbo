@@ -6,6 +6,8 @@ import { StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
+import { useComponentSize } from "../shared/size/size-provider";
+
 export const ratingStarVariants = tv({
   base: [
     // Layout: relative container for star
@@ -148,17 +150,19 @@ export const RatingStar = ({
   onClick,
   ...props
 }: RatingStarProps) => {
+  const resolvedSize = useComponentSize(size);
+
   const getStarSize = () => {
-    if (size === "xs") {
+    if (resolvedSize === "xs") {
       return 12;
     }
-    if (size === "sm") {
+    if (resolvedSize === "sm") {
       return 14;
     }
-    if (size === "lg") {
+    if (resolvedSize === "lg") {
       return 20;
     }
-    if (size === "xl") {
+    if (resolvedSize === "xl") {
       return 24;
     }
     return 16;
@@ -179,7 +183,12 @@ export const RatingStar = ({
   return (
     <button
       aria-label={getAriaLabel()}
-      className={cn(ratingStarVariants({ size, editable }), className)}
+      className={cn(
+        ratingStarVariants({ size: resolvedSize, editable }),
+        className
+      )}
+      data-size={resolvedSize}
+      data-slot="rating-star"
       disabled={!editable}
       onClick={onClick}
       type="button"

@@ -1,3 +1,4 @@
+import { KuzenboProvider } from "@kuzenbo/core/provider";
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 import { getDefaultClassNames } from "react-day-picker";
@@ -14,6 +15,62 @@ describe("Calendar style contracts", () => {
 
     expect(root.dataset.size).toBe("md");
     expect(root.className).toContain("[--cell-size:--spacing(8)]");
+  });
+
+  it("resolves size precedence as explicit prop -> component defaults -> provider default -> md", () => {
+    const { rerender } = render(
+      <KuzenboProvider defaultSize="lg">
+        <Calendar defaultMonth={new Date(2025, 0)} mode="single" />
+      </KuzenboProvider>
+    );
+
+    const providerRoot = document.querySelector(
+      "[data-slot=calendar]"
+    ) as HTMLElement;
+    const providerDay = screen.getByRole("button", {
+      name: /January 15th, 2025/i,
+    }) as HTMLElement;
+
+    expect(providerRoot.dataset.size).toBe("lg");
+    expect(providerDay.dataset.size).toBe("lg");
+
+    rerender(
+      <KuzenboProvider
+        components={{ Calendar: { defaultProps: { size: "sm" } } }}
+        defaultSize="lg"
+      >
+        <Calendar defaultMonth={new Date(2025, 0)} mode="single" />
+      </KuzenboProvider>
+    );
+
+    const componentDefaultRoot = document.querySelector(
+      "[data-slot=calendar]"
+    ) as HTMLElement;
+    const componentDefaultDay = screen.getByRole("button", {
+      name: /January 15th, 2025/i,
+    }) as HTMLElement;
+
+    expect(componentDefaultRoot.dataset.size).toBe("sm");
+    expect(componentDefaultDay.dataset.size).toBe("sm");
+
+    rerender(
+      <KuzenboProvider
+        components={{ Calendar: { defaultProps: { size: "sm" } } }}
+        defaultSize="lg"
+      >
+        <Calendar defaultMonth={new Date(2025, 0)} mode="single" size="xs" />
+      </KuzenboProvider>
+    );
+
+    const explicitRoot = document.querySelector(
+      "[data-slot=calendar]"
+    ) as HTMLElement;
+    const explicitDay = screen.getByRole("button", {
+      name: /January 15th, 2025/i,
+    }) as HTMLElement;
+
+    expect(explicitRoot.dataset.size).toBe("xs");
+    expect(explicitDay.dataset.size).toBe("xs");
   });
 
   it("applies compact calendar cell scaling for xs and xl sizes", () => {
@@ -66,10 +123,17 @@ describe("Calendar style contracts", () => {
 
     render(<Calendar defaultMonth={new Date(2025, 0)} mode="single" />);
     const day15 = screen.getByRole("button", { name: /January 15th, 2025/i });
+    const day15Cell = document.querySelector(
+      'td[role="gridcell"][data-day="2025-01-15"]'
+    ) as HTMLElement;
 
     expect(day15.className).toContain(dayButtonSelectorClass);
     expect(day15.className).toContain("min-w-(--cell-size)");
     expect(day15.className).toContain("data-[selected-single=true]:bg-primary");
+    expect(day15.className).toContain(
+      "group-data-[focused=true]/day:ring-inset"
+    );
+    expect(day15Cell.className).toContain("data-[focused=true]:z-20");
   });
 
   it("keeps default day selection rounding selector when week numbers are hidden", () => {

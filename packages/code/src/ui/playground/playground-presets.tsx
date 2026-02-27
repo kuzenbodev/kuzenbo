@@ -1,5 +1,6 @@
-import { Button } from "@kuzenbo/core/ui/button";
-import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+"use client";
+
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 
 import type { PlaygroundPreset } from "../../playground/playground-preset-model";
 
@@ -12,6 +13,22 @@ export interface PlaygroundPresetsProps<
   onPresetChange: (presetId: TPresetId | null) => void;
 }
 
+const CUSTOM_PRESET_VALUE = "__custom__";
+
+const toPresetGroupValue = (presetId: string | null): string[] => [
+  presetId ?? CUSTOM_PRESET_VALUE,
+];
+
+const fromPresetGroupValue = (values: readonly unknown[]): string | null => {
+  const [firstValue] = values;
+
+  if (typeof firstValue !== "string" || firstValue.length === 0) {
+    return null;
+  }
+
+  return firstValue === CUSTOM_PRESET_VALUE ? null : firstValue;
+};
+
 export const PlaygroundPresets = <
   TState extends Record<string, unknown>,
   TPresetId extends string = string,
@@ -20,36 +37,28 @@ export const PlaygroundPresets = <
   activePresetId,
   onPresetChange,
 }: PlaygroundPresetsProps<TState, TPresetId>) => (
-  <ButtonGroup
+  <ToggleGroup
     className="flex-wrap"
     data-slot="playground-presets"
-    role="group"
+    multiple={false}
+    onValueChange={(nextValues) => {
+      const nextPresetId = fromPresetGroupValue(nextValues) as TPresetId | null;
+      if (nextPresetId === activePresetId) {
+        return;
+      }
+
+      onPresetChange(nextPresetId);
+    }}
+    size="xs"
+    value={toPresetGroupValue(activePresetId)}
+    variant="outline"
   >
-    <Button
-      aria-pressed={activePresetId === null}
-      size="xs"
-      onClick={() => {
-        onPresetChange(null);
-      }}
-      type="button"
-      variant={activePresetId === null ? "default" : "outline"}
-    >
-      Custom
-    </Button>
+    <ToggleGroup.Item value={CUSTOM_PRESET_VALUE}>Custom</ToggleGroup.Item>
 
     {presets.map((preset) => (
-      <Button
-        aria-pressed={activePresetId === preset.id}
-        key={preset.id}
-        onClick={() => {
-          onPresetChange(preset.id);
-        }}
-        size="xs"
-        type="button"
-        variant={activePresetId === preset.id ? "default" : "outline"}
-      >
+      <ToggleGroup.Item key={preset.id} value={preset.id}>
         {preset.label}
-      </Button>
+      </ToggleGroup.Item>
     ))}
-  </ButtonGroup>
+  </ToggleGroup>
 );

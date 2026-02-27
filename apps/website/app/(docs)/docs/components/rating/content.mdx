@@ -74,7 +74,6 @@ export function EditableRating() {
 
 - `xs | sm | md | lg | xl`
 - default is `md`
-- migration rule: replace `size="md"` with `size="md"`
 
 Family-specific metrics for rating surfaces:
 
@@ -84,15 +83,12 @@ Family-specific metrics for rating surfaces:
 
 Precedence rule:
 
-`Rating.Star size ?? Rating size ?? "md"`
+`explicit size prop ?? provider component defaults (Rating) ?? provider defaultSize ?? "md"`
 
-```tsx
-// Before
-<Rating rating={4.5} size="md" />
+Runtime styling markers:
 
-// After
-<Rating rating={4.5} size="md" />
-```
+- `data-size` on `Rating` root (`data-slot="rating"`).
+- `data-size` on each star button (`data-slot="rating-star"`).
 
 ## API Details
 

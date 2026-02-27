@@ -38,6 +38,17 @@ yarn add @kuzenbo/date @kuzenbo/core @kuzenbo/theme react-day-picker
 
 `@kuzenbo/date` is designed to run with `@kuzenbo/core` and `@kuzenbo/theme`.
 
+## 📏 Size Precedence Contract
+
+`Calendar` resolves size in this order:
+
+1. explicit `size` prop
+2. provider component defaults (`components.Calendar.defaultProps.size`)
+3. provider global default size (`defaultSize`)
+4. fallback `md`
+
+Resolved size is emitted as `data-size` on the calendar root and calendar day button surfaces for token- and group-based styling.
+
 ## ⚡ Quick Example
 
 ```tsx

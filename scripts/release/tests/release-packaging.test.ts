@@ -20,6 +20,7 @@ import {
 
 const testsDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(testsDir, "../../..");
+const CLIENT_DIRECTIVE_PATTERN = /^["']use client["'];/;
 
 const createWorkspacePackage = ({
   name,
@@ -37,6 +38,15 @@ const createWorkspacePackage = ({
     version,
   },
 });
+
+const readRepoFile = (relativeFilePath: string): string =>
+  readFileSync(path.join(repoRoot, relativeFilePath), "utf8");
+
+const assertDistFileHasClientDirective = (relativeFilePath: string): void => {
+  const distSource = readRepoFile(relativeFilePath).trimStart();
+
+  expect(CLIENT_DIRECTIVE_PATTERN.test(distSource)).toBe(true);
+};
 
 describe("release packaging helpers", () => {
   it("builds deterministic tarball filename for scoped packages", () => {
@@ -221,6 +231,33 @@ describe("release packaging helpers", () => {
       rmSync(tarballPath, { force: true });
     }
   });
+
+  it("keeps client directives on hardened dist entrypoints and keeps theme provider on root dist export", () => {
+    runCommand("bun", ["run", "build"], {
+      cwd: path.join(repoRoot, "packages/core"),
+    });
+    runCommand("bun", ["run", "build"], {
+      cwd: path.join(repoRoot, "packages/code"),
+    });
+    runCommand("bun", ["run", "build"], {
+      cwd: path.join(repoRoot, "packages/theme"),
+    });
+
+    for (const relativeFilePath of [
+      "packages/core/dist/ui/announcement.js",
+      "packages/core/dist/ui/field.js",
+      "packages/core/dist/ui/pill.js",
+      "packages/core/dist/ui/slider.js",
+      "packages/code/dist/ui/playground.js",
+      "packages/theme/dist/theme-provider.js",
+    ]) {
+      assertDistFileHasClientDirective(relativeFilePath);
+    }
+
+    expect(readRepoFile("packages/theme/dist/index.js")).toContain(
+      "ThemeProvider"
+    );
+  }, 20_000);
 });
 
 describe("bun.lock workspace version helpers", () => {

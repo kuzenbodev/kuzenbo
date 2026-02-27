@@ -1,3 +1,5 @@
+"use client";
+
 import type { ChangeEvent } from "react";
 
 import { Button } from "@kuzenbo/core/ui/button";
@@ -6,6 +8,7 @@ import { Input } from "@kuzenbo/core/ui/input";
 import { Select } from "@kuzenbo/core/ui/select";
 import { Slider } from "@kuzenbo/core/ui/slider";
 import { Switch } from "@kuzenbo/core/ui/switch";
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 import { Typography } from "@kuzenbo/core/ui/typography";
 
 import type {
@@ -40,6 +43,15 @@ const normalizeOptions = (
 
 const getControlLabel = (control: PlaygroundControl): string =>
   control.label ?? getPlaygroundControlLabel(control.prop);
+
+const toSingleGroupValue = (value: string): string[] => [value];
+
+const fromSingleGroupValue = (values: readonly unknown[]): string | null => {
+  const [firstValue] = values;
+  return typeof firstValue === "string" && firstValue.length > 0
+    ? firstValue
+    : null;
+};
 
 export const PlaygroundControlField = ({
   control,
@@ -98,33 +110,41 @@ export const PlaygroundControlField = ({
       control.options,
       control.transformLabels ?? true
     );
+    const optionValues = new Set(options.map((option) => option.value));
+    const fallbackValue = options[0]?.value;
+    const activeValue =
+      typeof value === "string" && optionValues.has(value)
+        ? value
+        : fallbackValue;
 
     return (
       <fieldset className="space-y-2" disabled={locked}>
         <Typography.Small render={(props) => <legend {...props} />}>
           {controlLabel}
         </Typography.Small>
-        <ButtonGroup role="radiogroup" aria-label={controlLabel}>
-          {options.map((option) => {
-            const selected = option.value === value;
+        <ToggleGroup
+          aria-label={controlLabel}
+          className="flex-wrap"
+          disabled={locked}
+          multiple={false}
+          onValueChange={(nextValues) => {
+            const nextValue = fromSingleGroupValue(nextValues);
+            if (!nextValue) {
+              return;
+            }
 
-            return (
-              <Button
-                aria-checked={selected}
-                key={option.value}
-                onClick={() => {
-                  onChange(option.value);
-                }}
-                role="radio"
-                size="xs"
-                type="button"
-                variant={selected ? "default" : "outline"}
-              >
-                {option.label}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
+            onChange(nextValue);
+          }}
+          size="xs"
+          value={toSingleGroupValue(activeValue ?? "")}
+          variant="outline"
+        >
+          {options.map((option) => (
+            <ToggleGroup.Item key={option.value} value={option.value}>
+              {option.label}
+            </ToggleGroup.Item>
+          ))}
+        </ToggleGroup>
       </fieldset>
     );
   }

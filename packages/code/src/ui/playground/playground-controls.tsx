@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@kuzenbo/core/ui/card";
 
 import type {

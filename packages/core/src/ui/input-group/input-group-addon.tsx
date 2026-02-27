@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps, KeyboardEvent, MouseEvent } from "react";
+import type { ComponentProps, MouseEvent } from "react";
 
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
@@ -47,16 +47,6 @@ const focusInput = (e: MouseEvent<HTMLDivElement>) => {
   control?.focus();
 };
 
-const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-  if (e.key === "Enter" || e.key === " ") {
-    const control =
-      e.currentTarget.parentElement?.querySelector<HTMLElement>(
-        "input, textarea"
-      );
-    control?.focus();
-  }
-};
-
 const InputGroupAddon = ({
   className,
   align = "inline-start",
@@ -75,9 +65,7 @@ const InputGroupAddon = ({
       data-align={align}
       data-size={resolvedSize}
       data-slot="input-group-addon"
-      onClick={focusInput}
-      onKeyDown={handleKeyDown}
-      role="group"
+      onMouseDown={focusInput}
       {...props}
     />
   );

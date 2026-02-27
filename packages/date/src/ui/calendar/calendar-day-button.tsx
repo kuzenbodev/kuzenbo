@@ -1,8 +1,9 @@
 "use client";
 
-import { type ComponentProps, useEffect, useRef } from "react";
+import type { ComponentProps } from "react";
+
 import {
-  type DayButton,
+  DayButton as DayPickerDayButton,
   getDefaultClassNames,
   type Locale,
 } from "react-day-picker";
@@ -17,13 +18,15 @@ import {
   useGlobalUISize,
   useKuzenboComponentDefaults,
 } from "./calendar-size";
-export type CalendarDayButtonProps = ComponentProps<typeof DayButton> & {
+export type CalendarDayButtonProps = ComponentProps<
+  typeof DayPickerDayButton
+> & {
   locale?: Partial<Locale>;
   size?: CalendarButtonSize;
 };
 
 const calendarDayButtonVariants = tv({
-  base: "relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70",
+  base: "relative z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-inset group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70",
 });
 
 const CalendarDayButton = ({
@@ -42,15 +45,8 @@ const CalendarDayButton = ({
 
   const defaultClassNames = getDefaultClassNames();
 
-  const ref = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (modifiers.focused) {
-      ref.current?.focus();
-    }
-  }, [modifiers.focused]);
-
   return (
-    <button
+    <DayPickerDayButton
       className={cn(
         calendarButtonVariants({ size, variant: "ghost" }),
         calendarDayButtonVariants(),
@@ -68,8 +64,8 @@ const CalendarDayButton = ({
         !modifiers.range_end &&
         !modifiers.range_middle
       }
-      ref={ref}
-      type="button"
+      day={day}
+      modifiers={modifiers}
       {...props}
     />
   );

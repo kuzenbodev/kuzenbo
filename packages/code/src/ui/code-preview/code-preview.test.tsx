@@ -20,11 +20,11 @@ describe("CodePreview", () => {
   it("supports mode switching", () => {
     render(<CodePreview code={code} preview={preview} />);
 
-    fireEvent.click(screen.getByRole("button", { name: /Code/i }));
+    fireEvent.click(screen.getByRole("tab", { name: "Code" }));
     expect(screen.getByText("full source code")).toBeDefined();
     expect(screen.queryByText("Rendered preview")).toBeNull();
 
-    fireEvent.click(screen.getByRole("button", { name: /Split/i }));
+    fireEvent.click(screen.getByRole("tab", { name: "Split" }));
     expect(screen.getByText("Rendered preview")).toBeDefined();
     expect(screen.getByText("full source code")).toBeDefined();
   });
@@ -59,7 +59,7 @@ describe("CodePreview", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /Code/i }));
+    fireEvent.click(screen.getByRole("tab", { name: "Code" }));
 
     expect(onModeChange).toHaveBeenCalledWith("code");
     expect(screen.getByText("Rendered preview")).toBeDefined();
@@ -83,5 +83,15 @@ describe("CodePreview", () => {
 
     expect(onCodeModeChange).toHaveBeenCalledWith("full");
     expect(screen.getByText("minimal source code")).toBeDefined();
+  });
+
+  it("supports keyboard activation for tab mode controls", () => {
+    render(<CodePreview code={code} preview={preview} />);
+
+    const previewTab = screen.getByRole("tab", { name: "Preview" });
+    previewTab.focus();
+    fireEvent.keyDown(previewTab, { key: "ArrowRight" });
+
+    expect(screen.getByRole("tab", { name: "Code" }).tabIndex).toBe(0);
   });
 });

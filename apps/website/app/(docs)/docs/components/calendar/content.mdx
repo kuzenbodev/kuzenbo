@@ -128,6 +128,15 @@ The `size` prop scales:
 - navigation buttons and chevrons
 - week number density
 
+Precedence rule:
+
+`explicit size prop ?? provider component defaults (Calendar) ?? provider defaultSize ?? "md"`
+
+Runtime styling markers:
+
+- `data-size` on the calendar root (`data-slot="calendar"`).
+- `data-size` on interactive day buttons rendered in selection modes.
+
 ## Accessibility notes
 
 - Provide surrounding label/context when used as a form field (for example, a visible `<label>` or field title).

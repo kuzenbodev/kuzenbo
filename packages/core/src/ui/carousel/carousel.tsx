@@ -58,15 +58,23 @@ const Carousel = ({
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "ArrowLeft") {
+      if (event.target !== event.currentTarget) {
+        return;
+      }
+
+      const previousKey =
+        orientation === "horizontal" ? "ArrowLeft" : "ArrowUp";
+      const nextKey = orientation === "horizontal" ? "ArrowRight" : "ArrowDown";
+
+      if (event.key === previousKey) {
         event.preventDefault();
         scrollPrev();
-      } else if (event.key === "ArrowRight") {
+      } else if (event.key === nextKey) {
         event.preventDefault();
         scrollNext();
       }
     },
-    [scrollPrev, scrollNext]
+    [orientation, scrollPrev, scrollNext]
   );
 
   useEffect(() => {
@@ -108,8 +116,9 @@ const Carousel = ({
         aria-roledescription="carousel"
         className={cn("relative", className)}
         data-slot="carousel"
-        onKeyDownCapture={handleKeyDown}
+        onKeyDown={handleKeyDown}
         role="region"
+        tabIndex={0}
         {...props}
       >
         {children}

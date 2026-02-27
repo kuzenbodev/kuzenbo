@@ -102,10 +102,16 @@ describe("PlaygroundControlField", () => {
 
     await user.click(screen.getByRole("combobox", { name: "Variant" }));
     await user.click(screen.getByRole("option", { name: "Outline" }));
-    await user.click(screen.getByRole("radio", { name: /Left/i }));
+
+    const leftSegment = screen.getByRole("button", { name: /Left/i });
+    await user.click(leftSegment);
+
+    const rightSegment = screen.getByRole("button", { name: /Right/i });
+    await user.click(rightSegment);
 
     expect(onSelectChange).toHaveBeenCalledWith("outline");
     expect(onSegmentedChange).toHaveBeenCalledWith("left");
+    expect(onSegmentedChange).toHaveBeenCalledWith("right");
   });
 
   it("supports color swatches and color text input", () => {

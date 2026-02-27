@@ -43,7 +43,8 @@ Install it with `@kuzenbo/core`, `@kuzenbo/ai`, `@kuzenbo/charts`, `@kuzenbo/dat
 import type { ReactNode } from "react";
 
 import "@kuzenbo/theme/prebuilt/kuzenbo.css";
-import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+import { ThemeBootstrapScript } from "@kuzenbo/theme";
+import { ThemeProvider } from "@kuzenbo/theme";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -59,7 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 ## 🧱 Key Surface
 
-- Runtime APIs: `ThemeProvider`, `ThemeBootstrapScript`
+- Runtime APIs: `ThemeBootstrapScript` (root) and `ThemeProvider` (`@kuzenbo/theme`)
 - Bootstrap utilities: `resolveThemeBootstrapPlan`, `getThemeBootstrapScript`, `applyThemeToRootElement`
 - CSS assets: `@kuzenbo/theme/prebuilt/*.css`
 

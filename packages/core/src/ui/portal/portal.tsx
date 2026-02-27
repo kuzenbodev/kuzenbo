@@ -50,24 +50,57 @@ export type PortalProps = BasePortalProps & {
   children: ReactNode;
 };
 
+interface ResolvedTargetNode {
+  node: HTMLElement;
+  shouldAppend: boolean;
+  shouldCleanup: boolean;
+}
+
 const getTargetNode = ({
   target,
   reuseTargetNode,
   ...others
-}: BasePortalProps): HTMLElement | null => {
+}: BasePortalProps): ResolvedTargetNode => {
   if (target) {
     if (typeof target === "string") {
-      return (
-        document.querySelector<HTMLElement>(target) ?? createPortalNode(others)
-      );
+      const existing = document.querySelector<HTMLElement>(target);
+      if (existing) {
+        return {
+          node: existing,
+          shouldAppend: false,
+          shouldCleanup: false,
+        };
+      }
+
+      return {
+        node: createPortalNode(others),
+        shouldAppend: true,
+        shouldCleanup: true,
+      };
     }
     // Handle React refs
     if ("current" in target) {
-      return target.current ?? createPortalNode(others);
+      if (target.current) {
+        return {
+          node: target.current,
+          shouldAppend: false,
+          shouldCleanup: false,
+        };
+      }
+
+      return {
+        node: createPortalNode(others),
+        shouldAppend: true,
+        shouldCleanup: true,
+      };
     }
     // Handle HTMLElement directly
     if (target instanceof HTMLElement) {
-      return target;
+      return {
+        node: target,
+        shouldAppend: false,
+        shouldCleanup: false,
+      };
     }
   }
 
@@ -76,15 +109,26 @@ const getTargetNode = ({
       "[data-labs-shared-portal-node]"
     );
     if (existingNode) {
-      return existingNode;
+      return {
+        node: existingNode,
+        shouldAppend: false,
+        shouldCleanup: false,
+      };
     }
     const node = createPortalNode(others);
     node.dataset.labsSharedPortalNode = "true";
-    document.body.append(node);
-    return node;
+    return {
+      node,
+      shouldAppend: true,
+      shouldCleanup: false,
+    };
   }
 
-  return createPortalNode(others);
+  return {
+    node: createPortalNode(others),
+    shouldAppend: true,
+    shouldCleanup: true,
+  };
 };
 
 export const Portal = ({
@@ -95,17 +139,20 @@ export const Portal = ({
 }: PortalProps) => {
   const [mounted, setMounted] = useState(false);
   const nodeRef = useRef<HTMLElement | null>(null);
+  const shouldCleanupRef = useRef(false);
 
   useIsomorphicEffect(() => {
     setMounted(true);
-    nodeRef.current = getTargetNode({ target, reuseTargetNode, ...others });
+    const resolvedNode = getTargetNode({ target, reuseTargetNode, ...others });
+    nodeRef.current = resolvedNode.node;
+    shouldCleanupRef.current = resolvedNode.shouldCleanup;
 
-    if (!(target || reuseTargetNode) && nodeRef.current) {
-      document.body.append(nodeRef.current);
+    if (resolvedNode.shouldAppend) {
+      document.body.append(resolvedNode.node);
     }
 
     return () => {
-      if (!(target || reuseTargetNode) && nodeRef.current) {
+      if (shouldCleanupRef.current && nodeRef.current) {
         nodeRef.current.remove();
       }
     };

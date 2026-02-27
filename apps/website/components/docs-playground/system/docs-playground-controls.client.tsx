@@ -1,11 +1,10 @@
 "use client";
 
-import { Button } from "@kuzenbo/core/ui/button";
-import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
 import { Input } from "@kuzenbo/core/ui/input";
 import { Switch } from "@kuzenbo/core/ui/switch";
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 import { Typography } from "@kuzenbo/core/ui/typography";
-import { type ChangeEvent, type MouseEvent, useCallback } from "react";
+import { type ChangeEvent, useCallback } from "react";
 import { tv } from "tailwind-variants";
 
 import type {
@@ -69,13 +68,32 @@ const OptionsControl = <TState extends PlaygroundState>({
     value: TState[keyof TState & string]
   ) => void;
 }) => {
-  const handleOptionClick = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
+  const selectedOptionIndex =
+    control.type === "option"
+      ? control.options.findIndex((option) =>
+          Object.is(option.value, controlValue)
+        )
+      : -1;
+  const activeOptionToken = String(
+    selectedOptionIndex >= 0 ? selectedOptionIndex : ""
+  );
+
+  const handleOptionGroupChange = useCallback(
+    (nextValues: unknown[]) => {
       if (control.type !== "option") {
         return;
       }
 
-      const optionIndex = Number(event.currentTarget.dataset.optionIndex);
+      const [nextToken] = nextValues;
+      if (typeof nextToken !== "string") {
+        return;
+      }
+
+      if (!/^\d+$/.test(nextToken)) {
+        return;
+      }
+
+      const optionIndex = Number(nextToken);
       const option = control.options[optionIndex];
       if (!option) {
         return;
@@ -94,31 +112,30 @@ const OptionsControl = <TState extends PlaygroundState>({
   }
 
   return (
-    <ButtonGroup
+    <ToggleGroup
       className={docsPlaygroundOptionGroupVariants()}
       data-slot="playground-option-control"
+      disabled={disabled}
+      multiple={false}
+      onValueChange={handleOptionGroupChange}
+      size="sm"
+      value={[activeOptionToken]}
+      variant="outline"
     >
       {control.options.map((option, optionIndex) => {
-        const isActive = Object.is(option.value, controlValue);
         const label = `${control.label}: ${option.label}`;
 
         return (
-          <Button
+          <ToggleGroup.Item
             aria-label={label}
-            aria-pressed={isActive}
-            data-option-index={optionIndex}
-            disabled={disabled}
             key={`${controlKey}-${String(option.value)}`}
-            onClick={handleOptionClick}
-            size="sm"
-            type="button"
-            variant={isActive ? "default" : "outline"}
+            value={String(optionIndex)}
           >
             {option.label}
-          </Button>
+          </ToggleGroup.Item>
         );
       })}
-    </ButtonGroup>
+    </ToggleGroup>
   );
 };
 

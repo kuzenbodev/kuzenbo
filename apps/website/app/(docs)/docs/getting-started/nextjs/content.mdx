@@ -31,7 +31,8 @@ In `app/layout.tsx`, add the bootstrap script and provider. The script runs befo
 ```tsx
 import type { ReactNode } from "react";
 
-import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+import { ThemeBootstrapScript } from "@kuzenbo/theme";
+import { ThemeProvider } from "@kuzenbo/theme";
 import "./globals.css";
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -5,6 +5,10 @@ import type { ComponentProps, MouseEvent } from "react";
 import { useCallback } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
+import {
+  useComponentSize,
+  useKuzenboComponentDefaults,
+} from "../shared/size/size-provider";
 import { RatingStar } from "./rating-star";
 
 export const ratingVariants = tv({
@@ -98,6 +102,10 @@ const Rating = ({
   starClassName,
   ...props
 }: RatingProps) => {
+  const { size: componentDefaultSize } =
+    useKuzenboComponentDefaults<RatingProps>("Rating");
+  const resolvedSize = useComponentSize(size, componentDefaultSize);
+
   const handleStarClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       const value = Number(e.currentTarget.dataset.value);
@@ -110,7 +118,8 @@ const Rating = ({
 
   return (
     <div
-      className={cn(ratingVariants({ size }), className)}
+      className={cn(ratingVariants({ size: resolvedSize }), className)}
+      data-size={resolvedSize}
       data-slot="rating"
       {...props}
     >
@@ -131,12 +140,16 @@ const Rating = ({
             halfFilled={isHalfFilled}
             key={starValue}
             onClick={handleStarClick}
-            size={size}
+            size={resolvedSize}
           />
         );
       })}
       {showValue && (
-        <span className={cn(ratingValueVariants({ size }), "ml-1")}>
+        <span
+          className={cn(ratingValueVariants({ size: resolvedSize }), "ml-1")}
+          data-size={resolvedSize}
+          data-slot="rating-value"
+        >
           {rating.toFixed(1)}
         </span>
       )}

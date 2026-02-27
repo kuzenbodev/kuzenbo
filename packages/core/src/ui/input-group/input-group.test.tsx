@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
 import { InputGroup } from "./input-group";
@@ -164,5 +164,43 @@ describe("InputGroup", () => {
       group?.className.includes("has-[>[data-align=block-start]]:h-auto")
     ).toBe(true);
     expect(group?.className.includes("has-[>textarea]:h-auto")).toBe(true);
+  });
+
+  it("focuses the input when addon text is clicked", () => {
+    render(
+      <InputGroup>
+        <InputGroup.Addon align="inline-start">
+          <InputGroup.Text>https://</InputGroup.Text>
+        </InputGroup.Addon>
+        <InputGroup.Input placeholder="Focus target" />
+      </InputGroup>
+    );
+
+    const addon = document.querySelector<HTMLElement>(
+      "[data-slot=input-group-addon]"
+    );
+    const input = screen.getByPlaceholderText("Focus target");
+
+    expect(addon).not.toBeNull();
+    fireEvent.mouseDown(addon as HTMLElement);
+
+    expect(document.activeElement).toBe(input);
+  });
+
+  it("does not force focus when clicking an action button inside addon", () => {
+    render(
+      <InputGroup>
+        <InputGroup.Addon align="inline-start">
+          <button type="button">Prefix action</button>
+        </InputGroup.Addon>
+        <InputGroup.Input placeholder="Input with addon button" />
+      </InputGroup>
+    );
+
+    const actionButton = screen.getByRole("button", { name: "Prefix action" });
+    const input = screen.getByPlaceholderText("Input with addon button");
+    fireEvent.click(actionButton);
+
+    expect(document.activeElement).not.toBe(input);
   });
 });

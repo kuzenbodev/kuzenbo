@@ -49,7 +49,8 @@ If first paint looks wrong, inspect bootstrap placement before touching token fi
 ```tsx
 import type { ReactNode } from "react";
 
-import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+import { ThemeBootstrapScript } from "@kuzenbo/theme";
+import { ThemeProvider } from "@kuzenbo/theme";
 
 export function AppThemeBoundary({ children }: { children: ReactNode }) {
   return (

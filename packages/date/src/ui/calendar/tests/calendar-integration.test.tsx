@@ -83,4 +83,17 @@ describe("Calendar integration behavior", () => {
       document.querySelector('[data-selected-single="true"]')
     ).not.toBeNull();
   });
+
+  it("keeps keyboard-focus behavior when autoFocus is enabled", () => {
+    render(
+      <Calendar autoFocus defaultMonth={new Date(2025, 0)} mode="single" />
+    );
+
+    const focusedDay = document.querySelector(
+      "button[data-day][tabindex='0']"
+    ) as HTMLButtonElement | null;
+
+    expect(focusedDay).not.toBeNull();
+    expect(document.activeElement).toBe(focusedDay);
+  });
 });

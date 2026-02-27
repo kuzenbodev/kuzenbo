@@ -69,6 +69,16 @@ export function DocsNav() {
 }
 ```
 
+## Header active-state semantics
+
+For route-aware headers, keep active-state semantics explicit:
+
+- use `data-active="true"` for visual active styling on `NavigationMenu.Link`.
+- use `aria-current="page"` for exact route matches.
+- use `aria-current="location"` for section-prefix matches.
+
+This keeps keyboard/screen-reader signaling aligned with desktop nav highlighting.
+
 ## Advanced Example
 
 ```tsx

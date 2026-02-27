@@ -76,7 +76,8 @@ import {
 } from "@kuzenbo/core/ui/announcement";
 import { Button } from "@kuzenbo/core/ui/button";
 import { Card } from "@kuzenbo/core/ui/card";
-import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+import { ThemeBootstrapScript } from "@kuzenbo/theme";
+import { ThemeProvider } from "@kuzenbo/theme";
 
 export default function App() {
   return (

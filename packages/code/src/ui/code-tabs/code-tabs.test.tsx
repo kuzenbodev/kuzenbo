@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { afterEach, describe, expect, it, mock } from "bun:test";
 
 import { CodeTabs } from "./code-tabs";
@@ -58,12 +59,37 @@ describe("CodeTabs", () => {
     expect(screen.getByText("pnpm add @kuzenbo/code")).toBeDefined();
   });
 
-  it("supports keyboard activation", () => {
+  it("supports keyboard activation", async () => {
+    const user = userEvent.setup();
     render(<CodeTabs tabs={tabs} />);
 
-    const pnpmTab = screen.getByRole("tab", { name: "pnpm" });
-    fireEvent.keyDown(pnpmTab, { key: "Enter" });
+    await user.click(screen.getByRole("tab", { name: "npm" }));
+    await user.keyboard("{ArrowRight}");
 
     expect(screen.getByText("pnpm add @kuzenbo/code")).toBeDefined();
+  });
+
+  it("keeps focus navigation from looping when loop is false", async () => {
+    const user = userEvent.setup();
+    render(<CodeTabs loop={false} tabs={tabs} />);
+
+    const npmTab = screen.getByRole("tab", { name: "npm" });
+    await user.click(npmTab);
+    await user.keyboard("{ArrowLeft}");
+
+    expect(npmTab.getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByText("npm install @kuzenbo/code")).toBeDefined();
+  });
+
+  it("loops focus navigation by default", async () => {
+    const user = userEvent.setup();
+    render(<CodeTabs tabs={tabs} />);
+
+    await user.click(screen.getByRole("tab", { name: "npm" }));
+    await user.keyboard("{ArrowLeft}");
+
+    const bunTab = screen.getByRole("tab", { name: "bun" });
+    expect(bunTab.getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByText("bun add @kuzenbo/code")).toBeDefined();
   });
 });

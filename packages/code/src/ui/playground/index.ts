@@ -1,3 +1,5 @@
+"use client";
+
 export { Playground } from "./playground";
 export {
   PlaygroundShell,

@@ -1,9 +1,8 @@
 "use client";
 
-import { Button } from "@kuzenbo/core/ui/button";
-import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 import { Typography } from "@kuzenbo/core/ui/typography";
-import { type MouseEvent, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { tv } from "tailwind-variants";
 
 import type {
@@ -47,6 +46,15 @@ const docsPlaygroundPresetsVariants = tv({
   base: "space-y-2",
 });
 
+const toSingleGroupValue = (value: string): string[] => [value];
+
+const fromSingleGroupValue = (values: readonly unknown[]): string | null => {
+  const [firstValue] = values;
+  return typeof firstValue === "string" && firstValue.length > 0
+    ? firstValue
+    : null;
+};
+
 export const DocsPlayground = <TState extends PlaygroundState>({
   definition,
   Preview,
@@ -87,16 +95,16 @@ export const DocsPlayground = <TState extends PlaygroundState>({
     [definition.initialState, definition.presets]
   );
 
-  const handlePresetButtonClick = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
-      const { presetId } = event.currentTarget.dataset;
-      if (!presetId) {
+  const handlePresetGroupChange = useCallback(
+    (nextValues: unknown[]) => {
+      const nextPresetId = fromSingleGroupValue(nextValues);
+      if (!nextPresetId || nextPresetId === activePresetId) {
         return;
       }
 
-      handlePresetChange(presetId);
+      handlePresetChange(nextPresetId);
     },
-    [handlePresetChange]
+    [activePresetId, handlePresetChange]
   );
 
   const handleControlChange = useCallback(
@@ -134,25 +142,24 @@ export const DocsPlayground = <TState extends PlaygroundState>({
           {definition.presets.length > 0 ? (
             <div className={docsPlaygroundPresetsVariants()}>
               <Typography.Small className="">Presets</Typography.Small>
-              <ButtonGroup data-slot="docs-playground-presets">
-                {definition.presets.map((preset) => {
-                  const isActive = preset.id === activePresetId;
-
-                  return (
-                    <Button
-                      aria-label={`Preset ${preset.label}`}
-                      aria-pressed={isActive}
-                      data-preset-id={preset.id}
-                      key={preset.id}
-                      onClick={handlePresetButtonClick}
-                      size="sm"
-                      type="button"
-                    >
-                      {preset.label}
-                    </Button>
-                  );
-                })}
-              </ButtonGroup>
+              <ToggleGroup
+                data-slot="docs-playground-presets"
+                multiple={false}
+                onValueChange={handlePresetGroupChange}
+                size="sm"
+                value={toSingleGroupValue(activePresetId)}
+                variant="outline"
+              >
+                {definition.presets.map((preset) => (
+                  <ToggleGroup.Item
+                    aria-label={`Preset ${preset.label}`}
+                    key={preset.id}
+                    value={preset.id}
+                  >
+                    {preset.label}
+                  </ToggleGroup.Item>
+                ))}
+              </ToggleGroup>
             </div>
           ) : null}
 

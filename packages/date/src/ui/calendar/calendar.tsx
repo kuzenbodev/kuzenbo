@@ -2,6 +2,7 @@
 
 import type { ComponentProps } from "react";
 
+import { useComponentSize } from "@kuzenbo/core/provider";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import { cn, tv } from "tailwind-variants";
 
@@ -15,7 +16,6 @@ import { CalendarRoot } from "./calendar-root";
 import {
   DEFAULT_UI_SIZE,
   type UISize,
-  useGlobalUISize,
   useKuzenboComponentDefaults,
 } from "./calendar-size";
 import { CalendarWeekNumber } from "./calendar-week-number";
@@ -67,14 +67,14 @@ const calendarClassNames = tv({
     week_number_header: "w-(--cell-size) select-none",
     week_number:
       "text-muted-foreground select-none group-data-[size=xs]/calendar:text-[0.7rem] group-data-[size=sm]/calendar:text-[0.75rem] group-data-[size=md]/calendar:text-[0.8rem] group-data-[size=lg]/calendar:text-sm group-data-[size=xl]/calendar:text-base",
-    day: "group/day relative flex size-(--cell-size) items-center justify-center p-0 text-center font-normal group-data-[size=xs]/calendar:text-xs group-data-[size=sm]/calendar:text-xs group-data-[size=md]/calendar:text-sm group-data-[size=lg]/calendar:text-sm group-data-[size=xl]/calendar:text-base [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
+    day: "group/day relative flex size-(--cell-size) items-center justify-center p-0 text-center font-normal data-[focused=true]:z-20 group-data-[size=xs]/calendar:text-xs group-data-[size=sm]/calendar:text-xs group-data-[size=md]/calendar:text-sm group-data-[size=lg]/calendar:text-sm group-data-[size=xl]/calendar:text-base [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
     day_button:
       "relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none",
     range_start:
-      "relative isolate -z-0 rounded-s-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-muted",
+      "relative z-0 rounded-s-(--cell-radius) bg-muted after:pointer-events-none after:absolute after:inset-y-0 after:end-0 after:z-0 after:w-4 after:bg-muted",
     range_middle: "rounded-none",
     range_end:
-      "relative isolate -z-0 rounded-e-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:start-0 after:w-4 after:bg-muted",
+      "relative z-0 rounded-e-(--cell-radius) bg-muted after:pointer-events-none after:absolute after:inset-y-0 after:start-0 after:z-0 after:w-4 after:bg-muted",
     today:
       "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none",
     outside: "text-muted-foreground aria-selected:text-muted-foreground",
@@ -116,9 +116,7 @@ const Calendar = ({
 }: CalendarProps) => {
   const { size: componentDefaultSize } =
     useKuzenboComponentDefaults<CalendarProps>("Calendar");
-  const globalSize = useGlobalUISize();
-  const size =
-    providedSize ?? componentDefaultSize ?? globalSize ?? DEFAULT_UI_SIZE;
+  const size = useComponentSize(providedSize, componentDefaultSize);
 
   const defaultClassNames = getDefaultClassNames();
   const calendarStyles = calendarClassNames({

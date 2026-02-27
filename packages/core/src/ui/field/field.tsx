@@ -1,3 +1,5 @@
+"use client";
+
 import { FieldControl } from "./field-control";
 import { FieldDescription } from "./field-description";
 import { FieldError } from "./field-error";

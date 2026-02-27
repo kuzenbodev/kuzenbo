@@ -77,7 +77,8 @@ For apps with SSR (e.g. Next.js App Router), add the bootstrap script and provid
 ```tsx
 import type { ReactNode } from "react";
 
-import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
+import { ThemeBootstrapScript } from "@kuzenbo/theme";
+import { ThemeProvider } from "@kuzenbo/theme";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

@@ -152,6 +152,7 @@
     "ultracite": "catalog:"
   },
   "overrides": {
+    "minimatch": "10.2.3",
     "rollup": "4.59.0"
   },
   "engines": {

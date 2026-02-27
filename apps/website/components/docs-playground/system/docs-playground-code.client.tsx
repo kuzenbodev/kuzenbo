@@ -1,9 +1,8 @@
 "use client";
 
 import { CodeBlock } from "@kuzenbo/code/ui/code-block";
-import { Button } from "@kuzenbo/core/ui/button";
-import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
 import { CopyButton } from "@kuzenbo/core/ui/copy-button";
+import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 import { Typography } from "@kuzenbo/core/ui/typography";
 import { useCallback } from "react";
 import { tv } from "tailwind-variants";
@@ -34,6 +33,20 @@ const docsPlaygroundCodeContentVariants = tv({
   base: "max-h-[420px] overflow-auto p-4",
 });
 
+const toSingleGroupValue = (value: PlaygroundCodeMode): string[] => [value];
+
+const fromSingleGroupValue = (
+  values: readonly unknown[]
+): PlaygroundCodeMode | null => {
+  const [firstValue] = values;
+
+  if (firstValue === "minimal" || firstValue === "full") {
+    return firstValue;
+  }
+
+  return null;
+};
+
 export const DocsPlaygroundCode = ({
   code,
   filename,
@@ -41,13 +54,17 @@ export const DocsPlaygroundCode = ({
   mode,
   onModeChange,
 }: DocsPlaygroundCodeProps) => {
-  const handleMinimalModeClick = useCallback(() => {
-    onModeChange("minimal");
-  }, [onModeChange]);
+  const handleModeGroupChange = useCallback(
+    (nextValues: unknown[]) => {
+      const nextMode = fromSingleGroupValue(nextValues);
+      if (!nextMode || nextMode === mode) {
+        return;
+      }
 
-  const handleFullModeClick = useCallback(() => {
-    onModeChange("full");
-  }, [onModeChange]);
+      onModeChange(nextMode);
+    },
+    [mode, onModeChange]
+  );
 
   return (
     <div
@@ -57,31 +74,22 @@ export const DocsPlaygroundCode = ({
       <div className={docsPlaygroundCodeHeaderVariants()}>
         <Typography.Small>{filename}</Typography.Small>
 
-        <ButtonGroup
+        <ToggleGroup
           className={docsPlaygroundCodeModeVariants()}
           data-slot="docs-playground-code-mode"
+          multiple={false}
+          onValueChange={handleModeGroupChange}
+          size="sm"
+          value={toSingleGroupValue(mode)}
+          variant="outline"
         >
-          <Button
-            aria-label="Minimal code"
-            aria-pressed={mode === "minimal"}
-            onClick={handleMinimalModeClick}
-            size="sm"
-            type="button"
-            variant={mode === "minimal" ? "default" : "outline"}
-          >
+          <ToggleGroup.Item aria-label="Minimal code" value="minimal">
             Minimal
-          </Button>
-          <Button
-            aria-label="Full code"
-            aria-pressed={mode === "full"}
-            onClick={handleFullModeClick}
-            size="sm"
-            type="button"
-            variant={mode === "full" ? "default" : "outline"}
-          >
+          </ToggleGroup.Item>
+          <ToggleGroup.Item aria-label="Full code" value="full">
             Full
-          </Button>
-        </ButtonGroup>
+          </ToggleGroup.Item>
+        </ToggleGroup>
 
         <CopyButton
           size="sm"

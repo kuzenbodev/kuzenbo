@@ -18,7 +18,6 @@ export {
 } from "./theme-bootstrap";
 export { ThemeBootstrapScript } from "./theme-bootstrap-script";
 export { ThemeProvider } from "./theme-provider";
-export type { ThemeProviderProps } from "./theme-provider";
 export type {
   ThemeBootstrapPlan,
   ThemeBootstrapPlanInput,
@@ -26,3 +25,4 @@ export type {
   ThemePreference,
   ThemeSetting,
 } from "./theme-bootstrap";
+export type { ThemeProviderProps } from "./theme-provider";

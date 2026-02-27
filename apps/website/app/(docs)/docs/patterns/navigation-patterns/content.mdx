@@ -72,6 +72,7 @@ export function DocsHeader() {
 - `Breadcrumb` renders navigation semantics with a discoverable landmark.
 - `Tabs` exposes keyboard arrow navigation and active tab semantics.
 - `Menubar` and `NavigationMenu` depend on proper trigger/content composition for assistive technology.
+- For route-aware links in global nav, pair visual active state (`data-active`) with semantic active state (`aria-current` as `page` or `location`).
 
 Do not replace these primitives with plain `div` structures if keyboard and aria behavior matters.
 

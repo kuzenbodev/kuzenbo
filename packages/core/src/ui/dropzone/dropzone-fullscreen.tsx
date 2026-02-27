@@ -8,6 +8,7 @@ import { cn, tv } from "tailwind-variants";
 
 import type { DropzoneProps } from "./dropzone";
 
+import { Portal } from "../portal/portal";
 import { Dropzone } from "./dropzone";
 
 export const fullScreenVariants = tv({
@@ -127,12 +128,15 @@ export const DropzoneFullScreen = ({
     </div>
   );
 
-  if (withinPortal && typeof window !== "undefined") {
-    const target = portalTarget || document.body;
-    return target && visible ? content : null;
+  if (!visible) {
+    return null;
   }
 
-  return visible ? content : null;
+  if (withinPortal) {
+    return <Portal target={portalTarget}>{content}</Portal>;
+  }
+
+  return content;
 };
 
 DropzoneFullScreen.displayName = "DropzoneFullScreen";

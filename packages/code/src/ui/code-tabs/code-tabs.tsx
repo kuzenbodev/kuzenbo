@@ -1,6 +1,6 @@
 "use client";
 
-import type { KeyboardEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { Tabs } from "@kuzenbo/core/ui/tabs";
 import { useEffect, useMemo, useState } from "react";
@@ -71,74 +71,6 @@ export const CodeTabs = ({
     return getFirstEnabledTabValue(tabs);
   }, [activeValue, tabs]);
 
-  const selectTab = (nextValue: string): void => {
-    if (!isEnabledTabValue(nextValue, tabs)) {
-      return;
-    }
-
-    if (value === undefined) {
-      setUncontrolledValue(nextValue);
-    }
-
-    onValueChange?.(nextValue);
-  };
-
-  const handleTriggerKeyDown = (
-    event: KeyboardEvent<HTMLButtonElement>,
-    currentValue: string
-  ): void => {
-    const enabledTabs = tabs.filter((tab) => !tab.disabled);
-    const currentIndex = enabledTabs.findIndex(
-      (tab) => tab.value === currentValue
-    );
-
-    if (currentIndex === -1) {
-      return;
-    }
-
-    if (event.key === "Home") {
-      event.preventDefault();
-      selectTab(enabledTabs[0]?.value ?? currentValue);
-      return;
-    }
-
-    if (event.key === "End") {
-      event.preventDefault();
-      selectTab(enabledTabs.at(-1)?.value ?? currentValue);
-      return;
-    }
-
-    const keyToDelta: Record<string, number> = {
-      ArrowRight: 1,
-      ArrowDown: 1,
-      ArrowLeft: -1,
-      ArrowUp: -1,
-    };
-    const delta = keyToDelta[event.key];
-
-    if (delta === undefined) {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        selectTab(currentValue);
-      }
-      return;
-    }
-
-    event.preventDefault();
-
-    const nextIndex = currentIndex + delta;
-    const outOfRange = nextIndex < 0 || nextIndex >= enabledTabs.length;
-
-    if (outOfRange && !loop) {
-      return;
-    }
-
-    const wrappedIndex = (nextIndex + enabledTabs.length) % enabledTabs.length;
-    const nextValue = enabledTabs[wrappedIndex]?.value ?? currentValue;
-
-    selectTab(nextValue);
-  };
-
   return (
     <div className={cn("space-y-3", className)} data-slot="code-tabs">
       <Tabs
@@ -163,14 +95,12 @@ export const CodeTabs = ({
             "inline-flex w-fit items-center gap-1 rounded-md border border-border bg-muted/40 p-1",
             tabsClassName
           )}
+          loopFocus={loop}
         >
           {tabs.map((tab) => (
             <Tabs.Trigger
               disabled={tab.disabled}
               key={tab.value}
-              onKeyDown={(event) => {
-                handleTriggerKeyDown(event, tab.value);
-              }}
               value={tab.value}
             >
               {tab.label}
