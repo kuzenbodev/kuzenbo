@@ -1,6 +1,8 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, FocusEvent } from "react";
 
+import { Cancel01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
@@ -10,6 +12,7 @@ import type {
   TimePasteSplit,
 } from "./time-picker-types";
 
+import { DateControlButton } from "../internal/date-control-button";
 import { AmPmInput } from "./am-pm-input";
 import { SpinInput } from "./spin-input";
 import {
@@ -32,7 +35,7 @@ const timeInputDividerVariants = tv({
 });
 
 const timeInputClearButtonVariants = tv({
-  base: "inline-flex h-5 w-5 cursor-clickable items-center justify-center rounded-sm text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+  base: "h-5 w-5 rounded-sm p-0 text-xs text-muted-foreground hover:bg-muted hover:text-foreground",
 });
 
 export type TimeInputProps = Omit<
@@ -254,16 +257,23 @@ const TimeInput = ({
       </div>
 
       {clearable && controller.isClearable ? (
-        <button
+        <DateControlButton
           aria-label="Clear time"
           className={timeInputClearButtonVariants()}
+          size="icon-xs"
           type="button"
+          variant="ghost"
           onClick={() => {
             controller.clear();
           }}
         >
-          ×
-        </button>
+          <HugeiconsIcon
+            aria-hidden="true"
+            className="size-3"
+            icon={Cancel01Icon}
+            strokeWidth={2}
+          />
+        </DateControlButton>
       ) : null}
 
       {name ? (

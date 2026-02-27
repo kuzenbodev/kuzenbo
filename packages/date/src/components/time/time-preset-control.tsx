@@ -2,10 +2,11 @@ import { tv } from "tailwind-variants";
 
 import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 
+import { DateControlButton } from "../internal/date-control-button";
 import { TimeValue } from "./time-value";
 
 const timePresetControlVariants = tv({
-  base: "flex w-full cursor-clickable items-center justify-center rounded-sm border border-border bg-background px-2 py-1 text-xs text-foreground transition-colors hover:bg-muted",
+  base: "h-auto w-full items-center justify-center rounded-sm border border-border bg-background px-2 py-1 text-xs text-foreground hover:bg-muted",
   variants: {
     active: {
       true: "border-primary bg-primary text-primary-foreground hover:bg-primary/90",
@@ -34,9 +35,11 @@ const TimePresetControl = ({
   value,
   withSeconds,
 }: TimePresetControlProps) => (
-  <button
+  <DateControlButton
     className={timePresetControlVariants({ active })}
+    size="xs"
     type="button"
+    variant="outline"
     onClick={() => {
       onChange(value);
     }}
@@ -47,7 +50,7 @@ const TimePresetControl = ({
       value={value}
       withSeconds={withSeconds}
     />
-  </button>
+  </DateControlButton>
 );
 
 export { TimePresetControl };

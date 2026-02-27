@@ -1,10 +1,13 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, ReactNode } from "react";
 
+import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { cn, tv } from "tailwind-variants";
 
 import type { CalendarLevel } from "../types";
 
+import { DateControlButton } from "../internal/date-control-button";
 import { useDatesContext } from "../use-dates-context";
 import { getDecadeRange } from "./get-decade-range";
 
@@ -154,38 +157,56 @@ const CalendarHeader = ({
       {...props}
     >
       {withPrevious ? (
-        <button
+        <DateControlButton
           aria-label={previousLabel ?? "Previous"}
           className={calendarHeaderButtonVariants()}
           data-direction="previous"
           disabled={previousDisabled}
+          size="icon-sm"
           type="button"
+          variant="outline"
           onClick={handlePrevious}
         >
-          {direction === "rtl" ? ">" : "<"}
-        </button>
+          <HugeiconsIcon
+            aria-hidden="true"
+            data-arrow={direction === "rtl" ? "right" : "left"}
+            className="size-4"
+            icon={direction === "rtl" ? ArrowRight01Icon : ArrowLeft01Icon}
+            strokeWidth={2}
+          />
+        </DateControlButton>
       ) : null}
-      <button
+      <DateControlButton
         aria-label={levelControlAriaLabel}
         className={calendarHeaderLabelVariants()}
         data-static={!hasNextLevel || undefined}
         disabled={!hasNextLevel}
+        size="sm"
         type="button"
+        variant="ghost"
         onClick={handleLevelClick}
       >
         {headerLabel}
-      </button>
+      </DateControlButton>
       {withNext ? (
-        <button
+        <DateControlButton
           aria-label={nextLabel ?? "Next"}
           className={calendarHeaderButtonVariants()}
           data-direction="next"
           disabled={nextDisabled}
+          size="icon-sm"
           type="button"
+          variant="outline"
           onClick={handleNext}
         >
-          {direction === "rtl" ? "<" : ">"}
-        </button>
+          <HugeiconsIcon
+            aria-hidden="true"
+            data-arrow={direction === "rtl" ? "left" : "right"}
+            className="size-4"
+            icon={direction === "rtl" ? ArrowLeft01Icon : ArrowRight01Icon}
+            strokeWidth={2}
+          />
+        </DateControlButton>
       ) : null}
     </div>
   );

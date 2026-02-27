@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { cn, tv } from "tailwind-variants";
 
+import { DateControlButton } from "../internal/date-control-button";
 import { padTime } from "./time-utils";
 
 const timeControlsListVariants = tv({
@@ -8,7 +9,7 @@ const timeControlsListVariants = tv({
 });
 
 const timeControlVariants = tv({
-  base: "flex w-full cursor-clickable items-center justify-center rounded-sm px-1 py-1 text-xs text-foreground transition-colors hover:bg-muted",
+  base: "h-auto w-full items-center justify-center rounded-sm px-1 py-1 text-xs text-foreground hover:bg-muted",
   variants: {
     active: {
       true: "bg-primary text-primary-foreground hover:bg-primary/90",
@@ -78,17 +79,19 @@ const TimeControlsList = ({
     >
       <div className="space-y-0.5">
         {values.map((controlValue) => (
-          <button
+          <DateControlButton
             className={timeControlVariants({ active: value === controlValue })}
             data-value={controlValue}
             key={controlValue}
+            size="xs"
             type="button"
+            variant="ghost"
             onClick={() => {
               onSelect(controlValue);
             }}
           >
             {padTime(controlValue)}
-          </button>
+          </DateControlButton>
         ))}
       </div>
     </div>

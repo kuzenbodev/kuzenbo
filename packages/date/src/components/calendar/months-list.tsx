@@ -14,7 +14,7 @@ const monthsListVariants = tv({
 });
 
 const monthButtonVariants = tv({
-  base: "w-full rounded-md border border-border bg-background px-2 text-sm font-medium",
+  base: "w-full border border-border px-2 text-sm font-medium",
 });
 
 export type MonthsListProps = Omit<

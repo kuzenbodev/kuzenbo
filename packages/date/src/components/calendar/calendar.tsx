@@ -1,7 +1,7 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, MouseEvent } from "react";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import type { CalendarLevel, DatePickerType, DatePickerValue } from "../types";
@@ -225,169 +225,6 @@ const Calendar = ({
     setResolvedViewDate(adapter.addYears(resolvedViewDate, -scrollAmount * 10));
   };
 
-  const monthLevelGroup = useMemo(
-    () => (
-      <MonthLevelGroup
-        excludeDate={excludeDate}
-        firstDayOfWeek={firstDayOfWeek}
-        getDayAriaLabel={getDayAriaLabel}
-        getDayProps={getDayProps}
-        hasNextLevel={maxLevel !== "month"}
-        hideOutsideDates={hideOutsideDates}
-        hideWeekdays={hideWeekdays}
-        levelControlAriaLabel={ariaLabels?.monthLevelControl}
-        maxDate={maxDate}
-        minDate={minDate}
-        month={resolvedViewDate}
-        monthLabelFormat={monthLabelFormat}
-        nextLabel={ariaLabels?.nextMonth ?? nextLabel}
-        numberOfColumns={numberOfColumns}
-        previousLabel={ariaLabels?.previousMonth ?? previousLabel}
-        type={resolvedType}
-        value={normalizedValue}
-        weekdayFormat={weekdayFormat}
-        weekendDays={weekendDays}
-        __onDayClick={onDayClick}
-        __onDayMouseEnter={onMonthMouseEnter}
-        onLevelClick={() => {
-          setResolvedLevel("year");
-        }}
-        onNext={handleNextMonth}
-        onPrevious={handlePreviousMonth}
-        onChange={onChange}
-      />
-    ),
-    [
-      ariaLabels?.monthLevelControl,
-      ariaLabels?.nextMonth,
-      ariaLabels?.previousMonth,
-      excludeDate,
-      firstDayOfWeek,
-      getDayAriaLabel,
-      getDayProps,
-      hideOutsideDates,
-      hideWeekdays,
-      maxDate,
-      maxLevel,
-      minDate,
-      monthLabelFormat,
-      nextLabel,
-      normalizedValue,
-      numberOfColumns,
-      onChange,
-      onDayClick,
-      onMonthMouseEnter,
-      previousLabel,
-      resolvedType,
-      resolvedViewDate,
-      weekdayFormat,
-      weekendDays,
-    ]
-  );
-
-  const yearLevelGroup = useMemo(
-    () => (
-      <YearLevelGroup
-        hasNextLevel={maxLevel === "decade"}
-        levelControlAriaLabel={ariaLabels?.yearLevelControl}
-        maxDate={maxDate}
-        minDate={minDate}
-        monthLabelFormat="short"
-        nextLabel={ariaLabels?.nextYear ?? nextLabel}
-        numberOfColumns={numberOfColumns}
-        previousLabel={ariaLabels?.previousYear ?? previousLabel}
-        value={selectedDate}
-        year={resolvedViewDate}
-        yearLabelFormat={yearLabelFormat}
-        getMonthControlProps={getMonthControlProps}
-        __onControlMouseEnter={onMonthMouseEnter}
-        onLevelClick={() => {
-          setResolvedLevel("decade");
-        }}
-        onNext={handleNextYear}
-        onPrevious={handlePreviousYear}
-        onChange={(nextMonth) => {
-          if (__updateDateOnMonthSelect) {
-            setResolvedViewDate(nextMonth);
-          }
-
-          onMonthSelect?.(nextMonth);
-
-          if (minLevel === "month") {
-            setResolvedLevel("month");
-          }
-        }}
-      />
-    ),
-    [
-      __updateDateOnMonthSelect,
-      ariaLabels?.nextYear,
-      ariaLabels?.previousYear,
-      ariaLabels?.yearLevelControl,
-      getMonthControlProps,
-      maxDate,
-      maxLevel,
-      minDate,
-      minLevel,
-      nextLabel,
-      numberOfColumns,
-      onMonthSelect,
-      onMonthMouseEnter,
-      previousLabel,
-      resolvedViewDate,
-      selectedDate,
-      yearLabelFormat,
-    ]
-  );
-
-  const decadeLevelGroup = useMemo(
-    () => (
-      <DecadeLevelGroup
-        decadeLabelFormat={decadeLabelFormat}
-        maxDate={maxDate}
-        minDate={minDate}
-        nextLabel={ariaLabels?.nextDecade ?? nextLabel}
-        numberOfColumns={numberOfColumns}
-        previousLabel={ariaLabels?.previousDecade ?? previousLabel}
-        value={selectedDate}
-        year={resolvedViewDate}
-        yearLabelFormat="numeric"
-        getYearControlProps={getYearControlProps}
-        __onControlMouseEnter={onYearMouseEnter}
-        onNext={handleNextDecade}
-        onPrevious={handlePreviousDecade}
-        onChange={(nextYear) => {
-          if (__updateDateOnYearSelect) {
-            setResolvedViewDate(nextYear);
-          }
-
-          onYearSelect?.(nextYear);
-
-          if (minLevel !== "decade") {
-            setResolvedLevel("year");
-          }
-        }}
-      />
-    ),
-    [
-      __updateDateOnYearSelect,
-      ariaLabels?.nextDecade,
-      ariaLabels?.previousDecade,
-      decadeLabelFormat,
-      getYearControlProps,
-      maxDate,
-      minDate,
-      minLevel,
-      nextLabel,
-      numberOfColumns,
-      onYearMouseEnter,
-      onYearSelect,
-      previousLabel,
-      resolvedViewDate,
-      selectedDate,
-    ]
-  );
-
   return (
     <div
       className={cn(calendarVariants(), className)}
@@ -395,9 +232,98 @@ const Calendar = ({
       data-slot="calendar"
       {...props}
     >
-      {resolvedLevel === "month" && monthLevelGroup}
-      {resolvedLevel === "year" && yearLevelGroup}
-      {resolvedLevel === "decade" && decadeLevelGroup}
+      {resolvedLevel === "month" ? (
+        <MonthLevelGroup
+          excludeDate={excludeDate}
+          firstDayOfWeek={firstDayOfWeek}
+          getDayAriaLabel={getDayAriaLabel}
+          getDayProps={getDayProps}
+          hasNextLevel={maxLevel !== "month"}
+          hideOutsideDates={hideOutsideDates}
+          hideWeekdays={hideWeekdays}
+          levelControlAriaLabel={ariaLabels?.monthLevelControl}
+          maxDate={maxDate}
+          minDate={minDate}
+          month={resolvedViewDate}
+          monthLabelFormat={monthLabelFormat}
+          nextLabel={ariaLabels?.nextMonth ?? nextLabel}
+          numberOfColumns={numberOfColumns}
+          previousLabel={ariaLabels?.previousMonth ?? previousLabel}
+          type={resolvedType}
+          value={normalizedValue}
+          weekdayFormat={weekdayFormat}
+          weekendDays={weekendDays}
+          __onDayClick={onDayClick}
+          __onDayMouseEnter={onMonthMouseEnter}
+          onLevelClick={() => {
+            setResolvedLevel("year");
+          }}
+          onNext={handleNextMonth}
+          onPrevious={handlePreviousMonth}
+          onChange={onChange}
+        />
+      ) : null}
+      {resolvedLevel === "year" ? (
+        <YearLevelGroup
+          hasNextLevel={maxLevel === "decade"}
+          levelControlAriaLabel={ariaLabels?.yearLevelControl}
+          maxDate={maxDate}
+          minDate={minDate}
+          monthLabelFormat="short"
+          nextLabel={ariaLabels?.nextYear ?? nextLabel}
+          numberOfColumns={numberOfColumns}
+          previousLabel={ariaLabels?.previousYear ?? previousLabel}
+          value={selectedDate}
+          year={resolvedViewDate}
+          yearLabelFormat={yearLabelFormat}
+          getMonthControlProps={getMonthControlProps}
+          __onControlMouseEnter={onMonthMouseEnter}
+          onLevelClick={() => {
+            setResolvedLevel("decade");
+          }}
+          onNext={handleNextYear}
+          onPrevious={handlePreviousYear}
+          onChange={(nextMonth) => {
+            if (__updateDateOnMonthSelect) {
+              setResolvedViewDate(nextMonth);
+            }
+
+            onMonthSelect?.(nextMonth);
+
+            if (minLevel === "month") {
+              setResolvedLevel("month");
+            }
+          }}
+        />
+      ) : null}
+      {resolvedLevel === "decade" ? (
+        <DecadeLevelGroup
+          decadeLabelFormat={decadeLabelFormat}
+          maxDate={maxDate}
+          minDate={minDate}
+          nextLabel={ariaLabels?.nextDecade ?? nextLabel}
+          numberOfColumns={numberOfColumns}
+          previousLabel={ariaLabels?.previousDecade ?? previousLabel}
+          value={selectedDate}
+          year={resolvedViewDate}
+          yearLabelFormat="numeric"
+          getYearControlProps={getYearControlProps}
+          __onControlMouseEnter={onYearMouseEnter}
+          onNext={handleNextDecade}
+          onPrevious={handlePreviousDecade}
+          onChange={(nextYear) => {
+            if (__updateDateOnYearSelect) {
+              setResolvedViewDate(nextYear);
+            }
+
+            onYearSelect?.(nextYear);
+
+            if (minLevel !== "decade") {
+              setResolvedLevel("year");
+            }
+          }}
+        />
+      ) : null}
     </div>
   );
 };

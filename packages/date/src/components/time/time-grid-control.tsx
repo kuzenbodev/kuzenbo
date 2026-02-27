@@ -4,10 +4,11 @@ import { tv } from "tailwind-variants";
 
 import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 
+import { DateControlButton } from "../internal/date-control-button";
 import { TimeValue } from "./time-value";
 
 const timeGridControlVariants = tv({
-  base: "flex w-full cursor-clickable items-center justify-between rounded-md px-2 py-1 text-left text-xs text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50",
+  base: "h-auto w-full items-center justify-between rounded-md px-2 py-1 text-left text-xs text-foreground disabled:cursor-not-allowed disabled:opacity-50",
   variants: {
     active: {
       true: "bg-primary text-primary-foreground hover:bg-primary/90",
@@ -35,9 +36,11 @@ const TimeGridControl = ({
   withSeconds,
   ...props
 }: TimeGridControlProps) => (
-  <button
+  <DateControlButton
     className={timeGridControlVariants({ active })}
+    size="xs"
     type="button"
+    variant="ghost"
     {...props}
   >
     <TimeValue
@@ -47,7 +50,7 @@ const TimeGridControl = ({
       withSeconds={withSeconds}
     />
     {active ? <span>Selected</span> : null}
-  </button>
+  </DateControlButton>
 );
 
 export { TimeGridControl };

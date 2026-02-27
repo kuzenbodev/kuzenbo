@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
 import { DatesProvider } from "../../components/dates-provider";
@@ -6,7 +6,7 @@ import { MonthPickerInput } from "../../components/inputs/month-picker-input";
 import { YearPickerInput } from "../../components/inputs/year-picker-input";
 
 afterEach(() => {
-  document.body.innerHTML = "";
+  cleanup();
 });
 
 describe("MonthPickerInput/YearPickerInput", () => {

@@ -47,9 +47,10 @@ describe("RTL navigation", () => {
       </DatesProvider>
     );
 
-    expect(screen.getByRole("button", { name: "Previous" }).textContent).toBe(
-      ">"
-    );
-    expect(screen.getByRole("button", { name: "Next" }).textContent).toBe("<");
+    const previousButton = screen.getByRole("button", { name: "Previous" });
+    const nextButton = screen.getByRole("button", { name: "Next" });
+
+    expect(previousButton.querySelector("[data-arrow='right']")).not.toBeNull();
+    expect(nextButton.querySelector("[data-arrow='left']")).not.toBeNull();
   });
 });

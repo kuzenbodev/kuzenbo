@@ -1,11 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
 import { DatesProvider } from "../components/dates-provider";
 import { DatePickerInput } from "../components/inputs/date-picker-input";
 
 afterEach(() => {
-  document.body.innerHTML = "";
+  cleanup();
 });
 
 describe("DatePickerInput", () => {

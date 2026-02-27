@@ -6,10 +6,10 @@ import { cn, tv } from "tailwind-variants";
 import { useDatesContext } from "../use-dates-context";
 
 const dayVariants = tv({
-  base: "inline-flex h-9 w-9 cursor-clickable items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40",
+  base: "relative inline-flex h-9 w-9 cursor-clickable items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40",
   variants: {
     firstInRange: {
-      true: "rounded-l-md bg-primary/15",
+      true: "!rounded-md bg-primary/15",
       false: "",
     },
     inRange: {
@@ -17,7 +17,7 @@ const dayVariants = tv({
       false: "",
     },
     lastInRange: {
-      true: "rounded-r-md bg-primary/15",
+      true: "!rounded-md bg-primary/15",
       false: "",
     },
     selected: {
@@ -38,6 +38,13 @@ const dayVariants = tv({
     outside: false,
     today: false,
   },
+  compoundVariants: [
+    {
+      selected: true,
+      today: true,
+      class: "bg-primary text-primary-foreground hover:bg-primary/90",
+    },
+  ],
 });
 
 export type DayProps = Omit<

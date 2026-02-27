@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 import { cn, tv } from "tailwind-variants";
 
 const pickerControlVariants = tv({
-  base: "inline-flex h-9 w-9 cursor-clickable items-center justify-center rounded-md border border-transparent text-sm font-medium text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40",
+  base: "relative inline-flex h-9 w-9 cursor-clickable items-center justify-center rounded-md border border-transparent text-sm font-medium text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40",
   variants: {
     disabled: {
       true: "",
@@ -18,11 +18,11 @@ const pickerControlVariants = tv({
       false: "",
     },
     firstInRange: {
-      true: "rounded-l-md bg-primary/15",
+      true: "!rounded-md bg-primary/15",
       false: "",
     },
     lastInRange: {
-      true: "rounded-r-md bg-primary/15",
+      true: "!rounded-md bg-primary/15",
       false: "",
     },
     outside: {
@@ -43,6 +43,7 @@ const pickerControlVariants = tv({
     outside: false,
     selected: false,
   },
+  compoundVariants: [],
 });
 
 export type PickerControlProps = Omit<ComponentProps<"button">, "children"> & {
