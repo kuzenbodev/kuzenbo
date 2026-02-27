@@ -20,7 +20,7 @@ interface ReleaseRow {
 const releaseRows: ReleaseRow[] = [
   { package: "@kuzenbo/core", status: "ready" },
   { package: "@kuzenbo/charts", status: "ready" },
-  { package: "@kuzenbo/date", status: "needs-docs" },
+  { package: "@kuzenbo/date", status: "ready" },
   { package: "@kuzenbo/tiptap", status: "blocked" },
 ];
 

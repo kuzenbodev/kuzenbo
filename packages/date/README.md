@@ -1,14 +1,21 @@
 # @kuzenbo/date
 
-Date primitives with token-aware styling and slot composition.
+Mantine parity date primitives rebuilt for Kuzenbo.
 
-> 🧪 **Status: Preview (Not Published Yet)**
+> 🚧 Preview package · not published yet
 
-## ✨ What This Package Targets
+## ✨ Highlights
 
-`@kuzenbo/date` provides date primitives tuned to Kuzenbo styling and composition patterns.
+- 🗓️ Calendar primitives (`Calendar`, `Day`, `Month`, `WeekdaysRow`, level groups)
+- 🎯 Canonical `selectionMode` API (`single`, `multiple`, `range`)
+- 🧩 Input primitives (`DateInput`, `DatePickerInput`, `MonthPickerInput`, `YearPickerInput`)
+- ⏰ Time primitives (`TimeInput`, `TimePicker`, `TimeGrid`, `TimeValue`, `DateTimePicker`)
+- 🌍 Locale + timezone support through `DatesProvider`
+- ↔️ RTL-aware behavior with provider direction controls
+- ♿ Accessibility-first labels, keyboard flows, and focus behavior
+- 🎨 Tailwind Variants styling with Kuzenbo semantic tokens
 
-## 📦 Install (When Available)
+## 📦 Install (when available)
 
 ```bash
 bun add @kuzenbo/date @kuzenbo/core @kuzenbo/theme
@@ -33,10 +40,41 @@ yarn add @kuzenbo/date @kuzenbo/core @kuzenbo/theme
 - `@kuzenbo/core`
 - `@kuzenbo/theme`
 
-## 🎨 Runtime Pairing
+## 🚀 Quick Example
 
-`@kuzenbo/date` is designed to run with `@kuzenbo/core` and `@kuzenbo/theme`.
+```tsx
+import { DatePicker, DatesProvider } from "@kuzenbo/date";
+import { useState } from "react";
 
-## 🛟 Safe Adoption Guidance
+export function BookingExample() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
 
-Until publish, use this package as preview-only and keep date selection behavior validated in your app integration tests.
+  return (
+    <DatesProvider firstDayOfWeek={1} locale="en-US" timeZone="UTC">
+      <DatePicker
+        selectionMode="range"
+        value={value}
+        onChange={(nextValue) => {
+          setValue(nextValue as [Date | null, Date | null]);
+        }}
+      />
+    </DatesProvider>
+  );
+}
+```
+
+## 🧭 API Snapshot
+
+- Use `selectionMode` as the public mode prop on picker surfaces.
+- Use `DatesProvider` root props (`locale`, `timeZone`, `firstDayOfWeek`, `weekendDays`, `direction`) for runtime configuration.
+- Import from `@kuzenbo/date` package root; avoid internal/deep imports.
+
+## 🧠 Adapter Model
+
+All date operations flow through one adapter boundary:
+
+- `date-fns`
+- `@date-fns/utc`
+- `@date-fns/tz`
+
+This keeps parsing/formatting/comparison/timezone behavior deterministic across components.

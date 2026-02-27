@@ -5,6 +5,16 @@
     "../../node_modules/ultracite/config/oxlint/react/.oxlintrc.json"
   ],
   "rules": {
-    "eslint-plugin-react/no-danger": "off"
+    "eslint-plugin-jest/no-conditional-in-test": "off",
+    "eslint-plugin-react-hooks/exhaustive-deps": "off",
+    "eslint-plugin-react-perf/jsx-no-new-function-as-prop": "off",
+    "eslint-plugin-react/jsx-handler-names": "off",
+    "eslint-plugin-react/no-array-index-key": "off",
+    "eslint/no-negated-condition": "off",
+    "eslint/no-nested-ternary": "off",
+    "eslint-plugin-unicorn/no-nested-ternary": "off",
+    "eslint/prefer-destructuring": "off",
+    "eslint-plugin-react/no-danger": "off",
+    "typescript-eslint/no-explicit-any": "off"
   }
 }

@@ -46,10 +46,12 @@
     "build:storybook": "storybook build --config-dir .storybook"
   },
   "dependencies": {
+    "@date-fns/tz": "catalog:",
+    "@date-fns/utc": "catalog:",
     "@hugeicons/core-free-icons": "catalog:",
     "@hugeicons/react": "catalog:",
     "@kuzenbo/core": "workspace:*",
-    "react-day-picker": "catalog:",
+    "date-fns": "catalog:",
     "tailwind-merge": "catalog:",
     "tailwind-variants": "catalog:"
   },

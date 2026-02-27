@@ -1,3 +1,4 @@
 @import "@kuzenbo/storybook/preview.css";
 
 @source "../src/**/*.{ts,tsx,mdx}";
+@source "../node_modules/@kuzenbo/core/src/**/*.{ts,tsx,mdx}";

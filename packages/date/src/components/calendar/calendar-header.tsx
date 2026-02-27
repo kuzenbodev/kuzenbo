@@ -1,0 +1,194 @@
+/* eslint-disable react-perf/jsx-no-new-function-as-prop */
+import type { ComponentProps, ReactNode } from "react";
+
+import { cn, tv } from "tailwind-variants";
+
+import type { CalendarLevel } from "../types";
+
+import { useDatesContext } from "../use-dates-context";
+import { getDecadeRange } from "./get-decade-range";
+
+const calendarHeaderVariants = tv({
+  base: "flex items-center justify-between gap-2",
+});
+
+const calendarHeaderButtonVariants = tv({
+  base: "inline-flex h-8 w-8 cursor-clickable items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+});
+
+const calendarHeaderLabelVariants = tv({
+  base: "inline-flex min-w-0 cursor-clickable items-center justify-center rounded-md px-2 py-1 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+});
+
+export type CalendarHeaderProps = Omit<
+  ComponentProps<"div">,
+  "defaultValue" | "onChange" | "value"
+> & {
+  decadeLabelFormat?: (startOfDecade: Date, endOfDecade: Date) => ReactNode;
+  hasNextLevel?: boolean;
+  levelControlAriaLabel?: string;
+  monthLabelFormat?: Intl.DateTimeFormatOptions | ((date: Date) => ReactNode);
+  nextDisabled?: boolean;
+  nextLabel?: string;
+  previousDisabled?: boolean;
+  previousLabel?: string;
+  yearLabelFormat?: Intl.DateTimeFormatOptions | ((date: Date) => ReactNode);
+  onLevelClick?: () => void;
+  level: CalendarLevel;
+  viewDate: Date;
+  withNext?: boolean;
+  withPrevious?: boolean;
+  onNext?: () => void;
+  onPrevious?: () => void;
+  onLevelChange?: (level: CalendarLevel) => void;
+  onViewDateChange?: (value: Date) => void;
+};
+
+const CalendarHeader = ({
+  className,
+  decadeLabelFormat,
+  hasNextLevel = true,
+  level,
+  levelControlAriaLabel,
+  monthLabelFormat,
+  nextDisabled = false,
+  nextLabel,
+  onLevelClick,
+  onNext,
+  onPrevious,
+  previousDisabled = false,
+  previousLabel,
+  viewDate,
+  withNext = true,
+  withPrevious = true,
+  yearLabelFormat,
+  onLevelChange,
+  onViewDateChange,
+  ...props
+}: CalendarHeaderProps) => {
+  const { adapter, direction, locale, timeZone } = useDatesContext();
+
+  const [startOfDecade, endOfDecade] = getDecadeRange(viewDate, adapter);
+  const monthLabel =
+    typeof monthLabelFormat === "function"
+      ? monthLabelFormat(viewDate)
+      : monthLabelFormat
+        ? adapter.format(viewDate, monthLabelFormat, { locale, timeZone })
+        : adapter.formatMonthLabel(viewDate, { locale, timeZone });
+  const yearLabel =
+    typeof yearLabelFormat === "function"
+      ? yearLabelFormat(viewDate)
+      : yearLabelFormat
+        ? adapter.format(viewDate, yearLabelFormat, { locale, timeZone })
+        : adapter.formatYearLabel(viewDate, { locale, timeZone });
+
+  const decadeLabel =
+    decadeLabelFormat?.(startOfDecade, endOfDecade) ??
+    `${adapter.format(startOfDecade, { year: "numeric" }, { locale, timeZone })} - ${adapter.format(
+      endOfDecade,
+      { year: "numeric" },
+      { locale, timeZone }
+    )}`;
+
+  const headerLabel =
+    level === "month" ? monthLabel : level === "year" ? yearLabel : decadeLabel;
+
+  const handlePrevious = () => {
+    onPrevious?.();
+    if (onPrevious) {
+      return;
+    }
+
+    if (level === "month") {
+      onViewDateChange?.(adapter.addMonths(viewDate, -1));
+      return;
+    }
+
+    if (level === "year") {
+      onViewDateChange?.(adapter.addYears(viewDate, -1));
+      return;
+    }
+
+    onViewDateChange?.(adapter.addYears(viewDate, -10));
+  };
+
+  const handleNext = () => {
+    onNext?.();
+    if (onNext) {
+      return;
+    }
+
+    if (level === "month") {
+      onViewDateChange?.(adapter.addMonths(viewDate, 1));
+      return;
+    }
+
+    if (level === "year") {
+      onViewDateChange?.(adapter.addYears(viewDate, 1));
+      return;
+    }
+
+    onViewDateChange?.(adapter.addYears(viewDate, 10));
+  };
+
+  const handleLevelClick = () => {
+    onLevelClick?.();
+    if (onLevelClick) {
+      return;
+    }
+
+    if (level === "month") {
+      onLevelChange?.("year");
+      return;
+    }
+
+    if (level === "year") {
+      onLevelChange?.("decade");
+    }
+  };
+
+  return (
+    <div
+      className={cn(calendarHeaderVariants(), className)}
+      data-slot="calendar-header"
+      {...props}
+    >
+      {withPrevious ? (
+        <button
+          aria-label={previousLabel ?? "Previous"}
+          className={calendarHeaderButtonVariants()}
+          data-direction="previous"
+          disabled={previousDisabled}
+          type="button"
+          onClick={handlePrevious}
+        >
+          {direction === "rtl" ? ">" : "<"}
+        </button>
+      ) : null}
+      <button
+        aria-label={levelControlAriaLabel}
+        className={calendarHeaderLabelVariants()}
+        data-static={!hasNextLevel || undefined}
+        disabled={!hasNextLevel}
+        type="button"
+        onClick={handleLevelClick}
+      >
+        {headerLabel}
+      </button>
+      {withNext ? (
+        <button
+          aria-label={nextLabel ?? "Next"}
+          className={calendarHeaderButtonVariants()}
+          data-direction="next"
+          disabled={nextDisabled}
+          type="button"
+          onClick={handleNext}
+        >
+          {direction === "rtl" ? "<" : ">"}
+        </button>
+      ) : null}
+    </div>
+  );
+};
+
+export { CalendarHeader };

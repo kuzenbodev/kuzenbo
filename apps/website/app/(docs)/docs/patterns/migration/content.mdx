@@ -35,8 +35,20 @@ import { Calendar, LineChart, Toast } from "@kuzenbo/core";
 // after (folder-mirrored subpaths)
 import { LineChart } from "@kuzenbo/charts/ui/line-chart";
 import { Toast } from "@kuzenbo/notifications/ui/toast";
-import { Calendar } from "@kuzenbo/date/ui/calendar";
+import { Calendar } from "@kuzenbo/date";
 ```
+
+## Date API Migration Example
+
+```tsx
+// previous
+<DatePicker type="default" />
+
+// after
+<DatePicker selectionMode="single" />
+```
+
+For `@kuzenbo/date`, prefer the `selectionMode` contract (`single`, `multiple`, `range`) on picker surfaces.
 
 ## Runtime and CSS Setup
 
@@ -51,6 +63,14 @@ import { ThemeProvider } from "@kuzenbo/theme";
 ```
 
 Render `ThemeBootstrapScript` before app content to avoid theme flicker on first paint.
+
+For date runtime settings, move provider config to direct `DatesProvider` props:
+
+```tsx
+<DatesProvider locale="en-US" firstDayOfWeek={1} timeZone="UTC">
+  <DatePicker selectionMode="range" />
+</DatesProvider>
+```
 
 ## Migration Checklist
 

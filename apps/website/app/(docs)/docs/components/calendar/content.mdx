@@ -1,21 +1,21 @@
 ---
 title: "Calendar"
-description: "Use @kuzenbo/date Calendar for display-only and interactive date selection with single, range, locale, and week-number modes."
+description: "Mantine parity date primitives from @kuzenbo/date with single, multiple, range, input, time, localization, and RTL support."
 ---
 
 ## Purpose
 
-`Calendar` from `@kuzenbo/date` is a styled wrapper around `react-day-picker` with Kuzenbo tokenized styling and composable slot overrides.
+`@kuzenbo/date` provides Mantine-equivalent date primitives with Kuzenbo conventions:
 
-It supports two distinct usage modes:
-
-- Display-only month grid when `mode` is not set.
-- Interactive picker when `mode` is set (`single`, `multiple`, `range`, etc. via DayPicker props).
+- `selectionMode` (`single | multiple | range`) across picker surfaces.
+- `date-fns`-powered adapter layer with timezone/locale support.
+- RTL-aware navigation through `DatesProvider`.
+- Calendar + picker + input + time primitives from one package root.
 
 ## Installation
 
-```npm
-npm i @kuzenbo/date
+```bash
+bun add @kuzenbo/date @kuzenbo/core @kuzenbo/theme
 ```
 
 ## Import
@@ -23,151 +23,103 @@ npm i @kuzenbo/date
 ```tsx
 import {
   Calendar,
-  CalendarChevron,
-  CalendarDayButton,
-  CalendarRoot,
-  CalendarWeekNumber,
-} from "@kuzenbo/date/ui/calendar";
+  DateInput,
+  DatePicker,
+  DatePickerInput,
+  DateTimePicker,
+  DatesProvider,
+  MonthPicker,
+  MonthPickerInput,
+  TimePicker,
+  TimeValue,
+  YearPicker,
+  YearPickerInput,
+} from "@kuzenbo/date";
 ```
 
-## Basic usage
-
-Display-only calendar (no day buttons):
+## Basic Calendar
 
 ```tsx
-import { Calendar } from "@kuzenbo/date/ui/calendar";
+import { Calendar } from "@kuzenbo/date";
 
 export function BillingMonthPreview() {
-  return (
-    <Calendar className="rounded-lg border" defaultMonth={new Date(2025, 0)} />
-  );
+  return <Calendar className="rounded-lg border" selectionMode="single" />;
 }
 ```
 
-Single-date selection mode:
+## Range Picker
 
 ```tsx
 import { useState } from "react";
-import { Calendar } from "@kuzenbo/date/ui/calendar";
+import { DatePicker } from "@kuzenbo/date";
 
-export function SingleDatePicker() {
-  const [selected, setSelected] = useState<Date | undefined>(new Date());
+export function RangePicker() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
 
   return (
-    <Calendar
-      className="rounded-lg border"
-      mode="single"
-      onSelect={setSelected}
-      selected={selected}
+    <DatePicker
+      selectionMode="range"
+      value={value}
+      onChange={(nextValue) => {
+        setValue(nextValue as [Date | null, Date | null]);
+      }}
     />
   );
 }
 ```
 
-## Advanced usage: range, week numbers, locale, and dropdown caption
+## Date Inputs
 
 ```tsx
-import type { DateRange } from "react-day-picker";
-import { useState } from "react";
-import { arSA } from "react-day-picker/locale";
+import { DateInput, DatePickerInput } from "@kuzenbo/date";
 
-import { Calendar } from "@kuzenbo/date/ui/calendar";
-
-export function ReportingCalendar() {
-  const [range, setRange] = useState<DateRange | undefined>({
-    from: new Date(2025, 0, 8),
-    to: new Date(2025, 0, 13),
-  });
-
+export function DateFieldExamples() {
   return (
-    <Calendar
-      buttonVariant="ghost"
-      captionLayout="dropdown"
-      className="rounded-lg border"
-      defaultMonth={range?.from}
-      dir="rtl"
-      locale={arSA}
-      mode="range"
-      numberOfMonths={2}
-      onSelect={setRange}
-      selected={range}
-      showWeekNumber
-    />
+    <div className="space-y-3">
+      <DateInput placeholder="YYYY-MM-DD" />
+      <DatePickerInput name="releaseDate" placeholder="Pick release date" />
+    </div>
   );
 }
 ```
 
-## API reference
+## Date + Time
 
-- `Calendar`
-  Main export. Accepts `DayPicker` props plus `buttonVariant` (`ghost`, etc. from calendar button variants) and `size`.
-- `CalendarRoot`
-  Root slot override used internally; exported for advanced customization.
-- `CalendarChevron`
-  Navigation chevron component.
-- `CalendarDayButton`
-  Interactive day button renderer used when selection mode is enabled.
-- `CalendarWeekNumber`
-  Week-number cell renderer used with `showWeekNumber`. It follows the same `xs`→`xl` typography scale as the root calendar size.
+```tsx
+import { DateTimePicker, TimePicker, TimeValue } from "@kuzenbo/date";
 
-## Size Scale
+export function Scheduler() {
+  return (
+    <div className="space-y-3">
+      <DateTimePicker name="appointment" withSeconds />
+      <TimePicker interval={15} withSeconds />
+      <TimeValue value="14:30:00" withSeconds />
+    </div>
+  );
+}
+```
 
-`Calendar` supports:
+## Locale + RTL + Timezone
 
-- `xs`
-- `sm`
-- `md` (default)
-- `lg`
-- `xl`
+```tsx
+import { DatesProvider, Calendar } from "@kuzenbo/date";
 
-The `size` prop scales:
+export function LocalizedCalendar() {
+  return (
+    <DatesProvider
+      direction="rtl"
+      firstDayOfWeek={6}
+      locale="ar-SA"
+      timeZone="Asia/Riyadh"
+    >
+      <Calendar selectionMode="single" />
+    </DatesProvider>
+  );
+}
+```
 
-- root spacing
-- cell size (`--cell-size`)
-- day typography and controls
-- navigation buttons and chevrons
-- week number density
+## Notes
 
-Precedence rule:
-
-`explicit size prop ?? provider component defaults (Calendar) ?? provider defaultSize ?? "md"`
-
-Runtime styling markers:
-
-- `data-size` on the calendar root (`data-slot="calendar"`).
-- `data-size` on interactive day buttons rendered in selection modes.
-
-## Accessibility notes
-
-- Provide surrounding label/context when used as a form field (for example, a visible `<label>` or field title).
-- In interactive modes, keep `mode` explicit and ensure disabled dates are communicated by surrounding helper text.
-- For locale-sensitive UIs, pass both `locale` and `dir` when RTL languages are expected.
-
-## SSR and RSC notes
-
-`Calendar` is a client component (`"use client"`).
-
-In App Router, load initial date defaults on the server if needed, but render `Calendar` inside a client boundary for selection and navigation events.
-
-## Styling and semantic tokens
-
-The component is already wired to semantic tokens (`bg-background`, `text-foreground`, `bg-muted`, status tokens). Prefer token-based overrides through `className` or `classNames` slots.
-
-If you customize day cells, keep both `day` and `day_button` slots coherent to avoid regressions between display-only and interactive modes.
-
-## Troubleshooting
-
-- Days are not clickable:
-  Set a selection `mode` such as `single` or `range`.
-- Outside days disappear unexpectedly:
-  Check `showOutsideDays` (defaults to `true` here).
-- Range visuals look wrong after custom styles:
-  Preserve range classes (`range_start`, `range_middle`, `range_end`) when overriding `classNames`.
-- Week numbers not visible:
-  Enable `showWeekNumber`.
-
-## Related links
-
-- [Popover](/docs/components/popover)
-- [Input Group](/docs/components/input-group)
-- [Number Field](/docs/components/number-field)
+- Use `selectionMode` as the canonical mode prop.
+- Configure locale, direction, and timezone through `DatesProvider` root props.
+- `className` is supported for Tailwind composition; style escape hatches are intentionally removed.

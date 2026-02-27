@@ -5,7 +5,7 @@ const repoRoot = process.cwd();
 
 const SCOPED_DIRS = [
   "packages/core/src/ui",
-  "packages/date/src/ui/calendar",
+  "packages/date/src/components",
   "packages/notifications/src/ui/toast",
   "packages/tiptap/src/ui/tiptap-editor",
   "packages/charts/src/ui/primitives/legend",
