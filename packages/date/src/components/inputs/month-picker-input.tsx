@@ -1,13 +1,15 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
-import type { DatePickerType, DatePickerValue } from "../types";
+import type { DateFormatter } from "../../utils";
+import type { DatePickerValue, SelectionMode } from "../types";
 
+import { useDatesInput } from "../../hooks";
 import { normalizePickerValue } from "../calendar/utils/calendar-selection";
-import { resolvePickerType } from "../picker-mode";
 import { MonthPicker } from "../pickers/month-picker";
+import { fromComparablePickerValue } from "../pickers/utils/picker-value-conversion";
 import { useDatesContext } from "../use-dates-context";
 import { HiddenDatesInput } from "./hidden-dates-input";
 import { PickerInputBase } from "./picker-input-base";
@@ -19,87 +21,97 @@ export type MonthPickerInputProps = Omit<
   allowDeselect?: boolean;
   allowSingleDateInRange?: boolean;
   ariaLabels?: ComponentProps<typeof MonthPicker>["ariaLabels"];
+  closeOnChange?: boolean;
   defaultValue?: DatePickerValue;
+  labelSeparator?: string;
   monthLabelFormat?: ComponentProps<typeof MonthPicker>["monthLabelFormat"];
   nextLabel?: ComponentProps<typeof MonthPicker>["nextLabel"];
-  pickerType?: DatePickerType;
   previousLabel?: ComponentProps<typeof MonthPicker>["previousLabel"];
-  selectionMode?: "multiple" | "range" | "single";
+  selectionMode?: SelectionMode;
+  sortDates?: boolean;
   value?: DatePickerValue;
+  valueFormat?: string;
+  valueFormatter?: DateFormatter;
   yearLabelFormat?: ComponentProps<typeof MonthPicker>["yearLabelFormat"];
   onChange?: (value: DatePickerValue) => void;
 };
 
-const MonthPickerInput = ({
-  allowDeselect,
-  allowSingleDateInRange,
-  ariaLabels,
-  defaultValue,
-  monthLabelFormat,
-  name,
-  nextLabel,
-  pickerType = "default",
-  previousLabel,
-  selectionMode,
-  value,
-  yearLabelFormat,
-  onChange,
-  ...props
-}: MonthPickerInputProps) => {
-  const { adapter, locale, timeZone } = useDatesContext();
-  const resolvedType = resolvePickerType(
-    selectionMode ?? pickerType
-  ) as DatePickerType;
-  const [opened, setOpened] = useState(false);
-  const [uncontrolledValue, setUncontrolledValue] = useState<DatePickerValue>(
-    normalizePickerValue(defaultValue, resolvedType)
+const MonthPickerInput = (allProps: MonthPickerInputProps) => {
+  const {
+    allowDeselect,
+    allowSingleDateInRange,
+    ariaLabels,
+    closeOnChange = true,
+    defaultValue,
+    form,
+    labelSeparator,
+    monthLabelFormat,
+    name,
+    nextLabel,
+    previousLabel,
+    selectionMode = "single",
+    sortDates,
+    value,
+    valueFormat = "MMMM yyyy",
+    valueFormatter,
+    yearLabelFormat,
+    onChange,
+    ...props
+  } = allProps;
+  const { adapter, locale } = useDatesContext();
+  const normalizedDefaultValue = useMemo(
+    () =>
+      defaultValue === undefined
+        ? undefined
+        : normalizePickerValue(defaultValue, selectionMode),
+    [defaultValue, selectionMode]
   );
-  const resolvedValue = normalizePickerValue(
-    value === undefined ? uncontrolledValue : value,
-    resolvedType
+  const normalizedValue = useMemo(
+    () =>
+      value === undefined
+        ? undefined
+        : normalizePickerValue(value, selectionMode),
+    [selectionMode, value]
   );
 
-  const inputValue = useMemo(() => {
-    const formatMonth = (month: Date | null): string =>
-      month
-        ? adapter.format(
-            month,
-            { month: "long", year: "numeric" },
-            { locale, timeZone }
-          )
-        : "";
+  const { _value, dropdownHandlers, dropdownOpened, formattedValue, setValue } =
+    useDatesInput<SelectionMode>({
+      adapter,
+      closeOnChange,
+      defaultValue: normalizedDefaultValue,
+      format: valueFormat,
+      labelSeparator,
+      locale,
+      onChange: (nextValue) => {
+        onChange?.(
+          fromComparablePickerValue(adapter, nextValue, selectionMode)
+        );
+      },
+      selectionMode,
+      sortDates,
+      value: normalizedValue,
+      valueFormatter,
+    });
 
-    if (resolvedType === "default") {
-      return formatMonth((resolvedValue as Date | null) ?? null);
-    }
-
-    if (resolvedType === "multiple") {
-      return ((resolvedValue as Date[]) ?? []).map(formatMonth).join(", ");
-    }
-
-    const [startDate, endDate] = (resolvedValue as [
-      Date | null,
-      Date | null,
-    ]) ?? [null, null];
-
-    if (!startDate) {
-      return "";
-    }
-
-    const startValue = formatMonth(startDate);
-    const endValue = formatMonth(endDate);
-
-    return endDate ? `${startValue} - ${endValue}` : `${startValue} -`;
-  }, [adapter, locale, resolvedType, resolvedValue, timeZone]);
+  const resolvedValue = useMemo(
+    () =>
+      fromComparablePickerValue(
+        adapter,
+        _value,
+        selectionMode
+      ) as DatePickerValue,
+    [_value, adapter, selectionMode]
+  );
 
   return (
     <>
       <PickerInputBase
         {...props}
+        form={form}
         name={undefined}
-        opened={opened}
+        opened={dropdownOpened}
         readOnly
-        value={inputValue}
+        value={formattedValue}
         dropdown={
           <MonthPicker
             allowDeselect={allowDeselect}
@@ -109,40 +121,27 @@ const MonthPickerInput = ({
             nextLabel={nextLabel}
             previousLabel={previousLabel}
             selectionMode={selectionMode}
-            type={resolvedType}
             value={resolvedValue}
             yearLabelFormat={yearLabelFormat}
             onChange={(nextValue) => {
-              if (value === undefined) {
-                setUncontrolledValue(nextValue);
-              }
-
-              onChange?.(nextValue);
-
-              if (resolvedType === "default") {
-                setOpened(false);
-                return;
-              }
-
-              if (resolvedType === "range") {
-                const [startDate, endDate] = nextValue as [
-                  Date | null,
-                  Date | null,
-                ];
-
-                if (startDate && endDate) {
-                  setOpened(false);
-                }
-              }
+              setValue(nextValue);
             }}
           />
         }
-        onOpenedChange={setOpened}
+        onOpenedChange={(nextOpened) => {
+          if (nextOpened) {
+            dropdownHandlers.open();
+            return;
+          }
+
+          dropdownHandlers.close();
+        }}
       />
       {name ? (
         <HiddenDatesInput
+          form={form}
           name={name}
-          pickerType={resolvedType}
+          selectionMode={selectionMode}
           value={resolvedValue}
         />
       ) : null}

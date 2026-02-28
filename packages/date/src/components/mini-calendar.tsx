@@ -32,7 +32,7 @@ const MiniCalendar = ({
   >
     <Calendar
       defaultMonth={defaultMonth}
-      type="default"
+      selectionMode="single"
       value={value ?? null}
       onChange={(nextValue) => {
         onChange?.((nextValue as Date | null) ?? null);

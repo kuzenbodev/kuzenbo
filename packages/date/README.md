@@ -8,6 +8,7 @@ Mantine parity date primitives rebuilt for Kuzenbo.
 
 - 🗓️ Calendar primitives (`Calendar`, `Day`, `Month`, `WeekdaysRow`, level groups)
 - 🎯 Canonical `selectionMode` API (`single`, `multiple`, `range`)
+- 🧠 Parity behaviors (`closeOnChange`, `withWeekNumbers`, free typing + `clearable`)
 - 🧩 Input primitives (`DateInput`, `DatePickerInput`, `MonthPickerInput`, `YearPickerInput`)
 - ⏰ Time primitives (`TimeInput`, `TimePicker`, `TimeGrid`, `TimeValue`, `DateTimePicker`)
 - 🌍 Locale + timezone support through `DatesProvider`
@@ -65,9 +66,10 @@ export function BookingExample() {
 
 ## 🧭 API Snapshot
 
-- Use `selectionMode` as the public mode prop on picker surfaces.
-- Use `DatesProvider` root props (`locale`, `timeZone`, `firstDayOfWeek`, `weekendDays`, `direction`) for runtime configuration.
-- Import from `@kuzenbo/date` package root; avoid internal/deep imports.
+- 🎯 Use `selectionMode` (`single`, `multiple`, `range`) as the only public selection prop on `Calendar`, picker, and picker-input surfaces.
+- 🌍 Use `DatesProvider` root props (`locale`, `timeZone`, `firstDayOfWeek`, `weekendDays`, `direction`) for runtime behavior.
+- 🧩 Use input parity controls (`closeOnChange`, `clearable`, free typing in `DateInput`) when composing form flows.
+- 📦 Import from `@kuzenbo/date` package root; avoid internal/deep imports.
 
 ## 🗂️ Source Layout
 

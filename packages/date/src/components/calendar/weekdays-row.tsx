@@ -5,17 +5,43 @@ import { cn, tv } from "tailwind-variants";
 import { useDatesContext } from "../use-dates-context";
 
 const weekdaysRowVariants = tv({
-  base: "grid grid-cols-7 gap-1",
+  base: "grid gap-1",
+  variants: {
+    withWeekNumbers: {
+      true: "grid-cols-[auto_repeat(7,minmax(0,1fr))]",
+      false: "grid-cols-7",
+    },
+  },
+  defaultVariants: {
+    withWeekNumbers: false,
+  },
 });
 
 const weekdayLabelVariants = tv({
   base: "inline-flex h-8 items-center justify-center text-center text-xs font-medium text-muted-foreground",
 });
 
+const weekNumberHeadingVariants = tv({
+  base: "inline-flex h-8 min-w-8 items-center justify-center text-center text-xs font-medium text-muted-foreground",
+});
+
+const getWeekOfYearLabel = (locale: string): string => {
+  try {
+    return (
+      new Intl.DisplayNames(locale, { type: "dateTimeField" }).of(
+        "weekOfYear"
+      ) ?? "#"
+    );
+  } catch {
+    return "#";
+  }
+};
+
 export type WeekdaysRowProps = ComponentProps<"div"> & {
   firstDayOfWeek?: number;
   format?: "long" | "narrow" | "short";
   locale?: string;
+  withWeekNumbers?: boolean;
   weekendDays?: number[];
   getWeekdayAriaLabel?: (value: { index: number; weekday: number }) => string;
 };
@@ -26,6 +52,7 @@ const WeekdaysRow = ({
   format = "short",
   getWeekdayAriaLabel,
   locale,
+  withWeekNumbers = false,
   weekendDays,
   ...props
 }: WeekdaysRowProps) => {
@@ -47,6 +74,7 @@ const WeekdaysRow = ({
     locale: resolvedLocale,
     timeZone,
   });
+  const weekOfYearLabel = getWeekOfYearLabel(resolvedLocale);
   const weekdays = labels.map((label, offset) => ({
     ariaLabel: ariaLabels[offset] ?? label,
     index: offset,
@@ -56,10 +84,21 @@ const WeekdaysRow = ({
 
   return (
     <div
-      className={cn(weekdaysRowVariants(), className)}
+      className={cn(weekdaysRowVariants({ withWeekNumbers }), className)}
       data-slot="weekdays-row"
+      role="row"
       {...props}
     >
+      {withWeekNumbers ? (
+        <div
+          aria-label={weekOfYearLabel}
+          className={weekNumberHeadingVariants()}
+          data-slot="week-number-heading"
+          role="columnheader"
+        >
+          #
+        </div>
+      ) : null}
       {weekdays.map(({ ariaLabel, index, label, weekday }) => (
         <div
           aria-label={
@@ -70,6 +109,7 @@ const WeekdaysRow = ({
           data-weekend={resolvedWeekendDays.includes(weekday) || undefined}
           data-weekday={weekday}
           key={`${weekday}-${label}`}
+          role="columnheader"
         >
           {label}
         </div>

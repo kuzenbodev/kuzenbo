@@ -1,16 +1,16 @@
 import type { DateAdapter } from "../../../adapter";
 import type {
-  DatePickerType,
   DatePickerValue,
   DateRangeValue,
+  SelectionMode,
 } from "../../types";
 
 export const serializePickerValue = (
   adapter: DateAdapter,
   value: DatePickerValue,
-  type: DatePickerType
+  type: SelectionMode
 ): string => {
-  if (type === "default") {
+  if (type === "single") {
     const date = value as Date | null;
     return date ? (adapter.toISODate(date) ?? "") : "";
   }
@@ -31,11 +31,11 @@ export const serializePickerValue = (
 export const formatPickerValue = (
   adapter: DateAdapter,
   value: DatePickerValue,
-  type: DatePickerType,
+  type: SelectionMode,
   locale?: string,
   timeZone?: string
 ): string => {
-  if (type === "default") {
+  if (type === "single") {
     const date = value as Date | null;
     return date
       ? adapter.format(

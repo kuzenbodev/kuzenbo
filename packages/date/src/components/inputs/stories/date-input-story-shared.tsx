@@ -34,6 +34,54 @@ const ControlledExample = () => {
   );
 };
 
+const DropdownTypingClearableExample = () => {
+  const [opened, setOpened] = useState(true);
+  const [value, setValue] = useState<Date | null>(new Date(2026, 1, 14));
+
+  const closeDropdown = useCallback(() => {
+    setOpened(false);
+  }, []);
+
+  const openDropdown = useCallback(() => {
+    setOpened(true);
+  }, []);
+
+  const clearValue = useCallback(() => {
+    setValue(null);
+  }, []);
+
+  const handleChange = useCallback((nextValue: Date | null) => {
+    setValue(nextValue);
+  }, []);
+
+  return (
+    <DatesProvider locale="en-US">
+      <div className="flex max-w-sm flex-col gap-3">
+        <DateInput
+          allowDeselect
+          clearable
+          opened={opened}
+          placeholder="YYYY-MM-DD"
+          value={value}
+          onChange={handleChange}
+          onOpenedChange={setOpened}
+        />
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={openDropdown}>
+            Open dropdown
+          </button>
+          <button type="button" onClick={closeDropdown}>
+            Close dropdown
+          </button>
+          <button type="button" onClick={clearValue}>
+            Clear value
+          </button>
+        </div>
+      </div>
+    </DatesProvider>
+  );
+};
+
 export const Default: Story = {
   render: () => (
     <DatesProvider locale="en-US">
@@ -57,4 +105,21 @@ export const MinMax: Story = {
       />
     </DatesProvider>
   ),
+};
+
+export const ClearableAllowDeselect: Story = {
+  render: () => (
+    <DatesProvider locale="en-US">
+      <DateInput
+        allowDeselect
+        clearable
+        defaultValue={new Date(2026, 1, 14)}
+        placeholder="YYYY-MM-DD"
+      />
+    </DatesProvider>
+  ),
+};
+
+export const DropdownTypingClearable: Story = {
+  render: DropdownTypingClearableExample,
 };

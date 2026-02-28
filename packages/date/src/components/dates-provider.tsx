@@ -36,7 +36,7 @@ export const DatesProvider = ({
   children,
   firstDayOfWeek,
   settings,
-  ...legacySettings
+  ...providerProps
 }: DatesProviderProps) => {
   const normalizedFirstDayOfWeek =
     typeof firstDayOfWeek === "number"
@@ -44,17 +44,17 @@ export const DatesProvider = ({
       : undefined;
 
   const resolvedSettings: CoreDatesProviderSettings = {
-    ...legacySettings,
+    ...providerProps,
     ...settings,
     firstDayOfWeek:
       settings?.firstDayOfWeek ??
       normalizedFirstDayOfWeek ??
       settings?.weekStartsOn ??
-      legacySettings.weekStartsOn,
+      providerProps.weekStartsOn,
     weekStartsOn:
       settings?.weekStartsOn ??
       normalizedFirstDayOfWeek ??
-      legacySettings.weekStartsOn,
+      providerProps.weekStartsOn,
   };
 
   return (

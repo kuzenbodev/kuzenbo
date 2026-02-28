@@ -60,3 +60,22 @@ export const Multiple: Story = {
     </DatesProvider>
   ),
 };
+
+export const CloseOnChangeModes: Story = {
+  render: () => (
+    <DatesProvider locale="en-US">
+      <div className="grid w-full max-w-sm gap-3">
+        <DatePickerInput
+          closeOnChange
+          placeholder="Close on selection"
+          selectionMode="single"
+        />
+        <DatePickerInput
+          closeOnChange={false}
+          placeholder="Stay open after selection"
+          selectionMode="single"
+        />
+      </div>
+    </DatesProvider>
+  ),
+};

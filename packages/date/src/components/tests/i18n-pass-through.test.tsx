@@ -25,6 +25,48 @@ describe("i18n pass-through", () => {
     expect(dayButtons.length).toBeGreaterThan(0);
   });
 
+  it("updates weekday labels when provider locale changes at runtime", () => {
+    const { container, rerender } = render(
+      <DatesProvider firstDayOfWeek={0} locale="en-US">
+        <WeekdaysRow format="short" />
+      </DatesProvider>
+    );
+
+    const firstWeekdayBefore = container.querySelector(
+      "[data-weekday='0']"
+    ) as HTMLDivElement | null;
+
+    expect(firstWeekdayBefore).toBeDefined();
+
+    if (!firstWeekdayBefore) {
+      throw new Error("Expected weekday cell before locale update");
+    }
+
+    expect((firstWeekdayBefore.textContent ?? "").toLowerCase()).toContain(
+      "sun"
+    );
+
+    rerender(
+      <DatesProvider firstDayOfWeek={0} locale="fr-FR">
+        <WeekdaysRow format="short" />
+      </DatesProvider>
+    );
+
+    const firstWeekdayAfter = container.querySelector(
+      "[data-weekday='0']"
+    ) as HTMLDivElement | null;
+
+    expect(firstWeekdayAfter).toBeDefined();
+
+    if (!firstWeekdayAfter) {
+      throw new Error("Expected weekday cell after locale update");
+    }
+
+    expect((firstWeekdayAfter.textContent ?? "").toLowerCase()).toContain(
+      "dim"
+    );
+  });
+
   it("wires locale, first day of week and weekend flags in weekdays row", () => {
     const { container } = render(
       <DatesProvider firstDayOfWeek={0} locale="fr-FR" weekendDays={[1]}>

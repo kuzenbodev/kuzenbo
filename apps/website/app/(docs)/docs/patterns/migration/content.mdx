@@ -41,14 +41,10 @@ import { Calendar } from "@kuzenbo/date";
 ## Date API Migration Example
 
 ```tsx
-// previous
-<DatePicker type="default" />
-
-// after
 <DatePicker selectionMode="single" />
 ```
 
-For `@kuzenbo/date`, prefer the `selectionMode` contract (`single`, `multiple`, `range`) on picker surfaces.
+For `@kuzenbo/date`, use `selectionMode` (`single`, `multiple`, `range`) as the only supported public selection contract on picker surfaces.
 
 ## Runtime and CSS Setup
 

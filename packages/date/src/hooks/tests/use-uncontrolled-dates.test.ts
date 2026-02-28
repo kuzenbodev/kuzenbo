@@ -101,12 +101,11 @@ describe("useUncontrolledDates", () => {
     expect(hook.result.current[0]).toBe(null);
   });
 
-  it("maps legacy type=default to single mode", () => {
+  it("defaults to single mode when selectionMode is omitted", () => {
     const hook = renderHook(() =>
       useUncontrolledDates({
         defaultValue: singleValue,
         onChange: () => null,
-        type: "default",
       })
     );
 

@@ -3,10 +3,23 @@ import { afterEach, describe, expect, it } from "bun:test";
 
 import { DatesProvider } from "../../dates-provider";
 import { DatePicker } from "../../pickers/date-picker";
+import { Calendar } from "../calendar";
 
 afterEach(() => {
   document.body.innerHTML = "";
 });
+
+const getWeekOfYearLabel = (locale: string): string => {
+  try {
+    return (
+      new Intl.DisplayNames(locale, { type: "dateTimeField" }).of(
+        "weekOfYear"
+      ) ?? "#"
+    );
+  } catch {
+    return "#";
+  }
+};
 
 describe("calendar keyboard focus", () => {
   it("keeps roving tab order with one tabbable day control", () => {
@@ -49,5 +62,47 @@ describe("calendar keyboard focus", () => {
     expect(activeElement?.getAttribute("aria-label")).toBe(
       dayThree.getAttribute("aria-label")
     );
+  });
+
+  it("exposes month surface as a semantic grid with deterministic tabbing", () => {
+    const { container } = render(
+      <DatesProvider locale="en-US">
+        <Calendar defaultMonth={new Date(2026, 1, 1)} withWeekNumbers />
+      </DatesProvider>
+    );
+
+    const monthGrid = container.querySelector("[data-slot='month']");
+    const dayTabStops = [
+      ...container.querySelectorAll(
+        "[data-slot='month'] button[aria-pressed][tabindex='0']"
+      ),
+    ];
+    const weekNumberRowHeaders = container.querySelectorAll(
+      "[data-slot='month'] [data-slot='week-number'][role='rowheader']"
+    );
+
+    expect(monthGrid?.getAttribute("role")).toBe("grid");
+    expect(dayTabStops).toHaveLength(1);
+    expect(weekNumberRowHeaders.length).toBeGreaterThan(0);
+  });
+
+  it("keeps week numbers out of the tab sequence", () => {
+    const locale = "en-US";
+    const { container } = render(
+      <DatesProvider locale="en-US">
+        <Calendar defaultMonth={new Date(2026, 1, 1)} withWeekNumbers />
+      </DatesProvider>
+    );
+
+    const weekNumberButtons = container.querySelectorAll(
+      "[data-slot='week-number'] button"
+    );
+
+    expect(weekNumberButtons).toHaveLength(0);
+    expect(
+      screen.getByRole("columnheader", {
+        name: getWeekOfYearLabel(locale),
+      })
+    ).toBeDefined();
   });
 });

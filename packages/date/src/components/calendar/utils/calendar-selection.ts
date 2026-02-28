@@ -1,9 +1,9 @@
 import type { DateAdapter } from "../../../adapter";
 import type {
-  DatePickerType,
   DatePickerValue,
   DateRangeValue,
   DateValue,
+  SelectionMode,
 } from "../../types";
 
 const isDateWithinRange = (
@@ -33,7 +33,7 @@ const isDateWithinRange = (
 };
 
 export const createEmptyPickerValue = (
-  type: DatePickerType
+  type: SelectionMode
 ): DatePickerValue => {
   if (type === "multiple") {
     return [];
@@ -48,13 +48,13 @@ export const createEmptyPickerValue = (
 
 export const normalizePickerValue = (
   value: DatePickerValue | undefined,
-  type: DatePickerType
+  type: SelectionMode
 ): DatePickerValue => {
   if (value === undefined) {
     return createEmptyPickerValue(type);
   }
 
-  if (type === "default") {
+  if (type === "single") {
     if (Array.isArray(value)) {
       return value[0] ?? null;
     }
@@ -96,9 +96,9 @@ export const isSelectedDate = (
   adapter: DateAdapter,
   date: Date,
   value: DatePickerValue,
-  type: DatePickerType
+  type: SelectionMode
 ): boolean => {
-  if (type === "default") {
+  if (type === "single") {
     return adapter.isSameDay(date, value as DateValue);
   }
 
@@ -115,9 +115,9 @@ export const getNextPickerValue = (
   adapter: DateAdapter,
   date: Date,
   value: DatePickerValue,
-  type: DatePickerType
+  type: SelectionMode
 ): DatePickerValue => {
-  if (type === "default") {
+  if (type === "single") {
     return date;
   }
 
@@ -170,9 +170,9 @@ export const isDateDisabled = (
 
 export const getPrimaryDateFromValue = (
   value: DatePickerValue,
-  type: DatePickerType
+  type: SelectionMode
 ): Date | null => {
-  if (type === "default") {
+  if (type === "single") {
     return (value as DateValue) ?? null;
   }
 

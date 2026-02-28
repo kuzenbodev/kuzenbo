@@ -10,7 +10,15 @@ import { getYearsData } from "./utils/get-years-data";
 import { isYearDisabled } from "./utils/is-year-disabled";
 
 const yearsListVariants = tv({
+  base: "grid gap-2",
+});
+
+const yearsRowVariants = tv({
   base: "grid grid-cols-3 gap-2",
+});
+
+const yearCellVariants = tv({
+  base: "inline-flex",
 });
 
 const yearButtonVariants = tv({
@@ -81,76 +89,91 @@ const YearsList = ({
     minDate,
     years,
   });
+  let columnCount = 0;
+  for (const yearRow of years) {
+    columnCount = Math.max(columnCount, yearRow.length);
+  }
 
   return (
     <div
+      aria-colcount={columnCount}
+      aria-readonly="true"
+      aria-rowcount={years.length}
       className={cn(yearsListVariants(), className)}
       data-slot="years-list"
+      role="grid"
       {...props}
     >
-      {years.map((yearsRow, rowIndex) =>
-        yearsRow.map((yearDate, cellIndex) => {
-          const controlProps = getMergedControlProps(yearDate);
-          const disabled =
-            controlProps.disabled ??
-            isYearDisabled({
-              adapter,
-              maxDate,
-              minDate,
-              year: yearDate,
-            });
-          const isInTabOrder =
-            !__preventFocus &&
-            yearInTabOrder !== undefined &&
-            adapter.isSameYear(yearDate, yearInTabOrder);
+      {years.map((yearsRow, rowIndex) => (
+        <div className={yearsRowVariants()} key={rowIndex} role="row">
+          {yearsRow.map((yearDate, cellIndex) => {
+            const controlProps = getMergedControlProps(yearDate);
+            const disabled =
+              controlProps.disabled ??
+              isYearDisabled({
+                adapter,
+                maxDate,
+                minDate,
+                year: yearDate,
+              });
+            const isInTabOrder =
+              !__preventFocus &&
+              yearInTabOrder !== undefined &&
+              adapter.isSameYear(yearDate, yearInTabOrder);
 
-          return (
-            <PickerControl
-              {...controlProps}
-              aria-label={
-                controlProps["aria-label"] ?? `${adapter.getYear(yearDate)}`
-              }
-              aria-pressed={controlProps.selected}
-              className={cn(yearButtonVariants(), controlProps.className)}
-              date={adapter.toISODate(yearDate)}
-              disabled={disabled}
-              key={`${rowIndex}-${cellIndex}-${adapter.getYear(yearDate)}`}
-              ref={(node) => {
-                __getControlRef?.(rowIndex, cellIndex, node);
-              }}
-              tabIndex={disabled ? -1 : isInTabOrder ? 0 : -1}
-              onClick={(event) => {
-                controlProps.onClick?.(event);
-                __onControlClick?.(event, yearDate);
-                onChange?.(yearDate);
-              }}
-              onKeyDown={(event) => {
-                controlProps.onKeyDown?.(event);
-                __onControlKeyDown?.(event, {
-                  cellIndex,
-                  date: adapter.toISODate(yearDate),
-                  rowIndex,
-                });
-              }}
-              onMouseDown={(event) => {
-                controlProps.onMouseDown?.(event);
-                if (__preventFocus) {
-                  event.preventDefault();
-                }
-              }}
-              onMouseEnter={(event) => {
-                controlProps.onMouseEnter?.(event);
-                __onControlMouseEnter?.(event, yearDate);
-              }}
-            >
-              {controlProps.children ??
-                adapter.format(yearDate, {
-                  year: yearLabelFormat,
-                })}
-            </PickerControl>
-          );
-        })
-      )}
+            return (
+              <div
+                className={yearCellVariants()}
+                key={`${rowIndex}-${cellIndex}-${adapter.getYear(yearDate)}`}
+                role="gridcell"
+              >
+                <PickerControl
+                  {...controlProps}
+                  aria-label={
+                    controlProps["aria-label"] ?? `${adapter.getYear(yearDate)}`
+                  }
+                  aria-pressed={controlProps.selected}
+                  className={cn(yearButtonVariants(), controlProps.className)}
+                  date={adapter.toISODate(yearDate)}
+                  disabled={disabled}
+                  ref={(node) => {
+                    __getControlRef?.(rowIndex, cellIndex, node);
+                  }}
+                  tabIndex={disabled ? -1 : isInTabOrder ? 0 : -1}
+                  onClick={(event) => {
+                    controlProps.onClick?.(event);
+                    __onControlClick?.(event, yearDate);
+                    onChange?.(yearDate);
+                  }}
+                  onKeyDown={(event) => {
+                    controlProps.onKeyDown?.(event);
+                    __onControlKeyDown?.(event, {
+                      cellIndex,
+                      date: adapter.toISODate(yearDate),
+                      rowIndex,
+                    });
+                  }}
+                  onMouseDown={(event) => {
+                    controlProps.onMouseDown?.(event);
+                    if (__preventFocus) {
+                      event.preventDefault();
+                    }
+                  }}
+                  onMouseEnter={(event) => {
+                    controlProps.onMouseEnter?.(event);
+                    __onControlMouseEnter?.(event, yearDate);
+                  }}
+                >
+                  {controlProps.children ??
+                    adapter.format(yearDate, {
+                      year: yearLabelFormat,
+                    })}
+                </PickerControl>
+              </div>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };

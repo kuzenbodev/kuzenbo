@@ -1,4 +1,3 @@
-import type { DateAdapter } from "../../../adapter";
 import type {
   TimeAmPmLabels,
   TimeFormat,
@@ -6,6 +5,8 @@ import type {
   TimePasteSplitReturn,
 } from "../time-picker-types";
 import type { TimeParts } from "../time-types";
+
+import { DEFAULT_DATE_ADAPTER, type DateAdapter } from "../../../adapter";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -243,11 +244,13 @@ export const getTimeStringFromParts = ({
 };
 
 export const formatTimeForDisplay = ({
+  adapter,
   amPmLabels,
   format,
   value,
   withSeconds,
 }: {
+  adapter?: DateAdapter;
   value: string | Date;
   format: TimeFormat;
   amPmLabels: TimeAmPmLabels;
@@ -256,7 +259,7 @@ export const formatTimeForDisplay = ({
   const parsed = splitTimeString(
     typeof value === "string"
       ? value
-      : `${value.getHours()}:${value.getMinutes()}:${value.getSeconds()}`
+      : formatAdapterTime(adapter ?? DEFAULT_DATE_ADAPTER, value, true)
   );
 
   if (parsed.hours === null || parsed.minutes === null) {

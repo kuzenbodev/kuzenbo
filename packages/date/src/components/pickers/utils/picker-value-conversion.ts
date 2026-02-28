@@ -1,5 +1,5 @@
 import type { DateAdapter } from "../../../adapter";
-import type { DatePickerType, DatePickerValue } from "../../types";
+import type { DatePickerValue, SelectionMode } from "../../types";
 
 const parseDateString = (
   adapter: DateAdapter,
@@ -19,9 +19,9 @@ const parseDateString = (
 export const fromComparablePickerValue = (
   adapter: DateAdapter,
   value: unknown,
-  type: DatePickerType
+  type: SelectionMode
 ): DatePickerValue => {
-  if (type === "default") {
+  if (type === "single") {
     return parseDateString(adapter, value as string | null);
   }
 

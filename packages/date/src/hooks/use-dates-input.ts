@@ -3,18 +3,14 @@
 import { useCallback, useMemo, useState } from "react";
 
 import type { DateAdapter } from "../adapter";
-import type {
-  DatePickerType,
-  DatePickerValue,
-  DateSelectionModeInput,
-} from "../types";
+import type { DatePickerValue, DateSelectionMode } from "../types";
 import type { DateFormatter } from "../utils";
 
 import { useDatesContext } from "../context";
 import { getFormattedDate, resolveDateSelectionMode } from "../utils";
 import { useUncontrolledDates } from "./use-uncontrolled-dates";
 
-interface UseDatesInputInput<Mode extends DateSelectionModeInput = "single"> {
+interface UseDatesInputInput<Mode extends DateSelectionMode = "single"> {
   adapter?: DateAdapter;
   closeOnChange?: boolean;
   defaultValue?: DatePickerValue<Mode>;
@@ -22,9 +18,8 @@ interface UseDatesInputInput<Mode extends DateSelectionModeInput = "single"> {
   labelSeparator?: string;
   locale?: string;
   onChange?: ((value: DatePickerValue<Mode, string>) => void) | undefined;
-  selectionMode?: "multiple" | "range" | "single";
+  selectionMode?: Mode;
   sortDates?: boolean;
-  type?: DatePickerType;
   value?: DatePickerValue<Mode>;
   valueFormatter?: DateFormatter;
   withTime?: boolean;
@@ -36,7 +31,7 @@ interface DisclosureHandlers {
   toggle: () => void;
 }
 
-export const useDatesInput = <Mode extends DateSelectionModeInput = "single">({
+export const useDatesInput = <Mode extends DateSelectionMode = "single">({
   adapter,
   closeOnChange,
   defaultValue,
@@ -46,16 +41,12 @@ export const useDatesInput = <Mode extends DateSelectionModeInput = "single">({
   onChange,
   selectionMode,
   sortDates,
-  type,
   value,
   valueFormatter,
   withTime = false,
 }: UseDatesInputInput<Mode>) => {
   const context = useDatesContext();
-  const resolvedSelectionMode = resolveDateSelectionMode({
-    selectionMode,
-    type,
-  });
+  const resolvedSelectionMode = resolveDateSelectionMode(selectionMode);
 
   const resolvedAdapter =
     adapter ??
@@ -86,7 +77,6 @@ export const useDatesInput = <Mode extends DateSelectionModeInput = "single">({
     defaultValue,
     onChange,
     selectionMode,
-    type,
     value,
     withTime,
   });

@@ -1,17 +1,12 @@
 import type { DateAdapter, DateInput } from "../adapter";
-import type {
-  DatePickerType,
-  DatePickerValue,
-  DateSelectionMode,
-  DateSelectionModeInput,
-} from "../types";
+import type { DatePickerValue, DateSelectionMode } from "../types";
 
 import { DEFAULT_DATE_ADAPTER } from "../adapter";
 import { normalizeDateSelectionMode } from "./normalize-selection-mode";
 
 interface DateFormatterInput {
   adapter: DateAdapter;
-  date: DatePickerValue<DateSelectionModeInput> | undefined;
+  date: DatePickerValue<DateSelectionMode> | undefined;
   format: string;
   labelSeparator: string;
   locale: string;
@@ -60,25 +55,21 @@ export const defaultDateFormatter = ({
 
 interface GetFormattedDateInput {
   adapter?: DateAdapter;
-  date: DatePickerValue<DateSelectionModeInput> | undefined;
+  date: DatePickerValue<DateSelectionMode> | undefined;
   format: string;
   formatter?: DateFormatter;
   labelSeparator: string;
   locale: string;
   selectionMode?: DateSelectionMode;
-  type?: DatePickerType;
 }
 
 export const getFormattedDate = ({
   adapter = DEFAULT_DATE_ADAPTER,
   formatter,
   selectionMode,
-  type,
   ...rest
 }: GetFormattedDateInput): string => {
-  const resolvedSelectionMode = normalizeDateSelectionMode(
-    selectionMode ?? type
-  );
+  const resolvedSelectionMode = normalizeDateSelectionMode(selectionMode);
 
   const formatterInput: DateFormatterInput = {
     adapter,

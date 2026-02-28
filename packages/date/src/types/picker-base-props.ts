@@ -1,12 +1,12 @@
 import type { DatePickerValue } from "./date-picker-value";
-import type { DatePickerType } from "./date-selection-mode";
+import type { DateSelectionMode } from "./date-selection-mode";
 import type { DateStringValue } from "./general-types";
 
-export interface PickerBaseProps<Type extends DatePickerType = "default"> {
-  allowDeselect?: Type extends "default" ? boolean : never;
-  allowSingleDateInRange?: Type extends "range" ? boolean : never;
-  defaultValue?: DatePickerValue<Type>;
-  onChange?: (value: DatePickerValue<Type, DateStringValue>) => void;
-  type?: DatePickerType | Type;
-  value?: DatePickerValue<Type>;
+export interface PickerBaseProps<Mode extends DateSelectionMode = "single"> {
+  allowDeselect?: Mode extends "single" ? boolean : never;
+  allowSingleDateInRange?: Mode extends "range" ? boolean : never;
+  defaultValue?: DatePickerValue<Mode>;
+  onChange?: (value: DatePickerValue<Mode, DateStringValue>) => void;
+  selectionMode?: Mode;
+  value?: DatePickerValue<Mode>;
 }

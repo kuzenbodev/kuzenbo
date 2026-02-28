@@ -151,4 +151,44 @@ describe("calendar selected styles", () => {
       container.querySelectorAll("[data-slot='months-list'] button").length
     ).toBe(12);
   });
+
+  it("exposes month and year list surfaces as semantic grids", () => {
+    const { container } = render(
+      <DatesProvider locale="en-US">
+        <div>
+          <MonthsList
+            value={new Date(2033, 4, 1)}
+            year={new Date(2033, 0, 1)}
+          />
+          <YearsList value={new Date(2033, 0, 1)} year={new Date(2033, 0, 1)} />
+        </div>
+      </DatesProvider>
+    );
+
+    const monthsGrid = container.querySelector("[data-slot='months-list']");
+    const yearsGrid = container.querySelector("[data-slot='years-list']");
+
+    expect(monthsGrid?.getAttribute("role")).toBe("grid");
+    expect(monthsGrid?.getAttribute("aria-rowcount")).toBe("4");
+    expect(monthsGrid?.getAttribute("aria-colcount")).toBe("3");
+    expect(
+      container.querySelectorAll("[data-slot='months-list'] [role='row']")
+        .length
+    ).toBe(4);
+    expect(
+      container.querySelectorAll("[data-slot='months-list'] [role='gridcell']")
+        .length
+    ).toBe(12);
+
+    expect(yearsGrid?.getAttribute("role")).toBe("grid");
+    expect(yearsGrid?.getAttribute("aria-rowcount")).toBe("4");
+    expect(yearsGrid?.getAttribute("aria-colcount")).toBe("3");
+    expect(
+      container.querySelectorAll("[data-slot='years-list'] [role='row']").length
+    ).toBe(4);
+    expect(
+      container.querySelectorAll("[data-slot='years-list'] [role='gridcell']")
+        .length
+    ).toBe(10);
+  });
 });

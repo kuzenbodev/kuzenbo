@@ -1,3 +1,38 @@
+import type { MouseEvent } from "react";
+
+import type {
+  DateAdapter as DateAdapterType,
+  DateInput as DateAdapterInputType,
+} from "./adapter";
+import type {
+  DateValue as DateValueType,
+  PublicDatePickerValue,
+} from "./types/date-picker-value";
+import type { DateSelectionMode as DateSelectionModeType } from "./types/date-selection-mode";
+
+import {
+  useDatesInput as useDatesInputInternal,
+  useDatesState as useDatesStateInternal,
+} from "./hooks";
+import {
+  convertDatesValue as convertDatesValueInternal,
+  useUncontrolledDates as useUncontrolledDatesInternal,
+} from "./hooks/use-uncontrolled-dates";
+import {
+  defaultDateFormatter,
+  type DateFormatter,
+  getFormattedDate,
+} from "./utils/get-formatted-date";
+import {
+  normalizeDateSelectionMode as normalizeDateSelectionModeInternal,
+  resolveDateSelectionMode as resolveDateSelectionModeInternal,
+} from "./utils/normalize-selection-mode";
+import {
+  type DateConvertibleInput,
+  toDateString,
+  toDateTimeString,
+} from "./utils/to-date-string";
+
 export type { ControlsGroupSettings } from "./types/controls-group-settings";
 export type {
   CalendarLevel,
@@ -9,34 +44,156 @@ export type {
 } from "./types/general-types";
 export type { DateSelectionMode } from "./types/date-selection-mode";
 export type {
-  DatePickerValue,
   DateSelectionValue,
   DatesRangeValue,
   DateValue,
 } from "./types/date-picker-value";
+export type { PickerBaseProps } from "./types/picker-base-props";
+
+export type DatePickerValue<
+  Mode extends DateSelectionModeType = "single",
+  ValueType = DateValueType,
+> = PublicDatePickerValue<Mode, ValueType>;
 
 export { assignTime } from "./utils/assign-time";
 export { clampDate } from "./utils/clamp-date";
-export {
-  defaultDateFormatter,
-  getFormattedDate,
-} from "./utils/get-formatted-date";
+export { defaultDateFormatter, getFormattedDate };
 export { getDefaultClampedDate } from "./utils/get-default-clamped-date";
 export { handleControlKeyDown } from "./utils/handle-control-key-down";
-export {
-  normalizeDateSelectionMode,
-  resolveDateSelectionMode,
-} from "./utils/normalize-selection-mode";
-export { toDateString, toDateTimeString } from "./utils/to-date-string";
-export type { DateFormatter } from "./utils/get-formatted-date";
-export type { DateConvertibleInput } from "./utils/to-date-string";
+export { toDateString, toDateTimeString };
+export type { DateFormatter, DateConvertibleInput };
 
-export { useDatesInput } from "./hooks/use-dates-input";
-export { useDatesState } from "./hooks/use-dates-state";
-export {
-  convertDatesValue,
-  useUncontrolledDates,
-} from "./hooks/use-uncontrolled-dates";
+export const normalizeDateSelectionMode = (
+  selectionMode?: DateSelectionModeType
+): DateSelectionModeType => normalizeDateSelectionModeInternal(selectionMode);
+
+export const resolveDateSelectionMode = (
+  selectionMode?: DateSelectionModeType
+): DateSelectionModeType => resolveDateSelectionModeInternal(selectionMode);
+
+export interface UseDatesInputOptions<
+  Mode extends DateSelectionModeType = "single",
+> {
+  adapter?: DateAdapterType;
+  closeOnChange?: boolean;
+  defaultValue?: DatePickerValue<Mode>;
+  format?: string;
+  labelSeparator?: string;
+  locale?: string;
+  onChange?: ((value: DatePickerValue<Mode, string>) => void) | undefined;
+  selectionMode?: Mode;
+  sortDates?: boolean;
+  value?: DatePickerValue<Mode>;
+  valueFormatter?: DateFormatter;
+  withTime?: boolean;
+}
+
+export interface UseDatesInputReturn<
+  Mode extends DateSelectionModeType = "single",
+> {
+  _value: DatePickerValue<Mode, string>;
+  dropdownHandlers: {
+    close: () => void;
+    open: () => void;
+    toggle: () => void;
+  };
+  dropdownOpened: boolean;
+  formattedValue: string;
+  onClear: () => void;
+  setValue: (nextValue: DatePickerValue<Mode>) => void;
+  shouldClear: boolean;
+}
+
+export const useDatesInput = <Mode extends DateSelectionModeType = "single">(
+  options: UseDatesInputOptions<Mode>
+): UseDatesInputReturn<Mode> =>
+  useDatesInputInternal(
+    options as Parameters<typeof useDatesInputInternal<Mode>>[0]
+  ) as UseDatesInputReturn<Mode>;
+
+export interface UseDatesStateOptions<
+  Mode extends DateSelectionModeType = "single",
+> {
+  adapter?: DateAdapterType;
+  allowDeselect?: boolean;
+  allowSingleDateInRange?: boolean;
+  defaultValue?: DatePickerValue<Mode>;
+  level?: "day" | "decade" | "month" | "year";
+  onChange?: ((value: DatePickerValue<Mode, string>) => void) | undefined;
+  onMouseLeave?: ((event: MouseEvent<HTMLDivElement>) => void) | undefined;
+  selectionMode?: Mode;
+  value?: DatePickerValue<Mode>;
+}
+
+export interface UseDatesStateControlProps {
+  "data-autofocus"?: true;
+  firstInRange?: boolean;
+  inRange?: boolean;
+  lastInRange?: boolean;
+  selected: boolean;
+}
+
+export interface UseDatesStateReturn<
+  Mode extends DateSelectionModeType = "single",
+> {
+  _value: DatePickerValue<Mode, string>;
+  getControlProps: (
+    dateInput: DateAdapterInputType
+  ) => UseDatesStateControlProps;
+  onDateChange: (dateInput: DateAdapterInputType) => void;
+  onHoveredDateChange?: (dateInput: DateAdapterInputType) => void;
+  onRootMouseLeave?: ((event: MouseEvent<HTMLDivElement>) => void) | undefined;
+  setValue: (nextValue: DatePickerValue<Mode>) => void;
+  value: DatePickerValue<Mode, string>;
+}
+
+export const useDatesState = <Mode extends DateSelectionModeType = "single">(
+  options: UseDatesStateOptions<Mode>
+): UseDatesStateReturn<Mode> =>
+  useDatesStateInternal(
+    options as Parameters<typeof useDatesStateInternal<Mode>>[0]
+  ) as UseDatesStateReturn<Mode>;
+
+export interface UseUncontrolledDatesOptions<
+  Mode extends DateSelectionModeType = "single",
+> {
+  adapter?: DateAdapterType;
+  defaultValue?: DatePickerValue<Mode>;
+  onChange?: ((value: DatePickerValue<Mode, string>) => void) | undefined;
+  selectionMode?: Mode;
+  value?: DatePickerValue<Mode>;
+  withTime?: boolean;
+}
+
+export type UseUncontrolledDatesReturn<
+  Mode extends DateSelectionModeType = "single",
+> = readonly [
+  DatePickerValue<Mode, string>,
+  (nextValue: DatePickerValue<Mode>) => void,
+  boolean,
+];
+
+export const useUncontrolledDates = <
+  Mode extends DateSelectionModeType = "single",
+>(
+  options: UseUncontrolledDatesOptions<Mode>
+): UseUncontrolledDatesReturn<Mode> =>
+  useUncontrolledDatesInternal(
+    options as Parameters<typeof useUncontrolledDatesInternal<Mode>>[0]
+  ) as UseUncontrolledDatesReturn<Mode>;
+
+export const convertDatesValue = <Mode extends DateSelectionModeType>(
+  value: DatePickerValue<Mode> | undefined,
+  selectionMode: DateSelectionModeType,
+  withTime: boolean,
+  adapter: DateAdapterType
+): DatePickerValue<Mode, string> | undefined =>
+  convertDatesValueInternal(
+    value as Parameters<typeof convertDatesValueInternal<Mode>>[0],
+    selectionMode,
+    withTime,
+    adapter
+  ) as DatePickerValue<Mode, string> | undefined;
 
 export { createDateAdapter, DEFAULT_DATE_ADAPTER } from "./adapter";
 export type {

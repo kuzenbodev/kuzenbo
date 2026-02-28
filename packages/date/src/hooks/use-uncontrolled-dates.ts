@@ -2,12 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type {
-  DatePickerType,
-  DatePickerValue,
-  DateSelectionMode,
-  DateSelectionModeInput,
-} from "../types";
+import type { DatePickerValue, DateSelectionMode } from "../types";
 
 import {
   DEFAULT_DATE_ADAPTER,
@@ -47,7 +42,7 @@ const convertSingleValue = (
   return converted ?? null;
 };
 
-export const convertDatesValue = <Mode extends DateSelectionModeInput>(
+export const convertDatesValue = <Mode extends DateSelectionMode>(
   value: DatePickerValue<Mode> | undefined,
   selectionMode: DateSelectionMode,
   withTime: boolean,
@@ -86,33 +81,26 @@ export const convertDatesValue = <Mode extends DateSelectionModeInput>(
   ] as DatePickerValue<Mode, string>;
 };
 
-interface UseUncontrolledDatesInput<
-  Mode extends DateSelectionModeInput = "single",
-> {
+interface UseUncontrolledDatesInput<Mode extends DateSelectionMode = "single"> {
   adapter?: DateAdapter;
   defaultValue?: DatePickerValue<Mode>;
   onChange?: ((value: DatePickerValue<Mode, string>) => void) | undefined;
   selectionMode?: DateSelectionMode;
-  type?: DatePickerType;
   value?: DatePickerValue<Mode>;
   withTime?: boolean;
 }
 
 export const useUncontrolledDates = <
-  Mode extends DateSelectionModeInput = "single",
+  Mode extends DateSelectionMode = "single",
 >({
   adapter,
   defaultValue,
   onChange,
   selectionMode,
-  type,
   value,
   withTime = false,
 }: UseUncontrolledDatesInput<Mode>) => {
-  const resolvedSelectionMode = resolveDateSelectionMode({
-    selectionMode,
-    type,
-  });
+  const resolvedSelectionMode = resolveDateSelectionMode(selectionMode);
   const resolvedAdapter = adapter ?? DEFAULT_DATE_ADAPTER;
 
   const storedSelectionModeRef = useRef<DateSelectionMode>(

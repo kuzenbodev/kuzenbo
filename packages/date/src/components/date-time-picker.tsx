@@ -7,7 +7,9 @@ import { cn, tv } from "tailwind-variants";
 import { useDatesContext as useCoreDatesContext } from "../context";
 import { DatePickerInput } from "./inputs/date-picker-input";
 import { TimeInput } from "./time/time-input";
+import { getMaxTime, getMinTime } from "./time/utils/get-min-max-time";
 import {
+  clampTime,
   formatTimeValue,
   getTimeFromDateTimeString,
   parseTimeValue,
@@ -23,6 +25,8 @@ export type DateTimePickerProps = Omit<
   "defaultValue" | "onChange" | "value"
 > & {
   defaultValue?: Date | null;
+  maxDate?: Date | null;
+  minDate?: Date | null;
   name?: string;
   value?: Date | null;
   withSeconds?: boolean;
@@ -32,6 +36,8 @@ export type DateTimePickerProps = Omit<
 const DateTimePicker = ({
   className,
   defaultValue,
+  maxDate,
+  minDate,
   name,
   value,
   withSeconds = false,
@@ -71,6 +77,49 @@ const DateTimePicker = ({
     setDraftTime(resolvedTime);
   }, [resolvedDate, resolvedTime]);
 
+  const draftMinTime = useMemo(
+    () =>
+      getMinTime({
+        adapter,
+        minDate: minDate ?? undefined,
+        value: draftDate,
+      }),
+    [adapter, draftDate, minDate]
+  );
+
+  const draftMaxTime = useMemo(
+    () =>
+      getMaxTime({
+        adapter,
+        maxDate: maxDate ?? undefined,
+        value: draftDate,
+      }),
+    [adapter, draftDate, maxDate]
+  );
+
+  const getBoundedTime = (nextDate: Date, nextTime: string) => {
+    const parsedTime = parseTimeValue(nextTime, withSeconds);
+    const normalizedTime = formatTimeValue(parsedTime, true);
+    const minTime = getMinTime({
+      adapter,
+      minDate: minDate ?? undefined,
+      value: nextDate,
+    });
+    const maxTime = getMaxTime({
+      adapter,
+      maxDate: maxDate ?? undefined,
+      value: nextDate,
+    });
+    const clampedTime = clampTime(normalizedTime, minTime, maxTime);
+    const clampedParts = parseTimeValue(clampedTime.timeString, true);
+
+    return {
+      normalizedTime: formatTimeValue(clampedParts, true),
+      parsedTime: clampedParts,
+      viewTime: formatTimeValue(clampedParts, withSeconds),
+    };
+  };
+
   const commitValue = (nextDate: Date | null, nextTime: string) => {
     if (!nextDate) {
       if (value === undefined) {
@@ -81,12 +130,16 @@ const DateTimePicker = ({
       return;
     }
 
-    const parsedTime = parseTimeValue(nextTime, withSeconds);
-    const normalizedTime = formatTimeValue(parsedTime, true);
+    const boundedTime = getBoundedTime(nextDate, nextTime);
+
+    if (boundedTime.viewTime !== nextTime) {
+      setDraftTime(boundedTime.viewTime);
+    }
+
     const normalizedDate = coreAdapter.toDateString(nextDate);
 
     const assignedDateTime = normalizedDate
-      ? coreAdapter.assignTime(normalizedDate, normalizedTime)
+      ? coreAdapter.assignTime(normalizedDate, boundedTime.normalizedTime)
       : null;
 
     const parsedDateTime = assignedDateTime
@@ -95,9 +148,9 @@ const DateTimePicker = ({
 
     const fallbackDateTime = adapter.setTime(
       nextDate,
-      parsedTime.hours,
-      parsedTime.minutes,
-      parsedTime.seconds
+      boundedTime.parsedTime.hours,
+      boundedTime.parsedTime.minutes,
+      boundedTime.parsedTime.seconds
     );
 
     const nextDateTime = parsedDateTime ?? fallbackDateTime;
@@ -116,7 +169,7 @@ const DateTimePicker = ({
       {...props}
     >
       <DatePickerInput
-        pickerType="default"
+        selectionMode="single"
         value={draftDate}
         onChange={(nextValue) => {
           const nextDate = (nextValue as Date | null) ?? null;
@@ -126,6 +179,8 @@ const DateTimePicker = ({
       />
       <TimeInput
         name={name ? `${name}Time` : undefined}
+        max={draftMaxTime}
+        min={draftMinTime}
         value={draftTime}
         withSeconds={withSeconds}
         onChange={(nextTime) => {

@@ -1,17 +1,18 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
-import type { DatePickerType, DatePickerValue } from "../types";
+import type { DateFormatter } from "../../utils";
+import type { DatePickerValue, SelectionMode } from "../types";
 
+import { useDatesInput } from "../../hooks";
 import { normalizePickerValue } from "../calendar/utils/calendar-selection";
-import { resolvePickerType } from "../picker-mode";
 import { DatePicker } from "../pickers/date-picker";
+import { fromComparablePickerValue } from "../pickers/utils/picker-value-conversion";
 import { useDatesContext } from "../use-dates-context";
 import { HiddenDatesInput } from "./hidden-dates-input";
 import { PickerInputBase } from "./picker-input-base";
-import { formatPickerValue } from "./utils/picker-input-utils";
 
 export type DatePickerInputProps = Omit<
   ComponentProps<typeof PickerInputBase>,
@@ -20,70 +21,107 @@ export type DatePickerInputProps = Omit<
   allowDeselect?: boolean;
   allowSingleDateInRange?: boolean;
   ariaLabels?: ComponentProps<typeof DatePicker>["ariaLabels"];
+  closeOnChange?: boolean;
   defaultValue?: DatePickerValue;
   firstDayOfWeek?: ComponentProps<typeof DatePicker>["firstDayOfWeek"];
   getDayAriaLabel?: ComponentProps<typeof DatePicker>["getDayAriaLabel"];
   hideOutsideDates?: ComponentProps<typeof DatePicker>["hideOutsideDates"];
   hideWeekdays?: ComponentProps<typeof DatePicker>["hideWeekdays"];
+  labelSeparator?: string;
   monthLabelFormat?: ComponentProps<typeof DatePicker>["monthLabelFormat"];
   nextLabel?: ComponentProps<typeof DatePicker>["nextLabel"];
-  pickerType?: DatePickerType;
   previousLabel?: ComponentProps<typeof DatePicker>["previousLabel"];
-  selectionMode?: "multiple" | "range" | "single";
+  selectionMode?: SelectionMode;
+  sortDates?: boolean;
   value?: DatePickerValue;
+  valueFormat?: string;
+  valueFormatter?: DateFormatter;
   weekdayFormat?: ComponentProps<typeof DatePicker>["weekdayFormat"];
   weekendDays?: ComponentProps<typeof DatePicker>["weekendDays"];
   onChange?: (value: DatePickerValue) => void;
 };
 
-const DatePickerInput = ({
-  allowDeselect,
-  allowSingleDateInRange,
-  ariaLabels,
-  defaultValue,
-  firstDayOfWeek,
-  getDayAriaLabel,
-  hideOutsideDates,
-  hideWeekdays,
-  monthLabelFormat,
-  name,
-  nextLabel,
-  pickerType = "default",
-  previousLabel,
-  selectionMode,
-  value,
-  weekdayFormat,
-  weekendDays,
-  onChange,
-  ...props
-}: DatePickerInputProps) => {
-  const { adapter, locale, timeZone } = useDatesContext();
-  const resolvedType = resolvePickerType(
-    selectionMode ?? pickerType
-  ) as DatePickerType;
-  const [opened, setOpened] = useState(false);
-  const [uncontrolledValue, setUncontrolledValue] = useState<DatePickerValue>(
-    normalizePickerValue(defaultValue, resolvedType)
+const DatePickerInput = (allProps: DatePickerInputProps) => {
+  const {
+    allowDeselect,
+    allowSingleDateInRange,
+    ariaLabels,
+    closeOnChange = true,
+    defaultValue,
+    firstDayOfWeek,
+    form,
+    getDayAriaLabel,
+    hideOutsideDates,
+    hideWeekdays,
+    labelSeparator,
+    monthLabelFormat,
+    name,
+    nextLabel,
+    previousLabel,
+    selectionMode = "single",
+    sortDates,
+    value,
+    valueFormat = "PP",
+    valueFormatter,
+    weekdayFormat,
+    weekendDays,
+    onChange,
+    ...props
+  } = allProps;
+  const { adapter, locale } = useDatesContext();
+  const normalizedDefaultValue = useMemo(
+    () =>
+      defaultValue === undefined
+        ? undefined
+        : normalizePickerValue(defaultValue, selectionMode),
+    [defaultValue, selectionMode]
   );
-  const resolvedValue = normalizePickerValue(
-    value === undefined ? uncontrolledValue : value,
-    resolvedType
+  const normalizedValue = useMemo(
+    () =>
+      value === undefined
+        ? undefined
+        : normalizePickerValue(value, selectionMode),
+    [selectionMode, value]
   );
 
-  const inputValue = useMemo(
+  const { _value, dropdownHandlers, dropdownOpened, formattedValue, setValue } =
+    useDatesInput<SelectionMode>({
+      adapter,
+      closeOnChange,
+      defaultValue: normalizedDefaultValue,
+      format: valueFormat,
+      labelSeparator,
+      locale,
+      onChange: (nextValue) => {
+        onChange?.(
+          fromComparablePickerValue(adapter, nextValue, selectionMode)
+        );
+      },
+      selectionMode,
+      sortDates,
+      value: normalizedValue,
+      valueFormatter,
+    });
+
+  const resolvedValue = useMemo(
     () =>
-      formatPickerValue(adapter, resolvedValue, resolvedType, locale, timeZone),
-    [adapter, resolvedValue, resolvedType, locale, timeZone]
+      fromComparablePickerValue(
+        adapter,
+        _value,
+        selectionMode
+      ) as DatePickerValue,
+    [_value, adapter, selectionMode]
   );
 
   return (
     <>
       <PickerInputBase
         {...props}
+        form={form}
         name={undefined}
-        opened={opened}
+        opened={dropdownOpened}
         readOnly
-        value={inputValue}
+        value={formattedValue}
         dropdown={
           <DatePicker
             allowDeselect={allowDeselect}
@@ -97,41 +135,28 @@ const DatePickerInput = ({
             nextLabel={nextLabel}
             previousLabel={previousLabel}
             selectionMode={selectionMode}
-            type={resolvedType}
             value={resolvedValue}
             weekdayFormat={weekdayFormat}
             weekendDays={weekendDays}
             onChange={(nextValue) => {
-              if (value === undefined) {
-                setUncontrolledValue(nextValue);
-              }
-
-              onChange?.(nextValue);
-
-              if (resolvedType === "default") {
-                setOpened(false);
-                return;
-              }
-
-              if (resolvedType === "range") {
-                const [startDate, endDate] = nextValue as [
-                  Date | null,
-                  Date | null,
-                ];
-
-                if (startDate && endDate) {
-                  setOpened(false);
-                }
-              }
+              setValue(nextValue);
             }}
           />
         }
-        onOpenedChange={setOpened}
+        onOpenedChange={(nextOpened) => {
+          if (nextOpened) {
+            dropdownHandlers.open();
+            return;
+          }
+
+          dropdownHandlers.close();
+        }}
       />
       {name ? (
         <HiddenDatesInput
+          form={form}
           name={name}
-          pickerType={resolvedType}
+          selectionMode={selectionMode}
           value={resolvedValue}
         />
       ) : null}

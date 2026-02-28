@@ -10,7 +10,15 @@ import { getMonthsData } from "./utils/get-months-data";
 import { isMonthDisabled } from "./utils/is-month-disabled";
 
 const monthsListVariants = tv({
+  base: "grid gap-2",
+});
+
+const monthsRowVariants = tv({
   base: "grid grid-cols-3 gap-2",
+});
+
+const monthCellVariants = tv({
+  base: "inline-flex",
 });
 
 const monthButtonVariants = tv({
@@ -84,86 +92,101 @@ const MonthsList = ({
     minDate,
     months,
   });
+  let columnCount = 0;
+  for (const monthRow of months) {
+    columnCount = Math.max(columnCount, monthRow.length);
+  }
 
   return (
     <div
+      aria-colcount={columnCount}
+      aria-readonly="true"
+      aria-rowcount={months.length}
       className={cn(monthsListVariants(), className)}
       data-slot="months-list"
+      role="grid"
       {...props}
     >
-      {months.map((monthsRow, rowIndex) =>
-        monthsRow.map((monthDate, cellIndex) => {
-          const controlProps = getMergedControlProps(monthDate);
-          const disabled =
-            controlProps.disabled ??
-            isMonthDisabled({
-              adapter,
-              maxDate,
-              minDate,
-              month: monthDate,
-            });
-          const isInTabOrder =
-            !__preventFocus &&
-            monthInTabOrder !== undefined &&
-            adapter.isSameMonth(monthDate, monthInTabOrder);
+      {months.map((monthsRow, rowIndex) => (
+        <div className={monthsRowVariants()} key={rowIndex} role="row">
+          {monthsRow.map((monthDate, cellIndex) => {
+            const controlProps = getMergedControlProps(monthDate);
+            const disabled =
+              controlProps.disabled ??
+              isMonthDisabled({
+                adapter,
+                maxDate,
+                minDate,
+                month: monthDate,
+              });
+            const isInTabOrder =
+              !__preventFocus &&
+              monthInTabOrder !== undefined &&
+              adapter.isSameMonth(monthDate, monthInTabOrder);
 
-          return (
-            <PickerControl
-              {...controlProps}
-              aria-label={
-                controlProps["aria-label"] ??
-                adapter.format(
-                  monthDate,
-                  { month: "long", year: "numeric" },
-                  {
-                    locale: resolvedLocale,
-                    timeZone,
+            return (
+              <div
+                className={monthCellVariants()}
+                key={`${rowIndex}-${cellIndex}-${adapter.toISODate(monthDate)}`}
+                role="gridcell"
+              >
+                <PickerControl
+                  {...controlProps}
+                  aria-label={
+                    controlProps["aria-label"] ??
+                    adapter.format(
+                      monthDate,
+                      { month: "long", year: "numeric" },
+                      {
+                        locale: resolvedLocale,
+                        timeZone,
+                      }
+                    )
                   }
-                )
-              }
-              aria-pressed={controlProps.selected}
-              className={cn(monthButtonVariants(), controlProps.className)}
-              date={adapter.toISODate(monthDate)}
-              disabled={disabled}
-              key={`${rowIndex}-${cellIndex}-${adapter.toISODate(monthDate)}`}
-              ref={(node) => {
-                __getControlRef?.(rowIndex, cellIndex, node);
-              }}
-              tabIndex={disabled ? -1 : isInTabOrder ? 0 : -1}
-              onClick={(event) => {
-                controlProps.onClick?.(event);
-                __onControlClick?.(event, monthDate);
-                onChange?.(monthDate);
-              }}
-              onKeyDown={(event) => {
-                controlProps.onKeyDown?.(event);
-                __onControlKeyDown?.(event, {
-                  cellIndex,
-                  date: adapter.toISODate(monthDate),
-                  rowIndex,
-                });
-              }}
-              onMouseDown={(event) => {
-                controlProps.onMouseDown?.(event);
-                if (__preventFocus) {
-                  event.preventDefault();
-                }
-              }}
-              onMouseEnter={(event) => {
-                controlProps.onMouseEnter?.(event);
-                __onControlMouseEnter?.(event, monthDate);
-              }}
-            >
-              {controlProps.children ??
-                adapter.format(
-                  monthDate,
-                  { month: monthLabelFormat },
-                  { locale: resolvedLocale, timeZone }
-                )}
-            </PickerControl>
-          );
-        })
-      )}
+                  aria-pressed={controlProps.selected}
+                  className={cn(monthButtonVariants(), controlProps.className)}
+                  date={adapter.toISODate(monthDate)}
+                  disabled={disabled}
+                  ref={(node) => {
+                    __getControlRef?.(rowIndex, cellIndex, node);
+                  }}
+                  tabIndex={disabled ? -1 : isInTabOrder ? 0 : -1}
+                  onClick={(event) => {
+                    controlProps.onClick?.(event);
+                    __onControlClick?.(event, monthDate);
+                    onChange?.(monthDate);
+                  }}
+                  onKeyDown={(event) => {
+                    controlProps.onKeyDown?.(event);
+                    __onControlKeyDown?.(event, {
+                      cellIndex,
+                      date: adapter.toISODate(monthDate),
+                      rowIndex,
+                    });
+                  }}
+                  onMouseDown={(event) => {
+                    controlProps.onMouseDown?.(event);
+                    if (__preventFocus) {
+                      event.preventDefault();
+                    }
+                  }}
+                  onMouseEnter={(event) => {
+                    controlProps.onMouseEnter?.(event);
+                    __onControlMouseEnter?.(event, monthDate);
+                  }}
+                >
+                  {controlProps.children ??
+                    adapter.format(
+                      monthDate,
+                      { month: monthLabelFormat },
+                      { locale: resolvedLocale, timeZone }
+                    )}
+                </PickerControl>
+              </div>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };

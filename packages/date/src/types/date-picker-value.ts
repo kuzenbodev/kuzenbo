@@ -1,8 +1,4 @@
-import type {
-  DateSelectionMode,
-  DateSelectionModeInput,
-  ResolveDateSelectionMode,
-} from "./date-selection-mode";
+import type { DateSelectionMode } from "./date-selection-mode";
 import type { DateStringValue } from "./general-types";
 
 export type DateValue = DateStringValue | Date | null;
@@ -22,6 +18,11 @@ export type DateSelectionValue<
     : ValueType | null;
 
 export type DatePickerValue<
-  Mode extends DateSelectionModeInput = "single",
+  Mode extends DateSelectionMode = "single",
   ValueType = DateValue,
-> = DateSelectionValue<ResolveDateSelectionMode<Mode>, ValueType>;
+> = DateSelectionValue<Mode, ValueType>;
+
+export type PublicDatePickerValue<
+  Mode extends DateSelectionMode = "single",
+  ValueType = DateValue,
+> = DateSelectionValue<Mode, ValueType>;

@@ -7,7 +7,7 @@ import type {
 
 import { cn, tv } from "tailwind-variants";
 
-import type { DatePickerType, DatePickerValue } from "../types";
+import type { DatePickerValue, SelectionMode } from "../types";
 
 import { useDatesContext } from "../use-dates-context";
 import { CalendarHeader } from "./calendar-header";
@@ -56,7 +56,7 @@ export type MonthLevelProps = Omit<
   onLevelClick?: () => void;
   onNext?: () => void;
   onPrevious?: () => void;
-  type?: DatePickerType;
+  selectionMode?: SelectionMode;
   value?: DatePickerValue;
   minDate?: Date;
   maxDate?: Date;
@@ -64,41 +64,42 @@ export type MonthLevelProps = Omit<
   onChange?: (value: DatePickerValue) => void;
 };
 
-const MonthLevel = ({
-  className,
-  __getDayRef,
-  __onDayClick,
-  __onDayKeyDown,
-  __onDayMouseEnter,
-  __preventFocus,
-  firstDayOfWeek,
-  getDayAriaLabel,
-  getDayProps,
-  hasNextLevel = true,
-  hideOutsideDates,
-  hideWeekdays,
-  levelControlAriaLabel,
-  monthLabelFormat,
-  nextDisabled,
-  nextLabel,
-  onLevelClick,
-  onNext,
-  onPrevious,
-  previousDisabled,
-  previousLabel,
-  weekdayFormat,
-  weekendDays,
-  withNext = true,
-  withPrevious = true,
-  month,
-  type = "default",
-  value,
-  minDate,
-  maxDate,
-  excludeDate,
-  onChange,
-  ...props
-}: MonthLevelProps) => {
+const MonthLevel = (allProps: MonthLevelProps) => {
+  const {
+    className,
+    __getDayRef,
+    __onDayClick,
+    __onDayKeyDown,
+    __onDayMouseEnter,
+    __preventFocus,
+    firstDayOfWeek,
+    getDayAriaLabel,
+    getDayProps,
+    hasNextLevel = true,
+    hideOutsideDates,
+    hideWeekdays,
+    levelControlAriaLabel,
+    monthLabelFormat,
+    nextDisabled,
+    nextLabel,
+    onLevelClick,
+    onNext,
+    onPrevious,
+    previousDisabled,
+    previousLabel,
+    weekdayFormat,
+    weekendDays,
+    withNext = true,
+    withPrevious = true,
+    month,
+    selectionMode = "single",
+    value,
+    minDate,
+    maxDate,
+    excludeDate,
+    onChange,
+    ...props
+  } = allProps;
   const { adapter } = useDatesContext();
   const computedNextDisabled =
     nextDisabled ??
@@ -116,7 +117,6 @@ const MonthLevel = ({
           adapter.startOfDay(minDate)
         )
       : false);
-
   return (
     <div
       className={cn(monthLevelVariants(), className)}
@@ -154,7 +154,7 @@ const MonthLevel = ({
         maxDate={maxDate}
         minDate={minDate}
         month={month}
-        type={type as DatePickerType}
+        selectionMode={selectionMode}
         value={value}
         weekdayFormat={weekdayFormat}
         weekendDays={weekendDays}

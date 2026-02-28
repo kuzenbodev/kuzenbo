@@ -1,33 +1,9 @@
-import type {
-  DatePickerType,
-  DateSelectionMode,
-  DateSelectionModeInput,
-} from "../types";
+import type { DateSelectionMode } from "../types";
 
 export const normalizeDateSelectionMode = (
-  selectionMode: DateSelectionModeInput | undefined
-): DateSelectionMode => {
-  if (selectionMode === undefined || selectionMode === "single") {
-    return "single";
-  }
+  selectionMode?: DateSelectionMode
+): DateSelectionMode => selectionMode ?? "single";
 
-  if (selectionMode === "default") {
-    return "single";
-  }
-
-  return selectionMode;
-};
-
-export const resolveDateSelectionMode = ({
-  selectionMode,
-  type,
-}: {
-  selectionMode?: DateSelectionMode;
-  type?: DatePickerType;
-}): DateSelectionMode => {
-  if (selectionMode) {
-    return normalizeDateSelectionMode(selectionMode);
-  }
-
-  return normalizeDateSelectionMode(type);
-};
+export const resolveDateSelectionMode = (
+  selectionMode?: DateSelectionMode
+): DateSelectionMode => normalizeDateSelectionMode(selectionMode);

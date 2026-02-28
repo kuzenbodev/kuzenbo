@@ -1,8 +1,7 @@
 import type { ComponentProps } from "react";
 
-import type { DatePickerType, DatePickerValue } from "../types";
+import type { DatePickerValue, SelectionMode } from "../types";
 
-import { resolvePickerType } from "../picker-mode";
 import { useDatesContext } from "../use-dates-context";
 import { serializePickerValue } from "./utils/picker-input-utils";
 
@@ -10,26 +9,18 @@ export type HiddenDatesInputProps = Omit<
   ComponentProps<"input">,
   "type" | "value"
 > & {
-  pickerType?: DatePickerType;
-  selectionMode?: "multiple" | "range" | "single";
+  selectionMode?: SelectionMode;
   value: DatePickerValue;
 };
 
-const HiddenDatesInput = ({
-  pickerType = "default",
-  selectionMode,
-  value,
-  ...props
-}: HiddenDatesInputProps) => {
+const HiddenDatesInput = (allProps: HiddenDatesInputProps) => {
+  const { selectionMode = "single", value, ...props } = allProps;
   const { adapter } = useDatesContext();
-  const resolvedType = resolvePickerType(
-    selectionMode ?? pickerType
-  ) as DatePickerType;
 
   return (
     <input
       type="hidden"
-      value={serializePickerValue(adapter, value, resolvedType)}
+      value={serializePickerValue(adapter, value, selectionMode)}
       {...props}
     />
   );

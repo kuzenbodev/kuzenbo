@@ -1,12 +1,11 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
-import type { ComponentProps, MouseEvent } from "react";
+import type { ComponentProps, KeyboardEvent, MouseEvent } from "react";
 
 import { useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import type { CalendarLevel, DatePickerType, DatePickerValue } from "../types";
+import type { CalendarLevel, DatePickerValue, SelectionMode } from "../types";
 
-import { resolvePickerType } from "../picker-mode";
 import { useDatesContext } from "../use-dates-context";
 import { DecadeLevelGroup } from "./decade-level-group";
 import { MonthLevelGroup } from "./month-level-group";
@@ -81,10 +80,10 @@ export type CalendarProps = Omit<
   onYearMouseEnter?: (event: MouseEvent<HTMLButtonElement>, date: Date) => void;
   onYearSelect?: (date: Date) => void;
   previousLabel?: string;
-  selectionMode?: "multiple" | "range" | "single";
-  type?: DatePickerType;
+  selectionMode?: SelectionMode;
   value?: DatePickerValue;
   weekdayFormat?: ComponentProps<typeof MonthLevelGroup>["weekdayFormat"];
+  withWeekNumbers?: ComponentProps<typeof MonthLevelGroup>["withWeekNumbers"];
   weekendDays?: number[];
   yearLabelFormat?: ComponentProps<typeof YearLevelGroup>["yearLabelFormat"];
 };
@@ -106,58 +105,57 @@ const getInitialViewDate = ({
 }): Date =>
   month ?? date ?? defaultMonth ?? defaultDate ?? selectedDate ?? adapter.now();
 
-const Calendar = ({
-  __updateDateOnMonthSelect = true,
-  __updateDateOnYearSelect = true,
-  ariaLabels,
-  className,
-  columnsToScroll,
-  date,
-  decadeLabelFormat,
-  defaultDate,
-  defaultLevel = "month",
-  defaultMonth,
-  excludeDate,
-  firstDayOfWeek,
-  getDayAriaLabel,
-  getDayProps,
-  getMonthControlProps,
-  getYearControlProps,
-  hideOutsideDates,
-  hideWeekdays,
-  level,
-  maxDate,
-  maxLevel = "decade",
-  minDate,
-  minLevel = "month",
-  month,
-  monthLabelFormat,
-  nextLabel,
-  numberOfColumns = 1,
-  onChange,
-  onDateChange,
-  onDayClick,
-  onLevelChange,
-  onMonthChange,
-  onMonthMouseEnter,
-  onMonthSelect,
-  onYearMouseEnter,
-  onYearSelect,
-  previousLabel,
-  selectionMode,
-  type = "default",
-  value,
-  weekdayFormat,
-  weekendDays,
-  yearLabelFormat,
-  ...props
-}: CalendarProps) => {
+const Calendar = (allProps: CalendarProps) => {
+  const {
+    __updateDateOnMonthSelect = true,
+    __updateDateOnYearSelect = true,
+    ariaLabels,
+    className,
+    columnsToScroll,
+    date,
+    decadeLabelFormat,
+    defaultDate,
+    defaultLevel = "month",
+    defaultMonth,
+    excludeDate,
+    firstDayOfWeek,
+    getDayAriaLabel,
+    getDayProps,
+    getMonthControlProps,
+    getYearControlProps,
+    hideOutsideDates,
+    hideWeekdays,
+    level,
+    maxDate,
+    maxLevel = "decade",
+    minDate,
+    minLevel = "month",
+    month,
+    monthLabelFormat,
+    nextLabel,
+    numberOfColumns = 1,
+    onChange,
+    onDateChange,
+    onDayClick,
+    onLevelChange,
+    onMonthChange,
+    onMonthMouseEnter,
+    onMonthSelect,
+    onYearMouseEnter,
+    onYearSelect,
+    previousLabel,
+    selectionMode = "single",
+    value,
+    weekdayFormat,
+    withWeekNumbers = false,
+    weekendDays,
+    yearLabelFormat,
+    onKeyDownCapture,
+    ...props
+  } = allProps;
   const { adapter } = useDatesContext();
-  const resolvedType = resolvePickerType(
-    selectionMode ?? type
-  ) as DatePickerType;
-  const normalizedValue = normalizePickerValue(value, resolvedType);
-  const selectedDate = getPrimaryDateFromValue(normalizedValue, resolvedType);
+  const normalizedValue = normalizePickerValue(value, selectionMode);
+  const selectedDate = getPrimaryDateFromValue(normalizedValue, selectionMode);
 
   const [uncontrolledLevel, setUncontrolledLevel] = useState(() =>
     clampLevel(defaultLevel, minLevel, maxLevel)
@@ -225,11 +223,72 @@ const Calendar = ({
     setResolvedViewDate(adapter.addYears(resolvedViewDate, -scrollAmount * 10));
   };
 
+  const handleKeyboardShortcuts = (event: KeyboardEvent<HTMLDivElement>) => {
+    const activeElement = document.activeElement;
+    if (
+      !(activeElement instanceof HTMLElement) ||
+      !event.currentTarget.contains(activeElement)
+    ) {
+      return;
+    }
+
+    const key = event.key.toLowerCase();
+    if (
+      key === "y" &&
+      resolvedLevel === "month" &&
+      maxLevel !== "month" &&
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.metaKey
+    ) {
+      event.preventDefault();
+      setResolvedLevel("year");
+      return;
+    }
+
+    if ((!event.ctrlKey && !event.metaKey) || event.altKey) {
+      return;
+    }
+
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") {
+      return;
+    }
+
+    event.preventDefault();
+
+    const navigateForward = event.key === "ArrowDown";
+    if (event.shiftKey) {
+      if (navigateForward) {
+        handleNextDecade();
+        return;
+      }
+
+      handlePreviousDecade();
+      return;
+    }
+
+    if (navigateForward) {
+      handleNextYear();
+      return;
+    }
+
+    handlePreviousYear();
+  };
+
   return (
     <div
       className={cn(calendarVariants(), className)}
       data-level={resolvedLevel}
       data-slot="calendar"
+      onKeyDownCapture={(event) => {
+        onKeyDownCapture?.(event);
+
+        if (event.defaultPrevented) {
+          return;
+        }
+
+        handleKeyboardShortcuts(event);
+      }}
       {...props}
     >
       {resolvedLevel === "month" ? (
@@ -249,9 +308,10 @@ const Calendar = ({
           nextLabel={ariaLabels?.nextMonth ?? nextLabel}
           numberOfColumns={numberOfColumns}
           previousLabel={ariaLabels?.previousMonth ?? previousLabel}
-          type={resolvedType}
+          selectionMode={selectionMode}
           value={normalizedValue}
           weekdayFormat={weekdayFormat}
+          withWeekNumbers={withWeekNumbers}
           weekendDays={weekendDays}
           __onDayClick={onDayClick}
           __onDayMouseEnter={onMonthMouseEnter}

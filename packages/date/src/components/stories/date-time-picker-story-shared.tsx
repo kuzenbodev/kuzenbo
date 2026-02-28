@@ -72,6 +72,30 @@ const ControlledExample = () => {
   );
 };
 
+const MinMaxTimeBoundsExample = () => {
+  const [value, setValue] = useState<Date | null>(new Date(2026, 1, 14, 10, 0));
+
+  const handleChange = useCallback((nextValue: Date | null) => {
+    setValue(nextValue);
+  }, []);
+
+  return (
+    <DatesProvider locale="en-US" timeZone="America/New_York">
+      <DateTimePicker
+        maxDate={new Date(2026, 1, 14, 17, 15, 0)}
+        minDate={new Date(2026, 1, 14, 9, 30, 0)}
+        value={value}
+        withSeconds
+        onChange={handleChange}
+      />
+    </DatesProvider>
+  );
+};
+
 export const Controlled: Story = {
   render: ControlledExample,
+};
+
+export const MinMaxTimeBounds: Story = {
+  render: MinMaxTimeBoundsExample,
 };

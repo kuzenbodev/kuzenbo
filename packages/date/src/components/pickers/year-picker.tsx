@@ -3,15 +3,10 @@ import type { ComponentProps } from "react";
 
 import { cn, tv } from "tailwind-variants";
 
-import type {
-  DatePickerType,
-  DatePickerValue,
-  DateSelectionModeInput,
-} from "../types";
+import type { DatePickerValue, SelectionMode } from "../types";
 
 import { useDatesState } from "../../hooks";
 import { Calendar } from "../calendar/calendar";
-import { resolvePickerType } from "../picker-mode";
 import { useDatesContext } from "../use-dates-context";
 import { fromComparablePickerValue } from "./utils/picker-value-conversion";
 
@@ -34,61 +29,56 @@ export type YearPickerProps = Omit<
   nextLabel?: ComponentProps<typeof Calendar>["nextLabel"];
   numberOfColumns?: number;
   previousLabel?: ComponentProps<typeof Calendar>["previousLabel"];
-  selectionMode?: "multiple" | "range" | "single";
-  type?: DatePickerType;
+  selectionMode?: SelectionMode;
   value?: DatePickerValue;
   yearLabelFormat?: ComponentProps<typeof Calendar>["yearLabelFormat"];
   onChange?: (value: DatePickerValue) => void;
 };
 
-const YearPicker = ({
-  allowDeselect,
-  allowSingleDateInRange,
-  ariaLabels,
-  className,
-  decadeLabelFormat,
-  defaultValue,
-  defaultYear,
-  maxDate,
-  minDate,
-  nextLabel,
-  numberOfColumns = 1,
-  previousLabel,
-  selectionMode,
-  type = "default",
-  value,
-  yearLabelFormat,
-  onChange,
-  ...props
-}: YearPickerProps) => {
+const YearPicker = (allProps: YearPickerProps) => {
+  const {
+    allowDeselect,
+    allowSingleDateInRange,
+    ariaLabels,
+    className,
+    decadeLabelFormat,
+    defaultValue,
+    defaultYear,
+    maxDate,
+    minDate,
+    nextLabel,
+    numberOfColumns = 1,
+    previousLabel,
+    selectionMode = "single",
+    value,
+    yearLabelFormat,
+    onChange,
+    ...props
+  } = allProps;
   const { adapter } = useDatesContext();
-  const resolvedType = resolvePickerType(
-    selectionMode ?? type
-  ) as DatePickerType;
   const {
     _value,
     getControlProps,
     onDateChange,
     onHoveredDateChange,
     onRootMouseLeave,
-  } = useDatesState<DateSelectionModeInput>({
+  } = useDatesState<SelectionMode>({
     adapter,
     allowDeselect,
     allowSingleDateInRange,
     defaultValue,
     level: "year",
     onChange: (nextValue) => {
-      onChange?.(fromComparablePickerValue(adapter, nextValue, resolvedType));
+      onChange?.(fromComparablePickerValue(adapter, nextValue, selectionMode));
     },
     selectionMode,
-    type: resolvedType,
     value,
   });
 
   const resolvedValue = fromComparablePickerValue(
     adapter,
     _value,
-    resolvedType
+    selectionMode
   );
 
   return (
@@ -109,7 +99,6 @@ const YearPicker = ({
         numberOfColumns={numberOfColumns}
         previousLabel={previousLabel}
         selectionMode={selectionMode}
-        type={resolvedType}
         value={resolvedValue}
         yearLabelFormat={yearLabelFormat}
         getYearControlProps={getControlProps}

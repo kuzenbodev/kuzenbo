@@ -2,15 +2,10 @@ import type { ComponentProps } from "react";
 
 import { cn, tv } from "tailwind-variants";
 
-import type {
-  DatePickerType,
-  DatePickerValue,
-  DateSelectionModeInput,
-} from "../types";
+import type { DatePickerValue, SelectionMode } from "../types";
 
 import { useDatesState } from "../../hooks";
 import { Calendar } from "../calendar/calendar";
-import { resolvePickerType } from "../picker-mode";
 import { useDatesContext } from "../use-dates-context";
 import { fromComparablePickerValue } from "./utils/picker-value-conversion";
 
@@ -35,8 +30,7 @@ export type DatePickerProps = Omit<
   nextLabel?: ComponentProps<typeof Calendar>["nextLabel"];
   previousLabel?: ComponentProps<typeof Calendar>["previousLabel"];
   value?: DatePickerValue;
-  selectionMode?: "multiple" | "range" | "single";
-  type?: DatePickerType;
+  selectionMode?: SelectionMode;
   defaultMonth?: Date;
   minDate?: Date;
   maxDate?: Date;
@@ -47,61 +41,57 @@ export type DatePickerProps = Omit<
   onChange?: (value: DatePickerValue) => void;
 };
 
-const DatePicker = ({
-  allowDeselect,
-  allowSingleDateInRange,
-  ariaLabels,
-  className,
-  defaultValue,
-  firstDayOfWeek,
-  getDayAriaLabel,
-  getDayProps,
-  hideOutsideDates,
-  hideWeekdays,
-  monthLabelFormat,
-  nextLabel,
-  previousLabel,
-  value,
-  selectionMode,
-  type = "default",
-  defaultMonth,
-  minDate,
-  maxDate,
-  excludeDate,
-  numberOfColumns,
-  weekdayFormat,
-  weekendDays,
-  onChange,
-  ...props
-}: DatePickerProps) => {
+const DatePicker = (allProps: DatePickerProps) => {
+  const {
+    allowDeselect,
+    allowSingleDateInRange,
+    ariaLabels,
+    className,
+    defaultValue,
+    firstDayOfWeek,
+    getDayAriaLabel,
+    getDayProps,
+    hideOutsideDates,
+    hideWeekdays,
+    monthLabelFormat,
+    nextLabel,
+    previousLabel,
+    value,
+    selectionMode = "single",
+    defaultMonth,
+    minDate,
+    maxDate,
+    excludeDate,
+    numberOfColumns,
+    weekdayFormat,
+    weekendDays,
+    onChange,
+    ...props
+  } = allProps;
   const { adapter } = useDatesContext();
-  const resolvedType = resolvePickerType(
-    selectionMode ?? type
-  ) as DatePickerType;
   const {
     _value,
     getControlProps,
     onDateChange,
     onHoveredDateChange,
     onRootMouseLeave,
-  } = useDatesState<DateSelectionModeInput>({
+  } = useDatesState<SelectionMode>({
     adapter,
     allowDeselect,
     allowSingleDateInRange,
     defaultValue,
     level: "day",
     onChange: (nextValue) => {
-      onChange?.(fromComparablePickerValue(adapter, nextValue, resolvedType));
+      onChange?.(fromComparablePickerValue(adapter, nextValue, selectionMode));
     },
     selectionMode,
-    type: resolvedType,
     value,
   });
 
   const resolvedValue = fromComparablePickerValue(
     adapter,
     _value,
-    resolvedType
+    selectionMode
   );
 
   return (
@@ -129,7 +119,6 @@ const DatePicker = ({
         numberOfColumns={numberOfColumns}
         previousLabel={previousLabel}
         selectionMode={selectionMode}
-        type={resolvedType}
         value={resolvedValue}
         weekdayFormat={weekdayFormat}
         weekendDays={weekendDays}

@@ -6,9 +6,8 @@ import { useEffect, useMemo, useState } from "react";
 
 import type { DateAdapter, DateInput } from "../adapter";
 import type {
-  DatePickerType,
   DatePickerValue,
-  DateSelectionModeInput,
+  DateSelectionMode,
   DateStringValue,
 } from "../types";
 
@@ -16,7 +15,7 @@ import { useDatesContext } from "../context";
 import { resolveDateSelectionMode, toDateString } from "../utils";
 import { useUncontrolledDates } from "./use-uncontrolled-dates";
 
-interface UseDatesStateInput<Mode extends DateSelectionModeInput = "single"> {
+interface UseDatesStateInput<Mode extends DateSelectionMode = "single"> {
   adapter?: DateAdapter;
   allowDeselect?: boolean;
   allowSingleDateInRange?: boolean;
@@ -24,8 +23,7 @@ interface UseDatesStateInput<Mode extends DateSelectionModeInput = "single"> {
   level?: "day" | "decade" | "month" | "year";
   onChange?: ((value: DatePickerValue<Mode, string>) => void) | undefined;
   onMouseLeave?: ((event: MouseEvent<HTMLDivElement>) => void) | undefined;
-  selectionMode?: "multiple" | "range" | "single";
-  type?: DatePickerType;
+  selectionMode?: Mode;
   value?: DatePickerValue<Mode>;
 }
 
@@ -43,7 +41,7 @@ const toComparableDateString = (
 };
 
 const toRangeValue = (
-  value: DatePickerValue<DateSelectionModeInput, string>
+  value: DatePickerValue<DateSelectionMode, string>
 ): [DateStringValue | null, DateStringValue | null] => {
   if (!Array.isArray(value)) {
     return [null, null];
@@ -56,7 +54,7 @@ const toRangeValue = (
 };
 
 const toMultipleValue = (
-  value: DatePickerValue<DateSelectionModeInput, string>
+  value: DatePickerValue<DateSelectionMode, string>
 ): DateStringValue[] => {
   if (!Array.isArray(value)) {
     return [];
@@ -73,7 +71,7 @@ const toMultipleValue = (
   return normalized;
 };
 
-export const useDatesState = <Mode extends DateSelectionModeInput = "single">({
+export const useDatesState = <Mode extends DateSelectionMode = "single">({
   adapter,
   allowDeselect,
   allowSingleDateInRange,
@@ -82,14 +80,10 @@ export const useDatesState = <Mode extends DateSelectionModeInput = "single">({
   onChange,
   onMouseLeave,
   selectionMode,
-  type,
   value,
 }: UseDatesStateInput<Mode>) => {
   const datesContext = useDatesContext();
-  const resolvedSelectionMode = resolveDateSelectionMode({
-    selectionMode,
-    type,
-  });
+  const resolvedSelectionMode = resolveDateSelectionMode(selectionMode);
   const resolvedAdapter = adapter ?? datesContext.adapter;
 
   const [_value, setValue] = useUncontrolledDates<Mode>({
@@ -97,13 +91,11 @@ export const useDatesState = <Mode extends DateSelectionModeInput = "single">({
     defaultValue,
     onChange,
     selectionMode,
-    type,
     value,
   });
 
   const currentRangeValue = useMemo(
-    () =>
-      toRangeValue(_value as DatePickerValue<DateSelectionModeInput, string>),
+    () => toRangeValue(_value as DatePickerValue<DateSelectionMode, string>),
     [_value]
   );
 
@@ -165,7 +157,7 @@ export const useDatesState = <Mode extends DateSelectionModeInput = "single">({
 
     if (resolvedSelectionMode === "multiple") {
       const selectedValues = toMultipleValue(
-        _value as DatePickerValue<DateSelectionModeInput, string>
+        _value as DatePickerValue<DateSelectionMode, string>
       );
 
       if (
@@ -327,7 +319,7 @@ export const useDatesState = <Mode extends DateSelectionModeInput = "single">({
 
     if (resolvedSelectionMode === "multiple") {
       const selectedValues = toMultipleValue(
-        _value as DatePickerValue<DateSelectionModeInput, string>
+        _value as DatePickerValue<DateSelectionMode, string>
       );
 
       return {

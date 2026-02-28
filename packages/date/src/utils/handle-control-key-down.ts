@@ -248,6 +248,10 @@ export const handleControlKeyDown = ({
   levelIndex,
   rowIndex,
 }: HandleControlKeyDownInput): void => {
+  if (event.altKey || event.ctrlKey || event.metaKey) {
+    return;
+  }
+
   const keyDirection = getDirection(event.key, direction);
   if (!keyDirection) {
     return;

@@ -8,6 +8,8 @@ description: "Mantine parity date primitives from @kuzenbo/date with single, mul
 `@kuzenbo/date` provides Mantine-equivalent date primitives with Kuzenbo conventions:
 
 - `selectionMode` (`single | multiple | range`) across picker surfaces.
+- `withWeekNumbers` support for ISO-style week columns.
+- Input parity controls (`closeOnChange`, `clearable`, and free typing in `DateInput`).
 - `date-fns`-powered adapter layer with timezone/locale support.
 - RTL-aware navigation through `DatesProvider`.
 - Calendar + picker + input + time primitives from one package root.
@@ -76,9 +78,34 @@ import { DateInput, DatePickerInput } from "@kuzenbo/date";
 export function DateFieldExamples() {
   return (
     <div className="space-y-3">
-      <DateInput placeholder="YYYY-MM-DD" />
-      <DatePickerInput name="releaseDate" placeholder="Pick release date" />
+      <DateInput
+        clearable
+        defaultValue={new Date(2026, 1, 14)}
+        placeholder="Type or pick (YYYY-MM-DD)"
+      />
+      <DatePickerInput
+        closeOnChange={false}
+        name="releaseWindow"
+        placeholder="Keep dropdown open for range picking"
+        selectionMode="range"
+      />
     </div>
+  );
+}
+```
+
+## Week Numbers
+
+```tsx
+import { Calendar } from "@kuzenbo/date";
+
+export function WeeklyPlanningCalendar() {
+  return (
+    <Calendar
+      defaultMonth={new Date(2026, 1, 1)}
+      selectionMode="single"
+      withWeekNumbers
+    />
   );
 }
 ```
@@ -120,6 +147,6 @@ export function LocalizedCalendar() {
 
 ## Notes
 
-- Use `selectionMode` as the canonical mode prop.
-- Configure locale, direction, and timezone through `DatesProvider` root props.
+- Use `selectionMode` (`single`, `multiple`, `range`) as the only supported mode prop on calendar and picker surfaces.
+- Configure locale, direction, and timezone through `DatesProvider` root props, including runtime switches.
 - `className` is supported for Tailwind composition; style escape hatches are intentionally removed.

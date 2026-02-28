@@ -11,8 +11,14 @@ import {
   endOfWeek,
   endOfYear,
   format,
+  getDate as getDayOfMonth,
+  getDay as getDayOfWeek,
+  getHours as getHourOfDay,
   getISOWeek,
-  getYear,
+  getMinutes as getMinuteOfHour,
+  getMonth as getMonthOfYear,
+  getSeconds as getSecondOfMinute,
+  getYear as getYearOfDate,
   isAfter,
   isBefore,
   isSameDay,
@@ -209,7 +215,7 @@ const startOfUnit = (
       return startOfYear(date, options);
     }
     case "decade": {
-      const year = getYear(date, options);
+      const year = getYearOfDate(date, options);
       const startYear = year - (year % 10);
       return startOfYear(new Date(startYear, 0, 1), options);
     }
@@ -313,8 +319,8 @@ const isSameByUnit = (
     }
     case "decade": {
       return (
-        Math.floor(getYear(left, options) / 10) ===
-        Math.floor(getYear(right, options) / 10)
+        Math.floor(getYearOfDate(left, options) / 10) ===
+        Math.floor(getYearOfDate(right, options) / 10)
       );
     }
     default: {
@@ -382,6 +388,23 @@ export const createDateAdapter = (
 
   const parseValue = (value: DateInput): Date | null =>
     parseDateInput(value, context);
+
+  const getZonedPart = (
+    value: DateInput,
+    reader: (source: Date, options: DateFnsContextOptions) => number
+  ): number => {
+    const parsedValue = parseValue(value) ?? adapter.today();
+    return reader(parsedValue, getOptions());
+  };
+
+  const setZonedParts = (
+    value: DateInput,
+    parts: Parameters<typeof set>[1]
+  ): Date => {
+    const parsedValue = parseValue(value) ?? adapter.today();
+    const nextDate = set(parsedValue, parts, getOptions());
+    return cloneDate(nextDate);
+  };
 
   const adapter: DateAdapter = {
     context,
@@ -632,38 +655,31 @@ export const createDateAdapter = (
     },
 
     getDate(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getDate();
+      return getZonedPart(value, getDayOfMonth);
     },
 
     getHours(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getHours();
+      return getZonedPart(value, getHourOfDay);
     },
 
     getMinutes(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getMinutes();
+      return getZonedPart(value, getMinuteOfHour);
     },
 
     getMonth(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getMonth();
+      return getZonedPart(value, getMonthOfYear);
     },
 
     getSeconds(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getSeconds();
+      return getZonedPart(value, getSecondOfMinute);
     },
 
     getWeekday(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getDay();
+      return getZonedPart(value, getDayOfWeek);
     },
 
     getYear(value) {
-      const parsedValue = parseValue(value);
-      return (parsedValue ?? adapter.today()).getFullYear();
+      return getZonedPart(value, getYearOfDate);
     },
 
     isAfter(left, right, unit = "day") {
@@ -790,31 +806,24 @@ export const createDateAdapter = (
     },
 
     setDate(value, dayOfMonth) {
-      const parsedValue = parseValue(value) ?? adapter.today();
-      const nextDate = cloneDate(parsedValue);
-      nextDate.setDate(dayOfMonth);
-      return nextDate;
+      return setZonedParts(value, { date: dayOfMonth });
     },
 
     setMonth(value, month) {
-      const parsedValue = parseValue(value) ?? adapter.today();
-      const nextDate = cloneDate(parsedValue);
-      nextDate.setMonth(month);
-      return nextDate;
+      return setZonedParts(value, { month });
     },
 
     setTime(value, hours, minutes, seconds) {
-      const parsedValue = parseValue(value) ?? adapter.today();
-      const nextDate = cloneDate(parsedValue);
-      nextDate.setHours(hours, minutes, seconds, 0);
-      return nextDate;
+      return setZonedParts(value, {
+        hours,
+        milliseconds: 0,
+        minutes,
+        seconds,
+      });
     },
 
     setYear(value, year) {
-      const parsedValue = parseValue(value) ?? adapter.today();
-      const nextDate = cloneDate(parsedValue);
-      nextDate.setFullYear(year);
-      return nextDate;
+      return setZonedParts(value, { year });
     },
 
     startOf(value, unit) {
