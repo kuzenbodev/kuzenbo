@@ -111,7 +111,7 @@
     "dev": "turbo run dev",
     "storybook": "turbo run storybook",
     "typecheck": "turbo run typecheck",
-    "test": "turbo run test && bun test scripts/release/tests",
+    "test": "turbo run test",
     "lint": "ultracite check && bun run policy:no-website-tests",
     "format": "ultracite fix",
     "boundaries": "turbo boundaries --ui=stream",

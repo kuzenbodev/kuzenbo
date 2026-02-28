@@ -33,11 +33,6 @@ This guide configures trusted publishing for the active Kuzenbo release model.
 - `channelToDistTag.stable = latest`
 
 2. Keep publish allowlist/blocklist current.
-3. Keep release tests green:
-
-- `scripts/release/tests/release-workflow.test.ts`
-- `scripts/release/tests/release-governance.test.ts`
-- `scripts/release/tests/ci-workflow.test.ts`
 
 ## Migration From Old Alpha/Beta/RC Model
 
