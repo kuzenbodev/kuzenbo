@@ -1,16 +1,15 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import { CopyButton } from "@kuzenbo/core/ui/copy-button";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn, tv } from "tailwind-variants";
 
 const codeBlockToolbarVariants = tv({
   slots: {
     end: "flex shrink-0 items-center gap-2",
     language:
-      "inline-flex items-center rounded-md border border-border bg-muted/40 px-2 py-0.5 font-mono text-xs text-muted-foreground",
-    root: "flex items-center justify-between gap-3 border-b border-border bg-background/60 px-3 py-2",
+      "border-border bg-muted/40 text-muted-foreground inline-flex items-center rounded-md border px-2 py-0.5 font-mono text-xs",
+    root: "border-border bg-background/60 flex items-center justify-between gap-3 border-b px-3 py-2",
     start: "flex min-w-0 items-center gap-2",
-    title: "truncate text-xs text-muted-foreground",
+    title: "text-muted-foreground truncate text-xs",
   },
 });
 

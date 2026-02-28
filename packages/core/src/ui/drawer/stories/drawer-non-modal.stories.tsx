@@ -4,7 +4,7 @@ import { Button } from "../../button/button";
 import { Drawer } from "../drawer";
 
 const NonModalDemo = () => (
-  <div className="relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border border-border bg-background p-6">
+  <div className="border-border bg-background relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border p-6">
     <Drawer.Root disablePointerDismissal modal={false} swipeDirection="right">
       <Drawer.Trigger render={<Button variant="outline" size="xl" />}>
         Open non-modal drawer

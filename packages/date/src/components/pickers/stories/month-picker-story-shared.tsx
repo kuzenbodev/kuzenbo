@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
-import type { DatePickerValue } from "../../types";
-
 import { DatesProvider } from "../../dates-provider";
+import type { DatePickerValue } from "../../types";
 import { MonthPicker } from "../month-picker";
 
 export const baseMeta = {

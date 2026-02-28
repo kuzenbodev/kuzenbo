@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 import type { ChartConfig } from "../types/chart-types";
-
 import { getPayloadConfigFromPayload } from "./chart-utils";
 import { asRecord } from "./utils/as-record";
 import { getShapeColor } from "./utils/get-shape-color";

@@ -1,5 +1,4 @@
 import type { DateAdapter } from "../../../adapter";
-
 import { isMonthDisabled } from "./is-month-disabled";
 
 interface MonthControlProps {

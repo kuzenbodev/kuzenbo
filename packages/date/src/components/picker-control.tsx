@@ -1,9 +1,8 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 const pickerControlVariants = tv({
-  base: "relative inline-flex h-9 w-9 cursor-clickable items-center justify-center rounded-md border border-transparent text-sm font-medium text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40",
+  base: "cursor-clickable text-foreground focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-40",
   variants: {
     disabled: {
       true: "",
@@ -14,15 +13,15 @@ const pickerControlVariants = tv({
       false: "",
     },
     inRange: {
-      true: "rounded-none bg-primary/15",
+      true: "bg-primary/15 rounded-none",
       false: "",
     },
     firstInRange: {
-      true: "!rounded-md bg-primary/15",
+      true: "bg-primary/15 !rounded-md",
       false: "",
     },
     lastInRange: {
-      true: "!rounded-md bg-primary/15",
+      true: "bg-primary/15 !rounded-md",
       false: "",
     },
     outside: {

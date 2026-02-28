@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   Add01Icon,
   Cancel01Icon,
   SearchIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "../../button/button";
 import { ButtonGroup } from "../button-group";
@@ -81,7 +80,7 @@ export const SizeMatrix: Story = {
     <div className="flex flex-col gap-3">
       {SIZE_OPTIONS.map((size) => (
         <div className="flex items-center gap-2" key={size}>
-          <span className="w-8 text-xs font-medium text-muted-foreground uppercase">
+          <span className="text-muted-foreground w-8 text-xs font-medium uppercase">
             {size}
           </span>
           <ButtonGroup size={size}>

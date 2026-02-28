@@ -1,10 +1,8 @@
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { Button, type ButtonProps } from "../button/button";
+import type { UISize } from "../shared/size/size-system";
 import { useResolvedPaginationSize } from "./pagination-size-context";
 
 type PaginationLinkProps = {

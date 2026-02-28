@@ -4,7 +4,6 @@ import type {
   ChartSeriesColorRegistry,
   ChartThemeName,
 } from "./constants";
-
 import { getFallbackColor, isSafeColorExpression } from "./constants";
 import { normalizeChartColor } from "./normalize-chart-color";
 import { ensureUniqueSlug, slugifySeriesKey } from "./series-slug";

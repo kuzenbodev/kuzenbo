@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { InputSize } from "../../input/input";
-
 import { InputOTP } from "../input-otp";
 
 const inputOTPSizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];

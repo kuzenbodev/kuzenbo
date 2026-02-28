@@ -5,6 +5,7 @@
     "../../node_modules/ultracite/config/oxlint/react/.oxlintrc.json"
   ],
   "rules": {
-    "eslint-plugin-react/no-danger": "off"
+    "eslint-plugin-react/no-danger": "off",
+    "eslint-plugin-jest/require-hook": "off"
   }
 }

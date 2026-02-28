@@ -1,10 +1,10 @@
-import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import type { UISize } from "../legend/chart-size";
-import type { ChartConfig } from "../types/chart-types";
+import { cleanup, render } from "@testing-library/react";
 
+import type { UISize } from "../legend/chart-size";
 import { ChartProvider } from "../provider/chart-provider";
+import type { ChartConfig } from "../types/chart-types";
 import { ChartTooltipContent } from "./chart-tooltip-content";
 
 afterEach(cleanup);

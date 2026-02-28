@@ -1,8 +1,7 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Toast as BaseToast } from "@base-ui/react/toast";
+import type { ComponentProps } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import {
@@ -17,7 +16,7 @@ export type ToastViewportProps = ComponentProps<typeof BaseToast.Viewport> & {
 };
 
 const toastViewportVariants = tv({
-  base: "fixed top-auto right-4 bottom-4 z-toast-viewport mx-auto flex sm:right-8 sm:bottom-8",
+  base: "z-toast-viewport fixed top-auto right-4 bottom-4 mx-auto flex sm:right-8 sm:bottom-8",
   variants: {
     size: {
       xs: "w-[220px] sm:w-[260px]",

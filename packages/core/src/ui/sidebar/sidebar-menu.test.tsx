@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import { afterEach, describe, expect, it } from "bun:test";
 
 import { cleanup, render } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
+import type { ReactNode } from "react";
 
 import {
   Sidebar,

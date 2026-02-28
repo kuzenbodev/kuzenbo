@@ -1,11 +1,10 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import {
   EmojiPickerSizeContext,
   useEmojiPickerResolvedSize,
@@ -44,9 +43,10 @@ export const EmojiPickerListRow = ({
   ...restProps
 }: EmojiPickerListRowProps) => {
   const resolvedSize = useEmojiPickerResolvedSize(size);
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <EmojiPickerSizeContext.Provider value={{ size: resolvedSize }}>
+    <EmojiPickerSizeContext.Provider value={contextValue}>
       <div
         className={cn(
           emojiPickerListRowVariants({ size: resolvedSize }),

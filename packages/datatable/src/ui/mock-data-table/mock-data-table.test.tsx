@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render, screen } from "@testing-library/react";
 
 import { createMockColumns } from "../../utils/create-mock-columns/create-mock-columns";
 import { MockDataTable } from "./mock-data-table";

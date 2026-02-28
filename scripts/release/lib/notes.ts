@@ -1,9 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import type { ReleaseChannel } from "./types";
-
 import { REPO_ROOT } from "./repo";
+import type { ReleaseChannel } from "./types";
 
 const toIsoDate = (): string => new Date().toISOString().slice(0, 10);
 

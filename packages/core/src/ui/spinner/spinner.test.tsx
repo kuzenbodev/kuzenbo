@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render, screen } from "@testing-library/react";
 
 import { Spinner } from "./spinner";
 
@@ -44,7 +45,7 @@ describe("Spinner", () => {
   it("keeps className override support", () => {
     render(
       <Spinner
-        className="size-10 text-primary"
+        className="text-primary size-10"
         data-testid="spinner-override"
       />
     );

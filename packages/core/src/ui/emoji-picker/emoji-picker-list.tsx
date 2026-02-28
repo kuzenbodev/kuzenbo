@@ -1,12 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { EmojiPickerListCategoryHeader as CategoryHeader } from "./emoji-picker-list-category-header";
 import { EmojiPickerListEmoji as Emoji } from "./emoji-picker-list-emoji";
 import { EmojiPickerListRow as Row } from "./emoji-picker-list-row";
@@ -50,9 +49,10 @@ export const EmojiPickerList = ({
   ...props
 }: EmojiPickerListProps) => {
   const resolvedSize = useEmojiPickerResolvedSize(size);
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <EmojiPickerSizeContext.Provider value={{ size: resolvedSize }}>
+    <EmojiPickerSizeContext.Provider value={contextValue}>
       <BaseEmojiPicker.List
         className={cn(
           emojiPickerListVariants({ size: resolvedSize }),

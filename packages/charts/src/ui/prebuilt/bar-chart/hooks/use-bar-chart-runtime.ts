@@ -1,14 +1,13 @@
-import type {
-  BarChartProps,
-  CompleteChartDatum,
-} from "../../shared/complete-types";
-
 import {
   calculateWaterfallData,
   createYAxisTickFormatter,
   formatPercentValue,
   resolveDefaultBarRadius,
 } from "../../shared/complete-helpers";
+import type {
+  BarChartProps,
+  CompleteChartDatum,
+} from "../../shared/complete-types";
 import { createPercentAxisTickFormatter } from "../utils/create-percent-axis-tick-formatter";
 
 const percentValueFormatter = (

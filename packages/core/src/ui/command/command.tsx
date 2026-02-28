@@ -1,12 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Command as CommandPrimitive } from "cmdk";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { CommandContext } from "./command-context";
 import { CommandDialog } from "./command-dialog";
@@ -23,12 +22,13 @@ export type CommandProps = ComponentProps<typeof CommandPrimitive> & {
 
 const Command = ({ className, size: providedSize, ...props }: CommandProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <CommandContext.Provider value={{ size }}>
+    <CommandContext.Provider value={contextValue}>
       <CommandPrimitive
         className={cn(
-          "flex size-full flex-col overflow-hidden rounded-xl! bg-popover p-1 text-popover-foreground",
+          "bg-popover text-popover-foreground flex size-full flex-col overflow-hidden rounded-xl! p-1",
           className
         )}
         data-size={size}

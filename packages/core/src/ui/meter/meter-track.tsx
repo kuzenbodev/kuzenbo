@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { Meter as BaseMeter } from "@base-ui/react/meter";
+import type { ComponentProps } from "react";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 

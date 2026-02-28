@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { useCallback } from "react";
 import {
   Cell,
@@ -12,15 +11,14 @@ import {
 } from "recharts";
 
 import type { ChartRootProps } from "../../primitives/chart";
+import { CompleteRadialShell } from "../shared/complete-radial-shell";
 import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../shared/complete-types";
 import type { RadialLabelMode } from "../shared/utils/radial/create-radial-label-formatter";
-import type { CompleteTooltipSourceMode } from "../shared/utils/radial/resolve-tooltip-source-shared";
-
-import { CompleteRadialShell } from "../shared/complete-radial-shell";
 import { getRadialSegmentColor } from "../shared/utils/radial/get-radial-segment-color";
+import type { CompleteTooltipSourceMode } from "../shared/utils/radial/resolve-tooltip-source-shared";
 import { useRadialBarChartRuntime } from "./hooks/use-radial-bar-chart-runtime";
 
 type RadialBarChartRootProps = Omit<

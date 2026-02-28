@@ -1,23 +1,22 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 import { useDatesContext } from "../use-dates-context";
 
 const dayVariants = tv({
-  base: "relative inline-flex h-9 w-9 cursor-clickable items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40",
+  base: "cursor-clickable focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-40",
   variants: {
     firstInRange: {
-      true: "!rounded-md bg-primary/15",
+      true: "bg-primary/15 !rounded-md",
       false: "",
     },
     inRange: {
-      true: "rounded-none bg-primary/15",
+      true: "bg-primary/15 rounded-none",
       false: "",
     },
     lastInRange: {
-      true: "!rounded-md bg-primary/15",
+      true: "bg-primary/15 !rounded-md",
       false: "",
     },
     selected: {

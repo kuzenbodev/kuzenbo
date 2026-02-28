@@ -1,11 +1,9 @@
 import type { ComponentProps } from "react";
-
 import { useRef } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import type { DatePickerValue, SelectionMode } from "../types";
-
 import { handleControlKeyDown } from "../../utils";
+import type { DatePickerValue, SelectionMode } from "../types";
 import { useDatesContext } from "../use-dates-context";
 import { MonthDisplayContext, MONTH_DISPLAY_CONTEXT_VALUES } from "./month";
 import { MonthLevel } from "./month-level";

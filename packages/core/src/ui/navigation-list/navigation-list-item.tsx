@@ -1,13 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+import type { ComponentProps } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import {
   type NavigationListTone,
   type NavigationListVariant,

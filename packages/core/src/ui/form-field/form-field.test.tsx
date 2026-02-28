@@ -1,6 +1,7 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import { cleanup, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { Form } from "../form/form";
 import { Input } from "../input/input";

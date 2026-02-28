@@ -1,14 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   Folder01Icon,
   Home01Icon,
   Settings02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import type { InputSize } from "../../input/input";
-
 import { Sidebar } from "../sidebar";
 import { SidebarInset } from "../sidebar-inset";
 import { SidebarProvider } from "../sidebar-provider";
@@ -188,7 +186,7 @@ export const MenuSizes: Story = {
         <Sidebar.Content className="p-3">
           <div className="space-y-4">
             {sizes.map((size) => (
-              <div className="rounded-md border border-border p-2" key={size}>
+              <div className="border-border rounded-md border p-2" key={size}>
                 <Sidebar.Menu size={size}>
                   <Sidebar.MenuItem>
                     <Sidebar.MenuButton>
@@ -212,7 +210,7 @@ export const MenuSizes: Story = {
           </div>
         </Sidebar.Content>
       </Sidebar>
-      <SidebarInset className="p-4 text-sm text-muted-foreground">
+      <SidebarInset className="text-muted-foreground p-4 text-sm">
         Sidebar menu size examples
       </SidebarInset>
     </SidebarProvider>

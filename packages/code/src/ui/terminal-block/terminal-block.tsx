@@ -1,8 +1,7 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 import Anser from "anser";
+import type { CSSProperties } from "react";
 import { useMemo } from "react";
 import { cn, tv } from "tailwind-variants";
 
@@ -24,7 +23,7 @@ export interface TerminalBlockProps {
 }
 
 const terminalBlockVariants = tv({
-  base: "overflow-hidden rounded-lg border border-border bg-background",
+  base: "border-border bg-background overflow-hidden rounded-lg border",
 });
 
 const parseAnsiColor = (value?: string | null): string | undefined => {
@@ -95,9 +94,9 @@ export const TerminalBlock = ({
       className={cn(terminalBlockVariants(), className)}
       data-slot="terminal-block"
     >
-      <header className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-2">
+      <header className="border-border bg-muted/40 flex items-center justify-between border-b px-4 py-2">
         <span
-          className="font-mono text-xs uppercase tracking-wide text-muted-foreground"
+          className="text-muted-foreground font-mono text-xs tracking-wide uppercase"
           data-slot="terminal-title"
         >
           {title}
@@ -105,15 +104,15 @@ export const TerminalBlock = ({
       </header>
 
       <pre
-        className="overflow-x-auto p-3 font-mono text-sm leading-6 text-foreground"
+        className="text-foreground overflow-x-auto p-3 font-mono text-sm leading-6"
         data-slot="terminal-content"
       >
         {command ? (
           <div
-            className="pb-2 text-muted-foreground"
+            className="text-muted-foreground pb-2"
             data-slot="terminal-command-line"
           >
-            <span className="select-none text-foreground">{prompt}</span>{" "}
+            <span className="text-foreground select-none">{prompt}</span>{" "}
             <span data-slot="terminal-command">{command}</span>
           </div>
         ) : null}

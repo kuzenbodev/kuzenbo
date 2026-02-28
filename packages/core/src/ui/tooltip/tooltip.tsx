@@ -1,6 +1,7 @@
 "use client";
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
+import { useMemo } from "react";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import { TooltipArrow } from "./tooltip-arrow";
@@ -18,9 +19,10 @@ export type TooltipProps = TooltipPrimitive.Root.Props & {
 
 const Tooltip = ({ size: providedSize, ...props }: TooltipProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <TooltipSizeContext.Provider value={{ size }}>
+    <TooltipSizeContext.Provider value={contextValue}>
       <TooltipProvider>
         <TooltipPrimitive.Root
           data-size={size}

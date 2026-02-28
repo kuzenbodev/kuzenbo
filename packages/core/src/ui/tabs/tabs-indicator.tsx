@@ -8,7 +8,7 @@ import { useTabsStyleContext } from "./tabs-style-context";
 export type TabsIndicatorProps = TabsPrimitive.Indicator.Props;
 
 const tabsIndicatorVariants = tv({
-  base: "pointer-events-none absolute top-0 left-0 z-behind h-[var(--active-tab-height)] w-[var(--active-tab-width)] translate-x-[var(--active-tab-left)] translate-y-[var(--active-tab-top)] transition-[translate,width,height,opacity] duration-200 ease-in-out",
+  base: "z-behind pointer-events-none absolute top-0 left-0 h-[var(--active-tab-height)] w-[var(--active-tab-width)] translate-x-[var(--active-tab-left)] translate-y-[var(--active-tab-top)] transition-[translate,width,height,opacity] duration-200 ease-in-out",
   variants: {
     variant: {
       default: "bg-muted",

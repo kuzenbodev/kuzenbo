@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { type MouseEvent, useCallback, useState } from "react";
 
 import { EmojiPicker } from "../emoji-picker";
@@ -90,17 +89,17 @@ const RecentlyUsedDemo = ({
 
   return (
     <div className="flex w-[22rem] flex-col gap-3">
-      <div className="rounded-md border border-border bg-muted/30 p-3">
-        <p className="text-xs font-medium text-foreground">
+      <div className="border-border bg-muted/30 rounded-md border p-3">
+        <p className="text-foreground text-xs font-medium">
           Recently used reactions
         </p>
-        <p className="mt-1 text-xs text-muted-foreground">
+        <p className="text-muted-foreground mt-1 text-xs">
           Shared by the release coordination team during incident updates.
         </p>
         <div className="mt-2 flex flex-wrap gap-2">
           {recentEmojis.map((entry) => (
             <button
-              className="rounded-md border border-border bg-background px-2 py-1 text-base leading-none"
+              className="border-border bg-background rounded-md border px-2 py-1 text-base leading-none"
               data-emoji={entry.emoji}
               data-label={entry.label}
               key={entry.emoji}
@@ -122,7 +121,7 @@ const RecentlyUsedDemo = ({
         <EmojiPicker.SkinToneSelector />
       </EmojiPicker>
 
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Last selected: {lastSelectedEmoji?.emoji ?? "None"}{" "}
         {lastSelectedEmoji ? `(${lastSelectedEmoji.label})` : ""}
       </p>

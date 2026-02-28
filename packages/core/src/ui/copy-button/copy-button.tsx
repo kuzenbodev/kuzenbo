@@ -1,16 +1,15 @@
 "use client";
 
-import type { HugeiconsProps } from "@hugeicons/react";
-import type { ComponentProps, ReactNode } from "react";
-
 import {
   Alert01Icon,
   Copy01Icon,
   Loading03Icon,
   Tick02Icon,
 } from "@hugeicons/core-free-icons";
+import type { HugeiconsProps } from "@hugeicons/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useClipboard } from "@kuzenbo/hooks/use-clipboard";
+import type { ComponentProps, ReactNode } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "tailwind-variants";
 
@@ -180,7 +179,7 @@ const CopyButton = ({
     <>
       <Button
         aria-label={resolvedAriaLabel}
-        className={cn("gap-2 cursor-clickable", className)}
+        className={cn("cursor-clickable gap-2", className)}
         data-slot="copy-button"
         data-status={currentStatus}
         disabled={disabled || currentStatus === "copying"}

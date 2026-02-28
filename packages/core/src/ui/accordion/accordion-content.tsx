@@ -9,7 +9,7 @@ import { useAccordionContext } from "./accordion-context";
 export type AccordionContentProps = AccordionPrimitive.Panel.Props;
 
 const accordionContentVariants = tv({
-  base: "overflow-hidden text-sm transition-[height,width] ease-out data-[orientation=vertical]:h-[var(--accordion-panel-height)] data-[orientation=vertical]:data-[ending-style]:h-0 data-[orientation=vertical]:data-[starting-style]:h-0 data-[orientation=horizontal]:w-[var(--accordion-panel-width)] data-[orientation=horizontal]:data-[ending-style]:w-0 data-[orientation=horizontal]:data-[starting-style]:w-0",
+  base: "overflow-hidden text-sm transition-[height,width] ease-out data-[orientation=horizontal]:w-[var(--accordion-panel-width)] data-[orientation=horizontal]:data-[ending-style]:w-0 data-[orientation=vertical]:h-[var(--accordion-panel-height)] data-[orientation=vertical]:data-[ending-style]:h-0 data-[orientation=horizontal]:data-[starting-style]:w-0 data-[orientation=vertical]:data-[starting-style]:h-0",
   variants: {
     size: {
       xs: "",
@@ -31,7 +31,7 @@ const accordionContentVariants = tv({
 });
 
 const accordionContentBodyVariants = tv({
-  base: "min-w-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+  base: "[&_a]:hover:text-foreground min-w-0 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
   compoundVariants: [
     {
       class: "pt-0 pb-2",

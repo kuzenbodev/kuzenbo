@@ -1,6 +1,5 @@
-import type { HeatmapWeekStartsOn, HeatmapWeekdayLabel } from "./types";
-
 import { addDaysUTC } from "./date-helpers";
+import type { HeatmapWeekStartsOn, HeatmapWeekdayLabel } from "./types";
 
 const createHeatmapWeekdayLabels = (
   weekStartsOn: HeatmapWeekStartsOn,

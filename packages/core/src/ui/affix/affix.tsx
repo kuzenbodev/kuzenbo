@@ -1,14 +1,12 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { CSSProperties } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { BasePortalProps } from "../portal/portal";
-
 import { OptionalPortal } from "../portal/optional-portal";
+import type { BasePortalProps } from "../portal/portal";
 
 export interface AffixPosition {
   top?: number | string;

@@ -39,7 +39,7 @@ export const Default: Story = {
       <Dropzone.Idle>
         <div className="grid gap-1 text-center">
           <div className="text-sm font-medium">Upload signed contract</div>
-          <div className="text-xs text-muted-foreground">
+          <div className="text-muted-foreground text-xs">
             PDF or DOCX, up to 10MB.
           </div>
         </div>
@@ -71,7 +71,7 @@ export const MultipleFiles: Story = {
       <Dropzone.Idle>
         <div className="grid gap-1 text-center">
           <div className="text-sm font-medium">Upload forecasting batch</div>
-          <div className="text-xs text-muted-foreground">
+          <div className="text-muted-foreground text-xs">
             Add up to 6 planning sheets for consolidated approval analysis.
           </div>
         </div>
@@ -100,7 +100,7 @@ export const RejectedFiles: Story = {
     <Dropzone className="w-[360px]" variant="filled" {...args}>
       <div className="grid gap-1 text-center">
         <div className="text-sm font-medium">Submission rejected</div>
-        <div className="text-xs text-danger-foreground">
+        <div className="text-danger-foreground text-xs">
           Contract upload must be a PDF or DOCX under 10MB.
         </div>
       </div>

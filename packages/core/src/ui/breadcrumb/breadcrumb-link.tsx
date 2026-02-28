@@ -3,11 +3,10 @@ import { useRender } from "@base-ui/react/use-render";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbLinkVariants = tv({
-  base: "cursor-clickable transition-colors hover:text-foreground",
+  base: "cursor-clickable hover:text-foreground transition-colors",
   variants: {
     size: {
       xs: "text-xs",

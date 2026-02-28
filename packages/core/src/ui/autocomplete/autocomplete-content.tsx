@@ -1,10 +1,8 @@
 import type { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import type { ComponentProps } from "react";
-
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { AutocompleteContext } from "./autocomplete-context";
 import { AutocompleteOverlayContext } from "./autocomplete-overlay-context";
 import { AutocompletePopup } from "./autocomplete-popup";
@@ -27,9 +25,10 @@ export const AutocompleteContent = ({
 }: AutocompleteContentProps) => {
   const { size: rootSize } = useContext(AutocompleteContext);
   const resolvedSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <AutocompleteOverlayContext.Provider value={{ size: resolvedSize }}>
+    <AutocompleteOverlayContext.Provider value={contextValue}>
       <AutocompletePortal>
         <AutocompletePositioner
           className="outline-none"

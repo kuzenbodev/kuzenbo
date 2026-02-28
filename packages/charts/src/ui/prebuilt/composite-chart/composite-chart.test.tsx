@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import {
   cleanup,
   fireEvent,
@@ -5,7 +7,6 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { resolveDefaultBarRadius } from "../shared/complete-helpers";
 import { CompositeChart } from "./composite-chart";

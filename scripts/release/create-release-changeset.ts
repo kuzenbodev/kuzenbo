@@ -1,14 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { getRequiredArg, parseArgs } from "./lib/args";
+import { REPO_ROOT } from "./lib/repo";
 import type {
   ReleaseBump,
   ReleaseChannel,
   WorkspacePackage,
 } from "./lib/types";
-
-import { getRequiredArg, parseArgs } from "./lib/args";
-import { REPO_ROOT } from "./lib/repo";
 import { isReleaseBump, isReleaseChannel } from "./lib/version";
 import { readWorkspacePackages } from "./lib/workspace";
 

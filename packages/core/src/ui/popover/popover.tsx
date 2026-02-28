@@ -1,6 +1,7 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { useMemo } from "react";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import { PopoverArrow } from "./popover-arrow";
@@ -22,9 +23,10 @@ export type PopoverProps = PopoverPrimitive.Root.Props & {
 
 const Popover = ({ size: providedSize, ...props }: PopoverProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <PopoverSizeContext.Provider value={{ size }}>
+    <PopoverSizeContext.Provider value={contextValue}>
       <PopoverPrimitive.Root data-size={size} data-slot="popover" {...props} />
     </PopoverSizeContext.Provider>
   );

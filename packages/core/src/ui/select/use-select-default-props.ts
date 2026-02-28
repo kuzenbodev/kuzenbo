@@ -1,6 +1,5 @@
-import type { SelectProps } from "./select";
-
 import { useComponentDefaultProps } from "../shared/size/size-provider";
+import type { SelectProps } from "./select";
 
 export const useSelectDefaultProps = <
   Value,

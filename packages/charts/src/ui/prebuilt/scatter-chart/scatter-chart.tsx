@@ -9,11 +9,6 @@ import {
   YAxis,
 } from "recharts";
 
-import type {
-  ScatterChartProps,
-  ScatterChartDatum,
-} from "./scatter-chart-types";
-
 import { CompleteCartesianShell } from "../shared/complete-cartesian-shell";
 import {
   getReferenceLineKey,
@@ -26,6 +21,10 @@ import {
 } from "../shared/complete-helpers";
 import { createLabelListContentRenderer } from "../shared/utils/label/create-label-list-content-renderer";
 import { useScatterChartRuntime } from "./hooks/use-scatter-chart-runtime";
+import type {
+  ScatterChartProps,
+  ScatterChartDatum,
+} from "./scatter-chart-types";
 import { createPointLabelFormatter } from "./utils/create-point-label-formatter";
 
 const DIMMED_SCATTER_FILL_OPACITY = 0.2;

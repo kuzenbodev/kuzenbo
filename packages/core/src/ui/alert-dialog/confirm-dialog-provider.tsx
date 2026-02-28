@@ -1,8 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { ConfirmDialogRenderer } from "./confirm-dialog-renderer";
 import {
@@ -42,11 +41,13 @@ export const ConfirmDialogProvider = ({
   const closeAll = useCallback(() => {
     setDialogs([]);
   }, []);
+  const contextValue = useMemo(
+    () => ({ openConfirmDialog, closeDialog, closeAll }),
+    [openConfirmDialog, closeDialog, closeAll]
+  );
 
   return (
-    <ConfirmDialogContext.Provider
-      value={{ openConfirmDialog, closeDialog, closeAll }}
-    >
+    <ConfirmDialogContext.Provider value={contextValue}>
       {children}
       {dialogs.map((dialog) => (
         <ConfirmDialogRenderer

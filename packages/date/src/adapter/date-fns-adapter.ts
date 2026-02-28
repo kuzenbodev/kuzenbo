@@ -389,11 +389,18 @@ export const createDateAdapter = (
   const parseValue = (value: DateInput): Date | null =>
     parseDateInput(value, context);
 
+  const getNow = (): Date =>
+    context.timeZone
+      ? (getContextFunction(context.timeZone)?.(new Date()) ?? new Date())
+      : new Date();
+
+  const getToday = (): Date => startOfDay(getNow(), getOptions());
+
   const getZonedPart = (
     value: DateInput,
     reader: (source: Date, options: DateFnsContextOptions) => number
   ): number => {
-    const parsedValue = parseValue(value) ?? adapter.today();
+    const parsedValue = parseValue(value) ?? getToday();
     return reader(parsedValue, getOptions());
   };
 
@@ -401,7 +408,7 @@ export const createDateAdapter = (
     value: DateInput,
     parts: Parameters<typeof set>[1]
   ): Date => {
-    const parsedValue = parseValue(value) ?? adapter.today();
+    const parsedValue = parseValue(value) ?? getToday();
     const nextDate = set(parsedValue, parts, getOptions());
     return cloneDate(nextDate);
   };
@@ -780,9 +787,7 @@ export const createDateAdapter = (
     },
 
     now() {
-      return context.timeZone
-        ? (getContextFunction(context.timeZone)?.(new Date()) ?? new Date())
-        : new Date();
+      return getNow();
     },
 
     parse(value) {
@@ -929,7 +934,7 @@ export const createDateAdapter = (
     },
 
     today() {
-      return startOfDay(adapter.now(), getOptions());
+      return getToday();
     },
 
     withContext(nextContext) {

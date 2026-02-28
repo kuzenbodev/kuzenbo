@@ -1,6 +1,7 @@
 "use client";
 
 import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
+import { useMemo } from "react";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import { DrawerActions } from "./drawer-actions";
@@ -27,9 +28,10 @@ export type DrawerProps<T = unknown> = DrawerRootProps<T>;
 
 const Drawer = <T,>({ size: providedSize, ...props }: DrawerRootProps<T>) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <DrawerSizeContext.Provider value={{ size }}>
+    <DrawerSizeContext.Provider value={contextValue}>
       <DrawerPrimitive.Root {...props} />
     </DrawerSizeContext.Provider>
   );

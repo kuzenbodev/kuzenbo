@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import { cn } from "tailwind-variants";
 
 import {
@@ -49,13 +48,13 @@ const SliderThumbLabel = ({
       {...props}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute z-floating whitespace-nowrap rounded-sm bg-foreground px-1.5 py-0.5 text-xs text-background shadow-sm transition-opacity group-data-[dragging]/slider:duration-0 motion-reduce:transition-none",
+        "z-floating bg-foreground text-background pointer-events-none absolute rounded-sm px-1.5 py-0.5 text-xs whitespace-nowrap shadow-sm transition-opacity group-data-[dragging]/slider:duration-0 motion-reduce:transition-none",
         orientation === "horizontal"
           ? "-top-[var(--slider-thumb-label-offset,2rem)] left-1/2 -translate-x-1/2"
-          : "left-[var(--slider-thumb-label-offset-vertical,2rem)] top-1/2 -translate-y-1/2",
+          : "top-1/2 left-[var(--slider-thumb-label-offset-vertical,2rem)] -translate-y-1/2",
         labelAlwaysOn
           ? "opacity-100"
-          : "opacity-0 group-data-[dragging]/slider:opacity-100 group-has-[:focus]/thumb:opacity-100",
+          : "opacity-0 group-has-[:focus]/thumb:opacity-100 group-data-[dragging]/slider:opacity-100",
         showLabelOnHover ? "group-hover/slider:opacity-100" : undefined,
         className
       )}

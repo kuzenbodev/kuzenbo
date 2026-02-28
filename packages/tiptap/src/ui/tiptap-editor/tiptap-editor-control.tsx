@@ -1,14 +1,10 @@
 "use client";
 
+import { Toolbar } from "@kuzenbo/core/ui/toolbar";
 import type { Editor } from "@tiptap/core";
 import type { ComponentProps, MouseEvent, ReactNode } from "react";
-
-import { Toolbar } from "@kuzenbo/core/ui/toolbar";
 import { useEffect } from "react";
 import { cn, tv } from "tailwind-variants";
-
-import type { TiptapEditorLabels } from "./tiptap-editor-labels";
-import type { TiptapEditorSize } from "./tiptap-editor-size";
 
 import {
   getEditorExtensionNames,
@@ -16,6 +12,8 @@ import {
   type TiptapControlRequirement,
 } from "../../editor/capabilities";
 import { useTiptapEditorContext } from "./tiptap-editor-context";
+import type { TiptapEditorLabels } from "./tiptap-editor-labels";
+import type { TiptapEditorSize } from "./tiptap-editor-size";
 
 const warnedControlIds = new Set<string>();
 
@@ -31,7 +29,7 @@ const toolbarButtonSizeByEditorSize: Record<
 };
 
 const tiptapEditorControlVariants = tv({
-  base: "kb-tiptap-control cursor-clickable rounded-[min(var(--radius-md),10px)] text-muted-foreground hover:text-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground",
+  base: "kb-tiptap-control cursor-clickable text-muted-foreground hover:text-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground rounded-[min(var(--radius-md),10px)]",
   variants: {
     size: {
       xs: "h-6 min-w-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",

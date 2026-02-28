@@ -1,12 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
-
-import type { InputSize } from "../input/input";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { useComponentSize } from "../shared/size/size-provider";
 import { NumberFieldContext } from "./number-field-context";
 import { NumberFieldDecrement } from "./number-field-decrement";
@@ -27,9 +26,10 @@ const NumberField = ({
   ...props
 }: NumberFieldProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <NumberFieldContext.Provider value={{ size }}>
+    <NumberFieldContext.Provider value={contextValue}>
       <BaseNumberField.Root
         className={mergeBaseUIClassName(
           "flex flex-col items-start gap-1",

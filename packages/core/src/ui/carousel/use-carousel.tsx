@@ -2,7 +2,6 @@
 
 import type useEmblaCarousel from "embla-carousel-react";
 import type { UseEmblaCarouselType } from "embla-carousel-react";
-
 import { createContext, useContext } from "react";
 
 type CarouselApi = UseEmblaCarouselType[1];

@@ -1,12 +1,11 @@
 import type { ComponentProps } from "react";
 import type { RadarChart as RechartsRadarChart } from "recharts";
 
+import { createYAxisTickFormatter } from "../../shared/complete-helpers";
 import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../../shared/complete-types";
-
-import { createYAxisTickFormatter } from "../../shared/complete-helpers";
 import { resolveRadialChartProps } from "../../shared/utils/radial/resolve-radial-chart-props";
 
 type RadarChartRootProps = Omit<

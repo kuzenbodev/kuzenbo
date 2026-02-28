@@ -1,5 +1,6 @@
-import { act, cleanup, render, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { act, cleanup, render, waitFor } from "@testing-library/react";
 
 import { Dropzone } from "./dropzone";
 import { DropzoneFullScreen } from "./dropzone-fullscreen";

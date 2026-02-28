@@ -65,7 +65,7 @@ export const ThemeToggle = () => {
       <Tooltip.Content side="bottom" sideOffset={8}>
         <span className="flex items-center gap-2">
           Toggle Mode
-          <kbd className="rounded border border-border/60 bg-muted/80 px-1.5 py-0.5 font-mono text-[10px] font-medium text-muted-foreground">
+          <kbd className="border-border/60 bg-muted/80 text-muted-foreground rounded border px-1.5 py-0.5 font-mono text-[10px] font-medium">
             D
           </kbd>
         </span>

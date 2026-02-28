@@ -1,14 +1,12 @@
 "use client";
 
 import type { ComponentProps, CSSProperties } from "react";
-import type { FileRejection, FileWithPath } from "react-dropzone";
-
 import { useCallback, useEffect, useState } from "react";
+import type { FileRejection, FileWithPath } from "react-dropzone";
 import { cn, tv } from "tailwind-variants";
 
-import type { DropzoneProps } from "./dropzone";
-
 import { Portal } from "../portal/portal";
+import type { DropzoneProps } from "./dropzone";
 import { Dropzone } from "./dropzone";
 
 export const fullScreenVariants = tv({

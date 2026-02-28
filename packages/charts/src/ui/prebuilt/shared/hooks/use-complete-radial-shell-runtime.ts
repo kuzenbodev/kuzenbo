@@ -1,15 +1,14 @@
 import { useMemo } from "react";
 
 import type { ChartRootProps } from "../../../primitives/chart";
-import type {
-  CompleteChartDatum,
-  CompleteChartSeries,
-} from "../complete-types";
-
 import {
   createSeriesColorRegistry,
   getSeriesColorVarReference,
 } from "../../../primitives/color/chart-color-resolver";
+import type {
+  CompleteChartDatum,
+  CompleteChartSeries,
+} from "../complete-types";
 import { createCompleteChartConfig } from "../utils/config/create-complete-chart-config";
 import { createTooltipValueFormatter } from "../utils/tooltip/create-tooltip-value-formatter";
 

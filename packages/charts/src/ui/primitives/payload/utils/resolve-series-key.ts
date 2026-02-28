@@ -1,5 +1,4 @@
 import type { ChartConfig } from "../../types/chart-types";
-
 import { resolveSeriesKeyCandidate } from "./resolve-series-key-candidate";
 import { toStringValue } from "./to-string-value";
 

@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
 import { Badge } from "../badge/badge";
@@ -18,7 +17,7 @@ export type PillProps = ComponentProps<typeof Badge>;
 const Pill = ({ variant = "default", className, ...props }: PillProps) => (
   <Badge
     className={cn(
-      "rounded-full font-normal data-[size=xs]:gap-1 data-[size=xs]:px-2 data-[size=xs]:py-0.5 data-[size=sm]:gap-1.5 data-[size=sm]:px-2.5 data-[size=sm]:py-1 data-[size=md]:gap-2 data-[size=md]:px-3 data-[size=md]:py-1.5 data-[size=lg]:gap-2.5 data-[size=lg]:px-3.5 data-[size=lg]:py-1.5 data-[size=xl]:gap-3 data-[size=xl]:px-4 data-[size=xl]:py-2",
+      "rounded-full font-normal data-[size=lg]:gap-2.5 data-[size=lg]:px-3.5 data-[size=lg]:py-1.5 data-[size=md]:gap-2 data-[size=md]:px-3 data-[size=md]:py-1.5 data-[size=sm]:gap-1.5 data-[size=sm]:px-2.5 data-[size=sm]:py-1 data-[size=xl]:gap-3 data-[size=xl]:px-4 data-[size=xl]:py-2 data-[size=xs]:gap-1 data-[size=xs]:px-2 data-[size=xs]:py-0.5",
       className
     )}
     variant={variant}

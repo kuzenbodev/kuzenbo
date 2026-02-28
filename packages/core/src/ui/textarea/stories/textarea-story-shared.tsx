@@ -43,7 +43,7 @@ export const WithCharacterCount: Story = {
         maxLength={280}
         placeholder="Document customer impact and mitigation actions."
       />
-      <span className="text-xs text-muted-foreground">
+      <span className="text-muted-foreground text-xs">
         {incidentSummaryValue.length}/280 characters
       </span>
     </div>

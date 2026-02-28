@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useId, useMemo, useState } from "react";
 
 import { Label } from "../../label/label";
@@ -93,7 +92,7 @@ const CartQuantityExample = () => {
           <NumberField.Increment />
         </NumberField.Group>
       </NumberField>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Line total:{" "}
         {lineTotal.toLocaleString("en-US", {
           currency: "USD",
@@ -125,7 +124,7 @@ const BudgetAmountExample = () => {
           <NumberField.Increment />
         </NumberField.Group>
       </NumberField>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Step: $50 (Shift: $500, Meta: $10)
       </p>
     </div>
@@ -151,7 +150,7 @@ const PackSizeSelectorExample = () => {
           <NumberField.Increment />
         </NumberField.Group>
       </NumberField>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Ordered in packs of {PACK_SIZE_STEP} units.
       </p>
     </div>
@@ -171,7 +170,7 @@ const ReadOnlyReviewExample = () => {
           <NumberField.Increment />
         </NumberField.Group>
       </NumberField>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Review mode: value is visible but not editable.
       </p>
     </div>

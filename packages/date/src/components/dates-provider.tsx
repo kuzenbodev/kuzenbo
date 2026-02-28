@@ -6,13 +6,12 @@ import type {
   DatesProviderSettings as CoreDatesProviderSettings,
   DatesProviderValue,
 } from "../context";
-import type { DayOfWeek } from "../types";
-
 import {
   DATES_PROVIDER_DEFAULT_SETTINGS,
   DatesProvider as CoreDatesProvider,
   DatesProviderContext,
 } from "../context";
+import type { DayOfWeek } from "../types";
 
 const normalizeDayOfWeek = (value: number): DayOfWeek => {
   const normalizedValue = value % 7;

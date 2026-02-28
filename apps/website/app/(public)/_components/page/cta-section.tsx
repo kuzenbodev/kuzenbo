@@ -7,15 +7,15 @@ import Link from "next/link";
 
 export const CTASection = () => (
   <section className="relative overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/5" />
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+    <div className="from-primary/5 via-background to-primary/5 absolute inset-0 bg-gradient-to-br" />
+    <div className="from-primary/10 absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] via-transparent to-transparent" />
 
     <Container className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-3xl text-center">
         <Typography.H2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           Ready to build?
         </Typography.H2>
-        <Typography.Lead className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+        <Typography.Lead className="text-muted-foreground mx-auto mt-6 max-w-xl text-lg">
           Start building your design system today with Kuzenbo components. Ship
           faster with confidence.
         </Typography.Lead>
@@ -34,7 +34,7 @@ export const CTASection = () => (
           </Button>
         </div>
 
-        <Typography.Caption className="mt-8 text-muted-foreground">
+        <Typography.Caption className="text-muted-foreground mt-8">
           Open source and free forever.
         </Typography.Caption>
       </div>

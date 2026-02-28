@@ -1,11 +1,10 @@
-import type { ReactNode } from "react";
-
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test";
 
-import type { TiptapEditorPreset } from "../../editor/create-tiptap-extensions-preset";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import type { ReactNode } from "react";
 
 import { TIPTAP_CONTROL_REQUIREMENTS } from "../../editor/capabilities";
+import type { TiptapEditorPreset } from "../../editor/create-tiptap-extensions-preset";
 import { useKuzenboEditor } from "../../editor/use-kuzenbo-editor";
 import { TiptapEditor } from "./tiptap-editor";
 import { createTiptapControl } from "./tiptap-editor-control";

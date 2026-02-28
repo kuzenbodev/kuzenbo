@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { SunIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { ThemeIcon } from "../theme-icon";
 
@@ -54,7 +53,7 @@ export const VariantGallery: Story = {
     <div className="grid grid-cols-3 gap-3">
       {variantOptions.map((variant) => (
         <div
-          className="flex items-center gap-2 rounded-md border border-border bg-card p-2 text-xs"
+          className="border-border bg-card flex items-center gap-2 rounded-md border p-2 text-xs"
           key={variant}
         >
           <ThemeIcon

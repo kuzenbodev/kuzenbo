@@ -1,10 +1,8 @@
-import type { ComponentProps } from "react";
-
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import {
   type NavigationListTone,
   type NavigationListVariant,
@@ -15,7 +13,7 @@ import {
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListSubVariants = tv({
-  base: "mx-2 mt-1 flex min-w-0 list-none flex-col border-l overflow-hidden [&[hidden]:not([hidden='until-found'])]:hidden data-[open=false]:pointer-events-none data-[open=false]:mt-0 data-[open=false]:max-h-0 data-[open=false]:opacity-0 data-[open=false]:py-0 data-[open=false]:border-transparent data-[open=true]:max-h-[48rem] data-[open=true]:opacity-100",
+  base: "mx-2 mt-1 flex min-w-0 list-none flex-col overflow-hidden border-l data-[open=false]:pointer-events-none data-[open=false]:mt-0 data-[open=false]:max-h-0 data-[open=false]:border-transparent data-[open=false]:py-0 data-[open=false]:opacity-0 data-[open=true]:max-h-[48rem] data-[open=true]:opacity-100 [&[hidden]:not([hidden='until-found'])]:hidden",
   variants: {
     size: {
       xs: "gap-0.5 px-1 py-0.5",

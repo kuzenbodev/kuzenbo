@@ -5,19 +5,19 @@ import { Form as BaseForm } from "@base-ui/react/form";
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 
 export type FormRootProps<
-  FormValues extends Record<string, unknown> = Record<string, unknown>,
-> = BaseForm.Props<FormValues>;
+  Values extends Record<string, unknown> = Record<string, unknown>,
+> = BaseForm.Props<Values>;
 
 export type FormProps<
-  FormValues extends Record<string, unknown> = Record<string, unknown>,
-> = FormRootProps<FormValues>;
+  Values extends Record<string, unknown> = Record<string, unknown>,
+> = FormRootProps<Values>;
 
 const FormRoot = <
-  FormValues extends Record<string, unknown> = Record<string, unknown>,
+  Values extends Record<string, unknown> = Record<string, unknown>,
 >({
   className,
   ...props
-}: FormRootProps<FormValues>) => (
+}: FormRootProps<Values>) => (
   <BaseForm
     className={mergeBaseUIClassName<BaseForm.State>(
       "flex w-full flex-col gap-6",

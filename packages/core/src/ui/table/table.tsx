@@ -1,14 +1,13 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
-
-import type { UISize } from "../shared/size/size-system";
 
 import { ScrollBar } from "../scroll-area/scroll-bar";
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { TableBody } from "./table-body";
 import { TableCaption } from "./table-caption";
 import { TableCell } from "./table-cell";
@@ -41,11 +40,12 @@ export type TableProps = ComponentProps<"table"> &
 
 const Table = ({ className, size: providedSize, ...props }: TableProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <TableSizeContext.Provider value={{ size }}>
+    <TableSizeContext.Provider value={contextValue}>
       <ScrollAreaPrimitive.Root
-        className="relative w-full rounded-lg border border-border bg-card"
+        className="border-border bg-card relative w-full rounded-lg border"
         data-size={size}
         data-slot="table-container"
       >

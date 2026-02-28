@@ -6,8 +6,6 @@ import type {
   HeatmapDateLike,
   HeatmapTooltipLabelFormatter,
 } from "../../shared/utils/heatmap";
-import type { HeatmapProps, UseHeatmapRuntimeResult } from "../heatmap-types";
-
 import {
   createHeatmapTooltipLabel,
   createHeatmapWeekdayLabels,
@@ -16,6 +14,7 @@ import {
   normalizeHeatmapDate,
 } from "../../shared/utils/heatmap";
 import { toNumericValue } from "../../shared/utils/number/to-numeric-value";
+import type { HeatmapProps, UseHeatmapRuntimeResult } from "../heatmap-types";
 
 const DEFAULT_COLOR_DOMAIN: readonly [number, number] = [0, 1];
 const DEFAULT_HEATMAP_COLOR_RANGE = [
@@ -214,11 +213,10 @@ const useHeatmapRuntime = <
     let formattedValue = "No data";
 
     if (value !== null) {
-      if (valueFormatter && entry) {
-        formattedValue = valueFormatter(value, entry.datum);
-      } else {
-        formattedValue = numberFormatter.format(value);
-      }
+      formattedValue =
+        valueFormatter && entry
+          ? valueFormatter(value, entry.datum)
+          : numberFormatter.format(value);
     }
 
     const mapped = mapHeatmapValueToColor({

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import type { PackageManager } from "../package-manager-tabs-types";
-
 import { PackageManagerTabs } from "../package-manager-tabs";
+import type { PackageManager } from "../package-manager-tabs-types";
 
 const commandByManager: Record<PackageManager, string> = {
   npm: "npm install @kuzenbo/code @kuzenbo/theme",

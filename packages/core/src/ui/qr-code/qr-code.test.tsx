@@ -1,5 +1,6 @@
-import { cleanup, render, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render, waitFor } from "@testing-library/react";
 
 import { QRCode } from "./qr-code";
 

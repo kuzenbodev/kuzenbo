@@ -1,16 +1,14 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
-
 import { useMemo, useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
+import { TimeGridControl } from "./time-grid-control";
 import type {
   TimeAmPmLabels,
   TimeDisablePredicate,
   TimeFormat,
 } from "./time-picker-types";
-
-import { TimeGridControl } from "./time-grid-control";
 import { isTimeAfter, isTimeBefore } from "./utils/compare-time";
 import {
   DEFAULT_TIME_AM_PM_LABELS,
@@ -19,7 +17,7 @@ import {
 } from "./utils/time-utils";
 
 const timeGridVariants = tv({
-  base: "max-h-48 overflow-auto rounded-md border border-border bg-card p-1",
+  base: "border-border bg-card max-h-48 overflow-auto rounded-md border p-1",
 });
 
 export type TimeGridProps = Omit<

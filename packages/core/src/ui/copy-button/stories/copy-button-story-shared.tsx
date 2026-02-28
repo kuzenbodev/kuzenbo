@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useEffect, useState } from "react";
 
 import { CopyButton, type CopyButtonStatus } from "../copy-button";
@@ -57,7 +56,7 @@ const ControlledStatusStory = ({
       >
         {children}
       </CopyButton>
-      <span className="text-sm text-muted-foreground">
+      <span className="text-muted-foreground text-sm">
         Controlled status: {currentStatus}
       </span>
     </div>

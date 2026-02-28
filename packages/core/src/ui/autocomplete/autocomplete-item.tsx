@@ -1,12 +1,10 @@
-import type { ComponentProps } from "react";
-
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { AutocompleteOverlayContext } from "./autocomplete-overlay-context";
 
 export type AutocompleteItemProps = ComponentProps<
@@ -15,7 +13,7 @@ export type AutocompleteItemProps = ComponentProps<
   VariantProps<typeof autocompleteItemVariants>;
 
 const autocompleteItemVariants = tv({
-  base: "relative flex w-full cursor-clickable items-center rounded-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='text-'])]:text-muted-foreground",
+  base: "cursor-clickable data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full items-center rounded-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     size: {
       xs: "gap-1 px-1.5 py-1 text-xs [&_svg:not([class*='size-'])]:size-3",

@@ -110,19 +110,14 @@ export const useFullscreen = <
   const toggle = useCallback(async () => {
     const target =
       _ref.current ?? (window.document.documentElement as unknown as T);
-    if (getFullscreenElement()) {
-      await exitFullscreen();
-    } else {
-      await enterFullScreen(target);
-    }
+    await (getFullscreenElement() ? exitFullscreen() : enterFullScreen(target));
   }, []);
 
   const ref = useCallback((element: T | null) => {
-    if (element === null) {
-      _ref.current = window.document.documentElement as unknown as T;
-    } else {
-      _ref.current = element;
-    }
+    _ref.current =
+      element === null
+        ? (window.document.documentElement as unknown as T)
+        : element;
   }, []);
 
   useEffect(() => {

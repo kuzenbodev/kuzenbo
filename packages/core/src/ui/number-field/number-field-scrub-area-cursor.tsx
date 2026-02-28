@@ -1,8 +1,7 @@
-import type { ComponentProps } from "react";
-
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
 import { ArrowHorizontalIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 

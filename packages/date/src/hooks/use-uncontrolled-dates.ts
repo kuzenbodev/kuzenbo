@@ -2,13 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { DatePickerValue, DateSelectionMode } from "../types";
-
 import {
   DEFAULT_DATE_ADAPTER,
   type DateAdapter,
   type DateInput,
 } from "../adapter";
+import type { DatePickerValue, DateSelectionMode } from "../types";
 import {
   resolveDateSelectionMode,
   toDateString,

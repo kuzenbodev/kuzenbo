@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, renderHook } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, fireEvent, render, renderHook } from "@testing-library/react";
 
 import { useRadialBarChartRuntime } from "./hooks/use-radial-bar-chart-runtime";
 import { RadialBarChart } from "./radial-bar-chart";

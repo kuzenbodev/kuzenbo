@@ -1,8 +1,7 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 import { Toolbar, type ToolbarProps } from "@kuzenbo/core/ui/toolbar";
+import type { CSSProperties } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import { useTiptapEditorContext } from "./tiptap-editor-context";
@@ -22,7 +21,7 @@ const tiptapEditorToolbarVariants = tv({
       xl: "gap-1.5 p-2",
     },
     sticky: {
-      true: "sticky top-(--kb-tiptap-toolbar-offset) z-elevated",
+      true: "z-elevated sticky top-(--kb-tiptap-toolbar-offset)",
     },
     subtle: {
       true: "bg-transparent p-0 shadow-none outline-none",

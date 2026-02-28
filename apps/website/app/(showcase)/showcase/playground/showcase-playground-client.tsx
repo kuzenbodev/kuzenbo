@@ -60,7 +60,7 @@ export const ShowcasePlaygroundClient = () => {
   }, []);
 
   return (
-    <main className="min-h-screen  ">
+    <main className="min-h-screen">
       <Container className="space-y-8 py-10">
         <Typography.H1>Showcase: Playground</Typography.H1>
         <Typography.Muted>

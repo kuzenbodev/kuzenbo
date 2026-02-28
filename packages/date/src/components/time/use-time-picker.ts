@@ -1,5 +1,4 @@
 import type { ClipboardEvent } from "react";
-
 import { useEffect, useRef, useState } from "react";
 
 import type {
@@ -7,7 +6,6 @@ import type {
   TimeFormat,
   TimePasteSplit,
 } from "./time-picker-types";
-
 import {
   clampTime,
   DEFAULT_TIME_AM_PM_LABELS,

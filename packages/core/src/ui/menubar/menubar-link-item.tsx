@@ -2,10 +2,9 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { dropdownMenuLinkItemVariants } from "../dropdown-menu/dropdown-menu-link-item";
+import type { InputSize } from "../input/input";
 import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 

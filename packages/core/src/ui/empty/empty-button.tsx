@@ -1,10 +1,8 @@
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { Button } from "../button/button";
+import type { UISize } from "../shared/size/size-system";
 import { useResolvedEmptySize } from "./empty-size-context";
 
 // oxlint-disable-next-line no-warning-comments

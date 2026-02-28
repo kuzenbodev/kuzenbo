@@ -1,15 +1,14 @@
 import { tv } from "tailwind-variants";
 
+import { DateControlButton } from "../internal/date-control-button";
 import type { TimeAmPmLabels } from "./time-picker-types";
 
-import { DateControlButton } from "../internal/date-control-button";
-
 const amPmControlsListVariants = tv({
-  base: "rounded-md border border-border bg-card p-1",
+  base: "border-border bg-card rounded-md border p-1",
 });
 
 const amPmControlVariants = tv({
-  base: "h-auto w-full items-center justify-center rounded-sm px-2 py-1 text-xs text-foreground hover:bg-muted",
+  base: "text-foreground hover:bg-muted h-auto w-full items-center justify-center rounded-sm px-2 py-1 text-xs",
   variants: {
     active: {
       true: "bg-primary text-primary-foreground hover:bg-primary/90",

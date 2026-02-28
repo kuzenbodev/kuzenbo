@@ -2,9 +2,8 @@ import type {
   PlaygroundControl,
   PlaygroundStateFromControls,
 } from "../../playground/playground-control-model";
-import type { PlaygroundCodegenMode } from "./playground-codegen-model";
-
 import { createPlaygroundDefaultState } from "../../playground/playground-state-model";
+import type { PlaygroundCodegenMode } from "./playground-codegen-model";
 
 export interface ClearPlaygroundDefaultPropsOptions<
   TControls extends readonly PlaygroundControl[],

@@ -3,10 +3,9 @@
 import { useCallback, useMemo, useState } from "react";
 
 import type { DateAdapter } from "../adapter";
+import { useDatesContext } from "../context";
 import type { DatePickerValue, DateSelectionMode } from "../types";
 import type { DateFormatter } from "../utils";
-
-import { useDatesContext } from "../context";
 import { getFormattedDate, resolveDateSelectionMode } from "../utils";
 import { useUncontrolledDates } from "./use-uncontrolled-dates";
 

@@ -17,13 +17,13 @@ type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   render: () => (
-    <div className="relative rounded-lg border border-border p-4">
-      <div className="text-sm text-muted-foreground">
+    <div className="border-border relative rounded-lg border p-4">
+      <div className="text-muted-foreground text-sm">
         Dashboard card stays in document flow while status notifications are
         portaled to the viewport edge.
       </div>
       <Portal>
-        <div className="fixed right-4 bottom-4 z-overlay rounded-lg border border-border bg-background px-3 py-2 text-sm shadow-lg">
+        <div className="z-overlay border-border bg-background fixed right-4 bottom-4 rounded-lg border px-3 py-2 text-sm shadow-lg">
           Invoice export finished for February usage.
         </div>
       </Portal>
@@ -34,20 +34,20 @@ export const Default: Story = {
 export const CustomContainer: Story = {
   render: () => (
     <div className="grid gap-4">
-      <div className="rounded-lg border border-border p-4 text-sm text-muted-foreground">
+      <div className="border-border text-muted-foreground rounded-lg border p-4 text-sm">
         Teams can portal contextual UI into bounded containers instead of
         `document.body`.
       </div>
       <div
-        className="relative min-h-[9rem] rounded-lg border border-dashed border-border p-4"
+        className="border-border relative min-h-[9rem] rounded-lg border border-dashed p-4"
         id="incident-timeline-container"
       >
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           Incident timeline panel container
         </div>
       </div>
       <Portal target="#incident-timeline-container">
-        <div className="absolute right-4 bottom-4 rounded-md border border-border bg-background px-3 py-2 text-sm shadow-sm">
+        <div className="border-border bg-background absolute right-4 bottom-4 rounded-md border px-3 py-2 text-sm shadow-sm">
           Next status update due in 12 minutes.
         </div>
       </Portal>
@@ -57,7 +57,7 @@ export const CustomContainer: Story = {
 
 export const LayeredWithDialog: Story = {
   render: () => (
-    <div className="relative min-h-[18rem] rounded-lg border border-border p-4">
+    <div className="border-border relative min-h-[18rem] rounded-lg border p-4">
       <Dialog defaultOpen>
         <Dialog.Trigger render={<Button variant="outline" />}>
           Review outage postmortem
@@ -79,7 +79,7 @@ export const LayeredWithDialog: Story = {
         </Dialog.Content>
       </Dialog>
       <Portal>
-        <div className="fixed top-4 left-4 z-overlay rounded-md border border-border bg-background px-3 py-2 text-sm shadow-lg">
+        <div className="z-overlay border-border bg-background fixed top-4 left-4 rounded-md border px-3 py-2 text-sm shadow-lg">
           Incident bridge remains active for region us-east-1.
         </div>
       </Portal>

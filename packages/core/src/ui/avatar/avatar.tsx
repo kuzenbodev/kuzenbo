@@ -2,10 +2,9 @@
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { AvatarBadge } from "./avatar-badge";
 import { AvatarFallback } from "./avatar-fallback";
 import { AvatarGroup } from "./avatar-group";

@@ -1,8 +1,7 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
-
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
+import type { ComponentPropsWithRef } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
@@ -10,7 +9,7 @@ import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { ComboboxContext } from "./combobox-context";
 
 const comboboxChipsVariants = tv({
-  base: "flex flex-wrap items-center border border-input bg-transparent bg-clip-padding transition-colors focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50 has-aria-invalid:border-danger has-aria-invalid:ring-[3px] has-aria-invalid:ring-danger/20 has-data-[slot=combobox-chip]:px-1 dark:bg-input/30 dark:has-aria-invalid:border-danger/50 dark:has-aria-invalid:ring-danger/40",
+  base: "border-input focus-within:border-ring focus-within:ring-ring/50 has-aria-invalid:border-danger has-aria-invalid:ring-danger/20 dark:bg-input/30 dark:has-aria-invalid:border-danger/50 dark:has-aria-invalid:ring-danger/40 flex flex-wrap items-center border bg-transparent bg-clip-padding transition-colors focus-within:ring-[3px] has-aria-invalid:ring-[3px] has-data-[slot=combobox-chip]:px-1",
   variants: {
     size: {
       xs: "min-h-6 gap-1 rounded-[min(var(--radius-md),8px)] px-2 py-0.5 text-xs",

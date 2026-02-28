@@ -1,10 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-
 import { createContext, useMemo } from "react";
-
-import type { DayOfWeek } from "../types";
 
 import {
   createDateAdapter,
@@ -12,6 +9,7 @@ import {
   type DateAdapter,
   type DateAdapterContext,
 } from "../adapter";
+import type { DayOfWeek } from "../types";
 
 export interface DatesProviderValue extends DateAdapterContext {
   adapter: DateAdapter;

@@ -2,7 +2,6 @@
 
 import type { ComponentProps, CSSProperties } from "react";
 import type { TooltipContentProps } from "recharts";
-
 import { cn, tv } from "tailwind-variants";
 
 import { useChart } from "../context/use-chart";
@@ -43,7 +42,7 @@ type ChartTooltipContentProps = Partial<RechartsTooltipContentProps> &
   };
 
 const chartTooltipContentVariants = tv({
-  base: "grid min-w-32 items-start border border-border/50 bg-background shadow-xl",
+  base: "border-border/50 bg-background grid min-w-32 items-start border shadow-xl",
   variants: {
     size: {
       xs: "gap-1 rounded-md px-2 py-1 text-xs",
@@ -75,7 +74,7 @@ const chartTooltipRowsVariants = tv({
 });
 
 const chartTooltipPayloadRowVariants = tv({
-  base: "flex w-full flex-wrap items-stretch [&>svg]:text-muted-foreground",
+  base: "[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch",
   variants: {
     dotIndicator: {
       true: "items-center",
@@ -349,7 +348,7 @@ const ChartTooltipContent = ({
                       )}
                     >
                       {nestLabel ? tooltipLabel : null}
-                      <span className="truncate text-muted-foreground">
+                      <span className="text-muted-foreground truncate">
                         {entry.itemConfig?.label ??
                           item.name ??
                           (item.dataKey === undefined
@@ -358,7 +357,7 @@ const ChartTooltipContent = ({
                       </span>
                     </div>
                     {item.value !== undefined && item.value !== null ? (
-                      <span className="shrink-0 pl-2 text-right font-mono font-medium text-foreground tabular-nums">
+                      <span className="text-foreground shrink-0 pl-2 text-right font-mono font-medium tabular-nums">
                         {formattedValue}
                       </span>
                     ) : null}

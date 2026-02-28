@@ -1,5 +1,4 @@
 import type { DateAdapter } from "../../../adapter";
-
 import { isYearDisabled } from "./is-year-disabled";
 
 interface YearControlProps {

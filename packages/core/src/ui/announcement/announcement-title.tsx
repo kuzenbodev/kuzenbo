@@ -1,5 +1,4 @@
 import type { HTMLAttributes } from "react";
-
 import { cn } from "tailwind-variants";
 
 export type AnnouncementTitleProps = HTMLAttributes<HTMLDivElement>;

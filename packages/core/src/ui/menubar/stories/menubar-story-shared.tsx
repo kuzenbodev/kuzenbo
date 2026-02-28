@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { InputSize } from "../../input/input";
-
 import { Menubar } from "../menubar";
 
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];

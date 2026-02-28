@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
@@ -8,7 +7,7 @@ import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { AutocompleteContext } from "./autocomplete-context";
 
 const autocompleteInputVariants = tv({
-  base: "flex w-full min-w-0 border border-input bg-transparent transition-colors outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-danger/50 dark:bg-input/30",
+  base: "border-input selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/50 dark:bg-input/30 flex w-full min-w-0 border bg-transparent transition-colors outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "h-6 rounded-[min(var(--radius-md),8px)] px-2 py-0.5 text-xs",

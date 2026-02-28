@@ -1,11 +1,11 @@
 import { tv } from "tailwind-variants";
 
 export const completeChartShellVariants = tv({
-  base: "mx-auto w-full max-w-5xl rounded-2xl border border-border bg-background p-4",
+  base: "border-border bg-background mx-auto w-full max-w-5xl rounded-2xl border p-4",
 });
 
 export const completeChartCompactShellVariants = tv({
-  base: "mx-auto w-full max-w-md rounded-2xl border border-border bg-background p-3",
+  base: "border-border bg-background mx-auto w-full max-w-md rounded-2xl border p-3",
 });
 
 const compactNumberFormatter = new Intl.NumberFormat("en-US", {

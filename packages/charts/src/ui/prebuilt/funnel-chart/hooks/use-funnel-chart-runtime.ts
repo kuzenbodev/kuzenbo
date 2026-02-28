@@ -1,12 +1,11 @@
 import type { ComponentProps } from "react";
 import type { FunnelChart as RechartsFunnelChart } from "recharts";
 
+import { resolveCompleteSeriesName } from "../../shared/complete-helpers";
 import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../../shared/complete-types";
-
-import { resolveCompleteSeriesName } from "../../shared/complete-helpers";
 import { createRadialLabelFormatter } from "../../shared/utils/radial/create-radial-label-formatter";
 import { getRadialSegmentColor } from "../../shared/utils/radial/get-radial-segment-color";
 import { getRadialSegmentKey } from "../../shared/utils/radial/get-radial-segment-key";

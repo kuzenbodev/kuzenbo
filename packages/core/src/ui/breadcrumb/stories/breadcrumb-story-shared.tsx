@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { SearchIcon, StarIcon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Breadcrumb, type BreadcrumbProps } from "../breadcrumb";
 

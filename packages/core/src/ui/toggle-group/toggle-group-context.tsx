@@ -1,8 +1,7 @@
 "use client";
 
-import type { VariantProps } from "tailwind-variants";
-
 import { createContext } from "react";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import type { toggleVariants } from "../toggle/toggle";

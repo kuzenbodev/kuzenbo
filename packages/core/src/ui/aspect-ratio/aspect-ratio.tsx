@@ -1,5 +1,4 @@
 import type { ComponentProps, CSSProperties } from "react";
-
 import { cn } from "tailwind-variants";
 export type AspectRatioProps = ComponentProps<"div"> & { ratio: number };
 

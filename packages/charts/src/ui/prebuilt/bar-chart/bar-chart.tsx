@@ -10,11 +10,6 @@ import {
   YAxis,
 } from "recharts";
 
-import type {
-  BarChartProps,
-  CompleteChartDatum,
-} from "../shared/complete-types";
-
 import { CompleteCartesianShell } from "../shared/complete-cartesian-shell";
 import {
   getReferenceLineKey,
@@ -25,6 +20,10 @@ import {
   shouldRenderXAxisTickLine,
   shouldRenderYAxisTickLine,
 } from "../shared/complete-helpers";
+import type {
+  BarChartProps,
+  CompleteChartDatum,
+} from "../shared/complete-types";
 import { createLabelListContentRenderer } from "../shared/utils/label/create-label-list-content-renderer";
 import { useBarChartRuntime } from "./hooks/use-bar-chart-runtime";
 import { buildBarCells } from "./utils/build-bar-cells";

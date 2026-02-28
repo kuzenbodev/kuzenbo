@@ -4,11 +4,10 @@ import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerCloseVariants = tv({
-  base: "inline-flex cursor-clickable items-center justify-center rounded-md text-foreground transition-colors select-none hover:bg-muted focus-visible:outline focus-visible:-outline-offset-1 focus-visible:outline-ring active:bg-muted disabled:pointer-events-none disabled:opacity-50",
+  base: "cursor-clickable text-foreground hover:bg-muted focus-visible:outline-ring active:bg-muted inline-flex items-center justify-center rounded-md transition-colors select-none focus-visible:outline focus-visible:-outline-offset-1 disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "size-6 text-sm",

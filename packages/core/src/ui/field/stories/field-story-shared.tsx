@@ -37,7 +37,7 @@ export const Default: Story = {
       <Field.Validity>
         {(state) =>
           state.validity.valid ? (
-            <span className="text-sm text-success-foreground">
+            <span className="text-success-foreground text-sm">
               Ready for invoice routing.
             </span>
           ) : null

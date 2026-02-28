@@ -1,12 +1,11 @@
 import type { ComponentProps } from "react";
 import type { RadialBarChart as RechartsRadialBarChart } from "recharts";
 
+import { resolveCompleteSeriesName } from "../../shared/complete-helpers";
 import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../../shared/complete-types";
-
-import { resolveCompleteSeriesName } from "../../shared/complete-helpers";
 import {
   createRadialLabelFormatter,
   type RadialLabelMode,

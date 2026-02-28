@@ -12,7 +12,7 @@ type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   render: () => (
-    <ResizablePanelGroup className="h-48 max-w-2xl rounded-md border border-border bg-card">
+    <ResizablePanelGroup className="border-border bg-card h-48 max-w-2xl rounded-md border">
       <ResizablePanelGroup.Panel defaultSize={55}>
         <div className="grid h-full gap-1 p-4 text-sm">
           <div className="font-medium">Approval timeline</div>
@@ -36,7 +36,7 @@ export const Default: Story = {
 
 export const MinMaxConstraints: Story = {
   render: () => (
-    <ResizablePanelGroup className="h-52 max-w-3xl rounded-md border border-border bg-card">
+    <ResizablePanelGroup className="border-border bg-card h-52 max-w-3xl rounded-md border">
       <ResizablePanelGroup.Panel defaultSize={30} maxSize={45} minSize={20}>
         <div className="p-4 text-sm">
           <div className="font-medium">Accounts</div>
@@ -69,7 +69,7 @@ export const MinMaxConstraints: Story = {
 
 export const VerticalPanels: Story = {
   render: () => (
-    <ResizablePanelGroup className="h-72 max-w-xl rounded-md border border-border bg-card">
+    <ResizablePanelGroup className="border-border bg-card h-72 max-w-xl rounded-md border">
       <ResizablePanelGroup.Panel defaultSize={55} minSize={35}>
         <div className="grid h-full gap-1 p-4 text-sm">
           <div className="font-medium">Morning standup notes</div>

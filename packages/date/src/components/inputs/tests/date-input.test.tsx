@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import {
   cleanup,
   fireEvent,
@@ -5,7 +7,6 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 import { useState } from "react";
 
 import { DatesProvider } from "../../dates-provider";
@@ -30,6 +31,16 @@ const toIsoDate = (date: Date | null): string | null => {
 const TEST_DEFAULT_MONTH = new Date(2026, 1, 1);
 
 const getDayLabel = (date: Date) => `day-${toIsoDate(date)}`;
+
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
+
+const renderIsoDate = (value: Date | null): string => toIsoDate(value) ?? "";
 
 describe("DateInput", () => {
   it("opens on focus and click and closes on outside interaction", async () => {
@@ -92,15 +103,14 @@ describe("DateInput", () => {
     const disabledInput = screen.getByPlaceholderText("Disabled input");
     const toggleButtons = screen.getAllByLabelText("Toggle picker");
 
-    const readOnlyToggle = toggleButtons[0];
-    const disabledToggle = toggleButtons[1];
-
-    expect(readOnlyToggle).toBeDefined();
-    expect(disabledToggle).toBeDefined();
-
-    if (!readOnlyToggle || !disabledToggle) {
-      throw new Error("Expected toggle buttons for both date inputs");
-    }
+    const readOnlyToggle = expectDefinedValue(
+      toggleButtons[0],
+      "Expected toggle buttons for both date inputs"
+    );
+    const disabledToggle = expectDefinedValue(
+      toggleButtons[1],
+      "Expected toggle buttons for both date inputs"
+    );
 
     fireEvent.focus(readOnlyInput);
     fireEvent.click(readOnlyInput);
@@ -259,9 +269,7 @@ describe("DateInput", () => {
             value={value}
             onChange={setValue}
           />
-          <output data-testid="controlled-value">
-            {toIsoDate(value) ?? ""}
-          </output>
+          <output data-testid="controlled-value">{renderIsoDate(value)}</output>
         </DatesProvider>
       );
     };

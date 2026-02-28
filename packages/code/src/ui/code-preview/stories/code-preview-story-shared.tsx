@@ -10,9 +10,9 @@ export const baseMeta = {
   args: {
     title: "Button example",
     preview: (
-      <div className="rounded-md border border-border bg-card p-4">
+      <div className="border-border bg-card rounded-md border p-4">
         <button
-          className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-primary px-3 text-sm font-medium text-primary-foreground"
+          className="border-border bg-primary text-primary-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium"
           type="button"
         >
           Click me

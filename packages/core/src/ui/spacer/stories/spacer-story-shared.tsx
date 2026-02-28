@@ -12,7 +12,7 @@ type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   render: () => (
-    <div className="flex w-[420px] items-center rounded-md border border-border bg-card px-3 py-2 text-sm">
+    <div className="border-border bg-card flex w-[420px] items-center rounded-md border px-3 py-2 text-sm">
       <span>Procurement Alerts</span>
       <Spacer />
       <span className="text-muted-foreground">3 unresolved</span>
@@ -22,7 +22,7 @@ export const Default: Story = {
 
 export const InlineStack: Story = {
   render: () => (
-    <div className="flex items-center rounded-md border border-border bg-card px-3 py-2 text-sm">
+    <div className="border-border bg-card flex items-center rounded-md border px-3 py-2 text-sm">
       <span>Requests</span>
       <Spacer size={20} />
       <span>Approvals</span>
@@ -34,7 +34,7 @@ export const InlineStack: Story = {
 
 export const VerticalStack: Story = {
   render: () => (
-    <div className="inline-flex flex-col rounded-md border border-border bg-card p-3 text-sm">
+    <div className="border-border bg-card inline-flex flex-col rounded-md border p-3 text-sm">
       <span>Finance review</span>
       <Spacer orientation="vertical" size={14} />
       <span>Legal review</span>

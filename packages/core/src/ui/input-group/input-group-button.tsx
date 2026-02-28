@@ -1,13 +1,11 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { Button } from "../button/button";
+import type { InputSize } from "../input/input";
 import { InputGroupContext } from "./input-group-context";
 export type InputGroupButtonProps = Omit<
   ComponentProps<typeof Button>,

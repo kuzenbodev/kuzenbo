@@ -1,12 +1,11 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { PaginationContent } from "./pagination-content";
 import { PaginationEllipsis } from "./pagination-ellipsis";
 import { PaginationItem } from "./pagination-item";
@@ -24,9 +23,10 @@ const Pagination = ({
   ...props
 }: PaginationProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <PaginationSizeContext.Provider value={{ size }}>
+    <PaginationSizeContext.Provider value={contextValue}>
       <nav
         aria-label="pagination"
         className={cn("mx-auto flex w-full justify-center", className)}

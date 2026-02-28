@@ -4,12 +4,6 @@ import type {
   DateAdapter as DateAdapterType,
   DateInput as DateAdapterInputType,
 } from "./adapter";
-import type {
-  DateValue as DateValueType,
-  PublicDatePickerValue,
-} from "./types/date-picker-value";
-import type { DateSelectionMode as DateSelectionModeType } from "./types/date-selection-mode";
-
 import {
   useDatesInput as useDatesInputInternal,
   useDatesState as useDatesStateInternal,
@@ -18,6 +12,11 @@ import {
   convertDatesValue as convertDatesValueInternal,
   useUncontrolledDates as useUncontrolledDatesInternal,
 } from "./hooks/use-uncontrolled-dates";
+import type {
+  DateValue as DateValueType,
+  PublicDatePickerValue,
+} from "./types/date-picker-value";
+import type { DateSelectionMode as DateSelectionModeType } from "./types/date-selection-mode";
 import {
   defaultDateFormatter,
   type DateFormatter,

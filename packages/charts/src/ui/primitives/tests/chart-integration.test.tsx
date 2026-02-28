@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import {
   cleanup,
   fireEvent,
@@ -5,7 +7,6 @@ import {
   screen,
   within,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 import { Bar, BarChart, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import { Chart } from "../chart";

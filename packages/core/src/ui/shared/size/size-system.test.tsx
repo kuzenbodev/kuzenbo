@@ -1,7 +1,6 @@
-import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import type { UISize } from "./size-system";
+import { cleanup, render } from "@testing-library/react";
 
 import { Checkbox } from "../../checkbox/checkbox";
 import { Input } from "../../input/input";
@@ -14,6 +13,7 @@ import {
   KuzenboProvider,
   useComponentSize,
 } from "./size-provider";
+import type { UISize } from "./size-system";
 
 afterEach(cleanup);
 
@@ -27,6 +27,7 @@ const setAllowMissingProvider = (allowed: boolean) => {
 
 const { SizeContext: TestSizeContext, useResolvedSize: useResolvedTestSize } =
   createSizeContext("xs");
+const SMALL_TEST_SIZE_CONTEXT_VALUE = { size: "sm" } as const;
 
 interface SizeProbeProps {
   candidate?: UISize;
@@ -82,7 +83,7 @@ describe("Size resolution precedence", () => {
   it("prioritizes explicit size prop candidates over local context and global default", () => {
     render(
       <KuzenboProvider defaultSize="lg">
-        <TestSizeContext.Provider value={{ size: "sm" }}>
+        <TestSizeContext.Provider value={SMALL_TEST_SIZE_CONTEXT_VALUE}>
           <SizeProbe candidate="xl" />
         </TestSizeContext.Provider>
       </KuzenboProvider>
@@ -96,7 +97,7 @@ describe("Size resolution precedence", () => {
   it("uses local size context before global default and fallback", () => {
     render(
       <KuzenboProvider defaultSize="lg">
-        <TestSizeContext.Provider value={{ size: "sm" }}>
+        <TestSizeContext.Provider value={SMALL_TEST_SIZE_CONTEXT_VALUE}>
           <SizeProbe />
         </TestSizeContext.Provider>
       </KuzenboProvider>

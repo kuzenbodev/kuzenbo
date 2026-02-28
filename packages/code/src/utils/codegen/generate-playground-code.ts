@@ -2,13 +2,12 @@ import type {
   PlaygroundControl,
   PlaygroundStateFromControls,
 } from "../../playground/playground-control-model";
+import { clearPlaygroundDefaultProps } from "./clear-playground-default-props";
+import { injectPlaygroundProps } from "./inject-playground-props";
 import type {
   GeneratePlaygroundCodeOptions,
   PlaygroundGeneratedCodeFile,
 } from "./playground-codegen-model";
-
-import { clearPlaygroundDefaultProps } from "./clear-playground-default-props";
-import { injectPlaygroundProps } from "./inject-playground-props";
 
 const DEFAULT_FILE_NAME = "Demo.tsx";
 const DEFAULT_LANGUAGE = "tsx";

@@ -4,7 +4,6 @@ import type {
   CompleteCartesianChartBaseProps,
   CompleteChartDatum,
 } from "../../complete-types";
-
 import { formatNumericValue } from "../format/format-numeric-value";
 import { toNumber } from "../number/to-number";
 import { resolveSeriesKeyForAxisId } from "./resolve-series-key-for-axis-id";

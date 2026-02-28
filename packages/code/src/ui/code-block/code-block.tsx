@@ -1,14 +1,13 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 const codeBlockVariants = tv({
   slots: {
-    root: "overflow-hidden rounded-lg border border-border bg-muted/40 text-foreground",
-    body: "overflow-x-auto [&_pre]:m-0 [&_pre]:min-w-full [&_pre]:border-0 [&_pre]:bg-transparent [&_pre]:p-4 [&_code]:font-mono [&_code]:text-sm [&_span.line.highlighted]:bg-primary/10",
+    root: "border-border bg-muted/40 text-foreground overflow-hidden rounded-lg border",
+    body: "[&_span.line.highlighted]:bg-primary/10 overflow-x-auto [&_code]:font-mono [&_code]:text-sm [&_pre]:m-0 [&_pre]:min-w-full [&_pre]:border-0 [&_pre]:bg-transparent [&_pre]:p-4",
     rawCode: "font-mono text-sm",
     rawPre: "m-0 min-w-full border-0 bg-transparent p-4",
-    toolbar: "border-b border-border",
+    toolbar: "border-border border-b",
   },
 });
 

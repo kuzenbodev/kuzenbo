@@ -4,8 +4,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ReleaseConfig, WorkspacePackage } from "../lib/types";
-
 import {
   buildReleaseChangesetContent,
   buildReleaseChangesetFilename,
@@ -19,6 +17,7 @@ import {
 import { loadReleaseConfig } from "../lib/config";
 import { buildReleaseNotesTemplate } from "../lib/notes";
 import { assertPackedManifestIsPublishSafe } from "../lib/publish-artifacts";
+import type { ReleaseConfig, WorkspacePackage } from "../lib/types";
 import {
   assertBunLockWorkspaceVersionsMatchManifests,
   buildPublishPlan,

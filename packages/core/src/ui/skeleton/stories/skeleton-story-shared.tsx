@@ -16,7 +16,7 @@ export const Default: Story = {
 
 export const CardLayout: Story = {
   render: () => (
-    <div className="grid w-[360px] gap-3 rounded-md border border-border bg-card p-4">
+    <div className="border-border bg-card grid w-[360px] gap-3 rounded-md border p-4">
       <Skeleton className="h-6 w-44" />
       <Skeleton className="h-4 w-64" />
       <Skeleton className="h-24 w-full" />

@@ -1,8 +1,7 @@
-import type { StoryObj } from "@storybook/react";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import { Input } from "@kuzenbo/core/ui/input";
 import { Typography } from "@kuzenbo/core/ui/typography";
+import type { StoryObj } from "@storybook/react";
 
 import { CodeBlock } from "../../code-block/code-block";
 import { Default as DefaultStory, baseMeta } from "./code-preview-story-shared";
@@ -43,7 +42,7 @@ export const OnboardingInstallGuide: Story = {
     title: "Onboarding: install dependencies",
     defaultMode: "split",
     preview: (
-      <div className="space-y-3 rounded-md border border-border bg-card p-4">
+      <div className="border-border bg-card space-y-3 rounded-md border p-4">
         <Typography.Small>Step 1 of 3</Typography.Small>
         <Typography.Muted>
           Install required packages for your app shell.
@@ -65,7 +64,7 @@ export const SearchToolbarPreviewOnly: Story = {
     hideModeControls: true,
     hideCodeModeControls: true,
     preview: (
-      <div className="rounded-md border border-border bg-card p-4">
+      <div className="border-border bg-card rounded-md border p-4">
         <form
           className="flex items-center gap-2"
           onSubmit={(event) => event.preventDefault()}
@@ -86,7 +85,7 @@ export const FullCodeReviewMode: Story = {
     mode: "code",
     defaultCodeMode: "full",
     preview: (
-      <div className="rounded-md border border-border bg-card p-4">
+      <div className="border-border bg-card rounded-md border p-4">
         <Typography.Muted>
           Preview hidden while reviewing implementation details.
         </Typography.Muted>

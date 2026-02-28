@@ -1,13 +1,11 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbListVariants = tv({
-  base: "flex flex-wrap items-center break-words text-muted-foreground",
+  base: "text-muted-foreground flex flex-wrap items-center break-words",
   variants: {
     size: {
       xs: "gap-1 text-xs sm:gap-1.5",

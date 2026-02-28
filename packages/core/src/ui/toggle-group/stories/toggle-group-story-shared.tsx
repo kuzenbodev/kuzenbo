@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useMemo, useState } from "react";
 
 import { ToggleGroup } from "../toggle-group";
@@ -31,7 +30,7 @@ const AlignmentPresetExample = () => {
         <ToggleGroup.Item value="center">Center</ToggleGroup.Item>
         <ToggleGroup.Item value="right">Right</ToggleGroup.Item>
       </ToggleGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Active text alignment: {activeAlignment}.
       </p>
     </div>
@@ -73,7 +72,7 @@ const SingleSelectWorkflowExample = () => {
         <ToggleGroup.Item value="review">Review</ToggleGroup.Item>
         <ToggleGroup.Item value="approved">Approved</ToggleGroup.Item>
       </ToggleGroup>
-      <p className="text-sm text-muted-foreground">{stageDescription}</p>
+      <p className="text-muted-foreground text-sm">{stageDescription}</p>
     </div>
   );
 };
@@ -97,7 +96,7 @@ const MultiSelectDashboardExample = () => {
         <ToggleGroup.Item value="approvals">Approvals</ToggleGroup.Item>
         <ToggleGroup.Item value="forecast">Forecast</ToggleGroup.Item>
       </ToggleGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {selectedCount} widgets enabled for the finance command center.
       </p>
     </div>

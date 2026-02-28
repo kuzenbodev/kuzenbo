@@ -18,7 +18,7 @@ export const ProviderSizePrecedence: Story = {
   render: () => (
     <div className="grid gap-4">
       <div className="grid gap-1">
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           Provider default size (`lg`)
         </span>
         <KuzenboProvider defaultSize="lg">
@@ -27,7 +27,7 @@ export const ProviderSizePrecedence: Story = {
       </div>
 
       <div className="grid gap-1">
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           Component default size (`sm`) overrides provider default (`lg`)
         </span>
         <KuzenboProvider
@@ -39,7 +39,7 @@ export const ProviderSizePrecedence: Story = {
       </div>
 
       <div className="grid gap-1">
-        <span className="text-xs text-muted-foreground">
+        <span className="text-muted-foreground text-xs">
           Explicit prop size (`xl`) overrides component and provider defaults
         </span>
         <KuzenboProvider

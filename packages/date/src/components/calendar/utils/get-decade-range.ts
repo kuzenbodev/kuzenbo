@@ -1,5 +1,4 @@
 import type { DateAdapter } from "../../../adapter";
-
 import { getYearsData } from "./get-years-data";
 
 export const getDecadeRange = (

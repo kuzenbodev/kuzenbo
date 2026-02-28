@@ -2,7 +2,6 @@
 
 import type { Editor } from "@tiptap/core";
 import type { ReactNode } from "react";
-
 import { createContext, useContext } from "react";
 
 import {

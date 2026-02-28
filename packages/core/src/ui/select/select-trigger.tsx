@@ -6,9 +6,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import {
   DEFAULT_ICON_CLASS_BY_SIZE,
   DEFAULT_NESTED_ICON_CLASS_BY_SIZE,
@@ -19,7 +18,7 @@ import { SelectContext } from "./select-context";
 import { SelectIcon } from "./select-icon";
 
 const selectTriggerVariants = tv({
-  base: "flex w-fit cursor-clickable items-center justify-between border border-input bg-transparent whitespace-nowrap transition-colors outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 data-placeholder:text-muted-foreground *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  base: "cursor-clickable border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/20 data-placeholder:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 flex w-fit items-center justify-between border bg-transparent whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     size: {
       xs: [
@@ -89,7 +88,7 @@ const SelectTrigger = ({
         render={
           <HugeiconsIcon
             className={cn(
-              "pointer-events-none text-muted-foreground",
+              "text-muted-foreground pointer-events-none",
               getSelectIconSizeClassName(resolvedSize)
             )}
             icon={UnfoldMoreIcon}

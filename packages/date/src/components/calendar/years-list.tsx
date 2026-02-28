@@ -1,6 +1,5 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, KeyboardEvent, MouseEvent } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 import { PickerControl, type PickerControlProps } from "../picker-control";
@@ -22,7 +21,7 @@ const yearCellVariants = tv({
 });
 
 const yearButtonVariants = tv({
-  base: "w-full border border-border px-2 text-sm font-medium",
+  base: "border-border w-full border px-2 text-sm font-medium",
 });
 
 export type YearsListProps = Omit<

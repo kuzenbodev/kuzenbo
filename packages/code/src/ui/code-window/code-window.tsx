@@ -1,8 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { Card } from "@kuzenbo/core/ui/card";
+import type { ReactNode } from "react";
 import { cn } from "tailwind-variants";
 
 export interface CodeWindowProps {
@@ -35,7 +34,7 @@ export const CodeWindow = ({
       {renderHeader ? (
         <Card.Header
           className={cn(
-            "flex min-h-11 items-center justify-between gap-2 border-b border-border bg-muted/40 px-4 py-2",
+            "border-border bg-muted/40 flex min-h-11 items-center justify-between gap-2 border-b px-4 py-2",
             headerClassName
           )}
           data-slot="code-window-header"
@@ -46,13 +45,13 @@ export const CodeWindow = ({
                 className="inline-flex items-center gap-1.5"
                 data-slot="code-window-traffic-lights"
               >
-                <span className="size-2.5 rounded-full bg-danger/80" />
-                <span className="size-2.5 rounded-full bg-warning/80" />
-                <span className="size-2.5 rounded-full bg-success/80" />
+                <span className="bg-danger/80 size-2.5 rounded-full" />
+                <span className="bg-warning/80 size-2.5 rounded-full" />
+                <span className="bg-success/80 size-2.5 rounded-full" />
               </div>
             ) : null}
             {title ? (
-              <div className="truncate text-sm font-medium text-foreground">
+              <div className="text-foreground truncate text-sm font-medium">
                 {title}
               </div>
             ) : null}

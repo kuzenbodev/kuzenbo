@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import TextareaAutosize from "react-textarea-autosize";
 import { tv, type VariantProps } from "tailwind-variants";
 
@@ -9,7 +8,7 @@ import { useComponentSize } from "../shared/size/size-provider";
 import { useTextareaDefaultProps } from "./use-textarea-default-props";
 
 const textareaVariants = tv({
-  base: "flex field-sizing-content w-full border border-input bg-transparent shadow-xs transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
+  base: "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 disabled:bg-input/50 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 flex field-sizing-content w-full border bg-transparent shadow-xs transition-colors outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px]",
   variants: {
     size: {
       xs: "min-h-12 rounded-[min(var(--radius-md),8px)] px-2 py-1 text-xs",

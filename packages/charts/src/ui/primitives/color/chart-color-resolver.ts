@@ -3,12 +3,11 @@ import type {
   ChartSeriesColorRegistry,
   ChartThemeName,
 } from "./utils/constants";
-import type { ResolveSeriesColorExpressionOptions } from "./utils/resolve-series-color-expression";
-
 import { createSeriesColorRegistry } from "./utils/create-series-color-registry";
 import { getChartThemeFromDom } from "./utils/get-chart-theme-from-dom";
 import { getStyleDeclarationsForTheme } from "./utils/get-style-declarations-for-theme";
 import { normalizeChartColor } from "./utils/normalize-chart-color";
+import type { ResolveSeriesColorExpressionOptions } from "./utils/resolve-series-color-expression";
 import { resolveSeriesColorExpression as resolveSeriesColorExpressionFromRegistry } from "./utils/resolve-series-color-expression";
 import { slugifySeriesKey } from "./utils/series-slug";
 

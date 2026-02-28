@@ -1,12 +1,10 @@
 "use client";
 
 import type { ComponentProps, CSSProperties } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { Skeleton } from "../skeleton/skeleton";
 import { SidebarMenuContext } from "./sidebar-menu-context";
 

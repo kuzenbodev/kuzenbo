@@ -1,7 +1,8 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 /* eslint-disable func-style */
 import { act, cleanup, render, screen } from "@testing-library/react";
 import createUserEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { Autocomplete, useFilteredItems } from "./autocomplete";
 

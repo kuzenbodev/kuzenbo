@@ -22,14 +22,14 @@ export const Default: Story = {
     <div className="flex w-full flex-col gap-4">
       <div className="space-y-1">
         <p className="text-sm font-medium">Billing summary</p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           24 active seats across 3 product teams
         </p>
       </div>
       <Separator {...args} />
       <div className="space-y-1">
         <p className="text-sm font-medium">Next invoice</p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           July 1, 2026 at 09:00 UTC
         </p>
       </div>

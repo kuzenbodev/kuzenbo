@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
+import type { ComponentProps } from "react";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 

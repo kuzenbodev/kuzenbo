@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render, screen } from "@testing-library/react";
 
 import { InlineCodeHighlight } from "./inline-code-highlight";
 

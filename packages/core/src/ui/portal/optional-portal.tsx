@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 
 import type { BasePortalProps } from "./portal";
-
 import { Portal } from "./portal";
 
 export type OptionalPortalProps = BasePortalProps & {

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { Button } from "../../button/button";
@@ -7,7 +6,7 @@ import { Drawer } from "../drawer";
 
 const ghostButton = (
   <Button
-    className="rounded px-1.5 py-0.5 font-medium text-primary-foreground hover:bg-primary/10"
+    className="text-primary-foreground hover:bg-primary/10 rounded px-1.5 py-0.5 font-medium"
     variant="ghost"
   />
 );
@@ -31,13 +30,13 @@ const NestedDrawersDemo = () => {
   }, []);
 
   return (
-    <div className="relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border border-border bg-background p-6">
+    <div className="border-border bg-background relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border p-6">
       <Drawer.Root onOpenChange={handleFirstOpenChange} open={firstOpen}>
         <Drawer.Trigger render={<Button variant="outline" size="xl" />}>
           Open drawer stack
         </Drawer.Trigger>
         <Drawer.Portal>
-          <Drawer.Backdrop className="[--backdrop-opacity:0.2] [--bleed:3rem] fixed inset-0 min-h-dvh bg-foreground opacity-[calc(var(--backdrop-opacity)*(1-var(--drawer-swipe-progress)))] transition-opacity duration-[450ms] ease-[cubic-bezier(0.32,0.72,0,1)] data-[swiping]:duration-0 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] supports-[-webkit-touch-callout:none]:absolute dark:[--backdrop-opacity:0.7]" />
+          <Drawer.Backdrop className="bg-foreground fixed inset-0 min-h-dvh opacity-[calc(var(--backdrop-opacity)*(1-var(--drawer-swipe-progress)))] transition-opacity duration-[450ms] ease-[cubic-bezier(0.32,0.72,0,1)] [--backdrop-opacity:0.2] [--bleed:3rem] data-[ending-style]:opacity-0 data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:opacity-0 data-[swiping]:duration-0 supports-[-webkit-touch-callout:none]:absolute dark:[--backdrop-opacity:0.7]" />
           <Drawer.Viewport className="fixed inset-0 flex items-end justify-center">
             <Drawer.Popup className="group/popup shadow-[0_2px_10px_rgb(0_0_0/0.1)] data-[ending-style]:shadow-[0_2px_10px_rgb(0_0_0/0)]">
               <Drawer.Handle className="transition-opacity duration-[200ms] group-data-[nested-drawer-open]/popup:opacity-0 group-data-[nested-drawer-swiping]/popup:opacity-100" />
@@ -68,7 +67,7 @@ const NestedDrawersDemo = () => {
                               <Drawer.Description className="mb-6 text-center">
                                 Review sign-in activity and preferences.
                               </Drawer.Description>
-                              <ul className="mb-6 list-disc pl-5 text-muted-foreground">
+                              <ul className="text-muted-foreground mb-6 list-disc pl-5">
                                 <li>Passkeys enabled</li>
                                 <li>2FA enabled</li>
                                 <li>3 signed-in devices</li>
@@ -95,26 +94,26 @@ const NestedDrawersDemo = () => {
                                             </Drawer.Description>
                                             <div className="mb-4 grid gap-1.5">
                                               <label
-                                                className="text-sm font-medium text-muted-foreground"
+                                                className="text-muted-foreground text-sm font-medium"
                                                 htmlFor="device-name-story"
                                               >
                                                 Device name
                                               </label>
                                               <input
-                                                className="w-full rounded-md border border-border bg-background px-2.5 py-2 text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-ring"
+                                                className="border-border bg-background text-foreground focus-visible:outline-ring w-full rounded-md border px-2.5 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1"
                                                 defaultValue="Personal laptop"
                                                 id="device-name-story"
                                               />
                                             </div>
                                             <div className="mb-6 grid gap-1.5">
                                               <label
-                                                className="text-sm font-medium text-muted-foreground"
+                                                className="text-muted-foreground text-sm font-medium"
                                                 htmlFor="notes-story"
                                               >
                                                 Notes
                                               </label>
                                               <textarea
-                                                className="w-full rounded-md border border-border bg-background px-2.5 py-2 text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-ring"
+                                                className="border-border bg-background text-foreground focus-visible:outline-ring w-full rounded-md border px-2.5 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1"
                                                 defaultValue="Rotate recovery codes and revoke older sessions."
                                                 id="notes-story"
                                                 rows={3}

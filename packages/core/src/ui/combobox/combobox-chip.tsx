@@ -9,7 +9,7 @@ import { ComboboxChipRemove } from "./combobox-chip-remove";
 import { ComboboxContext } from "./combobox-context";
 
 const comboboxChipVariants = tv({
-  base: "flex w-fit items-center justify-center gap-1 rounded-sm bg-muted font-medium whitespace-nowrap text-foreground has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-data-[slot=combobox-chip-remove]:pr-0",
+  base: "bg-muted text-foreground flex w-fit items-center justify-center gap-1 rounded-sm font-medium whitespace-nowrap has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-data-[slot=combobox-chip-remove]:pr-0",
   variants: {
     size: {
       xs: "h-5 px-1 text-[11px]",

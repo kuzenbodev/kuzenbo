@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback } from "react";
 
 import { useAiSession } from "../use-ai-session";
@@ -18,11 +17,11 @@ const Demo = () => {
   }, [session]);
 
   return (
-    <div className="space-y-2 rounded-lg border border-border bg-card p-4 text-sm text-card-foreground">
+    <div className="border-border bg-card text-card-foreground space-y-2 rounded-lg border p-4 text-sm">
       <div>Active: {String(session.active)}</div>
       <div>Messages: {session.messages}</div>
       <button
-        className="rounded-md border border-border px-3 py-1"
+        className="border-border rounded-md border px-3 py-1"
         onClick={handleStart}
         type="button"
       >

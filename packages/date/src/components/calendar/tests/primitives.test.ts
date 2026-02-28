@@ -15,6 +15,17 @@ import { isBeforeMaxDate } from "../utils/is-before-max-date";
 import { isMonthDisabled } from "../utils/is-month-disabled";
 import { isYearDisabled } from "../utils/is-year-disabled";
 
+const expectDateValue = (
+  value: Date | null | undefined,
+  message: string
+): Date => {
+  expect(value).toBeInstanceOf(Date);
+  if (!(value instanceof Date)) {
+    throw new Error(message);
+  }
+  return value;
+};
+
 describe("calendar primitives", () => {
   const adapter = createDateAdapter();
 
@@ -35,18 +46,17 @@ describe("calendar primitives", () => {
       new Date(2026, 0, 1),
       adapter
     );
-    const firstMonth = months[0]?.[0];
-    const lastMonth = months[3]?.[2];
+    const firstMonth = expectDateValue(
+      months[0]?.[0],
+      "Expected full month matrix data"
+    );
+    const lastMonth = expectDateValue(
+      months[3]?.[2],
+      "Expected full month matrix data"
+    );
 
     expect(months).toHaveLength(4);
     expect(months[0]).toHaveLength(3);
-    expect(firstMonth).toBeDefined();
-    expect(lastMonth).toBeDefined();
-
-    if (!firstMonth || !lastMonth) {
-      throw new Error("Expected full month matrix data");
-    }
-
     expect(adapter.getMonth(firstMonth)).toBe(0);
     expect(adapter.getMonth(lastMonth)).toBe(11);
 
@@ -149,8 +159,21 @@ describe("calendar primitives", () => {
       month: new Date(2026, 1, 1),
     });
 
-    expect(monthInTabOrder && adapter.getMonth(monthInTabOrder)).toBe(2);
-    expect(yearInTabOrder && adapter.getYear(yearInTabOrder)).toBe(2024);
-    expect(dayInTabOrder && adapter.getDate(dayInTabOrder)).toBe(2);
+    const resolvedMonthInTabOrder = expectDateValue(
+      monthInTabOrder,
+      "Expected selected month in tab order"
+    );
+    const resolvedYearInTabOrder = expectDateValue(
+      yearInTabOrder,
+      "Expected selected year in tab order"
+    );
+    const resolvedDayInTabOrder = expectDateValue(
+      dayInTabOrder,
+      "Expected selected day in tab order"
+    );
+
+    expect(adapter.getMonth(resolvedMonthInTabOrder)).toBe(2);
+    expect(adapter.getYear(resolvedYearInTabOrder)).toBe(2024);
+    expect(adapter.getDate(resolvedDayInTabOrder)).toBe(2);
   });
 });

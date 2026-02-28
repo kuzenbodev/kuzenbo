@@ -7,7 +7,7 @@ export const FooterBrand = () => (
       Composable React primitives and polished components for building design
       systems without losing flexibility.
     </Typography.Muted>
-    <Typography.Small className="text-sm text-muted-foreground">
+    <Typography.Small className="text-muted-foreground text-sm">
       Jump into docs, browse examples, and ship consistent interfaces faster.
     </Typography.Small>
   </div>

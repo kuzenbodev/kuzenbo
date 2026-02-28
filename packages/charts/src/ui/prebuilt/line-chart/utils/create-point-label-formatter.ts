@@ -2,7 +2,6 @@ import type {
   CompleteChartDatum,
   LineChartProps,
 } from "../../shared/complete-types";
-
 import { toRenderableLabelValue } from "./to-renderable-label-value";
 
 const createPointLabelFormatter =

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useState } from "react";
 
 import { CodeBlock } from "../../code-block/code-block";
@@ -224,7 +223,7 @@ export const ApiRouteAudit: Story = {
           }
           language="json"
           toolbar={
-            <div className="px-3 py-2 text-xs text-muted-foreground">
+            <div className="text-muted-foreground px-3 py-2 text-xs">
               Selected node payload
             </div>
           }

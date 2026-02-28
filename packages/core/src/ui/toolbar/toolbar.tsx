@@ -1,6 +1,7 @@
 "use client";
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
+import { useMemo } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
@@ -13,7 +14,7 @@ import { ToolbarSeparator } from "./toolbar-separator";
 import { ToolbarSizeContext, type ToolbarSize } from "./toolbar-size-context";
 
 const toolbarVariants = tv({
-  base: "flex items-center rounded-lg bg-popover shadow-xs outline outline-border",
+  base: "bg-popover outline-border flex items-center rounded-lg shadow-xs outline",
   variants: {
     size: {
       xs: "gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
@@ -35,9 +36,10 @@ export type ToolbarProps = ToolbarPrimitive.Root.Props &
 
 const Toolbar = ({ className, size: providedSize, ...props }: ToolbarProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <ToolbarSizeContext.Provider value={{ size }}>
+    <ToolbarSizeContext.Provider value={contextValue}>
       <ToolbarPrimitive.Root
         className={mergeBaseUIClassName<ToolbarPrimitive.Root.State>(
           toolbarVariants({ size }),

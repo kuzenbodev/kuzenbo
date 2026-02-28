@@ -1,8 +1,7 @@
 "use client";
 
-import type { ComponentProps, CSSProperties } from "react";
-
 import { useIsMobile } from "@kuzenbo/hooks/use-mobile";
+import type { ComponentProps, CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "tailwind-variants";
 
@@ -96,7 +95,7 @@ const SidebarProvider = ({
     <SidebarContext.Provider value={contextValue}>
       <div
         className={cn(
-          "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
+          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
           className
         )}
         data-slot="sidebar-wrapper"

@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
+import type { ComponentProps } from "react";
 
 export type EmojiPickerActiveEmojiProps = ComponentProps<
   typeof BaseEmojiPicker.ActiveEmoji

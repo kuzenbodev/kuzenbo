@@ -2,12 +2,11 @@
 
 import type { ReactNode } from "react";
 
+import { Chart } from "../../primitives/chart";
 import type {
   CompleteCartesianChartBaseProps,
   CompleteChartDatum,
 } from "./complete-types";
-
-import { Chart } from "../../primitives/chart";
 import { useCompleteLegendHighlightState } from "./hooks/use-complete-legend-highlight-state";
 import { useCompleteShellRuntime } from "./hooks/use-complete-shell-runtime";
 import { createSeriesHighlightScopeKey } from "./utils/series/create-series-highlight-scope-key";

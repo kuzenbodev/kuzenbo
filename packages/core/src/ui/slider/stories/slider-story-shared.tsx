@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   type ComponentProps,
   type FormEvent,
@@ -155,19 +154,19 @@ export const SingleTooltipModes: SingleStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">Tooltip on hover</p>
+        <p className="text-muted-foreground text-sm">Tooltip on hover</p>
         <ControlledSingleSlider
           args={{ ...args, labelAlwaysOn: false, showLabelOnHover: true }}
         />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">Tooltip always visible</p>
+        <p className="text-muted-foreground text-sm">Tooltip always visible</p>
         <ControlledSingleSlider
           args={{ ...args, labelAlwaysOn: true, showLabelOnHover: false }}
         />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">Tooltip hidden</p>
+        <p className="text-muted-foreground text-sm">Tooltip hidden</p>
         <ControlledSingleSlider
           args={{
             ...args,
@@ -232,13 +231,13 @@ export const SingleLabelTransitionProps: SingleStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Default thumb label transition
         </p>
         <ControlledSingleSlider args={args} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Custom transition via labelTransitionProps
         </p>
         <ControlledSingleSlider
@@ -290,12 +289,12 @@ const SingleHiddenInputPropsDemo = () => {
         )}
       />
       <button
-        className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-background px-3 text-xs text-foreground transition-colors hover:bg-muted"
+        className="border-border bg-background text-foreground hover:bg-muted inline-flex h-8 items-center justify-center rounded-md border px-3 text-xs transition-colors"
         type="submit"
       >
         Read form data
       </button>
-      <pre className="rounded-md border border-border bg-muted p-2 text-xs text-muted-foreground">
+      <pre className="border-border bg-muted text-muted-foreground rounded-md border p-2 text-xs">
         {submittedEntries?.length
           ? submittedEntries.join("\n")
           : singleInputPreviewHelpText}
@@ -318,11 +317,11 @@ export const SingleColorSizeRadius: SingleStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">Default tokens</p>
+        <p className="text-muted-foreground text-sm">Default tokens</p>
         <ControlledSingleSlider args={args} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           color/size/radius overrides
         </p>
         <ControlledSingleSlider
@@ -351,13 +350,13 @@ export const SingleEndpointAlignment: SingleStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Minimum endpoint alignment
         </p>
         <ControlledSingleSlider args={{ ...args, value: 0 }} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Maximum endpoint alignment
         </p>
         <ControlledSingleSlider args={{ ...args, value: 100 }} />

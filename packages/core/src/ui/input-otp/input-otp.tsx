@@ -1,12 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { OTPInput } from "input-otp";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { InputOTPContext } from "./input-otp-context";
 import { InputOTPGroup } from "./input-otp-group";
@@ -30,9 +29,10 @@ const InputOTP = ({
   ...props
 }: InputOTPProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <InputOTPContext.Provider value={{ size }}>
+    <InputOTPContext.Provider value={contextValue}>
       <OTPInput
         className={cn("disabled:cursor-not-allowed", className)}
         containerClassName={cn(

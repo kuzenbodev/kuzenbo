@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useEffect, useState } from "react";
 
 import { type CarouselApi, Carousel } from "../carousel";
@@ -65,12 +64,12 @@ export const Default: Story = {
       <Carousel.Content>
         {releaseSlides.map((slide) => (
           <Carousel.Item className="basis-full" key={slide.id}>
-            <div className="grid gap-3 rounded-lg border border-border bg-card p-4">
+            <div className="border-border bg-card grid gap-3 rounded-lg border p-4">
               <div className="text-sm font-medium">{slide.title}</div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground text-sm">
                 {slide.detail}
               </div>
-              <div className="text-xs font-medium text-primary">
+              <div className="text-primary text-xs font-medium">
                 {slide.metric}
               </div>
             </div>
@@ -105,8 +104,8 @@ const AutoplayCarousel = () => {
       <Carousel.Content>
         {roadmapSlides.map((slide) => (
           <Carousel.Item className="basis-full" key={slide.id}>
-            <div className="grid gap-3 rounded-lg border border-border bg-card p-4">
-              <div className="text-xs font-medium text-muted-foreground uppercase">
+            <div className="border-border bg-card grid gap-3 rounded-lg border p-4">
+              <div className="text-muted-foreground text-xs font-medium uppercase">
                 {slide.label}
               </div>
               <div className="text-sm">{slide.summary}</div>
@@ -153,9 +152,9 @@ const ThumbnailNavigationCarousel = () => {
         <Carousel.Content>
           {releaseSlides.map((slide) => (
             <Carousel.Item className="basis-full" key={slide.id}>
-              <div className="grid gap-2 rounded-lg border border-border bg-card p-4">
+              <div className="border-border bg-card grid gap-2 rounded-lg border p-4">
                 <div className="text-sm font-medium">{slide.title}</div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-sm">
                   {slide.detail}
                 </div>
               </div>
@@ -169,7 +168,7 @@ const ThumbnailNavigationCarousel = () => {
       <div className="grid grid-cols-3 gap-2">
         {releaseSlides.map((slide, index) => (
           <div
-            className="rounded-md border border-border bg-background px-2 py-1 text-left text-xs font-medium transition-colors hover:bg-muted data-[active=true]:border-primary data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+            className="border-border bg-background hover:bg-muted data-[active=true]:border-primary data-[active=true]:bg-primary data-[active=true]:text-primary-foreground rounded-md border px-2 py-1 text-left text-xs font-medium transition-colors"
             data-active={activeIndex === index}
             key={slide.id}
           >

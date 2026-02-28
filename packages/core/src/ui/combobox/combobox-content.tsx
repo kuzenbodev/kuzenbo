@@ -1,11 +1,9 @@
 "use client";
 
 import type { Combobox as ComboboxPrimitive } from "@base-ui/react";
-
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { ComboboxContext } from "./combobox-context";
 import { ComboboxOverlayContext } from "./combobox-overlay-context";
 import { ComboboxPopup } from "./combobox-popup";
@@ -32,9 +30,10 @@ const ComboboxContent = ({
 }: ComboboxContentProps) => {
   const { size: rootSize } = useContext(ComboboxContext);
   const resolvedSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <ComboboxOverlayContext.Provider value={{ size: resolvedSize }}>
+    <ComboboxOverlayContext.Provider value={contextValue}>
       <ComboboxPortal>
         <ComboboxPositioner
           align={align}

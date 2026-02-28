@@ -1,22 +1,20 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Command as CommandPrimitive } from "cmdk";
-import { useContext } from "react";
+import type { ComponentProps } from "react";
+import { useContext, useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { CommandContext, CommandItemContext } from "./command-context";
 
 const commandItemVariants = tv({
   slots: {
     indicator:
-      "ml-auto opacity-0 group-has-[[data-slot=command-shortcut]]/command-item:hidden group-data-[checked=true]/command-item:opacity-100 data-[selected=true]:*:[svg]:text-foreground",
-    root: "group/command-item relative flex cursor-clickable items-center rounded-sm outline-hidden select-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [[data-slot=dialog-content]_&]:rounded-lg!",
+      "data-[selected=true]:*:[svg]:text-foreground ml-auto opacity-0 group-has-[[data-slot=command-shortcut]]/command-item:hidden group-data-[checked=true]/command-item:opacity-100",
+    root: "group/command-item cursor-clickable data-[selected=true]:bg-muted data-[selected=true]:text-foreground relative flex items-center rounded-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [[data-slot=dialog-content]_&]:rounded-lg!",
   },
   variants: {
     size: {
@@ -58,6 +56,7 @@ const CommandItem = ({
 }: CommandItemProps) => {
   const { size: rootSize } = useContext(CommandContext);
   const resolvedSize: InputSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
   const { indicator, root } = commandItemVariants({ size: resolvedSize });
 
   return (
@@ -67,7 +66,7 @@ const CommandItem = ({
       data-slot="command-item"
       {...props}
     >
-      <CommandItemContext.Provider value={{ size: resolvedSize }}>
+      <CommandItemContext.Provider value={contextValue}>
         {children}
       </CommandItemContext.Provider>
       <HugeiconsIcon

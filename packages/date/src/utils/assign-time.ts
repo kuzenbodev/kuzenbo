@@ -1,7 +1,6 @@
 import type { DateAdapter, DateInput } from "../adapter";
-import type { DateTimeStringValue } from "../types";
-
 import { DEFAULT_DATE_ADAPTER } from "../adapter";
+import type { DateTimeStringValue } from "../types";
 
 export const assignTime = (
   dateValue: DateInput,

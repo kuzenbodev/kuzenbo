@@ -1,7 +1,6 @@
 "use client";
 
 import type { MarqueeProps as FastMarqueeProps } from "react-fast-marquee";
-
 import FastMarquee from "react-fast-marquee";
 import { cn } from "tailwind-variants";
 

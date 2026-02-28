@@ -1,7 +1,6 @@
 "use client";
 
 import type { AnyExtension, Editor, JSONContent } from "@tiptap/core";
-
 import { useEditor } from "@tiptap/react";
 import { useMemo } from "react";
 

@@ -1,11 +1,9 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerActionsVariants = tv({

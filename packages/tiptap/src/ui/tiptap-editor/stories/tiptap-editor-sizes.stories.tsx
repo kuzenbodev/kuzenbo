@@ -1,8 +1,7 @@
 import type { StoryObj } from "@storybook/react";
 
-import type { TiptapEditorSize } from "../tiptap-editor";
-
 import { useKuzenboEditor } from "../../../editor/use-kuzenbo-editor";
+import type { TiptapEditorSize } from "../tiptap-editor";
 import { TiptapEditor } from "../tiptap-editor";
 import { baseMeta } from "./tiptap-editor-story-shared";
 
@@ -25,8 +24,8 @@ const SizedEditorCard = ({ size }: { size: TiptapEditorSize }) => {
   }
 
   return (
-    <div className="w-[min(100%,64rem)] rounded-md border border-border bg-background p-3">
-      <div className="mb-2 text-xs font-medium text-muted-foreground uppercase">
+    <div className="border-border bg-background w-[min(100%,64rem)] rounded-md border p-3">
+      <div className="text-muted-foreground mb-2 text-xs font-medium uppercase">
         {size}
       </div>
       <TiptapEditor.Root editor={editor} size={size}>

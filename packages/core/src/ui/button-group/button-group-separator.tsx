@@ -1,15 +1,13 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { Separator } from "../separator/separator";
+import type { UISize } from "../shared/size/size-system";
 import { ButtonGroupSizeContext } from "./button-group-size-context";
 
 const buttonGroupSeparatorVariants = tv({
-  base: "relative self-stretch bg-input data-[orientation=horizontal]:w-auto data-[orientation=vertical]:h-auto",
+  base: "bg-input relative self-stretch data-[orientation=horizontal]:w-auto data-[orientation=vertical]:h-auto",
   variants: {
     size: {
       xs: "data-[orientation=horizontal]:mx-px data-[orientation=vertical]:my-px",

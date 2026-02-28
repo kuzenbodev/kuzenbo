@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
 export type MarqueeFadeProps = ComponentProps<"div"> & {
@@ -15,7 +14,7 @@ export const MarqueeFade = ({
 }: MarqueeFadeProps) => (
   <div
     className={cn(
-      "absolute top-0 bottom-0 z-raised h-full w-24 from-background to-transparent",
+      "z-raised from-background absolute top-0 bottom-0 h-full w-24 to-transparent",
       side === "left" ? "left-0 bg-linear-to-r" : "right-0 bg-linear-to-l",
       className
     )}

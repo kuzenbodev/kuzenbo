@@ -1,11 +1,10 @@
 import { useId } from "react";
 
+import { createYAxisTickFormatter } from "../../shared/complete-helpers";
 import type {
   CompleteChartDatum,
   LineChartProps,
 } from "../../shared/complete-types";
-
-import { createYAxisTickFormatter } from "../../shared/complete-helpers";
 import { DEFAULT_LINE_GRADIENT_STOPS } from "../utils/default-gradient-stops";
 
 type UseLineChartRuntimeArgs<

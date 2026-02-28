@@ -1,9 +1,8 @@
-import type { Decorator, Preview } from "@storybook/react-vite";
-
 import {
   DecoratorHelpers,
   withThemeByClassName,
 } from "@storybook/addon-themes";
+import type { Decorator, Preview } from "@storybook/react-vite";
 
 const { pluckThemeFromContext } = DecoratorHelpers;
 

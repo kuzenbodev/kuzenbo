@@ -1,14 +1,12 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Select as SelectPrimitive } from "@base-ui/react/select";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { SelectOverlayContext } from "./select-overlay-context";
 
 const selectItemIndicatorVariants = tv({

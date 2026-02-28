@@ -1,9 +1,7 @@
 import type { Menu as MenuPrimitive } from "@base-ui/react/menu";
-
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { DropdownMenuContext } from "./dropdown-menu-context";
 import { DropdownMenuOverlayContext } from "./dropdown-menu-overlay-context";
 import { DropdownMenuPopup } from "./dropdown-menu-popup";
@@ -28,9 +26,10 @@ const DropdownMenuContent = ({
 }: DropdownMenuContentProps) => {
   const { size: rootSize } = useContext(DropdownMenuContext);
   const resolvedSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <DropdownMenuOverlayContext.Provider value={{ size: resolvedSize }}>
+    <DropdownMenuOverlayContext.Provider value={contextValue}>
       <DropdownMenuPortal>
         <DropdownMenuPositioner
           align={align}

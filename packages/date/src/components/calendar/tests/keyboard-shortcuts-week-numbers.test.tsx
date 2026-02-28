@@ -1,5 +1,6 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { fireEvent, render, screen, within } from "@testing-library/react";
 
 import { createDateAdapter } from "../../../adapter";
 import { DatesProvider } from "../../dates-provider";
@@ -19,6 +20,73 @@ const getWeekOfYearLabel = (locale: string): string => {
   } catch {
     return "#";
   }
+};
+
+const getRequiredElement = <T extends Element>(
+  value: T | null,
+  expectedType: new () => T,
+  message: string
+): T => {
+  expect(value).toBeInstanceOf(expectedType);
+  if (!(value instanceof expectedType)) {
+    throw new Error(message);
+  }
+  return value;
+};
+
+const getRequiredAttribute = (
+  element: Element,
+  attributeName: string,
+  message: string
+): string => {
+  const attributeValue = element.getAttribute(attributeName);
+  expect(attributeValue).toBeTruthy();
+  if (!attributeValue) {
+    throw new Error(message);
+  }
+  return attributeValue;
+};
+
+const getRequiredWeekNumberCell = (weekRow: HTMLDivElement): HTMLDivElement =>
+  getRequiredElement(
+    weekRow.querySelector("[data-slot='week-number']"),
+    HTMLDivElement,
+    "Expected week-number cell in each week row"
+  );
+
+const getRequiredWeekNumberRowHeader = (
+  weekRow: HTMLDivElement
+): HTMLDivElement =>
+  getRequiredElement(
+    weekRow.querySelector("[data-slot='week-number'][role='rowheader']"),
+    HTMLDivElement,
+    "Expected week-number rowheader in each week row"
+  );
+
+const getRequiredFirstDayControl = (
+  weekRow: HTMLDivElement
+): HTMLButtonElement =>
+  getRequiredElement(
+    weekRow.querySelector("button[aria-pressed]"),
+    HTMLButtonElement,
+    "Expected first day control in each week row"
+  );
+
+const getWeekNumberText = (weekNumberCell: Element): string =>
+  (weekNumberCell.textContent ?? "").trim();
+
+const getExpectedWeekNumberAriaLabel = (
+  weekNumberCell: Element,
+  weekOfYearLabel: string,
+  weekNumberFormatter: Intl.NumberFormat
+): string => {
+  const weekNumberText = getWeekNumberText(weekNumberCell);
+  const parsedWeekNumber = Number(weekNumberText);
+  if (weekNumberText.length === 0 || Number.isNaN(parsedWeekNumber)) {
+    return weekOfYearLabel;
+  }
+
+  return `${weekOfYearLabel} ${weekNumberFormatter.format(parsedWeekNumber)}`;
 };
 
 describe("calendar keyboard shortcuts", () => {
@@ -152,16 +220,18 @@ describe("calendar week numbers", () => {
     expect(weekRows.length).toBeGreaterThan(0);
 
     for (const weekRow of weekRows) {
-      const weekNumberCell = weekRow.querySelector("[data-slot='week-number']");
-      const firstDayControl = weekRow.querySelector("button[aria-pressed]");
-      const dateLabel = firstDayControl?.getAttribute("aria-label");
-      const parsedDate = dateLabel ? new Date(dateLabel) : null;
-      const expectedWeekNumber = parsedDate
-        ? adapter.getWeekNumber(parsedDate)
-        : null;
+      const weekNumberCell = getRequiredWeekNumberCell(weekRow);
+      const firstDayControl = getRequiredFirstDayControl(weekRow);
+      const dateLabel = getRequiredAttribute(
+        firstDayControl,
+        "aria-label",
+        "Expected aria-label on week row day control"
+      );
+      const parsedDate = new Date(dateLabel);
 
-      expect(weekNumberCell?.textContent).toBe(
-        expectedWeekNumber ? String(expectedWeekNumber) : ""
+      expect(Number.isNaN(parsedDate.getTime())).toBe(false);
+      expect(weekNumberCell.textContent).toBe(
+        String(adapter.getWeekNumber(parsedDate))
       );
     }
   });
@@ -183,19 +253,14 @@ describe("calendar week numbers", () => {
     expect(weekRows.length).toBeGreaterThan(0);
 
     for (const weekRow of weekRows) {
-      const weekNumberCell = weekRow.querySelector(
-        "[data-slot='week-number'][role='rowheader']"
+      const weekNumberCell = getRequiredWeekNumberRowHeader(weekRow);
+      const expectedAriaLabel = getExpectedWeekNumberAriaLabel(
+        weekNumberCell,
+        weekOfYearLabel,
+        weekNumberFormatter
       );
-      const weekNumberText = weekNumberCell?.textContent?.trim() ?? "";
-      const parsedWeekNumber = Number(weekNumberText);
-      const expectedAriaLabel =
-        weekNumberText.length === 0 || Number.isNaN(parsedWeekNumber)
-          ? weekOfYearLabel
-          : `${weekOfYearLabel} ${weekNumberFormatter.format(parsedWeekNumber)}`;
 
-      expect(weekNumberCell?.getAttribute("aria-label")).toBe(
-        expectedAriaLabel
-      );
+      expect(weekNumberCell.getAttribute("aria-label")).toBe(expectedAriaLabel);
     }
   });
 });

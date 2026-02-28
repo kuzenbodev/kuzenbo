@@ -1,5 +1,6 @@
-import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render } from "@testing-library/react";
 
 import { DEFAULT_TREND_COLORS } from "./hooks/use-sparkline-runtime";
 import { Sparkline } from "./sparkline";

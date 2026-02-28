@@ -1,5 +1,4 @@
 import type { AnyExtension } from "@tiptap/core";
-
 import { Color } from "@tiptap/extension-color";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Placeholder } from "@tiptap/extension-placeholder";

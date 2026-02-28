@@ -2,11 +2,10 @@
 
 import type { ComponentProps, ReactNode } from "react";
 
-import type { ChartConfig } from "../types/chart-types";
-
 import { ChartAutoSize } from "../autosize/chart-autosize";
 import { ChartFrame } from "../frame/chart-frame";
 import { ChartProvider } from "../provider/chart-provider";
+import type { ChartConfig } from "../types/chart-types";
 
 type ChartRootProps = Omit<ComponentProps<typeof ChartFrame>, "children"> & {
   autoSize?: "container" | "none";

@@ -1,7 +1,7 @@
-import type { Editor, JSONContent } from "@tiptap/core";
+import { afterEach, describe, expect, it } from "bun:test";
 
 import { cleanup, render, waitFor } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
+import type { Editor, JSONContent } from "@tiptap/core";
 import { useEffect } from "react";
 
 import {

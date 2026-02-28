@@ -1,5 +1,4 @@
 import type { CompleteChartDatum } from "../../complete-types";
-
 import { toRadialValue } from "./to-radial-value";
 
 type RadialLabelMode = "percent" | "value";

@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { Toast as BaseToast } from "@base-ui/react/toast";
+import type { ComponentProps } from "react";
 
 export type ToastArrowProps = ComponentProps<typeof BaseToast.Arrow>;
 

@@ -2,15 +2,14 @@
 
 import { useCallback, useId, useMemo } from "react";
 
-import type { ChartContextProps } from "../../context/use-chart";
-import type { ChartConfig } from "../../types/chart-types";
-
 import {
   createSeriesColorRegistry,
   getSeriesColor,
   getSeriesColorVarReference,
   resolveSeriesColorExpression,
 } from "../../color/chart-color-resolver";
+import type { ChartContextProps } from "../../context/use-chart";
+import type { ChartConfig } from "../../types/chart-types";
 
 interface UseChartProviderValueOptions {
   config: ChartConfig;

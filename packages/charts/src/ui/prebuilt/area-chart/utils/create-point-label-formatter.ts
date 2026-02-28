@@ -1,6 +1,5 @@
 import type { CompleteChartDatum } from "../../shared/complete-types";
 import type { AreaChartProps } from "../area-chart-types";
-
 import { toRenderableLabelValue } from "./to-renderable-label-value";
 
 const createPointLabelFormatter =

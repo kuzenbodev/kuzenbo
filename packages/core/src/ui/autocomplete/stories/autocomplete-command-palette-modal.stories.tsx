@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { Autocomplete } from "../autocomplete";
@@ -57,9 +56,9 @@ const CommandPaletteModalDemo = () => {
         openOnInputClick
       >
         <Autocomplete.Input placeholder="Search actions and pages..." />
-        <Autocomplete.Backdrop className="fixed inset-0 bg-foreground/20" />
+        <Autocomplete.Backdrop className="bg-foreground/20 fixed inset-0" />
         <Autocomplete.Content>
-          <Autocomplete.Arrow className="-mt-2 ml-6 size-3 rotate-45 border-border border-l border-t bg-popover" />
+          <Autocomplete.Arrow className="border-border bg-popover -mt-2 ml-6 size-3 rotate-45 border-t border-l" />
           <Autocomplete.Empty>No commands available.</Autocomplete.Empty>
           <Autocomplete.List>
             {(group: CommandGroup) => (

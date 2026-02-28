@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useState } from "react";
 
 import { Typography } from "../../typography/typography";
@@ -29,10 +28,10 @@ const renderScenario = ({
   contentProps?: CollapsibleContentProps;
 }) => (
   <Collapsible
-    className="w-96 rounded-md border border-border bg-background p-4"
+    className="border-border bg-background w-96 rounded-md border p-4"
     {...rootProps}
   >
-    <Collapsible.Trigger className="inline-flex items-center rounded-md border border-border bg-background px-3 py-1.5">
+    <Collapsible.Trigger className="border-border bg-background inline-flex items-center rounded-md border px-3 py-1.5">
       <Typography.Text render={<span />}>{triggerLabel}</Typography.Text>
     </Collapsible.Trigger>
     <Collapsible.Content className="pt-2" {...contentProps}>
@@ -67,11 +66,11 @@ const ControlledDemo = () => {
 
   return (
     <Collapsible
-      className="w-96 rounded-md border border-border bg-background p-4"
+      className="border-border bg-background w-96 rounded-md border p-4"
       onOpenChange={setOpen}
       open={open}
     >
-      <Collapsible.Trigger className="inline-flex items-center rounded-md border border-border bg-background px-3 py-1.5">
+      <Collapsible.Trigger className="border-border bg-background inline-flex items-center rounded-md border px-3 py-1.5">
         <Typography.Text render={<span />}>
           {open ? "Hide incident details" : "Show incident details"}
         </Typography.Text>

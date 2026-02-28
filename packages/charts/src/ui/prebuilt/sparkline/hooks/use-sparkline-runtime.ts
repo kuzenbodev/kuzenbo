@@ -6,7 +6,6 @@ import type {
   SparklineTrendColors,
   UseSparklineRuntimeResult,
 } from "../sparkline-types";
-
 import { createDefaultSparklineGradientStops } from "../utils/default-sparkline-gradient-stops";
 import { resolveSparklineTrendDirection } from "../utils/resolve-sparkline-trend-direction";
 

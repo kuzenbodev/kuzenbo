@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { ScrollArea } from "@base-ui/react/scroll-area";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "../../button/button";
 import { Drawer } from "../drawer";
@@ -18,7 +17,7 @@ const longList = Array.from({ length: 30 }, (_, index) => ({
 }));
 
 const MobileNavigationDemo = () => (
-  <div className="relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border border-border bg-background p-6">
+  <div className="border-border bg-background relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border p-6">
     <Drawer.Root>
       <Drawer.Trigger render={<Button variant="outline" size="xl" />}>
         Open mobile menu
@@ -35,7 +34,7 @@ const MobileNavigationDemo = () => (
                 <Drawer.Popup className="group box-border w-full max-w-[42rem] [transform:translateY(var(--drawer-swipe-movement-y))] transition-transform duration-[800ms] ease-[cubic-bezier(0.45,1.005,0,1.005)] outline-none data-[ending-style]:[transform:translateY(max(100dvh,100%))] data-[ending-style]:duration-[350ms] data-[ending-style]:ease-[cubic-bezier(0.375,0.015,0.545,0.455)] data-[swiping]:select-none">
                   <nav
                     aria-label="Navigation"
-                    className="relative flex flex-col rounded-t-2xl bg-card px-6 pt-4 pb-6 text-card-foreground shadow-[0_10px_64px_-10px_rgb(0_0_0/20%)] outline outline-1 outline-border transition-shadow duration-[350ms] ease-[cubic-bezier(0.375,0.015,0.545,0.455)] group-data-[ending-style]:shadow-none"
+                    className="bg-card text-card-foreground outline-border relative flex flex-col rounded-t-2xl px-6 pt-4 pb-6 shadow-[0_10px_64px_-10px_rgb(0_0_0/20%)] outline outline-1 transition-shadow duration-[350ms] ease-[cubic-bezier(0.375,0.015,0.545,0.455)] group-data-[ending-style]:shadow-none"
                   >
                     <div className="mb-3 grid grid-cols-[1fr_auto_1fr] items-center">
                       <div aria-hidden className="h-9 w-9" />
@@ -52,7 +51,7 @@ const MobileNavigationDemo = () => (
                           {listItems.map((item) => (
                             <li className="flex" key={item.label}>
                               <a
-                                className="w-full rounded-xl bg-muted px-4 py-3 text-foreground no-underline focus-visible:outline focus-visible:-outline-offset-1 focus-visible:outline-ring"
+                                className="bg-muted text-foreground focus-visible:outline-ring w-full rounded-xl px-4 py-3 no-underline focus-visible:outline focus-visible:-outline-offset-1"
                                 href={item.href}
                               >
                                 {item.label}
@@ -67,7 +66,7 @@ const MobileNavigationDemo = () => (
                           {longList.map((item) => (
                             <li className="flex" key={item.label}>
                               <a
-                                className="w-full rounded-xl bg-muted px-4 py-3 text-foreground no-underline focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-ring"
+                                className="bg-muted text-foreground focus-visible:outline-ring w-full rounded-xl px-4 py-3 no-underline focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1"
                                 href={item.href}
                               >
                                 {item.label}
@@ -82,7 +81,7 @@ const MobileNavigationDemo = () => (
               </ScrollArea.Content>
             </ScrollArea.Viewport>
             <ScrollArea.Scrollbar className="pointer-events-none absolute m-[0.4rem] flex w-[0.25rem] justify-center rounded-[1rem] opacity-0 transition-opacity duration-[250ms] hover:pointer-events-auto hover:opacity-100 hover:duration-[75ms] data-[ending-style]:opacity-0 data-[scrolling]:pointer-events-auto data-[scrolling]:opacity-100 data-[scrolling]:duration-[75ms]">
-              <ScrollArea.Thumb className="w-full rounded-[inherit] bg-muted-foreground before:absolute before:top-1/2 before:left-1/2 before:h-[calc(100%+1rem)] before:w-[calc(100%+1rem)] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']" />
+              <ScrollArea.Thumb className="bg-muted-foreground w-full rounded-[inherit] before:absolute before:top-1/2 before:left-1/2 before:h-[calc(100%+1rem)] before:w-[calc(100%+1rem)] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']" />
             </ScrollArea.Scrollbar>
           </ScrollArea.Root>
         </Drawer.Viewport>

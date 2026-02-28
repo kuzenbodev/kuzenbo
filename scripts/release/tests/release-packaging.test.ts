@@ -3,8 +3,6 @@ import { readFileSync, rmSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { WorkspacePackage } from "../lib/types";
-
 import {
   applyPublishConfigManifestOverrides,
   assertPackedManifestIsPublishSafe,
@@ -13,6 +11,7 @@ import {
   findMissingPackedManifestFileReferences,
 } from "../lib/publish-artifacts";
 import { runCommand } from "../lib/shell";
+import type { WorkspacePackage } from "../lib/types";
 import {
   assertBunLockWorkspaceVersionsMatchManifests,
   findBunLockWorkspaceVersion,

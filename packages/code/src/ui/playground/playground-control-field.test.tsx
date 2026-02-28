@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it, mock } from "bun:test";
+
 import {
   act,
   cleanup,
@@ -6,7 +8,6 @@ import {
   screen,
 } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { afterEach, describe, expect, it, mock } from "bun:test";
 
 import { PlaygroundControlField } from "./playground-control-field";
 

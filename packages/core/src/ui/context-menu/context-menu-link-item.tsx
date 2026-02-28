@@ -2,14 +2,13 @@ import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 
 const contextMenuLinkItemVariants = tv({
-  base: "group/context-menu-link-item relative flex cursor-clickable items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  base: "group/context-menu-link-item cursor-clickable focus:bg-accent focus:text-accent-foreground relative flex items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     inset: {
       false: "",

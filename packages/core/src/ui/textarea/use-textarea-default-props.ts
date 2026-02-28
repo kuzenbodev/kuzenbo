@@ -1,6 +1,5 @@
-import type { TextareaProps } from "./textarea";
-
 import { useComponentDefaultProps } from "../shared/size/size-provider";
+import type { TextareaProps } from "./textarea";
 
 export const useTextareaDefaultProps = (
   incomingProps: TextareaProps

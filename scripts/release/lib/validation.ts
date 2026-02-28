@@ -1,13 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import type { ReleaseConfig, ReleaseOptions, WorkspacePackage } from "./types";
-
 import {
   assertChannelMatchesRef,
   assertSupportedReleaseRef,
 } from "./branch-policy";
 import { BUN_LOCK_PATH, REPO_ROOT, WORKFLOWS_DIR } from "./repo";
+import type { ReleaseConfig, ReleaseOptions, WorkspacePackage } from "./types";
 import { assertChannelMatchesVersion } from "./version";
 import {
   assertLockstep,
@@ -325,6 +324,51 @@ const assertWebsiteNeverPublish = (): void => {
   }
 };
 
+export const buildPublishPlan = ({
+  config,
+  packages,
+}: {
+  config: ReleaseConfig;
+  packages: WorkspacePackage[];
+}): WorkspacePackage[] => {
+  const blockedPackages = new Set(config.publishBlocked);
+  const neverPublishPackages = new Set(config.neverPublish);
+  const seenAllowlist = new Set<string>();
+  const publishPlan: WorkspacePackage[] = [];
+
+  for (const packageName of config.publishAllowlist) {
+    if (seenAllowlist.has(packageName)) {
+      throw new Error(
+        `publishAllowlist contains duplicate package entry: ${packageName}`
+      );
+    }
+    seenAllowlist.add(packageName);
+
+    if (blockedPackages.has(packageName)) {
+      throw new Error(
+        `Blocked package ${packageName} cannot be included in publish plan`
+      );
+    }
+
+    if (neverPublishPackages.has(packageName)) {
+      throw new Error(
+        `Never-publish package ${packageName} cannot be included in publish plan`
+      );
+    }
+
+    const pkg = getPackageByName(packages, packageName);
+    if (!pkg) {
+      throw new Error(
+        `Allowlist package not found in workspace: ${packageName}`
+      );
+    }
+
+    publishPlan.push(pkg);
+  }
+
+  return publishPlan;
+};
+
 export const validateReleaseState = ({
   config,
   packages,
@@ -405,49 +449,4 @@ export const validateReleaseState = ({
   assertBunLockWorkspaceVersionsMatchManifests({ packages });
   assertTrustedPublishWorkflow(config);
   buildPublishPlan({ config, packages });
-};
-
-export const buildPublishPlan = ({
-  config,
-  packages,
-}: {
-  config: ReleaseConfig;
-  packages: WorkspacePackage[];
-}): WorkspacePackage[] => {
-  const blockedPackages = new Set(config.publishBlocked);
-  const neverPublishPackages = new Set(config.neverPublish);
-  const seenAllowlist = new Set<string>();
-  const publishPlan: WorkspacePackage[] = [];
-
-  for (const packageName of config.publishAllowlist) {
-    if (seenAllowlist.has(packageName)) {
-      throw new Error(
-        `publishAllowlist contains duplicate package entry: ${packageName}`
-      );
-    }
-    seenAllowlist.add(packageName);
-
-    if (blockedPackages.has(packageName)) {
-      throw new Error(
-        `Blocked package ${packageName} cannot be included in publish plan`
-      );
-    }
-
-    if (neverPublishPackages.has(packageName)) {
-      throw new Error(
-        `Never-publish package ${packageName} cannot be included in publish plan`
-      );
-    }
-
-    const pkg = getPackageByName(packages, packageName);
-    if (!pkg) {
-      throw new Error(
-        `Allowlist package not found in workspace: ${packageName}`
-      );
-    }
-
-    publishPlan.push(pkg);
-  }
-
-  return publishPlan;
 };

@@ -1,5 +1,4 @@
 import type { TimeAmPmLabels, TimeFormat } from "../time-picker-types";
-
 import { DEFAULT_TIME_AM_PM_LABELS, formatTimeForDisplay } from "./time-utils";
 
 export interface GetFormattedTimeInput {

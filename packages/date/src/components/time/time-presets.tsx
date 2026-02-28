@@ -6,13 +6,12 @@ import type {
   TimePresetGroupData,
   TimePresetsData,
 } from "./time-picker-types";
-
 import { TimePresetControl } from "./time-preset-control";
 import { TimePresetGroup } from "./time-preset-group";
 import { isSameTime } from "./utils/time-utils";
 
 const timePresetsVariants = tv({
-  base: "max-h-48 space-y-2 overflow-auto rounded-md border border-border bg-card p-2",
+  base: "border-border bg-card max-h-48 space-y-2 overflow-auto rounded-md border p-2",
 });
 
 const timePresetsGridVariants = tv({

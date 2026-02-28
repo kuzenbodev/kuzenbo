@@ -1,15 +1,13 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
-
 import { useMemo } from "react";
 
-import type { DateFormatter } from "../../utils";
-import type { DatePickerValue, SelectionMode } from "../types";
-
 import { useDatesInput } from "../../hooks";
+import type { DateFormatter } from "../../utils";
 import { normalizePickerValue } from "../calendar/utils/calendar-selection";
 import { MonthPicker } from "../pickers/month-picker";
 import { fromComparablePickerValue } from "../pickers/utils/picker-value-conversion";
+import type { DatePickerValue, SelectionMode } from "../types";
 import { useDatesContext } from "../use-dates-context";
 import { HiddenDatesInput } from "./hidden-dates-input";
 import { PickerInputBase } from "./picker-input-base";

@@ -1,7 +1,6 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-
 import { cn } from "tailwind-variants";
 
 export interface SliderMarkProps {
@@ -28,7 +27,7 @@ const SliderMark = ({
   return (
     <div
       className={cn(
-        "pointer-events-none absolute z-elevated",
+        "z-elevated pointer-events-none absolute",
         isHorizontal
           ? "top-1/2 -translate-x-1/2 -translate-y-1/2"
           : "left-1/2 -translate-x-1/2 translate-y-1/2"
@@ -51,10 +50,10 @@ const SliderMark = ({
       {label ? (
         <span
           className={cn(
-            "pointer-events-none absolute whitespace-nowrap text-xs text-muted-foreground",
+            "text-muted-foreground pointer-events-none absolute text-xs whitespace-nowrap",
             isHorizontal
-              ? "left-1/2 top-[calc(var(--slider-mark-size,0.5rem)+0.5rem)] -translate-x-1/2"
-              : "left-[calc(var(--slider-mark-size,0.5rem)+0.5rem)] top-1/2 -translate-y-1/2"
+              ? "top-[calc(var(--slider-mark-size,0.5rem)+0.5rem)] left-1/2 -translate-x-1/2"
+              : "top-1/2 left-[calc(var(--slider-mark-size,0.5rem)+0.5rem)] -translate-y-1/2"
           )}
           data-slot="slider-mark-label"
         >

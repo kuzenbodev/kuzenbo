@@ -1,12 +1,9 @@
 "use client";
 
-import type { ComponentProps, ReactNode } from "react";
-
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import type { ComponentProps, ReactNode } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
-
-import type { UISize } from "../shared/size/size-system";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { ButtonGroupSizeContext } from "../button-group/button-group-size-context";
@@ -15,6 +12,7 @@ import {
   useGlobalUISize,
   useKuzenboComponentDefaults,
 } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import {
   DEFAULT_NESTED_ICON_CLASS_BY_SIZE,
   FIELD_HEIGHT_CLASS_BY_SIZE,
@@ -23,7 +21,7 @@ import {
 import { Spinner } from "../spinner/spinner";
 
 const buttonVariants = tv({
-  base: "group/button inline-flex shrink-0 cursor-clickable items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-[transform,color,background-color,border-color,box-shadow] duration-100 ease-out outline-none select-none active:scale-[0.98] motion-reduce:active:scale-100 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  base: "group/button cursor-clickable focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-[transform,color,background-color,border-color,box-shadow] duration-100 ease-out outline-none select-none focus-visible:ring-[3px] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-[3px] motion-reduce:active:scale-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   variants: {
     variant: {
       default:

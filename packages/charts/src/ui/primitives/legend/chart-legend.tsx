@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { Legend } from "recharts";
 
 type ChartLegendProps = ComponentProps<typeof Legend>;

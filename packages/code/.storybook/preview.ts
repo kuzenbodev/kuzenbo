@@ -1,10 +1,10 @@
-import type { Decorator, Preview } from "@storybook/react-vite";
-
 import { KuzenboProvider } from "@kuzenbo/core/provider";
 import sharedPreview from "@kuzenbo/storybook/preview";
 import { ThemeProvider } from "@kuzenbo/theme";
+import type { Decorator, Preview } from "@storybook/react-vite";
 import { createElement } from "react";
 
+// @ts-expect-error -- Storybook resolves side-effect CSS imports via Vite.
 import "./preview.css";
 
 const withKuzenboProviders: Decorator = (Story) =>

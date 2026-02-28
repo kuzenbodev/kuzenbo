@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   CheckmarkCircle02Icon,
   Folder01Icon,
   Home01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Item } from "../item";
 

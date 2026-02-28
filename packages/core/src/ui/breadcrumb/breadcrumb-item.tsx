@@ -1,9 +1,7 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbItemVariants = tv({

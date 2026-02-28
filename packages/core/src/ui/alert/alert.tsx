@@ -1,19 +1,17 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { AlertAction } from "./alert-action";
 import { AlertDescription } from "./alert-description";
 import { AlertTitle } from "./alert-title";
 
 const alertVariants = tv({
   base: [
-    "group/alert relative grid w-full rounded-lg border border-border text-left",
+    "group/alert border-border relative grid w-full rounded-lg border text-left",
     "has-data-[slot=alert-action]:relative",
     "has-[>svg]:grid-cols-[auto_1fr]",
     "*:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current",
@@ -36,11 +34,11 @@ const alertVariants = tv({
       inverted: "",
     },
     size: {
-      xs: "gap-0.5 px-2.5 py-2 text-xs has-[>svg]:gap-x-2 has-data-[slot=alert-action]:pr-14 *:[svg:not([class*='size-'])]:size-3",
-      sm: "gap-0.5 px-3 py-2.5 text-sm has-[>svg]:gap-x-2.5 has-data-[slot=alert-action]:pr-16 *:[svg:not([class*='size-'])]:size-3.5",
-      md: "gap-0.5 px-4 py-3 text-sm has-[>svg]:gap-x-2.5 has-data-[slot=alert-action]:pr-18 *:[svg:not([class*='size-'])]:size-4",
-      lg: "gap-1 px-5 py-4 text-sm has-[>svg]:gap-x-3 has-data-[slot=alert-action]:pr-20 *:[svg:not([class*='size-'])]:size-4",
-      xl: "gap-1 px-6 py-5 text-base has-[>svg]:gap-x-3.5 has-data-[slot=alert-action]:pr-24 *:[svg:not([class*='size-'])]:size-5",
+      xs: "gap-0.5 px-2.5 py-2 text-xs has-data-[slot=alert-action]:pr-14 has-[>svg]:gap-x-2 *:[svg:not([class*='size-'])]:size-3",
+      sm: "gap-0.5 px-3 py-2.5 text-sm has-data-[slot=alert-action]:pr-16 has-[>svg]:gap-x-2.5 *:[svg:not([class*='size-'])]:size-3.5",
+      md: "gap-0.5 px-4 py-3 text-sm has-data-[slot=alert-action]:pr-18 has-[>svg]:gap-x-2.5 *:[svg:not([class*='size-'])]:size-4",
+      lg: "gap-1 px-5 py-4 text-sm has-data-[slot=alert-action]:pr-20 has-[>svg]:gap-x-3 *:[svg:not([class*='size-'])]:size-4",
+      xl: "gap-1 px-6 py-5 text-base has-data-[slot=alert-action]:pr-24 has-[>svg]:gap-x-3.5 *:[svg:not([class*='size-'])]:size-5",
     },
   },
   compoundVariants: [
@@ -161,7 +159,7 @@ const alertVariants = tv({
         "success",
       ],
       class:
-        "border-0 bg-foreground text-background dark:bg-card dark:text-card-foreground [&_*[data-slot=alert-description]]:text-background/70 dark:[&_*[data-slot=alert-description]]:text-card-foreground/70",
+        "bg-foreground text-background dark:bg-card dark:text-card-foreground [&_*[data-slot=alert-description]]:text-background/70 dark:[&_*[data-slot=alert-description]]:text-card-foreground/70 border-0",
     },
     {
       appearance: "inverted",

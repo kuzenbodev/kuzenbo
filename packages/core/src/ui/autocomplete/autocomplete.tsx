@@ -1,11 +1,10 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { AutocompleteArrow } from "./autocomplete-arrow";
 import { AutocompleteBackdrop } from "./autocomplete-backdrop";
@@ -35,9 +34,10 @@ export type AutocompleteProps = ComponentProps<typeof BaseAutocomplete.Root> & {
 
 const Autocomplete = ({ size: providedSize, ...props }: AutocompleteProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <AutocompleteContext.Provider value={{ size }}>
+    <AutocompleteContext.Provider value={contextValue}>
       <BaseAutocomplete.Root
         data-size={size}
         data-slot="autocomplete"

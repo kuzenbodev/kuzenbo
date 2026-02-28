@@ -1,5 +1,4 @@
 import type { CompleteChartDatum } from "../../shared/complete-types";
-
 import { toRenderableLabelValue } from "./to-renderable-label-value";
 
 interface CreatePointLabelFormatterOptions<

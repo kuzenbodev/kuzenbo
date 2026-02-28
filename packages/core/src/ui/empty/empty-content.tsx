@@ -1,9 +1,7 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedEmptySize } from "./empty-size-context";
 
 const emptyContentVariants = tv({

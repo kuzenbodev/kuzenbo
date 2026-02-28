@@ -11,7 +11,7 @@ import { useAccordionContext } from "./accordion-context";
 export type AccordionTriggerProps = AccordionPrimitive.Trigger.Props;
 
 const accordionTriggerVariants = tv({
-  base: "group/accordion-trigger relative flex flex-1 cursor-clickable items-start justify-between rounded-md border border-transparent text-left font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
+  base: "group/accordion-trigger cursor-clickable focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground relative flex flex-1 items-start justify-between rounded-md border border-transparent text-left font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto",
   compoundVariants: [
     {
       class: "px-2",
@@ -51,7 +51,7 @@ const accordionTriggerVariants = tv({
       default: "",
       bordered: "",
       ghost:
-        "rounded-md hover:bg-muted/70 hover:no-underline data-[panel-open]:bg-muted",
+        "hover:bg-muted/70 data-[panel-open]:bg-muted rounded-md hover:no-underline",
     },
   },
   defaultVariants: {

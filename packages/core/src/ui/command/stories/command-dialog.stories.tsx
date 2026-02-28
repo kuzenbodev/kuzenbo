@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { Button } from "../../button/button";

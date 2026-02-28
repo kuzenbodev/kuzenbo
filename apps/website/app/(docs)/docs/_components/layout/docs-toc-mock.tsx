@@ -17,14 +17,14 @@ export const DocsTocMock = () => (
     <Typography.Muted className="mt-1 text-xs">
       Mock ToC for now. Real ToC component will replace this block.
     </Typography.Muted>
-    <ul className="mt-3 m-0 grid list-none gap-1 p-0">
+    <ul className="m-0 mt-3 grid list-none gap-1 p-0">
       {TOC_MOCK_ITEMS.map((item, index) => (
         <li key={item}>
           <Typography.Small
             className={
               index === 0
-                ? "rounded-md bg-muted px-2 py-1 "
-                : "px-2 py-1 text-muted-foreground"
+                ? "bg-muted rounded-md px-2 py-1"
+                : "text-muted-foreground px-2 py-1"
             }
           >
             {item}

@@ -1,7 +1,6 @@
 import type { ChartConfig } from "../../../../primitives/chart";
-import type { CompleteChartSeries } from "../../complete-types";
-
 import { normalizeChartColor } from "../../../../primitives/color/chart-color-resolver";
+import type { CompleteChartSeries } from "../../complete-types";
 import { getFallbackSeriesColor } from "../series/get-fallback-series-color";
 import { resolveCompleteSeriesName } from "../series/resolve-complete-series-name";
 

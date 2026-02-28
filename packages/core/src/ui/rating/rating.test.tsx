@@ -1,6 +1,7 @@
+import { afterEach, describe, expect, it, mock } from "bun:test";
+
 import { cleanup, render } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { afterEach, describe, expect, it, mock } from "bun:test";
 
 import { KuzenboProvider } from "../../provider";
 import { Rating } from "./rating";

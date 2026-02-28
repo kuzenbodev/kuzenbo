@@ -1,15 +1,13 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerListEmojiVariants = tv({
-  base: "flex cursor-clickable items-center justify-center rounded-md data-active:bg-accent",
+  base: "cursor-clickable data-active:bg-accent flex items-center justify-center rounded-md",
   variants: {
     size: {
       xs: "size-6 text-sm",

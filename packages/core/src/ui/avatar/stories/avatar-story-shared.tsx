@@ -62,7 +62,7 @@ export const Sizes: Story = {
               </Avatar.Fallback>
               <Avatar.Badge aria-hidden="true" />
             </Avatar>
-            <span className="text-xs text-muted-foreground uppercase">
+            <span className="text-muted-foreground text-xs uppercase">
               {size}
             </span>
           </div>

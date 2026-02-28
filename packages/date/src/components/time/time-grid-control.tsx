@@ -1,14 +1,12 @@
 import type { ComponentProps } from "react";
-
 import { tv } from "tailwind-variants";
 
-import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
-
 import { DateControlButton } from "../internal/date-control-button";
+import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 import { TimeValue } from "./time-value";
 
 const timeGridControlVariants = tv({
-  base: "h-auto w-full items-center justify-between rounded-md px-2 py-1 text-left text-xs text-foreground disabled:cursor-not-allowed disabled:opacity-50",
+  base: "text-foreground h-auto w-full items-center justify-between rounded-md px-2 py-1 text-left text-xs disabled:cursor-not-allowed disabled:opacity-50",
   variants: {
     active: {
       true: "bg-primary text-primary-foreground hover:bg-primary/90",

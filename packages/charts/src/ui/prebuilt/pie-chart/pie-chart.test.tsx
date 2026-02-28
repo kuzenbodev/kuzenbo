@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, renderHook } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, fireEvent, render, renderHook } from "@testing-library/react";
 
 import { usePieChartRuntime } from "./hooks/use-pie-chart-runtime";
 import { PieChart } from "./pie-chart";

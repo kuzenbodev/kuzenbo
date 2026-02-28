@@ -19,10 +19,10 @@ export const Default: Story = {
   },
   render: (args) => (
     <div className="grid gap-2">
-      <div className="size-36 rounded-md border border-border bg-card p-2">
+      <div className="border-border bg-card size-36 rounded-md border p-2">
         <QRCode {...args} />
       </div>
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         Purchase order check-in
       </div>
     </div>
@@ -36,10 +36,10 @@ export const CustomSize: Story = {
   },
   render: (args) => (
     <div className="grid gap-2">
-      <div className="size-52 rounded-md border border-border bg-card p-3">
+      <div className="border-border bg-card size-52 rounded-md border p-3">
         <QRCode {...args} />
       </div>
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         Large-format label output
       </div>
     </div>
@@ -61,10 +61,10 @@ export const LongPayload: Story = {
   },
   render: (args) => (
     <div className="grid gap-2">
-      <div className="size-40 rounded-md border border-border bg-card p-2">
+      <div className="border-border bg-card size-40 rounded-md border p-2">
         <QRCode {...args} />
       </div>
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         Encoded shipment manifest payload
       </div>
     </div>

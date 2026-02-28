@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useEffect, useState } from "react";
 
 import { definePlaygroundPresets } from "../../../playground/playground-preset-model";
@@ -79,7 +78,7 @@ const PlaygroundPresetsDemo = ({
         }
         language="json"
         toolbar={
-          <div className="px-3 py-2 text-xs text-muted-foreground">
+          <div className="text-muted-foreground px-3 py-2 text-xs">
             {activePreset
               ? `Active preset: ${activePreset.label}`
               : "Custom values"}

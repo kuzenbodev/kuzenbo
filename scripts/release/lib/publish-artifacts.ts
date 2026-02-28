@@ -2,13 +2,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
+import { runCommand, runStreamingCommand } from "./shell";
 import type {
   DependencyField,
   PackageJsonManifest,
   WorkspacePackage,
 } from "./types";
-
-import { runCommand, runStreamingCommand } from "./shell";
 
 const UNSUPPORTED_DEPENDENCY_PROTOCOL_PREFIXES = [
   "catalog:",

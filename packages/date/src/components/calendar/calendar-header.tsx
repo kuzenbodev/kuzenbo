@@ -1,13 +1,11 @@
-/* eslint-disable react-perf/jsx-no-new-function-as-prop */
-import type { ComponentProps, ReactNode } from "react";
-
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+/* eslint-disable react-perf/jsx-no-new-function-as-prop */
+import type { ComponentProps, ReactNode } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import type { CalendarLevel } from "../types";
-
 import { DateControlButton } from "../internal/date-control-button";
+import type { CalendarLevel } from "../types";
 import { useDatesContext } from "../use-dates-context";
 import { getDecadeRange } from "./utils/get-decade-range";
 
@@ -16,11 +14,11 @@ const calendarHeaderVariants = tv({
 });
 
 const calendarHeaderButtonVariants = tv({
-  base: "inline-flex h-8 w-8 cursor-clickable items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+  base: "cursor-clickable border-border bg-background text-foreground hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-8 w-8 items-center justify-center rounded-md border transition-colors outline-none focus-visible:ring-[3px]",
 });
 
 const calendarHeaderLabelVariants = tv({
-  base: "inline-flex min-w-0 cursor-clickable items-center justify-center rounded-md px-2 py-1 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+  base: "cursor-clickable text-foreground hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-w-0 items-center justify-center rounded-md px-2 py-1 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]",
 });
 
 export type CalendarHeaderProps = Omit<

@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 
@@ -13,7 +12,7 @@ const menubarCheckboxItemVariants = tv({
   slots: {
     indicator:
       "pointer-events-none absolute flex items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
-    root: "relative flex cursor-clickable items-center rounded-md outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    root: "cursor-clickable focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground relative flex items-center rounded-md outline-hidden select-none data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   },
   variants: {
     size: {

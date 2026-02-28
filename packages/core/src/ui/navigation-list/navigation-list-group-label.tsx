@@ -1,11 +1,9 @@
-import type { ComponentProps } from "react";
-
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import {
   type NavigationListTone,
   useResolvedNavigationListSize,
@@ -13,7 +11,7 @@ import {
 } from "./navigation-list-context";
 
 const navigationListGroupLabelVariants = tv({
-  base: "flex items-center rounded-md px-2 font-medium uppercase tracking-wide",
+  base: "flex items-center rounded-md px-2 font-medium tracking-wide uppercase",
   variants: {
     size: {
       xs: "h-6 text-[10px]",

@@ -25,7 +25,7 @@ export const themeIconVariants = tv({
       ],
       outline: [
         // Border: visible border with background
-        "border border-border bg-background shadow-xs",
+        "border-border bg-background border shadow-xs",
         // Dark mode: adjusted border and background
         "dark:border-input dark:bg-input/30",
       ],

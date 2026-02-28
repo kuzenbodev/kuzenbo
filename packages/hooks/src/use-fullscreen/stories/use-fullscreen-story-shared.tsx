@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { useFullscreen } from "../use-fullscreen";
@@ -28,22 +27,22 @@ const UseFullscreenDemo = () => {
   }, [toggle]);
 
   return (
-    <div className="max-w-lg rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm">
+    <div className="border-border bg-card text-card-foreground max-w-lg rounded-lg border p-6 shadow-sm">
       {/* hooks is standalone and cannot import core Typography primitives. */}
       <h2 className="text-base font-medium">useFullscreen Demo</h2>
-      <p className="mt-2 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-2 text-sm">
         Click the button to toggle fullscreen for the demo panel.
       </p>
 
       <div
-        className="mt-4 flex min-h-40 items-center justify-center rounded-md border border-border bg-muted text-muted-foreground"
+        className="border-border bg-muted text-muted-foreground mt-4 flex min-h-40 items-center justify-center rounded-md border"
         ref={ref}
       >
         {fullscreen ? "Fullscreen active" : "Inline mode"}
       </div>
 
       <button
-        className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-primary px-3 text-sm text-primary-foreground"
+        className="bg-primary text-primary-foreground mt-4 inline-flex h-9 items-center justify-center rounded-md px-3 text-sm"
         onClick={handleToggle}
         type="button"
       >
@@ -51,7 +50,7 @@ const UseFullscreenDemo = () => {
       </button>
 
       {error ? (
-        <p className="mt-3 text-sm text-danger-foreground" role="status">
+        <p className="text-danger-foreground mt-3 text-sm" role="status">
           {error}
         </p>
       ) : null}

@@ -1,11 +1,9 @@
 "use client";
 
 import type { Select as SelectPrimitive } from "@base-ui/react/select";
-
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { SelectContext } from "./select-context";
 import { SelectList } from "./select-list";
 import { SelectOverlayContext } from "./select-overlay-context";
@@ -36,9 +34,10 @@ const SelectContent = ({
 }: SelectContentProps) => {
   const { size: rootSize } = useContext(SelectContext);
   const resolvedSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <SelectOverlayContext.Provider value={{ size: resolvedSize }}>
+    <SelectOverlayContext.Provider value={contextValue}>
       <SelectPortal>
         <SelectPositioner
           align={align}

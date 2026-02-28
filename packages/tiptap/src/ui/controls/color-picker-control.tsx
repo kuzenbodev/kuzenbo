@@ -77,7 +77,7 @@ export const TiptapEditorColorPicker = ({
           {palette.map((color) => (
             <button
               aria-label={`Set color ${color}`}
-              className="size-7 cursor-clickable rounded-md border border-border transition hover:scale-105"
+              className="cursor-clickable border-border size-7 rounded-md border transition hover:scale-105"
               key={color}
               onClick={() => applyColor(color)}
               style={{ backgroundColor: color }}

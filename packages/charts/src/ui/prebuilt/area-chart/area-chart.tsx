@@ -9,9 +9,6 @@ import {
   YAxis,
 } from "recharts";
 
-import type { CompleteChartDatum } from "../shared/complete-types";
-import type { AreaChartProps } from "./area-chart-types";
-
 import { CompleteCartesianShell } from "../shared/complete-cartesian-shell";
 import {
   getReferenceLineKey,
@@ -22,7 +19,9 @@ import {
   shouldRenderXAxisTickLine,
   shouldRenderYAxisTickLine,
 } from "../shared/complete-helpers";
+import type { CompleteChartDatum } from "../shared/complete-types";
 import { createLabelListContentRenderer } from "../shared/utils/label/create-label-list-content-renderer";
+import type { AreaChartProps } from "./area-chart-types";
 import { useAreaChartRuntime } from "./hooks/use-area-chart-runtime";
 import { createPointLabelFormatter } from "./utils/create-point-label-formatter";
 import { resolveAreaDotProps } from "./utils/resolve-area-dot-props";

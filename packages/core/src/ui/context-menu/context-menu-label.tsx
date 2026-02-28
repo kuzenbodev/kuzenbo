@@ -3,12 +3,11 @@ import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 
 const contextMenuLabelVariants = tv({
-  base: "font-medium text-muted-foreground data-[inset]:pl-8",
+  base: "text-muted-foreground font-medium data-[inset]:pl-8",
   variants: {
     size: {
       xs: "px-1.5 py-1 text-[11px]",

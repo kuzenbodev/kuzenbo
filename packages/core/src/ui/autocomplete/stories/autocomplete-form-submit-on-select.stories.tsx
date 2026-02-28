@@ -1,6 +1,5 @@
 import type { StoryObj } from "@storybook/react";
 import type { FormEvent } from "react";
-
 import { useCallback, useState } from "react";
 
 import { Autocomplete } from "../autocomplete";
@@ -45,11 +44,11 @@ const FormSubmitOnSelectDemo = () => {
             className="pr-28"
             placeholder="Search products..."
           />
-          <div className="-translate-y-1/2 absolute top-1/2 right-2 flex items-center gap-2">
+          <div className="absolute top-1/2 right-2 flex -translate-y-1/2 items-center gap-2">
             <Autocomplete.Clear className="text-muted-foreground text-xs">
               Clear
             </Autocomplete.Clear>
-            <Autocomplete.Trigger className="rounded-sm border border-border px-2 py-1 text-xs">
+            <Autocomplete.Trigger className="border-border rounded-sm border px-2 py-1 text-xs">
               Open
             </Autocomplete.Trigger>
           </div>
@@ -66,7 +65,7 @@ const FormSubmitOnSelectDemo = () => {
         </Autocomplete.Content>
       </Autocomplete>
       <button
-        className="h-9 rounded-md border border-border bg-background px-3 text-sm font-medium"
+        className="border-border bg-background h-9 rounded-md border px-3 text-sm font-medium"
         type="submit"
       >
         Submit Search

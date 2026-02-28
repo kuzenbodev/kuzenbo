@@ -1,10 +1,8 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { ContextMenuContent } from "./context-menu-content";
 import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";

@@ -5,11 +5,11 @@ import { DateControlButton } from "../internal/date-control-button";
 import { padTime } from "./utils/time-utils";
 
 const timeControlsListVariants = tv({
-  base: "max-h-40 overflow-auto rounded-md border border-border bg-card p-1",
+  base: "border-border bg-card max-h-40 overflow-auto rounded-md border p-1",
 });
 
 const timeControlVariants = tv({
-  base: "h-auto w-full items-center justify-center rounded-sm px-1 py-1 text-xs text-foreground hover:bg-muted",
+  base: "text-foreground hover:bg-muted h-auto w-full items-center justify-center rounded-sm px-1 py-1 text-xs",
   variants: {
     active: {
       true: "bg-primary text-primary-foreground hover:bg-primary/90",

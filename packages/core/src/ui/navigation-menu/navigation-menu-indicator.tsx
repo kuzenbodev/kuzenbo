@@ -1,18 +1,16 @@
-import type { ComponentProps } from "react";
-
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { NavigationMenuContext } from "./navigation-menu-context";
 
 const navigationMenuIndicatorVariants = tv({
   slots: {
-    arrow: "relative rotate-45 bg-border shadow-md",
-    root: "top-full z-inline flex items-end justify-center overflow-hidden opacity-0 transition-opacity duration-200 data-popup-open:opacity-100",
+    arrow: "bg-border relative rotate-45 shadow-md",
+    root: "z-inline top-full flex items-end justify-center overflow-hidden opacity-0 transition-opacity duration-200 data-popup-open:opacity-100",
   },
   variants: {
     size: {

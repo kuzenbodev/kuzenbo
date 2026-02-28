@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
@@ -45,7 +44,7 @@ const FormFieldError = ({
   if (!content) {
     return (
       <Field.Error
-        className={cn("text-sm font-normal text-danger-foreground", className)}
+        className={cn("text-danger-foreground text-sm font-normal", className)}
         data-slot="field-error"
         match={match}
         role="alert"
@@ -56,7 +55,7 @@ const FormFieldError = ({
 
   return (
     <Field.Error
-      className={cn("text-sm font-normal text-danger-foreground", className)}
+      className={cn("text-danger-foreground text-sm font-normal", className)}
       data-slot="field-error"
       match={match ?? true}
       role="alert"

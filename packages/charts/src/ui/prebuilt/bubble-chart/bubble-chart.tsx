@@ -10,8 +10,6 @@ import {
   ZAxis,
 } from "recharts";
 
-import type { BubbleChartProps, BubbleChartDatum } from "./bubble-chart-types";
-
 import { CompleteCartesianShell } from "../shared/complete-cartesian-shell";
 import {
   getReferenceLineKey,
@@ -23,6 +21,7 @@ import {
   shouldRenderYAxisTickLine,
 } from "../shared/complete-helpers";
 import { createLabelListContentRenderer } from "../shared/utils/label/create-label-list-content-renderer";
+import type { BubbleChartProps, BubbleChartDatum } from "./bubble-chart-types";
 import { useBubbleChartRuntime } from "./hooks/use-bubble-chart-runtime";
 import { createPointLabelFormatter } from "./utils/create-point-label-formatter";
 

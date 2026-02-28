@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Cancel01Icon, SearchIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Pill } from "../pill";
 
@@ -98,7 +97,7 @@ export const Sizes: Story = {
     <div className="flex flex-col gap-3">
       {sizeOptions.map((size) => (
         <div className="flex items-center gap-2" key={size}>
-          <span className="w-8 text-xs font-medium text-muted-foreground uppercase">
+          <span className="text-muted-foreground w-8 text-xs font-medium uppercase">
             {size}
           </span>
           <Pill size={size} variant="secondary">

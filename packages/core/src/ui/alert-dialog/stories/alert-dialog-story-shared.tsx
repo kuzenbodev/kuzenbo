@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { type ChangeEvent, useCallback, useState } from "react";
 
 import { Button } from "../../button/button";
@@ -92,7 +91,7 @@ const AsyncConfirmDialogDemo = () => {
           </AlertDialog.Footer>
         </AlertDialog.Content>
       </AlertDialog>
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         {lastRevokedAt
           ? `Last key rotation completed at ${lastRevokedAt}.`
           : "No key has been revoked in this preview session yet."}
@@ -135,7 +134,7 @@ const FormValidationDemo = () => {
             placeholder={workspaceSlug}
             value={typedSlug}
           />
-          <div className="text-xs text-muted-foreground">
+          <div className="text-muted-foreground text-xs">
             {isConfirmed
               ? "Confirmation matched. Deletion is now available."
               : "The confirmation text must match exactly."}

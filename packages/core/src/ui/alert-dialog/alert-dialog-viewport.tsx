@@ -9,7 +9,7 @@ const AlertDialogViewport = ({
 }: AlertDialogViewportProps) => (
   <AlertDialogPrimitive.Viewport
     className={cn(
-      "fixed inset-0 z-overlay flex items-center justify-center p-4",
+      "z-overlay fixed inset-0 flex items-center justify-center p-4",
       className
     )}
     data-slot="alert-dialog-viewport"

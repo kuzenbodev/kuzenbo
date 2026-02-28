@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 export type ItemContentProps = ComponentProps<"div">;
 

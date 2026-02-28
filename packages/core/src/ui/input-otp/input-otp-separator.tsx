@@ -1,12 +1,10 @@
-import type { ComponentProps } from "react";
-
 import { MinusSignIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { InputOTPContext } from "./input-otp-context";
 
 const inputOTPSeparatorVariants = tv({

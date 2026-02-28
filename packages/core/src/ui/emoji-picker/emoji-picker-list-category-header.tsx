@@ -1,15 +1,13 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerListCategoryHeaderVariants = tv({
-  base: "bg-popover font-medium text-muted-foreground",
+  base: "bg-popover text-muted-foreground font-medium",
   variants: {
     size: {
       xs: "px-2 pb-1 text-[10px]",

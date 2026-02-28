@@ -1,14 +1,12 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { SidebarMenuContext } from "./sidebar-menu-context";
 
 const sidebarMenuSubVariants = tv({
-  base: "flex min-w-0 translate-x-px flex-col border-l border-sidebar-border group-data-[collapsible=icon]:hidden",
+  base: "border-sidebar-border flex min-w-0 translate-x-px flex-col border-l group-data-[collapsible=icon]:hidden",
   variants: {
     size: {
       xs: "mx-2.5 gap-0.5 px-1.5 py-0.5",

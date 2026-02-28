@@ -1,7 +1,6 @@
 "use client";
 
 import type { Editor } from "@tiptap/core";
-
 import { useEditorState } from "@tiptap/react";
 
 import { useOptionalTiptapEditorContext } from "./tiptap-editor-context";
@@ -12,20 +11,20 @@ export interface UseTiptapEditorStateOptions<T> {
 }
 
 export const useTiptapEditorState = <T>({
-  editor,
+  editor: providedEditor,
   selector,
 }: UseTiptapEditorStateOptions<T>): T | null => {
   const context = useOptionalTiptapEditorContext();
-  const resolvedEditor = editor ?? context?.editor ?? null;
+  const resolvedEditor = providedEditor ?? context?.editor ?? null;
 
   return useEditorState({
     editor: resolvedEditor,
-    selector: ({ editor }) => {
-      if (!editor) {
+    selector: ({ editor: currentEditor }) => {
+      if (!currentEditor) {
         return null;
       }
 
-      return selector(editor);
+      return selector(currentEditor);
     },
   });
 };

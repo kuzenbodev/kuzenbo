@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { InputSize } from "../../input/input";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -100,7 +99,7 @@ export const WithSections: Story = {
 
 export const MobileCollapsed: Story = {
   render: () => (
-    <div className="w-72 rounded-lg border border-border p-3">
+    <div className="border-border w-72 rounded-lg border p-3">
       <NavigationMenu size="sm">
         <NavigationMenuList className="w-full justify-between gap-2">
           <NavigationMenuItem value="workspace">

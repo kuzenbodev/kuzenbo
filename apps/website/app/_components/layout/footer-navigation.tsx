@@ -1,6 +1,5 @@
-import type { FooterColumn } from "./footer.types";
-
 import { FooterNavigationColumn } from "./footer-navigation-column";
+import type { FooterColumn } from "./footer.types";
 
 export const FOOTER_COLUMNS: readonly FooterColumn[] = [
   {

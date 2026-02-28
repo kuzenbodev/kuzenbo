@@ -1,13 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import {
   type NavigationListTone,
   useResolvedNavigationListSize,
@@ -16,7 +14,7 @@ import {
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListActionVariants = tv({
-  base: "absolute right-1 flex aspect-square cursor-clickable items-center justify-center rounded-md p-0 outline-hidden transition-transform group-data-[collapsible=true]/navigation-list-item:right-10 group-has-data-[slot=navigation-list-badge]/navigation-list-item:right-14 [&>svg]:shrink-0",
+  base: "cursor-clickable absolute right-1 flex aspect-square items-center justify-center rounded-md p-0 outline-hidden transition-transform group-has-data-[slot=navigation-list-badge]/navigation-list-item:right-14 group-data-[collapsible=true]/navigation-list-item:right-10 [&>svg]:shrink-0",
   variants: {
     size: {
       xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",
@@ -27,9 +25,9 @@ const navigationListActionVariants = tv({
     },
     tone: {
       surface:
-        "text-muted-foreground ring-ring hover:bg-muted hover:text-foreground focus-visible:ring-2 peer-hover/navigation-list-link:text-foreground peer-data-active/navigation-list-link:text-foreground",
+        "text-muted-foreground ring-ring hover:bg-muted hover:text-foreground peer-hover/navigation-list-link:text-foreground peer-data-active/navigation-list-link:text-foreground focus-visible:ring-2",
       sidebar:
-        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 peer-hover/navigation-list-link:text-sidebar-accent-foreground peer-data-active/navigation-list-link:text-sidebar-accent-foreground",
+        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/navigation-list-link:text-sidebar-accent-foreground peer-data-active/navigation-list-link:text-sidebar-accent-foreground focus-visible:ring-2",
     },
   },
   defaultVariants: {
@@ -72,7 +70,7 @@ const NavigationListAction = ({
           itemContext.variant === "filled" &&
             resolvedTone === "sidebar" &&
             "peer-data-active/navigation-list-link:text-sidebar-primary-foreground",
-          "peer-data-[size=xs]/navigation-list-link:top-0.5 peer-data-[size=sm]/navigation-list-link:top-1 peer-data-[size=md]/navigation-list-link:top-1.5 peer-data-[size=lg]/navigation-list-link:top-2 peer-data-[size=xl]/navigation-list-link:top-2.5",
+          "peer-data-[size=lg]/navigation-list-link:top-2 peer-data-[size=md]/navigation-list-link:top-1.5 peer-data-[size=sm]/navigation-list-link:top-1 peer-data-[size=xl]/navigation-list-link:top-2.5 peer-data-[size=xs]/navigation-list-link:top-0.5",
           showOnHover &&
             "group-focus-within/navigation-list-item:opacity-100 group-hover/navigation-list-item:opacity-100 peer-data-active/navigation-list-link:opacity-100 md:opacity-0",
           className

@@ -2,7 +2,6 @@ import type {
   ScatterChartDatum,
   ScatterChartProps,
 } from "../scatter-chart-types";
-
 import { formatAxisNumericValue } from "./format-axis-numeric-value";
 
 interface CreateTooltipValueFormatterOptions<

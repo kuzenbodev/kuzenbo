@@ -1,9 +1,9 @@
 "use client";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { DropdownMenuArrow } from "./dropdown-menu-arrow";
 import { DropdownMenuBackdrop } from "./dropdown-menu-backdrop";
@@ -31,9 +31,10 @@ export type DropdownMenuProps = MenuPrimitive.Root.Props & {
 
 const DropdownMenu = ({ size: providedSize, ...props }: DropdownMenuProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <DropdownMenuContext.Provider value={{ size }}>
+    <DropdownMenuContext.Provider value={contextValue}>
       <MenuPrimitive.Root
         data-size={size}
         data-slot="dropdown-menu"

@@ -1,9 +1,8 @@
 import type { ComponentPropsWithoutRef } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 const codeVariants = tv({
-  base: "relative rounded bg-muted font-mono text-[0.85em] font-medium text-foreground",
+  base: "bg-muted text-foreground relative rounded font-mono text-[0.85em] font-medium",
   variants: {
     block: {
       true: "m-0 block overflow-x-auto px-3 py-2 leading-relaxed whitespace-pre",

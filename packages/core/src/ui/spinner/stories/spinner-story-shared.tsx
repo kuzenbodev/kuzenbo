@@ -41,7 +41,7 @@ export const Sizes: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
+    <div className="border-border bg-card text-muted-foreground inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm">
       <Spinner size="sm" />
       Syncing data...
     </div>
@@ -50,13 +50,13 @@ export const WithLabel: Story = {
 
 export const Overlay: Story = {
   render: () => (
-    <div className="relative w-72 overflow-hidden rounded-md border border-border bg-card p-4">
+    <div className="border-border bg-card relative w-72 overflow-hidden rounded-md border p-4">
       <div className="space-y-2">
-        <div className="h-4 w-1/3 rounded bg-muted" />
-        <div className="h-4 w-2/3 rounded bg-muted" />
-        <div className="h-4 w-1/2 rounded bg-muted" />
+        <div className="bg-muted h-4 w-1/3 rounded" />
+        <div className="bg-muted h-4 w-2/3 rounded" />
+        <div className="bg-muted h-4 w-1/2 rounded" />
       </div>
-      <div className="absolute inset-0 flex items-center justify-center bg-background/70">
+      <div className="bg-background/70 absolute inset-0 flex items-center justify-center">
         <Spinner size="lg" />
       </div>
     </div>

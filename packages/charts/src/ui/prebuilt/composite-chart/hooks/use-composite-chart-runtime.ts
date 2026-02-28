@@ -1,12 +1,11 @@
-import type {
-  CompositeChartProps,
-  CompleteChartDatum,
-} from "../../shared/complete-types";
-
 import {
   createYAxisTickFormatter,
   resolveDefaultBarRadius,
 } from "../../shared/complete-helpers";
+import type {
+  CompositeChartProps,
+  CompleteChartDatum,
+} from "../../shared/complete-types";
 
 type ResolvedComposedChartProps<
   TData extends CompleteChartDatum = CompleteChartDatum,

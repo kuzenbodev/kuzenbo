@@ -1,8 +1,7 @@
-import type { ReleaseChannel, ReleaseOptions } from "./lib/types";
-
 import { getOptionalArg, getRequiredArg, parseArgs } from "./lib/args";
 import { resolveReleaseRef } from "./lib/branch-policy";
 import { loadReleaseConfig } from "./lib/config";
+import type { ReleaseChannel, ReleaseOptions } from "./lib/types";
 import { validateReleaseState } from "./lib/validation";
 import { isReleaseChannel } from "./lib/version";
 import { readWorkspacePackages } from "./lib/workspace";

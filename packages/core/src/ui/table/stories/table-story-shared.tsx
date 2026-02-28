@@ -139,7 +139,7 @@ export const EmptyState: Story = {
       <Table.Body>
         <Table.Row>
           <Table.Cell
-            className="py-8 text-center text-muted-foreground"
+            className="text-muted-foreground py-8 text-center"
             colSpan={4}
           >
             All enterprise requests are up to date.

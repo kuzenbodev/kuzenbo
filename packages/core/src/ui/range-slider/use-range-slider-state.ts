@@ -1,13 +1,11 @@
 "use client";
 
 import type { Slider as SliderPrimitive } from "@base-ui/react/slider";
-
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { SliderMark } from "../slider/shared/slider-types";
-import type { RangeSliderValue } from "./range-slider-types";
-
 import { normalizeRangeSliderValue } from "./math/normalize-range-slider-value";
+import type { RangeSliderValue } from "./range-slider-types";
 
 interface UseRangeSliderStateOptions {
   defaultValue?: RangeSliderValue;

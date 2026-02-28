@@ -1,8 +1,8 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
+import type { CSSProperties } from "react";
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
@@ -30,6 +30,10 @@ const ToggleGroup = ({
   ...props
 }: ToggleGroupProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(
+    () => ({ variant, size, spacing, orientation }),
+    [variant, size, spacing, orientation]
+  );
 
   return (
     <ToggleGroupPrimitive
@@ -47,9 +51,7 @@ const ToggleGroup = ({
       style={{ "--gap": spacing } as CSSProperties}
       {...props}
     >
-      <ToggleGroupContext.Provider
-        value={{ variant, size, spacing, orientation }}
-      >
+      <ToggleGroupContext.Provider value={contextValue}>
         {children}
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive>

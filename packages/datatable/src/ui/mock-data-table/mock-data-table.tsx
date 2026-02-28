@@ -1,7 +1,6 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
-
 import {
   flexRender,
   getCoreRowModel,
@@ -17,11 +16,11 @@ export interface MockDataTableProps<TData extends object> {
 
 const mockDataTableVariants = tv({
   slots: {
-    root: "rounded-lg border border-border",
+    root: "border-border rounded-lg border",
     table: "w-full border-collapse text-sm",
-    thead: "border-b border-border bg-muted/40",
+    thead: "border-border bg-muted/40 border-b",
     headerCell: "px-3 py-2 text-left font-medium",
-    bodyRow: "border-b border-border/60",
+    bodyRow: "border-border/60 border-b",
     bodyCell: "px-3 py-2",
   },
 });

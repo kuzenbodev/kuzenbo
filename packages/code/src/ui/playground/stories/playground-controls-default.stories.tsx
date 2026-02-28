@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useMemo, useState } from "react";
 
 import {
@@ -117,7 +116,7 @@ const PlaygroundControlsDemo = ({
         code={JSON.stringify(state, null, 2)}
         language="json"
         toolbar={
-          <div className="px-3 py-2 text-xs text-muted-foreground">
+          <div className="text-muted-foreground px-3 py-2 text-xs">
             Current playground state
           </div>
         }

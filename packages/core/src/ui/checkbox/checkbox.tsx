@@ -5,14 +5,13 @@ import { MinusSignIcon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { CheckboxIndicator } from "./checkbox-indicator";
 
 const checkboxVariants = tv({
-  base: "peer relative flex shrink-0 cursor-clickable items-center justify-center border border-input text-primary-foreground shadow-xs transition-colors outline-none group-has-disabled/field:opacity-50 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 aria-invalid:aria-checked:border-primary data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground data-indeterminate:border-primary data-indeterminate:bg-primary data-indeterminate:text-primary-foreground dark:bg-input/30 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 dark:data-checked:bg-primary dark:data-indeterminate:bg-primary",
+  base: "peer cursor-clickable border-input text-primary-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/20 aria-invalid:aria-checked:border-primary data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground data-indeterminate:border-primary data-indeterminate:bg-primary data-indeterminate:text-primary-foreground dark:bg-input/30 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 dark:data-checked:bg-primary dark:data-indeterminate:bg-primary relative flex shrink-0 items-center justify-center border shadow-xs transition-colors outline-none group-has-disabled/field:opacity-50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px]",
   variants: {
     size: {
       xs: "size-3 rounded-[3px] after:absolute after:-inset-1.5",

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { useIsomorphicEffect } from "../use-isomorphic-effect";
@@ -26,10 +25,10 @@ const UseIsomorphicEffectDemo = () => {
   }, [count]);
 
   return (
-    <div className="max-w-md rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm">
+    <div className="border-border bg-card text-card-foreground max-w-md rounded-lg border p-6 shadow-sm">
       {/* hooks is standalone and cannot import core Typography primitives. */}
       <h2 className="text-base font-medium">useIsomorphicEffect Demo</h2>
-      <p className="mt-2 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-2 text-sm">
         Increment to trigger effect reruns. In browser contexts this uses{" "}
         <code>useLayoutEffect</code>.
       </p>
@@ -42,7 +41,7 @@ const UseIsomorphicEffectDemo = () => {
       </dl>
 
       <button
-        className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-secondary px-3 text-sm text-secondary-foreground"
+        className="bg-secondary text-secondary-foreground mt-4 inline-flex h-9 items-center justify-center rounded-md px-3 text-sm"
         onClick={handleIncrement}
         type="button"
       >

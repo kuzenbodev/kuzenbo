@@ -83,7 +83,7 @@ export const KeyCombo: Story = {
 
 export const CommandList: Story = {
   render: () => (
-    <div className="grid w-[360px] gap-2 rounded-md border border-border bg-card p-3 text-sm">
+    <div className="border-border bg-card grid w-[360px] gap-2 rounded-md border p-3 text-sm">
       <div className="flex items-center justify-between">
         <span>Sync vendor master data</span>
         <Kbd.Group size="sm">

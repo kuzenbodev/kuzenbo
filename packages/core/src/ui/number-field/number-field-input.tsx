@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
@@ -8,7 +7,7 @@ import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { NumberFieldContext } from "./number-field-context";
 
 const numberFieldInputVariants = tv({
-  base: "w-20 border-y border-input bg-background text-center tabular-nums text-foreground transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  base: "border-input bg-background text-foreground w-20 border-y text-center tabular-nums transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "h-6 text-xs",

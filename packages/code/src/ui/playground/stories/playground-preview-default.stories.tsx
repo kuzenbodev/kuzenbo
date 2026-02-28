@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import { Typography } from "@kuzenbo/core/ui/typography";
+import type { Meta, StoryObj } from "@storybook/react";
 import { cn } from "tailwind-variants";
 
 import { PlaygroundPreview } from "../playground-preview";
@@ -21,7 +20,7 @@ const DeploymentPreview = ({
   health,
   showAction,
 }: DeploymentPreviewProps) => (
-  <section className="space-y-3 rounded-md border border-border bg-card p-4">
+  <section className="border-border bg-card space-y-3 rounded-md border p-4">
     <div className="flex items-center justify-between gap-3">
       <Typography.Small>{serviceName}</Typography.Small>
       <span

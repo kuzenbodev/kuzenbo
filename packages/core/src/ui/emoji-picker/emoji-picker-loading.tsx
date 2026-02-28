@@ -1,16 +1,14 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerLoadingVariants = tv({
-  base: "absolute inset-0 flex items-center justify-center text-muted-foreground",
+  base: "text-muted-foreground absolute inset-0 flex items-center justify-center",
   variants: {
     size: {
       xs: "text-xs",

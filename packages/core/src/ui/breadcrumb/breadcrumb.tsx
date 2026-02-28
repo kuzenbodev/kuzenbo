@@ -1,12 +1,11 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { BreadcrumbEllipsis } from "./breadcrumb-ellipsis";
 import { BreadcrumbItem } from "./breadcrumb-item";
 import { BreadcrumbLink } from "./breadcrumb-link";
@@ -24,9 +23,10 @@ const Breadcrumb = ({
   ...props
 }: BreadcrumbProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <BreadcrumbSizeContext.Provider value={{ size }}>
+    <BreadcrumbSizeContext.Provider value={contextValue}>
       <nav
         aria-label="breadcrumb"
         className={cn(className)}

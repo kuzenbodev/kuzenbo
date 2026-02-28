@@ -1,15 +1,13 @@
-import type { ComponentProps } from "react";
-
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbSeparatorVariants = tv({
-  base: "inline-flex items-center text-muted-foreground",
+  base: "text-muted-foreground inline-flex items-center",
   variants: {
     size: {
       xs: "[&>svg]:size-3",

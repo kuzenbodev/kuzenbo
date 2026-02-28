@@ -1,6 +1,7 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import { fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { createDateAdapter } from "../../adapter";
 import { DateTimePicker } from "../date-time-picker";
@@ -10,6 +11,14 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
+
 const expectDateValue = (value: Date | null): Date => {
   expect(value).toBeInstanceOf(Date);
   if (!(value instanceof Date)) {
@@ -17,6 +26,28 @@ const expectDateValue = (value: Date | null): Date => {
   }
   return value;
 };
+
+const getHiddenInput = (name: string): HTMLInputElement => {
+  const hiddenInput = document.querySelector(
+    `input[type='hidden'][name='${name}']`
+  ) as HTMLInputElement | null;
+  expect(hiddenInput).not.toBeNull();
+  if (hiddenInput === null) {
+    throw new Error(`Expected hidden input with name '${name}'`);
+  }
+  return hiddenInput;
+};
+
+const toDateTimeStringOrEmpty = (
+  adapter: ReturnType<typeof createDateAdapter>,
+  value: Date
+): string => {
+  const serializedValue = adapter.toDateTimeString(value);
+  return serializedValue ?? "";
+};
+
+const isSelectableDayButton = (button: HTMLButtonElement): boolean =>
+  button.dataset.selected !== "true" && !button.hasAttribute("disabled");
 
 describe("DateTimePicker", () => {
   it("updates combined datetime when time changes", () => {
@@ -48,12 +79,9 @@ describe("DateTimePicker", () => {
     expect(resolvedValue.getMinutes()).toBe(45);
     expect(resolvedValue.getHours()).toBe(9);
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='appointment']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(resolvedValue) ?? ""
+    const hiddenInput = getHiddenInput("appointment");
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, resolvedValue)
     );
   });
 
@@ -76,15 +104,10 @@ describe("DateTimePicker", () => {
     const dayButtons = [
       ...document.querySelectorAll("[data-slot='month'] button"),
     ] as HTMLButtonElement[];
-    const targetDayButton = dayButtons.find(
-      (button) =>
-        button.dataset.selected !== "true" && !button.hasAttribute("disabled")
+    const targetDayButton = expectDefinedValue(
+      dayButtons.find(isSelectableDayButton),
+      "Expected at least one selectable day button"
     );
-
-    expect(targetDayButton).toBeDefined();
-    if (!targetDayButton) {
-      throw new Error("Expected at least one selectable day button");
-    }
 
     fireEvent.click(targetDayButton);
 
@@ -105,12 +128,8 @@ describe("DateTimePicker", () => {
       </DatesProvider>
     );
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='appointment']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput).not.toBeNull();
-    expect(hiddenInput?.value).toBe(adapter.toDateTimeString(value) ?? "");
+    const hiddenInput = getHiddenInput("appointment");
+    expect(hiddenInput.value).toBe(toDateTimeStringOrEmpty(adapter, value));
   });
 
   it("keeps DST boundary serialization timezone-safe", () => {
@@ -125,13 +144,10 @@ describe("DateTimePicker", () => {
       </DatesProvider>
     );
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='meeting']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput?.value).toBe("2024-03-10 03:30:00");
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(springForwardValue) ?? ""
+    const hiddenInput = getHiddenInput("meeting");
+    expect(hiddenInput.value).toBe("2024-03-10 03:30:00");
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, springForwardValue)
     );
 
     rerender(
@@ -140,9 +156,9 @@ describe("DateTimePicker", () => {
       </DatesProvider>
     );
 
-    expect(hiddenInput?.value).toBe("2024-11-03 01:30:00");
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(fallBackValue) ?? ""
+    expect(hiddenInput.value).toBe("2024-11-03 01:30:00");
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, fallBackValue)
     );
   });
 
@@ -175,12 +191,9 @@ describe("DateTimePicker", () => {
     expect(resolvedValue.getHours()).toBe(10);
     expect(resolvedValue.getMinutes()).toBe(15);
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='min-bound']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(resolvedValue) ?? ""
+    const hiddenInput = getHiddenInput("min-bound");
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, resolvedValue)
     );
   });
 
@@ -213,12 +226,9 @@ describe("DateTimePicker", () => {
     expect(resolvedValue.getHours()).toBe(16);
     expect(resolvedValue.getMinutes()).toBe(45);
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='max-bound']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(resolvedValue) ?? ""
+    const hiddenInput = getHiddenInput("max-bound");
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, resolvedValue)
     );
   });
 
@@ -240,12 +250,9 @@ describe("DateTimePicker", () => {
       </DatesProvider>
     );
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='meeting']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(initialValue) ?? ""
+    const hiddenInput = getHiddenInput("meeting");
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, initialValue)
     );
 
     fireEvent.change(screen.getByLabelText("Minutes"), {
@@ -253,15 +260,10 @@ describe("DateTimePicker", () => {
     });
 
     expect(nextControlledValue).toBeInstanceOf(Date);
-    expect(hiddenInput?.value).toBe(
-      adapter.toDateTimeString(initialValue) ?? ""
+    expect(hiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, initialValue)
     );
-
-    if (nextControlledValue === null) {
-      throw new TypeError("Expected controlled value to be present");
-    }
-
-    const resolvedControlledValue = nextControlledValue;
+    const resolvedControlledValue = expectDateValue(nextControlledValue);
 
     rerender(
       <DatesProvider timeZone={timeZone}>
@@ -275,12 +277,9 @@ describe("DateTimePicker", () => {
       </DatesProvider>
     );
 
-    const rerenderedHiddenInput = document.querySelector(
-      "input[type='hidden'][name='meeting']"
-    ) as HTMLInputElement | null;
-
-    expect(rerenderedHiddenInput?.value).toBe(
-      adapter.toDateTimeString(resolvedControlledValue) ?? ""
+    const rerenderedHiddenInput = getHiddenInput("meeting");
+    expect(rerenderedHiddenInput.value).toBe(
+      toDateTimeStringOrEmpty(adapter, resolvedControlledValue)
     );
   });
 });

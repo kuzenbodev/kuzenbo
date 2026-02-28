@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { Group } from "react-resizable-panels";
 import { cn } from "tailwind-variants";
 

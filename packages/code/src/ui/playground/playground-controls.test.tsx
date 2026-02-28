@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, mock } from "bun:test";
+
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
 import { definePlaygroundControls } from "../../playground/playground-control-model";
 import { PlaygroundControls } from "./playground-controls";

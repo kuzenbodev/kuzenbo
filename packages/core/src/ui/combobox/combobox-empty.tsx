@@ -4,13 +4,12 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { ComboboxOverlayContext } from "./combobox-overlay-context";
 
 const comboboxEmptyVariants = tv({
-  base: "hidden w-full justify-center text-center text-muted-foreground group-data-empty/combobox-content:flex",
+  base: "text-muted-foreground hidden w-full justify-center text-center group-data-empty/combobox-content:flex",
   variants: {
     size: {
       xs: "py-2 text-xs",

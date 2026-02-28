@@ -11,7 +11,7 @@ export const FooterNavigationColumn = ({
   column,
 }: FooterNavigationColumnProps) => (
   <nav aria-label={`${column.title} links`}>
-    <Typography.Small className="mb-3 block font-medium ">
+    <Typography.Small className="mb-3 block font-medium">
       {column.title}
     </Typography.Small>
     <ul className="m-0 list-none space-y-2 p-0">

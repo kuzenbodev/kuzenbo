@@ -1,5 +1,4 @@
 import type { CompleteChartDatum } from "../../complete-types";
-
 import { getFallbackSeriesColor } from "../series/get-fallback-series-color";
 
 const getRadialSegmentColor = <TData extends CompleteChartDatum>(

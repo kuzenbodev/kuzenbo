@@ -1,8 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { diffLines } from "diff";
+import type { ReactNode } from "react";
 import { useMemo } from "react";
 import ReactDiffViewer from "react-diff-viewer-continued";
 import { cn, tv } from "tailwind-variants";
@@ -21,7 +20,7 @@ export interface CodeDiffBlockProps {
 }
 
 const codeDiffBlockVariants = tv({
-  base: "overflow-hidden rounded-lg border border-border bg-muted/40",
+  base: "border-border bg-muted/40 overflow-hidden rounded-lg border",
 });
 
 const countChangedLines = (value: string): number => {
@@ -75,10 +74,10 @@ export const CodeDiffBlock = ({
       data-slot="code-diff-block"
       data-view-mode={viewMode}
     >
-      <header className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-background/60 px-4 py-2">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <header className="border-border bg-background/60 flex flex-wrap items-center justify-between gap-3 border-b px-4 py-2">
+        <div className="text-muted-foreground flex items-center gap-2 text-xs">
           <span
-            className="rounded border border-border bg-background px-2 py-1 text-foreground"
+            className="border-border bg-background text-foreground rounded border px-2 py-1"
             data-slot="code-diff-old-title"
           >
             {oldTitle}
@@ -87,7 +86,7 @@ export const CodeDiffBlock = ({
             to
           </span>
           <span
-            className="rounded border border-border bg-background px-2 py-1 text-foreground"
+            className="border-border bg-background text-foreground rounded border px-2 py-1"
             data-slot="code-diff-new-title"
           >
             {newTitle}
@@ -99,13 +98,13 @@ export const CodeDiffBlock = ({
           data-slot="code-diff-summary"
         >
           <span
-            className="rounded border border-success/30 bg-success/10 px-2 py-1 font-medium text-success"
+            className="border-success/30 bg-success/10 text-success rounded border px-2 py-1 font-medium"
             data-slot="code-diff-added-count"
           >
             +{addedLines}
           </span>
           <span
-            className="rounded border border-danger/30 bg-danger/10 px-2 py-1 font-medium text-danger"
+            className="border-danger/30 bg-danger/10 text-danger rounded border px-2 py-1 font-medium"
             data-slot="code-diff-removed-count"
           >
             -{removedLines}
@@ -119,7 +118,7 @@ export const CodeDiffBlock = ({
           newValue={newCode}
           oldValue={oldCode}
           renderContent={(content) => (
-            <pre className="m-0 whitespace-pre-wrap font-mono text-sm leading-6 text-foreground">
+            <pre className="text-foreground m-0 font-mono text-sm leading-6 whitespace-pre-wrap">
               {content}
             </pre>
           )}

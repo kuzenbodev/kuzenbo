@@ -3,13 +3,12 @@ import { type ComponentProps, useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { InputOTPContext } from "./input-otp-context";
 
 const inputOTPSlotVariants = tv({
   slots: {
     caret: "animate-caret-blink bg-foreground duration-1000",
-    root: "relative flex items-center justify-center border-y border-r border-input shadow-xs transition-all outline-none first:border-l aria-invalid:border-danger first:rounded-l-md last:rounded-r-md data-[active=true]:z-raised data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-danger data-[active=true]:aria-invalid:ring-danger/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-danger/40",
+    root: "border-input aria-invalid:border-danger data-[active=true]:z-raised data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-danger data-[active=true]:aria-invalid:ring-danger/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-danger/40 relative flex items-center justify-center border-y border-r shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:ring-[3px]",
   },
   variants: {
     size: {

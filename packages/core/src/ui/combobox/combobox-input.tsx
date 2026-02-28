@@ -3,8 +3,6 @@
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { useContext } from "react";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import {
   InputGroup,
@@ -12,6 +10,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "../input-group/input-group";
+import type { InputSize } from "../input/input";
 import { ComboboxClear } from "./combobox-clear";
 import { ComboboxContext } from "./combobox-context";
 import { ComboboxTrigger } from "./combobox-trigger";
@@ -63,7 +62,7 @@ const ComboboxInput = ({
       <InputGroupAddon align="inline-end">
         {showTrigger && (
           <InputGroupButton
-            className="group-has-data-[slot=combobox-clear]/input-group:hidden gap-0 data-pressed:bg-transparent"
+            className="gap-0 group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
             data-slot="input-group-button"
             disabled={disabled}
             render={<ComboboxTrigger />}

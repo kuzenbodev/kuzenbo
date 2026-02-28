@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps, ReactNode } from "react";
-
 import { ResponsiveContainer } from "recharts";
 
 interface ChartAutoSizeProps {

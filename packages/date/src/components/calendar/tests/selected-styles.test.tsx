@@ -1,11 +1,65 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render, screen } from "@testing-library/react";
 
 import { DatesProvider } from "../../dates-provider";
 import { Day } from "../day";
 import { Month } from "../month";
 import { MonthsList } from "../months-list";
 import { YearsList } from "../years-list";
+
+const RANGE_DAY_NUMBERS = new Set([3, 4, 5, 6, 7, 8]);
+const RANGE_DAY_ENDPOINTS = new Set([3, 8]);
+const RANGE_MONTH_VALUES = new Set([3, 4, 5]);
+const RANGE_MONTH_ENDPOINTS = new Set([3, 5]);
+const RANGE_YEAR_VALUES = new Set([2033, 2034, 2035]);
+const RANGE_YEAR_ENDPOINTS = new Set([2033, 2035]);
+
+const getDayRangeProps = (date: Date) => {
+  const day = date.getDate();
+  const inTargetRange = date.getMonth() === 1 && RANGE_DAY_NUMBERS.has(day);
+  if (!inTargetRange) {
+    return {};
+  }
+
+  const isFirstInRange = day === 3;
+  const isLastInRange = day === 8;
+
+  return {
+    firstInRange: isFirstInRange,
+    inRange: true,
+    lastInRange: isLastInRange,
+    selected: RANGE_DAY_ENDPOINTS.has(day),
+  };
+};
+
+const getMonthRangeProps = (date: Date) => {
+  const month = date.getMonth();
+  if (!RANGE_MONTH_VALUES.has(month)) {
+    return {};
+  }
+
+  return {
+    firstInRange: month === 3,
+    inRange: true,
+    lastInRange: month === 5,
+    selected: RANGE_MONTH_ENDPOINTS.has(month),
+  };
+};
+
+const getYearRangeProps = (date: Date) => {
+  const year = date.getFullYear();
+  if (!RANGE_YEAR_VALUES.has(year)) {
+    return {};
+  }
+
+  return {
+    firstInRange: year === 2033,
+    inRange: true,
+    lastInRange: year === 2035,
+    selected: RANGE_YEAR_ENDPOINTS.has(year),
+  };
+};
 
 afterEach(() => {
   cleanup();
@@ -61,25 +115,7 @@ describe("calendar selected styles", () => {
   it("keeps rounded range endpoints for day cells", () => {
     render(
       <DatesProvider locale="en-US">
-        <Month
-          month={new Date(2026, 1, 1)}
-          getDayProps={(date) => {
-            if (
-              date.getMonth() !== 1 ||
-              date.getDate() < 3 ||
-              date.getDate() > 8
-            ) {
-              return {};
-            }
-
-            return {
-              firstInRange: date.getDate() === 3,
-              inRange: true,
-              lastInRange: date.getDate() === 8,
-              selected: date.getDate() === 3 || date.getDate() === 8,
-            };
-          }}
-        />
+        <Month month={new Date(2026, 1, 1)} getDayProps={getDayRangeProps} />
       </DatesProvider>
     );
 
@@ -96,37 +132,11 @@ describe("calendar selected styles", () => {
         <div>
           <MonthsList
             year={new Date(2033, 0, 1)}
-            getMonthControlProps={(date) => {
-              const month = date.getMonth();
-
-              if (month < 3 || month > 5) {
-                return {};
-              }
-
-              return {
-                firstInRange: month === 3,
-                inRange: true,
-                lastInRange: month === 5,
-                selected: month === 3 || month === 5,
-              };
-            }}
+            getMonthControlProps={getMonthRangeProps}
           />
           <YearsList
             year={new Date(2033, 0, 1)}
-            getYearControlProps={(date) => {
-              const year = date.getFullYear();
-
-              if (year < 2033 || year > 2035) {
-                return {};
-              }
-
-              return {
-                firstInRange: year === 2033,
-                inRange: true,
-                lastInRange: year === 2035,
-                selected: year === 2033 || year === 2035,
-              };
-            }}
+            getYearControlProps={getYearRangeProps}
           />
         </div>
       </DatesProvider>

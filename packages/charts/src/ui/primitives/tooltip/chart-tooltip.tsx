@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { Tooltip } from "recharts";
 
 type ChartTooltipProps = ComponentProps<typeof Tooltip>;

@@ -1,7 +1,6 @@
 import { describe, expect, it } from "bun:test";
 
 import type { ChartConfig } from "../../types/chart-types";
-
 import { asRecord } from "./as-record";
 import { getShapeColor } from "./get-shape-color";
 import { isNoneToken } from "./is-none-token";

@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import {
   cleanup,
   fireEvent,
@@ -5,7 +7,6 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { DatesProvider } from "../../dates-provider";
 import { DatePickerInput } from "../date-picker-input";
@@ -25,6 +26,22 @@ const getDayButtons = () =>
     (button): button is HTMLButtonElement =>
       button instanceof HTMLButtonElement && !button.disabled
   );
+
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
+
+const expectNotNullValue = <T,>(value: T | null, message: string): T => {
+  expect(value).not.toBeNull();
+  if (value === null) {
+    throw new Error(message);
+  }
+  return value;
+};
 
 const expectPickerOpened = async (opened: boolean) => {
   await waitFor(() => {
@@ -54,22 +71,22 @@ describe("DatePickerInput", () => {
 
     openPicker();
 
-    const [dateButton] = getDayButtons();
-
-    expect(dateButton).toBeDefined();
-    if (!dateButton) {
-      throw new Error("Expected at least one day button in the month grid");
-    }
+    const dateButton = expectDefinedValue(
+      getDayButtons()[0],
+      "Expected at least one day button in the month grid"
+    );
 
     fireEvent.click(dateButton);
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='appointment']"
-    ) as HTMLInputElement | null;
+    const hiddenInput = expectNotNullValue(
+      document.querySelector(
+        "input[type='hidden'][name='appointment']"
+      ) as HTMLInputElement | null,
+      "Expected hidden input for appointment field"
+    );
 
-    expect(hiddenInput).not.toBeNull();
-    expect(hiddenInput?.getAttribute("form")).toBe("external-date-picker-form");
-    expect(hiddenInput?.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(hiddenInput.getAttribute("form")).toBe("external-date-picker-form");
+    expect(hiddenInput.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(screen.getByPlaceholderText("Pick a date")).toBeDefined();
   });
 
@@ -101,12 +118,10 @@ describe("DatePickerInput", () => {
 
     openPicker();
 
-    const [firstDayControl] = getDayButtons();
-
-    expect(firstDayControl).toBeDefined();
-    if (!firstDayControl) {
-      throw new Error("Expected at least one day control");
-    }
+    const firstDayControl = expectDefinedValue(
+      getDayButtons()[0],
+      "Expected at least one day control"
+    );
 
     fireEvent.click(firstDayControl);
 
@@ -122,12 +137,10 @@ describe("DatePickerInput", () => {
 
     openPicker();
 
-    const [firstDayControl] = getDayButtons();
-
-    expect(firstDayControl).toBeDefined();
-    if (!firstDayControl) {
-      throw new Error("Expected at least one day control");
-    }
+    const firstDayControl = expectDefinedValue(
+      getDayButtons()[0],
+      "Expected at least one day control"
+    );
 
     fireEvent.click(firstDayControl);
 
@@ -147,13 +160,15 @@ describe("DatePickerInput", () => {
 
     openPicker();
 
-    const [firstDayControl, secondDayControl] = getDayButtons();
-
-    expect(firstDayControl).toBeDefined();
-    expect(secondDayControl).toBeDefined();
-    if (!firstDayControl || !secondDayControl) {
-      throw new Error("Expected at least two day controls");
-    }
+    const dayButtons = getDayButtons();
+    const firstDayControl = expectDefinedValue(
+      dayButtons[0],
+      "Expected at least two day controls"
+    );
+    const secondDayControl = expectDefinedValue(
+      dayButtons[1],
+      "Expected at least two day controls"
+    );
 
     fireEvent.click(firstDayControl);
     await expectPickerOpened(true);
@@ -175,13 +190,15 @@ describe("DatePickerInput", () => {
 
     openPicker();
 
-    const [firstDayControl, secondDayControl] = getDayButtons();
-
-    expect(firstDayControl).toBeDefined();
-    expect(secondDayControl).toBeDefined();
-    if (!firstDayControl || !secondDayControl) {
-      throw new Error("Expected at least two day controls");
-    }
+    const dayButtons = getDayButtons();
+    const firstDayControl = expectDefinedValue(
+      dayButtons[0],
+      "Expected at least two day controls"
+    );
+    const secondDayControl = expectDefinedValue(
+      dayButtons[1],
+      "Expected at least two day controls"
+    );
 
     fireEvent.click(firstDayControl);
     fireEvent.click(secondDayControl);
@@ -198,23 +215,26 @@ describe("DatePickerInput", () => {
 
     openPicker();
 
-    const [firstDayControl, secondDayControl] = getDayButtons();
-
-    expect(firstDayControl).toBeDefined();
-    expect(secondDayControl).toBeDefined();
-    if (!firstDayControl || !secondDayControl) {
-      throw new Error("Expected at least two day controls");
-    }
+    const dayButtons = getDayButtons();
+    const firstDayControl = expectDefinedValue(
+      dayButtons[0],
+      "Expected at least two day controls"
+    );
+    const secondDayControl = expectDefinedValue(
+      dayButtons[1],
+      "Expected at least two day controls"
+    );
 
     fireEvent.click(secondDayControl);
     fireEvent.click(firstDayControl);
 
-    const hiddenInput = document.querySelector(
-      "input[type='hidden'][name='dates']"
-    ) as HTMLInputElement | null;
-
-    expect(hiddenInput).not.toBeNull();
-    const values = hiddenInput?.value.split(",") ?? [];
+    const hiddenInput = expectNotNullValue(
+      document.querySelector(
+        "input[type='hidden'][name='dates']"
+      ) as HTMLInputElement | null,
+      "Expected hidden input for multiple dates"
+    );
+    const values = hiddenInput.value.split(",");
 
     expect(values).toHaveLength(2);
     expect(values).toEqual([...values].toSorted());

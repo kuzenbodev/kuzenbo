@@ -1,6 +1,4 @@
 import type { TypographyBlockquoteProps } from "./typography-blockquote";
-import type { TypographyLinkProps } from "./typography-link";
-
 import { TypographyBlockquote } from "./typography-blockquote";
 import { TypographyBody } from "./typography-body";
 import { TypographyCaption } from "./typography-caption";
@@ -19,6 +17,7 @@ import {
 } from "./typography-heading";
 import { TypographyLead } from "./typography-lead";
 import { TypographyLi, type TypographyLiProps } from "./typography-li";
+import type { TypographyLinkProps } from "./typography-link";
 import { TypographyLink } from "./typography-link";
 import { TypographyMuted } from "./typography-muted";
 import { TypographyOl, type TypographyOlProps } from "./typography-ol";

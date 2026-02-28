@@ -1,7 +1,6 @@
-import type { ComponentProps } from "react";
-
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
 import { Button } from "../button/button";
@@ -19,7 +18,7 @@ const CarouselPrevious = ({
   return (
     <Button
       className={cn(
-        "absolute touch-manipulation cursor-clickable rounded-full",
+        "cursor-clickable absolute touch-manipulation rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -left-12 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",

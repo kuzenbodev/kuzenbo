@@ -4,11 +4,10 @@ import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { ButtonGroupSizeContext } from "./button-group-size-context";
 
 const buttonGroupTextVariants = tv({
-  base: "flex items-center border border-border bg-muted font-medium [&_svg]:pointer-events-none",
+  base: "border-border bg-muted flex items-center border font-medium [&_svg]:pointer-events-none",
   variants: {
     size: {
       xs: "gap-1 rounded-[min(var(--radius-md),8px)] px-2 text-xs [&_svg:not([class*='size-'])]:size-3",

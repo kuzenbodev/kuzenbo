@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, mock } from "bun:test";
+
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
 import { CodeBlockToolbar } from "./code-block-toolbar";
 

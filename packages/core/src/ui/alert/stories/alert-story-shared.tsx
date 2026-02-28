@@ -219,7 +219,7 @@ export const AllCombinations: Story = {
     <div className="space-y-6">
       {appearanceOptions.map((appearance) => (
         <div className="space-y-3" key={appearance}>
-          <div className="font-medium text-foreground capitalize">
+          <div className="text-foreground font-medium capitalize">
             Appearance: {appearance}
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">

@@ -1,8 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { Tabs } from "@kuzenbo/core/ui/tabs";
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { cn } from "tailwind-variants";
 
@@ -92,7 +91,7 @@ export const CodeTabs = ({
         <Tabs.List
           activateOnFocus
           className={cn(
-            "inline-flex w-fit items-center gap-1 rounded-md border border-border bg-muted/40 p-1",
+            "border-border bg-muted/40 inline-flex w-fit items-center gap-1 rounded-md border p-1",
             tabsClassName
           )}
           loopFocus={loop}
@@ -112,7 +111,7 @@ export const CodeTabs = ({
         {tabs.map((tab) => (
           <Tabs.Content
             className={cn(
-              "rounded-lg border border-border bg-background p-3",
+              "border-border bg-background rounded-lg border p-3",
               panelClassName
             )}
             data-slot="code-tabs-panel"

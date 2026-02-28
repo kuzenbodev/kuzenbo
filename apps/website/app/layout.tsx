@@ -1,13 +1,13 @@
-import type { Metadata, Viewport } from "next";
-import type { ReactNode } from "react";
-
 import { KuzenboProvider } from "@kuzenbo/core/provider";
 import { ThemeBootstrapScript, ThemeProvider } from "@kuzenbo/theme";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "@/constants/website";
+
 import "@/styles/globals.css";
 import {
   createOrganizationJsonLd,

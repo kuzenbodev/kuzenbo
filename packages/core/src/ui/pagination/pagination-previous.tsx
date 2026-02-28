@@ -1,11 +1,9 @@
-import type { ComponentProps } from "react";
-
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { PaginationLink } from "./pagination-link";
 import { useResolvedPaginationSize } from "./pagination-size-context";
 

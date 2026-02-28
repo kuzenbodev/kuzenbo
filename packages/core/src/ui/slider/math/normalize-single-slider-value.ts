@@ -1,5 +1,4 @@
 import type { SliderMark } from "../shared/slider-types";
-
 import {
   clampNumber,
   getFirstMarkValue,

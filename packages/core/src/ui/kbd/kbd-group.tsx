@@ -1,9 +1,7 @@
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
 import type { KbdSize } from "./kbd-size-context";
-
 import { KbdSizeContext, useKbdResolvedSize } from "./kbd-size-context";
 
 export type KbdGroupProps = ComponentProps<"kbd"> & {
@@ -17,7 +15,7 @@ const KbdGroup = ({ className, size, ...props }: KbdGroupProps) => {
     <KbdSizeContext.Provider value={resolvedSize}>
       <kbd
         className={cn(
-          "group/kbd-group inline-flex items-center data-[size=xs]:gap-0.5 data-[size=sm]:gap-0.5 data-[size=md]:gap-1 data-[size=lg]:gap-1 data-[size=xl]:gap-1.5",
+          "group/kbd-group inline-flex items-center data-[size=lg]:gap-1 data-[size=md]:gap-1 data-[size=sm]:gap-0.5 data-[size=xl]:gap-1.5 data-[size=xs]:gap-0.5",
           className
         )}
         data-size={resolvedSize}

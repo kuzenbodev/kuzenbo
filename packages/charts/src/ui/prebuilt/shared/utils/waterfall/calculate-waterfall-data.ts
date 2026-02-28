@@ -2,7 +2,6 @@ import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../../complete-types";
-
 import { toNumericValue } from "../number/to-numeric-value";
 import { resolveCompleteSeriesName } from "../series/resolve-complete-series-name";
 

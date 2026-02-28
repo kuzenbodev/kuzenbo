@@ -1,8 +1,8 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 /* eslint-disable func-style */
 import type { NumberField as BaseNumberField } from "@base-ui/react/number-field";
-
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { Label } from "../label/label";
 import { NumberField } from "./number-field";

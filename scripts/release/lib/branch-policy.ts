@@ -1,6 +1,5 @@
-import type { ReleaseChannel, ReleaseConfig } from "./types";
-
 import { getCurrentBranch } from "./git";
+import type { ReleaseChannel, ReleaseConfig } from "./types";
 
 interface ResolveReleaseRefParams {
   channel: ReleaseChannel;

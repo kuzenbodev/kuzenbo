@@ -13,7 +13,7 @@ const TimelineDescription = ({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
-        className: cn("text-sm text-muted-foreground", className),
+        className: cn("text-muted-foreground text-sm", className),
       },
       props
     ),

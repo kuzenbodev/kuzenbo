@@ -1,9 +1,8 @@
 import type { ComponentPropsWithoutRef } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 const inlineCodeHighlightVariants = tv({
-  base: "rounded-md border border-border bg-muted/40 px-1.5 py-0.5 font-mono text-[0.875em] text-foreground",
+  base: "border-border bg-muted/40 text-foreground rounded-md border px-1.5 py-0.5 font-mono text-[0.875em]",
 });
 
 export interface InlineCodeHighlightProps extends Omit<

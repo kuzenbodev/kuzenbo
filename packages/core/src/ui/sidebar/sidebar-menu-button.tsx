@@ -1,12 +1,10 @@
-import type { ComponentProps } from "react";
-
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip/tooltip";
 import { SidebarMenuContext } from "./sidebar-menu-context";
 import { useSidebar } from "./use-sidebar";
@@ -18,12 +16,12 @@ export type SidebarMenuButtonProps = useRender.ComponentProps<"button"> &
   } & VariantProps<typeof sidebarMenuButtonVariants>;
 
 const sidebarMenuButtonVariants = tv({
-  base: "peer/menu-button group/menu-button flex w-full cursor-clickable items-center gap-2 overflow-hidden rounded-md text-left ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-sidebar-accent data-active:font-medium data-active:text-sidebar-accent-foreground data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground [&_svg]:shrink-0 [&>span:last-child]:truncate",
+  base: "peer/menu-button group/menu-button cursor-clickable ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground flex w-full items-center gap-2 overflow-hidden rounded-md text-left outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:font-medium [&_svg]:shrink-0 [&>span:last-child]:truncate",
   variants: {
     variant: {
       default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
       outline:
-        "bg-background shadow-[0_0_0_1px_hsl(var(--kb-sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--kb-sidebar-accent))]",
+        "bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_hsl(var(--kb-sidebar-border))] hover:shadow-[0_0_0_1px_hsl(var(--kb-sidebar-accent))]",
     },
     size: {
       xs: "h-6 px-1.5 py-1 text-xs [&_svg:not([class*='size-'])]:size-3",

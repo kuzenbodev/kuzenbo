@@ -1,20 +1,18 @@
-/* eslint-disable react-perf/jsx-no-new-function-as-prop */
-import type { ComponentProps, FocusEvent } from "react";
-
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+/* eslint-disable react-perf/jsx-no-new-function-as-prop */
+import type { ComponentProps, FocusEvent } from "react";
 import { useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
+import { DateControlButton } from "../internal/date-control-button";
+import { AmPmInput } from "./am-pm-input";
+import { SpinInput } from "./spin-input";
 import type {
   TimeAmPmLabels,
   TimeFormat,
   TimePasteSplit,
 } from "./time-picker-types";
-
-import { DateControlButton } from "../internal/date-control-button";
-import { AmPmInput } from "./am-pm-input";
-import { SpinInput } from "./spin-input";
 import { useTimePicker } from "./use-time-picker";
 import {
   clampTime,
@@ -23,7 +21,7 @@ import {
 } from "./utils/time-utils";
 
 const timeInputVariants = tv({
-  base: "inline-flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1",
+  base: "border-border bg-background inline-flex items-center gap-1 rounded-md border px-2 py-1",
 });
 
 const timeInputFieldsGroupVariants = tv({
@@ -31,11 +29,11 @@ const timeInputFieldsGroupVariants = tv({
 });
 
 const timeInputDividerVariants = tv({
-  base: "text-xs text-muted-foreground",
+  base: "text-muted-foreground text-xs",
 });
 
 const timeInputClearButtonVariants = tv({
-  base: "h-5 w-5 rounded-sm p-0 text-xs text-muted-foreground hover:bg-muted hover:text-foreground",
+  base: "text-muted-foreground hover:bg-muted hover:text-foreground h-5 w-5 rounded-sm p-0 text-xs",
 });
 
 export type TimeInputProps = Omit<

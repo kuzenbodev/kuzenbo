@@ -6,12 +6,11 @@ import type {
   ChartSeriesColorRegistry,
   ChartThemeName,
 } from "../color/chart-color-resolver";
-import type { ChartConfig } from "../types/chart-types";
-
 import {
   createSeriesColorRegistry,
   getStyleDeclarationsForTheme,
 } from "../color/chart-color-resolver";
+import type { ChartConfig } from "../types/chart-types";
 import { THEMES } from "../types/chart-types";
 
 interface ChartStyleProps {

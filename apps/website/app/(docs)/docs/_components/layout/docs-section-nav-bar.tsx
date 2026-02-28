@@ -8,7 +8,7 @@ import { cn } from "tailwind-variants";
 import { docsSectionEntries } from "@/lib/docs/docs-manifest";
 
 export const DocsSectionNavBar = () => (
-  <div className="sticky top-14 z-sticky border-b bg-background">
+  <div className="z-sticky bg-background sticky top-14 border-b">
     <Container className="flex items-center gap-4 border-x">
       <nav
         aria-label="Documentation sections"

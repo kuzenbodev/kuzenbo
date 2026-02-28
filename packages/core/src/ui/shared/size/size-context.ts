@@ -2,10 +2,9 @@
 
 import { createContext, useContext } from "react";
 
-import type { UISize } from "./size-system";
-
 import { DEFAULT_UI_SIZE, resolveSize } from "./resolve-size";
 import { useGlobalUISize } from "./size-provider";
+import type { UISize } from "./size-system";
 
 export interface SizeContextValue {
   size?: UISize;

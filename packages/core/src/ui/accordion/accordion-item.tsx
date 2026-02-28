@@ -9,7 +9,7 @@ import { useAccordionContext } from "./accordion-context";
 export type AccordionItemProps = AccordionPrimitive.Item.Props;
 
 const accordionItemVariants = tv({
-  base: "border-b border-border [&:last-child]:border-b-0",
+  base: "border-border border-b [&:last-child]:border-b-0",
   compoundVariants: [
     {
       class: "px-2.5",

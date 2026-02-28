@@ -1,12 +1,10 @@
-import type { ComponentProps } from "react";
-
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { AutocompleteOverlayContext } from "./autocomplete-overlay-context";
 
 export type AutocompletePopupProps = ComponentProps<
@@ -15,7 +13,7 @@ export type AutocompletePopupProps = ComponentProps<
   VariantProps<typeof autocompletePopupVariants>;
 
 const autocompletePopupVariants = tv({
-  base: "relative z-overlay max-h-[min(var(--available-height),20rem)] min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto overscroll-contain border border-border bg-popover text-popover-foreground shadow-md",
+  base: "z-overlay border-border bg-popover text-popover-foreground relative max-h-[min(var(--available-height),20rem)] min-w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto overscroll-contain border shadow-md",
   variants: {
     size: {
       xs: "rounded-[min(var(--radius-md),8px)] p-0.5",

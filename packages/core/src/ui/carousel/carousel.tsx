@@ -6,6 +6,7 @@ import {
   type KeyboardEvent,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { cn } from "tailwind-variants";
@@ -96,21 +97,33 @@ const Carousel = ({
       api?.off("select", onSelect);
     };
   }, [api, onSelect]);
+  const resolvedOrientation =
+    orientation || (opts?.axis === "y" ? "vertical" : "horizontal");
+  const contextValue = useMemo(
+    () => ({
+      carouselRef,
+      api,
+      opts,
+      orientation: resolvedOrientation,
+      scrollPrev,
+      scrollNext,
+      canScrollPrev,
+      canScrollNext,
+    }),
+    [
+      carouselRef,
+      api,
+      opts,
+      resolvedOrientation,
+      scrollPrev,
+      scrollNext,
+      canScrollPrev,
+      canScrollNext,
+    ]
+  );
 
   return (
-    <CarouselContext.Provider
-      value={{
-        carouselRef,
-        api,
-        opts,
-        orientation:
-          orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
-        scrollPrev,
-        scrollNext,
-        canScrollPrev,
-        canScrollNext,
-      }}
-    >
+    <CarouselContext.Provider value={contextValue}>
       {/** biome-ignore lint/a11y/useSemanticElements: region is not semantically appropriate for carousel */}
       <div
         aria-roledescription="carousel"

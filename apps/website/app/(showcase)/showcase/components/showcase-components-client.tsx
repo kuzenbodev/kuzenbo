@@ -16,7 +16,7 @@ import { Typography } from "@kuzenbo/core/ui/typography";
 import Link from "next/link";
 
 export const ShowcaseComponentsClient = () => (
-  <main className="min-h-screen  ">
+  <main className="min-h-screen">
     <Container className="space-y-8 py-10">
       <Typography.H1>Showcase: Components</Typography.H1>
       <Typography.Muted>

@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import {
   cleanup,
   fireEvent,
@@ -5,7 +7,6 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { definePlaygroundControls } from "../../playground/playground-control-model";
 import {
@@ -24,7 +25,7 @@ interface DemoPreviewProps {
 
 const DemoPreview = ({ variant, disabled, children }: DemoPreviewProps) => (
   <button
-    className="rounded-md border border-border px-3 py-1"
+    className="border-border rounded-md border px-3 py-1"
     data-disabled={String(disabled)}
     data-variant={variant}
     disabled={disabled}

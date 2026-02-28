@@ -1,17 +1,15 @@
 "use client";
 
 import type { MouseEvent } from "react";
-
 import { useEffect, useMemo, useState } from "react";
 
 import type { DateAdapter, DateInput } from "../adapter";
+import { useDatesContext } from "../context";
 import type {
   DatePickerValue,
   DateSelectionMode,
   DateStringValue,
 } from "../types";
-
-import { useDatesContext } from "../context";
 import { resolveDateSelectionMode, toDateString } from "../utils";
 import { useUncontrolledDates } from "./use-uncontrolled-dates";
 

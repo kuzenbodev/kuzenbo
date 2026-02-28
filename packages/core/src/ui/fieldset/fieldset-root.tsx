@@ -1,6 +1,5 @@
-import type { ComponentProps } from "react";
-
 import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
+import type { ComponentProps } from "react";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 

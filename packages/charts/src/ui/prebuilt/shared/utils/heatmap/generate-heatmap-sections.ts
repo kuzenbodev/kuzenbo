@@ -1,10 +1,3 @@
-import type {
-  GenerateHeatmapSectionsOptions,
-  HeatmapMonthLabel,
-  HeatmapSection,
-  HeatmapWeek,
-} from "./types";
-
 import {
   addDaysUTC,
   addMonthsUTC,
@@ -19,6 +12,12 @@ import {
   startOfWeekUTC,
   toMonthKeyUTC,
 } from "./date-helpers";
+import type {
+  GenerateHeatmapSectionsOptions,
+  HeatmapMonthLabel,
+  HeatmapSection,
+  HeatmapWeek,
+} from "./types";
 
 interface BuildWeeksArgs {
   rangeEndDate: Date;

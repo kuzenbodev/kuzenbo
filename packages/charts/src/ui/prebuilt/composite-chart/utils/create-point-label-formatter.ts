@@ -2,7 +2,6 @@ import type {
   CompositeChartProps,
   CompleteChartDatum,
 } from "../../shared/complete-types";
-
 import { toRenderableLabelValue } from "./to-renderable-label-value";
 
 const createPointLabelFormatter =

@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback, useEffect, useState } from "react";
 
 import { Select } from "../select";

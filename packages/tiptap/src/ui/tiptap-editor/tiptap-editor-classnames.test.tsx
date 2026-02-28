@@ -1,9 +1,9 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import type { TiptapEditorClassNames } from "./tiptap-editor-context";
+import { cleanup, render, screen } from "@testing-library/react";
 
 import { TiptapEditor } from "./tiptap-editor";
+import type { TiptapEditorClassNames } from "./tiptap-editor-context";
 
 afterEach(cleanup);
 

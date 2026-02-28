@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+
 import { useEffect, useLayoutEffect } from "react";
 
 import { useIsomorphicEffect } from "./use-isomorphic-effect";

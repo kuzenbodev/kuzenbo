@@ -1,10 +1,8 @@
 import type { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import type { ComponentProps } from "react";
-
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 import { MenubarPopup } from "./menubar-popup";
@@ -29,9 +27,10 @@ const MenubarContent = ({
 }: MenubarContentProps) => {
   const { size: rootSize } = useContext(MenubarContext);
   const resolvedSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <MenubarOverlayContext.Provider value={{ size: resolvedSize }}>
+    <MenubarOverlayContext.Provider value={contextValue}>
       <MenubarPortal>
         <MenubarPositioner
           align={align}

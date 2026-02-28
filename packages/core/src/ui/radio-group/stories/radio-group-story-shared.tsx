@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useMemo, useState } from "react";
 
 import { Label } from "../../label/label";
@@ -54,20 +53,20 @@ const BillingCycleExample = () => {
       <RadioGroup onValueChange={handleBillingCycleChange} value={billingCycle}>
         {billingCycles.map((cycle) => (
           <Label
-            className="grid gap-0.5 rounded-md border border-border px-3 py-2"
+            className="border-border grid gap-0.5 rounded-md border px-3 py-2"
             key={cycle.value}
           >
             <span className="flex items-center gap-2">
               <RadioGroup.Item aria-label={cycle.label} value={cycle.value} />
               {cycle.label}
             </span>
-            <span className="pl-6 text-sm text-muted-foreground">
+            <span className="text-muted-foreground pl-6 text-sm">
               {cycle.subtitle}
             </span>
           </Label>
         ))}
       </RadioGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Forecast:{" "}
         {selectedCycle.cost.toLocaleString("en-US", {
           style: "currency",
@@ -108,7 +107,7 @@ const DisabledOptionExample = () => {
           Annual invoicing (requires legal sign-off)
         </Label>
       </RadioGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Current selection: {selectedCycle}.
       </p>
     </div>
@@ -128,20 +127,20 @@ const HorizontalLayoutExample = () => {
         onValueChange={handleRegionChange}
         value={region}
       >
-        <Label className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
+        <Label className="border-border flex items-center gap-2 rounded-md border px-3 py-2">
           <RadioGroup.Item aria-label="US" value="us" />
           US
         </Label>
-        <Label className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
+        <Label className="border-border flex items-center gap-2 rounded-md border px-3 py-2">
           <RadioGroup.Item aria-label="EU" value="eu" />
           EU
         </Label>
-        <Label className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
+        <Label className="border-border flex items-center gap-2 rounded-md border px-3 py-2">
           <RadioGroup.Item aria-label="APAC" value="apac" />
           APAC
         </Label>
       </RadioGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Data residency region: {region.toUpperCase()}.
       </p>
     </div>
@@ -160,7 +159,7 @@ const CustomIndicatorExample = () => {
         <div className="flex items-center gap-2">
           <RadioGroup.Item aria-label="Finance" value="finance">
             <RadioGroup.Indicator>
-              <span className="block size-2 rounded-full bg-primary" />
+              <span className="bg-primary block size-2 rounded-full" />
             </RadioGroup.Indicator>
           </RadioGroup.Item>
           <Label>Finance-led approval path</Label>
@@ -168,13 +167,13 @@ const CustomIndicatorExample = () => {
         <div className="flex items-center gap-2">
           <RadioGroup.Item aria-label="Operations" value="operations">
             <RadioGroup.Indicator>
-              <span className="block size-2 rounded-full bg-primary" />
+              <span className="bg-primary block size-2 rounded-full" />
             </RadioGroup.Indicator>
           </RadioGroup.Item>
           <Label>Operations-led approval path</Label>
         </div>
       </RadioGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         Selected workflow: {workflow}.
       </p>
     </div>

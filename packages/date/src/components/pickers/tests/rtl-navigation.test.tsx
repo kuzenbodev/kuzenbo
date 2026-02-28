@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { DatesProvider } from "../../dates-provider";
 import { DatePicker } from "../date-picker";
@@ -9,6 +10,14 @@ import { YearPicker } from "../year-picker";
 afterEach(() => {
   document.body.innerHTML = "";
 });
+
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
 
 describe("RTL navigation", () => {
   it("inverts horizontal day traversal in RTL mode", () => {
@@ -46,15 +55,14 @@ describe("RTL navigation", () => {
       ...container.querySelectorAll("[data-slot='months-list'] button"),
     ] as HTMLButtonElement[];
 
-    const secondControl = controls[1];
-    const firstControl = controls[0];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two month controls");
-    }
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two month controls"
+    );
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two month controls"
+    );
 
     secondControl.focus();
     fireEvent.keyDown(secondControl, { key: "ArrowRight" });
@@ -77,15 +85,14 @@ describe("RTL navigation", () => {
       ...container.querySelectorAll("[data-slot='years-list'] button"),
     ] as HTMLButtonElement[];
 
-    const firstControl = controls[0];
-    const secondControl = controls[1];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two year controls");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two year controls"
+    );
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two year controls"
+    );
 
     secondControl.focus();
     fireEvent.keyDown(secondControl, { key: "ArrowRight" });
@@ -108,15 +115,14 @@ describe("RTL navigation", () => {
       ...container.querySelectorAll("[data-slot='decade-level']"),
     ] as HTMLDivElement[];
 
-    const firstDecadeColumn = decadeColumns[0];
-    const secondDecadeColumn = decadeColumns[1];
-
-    expect(firstDecadeColumn).toBeDefined();
-    expect(secondDecadeColumn).toBeDefined();
-
-    if (!firstDecadeColumn || !secondDecadeColumn) {
-      throw new Error("Expected year picker to render two decade columns");
-    }
+    const firstDecadeColumn = expectDefinedValue(
+      decadeColumns[0],
+      "Expected year picker to render two decade columns"
+    );
+    const secondDecadeColumn = expectDefinedValue(
+      decadeColumns[1],
+      "Expected year picker to render two decade columns"
+    );
 
     const firstDecadeControls = [
       ...firstDecadeColumn.querySelectorAll("[data-slot='years-list'] button"),
@@ -125,15 +131,14 @@ describe("RTL navigation", () => {
       ...secondDecadeColumn.querySelectorAll("[data-slot='years-list'] button"),
     ] as HTMLButtonElement[];
 
-    const lastControlInFirstDecade = firstDecadeControls.at(-1);
-    const firstControlInSecondDecade = secondDecadeControls[0];
-
-    expect(lastControlInFirstDecade).toBeDefined();
-    expect(firstControlInSecondDecade).toBeDefined();
-
-    if (!lastControlInFirstDecade || !firstControlInSecondDecade) {
-      throw new Error("Expected controls in both decade columns");
-    }
+    const lastControlInFirstDecade = expectDefinedValue(
+      firstDecadeControls.at(-1),
+      "Expected controls in both decade columns"
+    );
+    const firstControlInSecondDecade = expectDefinedValue(
+      secondDecadeControls[0],
+      "Expected controls in both decade columns"
+    );
 
     firstControlInSecondDecade.focus();
     fireEvent.keyDown(firstControlInSecondDecade, { key: "ArrowRight" });

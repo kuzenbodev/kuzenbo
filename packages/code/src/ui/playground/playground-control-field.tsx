@@ -1,7 +1,5 @@
 "use client";
 
-import type { ChangeEvent } from "react";
-
 import { Button } from "@kuzenbo/core/ui/button";
 import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
 import { Input } from "@kuzenbo/core/ui/input";
@@ -10,12 +8,12 @@ import { Slider } from "@kuzenbo/core/ui/slider";
 import { Switch } from "@kuzenbo/core/ui/switch";
 import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
 import { Typography } from "@kuzenbo/core/ui/typography";
+import type { ChangeEvent } from "react";
 
 import type {
   PlaygroundControl,
   PlaygroundSelectableOption,
 } from "../../playground/playground-control-model";
-
 import { getPlaygroundControlLabel } from "../../utils/playground/get-playground-control-label";
 import { normalizePlaygroundOptions } from "../../utils/playground/normalize-playground-options";
 
@@ -63,7 +61,7 @@ export const PlaygroundControlField = ({
 
   if (control.type === "boolean") {
     return (
-      <label className="flex items-center justify-between gap-3 text-sm text-foreground">
+      <label className="text-foreground flex items-center justify-between gap-3 text-sm">
         <Typography.Small>{controlLabel}</Typography.Small>
         <Switch
           aria-label={controlLabel}
@@ -92,7 +90,7 @@ export const PlaygroundControlField = ({
         >
           <Select.Trigger
             aria-label={controlLabel}
-            className="min-w-40 cursor-clickable"
+            className="cursor-clickable min-w-40"
           >
             <Select.Value placeholder={controlLabel} />
           </Select.Trigger>
@@ -158,7 +156,7 @@ export const PlaygroundControlField = ({
 
   if (control.type === "number") {
     return (
-      <label className="flex flex-col gap-2 text-sm text-foreground">
+      <label className="text-foreground flex flex-col gap-2 text-sm">
         <Typography.Small>{controlLabel}</Typography.Small>
         <Input
           aria-label={controlLabel}
@@ -178,7 +176,7 @@ export const PlaygroundControlField = ({
 
   if (control.type === "string") {
     return (
-      <label className="flex flex-col gap-2 text-sm text-foreground">
+      <label className="text-foreground flex flex-col gap-2 text-sm">
         <Typography.Small>{controlLabel}</Typography.Small>
         <Input
           aria-label={controlLabel}
@@ -199,11 +197,11 @@ export const PlaygroundControlField = ({
 
     return (
       <div className="space-y-2">
-        <div className="flex items-center justify-between gap-3 text-sm text-foreground">
+        <div className="text-foreground flex items-center justify-between gap-3 text-sm">
           <Typography.Small>{controlLabel}</Typography.Small>
           <Input
             aria-label={`${controlLabel} picker`}
-            className="h-8 w-12 rounded border border-border bg-background p-0"
+            className="border-border bg-background h-8 w-12 rounded border p-0"
             disabled={locked}
             onChange={(event) => {
               onChange(event.currentTarget.value);
@@ -226,7 +224,7 @@ export const PlaygroundControlField = ({
             {swatches.map((swatchColor) => (
               <Button
                 aria-label={`${controlLabel} ${swatchColor}`}
-                className="h-6 w-6 cursor-clickable rounded border border-border p-0"
+                className="cursor-clickable border-border h-6 w-6 rounded border p-0"
                 disabled={locked}
                 key={swatchColor}
                 onClick={() => {
@@ -250,7 +248,7 @@ export const PlaygroundControlField = ({
   const selectedIndex = Math.max(0, sizes.indexOf(resolvedValue));
 
   return (
-    <label className="flex flex-col gap-2 text-sm text-foreground">
+    <label className="text-foreground flex flex-col gap-2 text-sm">
       <Typography.Small>{controlLabel}</Typography.Small>
       <Slider
         aria-label={controlLabel}

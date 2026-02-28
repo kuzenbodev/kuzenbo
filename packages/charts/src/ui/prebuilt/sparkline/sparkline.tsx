@@ -2,12 +2,11 @@
 
 import { Area, AreaChart, XAxis, YAxis } from "recharts";
 
-import type { CompleteChartDatum } from "../shared/complete-types";
-import type { SparklineProps } from "./sparkline-types";
-
 import { CompleteCartesianShell } from "../shared/complete-cartesian-shell";
 import { resolveCompleteSeriesName } from "../shared/complete-helpers";
+import type { CompleteChartDatum } from "../shared/complete-types";
 import { useSparklineRuntime } from "./hooks/use-sparkline-runtime";
+import type { SparklineProps } from "./sparkline-types";
 
 const Sparkline = <TData extends CompleteChartDatum = CompleteChartDatum>({
   areaProps,

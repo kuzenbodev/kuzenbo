@@ -1,5 +1,4 @@
 import type { CompleteChartDatum } from "../../shared/complete-types";
-
 import { formatNumericValue } from "../../shared/utils/format/format-numeric-value";
 
 interface FormatAxisNumericValueOptions<

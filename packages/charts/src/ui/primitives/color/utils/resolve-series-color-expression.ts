@@ -1,5 +1,4 @@
 import type { ChartSeriesColorRegistry } from "./constants";
-
 import { CSS_VAR_REFERENCE_PATTERN } from "./constants";
 import { getChartThemeFromDom } from "./get-chart-theme-from-dom";
 import { normalizeChartColor } from "./normalize-chart-color";

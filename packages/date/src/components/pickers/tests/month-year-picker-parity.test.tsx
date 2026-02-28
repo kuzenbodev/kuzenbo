@@ -1,15 +1,34 @@
-import { fireEvent, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import type { DatePickerValue } from "../../types";
+import { fireEvent, render } from "@testing-library/react";
 
 import { DatesProvider } from "../../dates-provider";
+import type { DatePickerValue } from "../../types";
 import { MonthPicker } from "../month-picker";
 import { YearPicker } from "../year-picker";
 
 afterEach(() => {
   document.body.innerHTML = "";
 });
+
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
+
+const expectArrayPickerValue = (
+  value: DatePickerValue,
+  message: string
+): (Date | null)[] => {
+  expect(Array.isArray(value)).toBe(true);
+  if (!Array.isArray(value)) {
+    throw new TypeError(message);
+  }
+  return value;
+};
 
 describe("MonthPicker/YearPicker parity", () => {
   it("supports multiple selection in MonthPicker", () => {
@@ -31,25 +50,23 @@ describe("MonthPicker/YearPicker parity", () => {
       ...container.querySelectorAll("[data-slot='months-list'] button"),
     ] as HTMLButtonElement[];
 
-    const firstControl = controls[0];
-    const secondControl = controls[1];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two month controls");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two month controls"
+    );
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two month controls"
+    );
 
     fireEvent.click(firstControl);
     fireEvent.click(secondControl);
 
-    expect(Array.isArray(latestValue)).toBe(true);
-    if (!Array.isArray(latestValue)) {
-      throw new TypeError("Expected month picker value to be an array");
-    }
-
-    expect(latestValue.length).toBe(2);
+    const resolvedLatestValue = expectArrayPickerValue(
+      latestValue,
+      "Expected month picker value to be an array"
+    );
+    expect(resolvedLatestValue.length).toBe(2);
   });
 
   it("supports range sorting and single-date ranges in YearPicker", () => {
@@ -71,24 +88,22 @@ describe("MonthPicker/YearPicker parity", () => {
       ...container.querySelectorAll("[data-slot='years-list'] button"),
     ] as HTMLButtonElement[];
 
-    const thirdControl = controls[2];
-    const firstControl = controls[0];
-
-    expect(thirdControl).toBeDefined();
-    expect(firstControl).toBeDefined();
-
-    if (!thirdControl || !firstControl) {
-      throw new Error("Expected at least three year controls");
-    }
+    const thirdControl = expectDefinedValue(
+      controls[2],
+      "Expected at least three year controls"
+    );
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least three year controls"
+    );
 
     fireEvent.click(thirdControl);
     fireEvent.click(firstControl);
 
-    if (!Array.isArray(latestValue)) {
-      throw new TypeError("Expected year picker range value to be an array");
-    }
-
-    const sortedRange = latestValue as [Date | null, Date | null];
+    const sortedRange = expectArrayPickerValue(
+      latestValue,
+      "Expected year picker range value to be an array"
+    ) as [Date | null, Date | null];
     expect(sortedRange[0]).not.toBeNull();
     expect(sortedRange[1]).not.toBeNull();
     expect((sortedRange[0] as Date).getFullYear()).toBeLessThanOrEqual(
@@ -112,24 +127,18 @@ describe("MonthPicker/YearPicker parity", () => {
       ...container.querySelectorAll("[data-slot='years-list'] button"),
     ] as HTMLButtonElement[];
 
-    const firstUpdatedControl = updatedControls[0];
-
-    expect(firstUpdatedControl).toBeDefined();
-
-    if (!firstUpdatedControl) {
-      throw new Error("Expected at least one year control after rerender");
-    }
+    const firstUpdatedControl = expectDefinedValue(
+      updatedControls[0],
+      "Expected at least one year control after rerender"
+    );
 
     fireEvent.click(firstUpdatedControl);
     fireEvent.click(firstUpdatedControl);
 
-    if (!Array.isArray(latestValue)) {
-      throw new TypeError(
-        "Expected year picker single range value to be an array"
-      );
-    }
-
-    const singleRange = latestValue as [Date | null, Date | null];
+    const singleRange = expectArrayPickerValue(
+      latestValue,
+      "Expected year picker single range value to be an array"
+    ) as [Date | null, Date | null];
     expect(singleRange[0]).not.toBeNull();
     expect(singleRange[1]).not.toBeNull();
     expect((singleRange[0] as Date).getFullYear()).toBe(
@@ -148,15 +157,14 @@ describe("MonthPicker/YearPicker parity", () => {
       ...container.querySelectorAll("[data-slot='year-level']"),
     ] as HTMLDivElement[];
 
-    const firstColumn = columns[0];
-    const secondColumn = columns[1];
-
-    expect(firstColumn).toBeDefined();
-    expect(secondColumn).toBeDefined();
-
-    if (!firstColumn || !secondColumn) {
-      throw new Error("Expected month picker to render two columns");
-    }
+    const firstColumn = expectDefinedValue(
+      columns[0],
+      "Expected month picker to render two columns"
+    );
+    const secondColumn = expectDefinedValue(
+      columns[1],
+      "Expected month picker to render two columns"
+    );
 
     const firstColumnControls = [
       ...firstColumn.querySelectorAll("[data-slot='months-list'] button"),
@@ -165,15 +173,14 @@ describe("MonthPicker/YearPicker parity", () => {
       ...secondColumn.querySelectorAll("[data-slot='months-list'] button"),
     ] as HTMLButtonElement[];
 
-    const lastControlInFirstColumn = firstColumnControls.at(-1);
-    const firstControlInSecondColumn = secondColumnControls[0];
-
-    expect(lastControlInFirstColumn).toBeDefined();
-    expect(firstControlInSecondColumn).toBeDefined();
-
-    if (!lastControlInFirstColumn || !firstControlInSecondColumn) {
-      throw new Error("Expected controls in both month columns");
-    }
+    const lastControlInFirstColumn = expectDefinedValue(
+      firstColumnControls.at(-1),
+      "Expected controls in both month columns"
+    );
+    const firstControlInSecondColumn = expectDefinedValue(
+      secondColumnControls[0],
+      "Expected controls in both month columns"
+    );
 
     lastControlInFirstColumn.focus();
     fireEvent.keyDown(lastControlInFirstColumn, { key: "ArrowRight" });

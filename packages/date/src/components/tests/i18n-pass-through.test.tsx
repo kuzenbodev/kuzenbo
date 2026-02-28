@@ -1,9 +1,34 @@
-import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { render, screen } from "@testing-library/react";
 
 import { WeekdaysRow } from "../calendar/weekdays-row";
 import { DatesProvider } from "../dates-provider";
 import { DatePicker } from "../pickers/date-picker";
+
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
+
+const getRequiredWeekdayCell = (
+  container: HTMLElement,
+  weekday: string,
+  message: string
+): HTMLDivElement => {
+  const weekdayCell = container.querySelector(`[data-weekday='${weekday}']`);
+  expect(weekdayCell).toBeInstanceOf(HTMLDivElement);
+  if (!(weekdayCell instanceof HTMLDivElement)) {
+    throw new Error(message);
+  }
+  return weekdayCell;
+};
+
+const getLowercaseText = (element: HTMLElement): string =>
+  (element.textContent ?? "").toLowerCase();
 
 afterEach(() => {
   document.body.innerHTML = "";
@@ -32,19 +57,13 @@ describe("i18n pass-through", () => {
       </DatesProvider>
     );
 
-    const firstWeekdayBefore = container.querySelector(
-      "[data-weekday='0']"
-    ) as HTMLDivElement | null;
-
-    expect(firstWeekdayBefore).toBeDefined();
-
-    if (!firstWeekdayBefore) {
-      throw new Error("Expected weekday cell before locale update");
-    }
-
-    expect((firstWeekdayBefore.textContent ?? "").toLowerCase()).toContain(
-      "sun"
+    const firstWeekdayBefore = getRequiredWeekdayCell(
+      container,
+      "0",
+      "Expected weekday cell before locale update"
     );
+
+    expect(getLowercaseText(firstWeekdayBefore)).toContain("sun");
 
     rerender(
       <DatesProvider firstDayOfWeek={0} locale="fr-FR">
@@ -52,19 +71,13 @@ describe("i18n pass-through", () => {
       </DatesProvider>
     );
 
-    const firstWeekdayAfter = container.querySelector(
-      "[data-weekday='0']"
-    ) as HTMLDivElement | null;
-
-    expect(firstWeekdayAfter).toBeDefined();
-
-    if (!firstWeekdayAfter) {
-      throw new Error("Expected weekday cell after locale update");
-    }
-
-    expect((firstWeekdayAfter.textContent ?? "").toLowerCase()).toContain(
-      "dim"
+    const firstWeekdayAfter = getRequiredWeekdayCell(
+      container,
+      "0",
+      "Expected weekday cell after locale update"
     );
+
+    expect(getLowercaseText(firstWeekdayAfter)).toContain("dim");
   });
 
   it("wires locale, first day of week and weekend flags in weekdays row", () => {
@@ -78,18 +91,17 @@ describe("i18n pass-through", () => {
       ...container.querySelectorAll("[data-weekday]"),
     ] as HTMLDivElement[];
 
-    const firstWeekdayCell = weekdayCells[0];
-    const secondWeekdayCell = weekdayCells[1];
-
-    expect(firstWeekdayCell).toBeDefined();
-    expect(secondWeekdayCell).toBeDefined();
-
-    if (!firstWeekdayCell || !secondWeekdayCell) {
-      throw new Error("Expected at least two weekday cells");
-    }
+    const firstWeekdayCell = expectDefinedValue(
+      weekdayCells[0],
+      "Expected at least two weekday cells"
+    );
+    const secondWeekdayCell = expectDefinedValue(
+      weekdayCells[1],
+      "Expected at least two weekday cells"
+    );
 
     expect(firstWeekdayCell.dataset.weekday).toBe("0");
     expect(secondWeekdayCell.dataset.weekend).toBe("true");
-    expect((firstWeekdayCell.textContent ?? "").toLowerCase()).toContain("dim");
+    expect(getLowercaseText(firstWeekdayCell)).toContain("dim");
   });
 });

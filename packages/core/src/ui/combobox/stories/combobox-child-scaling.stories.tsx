@@ -1,7 +1,6 @@
 import type { StoryObj } from "@storybook/react";
 
 import type { InputSize } from "../../input/input";
-
 import { Combobox } from "../combobox";
 import { baseMeta } from "./combobox-story-shared";
 
@@ -20,7 +19,7 @@ export const ChildScaling: Story = {
     <div className="grid w-[30rem] gap-4">
       {sizes.map((size) => (
         <div className="space-y-2" key={size}>
-          <p className="text-sm text-muted-foreground uppercase">{size}</p>
+          <p className="text-muted-foreground text-sm uppercase">{size}</p>
           <Combobox
             defaultValue={frameworkItems[0]}
             items={frameworkItems}

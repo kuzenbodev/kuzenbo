@@ -6,9 +6,9 @@ import { FooterBrand } from "./footer-brand";
 import { FooterNavigation } from "./footer-navigation";
 
 export const Footer = () => (
-  <footer className="border-t border-border bg-gradient-to-b from-background via-background to-muted/30">
+  <footer className="border-border from-background via-background to-muted/30 border-t bg-gradient-to-b">
     <Container className="border-x px-0">
-      <div className="grid gap-10 py-10 px-4 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
+      <div className="grid gap-10 px-4 py-10 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
         <FooterBrand />
         <FooterNavigation />
       </div>

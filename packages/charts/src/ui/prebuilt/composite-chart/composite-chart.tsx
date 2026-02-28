@@ -8,11 +8,6 @@ import {
   YAxis,
 } from "recharts";
 
-import type {
-  CompositeChartProps,
-  CompleteChartDatum,
-} from "../shared/complete-types";
-
 import { CompleteCartesianShell } from "../shared/complete-cartesian-shell";
 import {
   getReferenceLineKey,
@@ -23,6 +18,10 @@ import {
   shouldRenderXAxisTickLine,
   shouldRenderYAxisTickLine,
 } from "../shared/complete-helpers";
+import type {
+  CompositeChartProps,
+  CompleteChartDatum,
+} from "../shared/complete-types";
 import { createLabelListContentRenderer } from "../shared/utils/label/create-label-list-content-renderer";
 import { useCompositeChartRuntime } from "./hooks/use-composite-chart-runtime";
 import { renderAreaSeries } from "./renderers/render-area-series";

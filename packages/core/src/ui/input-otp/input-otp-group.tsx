@@ -1,14 +1,12 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { InputOTPContext } from "./input-otp-context";
 
 const inputOTPGroupVariants = tv({
-  base: "flex items-center has-aria-invalid:border-danger has-aria-invalid:ring-[3px] has-aria-invalid:ring-danger/20 dark:has-aria-invalid:ring-danger/40",
+  base: "has-aria-invalid:border-danger has-aria-invalid:ring-danger/20 dark:has-aria-invalid:ring-danger/40 flex items-center has-aria-invalid:ring-[3px]",
   variants: {
     size: {
       xs: "rounded-[min(var(--radius-md),8px)]",

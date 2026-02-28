@@ -1,6 +1,5 @@
-import type { StoryObj } from "@storybook/react";
-
 import { Button } from "@kuzenbo/core/ui/button";
+import type { StoryObj } from "@storybook/react";
 
 import { CodeBlock } from "../../code-block/code-block";
 import { Default as DefaultStory, baseMeta } from "./code-window-story-shared";

@@ -1,8 +1,8 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Toast as BaseToast } from "@base-ui/react/toast";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
 import { ToastAction } from "./toast-action";
 import { ToastArrow } from "./toast-arrow";
@@ -31,9 +31,10 @@ const Toast = ({ size, ...props }: ToastProps) => {
   const { size: componentDefaultSize } =
     useKuzenboComponentDefaults<ToastProps>("Toast");
   const resolvedSize = useResolvedToastSize(size, componentDefaultSize);
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <ToastSizeContext.Provider value={{ size: resolvedSize }}>
+    <ToastSizeContext.Provider value={contextValue}>
       <BaseToast.Provider
         data-size={resolvedSize}
         data-slot="toast"

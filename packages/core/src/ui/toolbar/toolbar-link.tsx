@@ -10,7 +10,7 @@ import {
 } from "./toolbar-size-context";
 
 const toolbarLinkVariants = tv({
-  base: "inline-flex shrink-0 cursor-clickable items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  base: "cursor-clickable text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 inline-flex shrink-0 items-center gap-2 no-underline transition-colors focus-visible:ring-[3px] focus-visible:outline-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
   variants: {
     size: {
       xs: "h-6 rounded-[min(var(--radius-md),8px)] px-2 text-xs [&_svg:not([class*='size-'])]:size-3",

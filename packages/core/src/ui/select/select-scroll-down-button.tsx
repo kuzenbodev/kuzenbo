@@ -1,20 +1,18 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { SelectOverlayContext } from "./select-overlay-context";
 
 const selectScrollDownButtonVariants = tv({
-  base: "bottom-0 z-raised flex w-full cursor-clickable items-center justify-center bg-popover",
+  base: "z-raised cursor-clickable bg-popover bottom-0 flex w-full items-center justify-center",
   variants: {
     size: {
       xs: "py-0.5 [&_svg:not([class*='size-'])]:size-3",

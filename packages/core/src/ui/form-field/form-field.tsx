@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import { Field } from "../field/field";
@@ -16,7 +15,7 @@ export type FormFieldProps = ComponentProps<typeof Field.Root> &
   VariantProps<typeof fieldVariants>;
 
 const fieldVariants = tv({
-  base: "group/field flex w-full gap-3 data-[invalid]:text-danger-foreground data-[invalid=true]:text-danger-foreground",
+  base: "group/field data-[invalid]:text-danger-foreground data-[invalid=true]:text-danger-foreground flex w-full gap-3",
   variants: {
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",

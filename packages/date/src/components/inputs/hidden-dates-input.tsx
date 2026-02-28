@@ -1,7 +1,6 @@
 import type { ComponentProps } from "react";
 
 import type { DatePickerValue, SelectionMode } from "../types";
-
 import { useDatesContext } from "../use-dates-context";
 import { serializePickerValue } from "./utils/picker-input-utils";
 

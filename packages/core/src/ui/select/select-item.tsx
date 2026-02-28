@@ -6,9 +6,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { SelectItemIndicator } from "./select-item-indicator";
 import { SelectItemText } from "./select-item-text";
 import { SelectOverlayContext } from "./select-overlay-context";
@@ -16,7 +15,7 @@ import { SelectOverlayContext } from "./select-overlay-context";
 const selectItemVariants = tv({
   slots: {
     icon: "pointer-events-none",
-    root: "relative flex w-full cursor-clickable items-center rounded-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=danger]:focus:**:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center",
+    root: "cursor-clickable focus:bg-accent focus:text-accent-foreground not-data-[variant=danger]:focus:**:text-accent-foreground relative flex w-full items-center rounded-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center",
   },
   variants: {
     size: {

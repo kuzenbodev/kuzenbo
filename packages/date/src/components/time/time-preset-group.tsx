@@ -5,7 +5,6 @@ import type {
   TimeFormat,
   TimePresetGroupData,
 } from "./time-picker-types";
-
 import { TimePresetControl } from "./time-preset-control";
 import { isSameTime } from "./utils/time-utils";
 
@@ -14,7 +13,7 @@ const timePresetGroupVariants = tv({
 });
 
 const timePresetGroupLabelVariants = tv({
-  base: "text-[10px] font-medium uppercase tracking-wide text-muted-foreground",
+  base: "text-muted-foreground text-[10px] font-medium tracking-wide uppercase",
 });
 
 const timePresetGroupControlsVariants = tv({

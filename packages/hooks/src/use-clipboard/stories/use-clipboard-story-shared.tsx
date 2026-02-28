@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { type ChangeEvent, useCallback, useState } from "react";
 
 import { useClipboard } from "../use-clipboard";
@@ -35,10 +34,10 @@ const UseClipboardDemo = () => {
   }, [reset]);
 
   return (
-    <div className="max-w-xl rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm">
+    <div className="border-border bg-card text-card-foreground max-w-xl rounded-lg border p-6 shadow-sm">
       {/* hooks is standalone and cannot import core Typography primitives. */}
       <h2 className="text-base font-medium">useClipboard Demo</h2>
-      <p className="mt-2 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-2 text-sm">
         Copy text to the system clipboard and inspect status + error state.
       </p>
 
@@ -49,7 +48,7 @@ const UseClipboardDemo = () => {
         Text to copy
       </label>
       <textarea
-        className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+        className="border-border bg-background text-foreground mt-2 w-full rounded-md border px-3 py-2 text-sm"
         id="clipboard-input"
         onChange={handleValueChange}
         rows={4}
@@ -58,14 +57,14 @@ const UseClipboardDemo = () => {
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <button
-          className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-3 text-sm text-primary-foreground"
+          className="bg-primary text-primary-foreground inline-flex h-9 items-center justify-center rounded-md px-3 text-sm"
           onClick={handleCopy}
           type="button"
         >
           Copy text
         </button>
         <button
-          className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-secondary px-3 text-sm text-secondary-foreground"
+          className="border-border bg-secondary text-secondary-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm"
           onClick={handleReset}
           type="button"
         >

@@ -1,8 +1,7 @@
-/* eslint-disable react-perf/jsx-no-new-function-as-prop */
-import type { ComponentProps, ReactNode } from "react";
-
 import { InputGroup } from "@kuzenbo/core/ui/input-group";
 import { Popover } from "@kuzenbo/core/ui/popover";
+/* eslint-disable react-perf/jsx-no-new-function-as-prop */
+import type { ComponentProps, ReactNode } from "react";
 import { useRef, useState } from "react";
 import { cn, tv } from "tailwind-variants";
 

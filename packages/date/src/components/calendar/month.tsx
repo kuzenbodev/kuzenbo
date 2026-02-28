@@ -1,12 +1,10 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, KeyboardEvent, MouseEvent } from "react";
-
 import { createContext, useContext } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import type { ControlKeydownPayload } from "../../types";
 import type { DatePickerValue, SelectionMode } from "../types";
-
 import { useDatesContext } from "../use-dates-context";
 import { Day } from "./day";
 import {
@@ -40,7 +38,7 @@ const dayCellVariants = tv({
 });
 
 const weekNumberVariants = tv({
-  base: "inline-flex h-9 min-w-8 items-center justify-center rounded-md text-xs font-medium text-muted-foreground",
+  base: "text-muted-foreground inline-flex h-9 min-w-8 items-center justify-center rounded-md text-xs font-medium",
 });
 
 const getWeekOfYearLabel = (locale: string): string => {

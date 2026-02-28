@@ -1,11 +1,9 @@
-import type { ComponentProps } from "react";
-
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { NavigationMenuContext } from "./navigation-menu-context";
 
 const navigationMenuListVariants = tv({

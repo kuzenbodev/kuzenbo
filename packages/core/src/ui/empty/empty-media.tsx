@@ -1,9 +1,7 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedEmptySize } from "./empty-size-context";
 
 const emptyMediaVariants = tv({
@@ -45,7 +43,7 @@ const emptyMediaVariants = tv({
     },
     variant: {
       default: "bg-transparent",
-      icon: "shrink-0 bg-muted text-foreground",
+      icon: "bg-muted text-foreground shrink-0",
     },
   },
   defaultVariants: {

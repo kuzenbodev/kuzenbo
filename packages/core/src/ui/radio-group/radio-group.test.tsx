@@ -1,7 +1,8 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 /* eslint-disable func-style */
 import { cleanup, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { RadioGroup } from "./radio-group";
 

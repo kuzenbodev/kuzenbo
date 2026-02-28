@@ -1,12 +1,11 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { EmptyButton } from "./empty-button";
 import { EmptyContent } from "./empty-content";
 import { EmptyDescription } from "./empty-description";
@@ -39,9 +38,10 @@ export type EmptyProps = ComponentProps<"div"> & EmptyVariantProps;
 
 const Empty = ({ className, size: providedSize, ...props }: EmptyProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <EmptySizeContext.Provider value={{ size }}>
+    <EmptySizeContext.Provider value={contextValue}>
       <div
         className={cn(emptyVariants({ size }), className)}
         data-size={size}

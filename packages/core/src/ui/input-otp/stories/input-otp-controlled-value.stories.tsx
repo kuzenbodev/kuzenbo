@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { InputOTP } from "../input-otp";
@@ -34,7 +33,7 @@ const ControlledValueDemo = () => {
       </InputOTP>
       <div className="flex items-center gap-2">
         <button
-          className="h-8 rounded-md border border-border bg-background px-2 text-sm"
+          className="border-border bg-background h-8 rounded-md border px-2 text-sm"
           onClick={handleClearClick}
           type="button"
         >

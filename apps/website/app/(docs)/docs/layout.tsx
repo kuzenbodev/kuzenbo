@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-
 import { Container } from "@kuzenbo/core/ui/container";
 import { Typography } from "@kuzenbo/core/ui/typography";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { DocsMobileSectionsDrawer } from "./_components/layout/docs-mobile-sections-drawer";
 import { DocsMobileTocDrawer } from "./_components/layout/docs-mobile-toc-drawer";

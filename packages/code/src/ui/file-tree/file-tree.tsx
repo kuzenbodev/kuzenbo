@@ -1,8 +1,7 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 import { Button } from "@kuzenbo/core/ui/button";
+import type { CSSProperties } from "react";
 import { Tree } from "react-arborist";
 import { cn, tv } from "tailwind-variants";
 
@@ -24,7 +23,7 @@ export interface FileTreeProps {
 }
 
 const fileTreeVariants = tv({
-  base: "overflow-hidden rounded-lg border border-border bg-muted/30 p-2",
+  base: "border-border bg-muted/30 overflow-hidden rounded-lg border p-2",
 });
 
 export const FileTree = ({
@@ -72,7 +71,7 @@ export const FileTree = ({
           >
             <Button
               aria-label={`Toggle ${node.data.name}`}
-              className="h-6 w-6 cursor-clickable p-0 text-xs"
+              className="cursor-clickable h-6 w-6 p-0 text-xs"
               disabled={node.isLeaf}
               onClick={(event) => {
                 event.stopPropagation();
@@ -90,7 +89,7 @@ export const FileTree = ({
 
             <Button
               aria-label={`Select ${node.data.name}`}
-              className="h-auto min-h-0 min-w-0 flex-1 cursor-clickable justify-start gap-2 px-1 py-1 text-left text-sm"
+              className="cursor-clickable h-auto min-h-0 min-w-0 flex-1 justify-start gap-2 px-1 py-1 text-left text-sm"
               onClick={() => {
                 node.select();
                 onSelect?.(node.data);
@@ -99,10 +98,10 @@ export const FileTree = ({
               type="button"
               variant="ghost"
             >
-              <span className="shrink-0 text-xs text-muted-foreground">
+              <span className="text-muted-foreground shrink-0 text-xs">
                 {node.isLeaf ? "FILE" : "DIR"}
               </span>
-              <span className="truncate text-foreground">{node.data.name}</span>
+              <span className="text-foreground truncate">{node.data.name}</span>
             </Button>
           </div>
         );

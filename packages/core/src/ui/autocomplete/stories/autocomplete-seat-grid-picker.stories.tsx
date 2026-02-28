@@ -51,7 +51,7 @@ const SeatGridPickerDemo = () => (
           >
             {row.map((seat, seatIndex) => (
               <Autocomplete.Item
-                className="rounded border border-border px-2 py-1.5 text-left text-xs data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:opacity-50"
+                className="border-border data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground rounded border px-2 py-1.5 text-left text-xs data-[disabled]:opacity-50"
                 disabled={!seat.available}
                 index={rowIndex * row.length + seatIndex}
                 key={seat.value}

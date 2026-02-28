@@ -1,19 +1,7 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
-
-import type {
-  SliderRadius,
-  SliderSize,
-} from "../slider/shared/slider-style-tokens";
-import type { SliderLabelTransitionProps } from "../slider/shared/slider-transition";
-import type {
-  SliderLabel,
-  SliderMark as SliderMarkType,
-} from "../slider/shared/slider-types";
-import type { RangeSliderValue } from "./range-slider-types";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { toFloatingValue } from "../slider/math/slider-math-utils";
 import { SliderControl } from "../slider/primitives/slider-control";
@@ -33,10 +21,20 @@ import {
   mergeSliderRootStyle,
   resolveSliderRootClassName,
 } from "../slider/shared/slider-root-presentation";
+import type {
+  SliderRadius,
+  SliderSize,
+} from "../slider/shared/slider-style-tokens";
+import type { SliderLabelTransitionProps } from "../slider/shared/slider-transition";
+import type {
+  SliderLabel,
+  SliderMark as SliderMarkType,
+} from "../slider/shared/slider-types";
 import {
   getMinStepsBetweenValues,
   getThumbChildrenByIndex,
 } from "./range-slider-helpers";
+import type { RangeSliderValue } from "./range-slider-types";
 import { useRangeSliderState } from "./use-range-slider-state";
 
 type RangeSliderRootProps = Omit<

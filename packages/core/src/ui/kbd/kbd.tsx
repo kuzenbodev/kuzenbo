@@ -1,14 +1,13 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 import { KbdGroup } from "./kbd-group";
 import { type KbdSize, useKbdResolvedSize } from "./kbd-size-context";
 
 const kbdVariants = tv({
-  base: "pointer-events-none inline-flex w-fit items-center justify-center rounded-sm bg-muted font-sans font-medium text-muted-foreground select-none [[data-slot=tooltip-content]_&]:bg-background/20 [[data-slot=tooltip-content]_&]:text-background dark:[[data-slot=tooltip-content]_&]:bg-background/10",
+  base: "bg-muted text-muted-foreground [[data-slot=tooltip-content]_&]:bg-background/20 [[data-slot=tooltip-content]_&]:text-background dark:[[data-slot=tooltip-content]_&]:bg-background/10 pointer-events-none inline-flex w-fit items-center justify-center rounded-sm font-sans font-medium select-none",
   variants: {
     size: {
       xs: "h-4 min-w-4 gap-0.5 px-1 text-[10px] [&_svg:not([class*='size-'])]:size-2.5",

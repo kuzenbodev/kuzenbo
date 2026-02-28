@@ -1,11 +1,10 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Select as SelectPrimitive } from "@base-ui/react/select";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { SelectArrow } from "./select-arrow";
 import { SelectBackdrop } from "./select-backdrop";
@@ -57,9 +56,10 @@ const Select = <Value, Multiple extends boolean | undefined = false>(
 ) => {
   const { size: providedSize, ...props } = useSelectDefaultProps(incomingProps);
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <SelectContext.Provider value={{ size }}>
+    <SelectContext.Provider value={contextValue}>
       <SelectPrimitive.Root<Value, Multiple>
         data-size={size}
         data-slot="select"

@@ -1,5 +1,6 @@
-import { cleanup, render, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render, within } from "@testing-library/react";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 
 import { Chart } from "../chart";

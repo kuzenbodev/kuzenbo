@@ -17,13 +17,13 @@ export const Default: Story = {
     position: { bottom: 16, right: 16 },
   },
   render: (args) => (
-    <div className="relative h-80 w-full overflow-hidden rounded-md border border-border bg-background p-4">
+    <div className="border-border bg-background relative h-80 w-full overflow-hidden rounded-md border p-4">
       <div className="grid gap-3">
         <div className="text-sm font-medium">Vendor Operations Console</div>
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           3 purchase orders are waiting for escalation before the daily cutoff.
         </div>
-        <div className="grid gap-2 rounded-md border border-border bg-card p-3 text-sm">
+        <div className="border-border bg-card grid gap-2 rounded-md border p-3 text-sm">
           <div className="flex items-center justify-between">
             <span>PO-48213</span>
             <span className="text-muted-foreground">48 min overdue</span>
@@ -53,13 +53,13 @@ export const ResponsiveBottom: Story = {
     position: { bottom: 16, left: 16, right: 16 },
   },
   render: (args) => (
-    <div className="relative h-80 w-full overflow-hidden rounded-md border border-border bg-background p-4">
+    <div className="border-border bg-background relative h-80 w-full overflow-hidden rounded-md border p-4">
       <div className="grid gap-3">
         <div className="text-sm font-medium">Approvals Inbox</div>
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           Procurement managers can approve from mobile without opening each row.
         </div>
-        <div className="rounded-md border border-border bg-card p-3 text-sm text-muted-foreground">
+        <div className="border-border bg-card text-muted-foreground rounded-md border p-3 text-sm">
           12 approvals are due in the next two hours.
         </div>
       </div>
@@ -78,8 +78,8 @@ export const StickyWithHeader: Story = {
     position: { top: 72, right: 16 },
   },
   render: (args) => (
-    <div className="relative h-96 w-full overflow-hidden rounded-md border border-border bg-background">
-      <div className="sticky top-0 border-b border-border bg-card px-4 py-3 text-sm font-medium">
+    <div className="border-border bg-background relative h-96 w-full overflow-hidden rounded-md border">
+      <div className="border-border bg-card sticky top-0 border-b px-4 py-3 text-sm font-medium">
         Contract Clause Review
       </div>
       <div className="grid gap-3 p-4 text-sm">

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useMemo, useState } from "react";
 
 import { CheckboxGroup } from "../../checkbox-group/checkbox-group";
@@ -59,7 +58,7 @@ const ApprovalGateExample = () => {
         />
         Finance can release supplier payouts.
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {approved
           ? "Payout workflow unlocked for this quarter."
           : "Enable this to allow releases above $25,000."}
@@ -84,7 +83,7 @@ const CheckedApprovalExample = () => {
         />
         Retention policy acknowledged for audit exports.
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {retentionConfirmed
           ? "Audit artifacts will be retained for 7 years."
           : "Compliance retention is currently disabled."}
@@ -121,7 +120,7 @@ const TriStateReviewTableExample = () => {
   }, [allRowsSelected, selectedRows.length, someRowsSelected]);
 
   return (
-    <div className="grid w-full max-w-md gap-3 rounded-md border border-border p-3">
+    <div className="border-border grid w-full max-w-md gap-3 rounded-md border p-3">
       <Label className="flex items-center gap-2" htmlFor="select-all-invoices">
         <Checkbox
           checked={allRowsSelected}
@@ -139,7 +138,7 @@ const TriStateReviewTableExample = () => {
       >
         {complianceRows.map((row) => (
           <Label
-            className="grid gap-0.5 rounded-sm border border-border px-2 py-1"
+            className="border-border grid gap-0.5 rounded-sm border px-2 py-1"
             htmlFor={row.id}
             key={row.id}
           >
@@ -147,14 +146,14 @@ const TriStateReviewTableExample = () => {
               <Checkbox id={row.id} value={row.id} />
               {row.label}
             </span>
-            <span className="pl-6 text-sm text-muted-foreground">
+            <span className="text-muted-foreground pl-6 text-sm">
               {row.subtitle}
             </span>
           </Label>
         ))}
       </CheckboxGroup>
 
-      <p className="text-sm text-muted-foreground">{selectionSummary}</p>
+      <p className="text-muted-foreground text-sm">{selectionSummary}</p>
     </div>
   );
 };
@@ -175,7 +174,7 @@ const SecurityAcknowledgeExample = () => {
         />
         I reviewed the SOC 2 controls for this deployment.
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {acknowledged
           ? "Submission can be sent to the procurement team."
           : "Acknowledge controls before requesting production access."}
@@ -204,7 +203,7 @@ const CustomIndicatorExample = () => {
         </Checkbox>
         Escalate purchases above the approval threshold.
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {requiresEscalation
           ? "Escalations route to finance leadership."
           : "Purchases auto-approve under the current policy."}
@@ -232,7 +231,7 @@ export const Disabled: Story = {
         <Checkbox disabled id="locked-approval" />
         Require owner approval for vendor changes.
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         This control is locked to workspace owners on the current plan.
       </p>
     </div>
@@ -246,7 +245,7 @@ export const DisabledChecked: Story = {
         <Checkbox defaultChecked disabled id="mandatory-export" />
         Include audit trail in every export package.
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         This requirement is enforced by enterprise compliance policy.
       </p>
     </div>

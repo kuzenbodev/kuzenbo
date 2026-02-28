@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { ToggleGroup } from "../../toggle-group/toggle-group";
@@ -41,7 +40,7 @@ const IncidentPinToggleExample = () => {
       >
         Pin incident dashboard
       </Toggle>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {pinned
           ? "Dashboard is pinned for the operations command center."
           : "Dashboard follows your last visited view."}
@@ -67,7 +66,7 @@ const IconToggleExample = () => {
         <span aria-hidden="true">+</span>
         Watchlist
       </Toggle>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {watchlistEnabled
           ? "Vendor will surface in weekly risk reports."
           : "Vendor is excluded from watchlist reports."}
@@ -115,7 +114,7 @@ export const Disabled: Story = {
       <Toggle aria-label="Locked audit mode" disabled pressed variant="outline">
         Locked audit mode
       </Toggle>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         This toggle is enforced by organization policy.
       </p>
     </div>

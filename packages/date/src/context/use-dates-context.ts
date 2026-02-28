@@ -4,7 +4,6 @@ import { useCallback, useContext } from "react";
 
 import type { DateAdapter, DateAdapterContext } from "../adapter";
 import type { DayOfWeek } from "../types";
-
 import { DatesProviderContext } from "./dates-provider";
 
 export const useDatesContext = () => {

@@ -6,6 +6,7 @@ import type {
   InputHTMLAttributes,
   Ref,
 } from "react";
+import { useImperativeHandle, useMemo } from "react";
 import type {
   Accept,
   DropEvent,
@@ -13,8 +14,6 @@ import type {
   FileRejection,
   FileWithPath,
 } from "react-dropzone";
-
-import { useImperativeHandle } from "react";
 import { useDropzone } from "react-dropzone";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
@@ -361,11 +360,13 @@ const Dropzone = ({
     loading,
     activateOnClick,
   });
+  const contextValue = useMemo(
+    () => ({ accept: isAccepted, reject: isRejected, idle: isIdle }),
+    [isAccepted, isRejected, isIdle]
+  );
 
   return (
-    <DropzoneContext.Provider
-      value={{ accept: isAccepted, reject: isRejected, idle: isIdle }}
-    >
+    <DropzoneContext.Provider value={contextValue}>
       <div
         {...getRootProps()}
         className={cn(root(), className)}

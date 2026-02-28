@@ -2,8 +2,6 @@
 
 import { useCallback, useState } from "react";
 
-import type { ConfirmDialogState } from "./use-confirm-dialog";
-
 import { AlertDialog } from "./alert-dialog";
 import { AlertDialogAction } from "./alert-dialog-action";
 import { AlertDialogCancel } from "./alert-dialog-cancel";
@@ -12,6 +10,7 @@ import { AlertDialogDescription } from "./alert-dialog-description";
 import { AlertDialogFooter } from "./alert-dialog-footer";
 import { AlertDialogHeader } from "./alert-dialog-header";
 import { AlertDialogTitle } from "./alert-dialog-title";
+import type { ConfirmDialogState } from "./use-confirm-dialog";
 
 export interface ConfirmDialogRendererProps {
   dialog: ConfirmDialogState;

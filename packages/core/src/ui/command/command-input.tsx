@@ -1,16 +1,14 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { SearchIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Command as CommandPrimitive } from "cmdk";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { InputGroup, InputGroupAddon } from "../input-group/input-group";
+import type { InputSize } from "../input/input";
 import { CommandContext } from "./command-context";
 type NativeCommandInputProps = ComponentProps<typeof CommandPrimitive.Input>;
 type NativeCommandInputSize = NativeCommandInputProps["size"];
@@ -64,7 +62,7 @@ const CommandInput = ({
       data-slot="command-input-wrapper"
     >
       <InputGroup
-        className="rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:pl-2!"
+        className="border-input/30 bg-input/30 rounded-lg! shadow-none! *:data-[slot=input-group-addon]:pl-2!"
         size={resolvedSize}
       >
         <CommandPrimitive.Input

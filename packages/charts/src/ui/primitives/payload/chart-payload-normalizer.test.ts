@@ -1,7 +1,6 @@
 import { describe, expect, it } from "bun:test";
 
 import type { ChartConfig } from "../types/chart-types";
-
 import {
   normalizeChartPayload,
   resolveSeriesKey,

@@ -1,8 +1,7 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Toolbar } from "@kuzenbo/core/ui/toolbar";
+import type { ComponentProps } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import { useTiptapEditorContext } from "./tiptap-editor-context";
@@ -12,7 +11,7 @@ export type TiptapEditorControlsGroupProps = ComponentProps<
 >;
 
 const tiptapEditorControlsGroupVariants = tv({
-  base: "kb-tiptap-controls-group border border-border/80 bg-background/60",
+  base: "kb-tiptap-controls-group border-border/80 bg-background/60 border",
   variants: {
     size: {
       xs: "gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",

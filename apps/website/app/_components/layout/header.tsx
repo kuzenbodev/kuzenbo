@@ -8,11 +8,11 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { HeaderNavigation } from "./header-navigation";
 
 export const Header = () => (
-  <header className="sticky top-0 z-overlay flex h-14 items-center bg-background border-b">
-    <Container className="flex items-center justify-between gap-4 border-x h-full">
+  <header className="z-overlay bg-background sticky top-0 flex h-14 items-center border-b">
+    <Container className="flex h-full items-center justify-between gap-4 border-x">
       <div className="flex items-center gap-6">
         <Link className="flex items-center gap-2" href="/">
-          <span className="inline-flex size-5 items-center justify-center rounded-sm border border-border/70 bg-foreground text-xs font-semibold text-background">
+          <span className="border-border/70 bg-foreground text-background inline-flex size-5 items-center justify-center rounded-sm border text-xs font-semibold">
             K
           </span>
           <span className="text-sm font-semibold tracking-tight">Kuzenbo</span>

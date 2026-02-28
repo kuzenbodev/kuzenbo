@@ -2,8 +2,6 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-import type { ReleaseChannel } from "./lib/types";
-
 import { getOptionalArg, getRequiredArg, parseArgs } from "./lib/args";
 import { loadReleaseConfig } from "./lib/config";
 import {
@@ -12,6 +10,7 @@ import {
   readPackedPackageManifest,
 } from "./lib/publish-artifacts";
 import { REPO_ROOT } from "./lib/repo";
+import type { ReleaseChannel } from "./lib/types";
 import { buildPublishPlan } from "./lib/validation";
 import { isReleaseChannel } from "./lib/version";
 import { readWorkspacePackages } from "./lib/workspace";

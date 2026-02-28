@@ -1,35 +1,34 @@
-/* eslint-disable func-style */
+import { afterEach, describe, expect, it } from "bun:test";
+
 import { cleanup, render, screen } from "@testing-library/react";
 import createUserEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "bun:test";
 
 import { Slider } from "./slider";
 
 afterEach(cleanup);
 
-function rootClassName() {
-  return "root-callback";
-}
-function controlClassName() {
-  return "control-callback";
-}
-function thumbClassName() {
-  return "thumb-callback";
-}
+const rootClassName = () => "root-callback";
+const controlClassName = () => "control-callback";
+const thumbClassName = () => "thumb-callback";
 const doubleScale = (value: number) => value * 2;
 const percentLabel = (value: number) => `${value}%`;
-let keyboardEventOrder: string[] = [];
-let keyboardChanges: number[] = [];
-let keyboardCommitted: number[] = [];
-
-const recordKeyboardChange = (value: number) => {
-  keyboardEventOrder.push("change");
-  keyboardChanges.push(value);
+const keyboardState = {
+  changes: [] as number[],
+  committed: [] as number[],
+  eventOrder: [] as string[],
 };
-
+const resetKeyboardState = () => {
+  keyboardState.eventOrder = [];
+  keyboardState.changes = [];
+  keyboardState.committed = [];
+};
+const recordKeyboardChange = (value: number) => {
+  keyboardState.eventOrder.push("change");
+  keyboardState.changes.push(value);
+};
 const recordKeyboardChangeEnd = (value: number) => {
-  keyboardEventOrder.push("changeEnd");
-  keyboardCommitted.push(value);
+  keyboardState.eventOrder.push("changeEnd");
+  keyboardState.committed.push(value);
 };
 
 const marks = [
@@ -274,9 +273,7 @@ describe("Slider", () => {
 
   it("calls onChange before onChangeEnd for keyboard input", async () => {
     const user = createUserEvent.setup();
-    keyboardEventOrder = [];
-    keyboardChanges = [];
-    keyboardCommitted = [];
+    resetKeyboardState();
 
     render(
       <Slider
@@ -294,11 +291,11 @@ describe("Slider", () => {
     await user.keyboard("{ArrowRight}");
     input?.blur();
 
-    expect(keyboardChanges.length > 0).toBe(true);
-    expect(keyboardCommitted.length > 0).toBe(true);
-    expect(keyboardEventOrder[0]).toBe("change");
-    expect(keyboardEventOrder.at(-1)).toBe("changeEnd");
-    expect(keyboardChanges.at(-1)).toBe(keyboardCommitted.at(-1));
+    expect(keyboardState.changes.length > 0).toBe(true);
+    expect(keyboardState.committed.length > 0).toBe(true);
+    expect(keyboardState.eventOrder[0]).toBe("change");
+    expect(keyboardState.eventOrder.at(-1)).toBe("changeEnd");
+    expect(keyboardState.changes.at(-1)).toBe(keyboardState.committed.at(-1));
   });
 
   it("projects domain while clamping normalized value to min and max", () => {

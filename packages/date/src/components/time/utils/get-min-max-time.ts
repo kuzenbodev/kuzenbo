@@ -1,5 +1,4 @@
 import type { DateAdapter } from "../../../adapter";
-
 import { formatAdapterTime } from "./time-utils";
 
 interface GetMinTimeInput {

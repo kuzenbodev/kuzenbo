@@ -1,9 +1,7 @@
 import type { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
-
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 import { ContextMenuPopup } from "./context-menu-popup";
@@ -28,9 +26,10 @@ const ContextMenuContent = ({
 }: ContextMenuContentProps) => {
   const { size: rootSize } = useContext(ContextMenuContext);
   const resolvedSize = size ?? rootSize ?? "md";
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <ContextMenuOverlayContext.Provider value={{ size: resolvedSize }}>
+    <ContextMenuOverlayContext.Provider value={contextValue}>
       <ContextMenuPortal>
         <ContextMenuPositioner
           align={align}

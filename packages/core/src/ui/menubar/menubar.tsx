@@ -1,10 +1,10 @@
 "use client";
 
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { MenubarArrow } from "./menubar-arrow";
 import { MenubarBackdrop } from "./menubar-backdrop";
@@ -29,7 +29,7 @@ import { MenubarSubTrigger } from "./menubar-sub-trigger";
 import { MenubarTrigger } from "./menubar-trigger";
 
 const menubarVariants = tv({
-  base: "flex items-center border border-border bg-background",
+  base: "border-border bg-background flex items-center border",
   variants: {
     size: {
       xs: "h-7 gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
@@ -51,9 +51,10 @@ export type MenubarProps = MenubarPrimitive.Props &
 
 const Menubar = ({ className, size: providedSize, ...props }: MenubarProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <MenubarContext.Provider value={{ size }}>
+    <MenubarContext.Provider value={contextValue}>
       <MenubarPrimitive
         className={cn(menubarVariants({ size }), className)}
         data-size={size}

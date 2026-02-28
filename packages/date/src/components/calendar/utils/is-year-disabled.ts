@@ -1,5 +1,4 @@
 import type { DateAdapter } from "../../../adapter";
-
 import { compareByLevel } from "./date-level-comparison";
 
 interface IsYearDisabledInput {

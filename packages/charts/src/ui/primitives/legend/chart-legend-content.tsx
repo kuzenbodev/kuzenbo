@@ -2,7 +2,6 @@
 
 import type { ComponentProps, ReactNode } from "react";
 import type { DefaultLegendContentProps } from "recharts";
-
 import { cn, tv } from "tailwind-variants";
 
 import { useChart } from "../context/use-chart";
@@ -47,7 +46,7 @@ const chartLegendContentVariants = tv({
 });
 
 const chartLegendItemVariants = tv({
-  base: "flex cursor-clickable items-center rounded-sm border-0 bg-transparent p-0 text-left text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 [&>svg]:text-muted-foreground",
+  base: "cursor-clickable text-muted-foreground focus-visible:ring-ring/50 [&>svg]:text-muted-foreground flex items-center rounded-sm border-0 bg-transparent p-0 text-left focus-visible:ring-2 focus-visible:outline-none",
   variants: {
     size: {
       xs: "gap-1 [&>svg]:h-2.5 [&>svg]:w-2.5",

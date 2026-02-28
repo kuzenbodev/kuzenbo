@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { TimeGrid } from "../time-grid";
 

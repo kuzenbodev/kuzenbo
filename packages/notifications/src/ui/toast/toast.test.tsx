@@ -1,3 +1,5 @@
+import { afterEach, describe, expect, it } from "bun:test";
+
 import { KuzenboProvider } from "@kuzenbo/core/provider";
 import {
   cleanup,
@@ -6,7 +8,6 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "bun:test";
 import { useCallback, useRef, useState } from "react";
 
 import { createToastManager, Toast, useToast, useToastManager } from "./toast";
@@ -379,7 +380,7 @@ describe("Toast", () => {
               <Toast.Positioner key={toast.id} toast={toast}>
                 <Toast.Root toast={toast}>
                   <Toast.Arrow>
-                    <span className="block h-2 w-2 rotate-45 border border-border border-r-0 border-b-0 bg-popover" />
+                    <span className="border-border bg-popover block h-2 w-2 rotate-45 border border-r-0 border-b-0" />
                   </Toast.Arrow>
                   <Toast.Content>
                     <Toast.Description />

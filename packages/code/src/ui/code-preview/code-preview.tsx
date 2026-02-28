@@ -1,9 +1,8 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { Tabs } from "@kuzenbo/core/ui/tabs";
 import { ToggleGroup } from "@kuzenbo/core/ui/toggle-group";
+import type { ReactNode } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "tailwind-variants";
 
@@ -195,7 +194,7 @@ export const CodePreview = ({
         <Tabs.Content value="preview">
           <div
             className={cn(
-              "rounded-md border border-border p-3",
+              "border-border rounded-md border p-3",
               previewClassName
             )}
             data-slot="code-preview-preview"
@@ -205,7 +204,7 @@ export const CodePreview = ({
         </Tabs.Content>
         <Tabs.Content value="code">
           <div
-            className={cn("rounded-md border border-border p-3", codeClassName)}
+            className={cn("border-border rounded-md border p-3", codeClassName)}
             data-slot="code-preview-code"
           >
             {resolvedCode}
@@ -218,7 +217,7 @@ export const CodePreview = ({
           >
             <div
               className={cn(
-                "rounded-md border border-border p-3",
+                "border-border rounded-md border p-3",
                 previewClassName
               )}
               data-slot="code-preview-split-preview"
@@ -227,7 +226,7 @@ export const CodePreview = ({
             </div>
             <div
               className={cn(
-                "rounded-md border border-border p-3",
+                "border-border rounded-md border p-3",
                 codeClassName
               )}
               data-slot="code-preview-split-code"

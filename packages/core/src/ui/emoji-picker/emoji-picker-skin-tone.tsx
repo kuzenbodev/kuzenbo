@@ -1,11 +1,9 @@
 "use client";
 
+import { EmojiPicker as BaseEmojiPicker } from "frimousse";
 import type { ComponentProps } from "react";
 
-import { EmojiPicker as BaseEmojiPicker } from "frimousse";
-
 import type { UISize } from "../shared/size/size-system";
-
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 export type EmojiPickerSkinToneProps = Omit<

@@ -1,9 +1,8 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";

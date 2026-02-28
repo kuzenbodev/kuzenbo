@@ -9,7 +9,7 @@ export const PillIndicator = ({
   variant = "success",
   pulse = false,
 }: PillIndicatorProps) => (
-  <span className="relative flex size-2 group-data-[size=xs]/badge:size-1.5 group-data-[size=sm]/badge:size-2 group-data-[size=md]/badge:size-2 group-data-[size=lg]/badge:size-2.5 group-data-[size=xl]/badge:size-3">
+  <span className="relative flex size-2 group-data-[size=lg]/badge:size-2.5 group-data-[size=md]/badge:size-2 group-data-[size=sm]/badge:size-2 group-data-[size=xl]/badge:size-3 group-data-[size=xs]/badge:size-1.5">
     {pulse && (
       <span
         className={cn(
@@ -23,7 +23,7 @@ export const PillIndicator = ({
     )}
     <span
       className={cn(
-        "relative inline-flex size-2 rounded-full group-data-[size=xs]/badge:size-1.5 group-data-[size=sm]/badge:size-2 group-data-[size=md]/badge:size-2 group-data-[size=lg]/badge:size-2.5 group-data-[size=xl]/badge:size-3",
+        "relative inline-flex size-2 rounded-full group-data-[size=lg]/badge:size-2.5 group-data-[size=md]/badge:size-2 group-data-[size=sm]/badge:size-2 group-data-[size=xl]/badge:size-3 group-data-[size=xs]/badge:size-1.5",
         variant === "success" && "bg-success",
         variant === "error" && "bg-danger",
         variant === "warning" && "bg-warning",

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   type ComponentProps,
   type FormEvent,
@@ -9,9 +8,8 @@ import {
   useState,
 } from "react";
 
-import type { RangeSliderValue } from "../range-slider-types";
-
 import { RangeSlider } from "../range-slider";
+import type { RangeSliderValue } from "../range-slider-types";
 
 type RangeSliderArgs = ComponentProps<typeof RangeSlider>;
 interface RangeStoryExtraProps {
@@ -245,13 +243,13 @@ export const RangeLabelTransitionProps: RangeStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Default thumb label transition
         </p>
         <ControlledRangeSlider args={args} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Custom transition via labelTransitionProps
         </p>
         <ControlledRangeSlider
@@ -303,12 +301,12 @@ const RangeHiddenInputPropsDemo = () => {
         )}
       />
       <button
-        className="inline-flex h-8 items-center justify-center rounded-md border border-border bg-background px-3 text-xs text-foreground transition-colors hover:bg-muted"
+        className="border-border bg-background text-foreground hover:bg-muted inline-flex h-8 items-center justify-center rounded-md border px-3 text-xs transition-colors"
         type="submit"
       >
         Read form data
       </button>
-      <pre className="rounded-md border border-border bg-muted p-2 text-xs text-muted-foreground">
+      <pre className="border-border bg-muted text-muted-foreground rounded-md border p-2 text-xs">
         {submittedEntries?.length
           ? submittedEntries.join("\n")
           : rangeInputPreviewHelpText}
@@ -331,11 +329,11 @@ export const RangeColorSizeRadius: RangeStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">Default tokens</p>
+        <p className="text-muted-foreground text-sm">Default tokens</p>
         <ControlledRangeSlider args={args} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           color/size/radius overrides
         </p>
         <ControlledRangeSlider
@@ -363,19 +361,19 @@ export const RangeEndpointAlignment: RangeStory = {
   render: (args) => (
     <div className="flex w-80 flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Both endpoints alignment
         </p>
         <ControlledRangeSlider args={args} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Lower endpoint alignment
         </p>
         <ControlledRangeSlider args={{ ...args, value: [0, 40] }} />
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Upper endpoint alignment
         </p>
         <ControlledRangeSlider args={{ ...args, value: [60, 100] }} />

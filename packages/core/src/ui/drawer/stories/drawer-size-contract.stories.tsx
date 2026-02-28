@@ -33,7 +33,7 @@ export const SizeContract: Story = {
     size: "md",
   },
   render: (args) => (
-    <div className="relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border border-border bg-background p-6">
+    <div className="border-border bg-background relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border p-6">
       <Drawer.Root size={args.size}>
         <Drawer.Trigger render={<Button size="xl" variant="outline" />}>
           Open drawer

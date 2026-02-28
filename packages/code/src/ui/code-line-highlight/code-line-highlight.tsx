@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-
 import { useMemo } from "react";
 import { cn, tv } from "tailwind-variants";
 
@@ -27,7 +26,7 @@ export interface CodeLineHighlightProps {
 }
 
 const codeLineHighlightVariants = tv({
-  base: "overflow-hidden rounded-lg border border-border bg-muted/40",
+  base: "border-border bg-muted/40 overflow-hidden rounded-lg border",
 });
 
 const normalizeCodeLines = (code: string): string[] => {
@@ -90,7 +89,7 @@ export const CodeLineHighlight = ({
               key={`line-${lineNumber}`}
             >
               <span
-                className="w-8 select-none text-right text-xs tabular-nums text-muted-foreground"
+                className="text-muted-foreground w-8 text-right text-xs tabular-nums select-none"
                 data-line-number={lineNumber}
                 data-slot="code-line-number"
               >
@@ -98,7 +97,7 @@ export const CodeLineHighlight = ({
               </span>
 
               <span
-                className="min-w-0 whitespace-pre-wrap break-words font-mono text-sm leading-6 text-foreground"
+                className="text-foreground min-w-0 font-mono text-sm leading-6 break-words whitespace-pre-wrap"
                 data-line-number={lineNumber}
                 data-slot="code-line-content"
               >
@@ -107,7 +106,7 @@ export const CodeLineHighlight = ({
 
               {annotation ? (
                 <span
-                  className="rounded border border-border bg-background px-2 py-1 text-xs text-muted-foreground"
+                  className="border-border bg-background text-muted-foreground rounded border px-2 py-1 text-xs"
                   data-line-number={lineNumber}
                   data-slot="code-line-highlight-annotation"
                 >

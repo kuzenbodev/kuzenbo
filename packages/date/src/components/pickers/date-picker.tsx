@@ -1,11 +1,9 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv } from "tailwind-variants";
-
-import type { DatePickerValue, SelectionMode } from "../types";
 
 import { useDatesState } from "../../hooks";
 import { Calendar } from "../calendar/calendar";
+import type { DatePickerValue, SelectionMode } from "../types";
 import { useDatesContext } from "../use-dates-context";
 import { fromComparablePickerValue } from "./utils/picker-value-conversion";
 

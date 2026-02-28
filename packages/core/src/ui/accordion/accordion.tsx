@@ -1,12 +1,12 @@
 "use client";
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
+import { useMemo } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-
-import type { UISize } from "../shared/size/size-system";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { AccordionContent } from "./accordion-content";
 import { AccordionContext } from "./accordion-context";
 import { AccordionHeader } from "./accordion-header";
@@ -19,7 +19,7 @@ const accordionVariants = tv({
   variants: {
     variant: {
       default: "",
-      bordered: "overflow-hidden rounded-lg border border-border bg-background",
+      bordered: "border-border bg-background overflow-hidden rounded-lg border",
       ghost: "gap-1",
     },
   },
@@ -41,9 +41,10 @@ const Accordion = (incomingProps: AccordionProps) => {
     ...props
   } = useAccordionDefaultProps(incomingProps);
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size, variant }), [size, variant]);
 
   return (
-    <AccordionContext.Provider value={{ size, variant }}>
+    <AccordionContext.Provider value={contextValue}>
       <AccordionPrimitive.Root
         className={mergeBaseUIClassName<AccordionPrimitive.Root.State>(
           accordionVariants({ variant }),

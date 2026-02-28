@@ -1,12 +1,10 @@
-import type { ComponentProps } from "react";
-
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { SidebarMenuContext } from "./sidebar-menu-context";
 export type SidebarMenuSubButtonProps = useRender.ComponentProps<"a"> &
   ComponentProps<"a"> & {
@@ -15,7 +13,7 @@ export type SidebarMenuSubButtonProps = useRender.ComponentProps<"a"> &
   } & VariantProps<typeof sidebarMenuSubButtonVariants>;
 
 const sidebarMenuSubButtonVariants = tv({
-  base: "flex min-w-0 -translate-x-px cursor-clickable items-center overflow-hidden rounded-md text-sidebar-foreground ring-sidebar-ring outline-hidden group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+  base: "cursor-clickable text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex min-w-0 -translate-x-px items-center overflow-hidden rounded-md outline-hidden group-data-[collapsible=icon]:hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:shrink-0",
   variants: {
     size: {
       xs: "h-6 gap-1.5 px-1.5 text-xs [&>svg:not([class*='size-'])]:size-3",

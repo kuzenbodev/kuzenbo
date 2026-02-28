@@ -1,7 +1,6 @@
 import type { DateAdapter, DateInput } from "../adapter";
-import type { DatePickerValue, DateSelectionMode } from "../types";
-
 import { DEFAULT_DATE_ADAPTER } from "../adapter";
+import type { DatePickerValue, DateSelectionMode } from "../types";
 import { normalizeDateSelectionMode } from "./normalize-selection-mode";
 
 interface DateFormatterInput {

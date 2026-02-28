@@ -5,10 +5,9 @@ import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useContext } from "react";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { InputGroupButton } from "../input-group/input-group";
+import type { InputSize } from "../input/input";
 import { ComboboxContext } from "./combobox-context";
 
 export type ComboboxClearProps = ComboboxPrimitive.Clear.Props & {

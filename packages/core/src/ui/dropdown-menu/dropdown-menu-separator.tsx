@@ -3,12 +3,11 @@ import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { DropdownMenuContext } from "./dropdown-menu-context";
 import { DropdownMenuOverlayContext } from "./dropdown-menu-overlay-context";
 
 const dropdownMenuSeparatorVariants = tv({
-  base: "h-px bg-border",
+  base: "bg-border h-px",
   variants: {
     size: {
       xs: "-mx-0.5 my-0.5",

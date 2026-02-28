@@ -6,7 +6,7 @@ import { useTimeline, useTimelineItem } from "./use-timeline";
 
 const timelineDotVariants = tv({
   base: [
-    "relative z-raised flex shrink-0 items-center justify-center rounded-full border-2 bg-background",
+    "z-raised bg-background relative flex shrink-0 items-center justify-center rounded-full border-2",
     "size-[var(--timeline-dot-size)]",
   ],
   variants: {

@@ -1,6 +1,7 @@
 "use client";
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
@@ -33,9 +34,10 @@ export type ToolbarGroupProps = ToolbarPrimitive.Group.Props &
 
 const ToolbarGroup = ({ className, size, ...props }: ToolbarGroupProps) => {
   const resolvedSize = useToolbarResolvedSize(size);
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <ToolbarSizeContext.Provider value={{ size: resolvedSize }}>
+    <ToolbarSizeContext.Provider value={contextValue}>
       <ToolbarPrimitive.Group
         className={mergeBaseUIClassName(
           cn(toolbarGroupVariants({ size: resolvedSize })),

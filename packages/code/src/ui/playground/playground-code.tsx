@@ -4,7 +4,6 @@ import { CopyButton } from "@kuzenbo/core/ui/copy-button";
 import { cn } from "tailwind-variants";
 
 import type { PlaygroundGeneratedCodeFile } from "../../utils/codegen/playground-codegen-model";
-
 import { CodeBlockToolbar } from "../code-block-toolbar/code-block-toolbar";
 import { CodeBlock } from "../code-block/code-block";
 import { CodeTabs } from "../code-tabs/code-tabs";

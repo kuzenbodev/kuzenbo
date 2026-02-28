@@ -1,5 +1,4 @@
 import type { ComponentProps, ReactNode } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 const levelsGroupVariants = tv({

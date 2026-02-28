@@ -2,7 +2,6 @@ import type {
   BarChartProps,
   CompleteChartDatum,
 } from "../../shared/complete-types";
-
 import { toNumericValue } from "../../shared/utils/number/to-numeric-value";
 import { toRenderableLabelValue } from "./to-renderable-label-value";
 

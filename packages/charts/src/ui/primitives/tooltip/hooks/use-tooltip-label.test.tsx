@@ -1,8 +1,8 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import type { NormalizedChartPayloadItem } from "../../payload/chart-payload-normalizer";
+import { cleanup, render, screen } from "@testing-library/react";
 
+import type { NormalizedChartPayloadItem } from "../../payload/chart-payload-normalizer";
 import { useTooltipLabel } from "./use-tooltip-label";
 
 afterEach(cleanup);

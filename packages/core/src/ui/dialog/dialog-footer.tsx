@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
 import { Button } from "../button/button";

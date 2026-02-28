@@ -1,10 +1,10 @@
 "use client";
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { NavigationMenuArrow } from "./navigation-menu-arrow";
 import { NavigationMenuBackdrop } from "./navigation-menu-backdrop";
@@ -31,9 +31,11 @@ const NavigationMenu = ({
   ...props
 }: NavigationMenuProps) => {
   const size = useComponentSize(providedSize);
+  const rootContextValue = useMemo(() => ({ size }), [size]);
+  const overlayContextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <NavigationMenuContext.Provider value={{ size }}>
+    <NavigationMenuContext.Provider value={rootContextValue}>
       <NavigationMenuPrimitive.Root
         className={cn(
           "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
@@ -43,7 +45,7 @@ const NavigationMenu = ({
         data-slot="navigation-menu"
         {...props}
       >
-        <NavigationMenuOverlayContext.Provider value={{ size }}>
+        <NavigationMenuOverlayContext.Provider value={overlayContextValue}>
           {children}
           <NavigationMenuPortal>
             <NavigationMenuPositioner>

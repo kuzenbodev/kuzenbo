@@ -2,7 +2,6 @@ import type {
   LabelListContentProps,
   LabelListContentRenderer,
 } from "./label-list-content-types";
-
 import { resolveLabelDatum } from "./resolve-label-datum";
 
 interface CreateLabelListContentRendererOptions<TData> {

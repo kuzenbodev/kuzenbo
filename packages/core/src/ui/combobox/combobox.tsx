@@ -1,11 +1,10 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { ComboboxArrow } from "./combobox-arrow";
 import { ComboboxBackdrop } from "./combobox-backdrop";
@@ -48,9 +47,10 @@ const Combobox = <ItemValue, Multiple extends boolean | undefined = false>({
   ...props
 }: ComboboxProps<ItemValue, Multiple>) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <ComboboxContext.Provider value={{ size }}>
+    <ComboboxContext.Provider value={contextValue}>
       <ComboboxPrimitive.Root<ItemValue, Multiple>
         data-size={size}
         data-slot="combobox"

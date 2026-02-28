@@ -1,15 +1,13 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 
 const contextMenuShortcutVariants = tv({
-  base: "ml-auto text-muted-foreground group-focus/context-menu-item:text-accent-foreground",
+  base: "text-muted-foreground group-focus/context-menu-item:text-accent-foreground ml-auto",
   variants: {
     size: {
       xs: "text-[10px] tracking-wide",

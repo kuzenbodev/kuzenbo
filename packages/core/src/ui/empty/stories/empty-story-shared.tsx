@@ -1,5 +1,3 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   ArrowUpRight01Icon,
   CloudUploadIcon,
@@ -7,6 +5,7 @@ import {
   Notification03Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Empty, type EmptyProps } from "../empty";
 
@@ -79,7 +78,7 @@ export const Outline: Story = {
 
 export const WithBackground: Story = {
   render: () => (
-    <Empty className="rounded-lg bg-muted/50">
+    <Empty className="bg-muted/50 rounded-lg">
       <Empty.Header>
         <Empty.Media variant="icon">
           <HugeiconsIcon icon={Notification03Icon} />
@@ -145,7 +144,7 @@ export const Sizes: Story = {
     <div className="grid gap-4">
       {emptySizes.map((size) => (
         <Empty
-          className="border border-dashed border-border"
+          className="border-border border border-dashed"
           key={size}
           size={size}
         >

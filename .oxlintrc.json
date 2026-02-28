@@ -18,7 +18,8 @@
     "eslint-plugin-import/no-nodejs-modules": "off",
     "eslint-plugin-import/no-relative-parent-imports": "off",
     "eslint-plugin-unicorn/no-useless-spread": "off",
-    "eslint/complexity": "off"
+    "eslint/complexity": "off",
+    "eslint/no-empty-function": "off"
   },
   "ignorePatterns": ["opensrc"]
 }

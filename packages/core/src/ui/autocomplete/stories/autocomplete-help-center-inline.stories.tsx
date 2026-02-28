@@ -46,7 +46,7 @@ const HelpCenterInlineDemo = () => (
     openOnInputClick
   >
     <Autocomplete.Input placeholder="Search support articles..." />
-    <div className="mt-2 w-full min-w-[20rem] rounded-md border border-border bg-popover p-1">
+    <div className="border-border bg-popover mt-2 w-full min-w-[20rem] rounded-md border p-1">
       <Autocomplete.Empty className="px-2 py-1.5">
         No article suggestions.
       </Autocomplete.Empty>

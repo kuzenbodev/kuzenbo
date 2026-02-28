@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
 import { DatesProvider } from "../../dates-provider";
 import { MonthPickerInput } from "../month-picker-input";
@@ -18,6 +19,14 @@ const getPickerControls = (slot: "months-list" | "years-list") =>
     ...document.querySelectorAll(`[data-slot='${slot}'] button`),
   ] as HTMLButtonElement[];
 
+const expectDefinedValue = <T,>(value: T | undefined, message: string): T => {
+  expect(value).toBeDefined();
+  if (value === undefined) {
+    throw new Error(message);
+  }
+  return value;
+};
+
 describe("MonthPickerInput/YearPickerInput", () => {
   it("serializes multiple month selections into hidden input", () => {
     render(
@@ -35,15 +44,14 @@ describe("MonthPickerInput/YearPickerInput", () => {
 
     const controls = getPickerControls("months-list");
 
-    const firstControl = controls[0];
-    const secondControl = controls[1];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two month controls");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two month controls"
+    );
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two month controls"
+    );
 
     fireEvent.click(firstControl);
     fireEvent.click(secondControl);
@@ -75,15 +83,14 @@ describe("MonthPickerInput/YearPickerInput", () => {
 
     const controls = getPickerControls("years-list");
 
-    const firstControl = controls[0];
-    const secondControl = controls[1];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two year controls");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two year controls"
+    );
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two year controls"
+    );
 
     fireEvent.click(firstControl);
     fireEvent.click(secondControl);
@@ -112,13 +119,10 @@ describe("MonthPickerInput/YearPickerInput", () => {
     openPicker();
 
     const controls = getPickerControls("months-list");
-    const firstControl = controls[0];
-
-    expect(firstControl).toBeDefined();
-
-    if (!firstControl) {
-      throw new Error("Expected at least one month control");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least one month control"
+    );
 
     fireEvent.click(firstControl);
 
@@ -139,13 +143,10 @@ describe("MonthPickerInput/YearPickerInput", () => {
     openPicker();
 
     const controls = getPickerControls("years-list");
-    const firstControl = controls[0];
-
-    expect(firstControl).toBeDefined();
-
-    if (!firstControl) {
-      throw new Error("Expected at least one year control");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least one year control"
+    );
 
     fireEvent.click(firstControl);
 
@@ -166,13 +167,10 @@ describe("MonthPickerInput/YearPickerInput", () => {
     openPicker();
 
     const controls = getPickerControls("months-list");
-    const firstControl = controls[0];
-
-    expect(firstControl).toBeDefined();
-
-    if (!firstControl) {
-      throw new Error("Expected at least one month control");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least one month control"
+    );
 
     fireEvent.click(firstControl);
 
@@ -193,13 +191,10 @@ describe("MonthPickerInput/YearPickerInput", () => {
     openPicker();
 
     const controls = getPickerControls("years-list");
-    const firstControl = controls[0];
-
-    expect(firstControl).toBeDefined();
-
-    if (!firstControl) {
-      throw new Error("Expected at least one year control");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least one year control"
+    );
 
     fireEvent.click(firstControl);
 
@@ -221,15 +216,14 @@ describe("MonthPickerInput/YearPickerInput", () => {
     openPicker();
 
     const controls = getPickerControls("months-list");
-    const firstControl = controls[0];
-    const secondControl = controls[1];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two month controls");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two month controls"
+    );
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two month controls"
+    );
 
     fireEvent.click(firstControl);
     fireEvent.click(secondControl);
@@ -254,15 +248,14 @@ describe("MonthPickerInput/YearPickerInput", () => {
     openPicker();
 
     const controls = getPickerControls("years-list");
-    const firstControl = controls[0];
-    const secondControl = controls[1];
-
-    expect(firstControl).toBeDefined();
-    expect(secondControl).toBeDefined();
-
-    if (!firstControl || !secondControl) {
-      throw new Error("Expected at least two year controls");
-    }
+    const firstControl = expectDefinedValue(
+      controls[0],
+      "Expected at least two year controls"
+    );
+    const secondControl = expectDefinedValue(
+      controls[1],
+      "Expected at least two year controls"
+    );
 
     fireEvent.click(firstControl);
     fireEvent.click(secondControl);

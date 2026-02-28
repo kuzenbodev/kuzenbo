@@ -1,5 +1,6 @@
-import { act, cleanup, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test";
+
+import { act, cleanup, renderHook } from "@testing-library/react";
 
 import { type ClipboardResult, useClipboard } from "./use-clipboard";
 

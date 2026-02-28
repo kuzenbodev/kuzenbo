@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback } from "react";
 
 import { Autocomplete, useFilter } from "../autocomplete";

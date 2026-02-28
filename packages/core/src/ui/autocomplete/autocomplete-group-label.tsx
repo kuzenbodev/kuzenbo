@@ -1,12 +1,10 @@
-import type { ComponentProps } from "react";
-
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { AutocompleteOverlayContext } from "./autocomplete-overlay-context";
 
 export type AutocompleteGroupLabelProps = ComponentProps<
@@ -15,7 +13,7 @@ export type AutocompleteGroupLabelProps = ComponentProps<
   VariantProps<typeof autocompleteGroupLabelVariants>;
 
 const autocompleteGroupLabelVariants = tv({
-  base: "font-medium text-muted-foreground",
+  base: "text-muted-foreground font-medium",
   variants: {
     size: {
       xs: "px-1.5 py-1 text-xs",

@@ -4,7 +4,6 @@ import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerDescriptionVariants = tv({

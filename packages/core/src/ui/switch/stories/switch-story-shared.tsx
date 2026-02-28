@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useState } from "react";
 
 import { Label } from "../../label/label";
@@ -40,7 +39,7 @@ const DefaultFeatureFlagExample = () => {
         />
         Enforce SSO for all collaborators
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {enforceSso
           ? "Password login is disabled for this workspace."
           : "Members can still sign in with local credentials."}
@@ -66,7 +65,7 @@ const CheckedByDefaultExample = () => {
         />
         Route high-priority alerts to the on-call channel
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {alertsEnabled
           ? "Pager routing is active for critical incidents."
           : "Critical alerts stay in the dashboard inbox."}
@@ -93,7 +92,7 @@ const SmallDensityExample = () => {
         />
         Compact table density
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {compactMode
           ? "Rows are compressed for operations teams handling large queues."
           : "Rows use standard spacing for easier scanning."}
@@ -119,7 +118,7 @@ const WithLabelExample = () => {
         />
         Send daily finance digest to stakeholders
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {dailyDigest
           ? "Digest delivery is scheduled for 8:00 AM local time."
           : "Stakeholders will only receive ad-hoc notifications."}
@@ -149,7 +148,7 @@ const CustomThumbExample = () => {
         </Switch>
         Gradual feature rollout
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {rolloutEnabled
           ? "New behavior is enabled for 20% of customer accounts."
           : "Rollout is paused and all accounts use stable behavior."}
@@ -177,7 +176,7 @@ export const Disabled: Story = {
         <Switch aria-label="Locked setting" disabled id="locked-switch" />
         Allow external API tokens
       </Label>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         This setting is managed by organization owners.
       </p>
     </div>

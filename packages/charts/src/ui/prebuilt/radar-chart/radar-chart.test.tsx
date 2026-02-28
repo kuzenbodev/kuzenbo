@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, renderHook } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, fireEvent, render, renderHook } from "@testing-library/react";
 
 import { useRadarChartRuntime } from "./hooks/use-radar-chart-runtime";
 import { RadarChart } from "./radar-chart";

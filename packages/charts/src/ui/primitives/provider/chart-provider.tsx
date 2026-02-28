@@ -2,9 +2,8 @@
 
 import type { ReactNode } from "react";
 
-import type { ChartConfig } from "../types/chart-types";
-
 import { ChartContext } from "../context/use-chart";
+import type { ChartConfig } from "../types/chart-types";
 import { useChartProviderValue } from "./hooks/use-chart-provider-value";
 
 interface ChartProviderProps {

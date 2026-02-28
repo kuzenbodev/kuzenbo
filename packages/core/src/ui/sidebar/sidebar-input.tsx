@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 
 import { Input } from "../input/input";
@@ -11,7 +10,7 @@ const SidebarInput = ({
   ...props
 }: SidebarInputProps) => (
   <Input
-    className={cn("w-full bg-background shadow-none", className)}
+    className={cn("bg-background w-full shadow-none", className)}
     data-sidebar="input"
     size={size}
     data-slot="sidebar-input"

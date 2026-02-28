@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import type { InputSize } from "../../input/input";
-
 import { Button } from "../../button/button";
+import type { InputSize } from "../../input/input";
 import { DropdownMenu } from "../dropdown-menu";
 
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];

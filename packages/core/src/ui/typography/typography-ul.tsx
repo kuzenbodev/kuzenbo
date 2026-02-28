@@ -9,7 +9,7 @@ const TypographyUl = ({ className, render, ...props }: TypographyUlProps) =>
     defaultTagName: "ul",
     props: mergeProps<"ul">(
       {
-        className: cn("list-disc pl-5 text-foreground [&>li]:mt-1", className),
+        className: cn("text-foreground list-disc pl-5 [&>li]:mt-1", className),
       },
       props
     ),

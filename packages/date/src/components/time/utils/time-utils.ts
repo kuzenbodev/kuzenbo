@@ -1,3 +1,4 @@
+import { DEFAULT_DATE_ADAPTER, type DateAdapter } from "../../../adapter";
 import type {
   TimeAmPmLabels,
   TimeFormat,
@@ -5,8 +6,6 @@ import type {
   TimePasteSplitReturn,
 } from "../time-picker-types";
 import type { TimeParts } from "../time-types";
-
-import { DEFAULT_DATE_ADAPTER, type DateAdapter } from "../../../adapter";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));

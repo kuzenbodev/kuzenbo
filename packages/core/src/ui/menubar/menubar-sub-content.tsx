@@ -1,11 +1,9 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { DropdownMenuSubContent } from "../dropdown-menu/dropdown-menu";
+import type { InputSize } from "../input/input";
 import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 

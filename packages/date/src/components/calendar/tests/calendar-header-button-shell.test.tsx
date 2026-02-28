@@ -1,6 +1,7 @@
+import { afterEach, describe, expect, it, mock } from "bun:test";
+
 import { fireEvent, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { afterEach, describe, expect, it, mock } from "bun:test";
 
 import { DatesProvider } from "../../dates-provider";
 import { CalendarHeader } from "../calendar-header";

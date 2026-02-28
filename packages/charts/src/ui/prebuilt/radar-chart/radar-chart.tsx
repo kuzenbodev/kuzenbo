@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -13,13 +12,12 @@ import {
 } from "recharts";
 
 import type { ChartRootProps } from "../../primitives/chart";
+import { resolveCompleteSeriesName } from "../shared/complete-helpers";
+import { CompleteRadialShell } from "../shared/complete-radial-shell";
 import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../shared/complete-types";
-
-import { resolveCompleteSeriesName } from "../shared/complete-helpers";
-import { CompleteRadialShell } from "../shared/complete-radial-shell";
 import { useRadarChartRuntime } from "./hooks/use-radar-chart-runtime";
 
 type RadarChartRootProps = Omit<

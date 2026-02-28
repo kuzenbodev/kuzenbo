@@ -1,5 +1,6 @@
-import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, render } from "@testing-library/react";
 
 import { useChartConfig } from "../context/use-chart";
 import { ChartProvider } from "./chart-provider";

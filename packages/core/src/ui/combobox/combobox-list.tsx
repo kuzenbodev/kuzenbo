@@ -1,14 +1,12 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
+import type { CSSProperties } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { ComboboxOverlayContext } from "./combobox-overlay-context";
 
 const comboboxListVariants = tv({

@@ -1,8 +1,7 @@
 import type { StoryObj } from "@storybook/react";
 
-import type { PackageManager } from "../package-manager-tabs-types";
-
 import { PackageManagerTabs } from "../package-manager-tabs";
+import type { PackageManager } from "../package-manager-tabs-types";
 import {
   Default as DefaultStory,
   baseMeta,

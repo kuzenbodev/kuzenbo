@@ -1,13 +1,12 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { BaseUIClassName } from "../../utils/merge-base-ui-class-name";
-import type { UISize } from "../shared/size/size-system";
-
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { NavigationListAction } from "./navigation-list-action";
 import { NavigationListBadge } from "./navigation-list-badge";
 import { NavigationListContent } from "./navigation-list-content";
@@ -90,9 +89,13 @@ const NavigationList = ({
 
   const resolvedClassName =
     typeof className === "function" ? className(state) : className;
+  const contextValue = useMemo(
+    () => ({ size, tone, variant }),
+    [size, tone, variant]
+  );
 
   return (
-    <NavigationListContext.Provider value={{ size, tone, variant }}>
+    <NavigationListContext.Provider value={contextValue}>
       <nav
         className={cn(
           navigationListVariants({

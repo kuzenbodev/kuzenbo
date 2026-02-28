@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { DatesProvider } from "../../dates-provider";
 import { DatePicker } from "../../pickers/date-picker";
@@ -20,6 +21,12 @@ const getWeekOfYearLabel = (locale: string): string => {
     return "#";
   }
 };
+
+const DISABLED_DAY_TIMESTAMP = new Date(2026, 1, 2).getTime();
+
+const getDisabledDayProps = (date: Date) => ({
+  disabled: date.getTime() === DISABLED_DAY_TIMESTAMP,
+});
 
 describe("calendar keyboard focus", () => {
   it("keeps roving tab order with one tabbable day control", () => {
@@ -43,9 +50,7 @@ describe("calendar keyboard focus", () => {
       <DatesProvider locale="en-US">
         <DatePicker
           defaultMonth={new Date(2026, 1, 1)}
-          getDayProps={(date) => ({
-            disabled: date.getMonth() === 1 && date.getDate() === 2,
-          })}
+          getDayProps={getDisabledDayProps}
         />
       </DatesProvider>
     );

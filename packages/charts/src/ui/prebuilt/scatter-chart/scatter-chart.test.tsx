@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
+
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
 import { ScatterChart } from "./scatter-chart";
 import { completeScatterSeries } from "./scatter-chart-test-data";

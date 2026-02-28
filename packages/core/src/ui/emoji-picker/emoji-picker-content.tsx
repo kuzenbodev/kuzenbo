@@ -1,12 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 import { cn } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import {
   EmojiPickerSizeContext,
   useEmojiPickerResolvedSize,
@@ -26,9 +25,10 @@ export const EmojiPickerContent = ({
   ...props
 }: EmojiPickerContentProps) => {
   const resolvedSize = useEmojiPickerResolvedSize(size);
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <EmojiPickerSizeContext.Provider value={{ size: resolvedSize }}>
+    <EmojiPickerSizeContext.Provider value={contextValue}>
       <BaseEmojiPicker.Viewport
         className={cn("relative flex-1 outline-hidden", className)}
         data-size={resolvedSize}

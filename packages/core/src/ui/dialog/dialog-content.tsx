@@ -30,7 +30,7 @@ const DialogContent = ({
             data-slot="dialog-close"
             render={
               <Button
-                className="absolute top-4 right-4 cursor-clickable"
+                className="cursor-clickable absolute top-4 right-4"
                 size="icon-sm"
                 variant="ghost"
               />

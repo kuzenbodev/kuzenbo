@@ -1,15 +1,14 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
+import { useMemo } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { TableSizeContext, useTableResolvedSize } from "./table-size-context";
 
 const tableRowVariants = tv({
-  base: "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+  base: "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
   variants: {
     size: {
       xs: "",
@@ -31,9 +30,10 @@ export type TableRowProps = ComponentProps<"tr"> &
 
 const TableRow = ({ className, size, ...props }: TableRowProps) => {
   const resolvedSize = useTableResolvedSize(size);
+  const contextValue = useMemo(() => ({ size: resolvedSize }), [resolvedSize]);
 
   return (
-    <TableSizeContext.Provider value={{ size: resolvedSize }}>
+    <TableSizeContext.Provider value={contextValue}>
       <tr
         className={cn(tableRowVariants({ size: resolvedSize }), className)}
         data-size={resolvedSize}

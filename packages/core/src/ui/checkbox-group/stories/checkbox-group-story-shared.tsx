@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useMemo, useState } from "react";
 
 import { Checkbox } from "../../checkbox/checkbox";
@@ -87,7 +86,7 @@ const PermissionsChecklistExample = () => {
           </Label>
         ))}
       </CheckboxGroup>
-      <p className="text-sm text-muted-foreground">{summary}</p>
+      <p className="text-muted-foreground text-sm">{summary}</p>
     </div>
   );
 };
@@ -124,7 +123,7 @@ const DisabledPermissionExample = () => {
           Create custom roles (Enterprise only)
         </Label>
       </CheckboxGroup>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-muted-foreground text-sm">
         {canManageSso
           ? "SSO ownership is assigned to this role."
           : "Enable SSO ownership before rotating identity providers."}
@@ -162,7 +161,7 @@ const GovernanceAttachmentExample = () => {
       >
         {governanceOptions.map((option) => (
           <Label
-            className="grid gap-0.5 rounded-md border border-border px-3 py-2"
+            className="border-border grid gap-0.5 rounded-md border px-3 py-2"
             data-slot="label"
             key={option.value}
           >
@@ -170,13 +169,13 @@ const GovernanceAttachmentExample = () => {
               <Checkbox value={option.value} />
               {option.label}
             </span>
-            <span className="pl-6 text-sm text-muted-foreground">
+            <span className="text-muted-foreground pl-6 text-sm">
               {option.description}
             </span>
           </Label>
         ))}
       </CheckboxGroup>
-      <p className="text-sm text-muted-foreground">{completionState}</p>
+      <p className="text-muted-foreground text-sm">{completionState}</p>
     </div>
   );
 };

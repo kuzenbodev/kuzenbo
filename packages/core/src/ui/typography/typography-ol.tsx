@@ -10,7 +10,7 @@ const TypographyOl = ({ className, render, ...props }: TypographyOlProps) =>
     props: mergeProps<"ol">(
       {
         className: cn(
-          "list-decimal pl-5 text-foreground [&>li]:mt-1",
+          "text-foreground list-decimal pl-5 [&>li]:mt-1",
           className
         ),
       },

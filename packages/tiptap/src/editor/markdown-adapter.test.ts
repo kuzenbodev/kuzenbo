@@ -1,6 +1,6 @@
-import type { Editor, JSONContent } from "@tiptap/core";
-
 import { describe, expect, it } from "bun:test";
+
+import type { Editor, JSONContent } from "@tiptap/core";
 
 import { createMarkdownAdapter } from "./markdown-adapter";
 

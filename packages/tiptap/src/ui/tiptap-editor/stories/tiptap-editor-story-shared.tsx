@@ -1,8 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import type { JSONContent } from "@tiptap/core";
-
 import { Badge } from "@kuzenbo/core/ui/badge";
 import { Typography } from "@kuzenbo/core/ui/typography";
+import type { Meta, StoryObj } from "@storybook/react";
+import type { JSONContent } from "@tiptap/core";
 import { Markdown } from "@tiptap/markdown";
 import { useMemo, useState } from "react";
 
@@ -131,14 +130,14 @@ const ControlledHtmlEditor = () => {
         </TiptapEditor.Toolbar>
         <TiptapEditor.Content />
       </TiptapEditor.Root>
-      <div className="rounded-md border border-border bg-muted/40 p-3">
+      <div className="border-border bg-muted/40 rounded-md border p-3">
         <div className="mb-2 flex items-center gap-2">
           <Badge variant="outline">HTML</Badge>
           <Typography.Small>Live output</Typography.Small>
         </div>
         <Typography.Text
           render={
-            <pre className="max-h-44 overflow-auto rounded-md border border-border bg-background p-2 font-mono text-xs" />
+            <pre className="border-border bg-background max-h-44 overflow-auto rounded-md border p-2 font-mono text-xs" />
           }
           variant="caption"
         >
@@ -184,14 +183,14 @@ const JsonModeEditor = () => {
         </TiptapEditor.Toolbar>
         <TiptapEditor.Content />
       </TiptapEditor.Root>
-      <div className="rounded-md border border-border bg-muted/40 p-3">
+      <div className="border-border bg-muted/40 rounded-md border p-3">
         <div className="mb-2 flex items-center gap-2">
           <Badge variant="outline">JSON</Badge>
           <Typography.Small>Canonical persistence payload</Typography.Small>
         </div>
         <Typography.Text
           render={
-            <pre className="max-h-44 overflow-auto rounded-md border border-border bg-background p-2 font-mono text-xs" />
+            <pre className="border-border bg-background max-h-44 overflow-auto rounded-md border p-2 font-mono text-xs" />
           }
           variant="caption"
         >
@@ -233,14 +232,14 @@ const MarkdownModeEditor = () => {
         </TiptapEditor.Toolbar>
         <TiptapEditor.Content />
       </TiptapEditor.Root>
-      <div className="rounded-md border border-border bg-muted/40 p-3">
+      <div className="border-border bg-muted/40 rounded-md border p-3">
         <div className="mb-2 flex items-center gap-2">
           <Badge variant="outline">Markdown</Badge>
           <Typography.Small>Live markdown export</Typography.Small>
         </div>
         <Typography.Text
           render={
-            <pre className="max-h-44 overflow-auto rounded-md border border-border bg-background p-2 font-mono text-xs" />
+            <pre className="border-border bg-background max-h-44 overflow-auto rounded-md border p-2 font-mono text-xs" />
           }
           variant="caption"
         >
@@ -450,7 +449,7 @@ const StickyToolbarEditor = () => {
 
   return (
     <div
-      className={`${"w-[min(100%,64rem)]"} max-h-[24rem] overflow-auto rounded-md border border-border p-3`}
+      className={`${"w-[min(100%,64rem)]"} border-border max-h-[24rem] overflow-auto rounded-md border p-3`}
     >
       <TiptapEditor.Root editor={editor}>
         <TiptapEditor.Toolbar sticky stickyOffset={0}>

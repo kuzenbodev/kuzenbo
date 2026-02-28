@@ -45,13 +45,13 @@ export const Default: Story = {
           </Sheet.Description>
         </Sheet.Header>
         <div className="grid gap-2 px-4 pb-2 text-sm">
-          <div className="rounded-md border border-border p-3">
+          <div className="border-border rounded-md border p-3">
             Plan: Enterprise
           </div>
-          <div className="rounded-md border border-border p-3">
+          <div className="border-border rounded-md border p-3">
             Renewal date: Jul 12, 2026
           </div>
-          <div className="rounded-md border border-border p-3">
+          <div className="border-border rounded-md border p-3">
             Health score: 89/100
           </div>
         </div>
@@ -82,10 +82,10 @@ export const ComposedAnatomy: Story = {
               </Sheet.Description>
             </Sheet.Header>
             <div className="grid gap-2 px-4 pb-2 text-sm">
-              <div className="rounded-md border border-border p-3">
+              <div className="border-border rounded-md border p-3">
                 Pending credits: 3
               </div>
-              <div className="rounded-md border border-border p-3">
+              <div className="border-border rounded-md border p-3">
                 Outstanding invoice: $12,480
               </div>
             </div>
@@ -117,13 +117,13 @@ export const SideRight: Story = {
           </Sheet.Description>
         </Sheet.Header>
         <div className="grid gap-2 px-4 pb-2 text-sm">
-          <div className="rounded-md border border-border p-3">
+          <div className="border-border rounded-md border p-3">
             1. Confirm rollout status in control plane.
           </div>
-          <div className="rounded-md border border-border p-3">
+          <div className="border-border rounded-md border p-3">
             2. Notify incident channel and stakeholder group.
           </div>
-          <div className="rounded-md border border-border p-3">
+          <div className="border-border rounded-md border p-3">
             3. Validate error budget after mitigation.
           </div>
         </div>

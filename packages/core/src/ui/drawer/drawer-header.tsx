@@ -1,15 +1,13 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerHeaderVariants = tv({
-  base: "flex shrink-0 touch-none flex-col border-b border-border",
+  base: "border-border flex shrink-0 touch-none flex-col border-b",
   variants: {
     size: {
       xs: "gap-1.5 px-4 pt-2.5 pb-2",

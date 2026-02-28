@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { Bar, LabelList } from "recharts";
 
 import type { CompleteCompositeSeries } from "../../shared/complete-types";

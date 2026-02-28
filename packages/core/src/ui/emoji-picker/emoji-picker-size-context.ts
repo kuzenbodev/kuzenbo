@@ -1,6 +1,5 @@
-import type { UISize } from "../shared/size/size-system";
-
 import { createSizeContext } from "../shared/size/size-context";
+import type { UISize } from "../shared/size/size-system";
 
 export type EmojiPickerSize = UISize;
 

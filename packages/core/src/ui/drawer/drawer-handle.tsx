@@ -1,15 +1,13 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerHandleVariants = tv({
-  base: "mx-auto h-1 shrink-0 rounded-full bg-muted-foreground/40",
+  base: "bg-muted-foreground/40 mx-auto h-1 shrink-0 rounded-full",
   variants: {
     size: {
       xs: "mb-3 w-10",

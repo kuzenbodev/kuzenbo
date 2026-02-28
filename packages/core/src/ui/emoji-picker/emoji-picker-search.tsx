@@ -1,12 +1,10 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
+import type { ComponentProps } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerSearchWrapperVariants = tv({
@@ -25,7 +23,7 @@ const emojiPickerSearchWrapperVariants = tv({
 });
 
 const emojiPickerSearchVariants = tv({
-  base: "z-overlay flex w-full min-w-0 border border-input bg-input shadow-xs transition-[color,box-shadow,border-color] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground hover:border-ring/70 disabled:pointer-events-none disabled:opacity-50 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/50",
+  base: "z-overlay border-input bg-input selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground hover:border-ring/70 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/50 flex w-full min-w-0 border shadow-xs transition-[color,box-shadow,border-color] outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "h-6 rounded-[min(var(--radius-md),8px)] px-2 text-xs",

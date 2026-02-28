@@ -1,8 +1,8 @@
-import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "bun:test";
 
-import type { CompleteChartDatum } from "../shared/complete-types";
+import { cleanup, render, screen } from "@testing-library/react";
 
+import type { CompleteChartDatum } from "../shared/complete-types";
 import { Heatmap, type HeatmapTooltipLabelArgs } from "./heatmap";
 import {
   heatmapCrossMonthData,

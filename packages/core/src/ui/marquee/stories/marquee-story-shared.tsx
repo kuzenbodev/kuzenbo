@@ -27,7 +27,7 @@ type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   render: () => (
-    <Marquee className="w-[420px] rounded-md border border-border bg-card">
+    <Marquee className="border-border bg-card w-[420px] rounded-md border">
       <Marquee.Content>
         {defaultItems.map((item) => (
           <Marquee.Item key={item}>
@@ -44,7 +44,7 @@ export const Default: Story = {
 
 export const PauseOnHover: Story = {
   render: () => (
-    <Marquee className="w-[420px] rounded-md border border-border bg-card">
+    <Marquee className="border-border bg-card w-[420px] rounded-md border">
       <Marquee.Content pauseOnHover speed={40}>
         {partnerUpdates.map((item) => (
           <Marquee.Item key={item}>
@@ -61,7 +61,7 @@ export const PauseOnHover: Story = {
 
 export const ReverseDirection: Story = {
   render: () => (
-    <Marquee className="w-[420px] rounded-md border border-border bg-card">
+    <Marquee className="border-border bg-card w-[420px] rounded-md border">
       <Marquee.Content direction="right" speed={36}>
         {defaultItems.map((item) => (
           <Marquee.Item key={`reverse-${item}`}>

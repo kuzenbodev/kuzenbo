@@ -1,10 +1,11 @@
+// oxlint-disable jest/require-hook
+import { afterEach, describe, expect, it } from "bun:test";
+
 import { cleanup, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "bun:test";
 import { useState } from "react";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { NavigationList } from "./navigation-list";
 
 afterEach(cleanup);

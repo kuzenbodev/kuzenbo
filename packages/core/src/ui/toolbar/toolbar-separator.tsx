@@ -10,7 +10,7 @@ import {
 } from "./toolbar-size-context";
 
 const toolbarSeparatorVariants = tv({
-  base: "w-px shrink-0 bg-border",
+  base: "bg-border w-px shrink-0",
   variants: {
     size: {
       xs: "h-4",

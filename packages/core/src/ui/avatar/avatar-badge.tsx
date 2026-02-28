@@ -1,14 +1,13 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn } from "tailwind-variants";
 export type AvatarBadgeProps = ComponentProps<"span">;
 
 const AvatarBadge = ({ className, ...props }: AvatarBadgeProps) => (
   <span
     className={cn(
-      "absolute right-0 bottom-0 z-raised inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground bg-blend-color ring-2 ring-background select-none",
+      "z-raised bg-primary text-primary-foreground ring-background absolute right-0 bottom-0 inline-flex items-center justify-center rounded-full bg-blend-color ring-2 select-none",
       "group-data-[size=xs]/avatar:size-1.5 group-data-[size=xs]/avatar:[&>svg]:hidden",
       "group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden",
       "group-data-[size=md]/avatar:size-2.5 group-data-[size=md]/avatar:[&>svg]:size-2",

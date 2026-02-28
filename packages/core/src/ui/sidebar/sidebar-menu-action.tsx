@@ -1,16 +1,14 @@
-import type { ComponentProps } from "react";
-
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { SidebarMenuContext } from "./sidebar-menu-context";
 
 const sidebarMenuActionVariants = tv({
-  base: "absolute right-1 flex aspect-square items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 md:after:hidden [&>svg]:shrink-0",
+  base: "text-sidebar-foreground ring-sidebar-ring peer-hover/menu-button:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute right-1 flex aspect-square items-center justify-center rounded-md p-0 outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 focus-visible:ring-2 md:after:hidden [&>svg]:shrink-0",
   variants: {
     size: {
       xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",
@@ -47,9 +45,9 @@ const SidebarMenuAction = ({
       {
         className: cn(
           sidebarMenuActionVariants({ size: resolvedSize }),
-          "peer-data-[size=xs]/menu-button:top-0.5 peer-data-[size=sm]/menu-button:top-1 peer-data-[size=md]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2 peer-data-[size=xl]/menu-button:top-2.5",
+          "peer-data-[size=lg]/menu-button:top-2 peer-data-[size=md]/menu-button:top-1.5 peer-data-[size=sm]/menu-button:top-1 peer-data-[size=xl]/menu-button:top-2.5 peer-data-[size=xs]/menu-button:top-0.5",
           showOnHover &&
-            "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-active/menu-button:text-sidebar-accent-foreground data-open:opacity-100 md:opacity-0",
+            "peer-data-active/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-open:opacity-100 md:opacity-0",
           className
         ),
       },

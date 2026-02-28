@@ -1,9 +1,7 @@
 import type { ComponentProps, CSSProperties } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { Skeleton } from "../skeleton/skeleton";
 import {
   type NavigationListTone,

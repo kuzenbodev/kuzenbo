@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback, useMemo, useState } from "react";
 
 import { Combobox } from "../combobox";
@@ -115,7 +114,7 @@ const CreatableOptionDemo = () => {
                   <Combobox.Item
                     className={
                       item.isNew
-                        ? "font-medium text-primary-foreground"
+                        ? "text-primary-foreground font-medium"
                         : undefined
                     }
                     value={item}

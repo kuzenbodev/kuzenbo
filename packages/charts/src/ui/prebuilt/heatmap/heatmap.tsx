@@ -4,7 +4,6 @@ import type { CSSProperties } from "react";
 
 import type { CompleteChartDatum } from "../shared/complete-types";
 import type { HeatmapProps } from "./heatmap-types";
-
 import { useHeatmapRuntime } from "./hooks/use-heatmap-runtime";
 
 const DEFAULT_CELL_SIZE = 12;
@@ -80,7 +79,7 @@ const Heatmap = <TData extends CompleteChartDatum = CompleteChartDatum>({
             key={section.key}
           >
             {splitMonths && withMonthLabels ? (
-              <p className="text-sm font-medium text-foreground">
+              <p className="text-foreground text-sm font-medium">
                 {section.monthLabel}
               </p>
             ) : null}
@@ -88,7 +87,7 @@ const Heatmap = <TData extends CompleteChartDatum = CompleteChartDatum>({
               {withWeekdayLabels ? (
                 <div
                   aria-hidden
-                  className="grid pt-5 text-[11px] leading-[1] text-muted-foreground"
+                  className="text-muted-foreground grid pt-5 text-[11px] leading-[1]"
                   style={{
                     rowGap: gap,
                     gridTemplateRows: `repeat(7, ${cellSize}px)`,
@@ -108,7 +107,7 @@ const Heatmap = <TData extends CompleteChartDatum = CompleteChartDatum>({
                 {withMonthLabels ? (
                   <div
                     aria-hidden
-                    className="grid text-[11px] leading-4 text-muted-foreground"
+                    className="text-muted-foreground grid text-[11px] leading-4"
                     style={{
                       columnGap: gap,
                       gridTemplateColumns: `repeat(${section.weeks.length}, minmax(0, 1fr))`,

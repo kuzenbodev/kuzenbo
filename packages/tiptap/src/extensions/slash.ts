@@ -1,5 +1,4 @@
 import type { Editor, Range } from "@tiptap/core";
-
 import { Extension } from "@tiptap/core";
 import suggestionPlugin from "@tiptap/suggestion";
 

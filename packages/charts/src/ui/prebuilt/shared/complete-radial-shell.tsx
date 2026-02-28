@@ -3,9 +3,8 @@
 import type { ReactNode } from "react";
 import type { LegendProps, TooltipProps } from "recharts";
 
-import type { CompleteChartDatum, CompleteChartSeries } from "./complete-types";
-
 import { Chart } from "../../primitives/chart";
+import type { CompleteChartDatum, CompleteChartSeries } from "./complete-types";
 import { useCompleteLegendHighlightState } from "./hooks/use-complete-legend-highlight-state";
 import { useCompleteRadialShellRuntime } from "./hooks/use-complete-radial-shell-runtime";
 import { createSeriesHighlightScopeKey } from "./utils/series/create-series-highlight-scope-key";

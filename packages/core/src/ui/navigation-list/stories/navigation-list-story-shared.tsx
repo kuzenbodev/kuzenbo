@@ -1,5 +1,3 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import {
   Add01Icon,
   Analytics01Icon,
@@ -13,9 +11,9 @@ import {
   Settings02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import type { UISize } from "../../shared/size/size-system";
-
 import { NavigationList } from "../navigation-list";
 
 const sizes: UISize[] = ["xs", "sm", "md", "lg", "xl"];

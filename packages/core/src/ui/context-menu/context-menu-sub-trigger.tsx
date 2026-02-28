@@ -5,14 +5,13 @@ import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { ContextMenuContext } from "./context-menu-context";
 import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 
 const contextMenuSubTriggerVariants = tv({
   slots: {
     icon: "ml-auto",
-    root: "flex cursor-clickable items-center outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:cursor-not-allowed data-open:bg-accent data-open:text-accent-foreground data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    root: "cursor-clickable focus:bg-accent focus:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground flex items-center outline-hidden select-none data-disabled:cursor-not-allowed data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   },
   variants: {
     size: {

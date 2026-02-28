@@ -4,7 +4,6 @@ import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../../shared/complete-types";
-
 import { toNumericValue } from "../../shared/utils/number/to-numeric-value";
 
 interface BuildBarCellsArgs<

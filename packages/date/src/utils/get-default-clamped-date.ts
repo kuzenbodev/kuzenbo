@@ -1,7 +1,6 @@
 import type { DateAdapter, DateInput } from "../adapter";
-import type { DateStringValue } from "../types";
-
 import { DEFAULT_DATE_ADAPTER } from "../adapter";
+import type { DateStringValue } from "../types";
 
 export const getDefaultClampedDate = (
   input: {

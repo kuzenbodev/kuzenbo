@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useState } from "react";
 
 import { Button } from "../../button/button";
@@ -175,7 +174,7 @@ const ControlledOpenDemo = () => {
 
   return (
     <div className="flex flex-col items-start gap-3">
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         State: {open ? "open" : "closed"}
       </div>
       <Popover onOpenChange={setOpen} open={open}>

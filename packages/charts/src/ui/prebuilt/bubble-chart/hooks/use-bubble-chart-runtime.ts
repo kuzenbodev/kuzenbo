@@ -3,7 +3,6 @@ import type {
   BubbleChartProps,
   RechartsBubbleChartProps,
 } from "../bubble-chart-types";
-
 import { createAxisTickFormatter } from "../utils/create-axis-tick-formatter";
 import { createTooltipValueFormatter } from "../utils/create-tooltip-value-formatter";
 import { resolveBubbleRange } from "../utils/resolve-bubble-range";

@@ -1,16 +1,15 @@
 import { useId } from "react";
 
-import type { CompleteChartDatum } from "../../shared/complete-types";
-import type {
-  AreaChartProps,
-  RechartsAreaChartProps,
-} from "../area-chart-types";
-
 import {
   createPercentTickFormatter,
   createYAxisTickFormatter,
   formatPercentValue,
 } from "../../shared/complete-helpers";
+import type { CompleteChartDatum } from "../../shared/complete-types";
+import type {
+  AreaChartProps,
+  RechartsAreaChartProps,
+} from "../area-chart-types";
 import { DEFAULT_AREA_GRADIENT_STOPS } from "../utils/default-gradient-stops";
 import { resolveAreaStackConfig } from "../utils/resolve-area-stack-config";
 

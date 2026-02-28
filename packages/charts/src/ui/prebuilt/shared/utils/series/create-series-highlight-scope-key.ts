@@ -1,5 +1,4 @@
 import type { CompleteChartSeries } from "../../complete-types";
-
 import { resolveCompleteSeriesName } from "./resolve-complete-series-name";
 
 const normalizeSeriesScopeName = (seriesName: string): string =>

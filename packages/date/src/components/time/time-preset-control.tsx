@@ -1,12 +1,11 @@
 import { tv } from "tailwind-variants";
 
-import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
-
 import { DateControlButton } from "../internal/date-control-button";
+import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 import { TimeValue } from "./time-value";
 
 const timePresetControlVariants = tv({
-  base: "h-auto w-full items-center justify-center rounded-sm border border-border bg-background px-2 py-1 text-xs text-foreground hover:bg-muted",
+  base: "border-border bg-background text-foreground hover:bg-muted h-auto w-full items-center justify-center rounded-sm border px-2 py-1 text-xs",
   variants: {
     active: {
       true: "border-primary bg-primary text-primary-foreground hover:bg-primary/90",

@@ -144,7 +144,7 @@ export const FeaturesSection = () => (
       <Typography.H2 className="text-3xl font-bold tracking-tight sm:text-4xl">
         Everything you need to ship faster
       </Typography.H2>
-      <Typography.Body className="mt-4 text-lg text-muted-foreground">
+      <Typography.Body className="text-muted-foreground mt-4 text-lg">
         A complete set of tools to build consistent, accessible, and beautiful
         interfaces.
       </Typography.Body>
@@ -154,7 +154,7 @@ export const FeaturesSection = () => (
       {features.map((feature) => (
         <Card key={feature.title} className="relative overflow-hidden">
           <CardHeader>
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded bg-primary/10 text-primary">
+            <div className="bg-primary/10 text-primary mb-4 flex h-12 w-12 items-center justify-center rounded">
               {feature.icon}
             </div>
             <CardTitle>{feature.title}</CardTitle>

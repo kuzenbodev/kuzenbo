@@ -1,8 +1,7 @@
-import type { ComponentProps, ReactNode } from "react";
-
 import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { InputGroup } from "@kuzenbo/core/ui/input-group";
+import type { ComponentProps, ReactNode } from "react";
 import { cn } from "tailwind-variants";
 
 export type DateInputTriggerButtonProps = Omit<
@@ -26,7 +25,7 @@ const DateInputTriggerButton = ({
 }: DateInputTriggerButtonProps) => (
   <InputGroup.Button
     className={cn(
-      "h-7 w-7 rounded-md border border-transparent text-muted-foreground hover:bg-muted hover:text-foreground",
+      "text-muted-foreground hover:bg-muted hover:text-foreground h-7 w-7 rounded-md border border-transparent",
       className
     )}
     size="icon-xs"

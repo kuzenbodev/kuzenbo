@@ -1,14 +1,12 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Loading03Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { COMPACT_VISUAL_CLASS_BY_SIZE } from "../shared/size/size-system";
 
 export type SpinnerProps = Omit<ComponentProps<"svg">, "size"> & {

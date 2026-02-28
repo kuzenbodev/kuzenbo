@@ -1,20 +1,18 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
-
 import { useMemo, useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
+import { AmPmControlsList } from "./am-pm-controls-list";
+import { TimeControlsList } from "./time-controls-list";
+import { TimeGrid } from "./time-grid";
+import { TimeInput } from "./time-input";
 import type {
   TimeAmPmLabels,
   TimeDisablePredicate,
   TimeFormat,
   TimePresetsData,
 } from "./time-picker-types";
-
-import { AmPmControlsList } from "./am-pm-controls-list";
-import { TimeControlsList } from "./time-controls-list";
-import { TimeGrid } from "./time-grid";
-import { TimeInput } from "./time-input";
 import { TimePresets } from "./time-presets";
 import {
   DEFAULT_TIME_AM_PM_LABELS,
@@ -23,7 +21,7 @@ import {
 } from "./utils/time-utils";
 
 const timePickerVariants = tv({
-  base: "inline-flex w-full max-w-sm flex-col gap-2 rounded-lg border border-border bg-background p-2",
+  base: "border-border bg-background inline-flex w-full max-w-sm flex-col gap-2 rounded-lg border p-2",
 });
 
 const timePickerControlsListGroupVariants = tv({

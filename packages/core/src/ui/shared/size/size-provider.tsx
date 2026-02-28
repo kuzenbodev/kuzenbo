@@ -1,13 +1,11 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-
 import { useMemo } from "react";
-
-import type { UISize } from "./size-system";
 
 import { createStrictContext } from "../provider/create-strict-context";
 import { DEFAULT_UI_SIZE, resolveSize } from "./resolve-size";
+import type { UISize } from "./size-system";
 
 export type KuzenboEnv = "default" | "test";
 export type KuzenboComponentDefaultProps = Record<string, unknown>;

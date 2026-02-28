@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { injectPlaygroundPreviewProps } from "./inject-playground-preview-props";
 import type {
   PlaygroundControl,
   PlaygroundControlValueByProp,
@@ -12,8 +13,6 @@ import type {
   PlaygroundPreset,
   PlaygroundPresetsFromControls,
 } from "./playground-preset-model";
-
-import { injectPlaygroundPreviewProps } from "./inject-playground-preview-props";
 import {
   applyPlaygroundPreset,
   createPlaygroundStateSnapshot,

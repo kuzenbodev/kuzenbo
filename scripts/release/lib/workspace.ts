@@ -1,13 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { PACKAGES_DIR } from "./repo";
 import type {
   DependencyField,
   PackageJsonManifest,
   WorkspacePackage,
 } from "./types";
-
-import { PACKAGES_DIR } from "./repo";
 
 const DEPENDENCY_FIELDS: DependencyField[] = [
   "dependencies",

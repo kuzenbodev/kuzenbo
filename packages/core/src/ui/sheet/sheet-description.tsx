@@ -6,7 +6,7 @@ export type SheetDescriptionProps = SheetPrimitive.Description.Props;
 
 const SheetDescription = ({ className, ...props }: SheetDescriptionProps) => (
   <SheetPrimitive.Description
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-muted-foreground text-sm", className)}
     data-slot="sheet-description"
     {...props}
   />

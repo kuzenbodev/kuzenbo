@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useMemo, useState } from "react";
 
 import { Rating } from "../rating";
@@ -54,7 +53,7 @@ const ReviewRatingExample = () => {
         rating={score}
         showValue
       />
-      <p className="text-sm text-muted-foreground">{reviewSummary}</p>
+      <p className="text-muted-foreground text-sm">{reviewSummary}</p>
     </div>
   );
 };
@@ -62,7 +61,7 @@ const ReviewRatingExample = () => {
 const ReadOnlyQualitySnapshotExample = () => (
   <div className="grid gap-2">
     <Rating editable={false} rating={4.6} showValue />
-    <p className="text-sm text-muted-foreground">
+    <p className="text-muted-foreground text-sm">
       Last 30 days partner satisfaction score (read-only).
     </p>
   </div>
@@ -81,7 +80,7 @@ export const Sizes: Story = {
       {ratingSizes.map((size) => (
         <div className="flex items-center gap-2" key={size}>
           <Rating rating={3.5} showValue size={size} />
-          <span className="text-sm text-muted-foreground">{size}</span>
+          <span className="text-muted-foreground text-sm">{size}</span>
         </div>
       ))}
     </div>

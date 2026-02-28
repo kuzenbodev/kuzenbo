@@ -39,12 +39,12 @@ type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   render: () => (
-    <ScrollArea className="h-52 w-[420px] rounded-md border border-border bg-card">
+    <ScrollArea className="border-border bg-card h-52 w-[420px] rounded-md border">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <div className="grid gap-2 p-4 text-sm">
             {activityLog.map((event) => (
-              <div className="rounded-md bg-muted p-2" key={event}>
+              <div className="bg-muted rounded-md p-2" key={event}>
                 {event}
               </div>
             ))}
@@ -59,12 +59,12 @@ export const Default: Story = {
 
 export const HorizontalContent: Story = {
   render: () => (
-    <ScrollArea className="w-[420px] rounded-md border border-border bg-card">
+    <ScrollArea className="border-border bg-card w-[420px] rounded-md border">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <table className="min-w-[720px] text-sm">
             <thead>
-              <tr className="border-b border-border">
+              <tr className="border-border border-b">
                 <th className="p-3 text-left">Metric</th>
                 {monthlyColumns.map((month) => (
                   <th className="p-3 text-left" key={month}>
@@ -75,7 +75,7 @@ export const HorizontalContent: Story = {
             </thead>
             <tbody>
               {monthlyRows.map((row) => (
-                <tr className="border-b border-border" key={row.metric}>
+                <tr className="border-border border-b" key={row.metric}>
                   <td className="p-3 font-medium">{row.metric}</td>
                   {row.values.map((value) => (
                     <td className="p-3" key={`${row.metric}-${value}`}>
@@ -97,21 +97,21 @@ export const HorizontalContent: Story = {
 
 export const StickyHeader: Story = {
   render: () => (
-    <ScrollArea className="h-56 w-[420px] rounded-md border border-border bg-card">
+    <ScrollArea className="border-border bg-card h-56 w-[420px] rounded-md border">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
-          <div className="sticky top-0 border-b border-border bg-card px-4 py-3 text-sm font-medium">
+          <div className="border-border bg-card sticky top-0 border-b px-4 py-3 text-sm font-medium">
             Pending approvals
           </div>
           <div className="grid gap-2 p-4 text-sm">
             {pendingItems.map((item) => (
-              <div className="rounded-md bg-muted p-2" key={item}>
+              <div className="bg-muted rounded-md p-2" key={item}>
                 {item}
               </div>
             ))}
             {pendingItems.map((item) => (
               <div
-                className="rounded-md bg-muted p-2"
+                className="bg-muted rounded-md p-2"
                 key={`duplicate-${item}`}
               >
                 Follow-up: {item}

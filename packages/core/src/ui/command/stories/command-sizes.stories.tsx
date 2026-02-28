@@ -1,7 +1,6 @@
 import type { StoryObj } from "@storybook/react";
 
 import type { InputSize } from "../../input/input";
-
 import { Command } from "../command";
 import { baseMeta } from "./command-story-shared";
 
@@ -19,7 +18,7 @@ export const Sizes: Story = {
     <div className="grid w-[28rem] gap-4">
       {sizes.map((size) => (
         <div className="space-y-2" key={size}>
-          <p className="text-sm text-muted-foreground uppercase">{size}</p>
+          <p className="text-muted-foreground text-sm uppercase">{size}</p>
           <Command className="rounded-lg border" size={size}>
             <Command.Input placeholder="Type a command or search..." />
             <Command.List>

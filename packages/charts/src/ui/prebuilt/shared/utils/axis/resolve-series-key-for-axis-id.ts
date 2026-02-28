@@ -1,7 +1,6 @@
 import type { YAxisProps } from "recharts";
 
 import type { CompleteChartSeries } from "../../complete-types";
-
 import { resolveCompleteSeriesName } from "../series/resolve-complete-series-name";
 import { normalizeAxisId } from "./normalize-axis-id";
 

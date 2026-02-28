@@ -3,14 +3,13 @@ import { CircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { UISize } from "../shared/size/size-system";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
+import type { UISize } from "../shared/size/size-system";
 import { RadioGroupIndicator } from "./radio-group-indicator";
 
 const radioGroupItemVariants = tv({
-  base: "group/radio-group-item peer relative flex shrink-0 cursor-clickable rounded-full border border-input text-primary-foreground shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-danger-foreground aria-invalid:ring-[3px] aria-invalid:ring-danger-foreground/20 dark:bg-input/30 dark:aria-invalid:border-danger-foreground/50 dark:aria-invalid:ring-danger-foreground/40",
+  base: "group/radio-group-item peer cursor-clickable border-input text-primary-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger-foreground aria-invalid:ring-danger-foreground/20 dark:bg-input/30 dark:aria-invalid:border-danger-foreground/50 dark:aria-invalid:ring-danger-foreground/40 relative flex shrink-0 rounded-full border shadow-xs outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px]",
   variants: {
     size: {
       xs: "aspect-square size-3 after:absolute after:-inset-1.5",
@@ -56,7 +55,7 @@ const RadioGroupItem = ({
       {children ?? (
         <RadioGroupIndicator size={size}>
           <HugeiconsIcon
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-current data-[size=xs]:size-1.5 data-[size=sm]:size-1.5 data-[size=md]:size-2 data-[size=lg]:size-2 data-[size=xl]:size-2.5"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-current data-[size=lg]:size-2 data-[size=md]:size-2 data-[size=sm]:size-1.5 data-[size=xl]:size-2.5 data-[size=xs]:size-1.5"
             data-size={size}
             icon={CircleIcon}
             strokeWidth={2}

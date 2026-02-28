@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { PlaygroundGeneratedCodeFile } from "../../../utils/codegen/playground-codegen-model";
-
 import { PlaygroundCode } from "../playground-code";
 
 const singleFile: readonly PlaygroundGeneratedCodeFile[] = [

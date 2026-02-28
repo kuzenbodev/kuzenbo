@@ -7,7 +7,7 @@ const ContextMenuPositioner = ({
   ...props
 }: ContextMenuPositionerProps) => (
   <ContextMenuPrimitive.Positioner
-    className={cn("isolate z-overlay outline-none", className)}
+    className={cn("z-overlay isolate outline-none", className)}
     data-slot="context-menu-positioner"
     {...props}
   />

@@ -78,7 +78,7 @@ export const Small: Story = {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           Last retry completed 4 minutes ago.
         </div>
       </Card.Content>
@@ -98,7 +98,7 @@ export const Sizes: Story = {
             </Card.Description>
           </Card.Header>
           <Card.Content>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm">
               Weekly procurement review packet for regional teams.
             </div>
           </Card.Content>

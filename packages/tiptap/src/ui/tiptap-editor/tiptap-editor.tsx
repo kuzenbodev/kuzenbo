@@ -1,15 +1,12 @@
 "use client";
 
 import type { Editor } from "@tiptap/core";
-import type { ComponentProps } from "react";
-
 import {
   BubbleMenu as BubbleMenuPrimitive,
   FloatingMenu as FloatingMenuPrimitive,
 } from "@tiptap/react/menus";
+import type { ComponentProps } from "react";
 import { cn, tv } from "tailwind-variants";
-
-import type { TiptapEditorLabels } from "./tiptap-editor-labels";
 
 import {
   TiptapEditorColorPicker,
@@ -65,6 +62,7 @@ import {
   TiptapEditorControlsGroup,
   type TiptapEditorControlsGroupProps,
 } from "./tiptap-editor-controls-group";
+import type { TiptapEditorLabels } from "./tiptap-editor-labels";
 import {
   DEFAULT_TIPTAP_EDITOR_SIZE,
   type TiptapEditorSize,
@@ -75,7 +73,7 @@ import {
 } from "./tiptap-editor-toolbar";
 
 const tiptapEditorRootVariants = tv({
-  base: "kb-tiptap-root group/kb-tiptap-root flex flex-col rounded-lg border border-border bg-background text-foreground",
+  base: "kb-tiptap-root group/kb-tiptap-root border-border bg-background text-foreground flex flex-col rounded-lg border",
   variants: {
     size: {
       xs: "gap-1.5 p-1.5 text-xs",

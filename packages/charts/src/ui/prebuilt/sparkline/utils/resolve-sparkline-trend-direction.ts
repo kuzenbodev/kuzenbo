@@ -1,5 +1,4 @@
 import type { CompleteChartDatum } from "../../shared/complete-types";
-
 import { toNumericValue } from "../../shared/utils/number/to-numeric-value";
 
 type SparklineTrendDirection = "up" | "down" | "flat";

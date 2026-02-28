@@ -1,7 +1,6 @@
 "use client";
 
-import type { ComponentProps, MouseEvent } from "react";
-
+import type { ComponentProps, PointerEvent } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
@@ -10,7 +9,7 @@ export type InputGroupAddonProps = ComponentProps<"div"> &
   VariantProps<typeof inputGroupAddonVariants>;
 
 const inputGroupAddonVariants = tv({
-  base: "flex h-auto cursor-text items-center justify-center font-medium text-muted-foreground select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--kb-radius)-5px)]",
+  base: "text-muted-foreground flex h-auto cursor-text items-center justify-center font-medium select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--kb-radius)-5px)]",
   variants: {
     align: {
       "inline-start":
@@ -36,7 +35,7 @@ const inputGroupAddonVariants = tv({
   },
 });
 
-const focusInput = (e: MouseEvent<HTMLDivElement>) => {
+const focusInput = (e: PointerEvent<HTMLDivElement>) => {
   if ((e.target as HTMLElement).closest("button")) {
     return;
   }
@@ -65,7 +64,7 @@ const InputGroupAddon = ({
       data-align={align}
       data-size={resolvedSize}
       data-slot="input-group-addon"
-      onMouseDown={focusInput}
+      onPointerDown={focusInput}
       {...props}
     />
   );

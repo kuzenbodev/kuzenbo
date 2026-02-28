@@ -1,16 +1,7 @@
 "use client";
 
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
-
-import type { SliderRadius, SliderSize } from "../shared/slider-style-tokens";
-import type { SliderLabelTransitionProps } from "../shared/slider-transition";
-import type {
-  SliderLabel,
-  SliderMark as SliderMarkType,
-  SliderValue,
-} from "../shared/slider-types";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { toFloatingValue } from "../math/slider-math-utils";
 import {
@@ -39,6 +30,13 @@ import {
   mergeSliderRootStyle,
   resolveSliderRootClassName,
 } from "../shared/slider-root-presentation";
+import type { SliderRadius, SliderSize } from "../shared/slider-style-tokens";
+import type { SliderLabelTransitionProps } from "../shared/slider-transition";
+import type {
+  SliderLabel,
+  SliderMark as SliderMarkType,
+  SliderValue,
+} from "../shared/slider-types";
 import { useSingleSliderState } from "./use-single-slider-state";
 
 type SliderRootProps = Omit<

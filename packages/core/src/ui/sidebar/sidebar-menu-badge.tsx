@@ -1,14 +1,12 @@
 import type { ComponentProps } from "react";
-
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { SidebarMenuContext } from "./sidebar-menu-context";
 
 const sidebarMenuBadgeVariants = tv({
-  base: "pointer-events-none absolute right-1 flex items-center justify-center rounded-md px-1 font-medium text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-active/menu-button:text-sidebar-accent-foreground",
+  base: "text-sidebar-foreground peer-hover/menu-button:text-sidebar-accent-foreground peer-data-active/menu-button:text-sidebar-accent-foreground pointer-events-none absolute right-1 flex items-center justify-center rounded-md px-1 font-medium tabular-nums select-none group-data-[collapsible=icon]:hidden",
   variants: {
     size: {
       xs: "top-0.5 h-4 min-w-4 text-[10px]",

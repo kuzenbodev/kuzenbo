@@ -32,7 +32,7 @@ export const TiptapEditorSlashMenu = ({
             <div className="flex min-w-0 flex-col">
               <span className="truncate font-medium">{item.title}</span>
               {item.description ? (
-                <span className="truncate text-xs text-muted-foreground">
+                <span className="text-muted-foreground truncate text-xs">
                   {item.description}
                 </span>
               ) : null}

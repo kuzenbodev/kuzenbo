@@ -38,7 +38,7 @@ export const ShowcaseHooksClient = () => {
   }, [toggle]);
 
   return (
-    <main className="min-h-screen  ">
+    <main className="min-h-screen">
       <Container className="space-y-8 py-10">
         <Typography.H1>Showcase: Hooks</Typography.H1>
         <Typography.Muted>
@@ -50,7 +50,7 @@ export const ShowcaseHooksClient = () => {
             <CardHeader>
               <CardTitle>useIsMobile</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <CardContent className="text-muted-foreground space-y-2 text-sm">
               <p>Current viewport classification:</p>
               <Typography.P className="">
                 {isMobile ? "Mobile" : "Desktop"}
@@ -62,7 +62,7 @@ export const ShowcaseHooksClient = () => {
             <CardHeader>
               <CardTitle>useIsomorphicEffect</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <CardContent className="text-muted-foreground space-y-3 text-sm">
               <p>Effect run count: {effectRuns}</p>
               <Button onClick={handleIncrement} size="sm">
                 Increment ({count})
@@ -74,9 +74,9 @@ export const ShowcaseHooksClient = () => {
             <CardHeader>
               <CardTitle>useFullscreen</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <CardContent className="text-muted-foreground space-y-3 text-sm">
               <div
-                className="flex min-h-24 items-center justify-center rounded-md border border-border bg-muted"
+                className="border-border bg-muted flex min-h-24 items-center justify-center rounded-md border"
                 ref={ref}
               >
                 {fullscreen ? "Fullscreen active" : "Inline panel"}

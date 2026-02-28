@@ -1,5 +1,4 @@
 import type { StoryObj } from "@storybook/react";
-
 import { useCallback, useEffect, useState } from "react";
 
 import { Combobox } from "../combobox";
@@ -127,7 +126,7 @@ const AsyncSearchDemo = () => {
                   <Combobox.Item value={item}>
                     <div className="flex w-full flex-col gap-0.5">
                       <span>{item.label}</span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-muted-foreground text-xs">
                         {item.keywords.join(" · ")}
                       </span>
                     </div>

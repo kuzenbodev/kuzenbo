@@ -1,7 +1,6 @@
 import type { DateAdapter, DateInput } from "../adapter";
-import type { DateStringValue, DateTimeStringValue } from "../types";
-
 import { DEFAULT_DATE_ADAPTER } from "../adapter";
+import type { DateStringValue, DateTimeStringValue } from "../types";
 
 type ExactOptionalReturn<T, MainType> = T extends undefined
   ? undefined

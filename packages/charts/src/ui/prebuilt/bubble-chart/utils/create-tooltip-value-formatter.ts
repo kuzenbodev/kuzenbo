@@ -1,5 +1,4 @@
 import type { BubbleChartDatum, BubbleChartProps } from "../bubble-chart-types";
-
 import { formatAxisNumericValue } from "./format-axis-numeric-value";
 
 interface CreateTooltipValueFormatterOptions<

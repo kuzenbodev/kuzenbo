@@ -8,13 +8,13 @@ import { useTabsStyleContext } from "./tabs-style-context";
 export type TabsTriggerProps = TabsPrimitive.Tab.Props;
 
 const tabsTriggerVariants = tv({
-  base: "relative inline-flex cursor-clickable items-center justify-center gap-1.5 border border-transparent font-medium break-keep whitespace-nowrap text-muted-foreground transition-colors outline-none select-none hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-active:text-foreground group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  base: "cursor-clickable text-muted-foreground hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-active:text-foreground relative inline-flex items-center justify-center gap-1.5 border border-transparent font-medium break-keep whitespace-nowrap transition-colors outline-none select-none group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   compoundVariants: [{ fullWidth: true, class: "min-w-0 flex-1" }],
   variants: {
     variant: {
       default: "rounded-md border-transparent",
       line: "rounded-none border-transparent focus-visible:rounded-sm data-[orientation=horizontal]:-mb-[2px] data-[orientation=vertical]:-ml-[2px]",
-      pill: "rounded-md border-transparent data-active:text-foreground",
+      pill: "data-active:text-foreground rounded-md border-transparent",
     },
     size: {
       xs: "h-6 px-2 text-xs [&_svg:not([class*='size-'])]:size-3",

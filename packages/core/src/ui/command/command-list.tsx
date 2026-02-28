@@ -1,13 +1,11 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Command as CommandPrimitive } from "cmdk";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
-
 import { CommandContext } from "./command-context";
 
 const commandListVariants = tv({

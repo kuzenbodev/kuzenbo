@@ -25,7 +25,7 @@ const releaseRows: ReleaseRow[] = [
 ];
 
 export const ShowcaseFeaturesClient = () => (
-  <main className="min-h-screen  ">
+  <main className="min-h-screen">
     <Container className="space-y-8 py-10">
       <Typography.H1>Showcase: Features</Typography.H1>
       <Typography.Muted>
@@ -48,7 +48,7 @@ export const ShowcaseFeaturesClient = () => (
           <CardHeader>
             <CardTitle>Date planning flow</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-muted-foreground">
+          <CardContent className="text-muted-foreground space-y-2 text-sm">
             <p>Use `@kuzenbo/date` for single/range planning interfaces.</p>
             <p>Pair calendar surfaces with semantic token styling.</p>
           </CardContent>
@@ -61,7 +61,7 @@ export const ShowcaseFeaturesClient = () => (
           <CardContent className="space-y-2">
             {releaseRows.map((row) => (
               <div
-                className="flex items-center justify-between rounded-md border border-border bg-muted/40 px-3 py-2 text-sm"
+                className="border-border bg-muted/40 flex items-center justify-between rounded-md border px-3 py-2 text-sm"
                 key={row.package}
               >
                 <span>{row.package}</span>

@@ -1,11 +1,9 @@
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, KeyboardEvent, MouseEvent } from "react";
-
 import { useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import type { CalendarLevel, DatePickerValue, SelectionMode } from "../types";
-
 import { useDatesContext } from "../use-dates-context";
 import { DecadeLevelGroup } from "./decade-level-group";
 import { MonthLevelGroup } from "./month-level-group";
@@ -17,7 +15,7 @@ import { clampLevel } from "./utils/clamp-level";
 import { YearLevelGroup } from "./year-level-group";
 
 const calendarVariants = tv({
-  base: "inline-flex w-full max-w-sm flex-col gap-3 rounded-lg border border-border bg-background p-3",
+  base: "border-border bg-background inline-flex w-full max-w-sm flex-col gap-3 rounded-lg border p-3",
 });
 
 export interface CalendarAriaLabels {

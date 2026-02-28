@@ -1,8 +1,7 @@
 "use client";
 
-import type { VariantProps } from "tailwind-variants";
-
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
+import type { VariantProps } from "tailwind-variants";
 import { cn } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
@@ -35,7 +34,7 @@ export const ToolbarButton = ({
       className={mergeBaseUIClassName<ToolbarPrimitive.Button.State>(
         cn(
           buttonVariants({ variant, size: resolvedSize }),
-          "shrink-0 cursor-clickable"
+          "cursor-clickable shrink-0"
         ),
         className
       )}

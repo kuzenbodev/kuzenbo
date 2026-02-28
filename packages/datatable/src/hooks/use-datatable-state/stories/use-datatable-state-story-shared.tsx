@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback } from "react";
 
 import { useDatatableState } from "../use-datatable-state";
@@ -18,10 +17,10 @@ const Demo = () => {
   }, [state]);
 
   return (
-    <div className="space-y-2 rounded-lg border border-border bg-card p-4">
+    <div className="border-border bg-card space-y-2 rounded-lg border p-4">
       <p className="text-sm">Current page: {state.page}</p>
       <button
-        className="rounded-md border border-border px-3 py-1 text-sm"
+        className="border-border rounded-md border px-3 py-1 text-sm"
         onClick={handleNextPage}
         type="button"
       >

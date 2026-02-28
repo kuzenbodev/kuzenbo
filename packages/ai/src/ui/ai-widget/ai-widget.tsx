@@ -1,7 +1,6 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 export type AiWidgetProps = ComponentProps<"section"> & {
@@ -10,9 +9,9 @@ export type AiWidgetProps = ComponentProps<"section"> & {
 
 const aiWidgetVariants = tv({
   slots: {
-    root: "rounded-lg border border-border bg-card p-4 text-card-foreground",
+    root: "border-border bg-card text-card-foreground rounded-lg border p-4",
     title: "text-sm font-medium",
-    content: "mt-2 text-sm text-muted-foreground",
+    content: "text-muted-foreground mt-2 text-sm",
   },
 });
 

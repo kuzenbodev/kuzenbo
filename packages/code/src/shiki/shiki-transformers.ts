@@ -1,9 +1,8 @@
-import type { ShikiTransformer } from "shiki";
-
 import {
   transformerNotationHighlight,
   type TransformerNotationHighlightOptions,
 } from "@shikijs/transformers";
+import type { ShikiTransformer } from "shiki";
 
 export interface CreateShikiTransformersOptions {
   notationHighlight?: boolean | TransformerNotationHighlightOptions;

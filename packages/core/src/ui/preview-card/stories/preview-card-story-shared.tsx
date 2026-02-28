@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "../../button/button";
@@ -75,7 +74,7 @@ const DelayedOpenDemo = () => {
       </PreviewCard.Trigger>
       <PreviewCard.Content sideOffset={8}>
         <div className="grid gap-1 text-sm">
-          <div className="font-medium text-foreground">Acme Enterprises</div>
+          <div className="text-foreground font-medium">Acme Enterprises</div>
           <div className="text-muted-foreground">
             Renewal risk increased after 3 unresolved P1 incidents this month.
           </div>
@@ -93,7 +92,7 @@ export const Default: Story = {
       </PreviewCard.Trigger>
       <PreviewCard.Content>
         <div className="grid gap-1 text-sm">
-          <div className="font-medium text-foreground">
+          <div className="text-foreground font-medium">
             Acme Enterprise Workspace
           </div>
           <div className="text-muted-foreground">
@@ -117,7 +116,7 @@ export const ComposedAnatomy: Story = {
             <PreviewCard.Arrow />
             <PreviewCard.Viewport>
               <div className="grid gap-1 text-sm">
-                <div className="font-medium text-foreground">
+                <div className="text-foreground font-medium">
                   SLA breach watchlist
                 </div>
                 <div className="text-muted-foreground">
@@ -146,7 +145,7 @@ export const InteractiveContent: Story = {
       <PreviewCard.Content sideOffset={8}>
         <div className="grid gap-3 text-sm">
           <div className="grid gap-1">
-            <div className="font-medium text-foreground">
+            <div className="text-foreground font-medium">
               Ticket #INC-2048 · API latency spike
             </div>
             <div className="text-muted-foreground">

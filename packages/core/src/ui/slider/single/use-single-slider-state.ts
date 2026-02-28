@@ -1,12 +1,10 @@
 "use client";
 
 import type { Slider as SliderPrimitive } from "@base-ui/react/slider";
-
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { SliderMark, SliderValue } from "../shared/slider-types";
-
 import { normalizeSingleSliderValue } from "../math/normalize-single-slider-value";
+import type { SliderMark, SliderValue } from "../shared/slider-types";
 
 interface UseSingleSliderStateOptions {
   defaultValue?: number;

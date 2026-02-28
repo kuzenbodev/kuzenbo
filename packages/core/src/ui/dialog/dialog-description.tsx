@@ -8,7 +8,7 @@ export type DialogDescriptionProps = DialogPrimitive.Description.Props;
 const DialogDescription = ({ className, ...props }: DialogDescriptionProps) => (
   <DialogPrimitive.Description
     className={cn(
-      "text-sm text-muted-foreground *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+      "text-muted-foreground *:[a]:hover:text-foreground text-sm *:[a]:underline *:[a]:underline-offset-3",
       className
     )}
     data-slot="dialog-description"

@@ -1,14 +1,12 @@
-import type { ComponentProps } from "react";
-
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
 import { MinusSignIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import type { ComponentProps } from "react";
 import { useContext } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
-import type { InputSize } from "../input/input";
-
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
+import type { InputSize } from "../input/input";
 import { NumberFieldContext } from "./number-field-context";
 
 export type NumberFieldDecrementProps = ComponentProps<
@@ -17,7 +15,7 @@ export type NumberFieldDecrementProps = ComponentProps<
   VariantProps<typeof numberFieldDecrementVariants>;
 
 const numberFieldDecrementVariants = tv({
-  base: "flex cursor-clickable items-center justify-center border border-input bg-muted text-foreground transition-colors select-none hover:border-ring/70 disabled:pointer-events-none disabled:opacity-50",
+  base: "cursor-clickable border-input bg-muted text-foreground hover:border-ring/70 flex items-center justify-center border transition-colors select-none disabled:pointer-events-none disabled:opacity-50",
   variants: {
     size: {
       xs: "size-6 rounded-l-[min(var(--radius-md),8px)]",

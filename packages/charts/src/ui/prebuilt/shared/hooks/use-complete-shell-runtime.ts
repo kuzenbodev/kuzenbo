@@ -1,10 +1,5 @@
 import { useMemo } from "react";
 
-import type {
-  CompleteCartesianChartBaseProps,
-  CompleteChartDatum,
-} from "../complete-types";
-
 import {
   createSeriesColorRegistry,
   getSeriesColorVarReference,
@@ -13,6 +8,10 @@ import {
   createCompleteChartConfig,
   createTooltipValueFormatter,
 } from "../complete-helpers";
+import type {
+  CompleteCartesianChartBaseProps,
+  CompleteChartDatum,
+} from "../complete-types";
 
 type UseCompleteShellRuntimeArgs<
   TData extends CompleteChartDatum = CompleteChartDatum,

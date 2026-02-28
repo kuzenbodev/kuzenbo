@@ -26,7 +26,7 @@ const ComboboxTrigger = ({
     <ComboboxIcon
       render={
         <HugeiconsIcon
-          className="pointer-events-none text-muted-foreground"
+          className="text-muted-foreground pointer-events-none"
           icon={ArrowDown01Icon}
           strokeWidth={2}
         />

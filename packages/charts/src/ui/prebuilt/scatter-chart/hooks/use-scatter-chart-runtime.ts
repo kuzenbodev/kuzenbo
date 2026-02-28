@@ -3,7 +3,6 @@ import type {
   ScatterChartProps,
   RechartsScatterChartProps,
 } from "../scatter-chart-types";
-
 import { createAxisTickFormatter } from "../utils/create-axis-tick-formatter";
 import { createTooltipValueFormatter } from "../utils/create-tooltip-value-formatter";
 

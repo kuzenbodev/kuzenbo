@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { useCallback } from "react";
 import { cn } from "tailwind-variants";
 
@@ -15,7 +14,7 @@ const ToastDemo = () => {
   return (
     <button
       className={cn(
-        "inline-flex h-9 cursor-pointer items-center justify-center rounded-md border border-border bg-secondary px-3 text-sm text-secondary-foreground transition-colors hover:bg-secondary/80"
+        "border-border bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex h-9 cursor-pointer items-center justify-center rounded-md border px-3 text-sm transition-colors"
       )}
       onClick={handleClick}
       type="button"

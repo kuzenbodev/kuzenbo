@@ -1,9 +1,9 @@
 "use client";
 
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
+import { useMemo } from "react";
 
 import type { InputSize } from "../input/input";
-
 import { useComponentSize } from "../shared/size/size-provider";
 import { ContextMenuArrow } from "./context-menu-arrow";
 import { ContextMenuBackdrop } from "./context-menu-backdrop";
@@ -31,9 +31,10 @@ export type ContextMenuProps = ContextMenuPrimitive.Root.Props & {
 
 const ContextMenu = ({ size: providedSize, ...props }: ContextMenuProps) => {
   const size = useComponentSize(providedSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
 
   return (
-    <ContextMenuContext.Provider value={{ size }}>
+    <ContextMenuContext.Provider value={contextValue}>
       <ContextMenuPrimitive.Root
         data-size={size}
         data-slot="context-menu"

@@ -1,5 +1,3 @@
-import type { SliderMark } from "../../slider/shared/slider-types";
-
 import {
   clampNumber,
   getFirstMarkValue,
@@ -11,6 +9,7 @@ import {
   isKeyboardLikeReason,
   toFloatingValue,
 } from "../../slider/math/slider-math-utils";
+import type { SliderMark } from "../../slider/shared/slider-types";
 
 interface NormalizeRangeSliderValueOptions {
   activeThumbIndex?: number;
@@ -121,14 +120,10 @@ export const normalizeRangeSliderValue = ({
       ) {
         clone[index] = currentAtIndex;
       } else if (clone[index] === clone[otherIndex]) {
-        if (currentAtIndex > clone[otherIndex]) {
-          clone[otherIndex] = getPreviousMarkValue(
-            clone[index],
-            selectableMarks
-          );
-        } else {
-          clone[otherIndex] = getNextMarkValue(clone[index], selectableMarks);
-        }
+        clone[otherIndex] =
+          currentAtIndex > clone[otherIndex]
+            ? getPreviousMarkValue(clone[index], selectableMarks)
+            : getNextMarkValue(clone[index], selectableMarks);
       }
     }
   } else {
@@ -149,11 +144,7 @@ export const normalizeRangeSliderValue = ({
       }
 
       if (clamped > clone[1] - (safeMinRange - 1e-9)) {
-        if (pushOnOverlap) {
-          clone[0] = clone[1] - safeMinRange;
-        } else {
-          clone[0] = currentFrom;
-        }
+        clone[0] = pushOnOverlap ? clone[1] - safeMinRange : currentFrom;
       }
 
       if (clone[1] - clamped > safeMaxRange) {
@@ -177,11 +168,7 @@ export const normalizeRangeSliderValue = ({
       }
 
       if (clamped < clone[0] + safeMinRange) {
-        if (pushOnOverlap) {
-          clone[1] = clone[0] + safeMinRange;
-        } else {
-          clone[1] = currentTo;
-        }
+        clone[1] = pushOnOverlap ? clone[0] + safeMinRange : currentTo;
       }
 
       if (clamped - clone[0] > safeMaxRange) {

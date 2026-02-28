@@ -2,9 +2,8 @@
 
 import { useMemo } from "react";
 
-import type { SliderMark as SliderMarkType } from "../shared/slider-types";
-
 import { getPositionPercent, isMarkFilled } from "../math/slider-math-utils";
+import type { SliderMark as SliderMarkType } from "../shared/slider-types";
 import { SliderMark } from "./slider-mark";
 
 export interface SliderMarksProps {

@@ -1,18 +1,16 @@
 "use client";
 
 import type { ComponentProps } from "react";
-
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
-
 import { EmojiPickerActiveEmoji } from "./emoji-picker-active-emoji";
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerActiveEmojiPreviewVariants = tv({
   slots: {
     emoji: "",
-    root: "flex items-center rounded-md border-t bg-popover",
+    root: "bg-popover flex items-center rounded-md border-t",
   },
   variants: {
     size: {

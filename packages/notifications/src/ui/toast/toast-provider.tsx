@@ -1,10 +1,8 @@
 "use client";
 
-import type { ComponentProps } from "react";
-
 import { Toast as BaseToast } from "@base-ui/react/toast";
-
-import type { UISize } from "./toast-size";
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
 import { ToastAction } from "./toast-action";
 import { ToastClose } from "./toast-close";
@@ -12,6 +10,7 @@ import { ToastContent } from "./toast-content";
 import { ToastDescription } from "./toast-description";
 import { ToastPortal } from "./toast-portal";
 import { ToastRoot } from "./toast-root";
+import type { UISize } from "./toast-size";
 import {
   ToastSizeContext,
   useKuzenboComponentDefaults,
@@ -26,29 +25,6 @@ export interface ToastProviderProps extends ComponentProps<
   size?: UISize;
 }
 
-export const ToastProvider = ({
-  children,
-  size: providedSize,
-  ...providerProps
-}: ToastProviderProps) => {
-  const { size: componentDefaultSize } =
-    useKuzenboComponentDefaults<ToastProviderProps>("ToastProvider");
-  const size = useResolvedToastSize(providedSize, componentDefaultSize);
-
-  return (
-    <ToastSizeContext.Provider value={{ size }}>
-      <BaseToast.Provider data-size={size} data-slot="toast" {...providerProps}>
-        {children}
-        <ToastPortal>
-          <ToastViewport>
-            <ToastList />
-          </ToastViewport>
-        </ToastPortal>
-      </BaseToast.Provider>
-    </ToastSizeContext.Provider>
-  );
-};
-
 const ToastList = () => {
   const { toasts } = BaseToast.useToastManager();
 
@@ -62,4 +38,28 @@ const ToastList = () => {
       </ToastContent>
     </ToastRoot>
   ));
+};
+
+export const ToastProvider = ({
+  children,
+  size: providedSize,
+  ...providerProps
+}: ToastProviderProps) => {
+  const { size: componentDefaultSize } =
+    useKuzenboComponentDefaults<ToastProviderProps>("ToastProvider");
+  const size = useResolvedToastSize(providedSize, componentDefaultSize);
+  const contextValue = useMemo(() => ({ size }), [size]);
+
+  return (
+    <ToastSizeContext.Provider value={contextValue}>
+      <BaseToast.Provider data-size={size} data-slot="toast" {...providerProps}>
+        {children}
+        <ToastPortal>
+          <ToastViewport>
+            <ToastList />
+          </ToastViewport>
+        </ToastPortal>
+      </BaseToast.Provider>
+    </ToastSizeContext.Provider>
+  );
 };

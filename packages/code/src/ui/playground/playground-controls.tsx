@@ -7,7 +7,6 @@ import type {
   PlaygroundPropKeyFromControls,
   PlaygroundStateFromControls,
 } from "../../playground/playground-control-model";
-
 import { PlaygroundControlField } from "./playground-control-field";
 
 export interface PlaygroundControlsProps<

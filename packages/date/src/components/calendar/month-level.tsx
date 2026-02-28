@@ -4,11 +4,9 @@ import type {
   MouseEvent,
   ReactNode,
 } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 import type { DatePickerValue, SelectionMode } from "../types";
-
 import { useDatesContext } from "../use-dates-context";
 import { CalendarHeader } from "./calendar-header";
 import { Month } from "./month";

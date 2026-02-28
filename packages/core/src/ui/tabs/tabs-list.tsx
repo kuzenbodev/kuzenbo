@@ -1,6 +1,7 @@
 "use client";
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { useMemo } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
@@ -14,7 +15,7 @@ export type TabsListProps = TabsPrimitive.List.Props &
   VariantProps<typeof tabsListVariants>;
 
 const tabsListVariants = tv({
-  base: "group/tabs-list relative z-base inline-flex items-center justify-start text-muted-foreground group-data-[orientation=vertical]/tabs:flex-col group-data-[orientation=vertical]/tabs:items-stretch",
+  base: "group/tabs-list z-base text-muted-foreground relative inline-flex items-center justify-start group-data-[orientation=vertical]/tabs:flex-col group-data-[orientation=vertical]/tabs:items-stretch",
   variants: {
     fullWidth: {
       true: "w-full",
@@ -24,7 +25,7 @@ const tabsListVariants = tv({
       default:
         "gap-1 px-1 group-data-[orientation=vertical]/tabs:px-0 group-data-[orientation=vertical]/tabs:py-1",
       line: "gap-1 group-data-[orientation=vertical]/tabs:border-b-0 group-data-[orientation=vertical]/tabs:border-l",
-      pill: "gap-1 rounded-md bg-muted p-1",
+      pill: "bg-muted gap-1 rounded-md p-1",
     },
     size: {
       xs: "group-data-[orientation=horizontal]/tabs:min-h-6",
@@ -47,26 +48,27 @@ const TabsList = ({
   size = tabsStyleDefaults.size,
   fullWidth = tabsStyleDefaults.fullWidth,
   ...props
-}: TabsListProps) => (
-  <TabsStyleContext.Provider
-    value={{
-      size,
-      variant,
-      fullWidth,
-    }}
-  >
-    <TabsPrimitive.List
-      className={mergeBaseUIClassName<TabsPrimitive.List.State>(
-        tabsListVariants({ size, variant, fullWidth }),
-        className
-      )}
-      data-size={size}
-      data-slot="tabs-list"
-      data-variant={variant}
-      data-full-width={fullWidth}
-      {...props}
-    />
-  </TabsStyleContext.Provider>
-);
+}: TabsListProps) => {
+  const contextValue = useMemo(
+    () => ({ size, variant, fullWidth }),
+    [size, variant, fullWidth]
+  );
+
+  return (
+    <TabsStyleContext.Provider value={contextValue}>
+      <TabsPrimitive.List
+        className={mergeBaseUIClassName<TabsPrimitive.List.State>(
+          tabsListVariants({ size, variant, fullWidth }),
+          className
+        )}
+        data-size={size}
+        data-slot="tabs-list"
+        data-variant={variant}
+        data-full-width={fullWidth}
+        {...props}
+      />
+    </TabsStyleContext.Provider>
+  );
+};
 
 export { TabsList, tabsListVariants, type TabsListSize, type TabsListVariant };

@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-
 import { cn, tv } from "tailwind-variants";
 
 import { useDatesContext } from "../use-dates-context";
@@ -18,11 +17,11 @@ const weekdaysRowVariants = tv({
 });
 
 const weekdayLabelVariants = tv({
-  base: "inline-flex h-8 items-center justify-center text-center text-xs font-medium text-muted-foreground",
+  base: "text-muted-foreground inline-flex h-8 items-center justify-center text-center text-xs font-medium",
 });
 
 const weekNumberHeadingVariants = tv({
-  base: "inline-flex h-8 min-w-8 items-center justify-center text-center text-xs font-medium text-muted-foreground",
+  base: "text-muted-foreground inline-flex h-8 min-w-8 items-center justify-center text-center text-xs font-medium",
 });
 
 const getWeekOfYearLabel = (locale: string): string => {
