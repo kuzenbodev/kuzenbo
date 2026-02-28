@@ -148,7 +148,7 @@ jobs:
         timeout-minutes: 1
 
       - name: Run quality gate (test)
-        run: bun turbo run test --only
+        run: bun turbo run test
         timeout-minutes: 1
 
       - name: Run quality gate (boundaries)
