@@ -63,6 +63,11 @@ const nextConfig: NextConfig = {
   redirects() {
     return [
       {
+        destination: "/docs/getting-started",
+        permanent: false,
+        source: "/docs",
+      },
+      {
         destination: "https://kuzenbo.com/:path*",
         has: [{ type: "host", value: "www.kuzenbo.com" }],
         permanent: true,
