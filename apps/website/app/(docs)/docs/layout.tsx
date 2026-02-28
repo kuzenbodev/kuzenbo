@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import { Container } from "@kuzenbo/core/ui/container";
+import { Typography } from "@kuzenbo/core/ui/typography";
 
 import { DocsMobileSectionsDrawer } from "./_components/layout/docs-mobile-sections-drawer";
 import { DocsMobileTocDrawer } from "./_components/layout/docs-mobile-toc-drawer";
@@ -31,7 +32,9 @@ export default function Layout({
         </div>
         <div className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_14rem] xl:gap-8">
           <DocsSidebarSection />
-          <main className="min-w-0 py-4">{children}</main>
+          <main className="min-w-0 py-4">
+            <Typography.Prose>{children}</Typography.Prose>
+          </main>
           <DocsSidebarToc />
         </div>
       </Container>

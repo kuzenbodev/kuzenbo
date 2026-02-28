@@ -24,6 +24,11 @@ import { TypographyMuted } from "./typography-muted";
 import { TypographyOl, type TypographyOlProps } from "./typography-ol";
 import { TypographyOverline } from "./typography-overline";
 import { TypographyP } from "./typography-p";
+import {
+  TypographyProse,
+  type TypographyProseProps,
+  typographyProseVariants,
+} from "./typography-prose";
 import { TypographySmall } from "./typography-small";
 import { TypographySubheading } from "./typography-subheading";
 import {
@@ -58,6 +63,7 @@ const Typography = Object.assign(TypographyText, {
   Ol: TypographyOl,
   Overline: TypographyOverline,
   P: TypographyP,
+  Prose: TypographyProse,
   Small: TypographySmall,
   Subheading: TypographySubheading,
   Text: TypographyText,
@@ -85,11 +91,13 @@ export {
   TypographyOl,
   TypographyOverline,
   TypographyP,
+  TypographyProse,
   TypographySmall,
   TypographySubheading,
   TypographyText,
   TypographyUl,
   typographyHeadingVariants,
+  typographyProseVariants,
   typographyTextVariants,
 };
 
@@ -100,6 +108,7 @@ export type {
   TypographyHeadingProps,
   TypographyLiProps,
   TypographyOlProps,
+  TypographyProseProps,
   TypographyTextAliasProps,
   TypographyTextProps,
   TypographyUlProps,

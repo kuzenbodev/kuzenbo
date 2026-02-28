@@ -42,9 +42,11 @@ import {
   TypographyOl,
   TypographyOverline,
   TypographyP,
+  TypographyProse,
   TypographySmall,
   TypographySubheading,
   TypographyText,
+  typographyProseVariants,
   typographyTextVariants,
   TypographyUl,
 } from "@kuzenbo/core/ui/typography";
@@ -65,6 +67,25 @@ export function TypographyBasic() {
       </Typography.P>
       <Typography.Muted>Updated 2 days ago</Typography.Muted>
     </article>
+  );
+}
+```
+
+## Mantine-Style Rich HTML Wrapper
+
+`Typography.Prose` mirrors Mantine's typography wrapper pattern for rich HTML content.
+Use it when rendering trusted CMS/markdown HTML so headings, lists, tables, links, and code inherit Kuzenbo styling.
+
+```tsx
+import { Typography } from "@kuzenbo/core/ui/typography";
+
+const html = `<h2>Release digest</h2><p>Shipped docs, tests, and accessibility fixes.</p>`;
+
+export function TypographyProseExample() {
+  return (
+    <Typography.Prose>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </Typography.Prose>
   );
 }
 ```
@@ -114,11 +135,11 @@ export function TypographyAdvanced() {
 - Text aliases:
   `Typography.Body`, `Typography.Lead`, `Typography.Muted`, `Typography.Small`, `Typography.Caption`, `Typography.Overline`, `Typography.Eyebrow`.
 - Prose/content helpers:
-  `Typography.P`, `Typography.Blockquote`, `Typography.Link`, `Typography.Ul`, `Typography.Ol`, `Typography.Li`.
+  `Typography.P`, `Typography.Blockquote`, `Typography.Link`, `Typography.Ul`, `Typography.Ol`, `Typography.Li`, `Typography.Prose`.
 - Standalone inline/block code primitive:
   `Code`.
 - Variant helpers:
-  `typographyHeadingVariants` and `typographyTextVariants` for controlled extension.
+  `typographyHeadingVariants`, `typographyTextVariants`, and `typographyProseVariants` for controlled extension.
 
 ## Accessibility
 

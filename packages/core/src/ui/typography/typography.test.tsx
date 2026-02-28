@@ -14,6 +14,10 @@ const renderHeadingAsH1: NonNullable<
 afterEach(cleanup);
 
 describe("Typography", () => {
+  it("exposes Mantine-like prose wrapper on Typography namespace", () => {
+    expect(Object.hasOwn(Typography, "Prose")).toBe(true);
+  });
+
   it("renders Typography.Link as anchor with href", () => {
     render(<Typography.Link href="/docs">Docs link</Typography.Link>);
 
@@ -136,5 +140,48 @@ describe("Typography", () => {
 
     expect(element.className.includes("custom-class")).toBe(true);
     expect(element.className.includes("text-base")).toBe(true);
+  });
+
+  it("styles rich html content with Typography.Prose", () => {
+    render(
+      <Typography.Prose>
+        <div
+          dangerouslySetInnerHTML={{
+            __html:
+              "<h2>Release summary</h2><p>Shipped <code>bun run test</code> and docs updates.</p>",
+          }}
+        />
+      </Typography.Prose>
+    );
+
+    const heading = screen.getByText("Release summary");
+    const codeSnippet = screen.getByText("bun run test");
+    const paragraph = codeSnippet.closest("p");
+    const prose = heading.closest("[data-slot='typography-prose']");
+
+    expect(heading.tagName).toBe("H2");
+    expect(paragraph?.tagName).toBe("P");
+    expect(paragraph?.textContent).toBe(
+      "Shipped bun run test and docs updates."
+    );
+    expect(prose).toBeDefined();
+  });
+
+  it("supports polymorphic render prop for Typography.Prose", () => {
+    render(
+      <Typography.Prose
+        className="custom-prose"
+        render={<article data-testid="prose-render" />}
+      >
+        <p>Custom prose render</p>
+      </Typography.Prose>
+    );
+
+    const prose = screen.getByTestId("prose-render");
+
+    expect(prose.tagName).toBe("ARTICLE");
+    expect(prose.dataset.slot).toBe("typography-prose");
+    expect(prose.className.includes("custom-prose")).toBe(true);
+    expect(prose.className.includes("w-full")).toBe(true);
   });
 });
