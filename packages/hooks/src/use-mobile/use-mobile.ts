@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;
 
+/**
+ * Tracks whether the viewport is below the mobile breakpoint (`768px`) and
+ * updates when the media query changes.
+ *
+ */
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState<boolean | undefined>();
 

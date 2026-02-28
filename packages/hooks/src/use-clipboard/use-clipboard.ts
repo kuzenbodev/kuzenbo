@@ -1,203 +1,85 @@
-"use client";
+import { useCallback, useRef, useState } from "react";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
-const DEFAULT_COPIED_DURATION_MS = 1600;
-const DEFAULT_FAILED_DURATION_MS = 2200;
-
-export type ClipboardStatus = "idle" | "copying" | "copied" | "failed";
-
-export type ClipboardErrorCode =
-  | "clipboard-unavailable"
-  | "permission-denied"
-  | "write-failed";
-
-export interface ClipboardResult {
-  ok: boolean;
-  status: ClipboardStatus;
-  errorCode: ClipboardErrorCode | null;
+export interface UseClipboardInput {
+  /** Time in ms after which the copied state will reset, `2000` by default */
+  timeout?: number;
 }
 
-export interface UseClipboardOptions {
-  copiedDurationMs?: number;
-  failedDurationMs?: number;
-}
+export interface UseClipboardReturnValue {
+  /** Function to copy value to clipboard */
+  copy: (value: string) => Promise<void>;
 
-export interface UseClipboardReturn {
-  status: ClipboardStatus;
-  errorCode: ClipboardErrorCode | null;
-  announcement: string;
-  announcementProps: {
-    role: "status";
-    "aria-live": "polite" | "assertive";
-    "aria-atomic": true;
-    children: string;
-  };
-  copy: (value: string) => Promise<ClipboardResult>;
+  /** Function to reset copied state and error */
   reset: () => void;
+
+  /** Error if copying failed */
+  error: Error | null;
+
+  /** Boolean indicating if the value was copied successfully */
+  copied: boolean;
 }
 
-const getErrorName = (error: unknown): string | null => {
-  if (error instanceof Error && typeof error.name === "string") {
-    return error.name;
-  }
+/**
+ * Provides clipboard helpers and tracks whether the last copy action succeeded.
+ * The `copied` flag automatically resets after the configured timeout.
+ *
+ * @param {UseClipboardInput | undefined} options Optional clipboard behavior configuration.
+ * @param {number | undefined} options.timeout Time in milliseconds before `copied` resets to `false`. Defaults to `2000`.
+ */
+export const useClipboard = (
+  options?: UseClipboardInput
+): UseClipboardReturnValue => {
+  const timeout = options?.timeout ?? 2000;
 
-  if (
-    typeof error === "object" &&
-    error !== null &&
-    "name" in error &&
-    typeof (error as { name: unknown }).name === "string"
-  ) {
-    return (error as { name: string }).name;
-  }
+  const [error, setError] = useState<Error | null>(null);
+  const [copied, setCopied] = useState(false);
+  const copyTimeoutRef = useRef<number | null>(null);
 
-  return null;
-};
-
-const mapClipboardErrorCode = (error: unknown): ClipboardErrorCode => {
-  const errorName = getErrorName(error);
-
-  if (
-    errorName === "NotAllowedError" ||
-    errorName === "NotReadableError" ||
-    errorName === "SecurityError"
-  ) {
-    return "permission-denied";
-  }
-
-  if (errorName === "NotFoundError" || errorName === "NotSupportedError") {
-    return "clipboard-unavailable";
-  }
-
-  return "write-failed";
-};
-
-const getAnnouncement = (
-  status: ClipboardStatus,
-  errorCode: ClipboardErrorCode | null
-): string => {
-  if (status === "copying") {
-    return "Copying to clipboard.";
-  }
-
-  if (status === "copied") {
-    return "Copied to clipboard.";
-  }
-
-  if (status !== "failed" || errorCode === null) {
-    return "";
-  }
-
-  if (errorCode === "permission-denied") {
-    return "Clipboard permission was denied.";
-  }
-
-  if (errorCode === "clipboard-unavailable") {
-    return "Clipboard is not available in this environment.";
-  }
-
-  return "Failed to copy to clipboard.";
-};
-
-export const useClipboard = ({
-  copiedDurationMs = DEFAULT_COPIED_DURATION_MS,
-  failedDurationMs = DEFAULT_FAILED_DURATION_MS,
-}: UseClipboardOptions = {}): UseClipboardReturn => {
-  const [status, setStatus] = useState<ClipboardStatus>("idle");
-  const [errorCode, setErrorCode] = useState<ClipboardErrorCode | null>(null);
-  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const clearResetTimer = useCallback(() => {
-    if (resetTimerRef.current !== null) {
-      clearTimeout(resetTimerRef.current);
-      resetTimerRef.current = null;
+  const clearCopyTimeout = useCallback(() => {
+    if (copyTimeoutRef.current !== null) {
+      window.clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = null;
     }
   }, []);
 
-  const reset = useCallback(() => {
-    clearResetTimer();
-    setStatus("idle");
-    setErrorCode(null);
-  }, [clearResetTimer]);
-
-  const scheduleReset = useCallback(
-    (durationMs: number) => {
-      clearResetTimer();
-      resetTimerRef.current = setTimeout(() => {
-        resetTimerRef.current = null;
-        setStatus("idle");
-        setErrorCode(null);
-      }, durationMs);
+  const handleCopyResult = useCallback(
+    (value: boolean) => {
+      clearCopyTimeout();
+      copyTimeoutRef.current = window.setTimeout(() => {
+        setCopied(false);
+      }, timeout);
+      setCopied(value);
     },
-    [clearResetTimer]
-  );
-
-  useEffect(
-    () => () => {
-      clearResetTimer();
-    },
-    [clearResetTimer]
+    [clearCopyTimeout, timeout]
   );
 
   const copy = useCallback(
-    async (value: string): Promise<ClipboardResult> => {
-      clearResetTimer();
-      setStatus("copying");
-      setErrorCode(null);
-
-      const clipboardApi =
-        typeof navigator === "undefined" ? undefined : navigator.clipboard;
-
-      if (clipboardApi && typeof clipboardApi.writeText === "function") {
-        try {
-          await clipboardApi.writeText(value);
-          setStatus("copied");
-          setErrorCode(null);
-          scheduleReset(copiedDurationMs);
-          return { errorCode: null, ok: true, status: "copied" };
-        } catch (error) {
-          const mappedErrorCode = mapClipboardErrorCode(error);
-          setStatus("failed");
-          setErrorCode(mappedErrorCode);
-          scheduleReset(failedDurationMs);
-          return { errorCode: mappedErrorCode, ok: false, status: "failed" };
-        }
+    async (value: string) => {
+      if (!("clipboard" in navigator)) {
+        setError(
+          new Error("useClipboard: navigator.clipboard is not supported")
+        );
+        return;
       }
 
-      setStatus("failed");
-      setErrorCode("clipboard-unavailable");
-      scheduleReset(failedDurationMs);
-      return {
-        errorCode: "clipboard-unavailable",
-        ok: false,
-        status: "failed",
-      };
+      try {
+        await navigator.clipboard.writeText(value);
+        handleCopyResult(true);
+      } catch (copyError) {
+        setError(copyError as Error);
+      }
     },
-    [clearResetTimer, copiedDurationMs, failedDurationMs, scheduleReset]
+    [handleCopyResult]
   );
 
-  const announcement = useMemo(
-    () => getAnnouncement(status, errorCode),
-    [errorCode, status]
-  );
+  const reset = useCallback(() => {
+    setCopied(false);
+    setError(null);
+    clearCopyTimeout();
+  }, [clearCopyTimeout]);
 
-  const announcementProps = useMemo(
-    () =>
-      ({
-        "aria-atomic": true,
-        "aria-live": status === "failed" ? "assertive" : "polite",
-        children: announcement,
-        role: "status",
-      }) as const,
-    [announcement, status]
-  );
-
-  return {
-    announcement,
-    announcementProps,
-    copy,
-    errorCode,
-    reset,
-    status,
-  };
+  return { copy, reset, error, copied };
 };
+
+export type UseClipboardInputType = UseClipboardInput;
+export type UseClipboardReturn = UseClipboardReturnValue;
