@@ -4,6 +4,7 @@ import { REPO_ROOT } from "./repo";
 
 interface CommandOptions {
   cwd?: string;
+  timeoutMs?: number;
 }
 
 export const run = (command: string): string =>
@@ -24,11 +25,32 @@ export const runCommand = (
     stdio: ["ignore", "pipe", "pipe"],
   }).trim();
 
-export const runStreaming = (command: string): void => {
-  execSync(command, {
-    cwd: REPO_ROOT,
-    stdio: "inherit",
-  });
+export const runStreaming = (
+  command: string,
+  options: CommandOptions = {}
+): void => {
+  try {
+    execSync(command, {
+      cwd: REPO_ROOT,
+      stdio: "inherit",
+      timeout: options.timeoutMs,
+    });
+  } catch (error) {
+    if (
+      options.timeoutMs &&
+      typeof error === "object" &&
+      error !== null &&
+      "signal" in error &&
+      (error as { signal?: string }).signal === "SIGTERM"
+    ) {
+      throw new Error(
+        `Command timed out after ${Math.floor(options.timeoutMs / 1000)}s: ${command}`,
+        { cause: error }
+      );
+    }
+
+    throw error;
+  }
 };
 
 export const runStreamingCommand = (
