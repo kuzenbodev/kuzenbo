@@ -9,7 +9,7 @@ import {
 } from "@kuzenbo/core/ui/card";
 import { Container } from "@kuzenbo/core/ui/container";
 import { Typography } from "@kuzenbo/core/ui/typography";
-import { useFullscreen } from "@kuzenbo/hooks/use-fullscreen";
+import { useFullscreenElement } from "@kuzenbo/hooks/use-fullscreen";
 import { useIsomorphicEffect } from "@kuzenbo/hooks/use-isomorphic-effect";
 import { useIsMobile } from "@kuzenbo/hooks/use-mobile";
 import Link from "next/link";
@@ -19,7 +19,7 @@ export const ShowcaseHooksClient = () => {
   const isMobile = useIsMobile();
   const [count, setCount] = useState(0);
   const [effectRuns, setEffectRuns] = useState(0);
-  const { ref, toggle, fullscreen } = useFullscreen<HTMLDivElement>();
+  const { ref, toggle, fullscreen } = useFullscreenElement<HTMLDivElement>();
 
   useIsomorphicEffect(() => {
     setEffectRuns((value) => value + 1);

@@ -96,10 +96,7 @@ const CopyButton = ({
   "aria-label": ariaLabel,
   ...props
 }: CopyButtonProps) => {
-  const clipboard = useClipboard({
-    copiedDurationMs: timeout,
-    failedDurationMs: timeout,
-  });
+  const clipboard = useClipboard({ timeout });
   const [internalStatus, setInternalStatus] =
     useState<CopyButtonStatus>(defaultStatus);
   const isControlled = status !== undefined;
@@ -159,19 +156,39 @@ const CopyButton = ({
       return;
     }
 
-    setStatus(clipboard.status);
-  }, [clipboard.status, setStatus]);
+    if (clipboard.error) {
+      setStatus("failed");
+      return;
+    }
+
+    if (clipboard.copied) {
+      setStatus("copied");
+      return;
+    }
+
+    if (currentStatusRef.current === "copied") {
+      setStatus("idle");
+    }
+  }, [clipboard.copied, clipboard.error, setStatus]);
+
+  useEffect(() => {
+    if (currentStatus !== "failed") {
+      return;
+    }
+
+    const failedResetTimeout = window.setTimeout(() => {
+      setStatus("idle");
+    }, timeout);
+
+    return () => {
+      window.clearTimeout(failedResetTimeout);
+    };
+  }, [currentStatus, setStatus, timeout]);
 
   const resolvedContent = resolveContent(children, currentStatus);
   const visibleLabel = resolvedContent ?? mergedStatusLabels[currentStatus];
-  const hookAnnouncement =
-    clipboard.announcement.trim().length > 0
-      ? clipboard.announcement
-      : undefined;
   const liveRegionText =
-    liveRegionMessages?.[currentStatus] ??
-    hookAnnouncement ??
-    mergedLiveMessages[currentStatus];
+    liveRegionMessages?.[currentStatus] ?? mergedLiveMessages[currentStatus];
   const resolvedAriaLabel =
     ariaLabel ?? (visibleLabel ? undefined : mergedStatusLabels[currentStatus]);
 

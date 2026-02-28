@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/hooks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "description": "Standalone React hooks for Kuzenbo.",
   "keywords": [
@@ -215,6 +215,7 @@
     "@storybook/react-vite": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@testing-library/react": "catalog:",
+    "@testing-library/user-event": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "bun-types": "catalog:",

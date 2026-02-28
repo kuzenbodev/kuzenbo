@@ -31,7 +31,7 @@
     },
     "apps/website": {
       "name": "@kuzenbo/website",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "dependencies": {
         "@hugeicons/core-free-icons": "catalog:",
         "@hugeicons/react": "catalog:",
@@ -76,7 +76,7 @@
     },
     "packages/ai": {
       "name": "@kuzenbo/ai",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "tailwind-merge": "catalog:",
         "tailwind-variants": "catalog:",
@@ -106,15 +106,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/charts": {
       "name": "@kuzenbo/charts",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@kuzenbo/core": "workspace:*",
         "recharts": "catalog:",
@@ -146,15 +146,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/cli": {
       "name": "@kuzenbo/cli",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "devDependencies": {
         "@arethetypeswrong/core": "catalog:",
         "bun-types": "catalog:",
@@ -164,7 +164,7 @@
     },
     "packages/code": {
       "name": "@kuzenbo/code",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@kuzenbo/core": "workspace:*",
         "@shikijs/transformers": "catalog:",
@@ -203,15 +203,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/core": {
       "name": "@kuzenbo/core",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@base-ui/react": "catalog:",
         "@hugeicons/core-free-icons": "catalog:",
@@ -257,14 +257,14 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/datatable": {
       "name": "@kuzenbo/datatable",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@tanstack/react-table": "catalog:",
         "tailwind-merge": "catalog:",
@@ -295,15 +295,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/date": {
       "name": "@kuzenbo/date",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@date-fns/tz": "catalog:",
         "@date-fns/utc": "catalog:",
@@ -340,15 +340,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/hooks": {
       "name": "@kuzenbo/hooks",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "devDependencies": {
         "@arethetypeswrong/core": "catalog:",
         "@happy-dom/global-registrator": "catalog:",
@@ -362,6 +362,7 @@
         "@storybook/react-vite": "catalog:",
         "@tailwindcss/vite": "catalog:",
         "@testing-library/react": "catalog:",
+        "@testing-library/user-event": "catalog:",
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
         "bun-types": "catalog:",
@@ -378,7 +379,7 @@
     },
     "packages/mcp": {
       "name": "@kuzenbo/mcp",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "devDependencies": {
         "@arethetypeswrong/core": "catalog:",
         "bun-types": "catalog:",
@@ -388,7 +389,7 @@
     },
     "packages/notifications": {
       "name": "@kuzenbo/notifications",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@base-ui/react": "catalog:",
         "@hugeicons/core-free-icons": "catalog:",
@@ -422,15 +423,15 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
     },
     "packages/storybook": {
       "name": "@kuzenbo/storybook",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@kuzenbo/styles": "workspace:*",
         "@kuzenbo/theme": "workspace:*",
@@ -445,14 +446,14 @@
     },
     "packages/styles": {
       "name": "@kuzenbo/styles",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "tailwindcss": "catalog:",
       },
     },
     "packages/theme": {
       "name": "@kuzenbo/theme",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "tailwindcss": "catalog:",
         "tw-animate-css": "catalog:",
@@ -482,7 +483,7 @@
     },
     "packages/tiptap": {
       "name": "@kuzenbo/tiptap",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "dependencies": {
         "@kuzenbo/core": "workspace:*",
         "@tiptap/core": "catalog:",
@@ -532,8 +533,8 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@kuzenbo/core": "^0.0.5",
-        "@kuzenbo/theme": "^0.0.5",
+        "@kuzenbo/core": "^0.0.6",
+        "@kuzenbo/theme": "^0.0.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },

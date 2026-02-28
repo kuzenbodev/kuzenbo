@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/notifications",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "description": "Toast and notification primitives for Kuzenbo.",
   "keywords": [
@@ -79,8 +79,8 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@kuzenbo/core": "^0.0.5",
-    "@kuzenbo/theme": "^0.0.5",
+    "@kuzenbo/core": "^0.0.6",
+    "@kuzenbo/theme": "^0.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
