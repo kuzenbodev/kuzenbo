@@ -16,7 +16,7 @@ const navigationMenuLinkVariants = tv({
     size: {
       lg: "gap-2 rounded-lg p-2.5 text-sm [&_svg:not([class*='size-'])]:size-4",
       md: "gap-2 rounded-lg p-2 text-sm [&_svg:not([class*='size-'])]:size-4",
-      sm: "gap-1.5 rounded-[min(var(--radius-md),10px)] p-2 text-sm [&_svg:not([class*='size-'])]:size-3.5",
+      sm: "gap-1.5 rounded-[min(var(--radius-md),10px)] p-1.5 text-xs [&_svg:not([class*='size-'])]:size-3.5",
       xl: "gap-2.5 rounded-lg p-3 text-base [&_svg:not([class*='size-'])]:size-5",
       xs: "gap-1 rounded-[min(var(--radius-md),8px)] p-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
     },

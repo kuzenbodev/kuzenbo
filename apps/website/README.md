@@ -20,7 +20,7 @@ Public documentation and showcase website for Kuzenbo.
 - ✅ `/docs` now uses file-based App Router pages (`page.tsx` + `content.mdx` per route).
 - ✅ Canonical docs URLs are rendered directly from migrated MDX content.
 - ✅ Unknown `/docs/*` routes return standard Next.js 404 pages.
-- ✅ `/docs/**` reuses the shared site header/footer and adds section tabs + sidebars in a Container-locked docs shell.
+- ✅ `/docs/**` reuses the shared site header/footer and adds section tabs + sticky sidebars in a Container-locked docs shell while keeping page-level scrolling.
 - ✅ Right-hand docs ToC is intentionally mocked while the full ToC component is being implemented.
 - 🗂️ Internal `meta.json` files remain in `content/docs` for internal reference only.
 

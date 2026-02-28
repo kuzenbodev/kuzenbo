@@ -7,7 +7,7 @@ import { cn } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import type { UISize } from "../shared/size/size-system";
-import { COMPACT_VISUAL_CLASS_BY_SIZE } from "../shared/size/size-system";
+import { resolveCompactVisualClassBySize } from "../shared/size/size-system";
 
 export type SpinnerProps = Omit<ComponentProps<"svg">, "size"> & {
   size?: UISize;
@@ -25,7 +25,7 @@ const Spinner = ({
     <HugeiconsIcon
       aria-label="Loading"
       className={cn(
-        COMPACT_VISUAL_CLASS_BY_SIZE[size],
+        resolveCompactVisualClassBySize(size),
         "animate-spin",
         className
       )}

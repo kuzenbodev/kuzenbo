@@ -23,12 +23,12 @@ const navigationMenuTriggerStyle = tv({
         root: "h-10 rounded-lg px-3 py-1.5 text-sm",
       },
       md: {
-        icon: "size-3",
+        icon: "size-4",
         root: "h-9 rounded-lg px-2.5 py-1.5 text-sm",
       },
       sm: {
         icon: "size-3.5",
-        root: "h-8 rounded-[min(var(--radius-md),10px)] px-2.5 py-1 text-sm",
+        root: "h-8 rounded-[min(var(--radius-md),10px)] px-2.5 py-1 text-xs",
       },
       xl: {
         icon: "size-5",

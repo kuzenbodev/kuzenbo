@@ -29,7 +29,7 @@ export default function Layout({
           <DocsMobileSectionsDrawer />
           <DocsMobileTocDrawer />
         </div>
-        <div className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_14rem] xl:gap-8">
+        <div className="grid items-start gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_14rem] xl:gap-8">
           <DocsSidebarSection />
           <main className="min-w-0 py-4">
             <Typography.Prose>{children}</Typography.Prose>

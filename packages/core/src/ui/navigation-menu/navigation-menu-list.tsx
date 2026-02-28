@@ -14,10 +14,10 @@ const navigationMenuListVariants = tv({
   },
   variants: {
     size: {
-      lg: "gap-0.5",
-      md: "gap-0",
-      sm: "gap-0.5",
-      xl: "gap-1",
+      lg: "gap-2",
+      md: "gap-1.5",
+      sm: "gap-1",
+      xl: "gap-2.5",
       xs: "gap-0.5",
     },
   },

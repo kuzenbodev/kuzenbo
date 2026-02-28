@@ -3,20 +3,377 @@ title: "Button"
 description: "Action buttons, loading states, and grouped controls with @kuzenbo/core."
 ---
 
+import { ButtonGroupPlayground } from "./_components/playgrounds/group/playground";
 import { GeneralButtonPlayground } from "./_components/playgrounds/general/playground";
+import { IconButtonPlayground } from "./_components/playgrounds/icon/playground";
+import { ButtonSizePlayground } from "./_components/playgrounds/size/playground";
+import { ButtonInlineContentComponentPreview } from "./_components/previews/inline-content-component-preview";
+import { ButtonUsageComponentPreview } from "./_components/previews/usage-component-preview";
 
-## Button at a Glance
+## Overview
 
-`Button` is the action primitive in `@kuzenbo/core`.
-It adds a variant system, size scale, and loading behavior on top of Base UI composition.
-This page also covers `ButtonGroup`, `ButtonGroupSeparator`, and `ButtonGroupText` for grouped controls.
+`Button` is the main action primitive in `@kuzenbo/core`.
+It supports semantic variants, a shared size scale (including icon sizes), and a built-in loading state.
+This page also covers grouped composition with `ButtonGroup`, `ButtonGroupSeparator`, and `ButtonGroupText`.
 
-Use `Button` for actions.
-Use links for navigation unless the interaction mutates state or triggers a command.
+Use `Button` for commands that trigger behavior.
+For plain navigation, prefer links unless the interaction is command-like (submit, save, delete, retry, confirm).
 
-## Playground
+## Playground: General
 
-Use the controls to preview `Button` states and sizing in real time.
-Presets help you start from common production scenarios (`Default`, `Danger`, `Loading`).
+Use the interactive controls to preview `variant`, `size`, `disabled`, and `isLoading`.
+Presets mirror common production actions (`Default`, `Danger`, `Loading`).
 
 <GeneralButtonPlayground />
+
+## Installation
+
+```npm
+npm i @kuzenbo/core @kuzenbo/theme
+```
+
+Pair `@kuzenbo/core` and `@kuzenbo/theme` in almost all app setups so component tokens and runtime sizing stay aligned.
+
+## Import
+
+```tsx
+import { Button, buttonVariants } from "@kuzenbo/core/ui/button";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  buttonGroupVariants,
+} from "@kuzenbo/core/ui/button-group";
+```
+
+## Usage
+
+Use the component preview below for a quick baseline usage example with linked source.
+
+<ButtonUsageComponentPreview />
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function SaveButton() {
+  return <Button type="submit">Save changes</Button>;
+}
+```
+
+## Full width
+
+`Button` does not have a dedicated `fullWidth` prop.
+Use layout utilities through `className`:
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function FullWidthButton() {
+  return <Button className="w-full">Continue</Button>;
+}
+```
+
+## Variants
+
+Supported `variant` values:
+
+- `default`
+- `outline`
+- `secondary`
+- `ghost`
+- `danger`
+- `link`
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function ButtonVariants() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button variant="default">Default</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="danger">Danger</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  );
+}
+```
+
+## Sizes
+
+Text button sizes:
+
+- `xs`
+- `sm`
+- `md` (default)
+- `lg`
+- `xl`
+
+Icon button sizes:
+
+- `icon-xs`
+- `icon-sm`
+- `icon` (medium icon button)
+- `icon-lg`
+- `icon-xl`
+
+### Playground: Text sizes
+
+<ButtonSizePlayground />
+
+### Playground: Icon sizes
+
+<IconButtonPlayground />
+
+```tsx
+import { SearchIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function ButtonSizes() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button size="xs">XS</Button>
+      <Button size="sm">SM</Button>
+      <Button size="md">MD</Button>
+      <Button size="lg">LG</Button>
+      <Button size="xl">XL</Button>
+
+      <Button aria-label="Search xs" size="icon-xs" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </Button>
+      <Button aria-label="Search sm" size="icon-sm" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </Button>
+      <Button aria-label="Search" size="icon" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </Button>
+      <Button aria-label="Search lg" size="icon-lg" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </Button>
+      <Button aria-label="Search xl" size="icon-xl" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </Button>
+    </div>
+  );
+}
+```
+
+## Leading and trailing content
+
+`Button` does not use `leftSection` / `rightSection` props.
+Compose icons or other elements directly inside `children`:
+
+<ButtonInlineContentComponentPreview />
+
+```tsx
+import { ArrowRight01Icon, SearchIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function ButtonWithInlineContent() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+        Find record
+      </Button>
+
+      <Button>
+        Continue
+        <HugeiconsIcon icon={ArrowRight01Icon} />
+      </Button>
+    </div>
+  );
+}
+```
+
+## Loading state
+
+Set `isLoading` to replace content with a centered spinner and disable interaction.
+`isLoading` also sets `disabled` under the hood, so click/submit handlers do not fire.
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function LoadingButton() {
+  return <Button isLoading>Saving workspace</Button>;
+}
+```
+
+## Disabled state
+
+Use `disabled` for non-interactive buttons.
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+
+export function DisabledButton() {
+  return <Button disabled>Access restricted</Button>;
+}
+```
+
+## Render as link
+
+`Button` forwards Base UI Button primitive props, including `render`.
+When rendering as `<a>`, remember that links do not support native `disabled`.
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+
+type DocsLinkButtonProps = {
+  isDisabled?: boolean;
+};
+
+export function DocsLinkButton({ isDisabled = false }: DocsLinkButtonProps) {
+  return (
+    <Button
+      aria-disabled={isDisabled}
+      className={isDisabled ? "pointer-events-none" : undefined}
+      render={
+        <a
+          href="/docs/components/button-group"
+          onClick={(event) => {
+            if (isDisabled) {
+              event.preventDefault();
+            }
+          }}
+        />
+      }
+      variant="link"
+    >
+      Open ButtonGroup docs
+    </Button>
+  );
+}
+```
+
+## ButtonGroup
+
+Use `ButtonGroup` to merge adjacent button borders and radii for action clusters.
+Direct child slots should be Kuzenbo controls (`Button`, `ButtonGroupText`, `ButtonGroupSeparator`) to preserve expected borders.
+
+### Playground: Grouped actions
+
+<ButtonGroupPlayground />
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
+
+export function HorizontalGroup() {
+  return (
+    <ButtonGroup>
+      <Button variant="outline">Undo</Button>
+      <Button variant="outline">Redo</Button>
+      <Button variant="outline">Publish</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+### Vertical groups and section slots
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@kuzenbo/core/ui/button-group";
+
+export function VerticalGroup() {
+  return (
+    <ButtonGroup
+      aria-label="Deployment actions"
+      orientation="vertical"
+      role="group"
+      size="sm"
+    >
+      <Button variant="outline">Deploy preview</Button>
+      <ButtonGroupSeparator orientation="horizontal" />
+      <Button variant="outline">Run smoke tests</Button>
+      <ButtonGroupText render={<div />}>Auto-sync enabled</ButtonGroupText>
+    </ButtonGroup>
+  );
+}
+```
+
+## Size precedence
+
+Button size resolution follows this order:
+
+1. `Button` `size` prop
+2. parent `ButtonGroup` size context
+3. provider-level component defaults
+4. global UI size
+5. fallback `md`
+
+This keeps grouped controls consistent by default while still allowing per-button overrides.
+
+## API reference
+
+### `Button`
+
+- Built on `@base-ui/react/button` and forwards primitive props (`type`, `onClick`, `aria-*`, `render`, etc.).
+- `variant?: "default" | "outline" | "secondary" | "ghost" | "danger" | "link"` (default: `"default"`).
+- `size?: "xs" | "sm" | "md" | "lg" | "xl" | "icon-xs" | "icon-sm" | "icon" | "icon-lg" | "icon-xl"` (default: resolved `md`).
+- `isLoading?: boolean` toggles spinner/content transition and disables interaction.
+- `disabled?: boolean` disables button interaction.
+- `buttonVariants` is exported for custom wrappers and composition.
+
+### `ButtonGroup`
+
+- Root layout primitive for grouped controls.
+- `orientation?: "horizontal" | "vertical"` (default: `"horizontal"`).
+- `size?: "xs" | "sm" | "md" | "lg" | "xl"` (default: resolved `md`).
+- Forwards native `div` props.
+- Exposes static members: `ButtonGroup.Separator`, `ButtonGroup.Text`.
+- `buttonGroupVariants` is exported for composition.
+
+### `ButtonGroupSeparator`
+
+- Wrapper over `Separator`.
+- Default `orientation="vertical"` for horizontal groups.
+- Accepts optional `size` override; otherwise inherits group size.
+
+### `ButtonGroupText`
+
+- Non-button slot for labels/status in a grouped action row.
+- Supports Base UI `render` composition.
+- Accepts optional `size` override; otherwise inherits group size.
+
+## Accessibility
+
+- Icon-only buttons must include an accessible name (`aria-label`).
+- For grouped controls, add `role="group"` and a descriptive `aria-label` when the cluster represents one logical action set.
+- Keep visible focus styles; do not remove focus ring behavior from interactive surfaces.
+- Use semantic button `type` in forms (`submit`, `button`, `reset`) to avoid accidental submits.
+
+## SSR and RSC notes
+
+- `Button` and `ButtonGroup` are interactive client components.
+- They can be rendered from server components, but usage should stay within client-interactive boundaries when attaching handlers/state.
+
+## Styling and tokens
+
+- Default styles use semantic tokens (`bg-primary`, `text-primary-foreground`, `border-border`, `bg-danger`).
+- Extend with semantic utilities; avoid raw Tailwind palette classes.
+- Use `className` for one-off layout adjustments (`w-full`, spacing, wrapping).
+
+## Troubleshooting
+
+- Group borders/radii look broken: ensure grouped controls are direct slot children, not wrapped in extra `<div>` elements.
+- Icon-only button appears inaccessible: add `aria-label`.
+- Loading button still appears clickable: verify `isLoading` is set on the same `Button` instance receiving the click handler.
+- Vertical separator looks wrong in a vertical group: set `ButtonGroupSeparator orientation="horizontal"`.
+- Size is not what you expect inside group: explicit button `size` overrides inherited group size.
+
+## Related docs
+
+- [Button Group](/docs/components/button-group)
+- [Spinner](/docs/components/spinner)
+- [Theme Icon](/docs/components/theme-icon)
+- [Components index](/docs/components)

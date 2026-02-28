@@ -27,8 +27,8 @@ const navigationMenuIndicatorVariants = tv({
         root: "h-1.5",
       },
       sm: {
-        arrow: "top-[58%] h-2 w-2 rounded-tl-sm",
-        root: "h-1.5",
+        arrow: "top-[58%] h-1.5 w-1.5 rounded-tl-[2px]",
+        root: "h-1",
       },
       xl: {
         arrow: "top-[64%] h-3 w-3 rounded-tl-sm",

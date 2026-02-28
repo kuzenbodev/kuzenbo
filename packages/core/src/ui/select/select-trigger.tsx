@@ -8,12 +8,11 @@ import { cn, tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
-import type { InputSize } from "../input/input";
 import {
-  DEFAULT_ICON_CLASS_BY_SIZE,
-  DEFAULT_NESTED_ICON_CLASS_BY_SIZE,
-  FIELD_HEIGHT_CLASS_BY_SIZE,
-  FIELD_TEXT_CLASS_BY_SIZE,
+  resolveDefaultIconClassBySize,
+  resolveDefaultNestedIconClassBySize,
+  resolveFieldHeightClassBySize,
+  resolveFieldTextClassBySize,
 } from "../shared/size/size-system";
 import { SelectContext } from "./select-context";
 import { SelectIcon } from "./select-icon";
@@ -26,33 +25,33 @@ const selectTriggerVariants = tv({
   variants: {
     size: {
       lg: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.lg,
-        FIELD_TEXT_CLASS_BY_SIZE.lg,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.lg,
+        resolveFieldHeightClassBySize("lg"),
+        resolveFieldTextClassBySize("lg"),
+        resolveDefaultNestedIconClassBySize("lg"),
         "gap-1.5 rounded-md pr-2.5 pl-3 *:data-[slot=select-value]:gap-1.5",
       ],
       md: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.md,
-        FIELD_TEXT_CLASS_BY_SIZE.md,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.md,
+        resolveFieldHeightClassBySize("md"),
+        resolveFieldTextClassBySize("md"),
+        resolveDefaultNestedIconClassBySize("md"),
         "gap-1.5 rounded-md pr-2 pl-2.5 *:data-[slot=select-value]:gap-1.5",
       ],
       sm: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.sm,
-        FIELD_TEXT_CLASS_BY_SIZE.sm,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
+        resolveFieldHeightClassBySize("sm"),
+        resolveFieldTextClassBySize("sm"),
+        resolveDefaultNestedIconClassBySize("sm"),
         "gap-1 rounded-[min(var(--radius-md),10px)] pr-2 pl-2.5 *:data-[slot=select-value]:gap-1.5",
       ],
       xl: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.xl,
-        FIELD_TEXT_CLASS_BY_SIZE.xl,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl,
+        resolveFieldHeightClassBySize("xl"),
+        resolveFieldTextClassBySize("xl"),
+        resolveDefaultNestedIconClassBySize("xl"),
         "gap-2 rounded-md pr-3 pl-4 *:data-[slot=select-value]:gap-2",
       ],
       xs: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.xs,
-        FIELD_TEXT_CLASS_BY_SIZE.xs,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
+        resolveFieldHeightClassBySize("xs"),
+        resolveFieldTextClassBySize("xs"),
+        resolveDefaultNestedIconClassBySize("xs"),
         "gap-1 rounded-[min(var(--radius-md),8px)] pr-1.5 pl-2 *:data-[slot=select-value]:gap-1",
       ],
     },
@@ -61,9 +60,6 @@ const selectTriggerVariants = tv({
 
 export type SelectTriggerProps = SelectPrimitive.Trigger.Props &
   VariantProps<typeof selectTriggerVariants>;
-
-const getSelectIconSizeClassName = (size: InputSize) =>
-  DEFAULT_ICON_CLASS_BY_SIZE[size];
 
 const SelectTrigger = ({
   className,
@@ -90,7 +86,7 @@ const SelectTrigger = ({
           <HugeiconsIcon
             className={cn(
               "text-muted-foreground pointer-events-none",
-              getSelectIconSizeClassName(resolvedSize)
+              resolveDefaultIconClassBySize(resolvedSize)
             )}
             icon={UnfoldMoreIcon}
             strokeWidth={2}

@@ -14,10 +14,10 @@ const navigationMenuContentVariants = tv({
   },
   variants: {
     size: {
-      lg: "p-1.5",
-      md: "p-1",
+      lg: "p-2",
+      md: "p-1.5",
       sm: "p-1",
-      xl: "p-2",
+      xl: "p-2.5",
       xs: "p-0.5",
     },
   },

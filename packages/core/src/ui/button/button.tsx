@@ -15,9 +15,9 @@ import {
 } from "../shared/size/size-provider";
 import type { UISize } from "../shared/size/size-system";
 import {
-  DEFAULT_NESTED_ICON_CLASS_BY_SIZE,
-  FIELD_HEIGHT_CLASS_BY_SIZE,
-  FIELD_TEXT_CLASS_BY_SIZE,
+  resolveDefaultNestedIconClassBySize,
+  resolveFieldHeightClassBySize,
+  resolveFieldTextClassBySize,
 } from "../shared/size/size-system";
 import { Spinner } from "../spinner/spinner";
 
@@ -33,25 +33,34 @@ const buttonVariants = tv({
       "icon-lg": "size-10",
       "icon-sm":
         "size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg",
-      "icon-xl": `size-11 ${DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl}`,
-      "icon-xs": `size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg ${DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs}`,
-      lg: `${FIELD_HEIGHT_CLASS_BY_SIZE.lg} gap-1.5 px-3 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3`,
-      md: `${FIELD_HEIGHT_CLASS_BY_SIZE.md} gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2`,
+      "icon-xl": ["size-11", resolveDefaultNestedIconClassBySize("xl")],
+      "icon-xs": [
+        "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg",
+        resolveDefaultNestedIconClassBySize("xs"),
+      ],
+      lg: [
+        resolveFieldHeightClassBySize("lg"),
+        "gap-1.5 px-3 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
+      ],
+      md: [
+        resolveFieldHeightClassBySize("md"),
+        "gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+      ],
       sm: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.sm,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
+        resolveFieldHeightClassBySize("sm"),
+        resolveDefaultNestedIconClassBySize("sm"),
         "gap-1 rounded-[min(var(--radius-md),10px)] px-2.5 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
       ],
       xl: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.xl,
-        FIELD_TEXT_CLASS_BY_SIZE.xl,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl,
+        resolveFieldHeightClassBySize("xl"),
+        resolveFieldTextClassBySize("xl"),
+        resolveDefaultNestedIconClassBySize("xl"),
         "gap-2 px-4 has-data-[icon=inline-end]:pr-3.5 has-data-[icon=inline-start]:pl-3.5",
       ],
       xs: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.xs,
-        FIELD_TEXT_CLASS_BY_SIZE.xs,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
+        resolveFieldHeightClassBySize("xs"),
+        resolveFieldTextClassBySize("xs"),
+        resolveDefaultNestedIconClassBySize("xs"),
         "gap-1 rounded-[min(var(--radius-md),8px)] px-2 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
       ],
     },

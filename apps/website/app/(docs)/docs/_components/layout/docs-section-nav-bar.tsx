@@ -7,6 +7,8 @@ import { cn } from "tailwind-variants";
 
 import { docsSectionEntries } from "@/lib/docs/docs-manifest";
 
+import { DocsSpotlight } from "./docs-spotlight";
+
 export const DocsSectionNavBar = () => (
   <div className="z-sticky bg-background sticky top-14 border-b">
     <Container className="flex items-center gap-4 border-x">
@@ -31,6 +33,7 @@ export const DocsSectionNavBar = () => (
           </Tabs.List>
         </Tabs>
       </nav>
+      <DocsSpotlight />
     </Container>
   </div>
 );

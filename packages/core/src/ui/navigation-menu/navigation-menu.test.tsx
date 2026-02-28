@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it } from "bun:test";
 import { cleanup, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
+import type { InputSize } from "../input/input";
 import {
   NavigationMenu,
   NavigationMenuArrow,
@@ -182,6 +183,118 @@ describe("NavigationMenu", () => {
 
     expect(content?.dataset.size).toBe("sm");
     expect(link?.dataset.size).toBe("lg");
+  });
+
+  it("applies a predictable xs..xl class scale across root and overlay slots", async () => {
+    const EXPECTATIONS: Record<
+      InputSize,
+      {
+        contentPadding: string;
+        indicatorHeight: string;
+        linkPadding: string;
+        listGap: string;
+        triggerHeight: string;
+        triggerIconSize: string;
+      }
+    > = {
+      lg: {
+        contentPadding: "p-2",
+        indicatorHeight: "h-2",
+        linkPadding: "p-2.5",
+        listGap: "gap-2",
+        triggerHeight: "h-10",
+        triggerIconSize: "size-4",
+      },
+      md: {
+        contentPadding: "p-1.5",
+        indicatorHeight: "h-1.5",
+        linkPadding: "p-2",
+        listGap: "gap-1.5",
+        triggerHeight: "h-9",
+        triggerIconSize: "size-4",
+      },
+      sm: {
+        contentPadding: "p-1",
+        indicatorHeight: "h-1",
+        linkPadding: "p-1.5",
+        listGap: "gap-1",
+        triggerHeight: "h-8",
+        triggerIconSize: "size-3.5",
+      },
+      xl: {
+        contentPadding: "p-2.5",
+        indicatorHeight: "h-2.5",
+        linkPadding: "p-3",
+        listGap: "gap-2.5",
+        triggerHeight: "h-11",
+        triggerIconSize: "size-5",
+      },
+      xs: {
+        contentPadding: "p-0.5",
+        indicatorHeight: "h-1",
+        linkPadding: "p-1.5",
+        listGap: "gap-0.5",
+        triggerHeight: "h-6",
+        triggerIconSize: "size-3",
+      },
+    };
+
+    const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
+
+    for (const size of sizes) {
+      cleanup();
+      const user = userEvent.setup();
+      const triggerLabel = `Scale ${size}`;
+
+      render(
+        <NavigationMenu size={size}>
+          <NavigationMenuList>
+            <NavigationMenuItem value={`scale-${size}`}>
+              <NavigationMenuTrigger>
+                {triggerLabel}
+                <NavigationMenuIndicator />
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="#">Link {size}</NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      );
+
+      await user.click(screen.getByText(triggerLabel));
+
+      const expectation = EXPECTATIONS[size];
+      const trigger = document.querySelector<HTMLElement>(
+        "[data-slot=navigation-menu-trigger]"
+      );
+      const list = document.querySelector<HTMLElement>(
+        "[data-slot=navigation-menu-list]"
+      );
+      const content = document.querySelector<HTMLElement>(
+        "[data-slot=navigation-menu-content]"
+      );
+      const link = document.querySelector<HTMLElement>(
+        "[data-slot=navigation-menu-link]"
+      );
+      const indicator = document.querySelector<HTMLElement>(
+        "[data-slot=navigation-menu-indicator]"
+      );
+      const triggerIcon = trigger?.querySelector<HTMLElement>("svg");
+
+      expect(trigger?.className.includes(expectation.triggerHeight)).toBe(true);
+      expect(triggerIcon?.className.includes(expectation.triggerIconSize)).toBe(
+        true
+      );
+      expect(list?.className.includes(expectation.listGap)).toBe(true);
+      expect(content?.className.includes(expectation.contentPadding)).toBe(
+        true
+      );
+      expect(link?.className.includes(expectation.linkPadding)).toBe(true);
+      expect(indicator?.className.includes(expectation.indicatorHeight)).toBe(
+        true
+      );
+    }
   });
 
   it("merges indicator className callback output with base classes", () => {

@@ -104,7 +104,7 @@ export const HeaderNavigation = ({ pathname }: HeaderNavigationProps = {}) => {
                     aria-current={ariaCurrent}
                     className="text-muted-foreground data-[active=true]:text-foreground"
                     data-active={isActive ? "true" : undefined}
-                    href={item.href}
+                    render={<Link href={item.href} />}
                   >
                     {item.label}
                   </NavigationMenu.Link>

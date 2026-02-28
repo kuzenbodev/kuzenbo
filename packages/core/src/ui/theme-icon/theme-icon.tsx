@@ -5,7 +5,7 @@ import { useRender } from "@base-ui/react/use-render";
 import { tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
 
-import { DEFAULT_NESTED_ICON_CLASS_BY_SIZE } from "../shared/size/size-system";
+import { resolveDefaultNestedIconClassBySize } from "../shared/size/size-system";
 
 export const themeIconVariants = tv({
   base: [
@@ -35,17 +35,17 @@ export const themeIconVariants = tv({
       sm: [
         // Dimensions: small square size
         "size-8 rounded-[min(var(--radius-md),10px)]",
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
+        resolveDefaultNestedIconClassBySize("sm"),
       ],
       xl: [
         // Dimensions: extra large square size
         "size-11",
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl,
+        resolveDefaultNestedIconClassBySize("xl"),
       ],
       xs: [
         // Dimensions: compact square size
         "size-6 rounded-[min(var(--radius-md),8px)]",
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
+        resolveDefaultNestedIconClassBySize("xs"),
       ],
     },
     variant: {

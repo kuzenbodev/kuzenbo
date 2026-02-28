@@ -9,6 +9,10 @@ import { cn } from "tailwind-variants";
 
 import { InputGroup, InputGroupAddon } from "../input-group/input-group";
 import type { InputSize } from "../input/input";
+import {
+  resolveDefaultIconClassBySize,
+  resolveFieldTextClassBySize,
+} from "../shared/size/size-system";
 import { CommandContext } from "./command-context";
 type NativeCommandInputProps = ComponentProps<typeof CommandPrimitive.Input>;
 type NativeCommandInputSize = NativeCommandInputProps["size"];
@@ -16,34 +20,6 @@ type NativeCommandInputSize = NativeCommandInputProps["size"];
 export type CommandInputProps = Omit<NativeCommandInputProps, "size"> & {
   htmlSize?: NativeCommandInputSize;
   size?: InputSize;
-};
-
-const getCommandSearchIconSizeClassName = (size: InputSize) => {
-  if (size === "xs") {
-    return "size-3";
-  }
-
-  if (size === "sm") {
-    return "size-3.5";
-  }
-
-  if (size === "xl") {
-    return "size-5";
-  }
-
-  return "size-4";
-};
-
-const getCommandInputTextSizeClassName = (size: InputSize) => {
-  if (size === "xs") {
-    return "text-xs";
-  }
-
-  if (size === "xl") {
-    return "text-base";
-  }
-
-  return "text-sm";
 };
 
 const CommandInput = ({
@@ -68,7 +44,7 @@ const CommandInput = ({
         <CommandPrimitive.Input
           className={cn(
             "w-full outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
-            getCommandInputTextSizeClassName(resolvedSize),
+            resolveFieldTextClassBySize(resolvedSize),
             className
           )}
           data-size={resolvedSize}
@@ -79,7 +55,7 @@ const CommandInput = ({
         <InputGroupAddon>
           <HugeiconsIcon
             className={cn(
-              getCommandSearchIconSizeClassName(resolvedSize),
+              resolveDefaultIconClassBySize(resolvedSize),
               "shrink-0 opacity-50"
             )}
             icon={SearchIcon}
