@@ -6,7 +6,7 @@ import { DatesProvider } from "../../dates-provider";
 import { TimeInput } from "../time-input";
 
 export const baseMeta = {
-  title: "Components/Date/TimeInput",
+  title: "Components/TimeInput",
   component: TimeInput,
   tags: ["autodocs"],
   parameters: {

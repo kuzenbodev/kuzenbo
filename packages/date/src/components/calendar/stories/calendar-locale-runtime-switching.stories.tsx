@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/Locale Runtime Switching",
+  title: "Components/Calendar/Locale Runtime Switching",
 };
 
 type Story = StoryObj<typeof baseMeta>;

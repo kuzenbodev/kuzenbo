@@ -8,7 +8,7 @@ import { DatesProvider } from "../../dates-provider";
 import { YearPickerInput } from "../year-picker-input";
 
 export const baseMeta = {
-  title: "Components/Date/YearPickerInput",
+  title: "Components/YearPickerInput",
   component: YearPickerInput,
   tags: ["autodocs"],
   parameters: {

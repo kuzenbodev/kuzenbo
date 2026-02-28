@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/RTL Traversal",
+  title: "Components/Calendar/RTL Traversal",
 };
 
 type Story = StoryObj<typeof baseMeta>;

@@ -4,7 +4,7 @@ import { Default as DefaultStory, baseMeta } from "./month-picker-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/MonthPicker/Default",
+  title: "Components/MonthPicker/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

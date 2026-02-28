@@ -4,7 +4,7 @@ import { Default as DefaultStory, baseMeta } from "./time-input-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimeInput/Default",
+  title: "Components/TimeInput/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

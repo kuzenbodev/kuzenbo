@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/MiniCalendar/Locale RTL",
+  title: "Components/MiniCalendar/Locale RTL",
 };
 
 type Story = StoryObj<typeof baseMeta>;

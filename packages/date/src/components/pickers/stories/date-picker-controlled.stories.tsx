@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/DatePicker/Controlled",
+  title: "Components/DatePicker/Controlled",
 };
 
 type Story = StoryObj<typeof baseMeta>;

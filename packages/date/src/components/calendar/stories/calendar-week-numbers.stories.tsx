@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/Week Numbers",
+  title: "Components/Calendar/Week Numbers",
 };
 
 type Story = StoryObj<typeof baseMeta>;

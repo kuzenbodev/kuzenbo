@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/MiniCalendar/Default",
+  title: "Components/MiniCalendar/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

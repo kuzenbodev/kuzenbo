@@ -4,7 +4,7 @@ import { Presets as PresetsStory, baseMeta } from "./time-picker-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimePicker/Presets",
+  title: "Components/TimePicker/Presets",
 };
 
 type Story = StoryObj<typeof baseMeta>;

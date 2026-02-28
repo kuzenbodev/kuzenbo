@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/DateInput/Dropdown Typing Clearable",
+  title: "Components/DateInput/Dropdown Typing Clearable",
 };
 
 type Story = StoryObj<typeof baseMeta>;

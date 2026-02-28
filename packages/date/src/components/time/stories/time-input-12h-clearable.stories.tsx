@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimeInput/12h Clearable",
+  title: "Components/TimeInput/12h Clearable",
 };
 
 type Story = StoryObj<typeof baseMeta>;

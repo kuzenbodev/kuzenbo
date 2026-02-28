@@ -4,7 +4,7 @@ import { Default as DefaultStory, baseMeta } from "./time-picker-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimePicker/Default",
+  title: "Components/TimePicker/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

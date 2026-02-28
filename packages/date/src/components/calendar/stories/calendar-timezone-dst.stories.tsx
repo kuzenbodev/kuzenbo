@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/Timezone DST",
+  title: "Components/Calendar/Timezone DST",
 };
 
 type Story = StoryObj<typeof baseMeta>;

@@ -7,7 +7,7 @@ import { TimePicker } from "../time-picker";
 import { TimeValue } from "../time-value";
 
 export const baseMeta = {
-  title: "Components/Date/TimePicker",
+  title: "Components/TimePicker",
   component: TimePicker,
   tags: ["autodocs"],
   parameters: {

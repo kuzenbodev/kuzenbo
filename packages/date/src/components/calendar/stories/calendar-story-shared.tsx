@@ -8,7 +8,7 @@ import { Calendar } from "../calendar";
 const excludeSunday = (date: Date): boolean => date.getDay() === 0;
 
 export const baseMeta = {
-  title: "Components/Date/Calendar",
+  title: "Components/Calendar",
   component: Calendar,
   tags: ["autodocs"],
   parameters: {

@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/Constraints",
+  title: "Components/Calendar/Constraints",
 };
 
 type Story = StoryObj<typeof baseMeta>;

@@ -4,7 +4,7 @@ import { Default as DefaultStory, baseMeta } from "./date-picker-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/DatePicker/Default",
+  title: "Components/DatePicker/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

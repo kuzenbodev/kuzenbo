@@ -8,7 +8,7 @@ import { DatesProvider } from "../../dates-provider";
 import { MonthPicker } from "../month-picker";
 
 export const baseMeta = {
-  title: "Components/Date/MonthPicker",
+  title: "Components/MonthPicker",
   component: MonthPicker,
   tags: ["autodocs"],
   parameters: {

@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimeGrid/Constraints",
+  title: "Components/TimeGrid/Constraints",
 };
 
 type Story = StoryObj<typeof baseMeta>;

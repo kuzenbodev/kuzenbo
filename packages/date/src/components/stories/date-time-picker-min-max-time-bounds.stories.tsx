@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/DateTimePicker/Min Max Time Bounds",
+  title: "Components/DateTimePicker/Min Max Time Bounds",
 };
 
 type Story = StoryObj<typeof baseMeta>;

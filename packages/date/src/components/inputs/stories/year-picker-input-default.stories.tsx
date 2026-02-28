@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/YearPickerInput/Default",
+  title: "Components/YearPickerInput/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

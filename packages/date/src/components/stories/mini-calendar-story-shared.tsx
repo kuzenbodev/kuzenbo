@@ -6,7 +6,7 @@ import { DatesProvider } from "../dates-provider";
 import { MiniCalendar } from "../mini-calendar";
 
 export const baseMeta = {
-  title: "Components/Date/MiniCalendar",
+  title: "Components/MiniCalendar",
   component: MiniCalendar,
   tags: ["autodocs"],
   parameters: {

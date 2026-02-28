@@ -4,7 +4,7 @@ import { DatesProvider } from "../../dates-provider";
 import { TimeValue } from "../time-value";
 
 export const baseMeta = {
-  title: "Components/Date/TimeValue",
+  title: "Components/TimeValue",
   component: TimeValue,
   tags: ["autodocs"],
   parameters: {

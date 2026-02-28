@@ -4,7 +4,7 @@ import { Locale as LocaleStory, baseMeta } from "./calendar-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/Locale",
+  title: "Components/Calendar/Locale",
 };
 
 type Story = StoryObj<typeof baseMeta>;

@@ -4,7 +4,7 @@ import { Default as DefaultStory, baseMeta } from "./time-grid-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimeGrid/Default",
+  title: "Components/TimeGrid/Default",
 };
 
 type Story = StoryObj<typeof baseMeta>;

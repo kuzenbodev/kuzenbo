@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimeGrid/Custom Data",
+  title: "Components/TimeGrid/Custom Data",
 };
 
 type Story = StoryObj<typeof baseMeta>;

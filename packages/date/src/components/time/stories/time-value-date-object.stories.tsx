@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/TimeValue/Date Object",
+  title: "Components/TimeValue/Date Object",
 };
 
 type Story = StoryObj<typeof baseMeta>;

@@ -4,7 +4,7 @@ import { Rtl as RtlStory, baseMeta } from "./calendar-story-shared";
 
 export default {
   ...baseMeta,
-  title: "Components/Date/Calendar/RTL",
+  title: "Components/Calendar/RTL",
 };
 
 type Story = StoryObj<typeof baseMeta>;

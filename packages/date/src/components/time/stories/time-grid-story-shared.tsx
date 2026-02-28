@@ -7,7 +7,7 @@ import { TimeGrid } from "../time-grid";
 import { TimeValue } from "../time-value";
 
 export const baseMeta = {
-  title: "Components/Date/TimeGrid",
+  title: "Components/TimeGrid",
   component: TimeGrid,
   tags: ["autodocs"],
   parameters: {

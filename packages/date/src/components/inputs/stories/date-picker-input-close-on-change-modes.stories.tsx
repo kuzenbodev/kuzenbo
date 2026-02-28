@@ -7,7 +7,7 @@ import {
 
 export default {
   ...baseMeta,
-  title: "Components/Date/DatePickerInput/Close On Change Modes",
+  title: "Components/DatePickerInput/Close On Change Modes",
 };
 
 type Story = StoryObj<typeof baseMeta>;
