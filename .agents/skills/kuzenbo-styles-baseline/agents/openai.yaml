@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuzenbo Styles Baseline"
+  short_description: "Apply @kuzenbo/styles baseline CSS safely"
+  default_prompt: "Apply @kuzenbo/styles recommended baseline CSS with correct ordering and overrides in Kuzenbo apps."

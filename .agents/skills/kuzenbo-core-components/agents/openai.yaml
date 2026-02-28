@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuzenbo Core Components"
+  short_description: "Build app UI with @kuzenbo/core components and patterns"
+  default_prompt: "Use @kuzenbo/core with @kuzenbo/theme to implement accessible UI components and composition patterns."

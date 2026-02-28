@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuzenbo Notifications Usage"
+  short_description: "Add @kuzenbo/notifications toast UX patterns"
+  default_prompt: "Set up @kuzenbo/notifications providers and toast flows, including promise-based async notifications."

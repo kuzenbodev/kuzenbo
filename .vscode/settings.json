@@ -55,7 +55,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.oxc": "explicit",
     "source.organizeImports.oxc": "explicit",
-    "source.sortImports.oxc": "explicit"
+    "source.sortImports.oxc": "explicit",
+    "source.removeUnusedImports": "explicit"
   },
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
   "tailwindCSS.classAttributes": ["class", "className"],

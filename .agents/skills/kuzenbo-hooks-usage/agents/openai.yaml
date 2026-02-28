@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuzenbo Hooks Usage"
+  short_description: "Use @kuzenbo/hooks effectively in React apps"
+  default_prompt: "Select and integrate the right @kuzenbo/hooks hooks with safe client usage and minimal boilerplate."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuzenbo Charts Usage"
+  short_description: "Implement @kuzenbo/charts data visualizations fast"
+  default_prompt: "Build data visualizations with @kuzenbo/charts and @kuzenbo/theme using the right chart primitive and series setup."

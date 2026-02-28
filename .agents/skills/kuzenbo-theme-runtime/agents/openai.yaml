@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuzenbo Theme Runtime"
+  short_description: "Configure @kuzenbo/theme runtime and tokens"
+  default_prompt: "Configure ThemeProvider, ThemeBootstrapScript, and prebuilt themes from @kuzenbo/theme for production apps."
