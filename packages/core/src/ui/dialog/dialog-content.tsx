@@ -3,7 +3,7 @@
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import { Button } from "../button/button";
+import { ActionIcon } from "../action-icon/action-icon";
 import { DialogBackdrop } from "./dialog-backdrop";
 import { DialogClose } from "./dialog-close";
 import { DialogPopup } from "./dialog-popup";
@@ -30,9 +30,9 @@ const DialogContent = ({
           <DialogClose
             data-slot="dialog-close"
             render={
-              <Button
+              <ActionIcon
                 className="cursor-clickable absolute top-4 right-4"
-                size="icon-sm"
+                size="sm"
                 variant="ghost"
               />
             }

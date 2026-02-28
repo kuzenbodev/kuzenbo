@@ -3,7 +3,7 @@
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import { Button } from "../button/button";
+import { ActionIcon } from "../action-icon/action-icon";
 import { SheetBackdrop } from "./sheet-backdrop";
 import { SheetClose } from "./sheet-close";
 import { SheetPopup } from "./sheet-popup";
@@ -36,9 +36,9 @@ const SheetContent = ({
           <SheetClose
             data-slot="sheet-close"
             render={
-              <Button
+              <ActionIcon
                 className="cursor-clickable absolute top-4 right-4"
-                size="icon-sm"
+                size="sm"
                 variant="ghost"
               />
             }

@@ -1,6 +1,6 @@
+import { Button } from "@kuzenbo/core/ui/button";
 import { tv } from "tailwind-variants";
 
-import { DateControlButton } from "../internal/date-control-button";
 import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 import { TimeValue } from "./time-value";
 
@@ -34,7 +34,7 @@ const TimePresetControl = ({
   value,
   withSeconds,
 }: TimePresetControlProps) => (
-  <DateControlButton
+  <Button
     className={timePresetControlVariants({ active })}
     size="xs"
     type="button"
@@ -49,7 +49,7 @@ const TimePresetControl = ({
       value={value}
       withSeconds={withSeconds}
     />
-  </DateControlButton>
+  </Button>
 );
 
 export { TimePresetControl };

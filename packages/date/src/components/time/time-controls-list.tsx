@@ -1,7 +1,7 @@
+import { Button } from "@kuzenbo/core/ui/button";
 import { useEffect, useMemo, useRef } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import { DateControlButton } from "../internal/date-control-button";
 import { padTime } from "./utils/time-utils";
 
 const timeControlsListVariants = tv({
@@ -79,7 +79,7 @@ const TimeControlsList = ({
     >
       <div className="space-y-0.5">
         {values.map((controlValue) => (
-          <DateControlButton
+          <Button
             className={timeControlVariants({ active: value === controlValue })}
             data-value={controlValue}
             key={controlValue}
@@ -91,7 +91,7 @@ const TimeControlsList = ({
             }}
           >
             {padTime(controlValue)}
-          </DateControlButton>
+          </Button>
         ))}
       </div>
     </div>

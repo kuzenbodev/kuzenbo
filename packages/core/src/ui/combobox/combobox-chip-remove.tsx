@@ -6,7 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useContext } from "react";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
-import { Button } from "../button/button";
+import { ActionIcon } from "../action-icon/action-icon";
 import type { InputSize } from "../input/input";
 import { ComboboxContext } from "./combobox-context";
 
@@ -14,12 +14,12 @@ export type ComboboxChipRemoveProps = ComboboxPrimitive.ChipRemove.Props & {
   size?: InputSize;
 };
 
-const mapComboboxSizeToButtonIconSize = (size: InputSize) => {
+const mapComboboxSizeToActionIconSize = (size: InputSize) => {
   if (size === "xl") {
-    return "icon-sm";
+    return "sm";
   }
 
-  return "icon-xs";
+  return "xs";
 };
 
 const ComboboxChipRemove = ({
@@ -39,8 +39,8 @@ const ComboboxChipRemove = ({
       data-size={resolvedSize}
       data-slot="combobox-chip-remove"
       render={
-        <Button
-          size={mapComboboxSizeToButtonIconSize(resolvedSize)}
+        <ActionIcon
+          size={mapComboboxSizeToActionIconSize(resolvedSize)}
           variant="ghost"
         />
       }

@@ -1,5 +1,4 @@
 import {
-  Add01Icon,
   ArrowRight01Icon,
   Cancel01Icon,
   SearchIcon,
@@ -8,7 +7,6 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ButtonGroup } from "../../button-group/button-group";
 import { Button } from "../button";
 
 export const baseMeta = {
@@ -17,18 +15,7 @@ export const baseMeta = {
     isLoading: { control: "boolean" },
     size: {
       control: "select",
-      options: [
-        "md",
-        "xs",
-        "sm",
-        "lg",
-        "xl",
-        "icon",
-        "icon-xs",
-        "icon-sm",
-        "icon-lg",
-        "icon-xl",
-      ],
+      options: ["md", "xs", "sm", "lg", "xl"],
     },
     variant: {
       control: "select",
@@ -105,30 +92,6 @@ export const ActionsWithIcons: Story = {
   ),
 };
 
-export const IconToolbarActions: Story = {
-  render: () => (
-    <ButtonGroup>
-      <Button
-        aria-label="Filter opportunities"
-        size="icon-sm"
-        variant="outline"
-      >
-        <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-      <Button aria-label="Add enterprise seat" size="icon-sm" variant="outline">
-        <HugeiconsIcon icon={Add01Icon} />
-      </Button>
-      <Button
-        aria-label="Clear active filters"
-        size="icon-sm"
-        variant="outline"
-      >
-        <HugeiconsIcon icon={Cancel01Icon} />
-      </Button>
-    </ButtonGroup>
-  ),
-};
-
 export const UploadFlowActions: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
@@ -153,53 +116,6 @@ export const DestructiveConfirmationActions: Story = {
         <HugeiconsIcon icon={Cancel01Icon} />
         Delete organization
       </Button>
-    </div>
-  ),
-};
-
-export const IconSizesMatrix: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-center gap-2">
-        <Button size="xs" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-          XS
-        </Button>
-        <Button size="sm" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-          SM
-        </Button>
-        <Button size="md" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-          MD
-        </Button>
-        <Button size="lg" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-          LG
-        </Button>
-        <Button size="xl" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-          XL
-        </Button>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-2">
-        <Button aria-label="Icon XS" size="icon-xs" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-        </Button>
-        <Button aria-label="Icon SM" size="icon-sm" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-        </Button>
-        <Button aria-label="Icon MD" size="icon" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-        </Button>
-        <Button aria-label="Icon LG" size="icon-lg" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-        </Button>
-        <Button aria-label="Icon XL" size="icon-xl" variant="outline">
-          <HugeiconsIcon icon={SearchIcon} />
-        </Button>
-      </div>
     </div>
   ),
 };

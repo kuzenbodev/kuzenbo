@@ -1,5 +1,6 @@
 "use client";
 
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 import { Button } from "@kuzenbo/core/ui/button";
 import type { CSSProperties } from "react";
 import { Tree } from "react-arborist";
@@ -69,7 +70,7 @@ export const FileTree = ({
             ref={dragHandle}
             style={style as CSSProperties}
           >
-            <Button
+            <ActionIcon
               aria-label={`Toggle ${node.data.name}`}
               className="cursor-clickable h-6 w-6 p-0 text-xs"
               disabled={node.isLeaf}
@@ -80,12 +81,12 @@ export const FileTree = ({
                   node.toggle();
                 }
               }}
-              size="icon-xs"
+              size="xs"
               type="button"
               variant="ghost"
             >
               {toggleLabel}
-            </Button>
+            </ActionIcon>
 
             <Button
               aria-label={`Select ${node.data.name}`}

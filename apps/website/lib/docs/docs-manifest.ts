@@ -179,6 +179,14 @@ export const docsRouteEntries: DocsRouteEntry[] = [
   },
   {
     description:
+      "Icon-only action control with shared Button variants, plain size tokens, and loading support.",
+    href: "/docs/components/action-icon",
+    order: 16,
+    section: "components",
+    title: "Action Icon",
+  },
+  {
+    description:
       "Action buttons, loading states, and grouped controls with @kuzenbo/core.",
     href: "/docs/components/button",
     order: 16,

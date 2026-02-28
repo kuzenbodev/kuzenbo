@@ -1,5 +1,6 @@
 "use client";
 
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 import { Button } from "@kuzenbo/core/ui/button";
 import { Drawer } from "@kuzenbo/core/ui/drawer";
 import { NavigationMenu } from "@kuzenbo/core/ui/navigation-menu";
@@ -120,9 +121,9 @@ export const HeaderNavigation = ({ pathname }: HeaderNavigationProps = {}) => {
           aria-label="Open navigation menu"
           className="md:hidden"
           render={
-            <Button
+            <ActionIcon
               aria-label="Open navigation menu"
-              size="icon-sm"
+              size="sm"
               variant="outline"
             />
           }
@@ -144,9 +145,9 @@ export const HeaderNavigation = ({ pathname }: HeaderNavigationProps = {}) => {
                   <Drawer.Close
                     aria-label="Close navigation menu"
                     render={
-                      <Button
+                      <ActionIcon
                         aria-label="Close navigation menu"
-                        size="icon-sm"
+                        size="sm"
                         variant="ghost"
                       />
                     }

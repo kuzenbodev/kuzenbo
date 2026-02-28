@@ -17,27 +17,9 @@ const BUTTON_VARIANTS = new Set<ButtonVariant>([
   "link",
 ]);
 
-const BUTTON_SIZES = new Set<ButtonSize>([
-  "xs",
-  "sm",
-  "md",
-  "lg",
-  "xl",
-  "icon-xs",
-  "icon-sm",
-  "icon",
-  "icon-lg",
-  "icon-xl",
-]);
+const BUTTON_SIZES = new Set<ButtonSize>(["xs", "sm", "md", "lg", "xl"]);
 
 const TEXT_BUTTON_SIZES = new Set<ButtonSize>(["xs", "sm", "md", "lg", "xl"]);
-const ICON_BUTTON_SIZES = new Set<ButtonSize>([
-  "icon-xs",
-  "icon-sm",
-  "icon",
-  "icon-lg",
-  "icon-xl",
-]);
 
 const BUTTON_GROUP_ORIENTATIONS = new Set<ButtonGroupOrientation>([
   "horizontal",
@@ -71,12 +53,6 @@ export const resolveTextButtonSize = (
   fallback: ButtonSize = "md"
 ): ButtonSize =>
   TEXT_BUTTON_SIZES.has(value as ButtonSize) ? (value as ButtonSize) : fallback;
-
-export const resolveIconButtonSize = (
-  value: string,
-  fallback: ButtonSize = "icon"
-): ButtonSize =>
-  ICON_BUTTON_SIZES.has(value as ButtonSize) ? (value as ButtonSize) : fallback;
 
 export const resolveButtonGroupOrientation = (
   value: string,

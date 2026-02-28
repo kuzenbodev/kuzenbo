@@ -2,7 +2,7 @@
 
 import { Moon01Icon, Sun01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Button } from "@kuzenbo/core/ui/button";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 import { Tooltip } from "@kuzenbo/core/ui/tooltip";
 import { applyThemeToRootElement, persistThemeCookie } from "@kuzenbo/theme";
 import type { ThemePreference } from "@kuzenbo/theme";
@@ -30,9 +30,9 @@ export const ThemeToggle = () => {
     <Tooltip>
       <Tooltip.Trigger
         render={
-          <Button
+          <ActionIcon
             variant="outline"
-            size="icon"
+            size="md"
             aria-label="Toggle color theme"
             onClick={toggle}
           />

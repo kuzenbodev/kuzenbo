@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { cn, tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
 
+import { ActionIcon } from "../action-icon/action-icon";
 import { Button } from "../button/button";
 import type { InputSize } from "../input/input";
 import { InputGroupContext } from "./input-group-context";
@@ -41,6 +42,14 @@ const mapInputGroupSizeToButtonSize = (size?: InputSize) => {
   return "xs";
 };
 
+const isInputGroupActionIconSize = (
+  size: InputGroupButtonProps["size"]
+): size is "icon-sm" | "icon-xs" => size === "icon-sm" || size === "icon-xs";
+
+const mapInputGroupActionIconSizeToActionIconSize = (
+  size: "icon-sm" | "icon-xs"
+) => (size === "icon-sm" ? "sm" : "xs");
+
 const InputGroupButton = ({
   className,
   type = "button",
@@ -50,21 +59,28 @@ const InputGroupButton = ({
 }: InputGroupButtonProps) => {
   const { size: contextSize } = useContext(InputGroupContext);
   const resolvedSize = size ?? mapInputGroupSizeToButtonSize(contextSize);
+  const sharedProps = {
+    className: cn(
+      inputGroupButtonVariants({ size: resolvedSize }),
+      "cursor-clickable",
+      className
+    ),
+    "data-size": resolvedSize,
+    type,
+    variant,
+    ...props,
+  };
 
-  return (
-    <Button
-      className={cn(
-        inputGroupButtonVariants({ size: resolvedSize }),
-        "cursor-clickable",
-        className
-      )}
-      data-size={resolvedSize}
-      size={resolvedSize}
-      type={type}
-      variant={variant}
-      {...props}
-    />
-  );
+  if (isInputGroupActionIconSize(resolvedSize)) {
+    return (
+      <ActionIcon
+        size={mapInputGroupActionIconSizeToActionIconSize(resolvedSize)}
+        {...sharedProps}
+      />
+    );
+  }
+
+  return <Button {...sharedProps} size={resolvedSize} />;
 };
 
 export { InputGroupButton, inputGroupButtonVariants };

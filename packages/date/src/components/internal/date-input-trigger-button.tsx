@@ -28,7 +28,7 @@ const DateInputTriggerButton = ({
       "text-muted-foreground hover:bg-muted hover:text-foreground h-7 w-7 rounded-md border border-transparent",
       className
     )}
-    size="icon-xs"
+    size="xs"
     variant="ghost"
     {...props}
   >

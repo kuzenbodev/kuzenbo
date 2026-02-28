@@ -11,12 +11,12 @@ export const controls = definePlaygroundControls([
     type: "select",
   },
   {
-    defaultValue: "icon",
-    initialValue: "icon",
+    defaultValue: "md",
+    initialValue: "md",
     label: "Size",
     prop: "size",
     type: "size",
-    values: ["icon-xs", "icon-sm", "icon", "icon-lg", "icon-xl"],
+    values: ["xs", "sm", "md", "lg", "xl"],
   },
   {
     defaultValue: false,

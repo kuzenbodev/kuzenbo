@@ -8,65 +8,48 @@ import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { ButtonGroupSizeContext } from "../button-group/button-group-size-context";
+import { buttonSharedVariants } from "../button/button-shared-variants";
 import {
   useComponentSize,
   filterUndefinedProps,
   useKuzenboComponentDefaults,
 } from "../shared/size/size-provider";
 import type { UISize } from "../shared/size/size-system";
-import {
-  resolveDefaultNestedIconClassBySize,
-  resolveFieldHeightClassBySize,
-  resolveFieldTextClassBySize,
-} from "../shared/size/size-system";
+import { resolveDefaultNestedIconClassBySize } from "../shared/size/size-system";
 import { Spinner } from "../spinner/spinner";
-import { buttonSharedVariants } from "./button-shared-variants";
 
-const buttonVariants = tv({
+const actionIconVariants = tv({
   extend: buttonSharedVariants,
-  base: "group/button",
+  base: "group/action-icon",
   defaultVariants: {
     size: "md",
   },
   variants: {
     size: {
-      lg: [
-        resolveFieldHeightClassBySize("lg"),
-        "gap-1.5 px-3 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
-      ],
-      md: [
-        resolveFieldHeightClassBySize("md"),
-        "gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-      ],
+      lg: "size-10",
+      md: "size-9",
       sm: [
-        resolveFieldHeightClassBySize("sm"),
-        resolveDefaultNestedIconClassBySize("sm"),
-        "gap-1 rounded-[min(var(--radius-md),10px)] px-2.5 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
+        "size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg",
       ],
-      xl: [
-        resolveFieldHeightClassBySize("xl"),
-        resolveFieldTextClassBySize("xl"),
-        resolveDefaultNestedIconClassBySize("xl"),
-        "gap-2 px-4 has-data-[icon=inline-end]:pr-3.5 has-data-[icon=inline-start]:pl-3.5",
-      ],
+      xl: ["size-11", resolveDefaultNestedIconClassBySize("xl")],
       xs: [
-        resolveFieldHeightClassBySize("xs"),
-        resolveFieldTextClassBySize("xs"),
+        "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg",
         resolveDefaultNestedIconClassBySize("xs"),
-        "gap-1 rounded-[min(var(--radius-md),8px)] px-2 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
       ],
     },
   },
 });
 
-export type ButtonProps = ComponentProps<typeof ButtonPrimitive> &
-  VariantProps<typeof buttonVariants> & {
+export type ActionIconProps = ComponentProps<typeof ButtonPrimitive> &
+  VariantProps<typeof actionIconVariants> & {
     isLoading?: boolean;
   };
 
-type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>;
+type ActionIconSize = NonNullable<
+  VariantProps<typeof actionIconVariants>["size"]
+>;
 
-const BUTTON_SPINNER_SIZE_BY_BUTTON_SIZE: Record<ButtonSize, UISize> = {
+const ACTION_ICON_SPINNER_SIZE_BY_SIZE: Record<ActionIconSize, UISize> = {
   lg: "lg",
   md: "md",
   sm: "sm",
@@ -74,17 +57,17 @@ const BUTTON_SPINNER_SIZE_BY_BUTTON_SIZE: Record<ButtonSize, UISize> = {
   xs: "xs",
 };
 
-const isButtonSize = (value: unknown): value is ButtonSize =>
-  typeof value === "string" && value in BUTTON_SPINNER_SIZE_BY_BUTTON_SIZE;
+const isActionIconSize = (value: unknown): value is ActionIconSize =>
+  typeof value === "string" && value in ACTION_ICON_SPINNER_SIZE_BY_SIZE;
 
-const ButtonContent = ({
+const ActionIconContent = ({
   children,
   isLoading,
   size,
 }: {
   children: ReactNode;
   isLoading?: boolean;
-  size: ButtonSize;
+  size: ActionIconSize;
 }) => (
   <span className="relative inline-flex items-center justify-center">
     <span
@@ -105,13 +88,14 @@ const ButtonContent = ({
           : "pointer-events-none -translate-y-full opacity-0"
       )}
     >
-      <Spinner size={BUTTON_SPINNER_SIZE_BY_BUTTON_SIZE[size]} />
+      <Spinner size={ACTION_ICON_SPINNER_SIZE_BY_SIZE[size]} />
     </span>
   </span>
 );
 
-const Button = (incomingProps: ButtonProps) => {
-  const componentDefaults = useKuzenboComponentDefaults<ButtonProps>("Button");
+const ActionIcon = (incomingProps: ActionIconProps) => {
+  const componentDefaults =
+    useKuzenboComponentDefaults<ActionIconProps>("ActionIcon");
   const { size: componentDefaultSize, ...componentDefaultsWithoutSize } =
     componentDefaults;
   const {
@@ -128,30 +112,31 @@ const Button = (incomingProps: ButtonProps) => {
   };
 
   const { size: buttonGroupSize } = useContext(ButtonGroupSizeContext);
+
   const resolvedSize = useComponentSize(
-    isButtonSize(size) ? size : undefined,
+    isActionIconSize(size) ? size : undefined,
     buttonGroupSize,
-    isButtonSize(componentDefaultSize) ? componentDefaultSize : undefined
+    isActionIconSize(componentDefaultSize) ? componentDefaultSize : undefined
   );
 
   return (
     <ButtonPrimitive
       className={mergeBaseUIClassName<ButtonPrimitive.State>(
-        cn(buttonVariants({ size: resolvedSize, variant })),
+        cn(actionIconVariants({ size: resolvedSize, variant })),
         className
       )}
       focusableWhenDisabled={Boolean(isLoading)}
       data-loading={isLoading}
       data-size={resolvedSize}
-      data-slot="button"
+      data-slot="action-icon"
       disabled={disabled || isLoading}
       {...props}
     >
-      <ButtonContent isLoading={isLoading} size={resolvedSize}>
+      <ActionIconContent isLoading={isLoading} size={resolvedSize}>
         {children}
-      </ButtonContent>
+      </ActionIconContent>
     </ButtonPrimitive>
   );
 };
 
-export { Button, buttonVariants };
+export { ActionIcon, actionIconVariants };

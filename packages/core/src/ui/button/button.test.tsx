@@ -41,6 +41,13 @@ describe("Button", () => {
     expect(button).toHaveProperty("disabled", true);
   });
 
+  it("disables interaction while loading", () => {
+    render(<Button isLoading>Saving</Button>);
+    const button = screen.getByRole("button");
+    expect(button.dataset.loading).toBe("true");
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+  });
+
   it("passes through aria-label", () => {
     render(<Button aria-label="Close dialog">X</Button>);
     expect(screen.getByLabelText("Close dialog")).toBeDefined();

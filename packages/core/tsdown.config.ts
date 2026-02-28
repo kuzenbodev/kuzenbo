@@ -17,6 +17,7 @@ export default defineConfig({
     "ui/alert": "src/ui/alert/alert.tsx",
     "ui/alert-dialog": "src/ui/alert-dialog/alert-dialog.tsx",
     "ui/announcement": "src/ui/announcement/announcement.tsx",
+    "ui/action-icon": "src/ui/action-icon/action-icon.tsx",
     "ui/aspect-ratio": "src/ui/aspect-ratio/aspect-ratio.tsx",
     "ui/autocomplete": "src/ui/autocomplete/autocomplete.tsx",
     "ui/avatar": "src/ui/avatar/avatar.tsx",

@@ -1,6 +1,6 @@
+import { Button } from "@kuzenbo/core/ui/button";
 import { tv } from "tailwind-variants";
 
-import { DateControlButton } from "../internal/date-control-button";
 import type { TimeAmPmLabels } from "./time-picker-types";
 
 const amPmControlsListVariants = tv({
@@ -34,7 +34,7 @@ const AmPmControlsList = ({
   <div className={amPmControlsListVariants()}>
     <div className="space-y-0.5">
       {[labels.am, labels.pm].map((control) => (
-        <DateControlButton
+        <Button
           className={amPmControlVariants({ active: value === control })}
           key={control}
           size="xs"
@@ -45,7 +45,7 @@ const AmPmControlsList = ({
           }}
         >
           {control}
-        </DateControlButton>
+        </Button>
       ))}
     </div>
   </div>

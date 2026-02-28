@@ -3,20 +3,20 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
-import { Button } from "../button/button";
+import { ActionIcon } from "../action-icon/action-icon";
 import { useCarousel } from "./use-carousel";
-export type CarouselPreviousProps = ComponentProps<typeof Button>;
+export type CarouselPreviousProps = ComponentProps<typeof ActionIcon>;
 
 const CarouselPrevious = ({
   className,
   variant = "outline",
-  size = "icon-sm",
+  size = "sm",
   ...props
 }: CarouselPreviousProps) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
-    <Button
+    <ActionIcon
       className={cn(
         "cursor-clickable absolute touch-manipulation rounded-full",
         orientation === "horizontal"
@@ -33,7 +33,7 @@ const CarouselPrevious = ({
     >
       <HugeiconsIcon icon={ArrowLeft01Icon} strokeWidth={2} />
       <span className="sr-only">Previous slide</span>
-    </Button>
+    </ActionIcon>
   );
 };
 

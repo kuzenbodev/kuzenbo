@@ -1,0 +1,76 @@
+---
+title: "Action Icon"
+description: "Icon-only action control in @kuzenbo/core with shared button variants, plain size tokens, and loading state support."
+---
+
+import { ActionIconPlayground } from "./_components/playground/playground";
+
+# Action Icon
+
+`ActionIcon` is the icon-only action primitive in `@kuzenbo/core`.
+It reuses the same semantic variant styling as `Button`, but uses icon box sizes only (`xs | sm | md | lg | xl`).
+
+Use `ActionIcon` when the action is represented by an icon.
+Use [`Button`](/docs/components/button) when visible text is part of the control.
+
+## Usage
+
+<ActionIconPlayground />
+
+```tsx
+import { SearchIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
+
+export function IconActionExamples() {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <ActionIcon aria-label="Search xs" size="xs" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </ActionIcon>
+      <ActionIcon aria-label="Search sm" size="sm" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </ActionIcon>
+      <ActionIcon aria-label="Search" size="md" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </ActionIcon>
+      <ActionIcon aria-label="Search lg" size="lg" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </ActionIcon>
+      <ActionIcon aria-label="Search xl" size="xl" variant="outline">
+        <HugeiconsIcon icon={SearchIcon} />
+      </ActionIcon>
+    </div>
+  );
+}
+```
+
+## Loading state
+
+Use `isLoading` to swap icon content for a centered spinner and disable interaction.
+
+```tsx
+import { SearchIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
+
+export function LoadingAction() {
+  return (
+    <ActionIcon aria-label="Syncing results" isLoading variant="outline">
+      <HugeiconsIcon icon={SearchIcon} />
+    </ActionIcon>
+  );
+}
+```
+
+## Accessibility notes
+
+- Always provide an explicit accessible name for icon-only controls (`aria-label`).
+- Keep icon-only controls discoverable in toolbars and grouped actions with clear labels/tooltips.
+- When rendering as links (`render={<a .../>}`), remember that anchor elements do not support native `disabled`.
+
+## Related links
+
+- [Button](/docs/components/button)
+- [Button Group](/docs/components/button-group)
+- [Theme Icon](/docs/components/theme-icon)

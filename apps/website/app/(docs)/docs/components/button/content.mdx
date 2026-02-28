@@ -5,7 +5,6 @@ description: "Action buttons, loading states, and grouped controls with @kuzenbo
 
 import { ButtonGroupPlayground } from "./_components/playgrounds/group/playground";
 import { GeneralButtonPlayground } from "./_components/playgrounds/general/playground";
-import { IconButtonPlayground } from "./_components/playgrounds/icon/playground";
 import { ButtonSizePlayground } from "./_components/playgrounds/size/playground";
 import { ButtonInlineContentComponentPreview } from "./_components/previews/inline-content-component-preview";
 import { ButtonUsageComponentPreview } from "./_components/previews/usage-component-preview";
@@ -13,7 +12,8 @@ import { ButtonUsageComponentPreview } from "./_components/previews/usage-compon
 # Button
 
 `Button` is the main action primitive in `@kuzenbo/core`.
-It supports semantic variants, a shared size scale (including icon sizes), and a built-in loading state.
+It supports semantic variants, a shared text-action size scale, and a built-in loading state.
+For icon-only actions, use [`ActionIcon`](/docs/components/action-icon).
 
 Use `Button` for commands that trigger behavior.
 For plain navigation, prefer links unless the interaction is command-like (submit, save, delete, retry, confirm).
@@ -25,44 +25,6 @@ For plain navigation, prefer links unless the interaction is command-like (submi
 ### Playground: Text sizes
 
 <ButtonSizePlayground />
-
-### Playground: Icon sizes
-
-<IconButtonPlayground />
-
-```tsx
-import { SearchIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Button } from "@kuzenbo/core/ui/button";
-
-export function ButtonSizes() {
-  return (
-    <div className="flex flex-wrap gap-2">
-      <Button size="xs">XS</Button>
-      <Button size="sm">SM</Button>
-      <Button size="md">MD</Button>
-      <Button size="lg">LG</Button>
-      <Button size="xl">XL</Button>
-
-      <Button aria-label="Search xs" size="icon-xs" variant="outline">
-        <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-      <Button aria-label="Search sm" size="icon-sm" variant="outline">
-        <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-      <Button aria-label="Search" size="icon" variant="outline">
-        <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-      <Button aria-label="Search lg" size="icon-lg" variant="outline">
-        <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-      <Button aria-label="Search xl" size="icon-xl" variant="outline">
-        <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-    </div>
-  );
-}
-```
 
 ## Leading and trailing content
 

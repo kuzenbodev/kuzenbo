@@ -6,6 +6,7 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { ActionIcon } from "../../action-icon/action-icon";
 import { Button } from "../../button/button";
 import { ButtonGroup } from "../button-group";
 
@@ -62,15 +63,15 @@ export const VerticalGroup: Story = {
 export const IconOnly: Story = {
   render: () => (
     <ButtonGroup>
-      <Button aria-label="Search invoices" size="icon-sm" variant="outline">
+      <ActionIcon aria-label="Search invoices" size="sm" variant="outline">
         <HugeiconsIcon icon={SearchIcon} />
-      </Button>
-      <Button aria-label="Create invoice" size="icon-sm" variant="outline">
+      </ActionIcon>
+      <ActionIcon aria-label="Create invoice" size="sm" variant="outline">
         <HugeiconsIcon icon={Add01Icon} />
-      </Button>
-      <Button aria-label="Clear filters" size="icon-sm" variant="outline">
+      </ActionIcon>
+      <ActionIcon aria-label="Clear filters" size="sm" variant="outline">
         <HugeiconsIcon icon={Cancel01Icon} />
-      </Button>
+      </ActionIcon>
     </ButtonGroup>
   ),
 };

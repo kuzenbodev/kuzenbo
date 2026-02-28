@@ -6,9 +6,9 @@ import { useCallback } from "react";
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
-import { Button } from "../button/button";
+import { ActionIcon } from "../action-icon/action-icon";
 import { useSidebar } from "./use-sidebar";
-export type SidebarTriggerProps = ComponentProps<typeof Button>;
+export type SidebarTriggerProps = ComponentProps<typeof ActionIcon>;
 
 const SidebarTrigger = ({
   className,
@@ -20,7 +20,7 @@ const SidebarTrigger = ({
   const handleClick = useCallback(
     (
       event: Parameters<
-        NonNullable<ComponentProps<typeof Button>["onClick"]>
+        NonNullable<ComponentProps<typeof ActionIcon>["onClick"]>
       >[0]
     ) => {
       onClick?.(event);
@@ -30,18 +30,18 @@ const SidebarTrigger = ({
   );
 
   return (
-    <Button
+    <ActionIcon
       className={cn("cursor-clickable", className)}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       onClick={handleClick}
-      size="icon-sm"
+      size="sm"
       variant="ghost"
       {...props}
     >
       <HugeiconsIcon icon={SidebarLeftIcon} strokeWidth={2} />
       <span className="sr-only">Toggle Sidebar</span>
-    </Button>
+    </ActionIcon>
   );
 };
 

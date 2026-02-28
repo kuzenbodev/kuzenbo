@@ -1,10 +1,11 @@
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
+import { Button } from "@kuzenbo/core/ui/button";
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, ReactNode } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import { DateControlButton } from "../internal/date-control-button";
 import type { CalendarLevel } from "../types";
 import { useDatesContext } from "../use-dates-context";
 import { getDecadeRange } from "./utils/get-decade-range";
@@ -155,12 +156,12 @@ const CalendarHeader = ({
       {...props}
     >
       {withPrevious ? (
-        <DateControlButton
+        <ActionIcon
           aria-label={previousLabel ?? "Previous"}
           className={calendarHeaderButtonVariants()}
           data-direction="previous"
           disabled={previousDisabled}
-          size="icon-sm"
+          size="sm"
           type="button"
           variant="outline"
           onClick={handlePrevious}
@@ -172,9 +173,9 @@ const CalendarHeader = ({
             icon={direction === "rtl" ? ArrowRight01Icon : ArrowLeft01Icon}
             strokeWidth={2}
           />
-        </DateControlButton>
+        </ActionIcon>
       ) : null}
-      <DateControlButton
+      <Button
         aria-label={levelControlAriaLabel}
         className={calendarHeaderLabelVariants()}
         data-static={!hasNextLevel || undefined}
@@ -185,14 +186,14 @@ const CalendarHeader = ({
         onClick={handleLevelClick}
       >
         {headerLabel}
-      </DateControlButton>
+      </Button>
       {withNext ? (
-        <DateControlButton
+        <ActionIcon
           aria-label={nextLabel ?? "Next"}
           className={calendarHeaderButtonVariants()}
           data-direction="next"
           disabled={nextDisabled}
-          size="icon-sm"
+          size="sm"
           type="button"
           variant="outline"
           onClick={handleNext}
@@ -204,7 +205,7 @@ const CalendarHeader = ({
             icon={direction === "rtl" ? ArrowLeft01Icon : ArrowRight01Icon}
             strokeWidth={2}
           />
-        </DateControlButton>
+        </ActionIcon>
       ) : null}
     </div>
   );

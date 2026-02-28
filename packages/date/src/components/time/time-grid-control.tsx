@@ -1,7 +1,7 @@
+import { Button } from "@kuzenbo/core/ui/button";
 import type { ComponentProps } from "react";
 import { tv } from "tailwind-variants";
 
-import { DateControlButton } from "../internal/date-control-button";
 import type { TimeAmPmLabels, TimeFormat } from "./time-picker-types";
 import { TimeValue } from "./time-value";
 
@@ -34,7 +34,7 @@ const TimeGridControl = ({
   withSeconds,
   ...props
 }: TimeGridControlProps) => (
-  <DateControlButton
+  <Button
     className={timeGridControlVariants({ active })}
     size="xs"
     type="button"
@@ -48,7 +48,7 @@ const TimeGridControl = ({
       withSeconds={withSeconds}
     />
     {active ? <span>Selected</span> : null}
-  </DateControlButton>
+  </Button>
 );
 
 export { TimeGridControl };

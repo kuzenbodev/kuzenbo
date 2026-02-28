@@ -1,11 +1,11 @@
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps, FocusEvent } from "react";
 import { useState } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import { DateControlButton } from "../internal/date-control-button";
 import { AmPmInput } from "./am-pm-input";
 import { SpinInput } from "./spin-input";
 import type {
@@ -255,10 +255,10 @@ const TimeInput = ({
       </div>
 
       {clearable && controller.isClearable ? (
-        <DateControlButton
+        <ActionIcon
           aria-label="Clear time"
           className={timeInputClearButtonVariants()}
-          size="icon-xs"
+          size="xs"
           type="button"
           variant="ghost"
           onClick={() => {
@@ -271,7 +271,7 @@ const TimeInput = ({
             icon={Cancel01Icon}
             strokeWidth={2}
           />
-        </DateControlButton>
+        </ActionIcon>
       ) : null}
 
       {name ? (

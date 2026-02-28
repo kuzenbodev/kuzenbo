@@ -80,6 +80,7 @@ export function InstallCommandCopy() {
 
 ## 🧱 Key Surface
 
+- Action controls (`Button`, `ActionIcon`, `ButtonGroup`)
 - Forms and input controls (`Input`, `Select`, `Checkbox`, `RadioGroup`, `Textarea`, `NumberField`)
 - Navigation and layout (`Container`, `Tabs`, `Breadcrumb`, `Sidebar`, `DropdownMenu`)
 - Overlay and feedback (`Dialog`, `Drawer`, `Popover`, `Tooltip`, `Alert`, `Progress`)
@@ -92,6 +93,7 @@ export function InstallCommandCopy() {
 - [Quickstart](https://kuzenbo.com/docs/getting-started/quickstart)
 - [Components Index](https://kuzenbo.com/docs/components)
 - [Button](https://kuzenbo.com/docs/components/button)
+- [Action Icon](https://kuzenbo.com/docs/components/action-icon)
 - [Composition Patterns](https://kuzenbo.com/docs/patterns/composition)
 
 ## 🧭 Compatibility And Status

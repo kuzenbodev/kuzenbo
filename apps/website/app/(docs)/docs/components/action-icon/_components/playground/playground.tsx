@@ -6,17 +6,12 @@ import { controls } from "./controls";
 import { Preview } from "./preview";
 import { template } from "./template";
 
-export const IconButtonPlayground = () => (
+export const ActionIconPlayground = () => (
   <PlaygroundShell
     codeMode="minimal"
     controls={controls}
     preview={
-      <Preview
-        disabled={false}
-        isLoading={false}
-        size="icon"
-        variant="outline"
-      />
+      <Preview disabled={false} isLoading={false} size="md" variant="outline" />
     }
     template={template}
   />

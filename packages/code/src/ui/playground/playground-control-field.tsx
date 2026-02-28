@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@kuzenbo/core/ui/button";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
 import { Input } from "@kuzenbo/core/ui/input";
 import { Select } from "@kuzenbo/core/ui/select";
@@ -222,7 +222,7 @@ export const PlaygroundControlField = ({
         {swatches.length > 0 ? (
           <ButtonGroup>
             {swatches.map((swatchColor) => (
-              <Button
+              <ActionIcon
                 aria-label={`${controlLabel} ${swatchColor}`}
                 className="cursor-clickable border-border h-6 w-6 rounded border p-0"
                 disabled={locked}
@@ -230,7 +230,7 @@ export const PlaygroundControlField = ({
                 onClick={() => {
                   onChange(swatchColor);
                 }}
-                size="icon-xs"
+                size="xs"
                 style={{ backgroundColor: swatchColor }}
                 type="button"
                 variant="outline"

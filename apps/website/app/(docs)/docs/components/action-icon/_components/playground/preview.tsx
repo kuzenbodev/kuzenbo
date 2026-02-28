@@ -2,22 +2,22 @@
 
 import { SearchIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Button } from "@kuzenbo/core/ui/button";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 
 import {
-  resolveButtonVariant,
-  resolveIconButtonSize,
-} from "../shared/button-playground-utils";
+  resolveActionIconSize,
+  resolveActionIconVariant,
+} from "./action-icon-playground-utils";
 import type { State } from "./controls";
 
 export const Preview = ({ disabled, isLoading, size, variant }: State) => (
-  <Button
+  <ActionIcon
     aria-label="Search"
     disabled={disabled}
     isLoading={isLoading}
-    size={resolveIconButtonSize(size)}
-    variant={resolveButtonVariant(variant)}
+    size={resolveActionIconSize(size)}
+    variant={resolveActionIconVariant(variant)}
   >
     <HugeiconsIcon icon={SearchIcon} />
-  </Button>
+  </ActionIcon>
 );

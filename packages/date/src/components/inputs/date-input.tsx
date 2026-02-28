@@ -1,10 +1,10 @@
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { ActionIcon } from "@kuzenbo/core/ui/action-icon";
 /* eslint-disable react-perf/jsx-no-new-function-as-prop */
 import type { ComponentProps } from "react";
 import { useEffect, useMemo, useState } from "react";
 
-import { DateControlButton } from "../internal/date-control-button";
 import { DatePicker } from "../pickers/date-picker";
 import { useDatesContext } from "../use-dates-context";
 import { HiddenDatesInput } from "./hidden-dates-input";
@@ -194,11 +194,11 @@ const DateInput = ({
           onValueChange={setTextValue}
         />
         {clearable && resolvedDate && !disabled && !readOnly ? (
-          <DateControlButton
+          <ActionIcon
             aria-label="Clear date"
             className="text-muted-foreground hover:bg-muted hover:text-foreground absolute top-1/2 right-8 z-10 h-7 w-7 -translate-y-1/2 rounded-md border border-transparent p-0"
             data-slot="date-input-clear-button"
-            size="icon-xs"
+            size="xs"
             type="button"
             variant="ghost"
             onClick={(event) => {
@@ -217,7 +217,7 @@ const DateInput = ({
               icon={Cancel01Icon}
               strokeWidth={2}
             />
-          </DateControlButton>
+          </ActionIcon>
         ) : null}
       </div>
       {name ? (

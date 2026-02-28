@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
+import { ActionIcon } from "../action-icon/action-icon";
 import { Button } from "../button/button";
 import type { ButtonProps } from "../button/button";
 import type { UISize } from "../shared/size/size-system";
@@ -12,14 +13,16 @@ type PaginationLinkProps = {
   size?: UISize;
 } & ComponentProps<"a">;
 
-const PAGINATION_ICON_BUTTON_SIZE_BY_SIZE: Record<UISize, ButtonProps["size"]> =
-  {
-    lg: "icon-lg",
-    md: "icon",
-    sm: "icon-sm",
-    xl: "icon-xl",
-    xs: "icon-xs",
-  };
+const PAGINATION_ICON_SIZE_BY_SIZE: Record<
+  UISize,
+  NonNullable<ComponentProps<typeof ActionIcon>["size"]>
+> = {
+  lg: "lg",
+  md: "md",
+  sm: "sm",
+  xl: "xl",
+  xs: "xs",
+};
 
 const PAGINATION_TEXT_BUTTON_SIZE_BY_SIZE: Record<UISize, ButtonProps["size"]> =
   {
@@ -38,28 +41,39 @@ const PaginationLink = ({
   ...props
 }: PaginationLinkProps) => {
   const resolvedSize = useResolvedPaginationSize(size);
-  const buttonSize =
-    kind === "icon"
-      ? PAGINATION_ICON_BUTTON_SIZE_BY_SIZE[resolvedSize]
-      : PAGINATION_TEXT_BUTTON_SIZE_BY_SIZE[resolvedSize];
+  const resolvedVariant: NonNullable<ButtonProps["variant"]> = isActive
+    ? "outline"
+    : "ghost";
+  const sharedProps = {
+    className: cn("cursor-clickable", className),
+    "data-size": resolvedSize,
+    nativeButton: false as const,
+    render: (
+      <a
+        aria-current={isActive ? "page" : undefined}
+        aria-label="pagination link"
+        data-active={isActive}
+        data-size={resolvedSize}
+        data-slot="pagination-link"
+        {...props}
+      />
+    ),
+    variant: resolvedVariant,
+  };
+
+  if (kind === "icon") {
+    return (
+      <ActionIcon
+        size={PAGINATION_ICON_SIZE_BY_SIZE[resolvedSize]}
+        {...sharedProps}
+      />
+    );
+  }
 
   return (
     <Button
-      className={cn("cursor-clickable", className)}
-      data-size={resolvedSize}
-      nativeButton={false}
-      render={
-        <a
-          aria-current={isActive ? "page" : undefined}
-          aria-label="pagination link"
-          data-active={isActive}
-          data-size={resolvedSize}
-          data-slot="pagination-link"
-          {...props}
-        />
-      }
-      size={buttonSize}
-      variant={isActive ? "outline" : "ghost"}
+      size={PAGINATION_TEXT_BUTTON_SIZE_BY_SIZE[resolvedSize]}
+      {...sharedProps}
     />
   );
 };

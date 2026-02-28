@@ -1,4 +1,4 @@
-@import "@kuzenbo/theme/prebuilt/kuzenbo.css";
+@import "@kuzenbo/theme/default.css";
 @import "@kuzenbo/styles/recommended.css";
 
 @source "./**/*.{ts,tsx,mdx}";
