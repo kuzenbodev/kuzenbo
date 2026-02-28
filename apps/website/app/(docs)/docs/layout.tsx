@@ -1,5 +1,4 @@
 import { Container } from "@kuzenbo/core/ui/container";
-import { Typography } from "@kuzenbo/core/ui/typography";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -31,9 +30,7 @@ export default function Layout({
         </div>
         <div className="grid items-start gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_14rem] xl:gap-8">
           <DocsSidebarSection />
-          <main className="min-w-0 py-4">
-            <Typography.Prose>{children}</Typography.Prose>
-          </main>
+          <main className="min-w-0 py-4">{children}</main>
           <DocsSidebarToc />
         </div>
       </Container>

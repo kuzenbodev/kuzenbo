@@ -105,5 +105,4 @@ export const resetPlaygroundState = <
   TControls extends readonly PlaygroundControl[],
 >(
   options: PlaygroundStateOptions<TControls>
-): PlaygroundStateSnapshot<TControls> =>
-  createPlaygroundStateSnapshot(options);
+): PlaygroundStateSnapshot<TControls> => createPlaygroundStateSnapshot(options);

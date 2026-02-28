@@ -76,22 +76,23 @@ export const usePlaygroundState = <
     setSnapshot(createSnapshot(options));
   }, [options.controls]);
 
-  const setValue = useCallback<
-    UsePlaygroundStateResult<TControls>["setValue"]
-  >((prop, value) => {
-    setSnapshot((current) => setValueSnapshot(current, prop, value));
-  }, []);
-
-  const reset = useCallback<UsePlaygroundStateResult<TControls>["reset"]>(
-    () => {
-      setSnapshot(resetSnapshot(options));
+  const setValue = useCallback<UsePlaygroundStateResult<TControls>["setValue"]>(
+    (prop, value) => {
+      setSnapshot((current) => setValueSnapshot(current, prop, value));
     },
-    [options]
+    []
   );
 
-  const isLocked = useCallback<
-    UsePlaygroundStateResult<TControls>["isLocked"]
-  >((prop) => snapshot.lockedProps.has(prop), [snapshot.lockedProps]);
+  const reset = useCallback<
+    UsePlaygroundStateResult<TControls>["reset"]
+  >(() => {
+    setSnapshot(resetSnapshot(options));
+  }, [options]);
+
+  const isLocked = useCallback<UsePlaygroundStateResult<TControls>["isLocked"]>(
+    (prop) => snapshot.lockedProps.has(prop),
+    [snapshot.lockedProps]
+  );
 
   const getPreviewProps = useCallback<
     UsePlaygroundStateResult<TControls>["getPreviewProps"]
