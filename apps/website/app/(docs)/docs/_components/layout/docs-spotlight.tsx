@@ -3,6 +3,7 @@
 import { Button } from "@kuzenbo/core/ui/button";
 import { Command } from "@kuzenbo/core/ui/command";
 import { Kbd } from "@kuzenbo/core/ui/kbd";
+import type { Route } from "next";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -11,7 +12,7 @@ interface DocsSpotlightAction {
   label: string;
   description: string;
   group: string;
-  href: string;
+  href: Route;
   shortcut: string;
   keywords: string[];
 }

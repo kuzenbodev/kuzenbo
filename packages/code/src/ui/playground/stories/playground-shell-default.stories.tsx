@@ -2,8 +2,7 @@ import type { StoryObj } from "@storybook/react";
 
 import {
   Default as DefaultStory,
-  FullOutputWithPreset as FullOutputWithPresetStory,
-  LockedPresetWithoutCode as LockedPresetWithoutCodeStory,
+  FullOutput as FullOutputStory,
   PreviewOnly as PreviewOnlyStory,
   baseMeta,
 } from "./playground-shell-story-shared";
@@ -17,8 +16,6 @@ type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = DefaultStory;
 
+export const FullOutput: Story = FullOutputStory;
+
 export const PreviewOnly: Story = PreviewOnlyStory;
-
-export const FullOutputWithPreset: Story = FullOutputWithPresetStory;
-
-export const LockedPresetWithoutCode: Story = LockedPresetWithoutCodeStory;

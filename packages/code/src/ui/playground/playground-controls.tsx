@@ -29,10 +29,10 @@ export const PlaygroundControls = <
   lockedProps,
   onChange,
 }: PlaygroundControlsProps<TControls>) => (
-  <Card className="gap-3 py-3" data-slot="playground-controls">
-    <Card.Content className="space-y-4">
+  <Card data-slot="playground-controls">
+    <Card.Content>
       {controls.map((control) => {
-        const prop = control.prop as PlaygroundPropKeyFromControls<TControls>;
+        const { prop } = control;
         const locked = lockedProps?.has(prop) ?? false;
 
         return (
@@ -43,7 +43,7 @@ export const PlaygroundControls = <
             onChange={(nextValue) => {
               onChange(prop, nextValue);
             }}
-            value={state[prop]}
+            value={state[prop as keyof PlaygroundStateFromControls<TControls>]}
           />
         );
       })}

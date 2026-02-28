@@ -3,8 +3,6 @@ import { describe, expect, it } from "bun:test";
 import { act, renderHook } from "@testing-library/react";
 
 import { definePlaygroundControls } from "./playground-control-model";
-import type { PlaygroundStateFromControls } from "./playground-control-model";
-import { definePlaygroundPresets } from "./playground-preset-model";
 import { usePlaygroundState } from "./use-playground-state";
 
 const controls = definePlaygroundControls([
@@ -29,26 +27,11 @@ const controls = definePlaygroundControls([
   },
 ] as const);
 
-const presets = definePlaygroundPresets<
-  PlaygroundStateFromControls<typeof controls>
->([
-  {
-    id: "dense",
-    label: "Dense",
-    locks: ["size"],
-    values: {
-      size: "sm",
-      variant: "outline",
-    },
-  },
-] as const);
-
 describe("usePlaygroundState", () => {
   it("injects state into preview props", () => {
     const { result } = renderHook(() =>
       usePlaygroundState({
         controls,
-        presets,
       })
     );
 
@@ -66,7 +49,6 @@ describe("usePlaygroundState", () => {
     const { result } = renderHook(() =>
       usePlaygroundState({
         controls,
-        presets,
       })
     );
 
@@ -79,48 +61,29 @@ describe("usePlaygroundState", () => {
     expect(result.current.state.children).toBe("Custom label");
   });
 
-  it("applies presets and prevents updates to locked props", () => {
+  it("resets state to initial control values", () => {
     const { result } = renderHook(() =>
       usePlaygroundState({
         controls,
-        presets,
       })
     );
 
     act(() => {
-      result.current.applyPreset("dense");
+      result.current.setValue("variant", "outline");
+      result.current.setValue("children", "Modified");
     });
 
-    expect(result.current.activePresetId).toBe("dense");
-    expect(result.current.isLocked("size")).toBe(true);
-    expect(result.current.state.size).toBe("sm");
+    expect(result.current.state.variant).toBe("outline");
+    expect(result.current.state.children).toBe("Modified");
 
     act(() => {
-      result.current.setValue("size", "lg");
-    });
-
-    expect(result.current.state.size).toBe("sm");
-  });
-
-  it("resets state and supports clearing active preset", () => {
-    const { result } = renderHook(() =>
-      usePlaygroundState({
-        controls,
-        initialPresetId: "dense",
-        presets,
-      })
-    );
-
-    act(() => {
-      result.current.applyPreset(null);
       result.current.reset();
     });
 
-    expect(result.current.activePresetId).toBe("dense");
     expect(result.current.state).toEqual({
       children: "Action",
-      size: "sm",
-      variant: "outline",
+      size: "md",
+      variant: "filled",
     });
   });
 });

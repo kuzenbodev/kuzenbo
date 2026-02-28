@@ -25,4 +25,8 @@
     font-family: var(--font-geist-sans);
     scroll-padding-top: var(--kb-anchor-offset);
   }
+
+  .shiki {
+    background-color: transparent !important;
+  }
 }

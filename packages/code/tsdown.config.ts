@@ -14,8 +14,6 @@ export default defineConfig({
       "src/playground/inject-playground-preview-props.ts",
     "playground/playground-control-model":
       "src/playground/playground-control-model.ts",
-    "playground/playground-preset-model":
-      "src/playground/playground-preset-model.ts",
     "playground/playground-state-model":
       "src/playground/playground-state-model.ts",
     "playground/use-playground-state": "src/playground/use-playground-state.ts",

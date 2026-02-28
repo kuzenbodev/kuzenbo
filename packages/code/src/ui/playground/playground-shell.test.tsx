@@ -9,8 +9,6 @@ import {
 } from "@testing-library/react";
 
 import { definePlaygroundControls } from "../../playground/playground-control-model";
-import { definePlaygroundPresets } from "../../playground/playground-preset-model";
-import type { PlaygroundPreset } from "../../playground/playground-preset-model";
 import { PlaygroundShell } from "./playground-shell";
 
 afterEach(cleanup);
@@ -55,31 +53,12 @@ const controls = definePlaygroundControls([
   },
 ] as const);
 
-const presets = definePlaygroundPresets([
-  {
-    id: "outlineLocked",
-    label: "Outline locked",
-    locks: ["variant"],
-    values: {
-      variant: "outline",
-    },
-  },
-] as const satisfies readonly PlaygroundPreset<
-  {
-    disabled: boolean;
-    variant: string;
-    children: string;
-  },
-  "outlineLocked"
->[]);
-
 describe("PlaygroundShell", () => {
   it("injects state into preview and updates code output in minimal mode", async () => {
     render(
       <PlaygroundShell
         codeMode="minimal"
         controls={controls}
-        presets={presets}
         preview={
           <DemoPreview disabled={false} variant="filled" children="Action" />
         }
@@ -98,27 +77,5 @@ describe("PlaygroundShell", () => {
       expect(screen.getByRole("button", { name: "Submit" })).toBeDefined();
     });
     expect(screen.getByText(/<Button[\s\S]*Submit/)).toBeDefined();
-  });
-
-  it("applies preset locking to controls", () => {
-    render(
-      <PlaygroundShell
-        codeMode="minimal"
-        controls={controls}
-        presets={presets}
-        preview={
-          <DemoPreview disabled={false} variant="filled" children="Action" />
-        }
-        template="<Button{{props}}>{{children}}</Button>"
-      />
-    );
-
-    fireEvent.click(screen.getByRole("button", { name: /Outline locked/i }));
-
-    const variantSelect = screen.getByRole("combobox", { name: "Variant" });
-    expect(variantSelect).toHaveProperty("disabled", true);
-    expect(
-      screen.getByText('<Button variant="outline">Action</Button>')
-    ).toBeDefined();
   });
 });

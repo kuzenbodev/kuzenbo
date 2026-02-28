@@ -7,7 +7,6 @@ const CLIENT_DIRECTIVE_PATTERN = /^["']use client["'];/;
 const PLAYGROUND_CLIENT_BOUNDARY_ENTRYPOINTS: string[] = [
   "../ui/playground/playground-control-field.tsx",
   "../ui/playground/playground-controls.tsx",
-  "../ui/playground/playground-presets.tsx",
   "../ui/playground/index.ts",
 ];
 

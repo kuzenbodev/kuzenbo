@@ -55,6 +55,7 @@ export const CodeBlock = ({
           className={body()}
           data-language={language}
           data-slot="code-block-body"
+          suppressHydrationWarning
           // oxlint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: highlightedHtml }}
         />

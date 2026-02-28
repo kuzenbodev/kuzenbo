@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type { CSSProperties } from "react";
 
 import { definePlaygroundControls } from "../../../playground/playground-control-model";
-import type { PlaygroundStateFromControls } from "../../../playground/playground-control-model";
-import { definePlaygroundPresets } from "../../../playground/playground-preset-model";
 import { PlaygroundShell } from "../playground-shell";
 
 const controls = definePlaygroundControls([
@@ -55,45 +53,6 @@ const controls = definePlaygroundControls([
     prop: "size",
     type: "size",
     values: ["xs", "sm", "md", "lg", "xl"],
-  },
-] as const);
-
-const presets = definePlaygroundPresets<
-  PlaygroundStateFromControls<typeof controls>
->([
-  {
-    id: "outlineLocked",
-    label: "Outline locked",
-    locks: ["variant", "size"],
-    values: {
-      children: "Open docs",
-      color: "#0ea5e9",
-      radius: 4,
-      size: "sm",
-      variant: "outline",
-    },
-  },
-  {
-    id: "filledLarge",
-    label: "Filled large",
-    values: {
-      children: "Ship release",
-      color: "#22c55e",
-      radius: 14,
-      size: "lg",
-      variant: "filled",
-    },
-  },
-  {
-    id: "ghostCompact",
-    label: "Ghost compact",
-    values: {
-      children: "Cancel deploy",
-      color: "#ef4444",
-      radius: 6,
-      size: "xs",
-      variant: "ghost",
-    },
   },
 ] as const);
 
@@ -167,7 +126,6 @@ const PlaygroundDemoPreview = ({
 
 interface PlaygroundShellDemoProps {
   codeMode?: "minimal" | "full";
-  initialPresetId?: "outlineLocked" | "filledLarge" | "ghostCompact" | null;
   showCode?: boolean;
 }
 
@@ -175,14 +133,11 @@ const TEMPLATE = `<Button\n  {{props}}\n>\n  {{children}}\n</Button>`;
 
 export const PlaygroundShellDemo = ({
   codeMode = "minimal",
-  initialPresetId = null,
   showCode = true,
 }: PlaygroundShellDemoProps) => (
   <PlaygroundShell
     codeMode={codeMode}
     controls={controls}
-    initialPresetId={initialPresetId}
-    presets={presets}
     preview={
       <PlaygroundDemoPreview
         children="Ship release"
@@ -218,29 +173,8 @@ export const FullOutput: Story = {
   },
 };
 
-export const WithLockedPreset: Story = {
-  args: {
-    initialPresetId: "outlineLocked",
-  },
-};
-
 export const PreviewOnly: Story = {
   args: {
-    initialPresetId: "ghostCompact",
-    showCode: false,
-  },
-};
-
-export const FullOutputWithPreset: Story = {
-  args: {
-    codeMode: "full",
-    initialPresetId: "filledLarge",
-  },
-};
-
-export const LockedPresetWithoutCode: Story = {
-  args: {
-    initialPresetId: "outlineLocked",
     showCode: false,
   },
 };

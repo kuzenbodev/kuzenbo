@@ -29,7 +29,6 @@
   "exports": {
     "./playground/inject-playground-preview-props": "./src/playground/inject-playground-preview-props.ts",
     "./playground/playground-control-model": "./src/playground/playground-control-model.ts",
-    "./playground/playground-preset-model": "./src/playground/playground-preset-model.ts",
     "./playground/playground-state-model": "./src/playground/playground-state-model.ts",
     "./playground/use-playground-state": "./src/playground/use-playground-state.ts",
     "./shiki/highlight-code": "./src/shiki/highlight-code.ts",
@@ -64,7 +63,6 @@
     "exports": {
       "./playground/inject-playground-preview-props": "./dist/playground/inject-playground-preview-props.js",
       "./playground/playground-control-model": "./dist/playground/playground-control-model.js",
-      "./playground/playground-preset-model": "./dist/playground/playground-preset-model.js",
       "./playground/playground-state-model": "./dist/playground/playground-state-model.js",
       "./playground/use-playground-state": "./dist/playground/use-playground-state.js",
       "./shiki/highlight-code": "./dist/shiki/highlight-code.js",

@@ -7,6 +7,7 @@ description: "Build code-focused docs and product surfaces with @kuzenbo/code bl
 
 `@kuzenbo/code` is the developer-experience package for docs, onboarding, and code-heavy product surfaces.
 It includes Shiki-backed highlighting, install-command UX, review views (diff/annotations/terminal), and a playground system.
+In the Kuzenbo `/docs` site, markdown fenced code blocks are rendered through Shiki with a language label and copy action by default.
 
 ## Installation
 
@@ -33,7 +34,6 @@ import { PackageManagerTabs } from "@kuzenbo/code/ui/package-manager-tabs";
 import { Playground } from "@kuzenbo/code/ui/playground";
 import { TerminalBlock } from "@kuzenbo/code/ui/terminal-block";
 import { definePlaygroundControls } from "@kuzenbo/code/playground/playground-control-model";
-import { definePlaygroundPresets } from "@kuzenbo/code/playground/playground-preset-model";
 import {
   highlightCode,
   highlightInlineCode,
@@ -46,7 +46,7 @@ import {
 - `CodeTabs`, `PackageManagerTabs`, `InstallCommandSnippet`: alternate variants and package-manager install flows.
 - `CodeWindow`, `CodePreview`: screenshot-like shell and preview/code/split composition.
 - `CodeLineHighlight`, `CodeDiffBlock`, `TerminalBlock`, `FileTree`: review and teaching docs primitives.
-- `Playground.Root`, `Playground.Controls`, `Playground.PresetBar`, `Playground.Code`: generic live-preview playground building blocks.
+- `Playground.Root`, `Playground.Controls`, `Playground.Code`: generic live-preview playground building blocks.
 
 ## Display Example
 
@@ -189,7 +189,6 @@ export function ReviewExample() {
 
 import { Playground } from "@kuzenbo/code/ui/playground";
 import { definePlaygroundControls } from "@kuzenbo/code/playground/playground-control-model";
-import { definePlaygroundPresets } from "@kuzenbo/code/playground/playground-preset-model";
 import { Button } from "@kuzenbo/core/ui/button";
 
 const controls = definePlaygroundControls([
@@ -210,26 +209,12 @@ const controls = definePlaygroundControls([
   },
 ] as const);
 
-const presets = definePlaygroundPresets([
-  {
-    id: "cta",
-    label: "CTA",
-    values: { children: "Get started", variant: "default" },
-  },
-  {
-    id: "danger",
-    label: "Danger",
-    values: { children: "Delete", variant: "danger" },
-  },
-] as const);
-
 export function PlaygroundExample() {
   return (
     <Playground.Root
       codeMode="minimal"
       controls={controls}
       preview={<Button />}
-      presets={presets}
       template={`import { Button } from "@kuzenbo/core";
 
 export function Demo() {
@@ -286,6 +271,7 @@ export function ExplorerExample() {
 - `highlightCode`: server-side block highlighting for docs and generated pages.
 - `highlightInlineCode`: inline token highlighting for compact code references.
 - `highlightCodeToHtml`: direct HTML generation when a raw highlighted string is required.
+- `/docs` markdown fences use this highlighting pipeline automatically through the global MDX `pre`/`code` component overrides.
 
 ## Breaking Changes
 

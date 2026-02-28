@@ -79,9 +79,9 @@ export const PlaygroundControlField = ({
     const options = normalizeOptions(control.options, true);
 
     return (
-      <div className="space-y-2">
-        <Typography.Small>{controlLabel}</Typography.Small>
-        <Select<string>
+      <div>
+        <Typography.Small className="p-0">{controlLabel}</Typography.Small>
+        <Select
           disabled={locked}
           onValueChange={(nextValue) => {
             onChange(nextValue);
@@ -119,7 +119,7 @@ export const PlaygroundControlField = ({
         : fallbackValue;
 
     return (
-      <fieldset className="space-y-2" disabled={locked}>
+      <fieldset disabled={locked}>
         <Typography.Small render={(props) => <legend {...props} />}>
           {controlLabel}
         </Typography.Small>
@@ -196,7 +196,7 @@ export const PlaygroundControlField = ({
     const swatches = control.swatches ?? [];
 
     return (
-      <div className="space-y-2">
+      <div>
         <div className="text-foreground flex items-center justify-between gap-3 text-sm">
           <Typography.Small>{controlLabel}</Typography.Small>
           <Input

@@ -12,12 +12,6 @@ export {
   type PlaygroundControlsProps,
 } from "./playground-controls";
 export {
-  PlaygroundPresets,
-  PlaygroundPresets as PlaygroundPresetBar,
-  type PlaygroundPresetsProps,
-  type PlaygroundPresetsProps as PlaygroundPresetBarProps,
-} from "./playground-presets";
-export {
   PlaygroundPreview,
   type PlaygroundPreviewProps,
 } from "./playground-preview";

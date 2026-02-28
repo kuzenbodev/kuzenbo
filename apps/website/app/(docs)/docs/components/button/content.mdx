@@ -22,7 +22,6 @@ For plain navigation, prefer links unless the interaction is command-like (submi
 ## Playground: General
 
 Use the interactive controls to preview `variant`, `size`, `disabled`, and `isLoading`.
-Presets mirror common production actions (`Default`, `Danger`, `Loading`).
 
 <GeneralButtonPlayground />
 
@@ -259,21 +258,6 @@ Direct child slots should be Kuzenbo controls (`Button`, `ButtonGroupText`, `But
 
 <ButtonGroupPlayground />
 
-```tsx
-import { Button } from "@kuzenbo/core/ui/button";
-import { ButtonGroup } from "@kuzenbo/core/ui/button-group";
-
-export function HorizontalGroup() {
-  return (
-    <ButtonGroup>
-      <Button variant="outline">Undo</Button>
-      <Button variant="outline">Redo</Button>
-      <Button variant="outline">Publish</Button>
-    </ButtonGroup>
-  );
-}
-```
-
 ### Vertical groups and section slots
 
 ```tsx
@@ -300,80 +284,3 @@ export function VerticalGroup() {
   );
 }
 ```
-
-## Size precedence
-
-Button size resolution follows this order:
-
-1. `Button` `size` prop
-2. parent `ButtonGroup` size context
-3. provider-level component defaults
-4. global UI size
-5. fallback `md`
-
-This keeps grouped controls consistent by default while still allowing per-button overrides.
-
-## API reference
-
-### `Button`
-
-- Built on `@base-ui/react/button` and forwards primitive props (`type`, `onClick`, `aria-*`, `render`, etc.).
-- `variant?: "default" | "outline" | "secondary" | "ghost" | "danger" | "link"` (default: `"default"`).
-- `size?: "xs" | "sm" | "md" | "lg" | "xl" | "icon-xs" | "icon-sm" | "icon" | "icon-lg" | "icon-xl"` (default: resolved `md`).
-- `isLoading?: boolean` toggles spinner/content transition and disables interaction.
-- `disabled?: boolean` disables button interaction.
-- `buttonVariants` is exported for custom wrappers and composition.
-
-### `ButtonGroup`
-
-- Root layout primitive for grouped controls.
-- `orientation?: "horizontal" | "vertical"` (default: `"horizontal"`).
-- `size?: "xs" | "sm" | "md" | "lg" | "xl"` (default: resolved `md`).
-- Forwards native `div` props.
-- Exposes static members: `ButtonGroup.Separator`, `ButtonGroup.Text`.
-- `buttonGroupVariants` is exported for composition.
-
-### `ButtonGroupSeparator`
-
-- Wrapper over `Separator`.
-- Default `orientation="vertical"` for horizontal groups.
-- Accepts optional `size` override; otherwise inherits group size.
-
-### `ButtonGroupText`
-
-- Non-button slot for labels/status in a grouped action row.
-- Supports Base UI `render` composition.
-- Accepts optional `size` override; otherwise inherits group size.
-
-## Accessibility
-
-- Icon-only buttons must include an accessible name (`aria-label`).
-- For grouped controls, add `role="group"` and a descriptive `aria-label` when the cluster represents one logical action set.
-- Keep visible focus styles; do not remove focus ring behavior from interactive surfaces.
-- Use semantic button `type` in forms (`submit`, `button`, `reset`) to avoid accidental submits.
-
-## SSR and RSC notes
-
-- `Button` and `ButtonGroup` are interactive client components.
-- They can be rendered from server components, but usage should stay within client-interactive boundaries when attaching handlers/state.
-
-## Styling and tokens
-
-- Default styles use semantic tokens (`bg-primary`, `text-primary-foreground`, `border-border`, `bg-danger`).
-- Extend with semantic utilities; avoid raw Tailwind palette classes.
-- Use `className` for one-off layout adjustments (`w-full`, spacing, wrapping).
-
-## Troubleshooting
-
-- Group borders/radii look broken: ensure grouped controls are direct slot children, not wrapped in extra `<div>` elements.
-- Icon-only button appears inaccessible: add `aria-label`.
-- Loading button still appears clickable: verify `isLoading` is set on the same `Button` instance receiving the click handler.
-- Vertical separator looks wrong in a vertical group: set `ButtonGroupSeparator orientation="horizontal"`.
-- Size is not what you expect inside group: explicit button `size` overrides inherited group size.
-
-## Related docs
-
-- [Button Group](/docs/components/button-group)
-- [Spinner](/docs/components/spinner)
-- [Theme Icon](/docs/components/theme-icon)
-- [Components index](/docs/components)

@@ -12,7 +12,7 @@ Developer-experience primitives for code blocks, docs, and playground-style UI.
 - 📦 Install UX (`PackageManagerTabs`, `InstallCommandSnippet`)
 - 🪟 Visual shells (`CodeWindow`, `CodePreview`)
 - 🧪 Review tools (`CodeDiffBlock`, `CodeLineHighlight`, `TerminalBlock`, `FileTree`)
-- 🎛️ Playground system (`Playground.Root`, `Playground.Controls`, `Playground.PresetBar`, `Playground.Code`)
+- 🎛️ Playground system (`Playground.Root`, `Playground.Controls`, `Playground.Code`)
 - 🌈 Shiki server utilities (`highlightCode`, `highlightInlineCode`, `highlightCodeToHtml`)
 
 ## 📦 Install (When Available)
