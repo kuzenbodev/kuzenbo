@@ -135,11 +135,29 @@ jobs:
       - name: Validate release state
         run: bun run release:validate -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
 
-      - name: Run quality gates
-        run: bun scripts/release/quality.ts
+      - name: Run quality gate (audit)
+        run: bun audit
+        timeout-minutes: 1
+
+      - name: Run quality gate (lint)
+        run: bun run lint
+        timeout-minutes: 1
+
+      - name: Run quality gate (typecheck)
+        run: bun run typecheck
+        timeout-minutes: 1
+
+      - name: Run quality gate (test)
+        run: bun run test
+        timeout-minutes: 1
+
+      - name: Run quality gate (boundaries)
+        run: bun run boundaries
+        timeout-minutes: 1
 
       - name: Build all workspaces
         run: bun run build
+        timeout-minutes: 3
 
       - name: Pack dry-run allowlist packages
         run: bun run release:dry-run -- --version "${{ inputs.version }}" --channel "${{ inputs.channel }}" --ref "${{ inputs.ref }}"
