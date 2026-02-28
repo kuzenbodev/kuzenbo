@@ -14,101 +14,13 @@ import { ButtonUsageComponentPreview } from "./_components/previews/usage-compon
 
 `Button` is the main action primitive in `@kuzenbo/core`.
 It supports semantic variants, a shared size scale (including icon sizes), and a built-in loading state.
-This page also covers grouped composition with `ButtonGroup`, `ButtonGroupSeparator`, and `ButtonGroupText`.
 
 Use `Button` for commands that trigger behavior.
 For plain navigation, prefer links unless the interaction is command-like (submit, save, delete, retry, confirm).
 
-## Playground: General
-
-Use the interactive controls to preview `variant`, `size`, `disabled`, and `isLoading`.
-
-<GeneralButtonPlayground />
-
-## Installation
-
-```npm
-npm i @kuzenbo/core @kuzenbo/theme
-```
-
-Pair `@kuzenbo/core` and `@kuzenbo/theme` in almost all app setups so component tokens and runtime sizing stay aligned.
-
-## Import
-
-```tsx
-import { Button, buttonVariants } from "@kuzenbo/core/ui/button";
-import {
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-  buttonGroupVariants,
-} from "@kuzenbo/core/ui/button-group";
-```
-
 ## Usage
 
-Use the component preview below for a quick baseline usage example with linked source.
-
-<ButtonUsageComponentPreview />
-
-## Full width
-
-`Button` does not have a dedicated `fullWidth` prop.
-Use layout utilities through `className`:
-
-```tsx
-import { Button } from "@kuzenbo/core/ui/button";
-
-export function FullWidthButton() {
-  return <Button className="w-full">Continue</Button>;
-}
-```
-
-## Variants
-
-Supported `variant` values:
-
-- `default`
-- `outline`
-- `secondary`
-- `ghost`
-- `danger`
-- `link`
-
-```tsx
-import { Button } from "@kuzenbo/core/ui/button";
-
-export function ButtonVariants() {
-  return (
-    <div className="flex flex-wrap gap-2">
-      <Button variant="default">Default</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="danger">Danger</Button>
-      <Button variant="link">Link</Button>
-    </div>
-  );
-}
-```
-
-## Sizes
-
-Text button sizes:
-
-- `xs`
-- `sm`
-- `md` (default)
-- `lg`
-- `xl`
-
-Icon button sizes:
-
-- `icon-xs`
-- `icon-sm`
-- `icon` (medium icon button)
-- `icon-lg`
-- `icon-xl`
+<GeneralButtonPlayground />
 
 ### Playground: Text sizes
 
