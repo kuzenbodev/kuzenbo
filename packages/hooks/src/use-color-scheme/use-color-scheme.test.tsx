@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "bun:test";
+import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 
 import { render } from "@testing-library/react";
 
@@ -18,6 +18,11 @@ describe("@kuzenbo/hooks/use-color-scheme", () => {
   beforeEach(() => {
     trace = vi.fn();
     window.matchMedia = retainMatchMedia;
+  });
+
+  afterEach(() => {
+    window.matchMedia = retainMatchMedia;
+    vi.restoreAllMocks();
   });
 
   const expectTraceCall = (index: number, value: "dark" | "light"): void => {

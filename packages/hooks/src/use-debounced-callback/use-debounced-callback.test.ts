@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "bun:test";
+import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 
 import { renderHook } from "@testing-library/react";
 
@@ -7,6 +7,12 @@ import { useDebouncedCallback } from "./use-debounced-callback";
 describe("@kuzenbo/hooks/use-debounced-callback", () => {
   beforeEach(() => {
     vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.clearAllTimers();
+    vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   it("debounces callback with given delay", () => {

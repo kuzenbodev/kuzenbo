@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "bun:test";
+import { afterEach, beforeEach, describe, expect, it, vi } from "bun:test";
 
 import { act, renderHook } from "@testing-library/react";
 
@@ -7,6 +7,12 @@ import { useIdle } from "./use-idle";
 describe("@kuzenbo/hooks/use-idle", () => {
   beforeEach(() => {
     vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.clearAllTimers();
+    vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   it("correct initial return value", () => {
@@ -24,10 +30,11 @@ describe("@kuzenbo/hooks/use-idle", () => {
 
     expect(hook.result.current).toBeFalsy();
     expect(spy).toHaveBeenCalledTimes(1);
-    setTimeout(() => {
-      expect(hook.result.current).toBeTruthy();
-      expect(spy).toHaveBeenCalledTimes(2);
-    }, 1001);
+    act(() => {
+      vi.advanceTimersByTime(1001);
+    });
+    expect(hook.result.current).toBeTruthy();
+    expect(spy).toHaveBeenCalledTimes(2);
   });
 
   it("returns correct value on firing keydown event", () => {
@@ -39,9 +46,10 @@ describe("@kuzenbo/hooks/use-idle", () => {
     });
 
     expect(hook.result.current).toBeFalsy();
-    setTimeout(() => {
-      expect(hook.result.current).toBeTruthy();
-    }, 1001);
+    act(() => {
+      vi.advanceTimersByTime(1001);
+    });
+    expect(hook.result.current).toBeTruthy();
   });
 
   it("correct return value on mouse events", () => {
@@ -53,9 +61,10 @@ describe("@kuzenbo/hooks/use-idle", () => {
     });
 
     expect(hook.result.current).toBeFalsy();
-    setTimeout(() => {
-      expect(hook.result.current).toBeTruthy();
-    }, 1001);
+    act(() => {
+      vi.advanceTimersByTime(1001);
+    });
+    expect(hook.result.current).toBeTruthy();
   });
 
   it("correct return value on touch events", () => {
@@ -67,9 +76,10 @@ describe("@kuzenbo/hooks/use-idle", () => {
     });
     expect(hook.result.current).toBeFalsy();
 
-    setTimeout(() => {
-      expect(hook.result.current).toBeTruthy();
-    }, 1001);
+    act(() => {
+      vi.advanceTimersByTime(1001);
+    });
+    expect(hook.result.current).toBeTruthy();
   });
 
   it("correct return value on multiple consecutive events", () => {
@@ -81,16 +91,18 @@ describe("@kuzenbo/hooks/use-idle", () => {
     });
     expect(hook.result.current).toBeFalsy();
 
-    setTimeout(() => {
-      expect(hook.result.current).toBeTruthy();
-    }, 1001);
+    act(() => {
+      vi.advanceTimersByTime(1001);
+    });
+    expect(hook.result.current).toBeTruthy();
     act(() => {
       document.dispatchEvent(new MouseEvent("mousemove"));
     });
     expect(hook.result.current).toBeFalsy();
 
-    setTimeout(() => {
-      expect(hook.result.current).toBeTruthy();
-    }, 1001);
+    act(() => {
+      vi.advanceTimersByTime(1001);
+    });
+    expect(hook.result.current).toBeTruthy();
   });
 });
