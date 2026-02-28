@@ -30,9 +30,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "typecheck": "tsgo --noEmit --declaration false --declarationMap false",
-    "test": "bun test",
-    "test:watch": "bun test --watch"
+    "typecheck": "tsgo --noEmit --declaration false --declarationMap false"
   },
   "dependencies": {
     "@kuzenbo/styles": "workspace:*",
