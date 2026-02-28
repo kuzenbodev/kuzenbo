@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/theme",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "description": "Theme tokens, runtime, and prebuilt themes for Kuzenbo.",
   "keywords": [

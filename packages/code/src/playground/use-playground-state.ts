@@ -19,9 +19,9 @@ import type {
   PlaygroundStateSnapshot,
 } from "./playground-state-model";
 
-export interface UsePlaygroundStateOptions<
+export type UsePlaygroundStateOptions<
   TControls extends readonly PlaygroundControl[],
-> extends PlaygroundStateOptions<TControls> {}
+> = PlaygroundStateOptions<TControls>;
 
 export interface UsePlaygroundStateResult<
   TControls extends readonly PlaygroundControl[],

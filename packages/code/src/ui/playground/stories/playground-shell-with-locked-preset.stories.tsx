@@ -1,7 +1,7 @@
 import type { StoryObj } from "@storybook/react";
 
 import {
-  WithLockedPreset as WithLockedPresetStory,
+  Default as WithLockedPresetStory,
   baseMeta,
 } from "./playground-shell-story-shared";
 
