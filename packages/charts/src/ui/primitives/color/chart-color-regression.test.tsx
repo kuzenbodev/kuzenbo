@@ -81,6 +81,9 @@ describe("Chart color regression", () => {
       "var(--color-chart-1)"
     );
     expect(registry.byKey.epsilon?.colorByTheme.light).toBe(
+      "var(--color-chart-4)"
+    );
+    expect(registry.byKey.gamma?.colorByTheme.light).toBe(
       "var(--color-chart-5)"
     );
     expect(registry.byKey.zeta?.colorByTheme.light).toBe(

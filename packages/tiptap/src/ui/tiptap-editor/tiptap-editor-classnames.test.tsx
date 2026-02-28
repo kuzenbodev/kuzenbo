@@ -55,11 +55,11 @@ describe("TiptapEditor className contract", () => {
 
     const toolbar = screen.getByTestId("toolbar");
     expect(toolbar.className.includes("kb-tiptap-toolbar")).toBe(true);
+    expect(toolbar.className.includes("sticky")).toBe(true);
     expect(
-      toolbar.className.includes(
-        "sticky top-(--kb-tiptap-toolbar-offset) z-elevated"
-      )
+      toolbar.className.includes("top-(--kb-tiptap-toolbar-offset)")
     ).toBe(true);
+    expect(toolbar.className.includes("z-elevated")).toBe(true);
     expect(
       toolbar.className.includes("bg-transparent p-0 shadow-none outline-none")
     ).toBe(true);

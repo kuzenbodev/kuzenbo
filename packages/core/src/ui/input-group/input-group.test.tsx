@@ -183,7 +183,7 @@ describe("InputGroup", () => {
     const input = screen.getByPlaceholderText("Focus target");
 
     expect(addon).not.toBeNull();
-    fireEvent.mouseDown(addon as HTMLElement);
+    fireEvent.pointerDown(addon as HTMLElement);
 
     expect(document.activeElement).toBe(input);
   });
