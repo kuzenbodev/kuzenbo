@@ -59,12 +59,12 @@ const SnapPointsDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/SnapPoints",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/SnapPoints",
 };
 
 export default meta;

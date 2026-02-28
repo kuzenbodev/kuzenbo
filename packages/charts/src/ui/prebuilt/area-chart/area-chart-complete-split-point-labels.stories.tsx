@@ -30,9 +30,9 @@ const AreaChartCompleteSplitPointLabelsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Area/SplitPointLabels",
   component: AreaChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Area/SplitPointLabels",
 } satisfies Meta<typeof AreaChart>;
 
 type Story = StoryObj<typeof AreaChart>;

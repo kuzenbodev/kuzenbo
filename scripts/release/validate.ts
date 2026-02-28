@@ -21,12 +21,12 @@ export const runReleaseValidation = ({
 
   validateReleaseState({
     config,
-    packages,
     options: {
-      version,
       channel,
       ref: resolvedRef,
+      version,
     },
+    packages,
   });
 
   return resolvedRef;
@@ -43,9 +43,9 @@ if (import.meta.main) {
   }
 
   const resolvedRef = runReleaseValidation({
-    version,
     channel: channelArg as ReleaseChannel,
     ref: refArg,
+    version,
   });
 
   console.log(

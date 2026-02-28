@@ -17,22 +17,22 @@ const variantOptions = [
 const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Badge",
-  component: Badge,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
-    variant: {
-      control: "select",
-      options: variantOptions,
-    },
     size: {
       control: "select",
       options: sizeOptions,
     },
+    variant: {
+      control: "select",
+      options: variantOptions,
+    },
   },
+  component: Badge,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/Badge",
 } satisfies Meta<typeof Badge>;
 
 type Story = StoryObj<typeof baseMeta>;

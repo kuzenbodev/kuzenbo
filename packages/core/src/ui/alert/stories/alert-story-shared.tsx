@@ -4,15 +4,15 @@ import { Button } from "../../button/button";
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "../alert";
 
 export const baseMeta = {
-  title: "Components/Alert",
-  component: Alert,
-  tags: ["autodocs"],
-  subcomponents: {
-    AlertTitle,
-    AlertDescription,
-    AlertAction,
-  },
   argTypes: {
+    appearance: {
+      control: "select",
+      options: ["default", "subtle", "outline", "inverted"],
+    },
+    size: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
     variant: {
       control: "select",
       options: [
@@ -25,15 +25,15 @@ export const baseMeta = {
         "success",
       ],
     },
-    appearance: {
-      control: "select",
-      options: ["default", "subtle", "outline", "inverted"],
-    },
-    size: {
-      control: "select",
-      options: ["xs", "sm", "md", "lg", "xl"],
-    },
   },
+  component: Alert,
+  subcomponents: {
+    AlertAction,
+    AlertDescription,
+    AlertTitle,
+  },
+  tags: ["autodocs"],
+  title: "Components/Alert",
 } satisfies Meta<typeof Alert>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -69,6 +69,7 @@ const StoryAlertIcon = () => (
 );
 
 export const Default: Story = {
+  args: { variant: "default" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -78,10 +79,10 @@ export const Default: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { variant: "default" },
 };
 
 export const Danger: Story = {
+  args: { variant: "danger" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -91,10 +92,10 @@ export const Danger: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { variant: "danger" },
 };
 
 export const Primary: Story = {
+  args: { variant: "primary" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -104,10 +105,10 @@ export const Primary: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { variant: "primary" },
 };
 
 export const Secondary: Story = {
+  args: { variant: "secondary" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -117,10 +118,10 @@ export const Secondary: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { variant: "secondary" },
 };
 
 export const Warning: Story = {
+  args: { variant: "warning" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -130,10 +131,10 @@ export const Warning: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { variant: "warning" },
 };
 
 export const Success: Story = {
+  args: { variant: "success" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -143,10 +144,10 @@ export const Success: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { variant: "success" },
 };
 
 export const Info: Story = {
+  args: { variant: "info" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -154,10 +155,10 @@ export const Info: Story = {
       <Alert.Description>This feature is currently in beta.</Alert.Description>
     </Alert>
   ),
-  args: { variant: "info" },
 };
 
 export const Subtle: Story = {
+  args: { appearance: "subtle", variant: "warning" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -167,10 +168,10 @@ export const Subtle: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { appearance: "subtle", variant: "warning" },
 };
 
 export const Outline: Story = {
+  args: { appearance: "outline", variant: "primary" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -180,10 +181,10 @@ export const Outline: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { appearance: "outline", variant: "primary" },
 };
 
 export const Inverted: Story = {
+  args: { appearance: "inverted", variant: "success" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -193,10 +194,10 @@ export const Inverted: Story = {
       </Alert.Description>
     </Alert>
   ),
-  args: { appearance: "inverted", variant: "success" },
 };
 
 export const WithAction: Story = {
+  args: { variant: "default" },
   render: (args) => (
     <Alert {...args}>
       <StoryAlertIcon />
@@ -211,7 +212,6 @@ export const WithAction: Story = {
       </Alert.Action>
     </Alert>
   ),
-  args: { variant: "default" },
 };
 
 export const AllCombinations: Story = {

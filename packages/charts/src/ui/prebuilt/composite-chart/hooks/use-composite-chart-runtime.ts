@@ -85,13 +85,13 @@ const useCompositeChartRuntime = <
   return {
     fallbackDatum,
     leftYAxisTickFormatter,
-    resolvedBarRadius,
-    resolvedMaxBarWidth,
     resolveComposedChartProps: (usesAutoSizeContainer: boolean) => ({
       ...mergedChartProps,
       responsive:
         resolvedComposedChartPropsInput?.responsive ?? !usesAutoSizeContainer,
     }),
+    resolvedBarRadius,
+    resolvedMaxBarWidth,
     rightYAxisTickFormatter,
   };
 };

@@ -1,45 +1,43 @@
-import {
-  definePlaygroundControls,
-  type PlaygroundStateFromControls,
-} from "@kuzenbo/code/playground/playground-control-model";
+import { definePlaygroundControls } from "@kuzenbo/code/playground/playground-control-model";
+import type { PlaygroundStateFromControls } from "@kuzenbo/code/playground/playground-control-model";
 
 export const controls = definePlaygroundControls([
   {
-    type: "select",
-    prop: "variant",
+    defaultValue: "default",
+    initialValue: "default",
     label: "Variant",
     options: ["default", "outline", "secondary", "ghost", "danger", "link"],
-    initialValue: "default",
-    defaultValue: "default",
+    prop: "variant",
+    type: "select",
   },
   {
-    type: "size",
-    prop: "size",
-    label: "Size",
-    values: ["sm", "md", "lg"],
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    label: "Size",
+    prop: "size",
+    type: "size",
+    values: ["sm", "md", "lg"],
   },
   {
-    type: "string",
-    prop: "children",
-    label: "Label",
-    initialValue: "Button",
     defaultValue: "Button",
+    initialValue: "Button",
+    label: "Label",
+    prop: "children",
+    type: "string",
   },
   {
-    type: "boolean",
-    prop: "disabled",
+    defaultValue: false,
+    initialValue: false,
     label: "Disabled",
-    initialValue: false,
-    defaultValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "boolean",
-    prop: "isLoading",
-    label: "Loading",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    label: "Loading",
+    prop: "isLoading",
+    type: "boolean",
   },
 ]);
 

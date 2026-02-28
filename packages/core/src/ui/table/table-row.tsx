@@ -2,24 +2,25 @@
 
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { TableSizeContext, useTableResolvedSize } from "./table-size-context";
 
 const tableRowVariants = tv({
   base: "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
-  variants: {
-    size: {
-      xs: "",
-      sm: "",
-      md: "",
-      lg: "",
-      xl: "",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "",
+      md: "",
+      sm: "",
+      xl: "",
+      xs: "",
+    },
   },
 });
 

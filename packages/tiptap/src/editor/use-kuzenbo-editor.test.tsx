@@ -4,10 +4,8 @@ import { cleanup, render, waitFor } from "@testing-library/react";
 import type { Editor, JSONContent } from "@tiptap/core";
 import { useEffect } from "react";
 
-import {
-  useKuzenboEditor,
-  type UseKuzenboEditorOptions,
-} from "./use-kuzenbo-editor";
+import { useKuzenboEditor } from "./use-kuzenbo-editor";
+import type { UseKuzenboEditorOptions } from "./use-kuzenbo-editor";
 
 afterEach(cleanup);
 

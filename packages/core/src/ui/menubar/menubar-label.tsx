@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { DropdownMenuLabel } from "../dropdown-menu/dropdown-menu";
 import type { InputSize } from "../input/input";
@@ -9,17 +10,17 @@ import { MenubarOverlayContext } from "./menubar-overlay-context";
 
 const menubarLabelVariants = tv({
   base: "font-medium data-[inset]:pl-8",
-  variants: {
-    size: {
-      xs: "px-1.5 py-1 text-xs",
-      sm: "px-1.5 py-1 text-xs",
-      md: "px-1.5 py-1 text-sm",
-      lg: "px-2 py-1.5 text-sm",
-      xl: "px-2.5 py-1.5 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "px-2 py-1.5 text-sm",
+      md: "px-1.5 py-1 text-sm",
+      sm: "px-1.5 py-1 text-xs",
+      xl: "px-2.5 py-1.5 text-base",
+      xs: "px-1.5 py-1 text-xs",
+    },
   },
 });
 

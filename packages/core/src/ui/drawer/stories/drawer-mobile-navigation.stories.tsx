@@ -91,12 +91,12 @@ const MobileNavigationDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/MobileNavigation",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/MobileNavigation",
 };
 
 export default meta;

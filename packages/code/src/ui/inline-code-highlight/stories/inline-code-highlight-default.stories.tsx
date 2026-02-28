@@ -3,18 +3,18 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { InlineCodeHighlight } from "../inline-code-highlight";
 
 const meta = {
-  title: "Code/InlineCodeHighlight/Default",
-  component: InlineCodeHighlight,
-  tags: ["autodocs"],
   args: {
     code: "bun run build",
     language: "bash",
   },
+  component: InlineCodeHighlight,
   render: (args) => (
     <p>
       Run <InlineCodeHighlight {...args} /> before publishing a stable release.
     </p>
   ),
+  tags: ["autodocs"],
+  title: "Code/InlineCodeHighlight/Default",
 } satisfies Meta<typeof InlineCodeHighlight>;
 
 export default meta;
@@ -52,9 +52,9 @@ export const SqlFragment: Story = {
 export const HighlightedHtmlToken: Story = {
   args: {
     code: undefined,
-    language: "tsx",
     highlightedHtml:
       '<span class="line"><span class="token keyword">export</span> const schema = z.object({ id: z.string() });</span>',
+    language: "tsx",
   },
   render: (args) => (
     <p>

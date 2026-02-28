@@ -26,34 +26,35 @@ import {
   useChartPortalTarget,
 } from "./portal/chart-portal-target";
 import { ChartProvider } from "./provider/chart-provider";
-import { ChartRoot, type ChartRootProps } from "./root/chart-root";
+import { ChartRoot } from "./root/chart-root";
+import type { ChartRootProps } from "./root/chart-root";
 import { ChartStyle } from "./style/chart-style";
 import { ChartTooltip } from "./tooltip/chart-tooltip";
 import { ChartTooltipContent } from "./tooltip/chart-tooltip-content";
 
 const Chart = Object.assign(ChartRoot, {
-  Root: ChartRoot,
-  Provider: ChartProvider,
-  Frame: ChartFrame,
   AutoSize: ChartAutoSize,
-  Tooltip: ChartTooltip,
-  TooltipContent: ChartTooltipContent,
+  Frame: ChartFrame,
   Legend: ChartLegend,
   LegendContent: ChartLegendContent,
-  Style: ChartStyle,
   PortalTarget: ChartPortalTarget,
-  usePortalTarget: useChartPortalTarget,
-  useConfig: useChartConfig,
-  useSeriesColor,
-  useSeriesColorVar,
+  Provider: ChartProvider,
+  Root: ChartRoot,
+  Style: ChartStyle,
+  Tooltip: ChartTooltip,
+  TooltipContent: ChartTooltipContent,
   useActiveTooltipCoordinate,
   useActiveTooltipDataPoints,
   useActiveTooltipLabel,
   useChartHeight,
   useChartWidth,
+  useConfig: useChartConfig,
   useIsTooltipActive,
   useOffset,
   usePlotArea,
+  usePortalTarget: useChartPortalTarget,
+  useSeriesColor,
+  useSeriesColorVar,
 });
 
 export type ChartProps = ChartRootProps;

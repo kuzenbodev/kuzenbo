@@ -6,10 +6,8 @@ import { useCallback } from "react";
 import { CodeBlockToolbar } from "../code-block-toolbar/code-block-toolbar";
 import { CodeBlock } from "../code-block/code-block";
 import { PackageManagerTabs } from "../package-manager-tabs/package-manager-tabs";
-import {
-  PACKAGE_MANAGERS,
-  type PackageManager,
-} from "../package-manager-tabs/package-manager-tabs-types";
+import { PACKAGE_MANAGERS } from "../package-manager-tabs/package-manager-tabs-types";
+import type { PackageManager } from "../package-manager-tabs/package-manager-tabs-types";
 
 export interface InstallCommandSnippetProps {
   className?: string;

@@ -5,7 +5,7 @@ import { renderHook } from "@testing-library/react";
 import { useCompleteShellRuntime } from "../shared/hooks/use-complete-shell-runtime";
 
 describe("useCompleteShellRuntime", () => {
-  const series = [{ name: "revenue", label: "Revenue" }] as const;
+  const series = [{ label: "Revenue", name: "revenue" }] as const;
   const data = [{ month: "Jan", revenue: 1200 }] as const;
 
   it("derives shell runtime defaults, color vars, and tooltip formatter bridge", () => {

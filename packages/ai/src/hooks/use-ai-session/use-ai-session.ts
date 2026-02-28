@@ -17,13 +17,13 @@ export const useAiSession = (): UseAiSessionResult => {
     () => ({
       active,
       messages,
-      start: () => {
-        setActive(true);
-        setMessages((value) => value + 1);
-      },
       reset: () => {
         setActive(false);
         setMessages(0);
+      },
+      start: () => {
+        setActive(true);
+        setMessages((value) => value + 1);
       },
     }),
     [active, messages]

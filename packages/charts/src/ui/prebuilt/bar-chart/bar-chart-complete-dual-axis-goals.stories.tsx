@@ -25,21 +25,21 @@ const BarChartCompleteDualAxisGoalsDemo = () => (
       chartRootProps={{ className: "h-80 w-full" }}
       data={barDualAxisGoalsData}
       dataKey="month"
-      rightYAxisProps={{ yAxisId: "right-axis", width: 54 }}
+      rightYAxisProps={{ width: 54, yAxisId: "right-axis" }}
       series={barDualAxisGoalsSeries}
       tooltipProps={{ axisId: "left-axis", defaultIndex: 4, shared: true }}
       valueFormatter={formatDualAxisValue}
       withLegend
       withRightYAxis
-      yAxisProps={{ yAxisId: "left-axis", width: 64 }}
+      yAxisProps={{ width: 64, yAxisId: "left-axis" }}
     />
   </div>
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/DualAxisGoals",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/DualAxisGoals",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

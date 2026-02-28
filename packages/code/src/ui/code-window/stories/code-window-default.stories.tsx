@@ -15,7 +15,6 @@ export const Default: Story = DefaultStory;
 
 export const ReleaseDryRunLog: Story = {
   args: {
-    title: "Release dry run",
     children: (
       <CodeBlock
         code={`$ bun run release:dry-run
@@ -25,13 +24,12 @@ No publishable changes detected for stable channel.`}
         language="bash"
       />
     ),
+    title: "Release dry run",
   },
 };
 
 export const ApiEndpointInspector: Story = {
   args: {
-    title: "GET /api/health",
-    showTrafficLights: false,
     actions: (
       <Button size="xs" type="button" variant="outline">
         Open docs
@@ -47,14 +45,14 @@ export const ApiEndpointInspector: Story = {
         language="json"
       />
     ),
+    showTrafficLights: false,
+    title: "GET /api/health",
   },
 };
 
 export const EmbeddedSnippetWithoutHeader: Story = {
   args: {
-    title: undefined,
     actions: undefined,
-    showTrafficLights: false,
     children: (
       <CodeBlock
         code={`import { InstallCommandSnippet } from "@kuzenbo/code";
@@ -65,5 +63,7 @@ export const SetupStep = () => (
         language="tsx"
       />
     ),
+    showTrafficLights: false,
+    title: undefined,
   },
 };

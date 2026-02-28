@@ -5,7 +5,8 @@ import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -13,17 +14,17 @@ import { SelectOverlayContext } from "./select-overlay-context";
 
 const selectScrollDownButtonVariants = tv({
   base: "z-raised cursor-clickable bg-popover bottom-0 flex w-full items-center justify-center",
-  variants: {
-    size: {
-      xs: "py-0.5 [&_svg:not([class*='size-'])]:size-3",
-      sm: "py-1 [&_svg:not([class*='size-'])]:size-3.5",
-      md: "py-1 [&_svg:not([class*='size-'])]:size-4",
-      lg: "py-1.5 [&_svg:not([class*='size-'])]:size-4",
-      xl: "py-2 [&_svg:not([class*='size-'])]:size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "py-1.5 [&_svg:not([class*='size-'])]:size-4",
+      md: "py-1 [&_svg:not([class*='size-'])]:size-4",
+      sm: "py-1 [&_svg:not([class*='size-'])]:size-3.5",
+      xl: "py-2 [&_svg:not([class*='size-'])]:size-5",
+      xs: "py-0.5 [&_svg:not([class*='size-'])]:size-3",
+    },
   },
 });
 

@@ -3,7 +3,8 @@
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import type { UISize } from "../shared/size/size-system";
@@ -20,17 +21,17 @@ import { EmojiPickerSkinToneSelector } from "./emoji-picker-skin-tone-selector";
 
 const emojiPickerVariants = tv({
   base: "border-border bg-popover isolate flex w-fit flex-col rounded-md border shadow-md",
-  variants: {
-    size: {
-      xs: "h-64 rounded-[min(var(--radius-md),8px)]",
-      sm: "h-72 rounded-[min(var(--radius-md),10px)]",
-      md: "h-80",
-      lg: "h-96",
-      xl: "h-[28rem] rounded-xl",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-96",
+      md: "h-80",
+      sm: "h-72 rounded-[min(var(--radius-md),10px)]",
+      xl: "h-[28rem] rounded-xl",
+      xs: "h-64 rounded-[min(var(--radius-md),8px)]",
+    },
   },
 });
 

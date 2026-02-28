@@ -103,11 +103,11 @@ describe("ToggleGroup", () => {
 
   it("supports all UISize tokens on root and items", () => {
     const expectedHeightClassBySize = {
-      xs: "h-6",
-      sm: "h-7",
-      md: "h-8",
       lg: "h-9",
+      md: "h-8",
+      sm: "h-7",
       xl: "h-10",
+      xs: "h-6",
     } as const;
 
     for (const size of UI_SIZE_TOKENS) {

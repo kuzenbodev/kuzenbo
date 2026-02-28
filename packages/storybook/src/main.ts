@@ -12,12 +12,6 @@ export const createKuzenboStorybookMainConfig = (
   const repoRoot = path.resolve(packageRoot, "..", "..");
 
   return {
-    stories: [
-      {
-        directory: "../src",
-        files: "**/*.stories.@(ts|tsx|mdx)",
-      },
-    ],
     addons: [
       "@storybook/addon-docs",
       "@storybook/addon-a11y",
@@ -27,7 +21,13 @@ export const createKuzenboStorybookMainConfig = (
       name: "@storybook/react-vite",
       options: {},
     },
-    async viteFinal(existingConfig) {
+    stories: [
+      {
+        directory: "../src",
+        files: "**/*.stories.@(ts|tsx|mdx)",
+      },
+    ],
+    viteFinal(existingConfig) {
       return {
         ...existingConfig,
         plugins: [...(existingConfig.plugins ?? []), tailwindcss()],

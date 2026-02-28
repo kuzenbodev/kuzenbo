@@ -15,6 +15,13 @@ export const WithSeparator: Story = {
     render: () => null,
     size: "md",
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Classic 3-3 OTP layout with a separator between code groups.",
+      },
+    },
+  },
   render: ({ size }) => (
     <InputOTP maxLength={6} size={size}>
       <InputOTP.Group>
@@ -30,11 +37,4 @@ export const WithSeparator: Story = {
       </InputOTP.Group>
     </InputOTP>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: "Classic 3-3 OTP layout with a separator between code groups.",
-      },
-    },
-  },
 };

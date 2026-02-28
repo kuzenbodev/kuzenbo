@@ -4,9 +4,9 @@ import { Input } from "../../input/input";
 import { FormField } from "../form-field";
 
 export const baseMeta = {
-  title: "Components/FormField",
   component: FormField,
   tags: ["autodocs"],
+  title: "Components/FormField",
 } satisfies Meta<typeof FormField>;
 
 type Story = StoryObj<typeof baseMeta>;

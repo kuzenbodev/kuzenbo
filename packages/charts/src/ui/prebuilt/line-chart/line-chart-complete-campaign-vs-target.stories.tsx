@@ -19,7 +19,7 @@ const campaignLineProps = (seriesItem: { key?: string; name?: string }) => ({
 const LineChartCompleteCampaignVsTargetDemo = () => (
   <div className={completeChartShellVariants()}>
     <LineChart
-      lineChartProps={{ margin: { top: 12, right: 12, left: 4, bottom: 0 } }}
+      lineChartProps={{ margin: { bottom: 0, left: 4, right: 12, top: 12 } }}
       chartRootProps={{ className: "h-80 w-full" }}
       curveType="linear"
       data={lineCampaignVsTargetData}
@@ -40,9 +40,9 @@ const LineChartCompleteCampaignVsTargetDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Line/CampaignVsTarget",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/CampaignVsTarget",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

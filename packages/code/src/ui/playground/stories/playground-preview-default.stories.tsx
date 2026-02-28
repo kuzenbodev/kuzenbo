@@ -71,19 +71,19 @@ const PlaygroundPreviewDemo = ({
 );
 
 const meta = {
-  title: "Code/Playground/PlaygroundPreview/Default",
-  component: PlaygroundPreviewDemo,
-  tags: ["autodocs"],
   args: {
-    staticProps: {
-      serviceName: "Search API",
-    },
     state: {
       health: "healthy",
       region: "iad1",
       showAction: true,
     },
+    staticProps: {
+      serviceName: "Search API",
+    },
   },
+  component: PlaygroundPreviewDemo,
+  tags: ["autodocs"],
+  title: "Code/Playground/PlaygroundPreview/Default",
 } satisfies Meta<typeof PlaygroundPreviewDemo>;
 
 export default meta;

@@ -6,44 +6,44 @@ import { useDatesContext } from "../use-dates-context";
 
 const dayVariants = tv({
   base: "cursor-clickable focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-40",
-  variants: {
-    firstInRange: {
-      true: "bg-primary/15 !rounded-md",
-      false: "",
-    },
-    inRange: {
-      true: "bg-primary/15 rounded-none",
-      false: "",
-    },
-    lastInRange: {
-      true: "bg-primary/15 !rounded-md",
-      false: "",
-    },
-    selected: {
-      true: "bg-primary text-primary-foreground hover:bg-primary/90",
-      false: "text-foreground hover:bg-muted",
-    },
-    outside: {
-      true: "text-muted-foreground/70",
-      false: "",
-    },
-    today: {
-      true: "border-border bg-card",
-      false: "",
-    },
-  },
-  defaultVariants: {
-    selected: false,
-    outside: false,
-    today: false,
-  },
   compoundVariants: [
     {
+      class: "bg-primary text-primary-foreground hover:bg-primary/90",
       selected: true,
       today: true,
-      class: "bg-primary text-primary-foreground hover:bg-primary/90",
     },
   ],
+  defaultVariants: {
+    outside: false,
+    selected: false,
+    today: false,
+  },
+  variants: {
+    firstInRange: {
+      false: "",
+      true: "bg-primary/15 !rounded-md",
+    },
+    inRange: {
+      false: "",
+      true: "bg-primary/15 rounded-none",
+    },
+    lastInRange: {
+      false: "",
+      true: "bg-primary/15 !rounded-md",
+    },
+    outside: {
+      false: "",
+      true: "text-muted-foreground/70",
+    },
+    selected: {
+      false: "text-foreground hover:bg-muted",
+      true: "bg-primary text-primary-foreground hover:bg-primary/90",
+    },
+    today: {
+      false: "",
+      true: "border-border bg-card",
+    },
+  },
 });
 
 export type DayProps = Omit<

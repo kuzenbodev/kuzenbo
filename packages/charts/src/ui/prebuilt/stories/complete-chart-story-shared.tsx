@@ -9,8 +9,8 @@ export const completeChartCompactShellVariants = tv({
 });
 
 const compactNumberFormatter = new Intl.NumberFormat("en-US", {
-  notation: "compact",
   maximumFractionDigits: 1,
+  notation: "compact",
 });
 
 export const formatCurrencyCompact = (value: number) =>

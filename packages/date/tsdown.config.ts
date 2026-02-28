@@ -1,21 +1,21 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: { index: "src/index.ts" },
-  format: ["esm"],
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
+  },
+  clean: true,
   dts: {
     sourcemap: true,
   },
-  sourcemap: true,
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
-  },
+  entry: { index: "src/index.ts" },
   exports: {
     devExports: true,
     packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

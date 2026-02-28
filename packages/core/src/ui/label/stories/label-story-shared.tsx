@@ -4,9 +4,9 @@ import { Input } from "../../input/input";
 import { Label } from "../label";
 
 export const baseMeta = {
-  title: "Components/Label",
   component: Label,
   tags: ["autodocs"],
+  title: "Components/Label",
 } satisfies Meta<typeof Label>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -13,24 +13,24 @@ import {
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/NavigationMenu",
-  component: NavigationMenu,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: sizes,
     },
   },
+  component: NavigationMenu,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "NavigationMenu applies one size token contract to triggers, list spacing, popup/content, indicator, and link rows.",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/NavigationMenu",
 } satisfies Meta<typeof NavigationMenu>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -31,9 +31,9 @@ const SparklineCompleteCurveNullsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Sparkline/Curve And Nulls",
   component: Sparkline,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Sparkline/Curve And Nulls",
 } satisfies Meta<typeof Sparkline>;
 
 type Story = StoryObj<typeof Sparkline>;

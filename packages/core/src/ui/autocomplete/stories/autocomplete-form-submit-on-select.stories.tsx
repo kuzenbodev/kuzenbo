@@ -85,7 +85,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const FormSubmitOnSelect: Story = {
-  render: () => <FormSubmitOnSelectDemo />,
   parameters: {
     docs: {
       description: {
@@ -94,4 +93,5 @@ export const FormSubmitOnSelect: Story = {
       },
     },
   },
+  render: () => <FormSubmitOnSelectDemo />,
 };

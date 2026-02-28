@@ -1,33 +1,34 @@
 import type { ComponentProps, CSSProperties } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { Skeleton } from "../skeleton/skeleton";
 import {
-  type NavigationListTone,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
 } from "./navigation-list-context";
+import type { NavigationListTone } from "./navigation-list-context";
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListSkeletonVariants = tv({
   base: "flex items-center gap-2 rounded-md px-2",
-  variants: {
-    size: {
-      xs: "h-6",
-      sm: "h-7",
-      md: "h-8",
-      lg: "h-9",
-      xl: "h-10",
-    },
-    tone: {
-      surface: "",
-      sidebar: "",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
+  },
+  variants: {
+    size: {
+      lg: "h-9",
+      md: "h-8",
+      sm: "h-7",
+      xl: "h-10",
+      xs: "h-6",
+    },
+    tone: {
+      sidebar: "",
+      surface: "",
+    },
   },
 });
 

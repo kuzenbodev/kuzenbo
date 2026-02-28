@@ -1,74 +1,74 @@
 import type { CompleteCompositeSeries } from "../shared/complete-types";
 
 export const completeCompositeMixedData = [
-  { month: "Jan", revenue: 91_000, conversionRate: 12.4, pipeline: 143_000 },
-  { month: "Feb", revenue: 97_600, conversionRate: 12.9, pipeline: 149_000 },
-  { month: "Mar", revenue: 104_500, conversionRate: 13.5, pipeline: 158_000 },
+  { conversionRate: 12.4, month: "Jan", pipeline: 143_000, revenue: 91_000 },
+  { conversionRate: 12.9, month: "Feb", pipeline: 149_000, revenue: 97_600 },
+  { conversionRate: 13.5, month: "Mar", pipeline: 158_000, revenue: 104_500 },
 ] as const;
 
 export const completeCompositeMixedSeries = [
-  { name: "revenue", label: "Revenue", type: "bar", yAxisId: "revenue-axis" },
+  { label: "Revenue", name: "revenue", type: "bar", yAxisId: "revenue-axis" },
   {
-    name: "conversionRate",
     label: "Conversion",
+    name: "conversionRate",
     type: "line",
     yAxisId: "conversion-axis",
   },
   {
-    name: "pipeline",
     label: "Pipeline",
+    name: "pipeline",
     type: "area",
     yAxisId: "revenue-axis",
   },
 ] as const satisfies readonly CompleteCompositeSeries[];
 
 export const completeCompositeStackedData = [
-  { month: "Jan", direct: 41_000, partner: 22_000, conversionRate: 11.1 },
-  { month: "Feb", direct: 43_500, partner: 23_100, conversionRate: 11.5 },
-  { month: "Mar", direct: 46_200, partner: 24_700, conversionRate: 11.9 },
+  { conversionRate: 11.1, direct: 41_000, month: "Jan", partner: 22_000 },
+  { conversionRate: 11.5, direct: 43_500, month: "Feb", partner: 23_100 },
+  { conversionRate: 11.9, direct: 46_200, month: "Mar", partner: 24_700 },
 ] as const;
 
 export const completeCompositeStackedSeries = [
   {
-    name: "direct",
     label: "Direct",
+    name: "direct",
     stackId: "revenue",
     type: "bar",
     yAxisId: "revenue-axis",
   },
   {
-    name: "partner",
     label: "Partner",
+    name: "partner",
     stackId: "revenue",
     type: "bar",
     yAxisId: "revenue-axis",
   },
   {
-    name: "conversionRate",
     label: "Conversion",
+    name: "conversionRate",
     type: "line",
     yAxisId: "conversion-axis",
   },
 ] as const satisfies readonly CompleteCompositeSeries[];
 
 export const completeCompositeNullZeroData = [
-  { month: "Jan", revenue: 84_000, conversionRate: 9.1, pipeline: 118_000 },
-  { month: "Feb", revenue: 0, conversionRate: 0, pipeline: 0 },
-  { month: "Mar", revenue: null, conversionRate: 9.8, pipeline: 132_500 },
-  { month: "Apr", revenue: 96_300, conversionRate: null, pipeline: 141_700 },
+  { conversionRate: 9.1, month: "Jan", pipeline: 118_000, revenue: 84_000 },
+  { conversionRate: 0, month: "Feb", pipeline: 0, revenue: 0 },
+  { conversionRate: 9.8, month: "Mar", pipeline: 132_500, revenue: null },
+  { conversionRate: null, month: "Apr", pipeline: 141_700, revenue: 96_300 },
 ] as const;
 
 export const completeCompositeNullZeroSeries = [
-  { name: "revenue", label: "Revenue", type: "bar", yAxisId: "revenue-axis" },
+  { label: "Revenue", name: "revenue", type: "bar", yAxisId: "revenue-axis" },
   {
-    name: "conversionRate",
     label: "Conversion",
+    name: "conversionRate",
     type: "line",
     yAxisId: "conversion-axis",
   },
   {
-    name: "pipeline",
     label: "Pipeline",
+    name: "pipeline",
     type: "area",
     yAxisId: "revenue-axis",
   },

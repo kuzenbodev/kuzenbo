@@ -15,18 +15,18 @@ import { SidebarTrigger } from "../sidebar-trigger";
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/Sidebar",
   component: SidebarProvider,
-  tags: ["autodocs"],
   parameters: {
-    layout: "fullscreen",
     docs: {
       description: {
         component:
           '`Sidebar.Input` keeps compact `size="sm"` by default, and `SidebarMenu`/`SidebarMenu*` surfaces share the `xs|sm|md|lg|xl` size contract with child override precedence.',
       },
     },
+    layout: "fullscreen",
   },
+  tags: ["autodocs"],
+  title: "Components/Sidebar",
 } satisfies Meta<typeof SidebarProvider>;
 
 type Story = StoryObj<typeof baseMeta>;

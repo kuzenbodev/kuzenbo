@@ -1,26 +1,16 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import {
-  type ComponentProps,
-  type KeyboardEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { ComponentProps, KeyboardEvent } from "react";
 import { cn } from "tailwind-variants";
 
 import { CarouselContent } from "./carousel-content";
 import { CarouselItem } from "./carousel-item";
 import { CarouselNext } from "./carousel-next";
 import { CarouselPrevious } from "./carousel-previous";
-import {
-  type CarouselApi,
-  CarouselContext,
-  type CarouselProps,
-  useCarousel,
-} from "./use-carousel";
+import { CarouselContext, useCarousel } from "./use-carousel";
+import type { CarouselApi, CarouselProps } from "./use-carousel";
 
 const Carousel = ({
   orientation = "horizontal",
@@ -101,14 +91,14 @@ const Carousel = ({
     orientation || (opts?.axis === "y" ? "vertical" : "horizontal");
   const contextValue = useMemo(
     () => ({
-      carouselRef,
       api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
       opts,
       orientation: resolvedOrientation,
-      scrollPrev,
       scrollNext,
-      canScrollPrev,
-      canScrollNext,
+      scrollPrev,
     }),
     [
       carouselRef,

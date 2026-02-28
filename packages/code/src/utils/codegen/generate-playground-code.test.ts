@@ -5,22 +5,22 @@ import { generatePlaygroundCode } from "./generate-playground-code";
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "size",
-    prop: "size",
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    prop: "size",
+    type: "size",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Button",
     defaultValue: "Button",
+    initialValue: "Button",
+    prop: "children",
+    type: "string",
   },
 ] as const);
 
@@ -28,20 +28,20 @@ describe("generatePlaygroundCode", () => {
   it("generates minimal output for string templates", () => {
     const files = generatePlaygroundCode({
       controls,
+      mode: "minimal",
       state: {
+        children: "Custom",
         disabled: false,
         size: "lg",
-        children: "Custom",
       },
       template: "<Button{{props}}>{{children}}</Button>",
-      mode: "minimal",
     });
 
     expect(files).toEqual([
       {
+        code: '<Button size="lg">Custom</Button>',
         fileName: "Demo.tsx",
         language: "tsx",
-        code: '<Button size="lg">Custom</Button>',
       },
     ]);
   });
@@ -49,13 +49,13 @@ describe("generatePlaygroundCode", () => {
   it("generates full output and keeps default values", () => {
     const files = generatePlaygroundCode({
       controls,
+      mode: "full",
       state: {
+        children: "Button",
         disabled: false,
         size: "md",
-        children: "Button",
       },
       template: "<Button{{props}}>{{children}}</Button>",
-      mode: "full",
     });
 
     expect(files[0]?.code).toBe(
@@ -66,34 +66,34 @@ describe("generatePlaygroundCode", () => {
   it("supports multi-file templates with defaults", () => {
     const files = generatePlaygroundCode({
       controls,
+      mode: "minimal",
       state: {
+        children: "Primary",
         disabled: true,
         size: "sm",
-        children: "Primary",
       },
       template: [
         {
           code: `<Button\n  {{props}}\n>\n  {{children}}\n</Button>`,
         },
         {
+          code: ".demo { display: block; }",
           fileName: "demo.css",
           language: "css",
-          code: ".demo { display: block; }",
         },
       ],
-      mode: "minimal",
     });
 
     expect(files).toEqual([
       {
+        code: `<Button\n  disabled\n  size="sm"\n>\n  Primary\n</Button>`,
         fileName: "Demo.tsx",
         language: "tsx",
-        code: `<Button\n  disabled\n  size="sm"\n>\n  Primary\n</Button>`,
       },
       {
+        code: ".demo { display: block; }",
         fileName: "demo.css",
         language: "css",
-        code: ".demo { display: block; }",
       },
     ]);
   });

@@ -23,8 +23,8 @@ describe("PlaygroundPreview", () => {
     render(
       <PlaygroundPreview
         state={{
-          size: "lg",
           disabled: true,
+          size: "lg",
         }}
         staticProps={{
           id: "demo",

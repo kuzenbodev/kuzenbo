@@ -11,9 +11,9 @@ function ReleaseChecklist() {
 }`;
 
 export const baseMeta = {
-  title: "Components/Code",
   component: Code,
   tags: ["autodocs"],
+  title: "Components/Code",
 } satisfies Meta<typeof Code>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -2,7 +2,8 @@
 
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import { ItemActions } from "./item-actions";
@@ -19,23 +20,23 @@ export type ItemProps = useRender.ComponentProps<"div"> &
 
 const itemVariants = tv({
   base: "group/item border-border focus-visible:border-ring focus-visible:ring-ring/50 [a]:hover:bg-muted flex w-full flex-wrap items-center rounded-md border text-sm transition-colors duration-100 outline-none focus-visible:ring-[3px] [a]:transition-colors",
+  defaultVariants: {
+    size: "md",
+    variant: "default",
+  },
   variants: {
+    size: {
+      lg: "gap-4 px-4 py-4",
+      md: "gap-3.5 px-4 py-3.5",
+      sm: "gap-2.5 px-3 py-2.5",
+      xl: "gap-4 px-5 py-4.5 text-base",
+      xs: "gap-2 px-2.5 py-2 [[data-slot=dropdown-menu-content]_&]:p-0",
+    },
     variant: {
       default: "border-transparent",
-      outline: "border-border",
       muted: "bg-muted/50 border-transparent",
+      outline: "border-border",
     },
-    size: {
-      xs: "gap-2 px-2.5 py-2 [[data-slot=dropdown-menu-content]_&]:p-0",
-      sm: "gap-2.5 px-3 py-2.5",
-      md: "gap-3.5 px-4 py-3.5",
-      lg: "gap-4 px-4 py-4",
-      xl: "gap-4 px-5 py-4.5 text-base",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-    size: "md",
   },
 });
 
@@ -52,15 +53,15 @@ const Item = ({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
-        className: cn(itemVariants({ variant, size }), className),
+        className: cn(itemVariants({ size, variant }), className),
       },
       props
     ),
     render,
     state: {
+      size,
       slot: "item",
       variant,
-      size,
     },
   });
 };

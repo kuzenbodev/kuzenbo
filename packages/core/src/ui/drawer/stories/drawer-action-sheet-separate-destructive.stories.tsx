@@ -72,12 +72,12 @@ const ActionSheetSeparateDestructiveDemo = () => {
 };
 
 const meta: Meta = {
-  title: "Components/Drawer/ActionSheetSeparateDestructive",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/ActionSheetSeparateDestructive",
 };
 
 export default meta;

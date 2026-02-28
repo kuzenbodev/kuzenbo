@@ -30,9 +30,9 @@ const BarChartCompleteGroupedChannelsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/GroupedChannels",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/GroupedChannels",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

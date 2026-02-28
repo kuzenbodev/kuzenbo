@@ -145,9 +145,9 @@ export const createPlaygroundStateSnapshot = <
   const values = mergePresetValues(initialValues, initialPreset);
 
   return {
-    values,
     activePresetId: initialPreset?.id ?? null,
     lockedProps: resolveLockedProps(options.controls, initialPreset),
+    values,
   };
 };
 
@@ -195,9 +195,9 @@ export const applyPlaygroundPreset = <
   const preset = findPresetById(options.presets, presetId);
 
   return {
-    values: mergePresetValues(snapshot.values, preset),
     activePresetId: preset?.id ?? null,
     lockedProps: resolveLockedProps(options.controls, preset),
+    values: mergePresetValues(snapshot.values, preset),
   };
 };
 

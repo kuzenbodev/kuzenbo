@@ -49,7 +49,6 @@ const DisabledOptionsDemo = () => {
 };
 
 export const DisabledOptions: Story = {
-  render: () => <DisabledOptionsDemo />,
   parameters: {
     docs: {
       description: {
@@ -58,4 +57,5 @@ export const DisabledOptions: Story = {
       },
     },
   },
+  render: () => <DisabledOptionsDemo />,
 };

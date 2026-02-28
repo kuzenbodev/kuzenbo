@@ -13,10 +13,10 @@ describe("PlaygroundControlField size fallback", () => {
     const { container } = render(
       <PlaygroundControlField
         control={{
-          type: "size",
-          prop: "size",
-          initialValue: "md",
           defaultValue: "md",
+          initialValue: "md",
+          prop: "size",
+          type: "size",
           values: [] as const,
         }}
         onChange={onChange}

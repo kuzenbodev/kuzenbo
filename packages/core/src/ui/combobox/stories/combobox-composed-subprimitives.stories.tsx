@@ -25,6 +25,14 @@ const settingToLabel = (item: WorkspaceSetting) => item.label;
 const settingToValue = (item: WorkspaceSetting) => item.value;
 
 export const ComposedSubprimitives: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Full popup anatomy using composed subprimitives: Portal, Positioner, Popup, Arrow, Status, List, Group, and Collection.",
+      },
+    },
+  },
   render: () => (
     <div className="w-80">
       <Combobox
@@ -60,12 +68,4 @@ export const ComposedSubprimitives: Story = {
       </Combobox>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Full popup anatomy using composed subprimitives: Portal, Positioner, Popup, Arrow, Status, List, Group, and Collection.",
-      },
-    },
-  },
 };

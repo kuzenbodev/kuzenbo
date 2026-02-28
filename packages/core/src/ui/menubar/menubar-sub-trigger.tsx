@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { DropdownMenuSubTrigger } from "../dropdown-menu/dropdown-menu";
 import type { InputSize } from "../input/input";
@@ -8,17 +9,17 @@ import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 
 const menubarSubTriggerVariants = tv({
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-sm",
-      lg: "text-sm",
-      xl: "text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-sm",
+      md: "text-sm",
+      sm: "text-sm",
+      xl: "text-base",
+      xs: "text-xs",
+    },
   },
 });
 

@@ -76,8 +76,8 @@ export const findUnsupportedDependencyProtocols = (
       }
 
       matches.push({
-        field,
         dependencyName,
+        field,
         specifier,
       });
     }
@@ -155,7 +155,7 @@ const rewritePackedManifestWithPublishConfig = (tarballPath: string): void => {
       "package",
     ]);
   } finally {
-    fs.rmSync(extractionDir, { recursive: true, force: true });
+    fs.rmSync(extractionDir, { force: true, recursive: true });
   }
 };
 
@@ -285,7 +285,7 @@ export const packWorkspacePackageToTarball = (
   );
   fs.mkdirSync(destinationDir, { recursive: true });
   fs.renameSync(generatedTarballPath, tarballPath);
-  fs.rmSync(packageOutputDirectory, { recursive: true, force: true });
+  fs.rmSync(packageOutputDirectory, { force: true, recursive: true });
 
   if (!fs.existsSync(tarballPath)) {
     throw new Error(

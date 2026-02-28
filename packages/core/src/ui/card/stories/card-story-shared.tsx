@@ -15,22 +15,22 @@ import {
 const cardSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Card",
-  component: Card,
-  tags: ["autodocs"],
-  subcomponents: {
-    CardHeader,
-    CardTitle,
-    CardDescription,
-    CardContent,
-    CardFooter,
-  },
   argTypes: {
     size: {
       control: "select",
       options: cardSizes,
     },
   },
+  component: Card,
+  subcomponents: {
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  },
+  tags: ["autodocs"],
+  title: "Components/Card",
 } satisfies Meta<typeof Card>;
 
 type Story = StoryObj<typeof baseMeta>;

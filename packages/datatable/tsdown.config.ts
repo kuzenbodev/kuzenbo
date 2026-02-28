@@ -1,6 +1,14 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
+  },
+  clean: true,
+  dts: {
+    sourcemap: true,
+  },
   entry: {
     "hooks/use-datatable-state":
       "src/hooks/use-datatable-state/use-datatable-state.ts",
@@ -8,20 +16,12 @@ export default defineConfig({
     "utils/create-mock-columns":
       "src/utils/create-mock-columns/create-mock-columns.ts",
   },
-  format: ["esm"],
-  dts: {
-    sourcemap: true,
-  },
-  sourcemap: true,
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
-  },
   exports: {
     devExports: true,
     packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

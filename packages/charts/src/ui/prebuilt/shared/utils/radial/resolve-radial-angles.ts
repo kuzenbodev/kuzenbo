@@ -16,21 +16,21 @@ const resolveRadialAngles = ({
 }: ResolveRadialAnglesOptions): ResolvedRadialAngles => {
   if (startAngle !== undefined || endAngle !== undefined) {
     return {
-      startAngle: startAngle ?? (isSemicircle ? 180 : 90),
       endAngle: endAngle ?? (isSemicircle ? 0 : -270),
+      startAngle: startAngle ?? (isSemicircle ? 180 : 90),
     };
   }
 
   if (isSemicircle) {
     return {
-      startAngle: 180,
       endAngle: 0,
+      startAngle: 180,
     };
   }
 
   return {
-    startAngle: 90,
     endAngle: -270,
+    startAngle: 90,
   };
 };
 

@@ -16,8 +16,8 @@ export const createSizeContext = (defaultSize: UISize = DEFAULT_UI_SIZE) => {
       hasFallbackDefault?: true;
     }
   >({
-    size: defaultSize,
     hasFallbackDefault: true,
+    size: defaultSize,
   });
 
   const useResolvedSize = (...candidates: (UISize | undefined | null)[]) => {

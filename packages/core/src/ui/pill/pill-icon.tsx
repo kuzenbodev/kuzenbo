@@ -1,4 +1,5 @@
-import { HugeiconsIcon, type HugeiconsProps } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import type { HugeiconsProps } from "@hugeicons/react";
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 

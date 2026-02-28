@@ -69,12 +69,12 @@ const useLineChartRuntime = <
     fallbackDatum,
     gradientId,
     leftYAxisTickFormatter,
-    resolvedGradientStops,
     resolveLineChartProps: (usesAutoSizeContainer: boolean) => ({
       ...mergedChartProps,
       responsive:
         resolvedLineChartPropsInput?.responsive ?? !usesAutoSizeContainer,
     }),
+    resolvedGradientStops,
     rightYAxisTickFormatter,
   };
 };

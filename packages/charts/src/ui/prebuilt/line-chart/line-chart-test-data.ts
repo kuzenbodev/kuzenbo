@@ -15,11 +15,11 @@ export const completeLineGapData = [
 ] as const;
 
 export const completeLineSeries = [
-  { name: "revenue", label: "Revenue" },
-  { name: "target", label: "Target", strokeDasharray: "6 3" },
+  { label: "Revenue", name: "revenue" },
+  { label: "Target", name: "target", strokeDasharray: "6 3" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeLineDualAxisSeries = [
-  { name: "revenue", label: "Revenue", yAxisId: "left-axis" },
-  { name: "target", label: "Target", yAxisId: "right-axis" },
+  { label: "Revenue", name: "revenue", yAxisId: "left-axis" },
+  { label: "Target", name: "target", yAxisId: "right-axis" },
 ] as const satisfies readonly CompleteChartSeries[];

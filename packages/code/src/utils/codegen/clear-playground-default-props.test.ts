@@ -5,28 +5,28 @@ import { clearPlaygroundDefaultProps } from "./clear-playground-default-props";
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "size",
-    prop: "size",
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    prop: "size",
+    type: "size",
   },
   {
-    type: "number",
-    prop: "radius",
-    initialValue: 2,
     defaultValue: 2,
+    initialValue: 2,
+    prop: "radius",
+    type: "number",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Button",
     defaultValue: "Button",
+    initialValue: "Button",
+    prop: "children",
+    type: "string",
   },
 ] as const);
 
@@ -34,13 +34,13 @@ describe("clearPlaygroundDefaultProps", () => {
   it("returns only changed props in minimal mode", () => {
     const changed = clearPlaygroundDefaultProps({
       controls,
-      state: {
-        disabled: true,
-        size: "md",
-        radius: 10,
-        children: "Button",
-      },
       mode: "minimal",
+      state: {
+        children: "Button",
+        disabled: true,
+        radius: 10,
+        size: "md",
+      },
     });
 
     expect(changed).toEqual({
@@ -52,20 +52,20 @@ describe("clearPlaygroundDefaultProps", () => {
   it("returns full prop payload in full mode", () => {
     const full = clearPlaygroundDefaultProps({
       controls,
-      state: {
-        disabled: false,
-        size: "lg",
-        radius: 2,
-        children: "Large button",
-      },
       mode: "full",
+      state: {
+        children: "Large button",
+        disabled: false,
+        radius: 2,
+        size: "lg",
+      },
     });
 
     expect(full).toEqual({
-      disabled: false,
-      size: "lg",
-      radius: 2,
       children: "Large button",
+      disabled: false,
+      radius: 2,
+      size: "lg",
     });
   });
 });

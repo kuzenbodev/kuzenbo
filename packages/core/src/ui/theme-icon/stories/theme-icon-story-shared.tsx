@@ -19,27 +19,27 @@ const variantOptions = [
 const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/ThemeIcon",
-  component: ThemeIcon,
-  tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: "select",
-      options: variantOptions,
-    },
     size: {
       control: "select",
       options: sizeOptions,
     },
+    variant: {
+      control: "select",
+      options: variantOptions,
+    },
   },
+  component: ThemeIcon,
+  tags: ["autodocs"],
+  title: "Components/ThemeIcon",
 } satisfies Meta<typeof ThemeIcon>;
 
 type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   args: {
-    variant: "default",
     size: "md",
+    variant: "default",
   },
   render: (args) => (
     <ThemeIcon {...args} aria-label="Operations dashboard icon">

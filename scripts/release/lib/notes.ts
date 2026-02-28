@@ -75,7 +75,7 @@ export const ensureReleaseNotesFile = ({
 
   fs.writeFileSync(
     releaseNotesPath,
-    buildReleaseNotesTemplate({ version, channel, distTag }),
+    buildReleaseNotesTemplate({ channel, distTag, version }),
     "utf8"
   );
 

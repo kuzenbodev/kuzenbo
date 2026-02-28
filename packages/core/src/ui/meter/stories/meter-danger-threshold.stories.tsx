@@ -13,6 +13,14 @@ export const DangerThreshold: Story = {
   args: {
     value: 96,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Danger-threshold meter for critical saturation levels where action is required immediately.",
+      },
+    },
+  },
   render: ({ value }) => (
     <div className="w-64 space-y-2">
       <Meter max={100} min={0} value={value}>
@@ -24,12 +32,4 @@ export const DangerThreshold: Story = {
       </div>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Danger-threshold meter for critical saturation levels where action is required immediately.",
-      },
-    },
-  },
 };

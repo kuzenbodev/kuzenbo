@@ -5,15 +5,15 @@ import { Label } from "../../label/label";
 import { NumberField } from "../number-field";
 
 export const baseMeta = {
-  title: "Components/NumberField",
-  component: NumberField,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: NumberField,
+  tags: ["autodocs"],
+  title: "Components/NumberField",
 } satisfies Meta<typeof NumberField>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -1,9 +1,9 @@
 import { useComponentSize } from "../shared/size/size-provider";
 import { AlertDialogBackdrop } from "./alert-dialog-backdrop";
-import {
-  AlertDialogPopup,
-  type AlertDialogPopupProps,
-  type AlertDialogPopupSize,
+import { AlertDialogPopup } from "./alert-dialog-popup";
+import type {
+  AlertDialogPopupProps,
+  AlertDialogPopupSize,
 } from "./alert-dialog-popup";
 import { AlertDialogPortal } from "./alert-dialog-portal";
 import { AlertDialogViewport } from "./alert-dialog-viewport";

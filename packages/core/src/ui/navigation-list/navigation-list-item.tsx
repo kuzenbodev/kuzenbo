@@ -3,45 +3,46 @@
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import type { ComponentProps } from "react";
 import { useCallback, useMemo, useState } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
-  type NavigationListVariant,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
   useResolvedNavigationListVariant,
 } from "./navigation-list-context";
-import {
-  NavigationListItemContext,
-  type NavigationListItemContextValue,
-} from "./navigation-list-item-context";
+import type {
+  NavigationListTone,
+  NavigationListVariant,
+} from "./navigation-list-context";
+import { NavigationListItemContext } from "./navigation-list-item-context";
+import type { NavigationListItemContextValue } from "./navigation-list-item-context";
 
 const navigationListItemVariants = tv({
   base: "group/navigation-list-item relative list-none",
-  variants: {
-    size: {
-      xs: "",
-      sm: "",
-      md: "",
-      lg: "",
-      xl: "",
-    },
-    tone: {
-      surface: "",
-      sidebar: "",
-    },
-    variant: {
-      subtle: "",
-      light: "",
-      filled: "",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
     variant: "light",
+  },
+  variants: {
+    size: {
+      lg: "",
+      md: "",
+      sm: "",
+      xl: "",
+      xs: "",
+    },
+    tone: {
+      sidebar: "",
+      surface: "",
+    },
+    variant: {
+      filled: "",
+      light: "",
+      subtle: "",
+    },
   },
 });
 

@@ -8,8 +8,8 @@ export const completeFunnelStageData = [
 ] as const;
 
 export const completeFunnelStageSeries = [
-  { name: "Visits", label: "Visits" },
-  { name: "Signups", label: "Signups" },
-  { name: "Qualified", label: "Qualified" },
-  { name: "Closed", label: "Closed" },
+  { label: "Visits", name: "Visits" },
+  { label: "Signups", name: "Signups" },
+  { label: "Qualified", name: "Qualified" },
+  { label: "Closed", name: "Closed" },
 ] as const satisfies readonly CompleteChartSeries[];

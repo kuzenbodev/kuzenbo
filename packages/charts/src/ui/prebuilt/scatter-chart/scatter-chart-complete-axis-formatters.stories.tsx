@@ -25,9 +25,9 @@ const ScatterChartCompleteAxisFormattersDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Scatter/AxisFormatters",
   component: ScatterChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Scatter/AxisFormatters",
 } satisfies Meta<typeof ScatterChart>;
 
 type Story = StoryObj<typeof ScatterChart>;

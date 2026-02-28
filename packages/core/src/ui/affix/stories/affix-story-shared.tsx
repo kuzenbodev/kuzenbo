@@ -4,17 +4,17 @@ import { Button } from "../../button/button";
 import { Affix } from "../affix";
 
 export const baseMeta = {
-  title: "Components/Affix",
   component: Affix,
   tags: ["autodocs"],
+  title: "Components/Affix",
 } satisfies Meta<typeof Affix>;
 
 type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   args: {
-    withinPortal: false,
     position: { bottom: 16, right: 16 },
+    withinPortal: false,
   },
   render: (args) => (
     <div className="border-border bg-background relative h-80 w-full overflow-hidden rounded-md border p-4">
@@ -49,8 +49,8 @@ export const Default: Story = {
 
 export const ResponsiveBottom: Story = {
   args: {
-    withinPortal: false,
     position: { bottom: 16, left: 16, right: 16 },
+    withinPortal: false,
   },
   render: (args) => (
     <div className="border-border bg-background relative h-80 w-full overflow-hidden rounded-md border p-4">
@@ -74,8 +74,8 @@ export const ResponsiveBottom: Story = {
 
 export const StickyWithHeader: Story = {
   args: {
+    position: { right: 16, top: 72 },
     withinPortal: false,
-    position: { top: 72, right: 16 },
   },
   render: (args) => (
     <div className="border-border bg-background relative h-96 w-full overflow-hidden rounded-md border">

@@ -1,24 +1,25 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useTableResolvedSize } from "./table-size-context";
 
 const tableCaptionVariants = tv({
   base: "text-muted-foreground",
-  variants: {
-    size: {
-      xs: "mt-2 text-xs",
-      sm: "mt-3 text-xs",
-      md: "mt-4 text-sm",
-      lg: "mt-4 text-sm",
-      xl: "mt-5 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "mt-4 text-sm",
+      md: "mt-4 text-sm",
+      sm: "mt-3 text-xs",
+      xl: "mt-5 text-base",
+      xs: "mt-2 text-xs",
+    },
   },
 });
 

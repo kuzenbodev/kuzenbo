@@ -8,20 +8,20 @@ export const presets = definePlaygroundPresets([
   {
     id: "danger",
     label: "Danger",
-    values: {
-      variant: "danger",
-      children: "Delete project",
-    },
     locks: ["variant"],
+    values: {
+      children: "Delete project",
+      variant: "danger",
+    },
   },
   {
     id: "loading",
     label: "Loading",
-    values: {
-      isLoading: true,
-      children: "Saving changes",
-    },
     locks: ["isLoading"],
+    values: {
+      children: "Saving changes",
+      isLoading: true,
+    },
   },
 ]);
 

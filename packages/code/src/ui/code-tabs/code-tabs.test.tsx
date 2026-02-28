@@ -10,19 +10,19 @@ afterEach(cleanup);
 describe("CodeTabs", () => {
   const tabs = [
     {
-      value: "npm",
-      label: "npm",
       content: <code>npm install @kuzenbo/code</code>,
+      label: "npm",
+      value: "npm",
     },
     {
-      value: "pnpm",
-      label: "pnpm",
       content: <code>pnpm add @kuzenbo/code</code>,
+      label: "pnpm",
+      value: "pnpm",
     },
     {
-      value: "bun",
-      label: "bun",
       content: <code>bun add @kuzenbo/code</code>,
+      label: "bun",
+      value: "bun",
     },
   ] as const;
 

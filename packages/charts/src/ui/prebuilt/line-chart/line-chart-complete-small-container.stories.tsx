@@ -11,7 +11,7 @@ const LineChartCompleteSmallContainerDemo = () => (
   <div className={completeChartCompactShellVariants()}>
     <LineChart
       lineChartProps={{
-        margin: { top: 8, right: 4, left: -4, bottom: 0 },
+        margin: { bottom: 0, left: -4, right: 4, top: 8 },
       }}
       chartRootProps={{ className: "h-52 w-full" }}
       data={lineSmallContainerData}
@@ -26,9 +26,9 @@ const LineChartCompleteSmallContainerDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Line/SmallContainer",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/SmallContainer",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

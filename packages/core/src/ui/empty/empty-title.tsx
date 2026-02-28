@@ -1,22 +1,23 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedEmptySize } from "./empty-size-context";
 
 const emptyTitleVariants = tv({
   base: "text-foreground font-medium tracking-tight",
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-sm",
-      lg: "text-base",
-      xl: "text-lg",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-base",
+      md: "text-sm",
+      sm: "text-sm",
+      xl: "text-lg",
+      xs: "text-xs",
+    },
   },
 });
 

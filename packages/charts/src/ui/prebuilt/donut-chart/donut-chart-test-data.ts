@@ -7,9 +7,9 @@ export const completeDonutTrafficData = [
 ] as const;
 
 export const completeDonutTrafficSeries = [
-  { name: "Direct", label: "Direct" },
-  { name: "Referral", label: "Referral" },
-  { name: "Partner", label: "Partner" },
+  { label: "Direct", name: "Direct" },
+  { label: "Referral", name: "Referral" },
+  { label: "Partner", name: "Partner" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeDonutLabelData = [
@@ -18,6 +18,6 @@ export const completeDonutLabelData = [
 ] as const;
 
 export const completeDonutLabelSeries = [
-  { name: "Organic", label: "Organic" },
-  { name: "Paid", label: "Paid" },
+  { label: "Organic", name: "Organic" },
+  { label: "Paid", name: "Paid" },
 ] as const satisfies readonly CompleteChartSeries[];

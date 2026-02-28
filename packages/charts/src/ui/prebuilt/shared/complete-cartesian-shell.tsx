@@ -107,12 +107,12 @@ const CompleteCartesianShell = <
       {...chartRootProps}
     >
       {children({
-        legendNode,
-        tooltipNode,
         getSeriesColorVar,
         highlightedSeriesName,
         isAnySeriesHighlighted,
         isSeriesHighlighted,
+        legendNode,
+        tooltipNode,
         usesAutoSizeContainer,
       })}
     </Chart.Root>

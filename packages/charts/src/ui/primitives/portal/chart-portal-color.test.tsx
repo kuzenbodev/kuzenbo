@@ -19,7 +19,7 @@ describe("Chart portal color safety", () => {
     const { container } = render(
       <Chart.Provider
         config={{
-          visits: { label: "Visits", color: "var(--color-chart-1)" },
+          visits: { color: "var(--color-chart-1)", label: "Visits" },
         }}
       >
         <Chart.LegendContent
@@ -50,7 +50,7 @@ describe("Chart portal color safety", () => {
     const { container } = render(
       <Chart.Provider
         config={{
-          visits: { label: "Visits", color: "var(--color-chart-1)" },
+          visits: { color: "var(--color-chart-1)", label: "Visits" },
         }}
       >
         <Chart.TooltipContent
@@ -91,7 +91,7 @@ describe("Chart portal color safety", () => {
               light: "var(--color-chart-4)",
             },
           },
-          visits: { label: "Visits", color: "var(--color-chart-1)" },
+          visits: { color: "var(--color-chart-1)", label: "Visits" },
         }}
       >
         <Chart.TooltipContent
@@ -155,7 +155,7 @@ describe("Chart portal color safety", () => {
               light: "var(--color-chart-2)",
             },
           },
-          trials: { label: "Trials", color: "var(--color-chart-3)" },
+          trials: { color: "var(--color-chart-3)", label: "Trials" },
           visits: { label: "Visits" },
         }}
       >

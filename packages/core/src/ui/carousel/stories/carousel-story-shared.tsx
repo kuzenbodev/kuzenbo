@@ -1,26 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useState } from "react";
 
-import { type CarouselApi, Carousel } from "../carousel";
+import { Carousel } from "../carousel";
+import type { CarouselApi } from "../carousel";
 
 const releaseSlides = [
   {
-    id: "intake",
-    title: "Intake validated",
     detail: "42 purchase requests passed policy checks this morning.",
+    id: "intake",
     metric: "42 requests",
+    title: "Intake validated",
   },
   {
-    id: "legal",
-    title: "Legal review queue",
     detail: "8 contracts are waiting for regional clause approval.",
+    id: "legal",
     metric: "8 contracts",
+    title: "Legal review queue",
   },
   {
-    id: "finance",
-    title: "Finance approval",
     detail: "$1.2M in procurement spend is pending controller sign-off.",
+    id: "finance",
     metric: "$1.2M",
+    title: "Finance approval",
   },
 ] as const;
 
@@ -48,12 +49,12 @@ const roadmapSlides = [
 ] as const;
 
 export const baseMeta = {
-  title: "Components/Carousel",
   component: Carousel,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/Carousel",
 } satisfies Meta<typeof Carousel>;
 
 type Story = StoryObj<typeof baseMeta>;

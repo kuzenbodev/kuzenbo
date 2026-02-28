@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { Field } from "../field/field";
 import { FormFieldContent } from "./form-field-content";
@@ -16,17 +17,17 @@ export type FormFieldProps = ComponentProps<typeof Field.Root> &
 
 const fieldVariants = tv({
   base: "group/field data-[invalid]:text-danger-foreground data-[invalid=true]:text-danger-foreground flex w-full gap-3",
+  defaultVariants: {
+    orientation: "vertical",
+  },
   variants: {
     orientation: {
-      vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
       horizontal:
         "flex-row items-center has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-item]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px has-[>[data-slot=field-item]]:[&>[role=checkbox],[role=radio]]:mt-px",
       responsive:
         "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-item]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px @md/field-group:has-[>[data-slot=field-item]]:[&>[role=checkbox],[role=radio]]:mt-px",
+      vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
     },
-  },
-  defaultVariants: {
-    orientation: "vertical",
   },
 });
 

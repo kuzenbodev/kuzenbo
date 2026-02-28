@@ -42,12 +42,12 @@ const AnatomyBaselineDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/AnatomyBaseline",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/AnatomyBaseline",
 };
 
 export default meta;

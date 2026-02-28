@@ -270,19 +270,19 @@ describe("Toast", () => {
     });
   });
 
-  it("renders multiple toast variants via useToast helpers", async () => {
+  it("renders multiple toast variants via useToast helpers", () => {
     const Demo = () => {
       const toast = useToast();
       const handleSuccess = useCallback(() => {
         toast.success({
-          title: "Saved",
           description: "Preferences updated.",
+          title: "Saved",
         });
       }, [toast]);
       const handleError = useCallback(() => {
         toast.error({
-          title: "Failed",
           description: "Retry request.",
+          title: "Failed",
         });
       }, [toast]);
 
@@ -330,8 +330,8 @@ describe("Toast", () => {
       const [toastId, setToastId] = useState("");
       const handleInfo = useCallback(() => {
         const id = toast.info({
-          title: "Queued",
           description: "Waiting for deployment window.",
+          title: "Queued",
         });
         setToastId(id);
       }, [toast]);

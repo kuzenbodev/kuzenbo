@@ -3,15 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Toolbar } from "../toolbar";
 
 export const baseMeta = {
-  title: "Components/Toolbar",
-  component: Toolbar,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Toolbar,
   parameters: {
     docs: {
       description: {
@@ -20,6 +18,8 @@ export const baseMeta = {
       },
     },
   },
+  tags: ["autodocs"],
+  title: "Components/Toolbar",
 } satisfies Meta<typeof Toolbar>;
 
 type Story = StoryObj<typeof baseMeta>;

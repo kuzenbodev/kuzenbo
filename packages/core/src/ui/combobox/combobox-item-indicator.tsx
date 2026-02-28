@@ -2,7 +2,8 @@
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -10,17 +11,17 @@ import { ComboboxOverlayContext } from "./combobox-overlay-context";
 
 const comboboxItemIndicatorVariants = tv({
   base: "pointer-events-none absolute flex items-center justify-center",
-  variants: {
-    size: {
-      xs: "right-1.5 size-3",
-      sm: "right-2 size-3.5",
-      md: "right-2 size-4",
-      lg: "right-2.5 size-4",
-      xl: "right-3 size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "right-2.5 size-4",
+      md: "right-2 size-4",
+      sm: "right-2 size-3.5",
+      xl: "right-3 size-5",
+      xs: "right-1.5 size-3",
+    },
   },
 });
 

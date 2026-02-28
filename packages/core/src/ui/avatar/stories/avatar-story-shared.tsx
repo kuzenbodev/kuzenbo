@@ -14,9 +14,9 @@ const createAvatarDataUri = (
   )}`;
 
 export const baseMeta = {
-  title: "Components/Avatar",
   component: Avatar,
   tags: ["autodocs"],
+  title: "Components/Avatar",
 } satisfies Meta<typeof Avatar>;
 
 type Story = StoryObj<typeof baseMeta>;

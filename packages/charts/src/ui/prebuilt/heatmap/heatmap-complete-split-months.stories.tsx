@@ -19,9 +19,9 @@ const HeatmapCompleteSplitMonthsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Heatmap/Split Months",
   component: Heatmap,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Heatmap/Split Months",
 } satisfies Meta<typeof Heatmap>;
 
 type Story = StoryObj<typeof Heatmap>;

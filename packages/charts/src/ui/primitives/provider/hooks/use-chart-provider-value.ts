@@ -42,10 +42,10 @@ const useChartProviderValue = ({
   const resolveColorExpression = useCallback(
     (color: string | undefined, fallbackSeriesKey?: string) =>
       resolveSeriesColorExpression({
-        value: color,
+        chartId,
         fallbackSeriesKey,
         registry: seriesRegistry,
-        chartId,
+        value: color,
       }),
     [chartId, seriesRegistry]
   );

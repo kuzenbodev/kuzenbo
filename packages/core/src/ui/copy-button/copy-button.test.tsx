@@ -85,7 +85,7 @@ describe("CopyButton", () => {
 
   it("transitions to failed status when clipboard write rejects", async () => {
     const user = userEvent.setup();
-    mockClipboard(async () => {
+    mockClipboard(() => {
       throw new Error("Permission denied");
     });
 

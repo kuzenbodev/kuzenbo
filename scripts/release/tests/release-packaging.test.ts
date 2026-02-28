@@ -31,11 +31,11 @@ const createWorkspacePackage = ({
   workspaceDir: string;
 }): WorkspacePackage => ({
   dirPath: path.join(repoRoot, workspaceDir),
-  manifestPath: path.join(repoRoot, workspaceDir, "package.json"),
   manifest: {
     name,
     version,
   },
+  manifestPath: path.join(repoRoot, workspaceDir, "package.json"),
 });
 
 const readRepoFile = (relativeFilePath: string): string =>
@@ -56,26 +56,26 @@ describe("release packaging helpers", () => {
 
   it("detects unsupported catalog and workspace dependency protocols", () => {
     const matches = findUnsupportedDependencyProtocols({
-      name: "@kuzenbo/core",
-      version: "0.0.1-alpha.4",
       dependencies: {
         react: "^19.0.0",
         tailwindcss: "catalog:",
       },
+      name: "@kuzenbo/core",
       peerDependencies: {
         "@kuzenbo/theme": "workspace:*",
       },
+      version: "0.0.1-alpha.4",
     });
 
     expect(matches).toEqual([
       {
-        field: "dependencies",
         dependencyName: "tailwindcss",
+        field: "dependencies",
         specifier: "catalog:",
       },
       {
-        field: "peerDependencies",
         dependencyName: "@kuzenbo/theme",
+        field: "peerDependencies",
         specifier: "workspace:*",
       },
     ]);
@@ -85,14 +85,14 @@ describe("release packaging helpers", () => {
     expect(() =>
       assertPackedManifestIsPublishSafe(
         {
-          name: "@kuzenbo/core",
-          version: "0.0.1-alpha.4",
           dependencies: {
             react: "^19.0.0",
           },
+          name: "@kuzenbo/core",
           peerDependencies: {
             "@kuzenbo/theme": "^0.0.1-alpha.4",
           },
+          version: "0.0.1-alpha.4",
         },
         "@kuzenbo/core"
       )
@@ -103,11 +103,11 @@ describe("release packaging helpers", () => {
     expect(() =>
       assertPackedManifestIsPublishSafe(
         {
-          name: "@kuzenbo/theme",
-          version: "0.0.1-alpha.4",
           dependencies: {
             tailwindcss: "catalog:",
           },
+          name: "@kuzenbo/theme",
+          version: "0.0.1-alpha.4",
         },
         "@kuzenbo/theme"
       )
@@ -116,30 +116,30 @@ describe("release packaging helpers", () => {
 
   it("applies publishConfig manifest overrides for packed output", () => {
     const rewritten = applyPublishConfigManifestOverrides({
-      name: "@kuzenbo/code",
-      version: "0.0.1-alpha.4",
-      main: "./src/index.ts",
-      module: "./src/index.ts",
-      types: "./src/index.ts",
       exports: {
         ".": {
-          types: "./src/index.ts",
-          import: "./src/index.ts",
           default: "./src/index.ts",
+          import: "./src/index.ts",
+          types: "./src/index.ts",
         },
       },
+      main: "./src/index.ts",
+      module: "./src/index.ts",
+      name: "@kuzenbo/code",
       publishConfig: {
+        exports: {
+          ".": {
+            default: "./dist/index.js",
+            import: "./dist/index.js",
+            types: "./dist/index.d.ts",
+          },
+        },
         main: "./dist/index.js",
         module: "./dist/index.js",
         types: "./dist/index.d.ts",
-        exports: {
-          ".": {
-            types: "./dist/index.d.ts",
-            import: "./dist/index.js",
-            default: "./dist/index.js",
-          },
-        },
       },
+      types: "./src/index.ts",
+      version: "0.0.1-alpha.4",
     });
 
     expect(rewritten.main).toBe("./dist/index.js");
@@ -147,9 +147,9 @@ describe("release packaging helpers", () => {
     expect(rewritten.types).toBe("./dist/index.d.ts");
     expect(rewritten.exports).toEqual({
       ".": {
-        types: "./dist/index.d.ts",
-        import: "./dist/index.js",
         default: "./dist/index.js",
+        import: "./dist/index.js",
+        types: "./dist/index.d.ts",
       },
     });
   });
@@ -157,18 +157,18 @@ describe("release packaging helpers", () => {
   it("reports missing manifest entrypoints against packed files", () => {
     const missing = findMissingPackedManifestFileReferences(
       {
-        name: "@kuzenbo/code",
-        version: "0.0.1-alpha.4",
-        main: "./src/index.ts",
-        module: "./src/index.ts",
-        types: "./src/index.ts",
         exports: {
           ".": {
-            types: "./src/index.ts",
-            import: "./src/index.ts",
             default: "./src/index.ts",
+            import: "./src/index.ts",
+            types: "./src/index.ts",
           },
         },
+        main: "./src/index.ts",
+        module: "./src/index.ts",
+        name: "@kuzenbo/code",
+        types: "./src/index.ts",
+        version: "0.0.1-alpha.4",
       },
       ["package.json", "dist/index.js", "dist/index.d.ts"]
     );
@@ -179,11 +179,11 @@ describe("release packaging helpers", () => {
   it("accepts wildcard export paths when tarball files match", () => {
     const missing = findMissingPackedManifestFileReferences(
       {
-        name: "@kuzenbo/theme",
-        version: "0.0.1-alpha.4",
         exports: {
           "./prebuilt/*.css": "./dist/prebuilt/*.css",
         },
+        name: "@kuzenbo/theme",
+        version: "0.0.1-alpha.4",
       },
       ["package.json", "dist/prebuilt/kuzenbo.css"]
     );
@@ -294,8 +294,8 @@ describe("bun.lock workspace version helpers", () => {
 
     expect(() =>
       assertBunLockWorkspaceVersionsMatchManifests({
-        packages,
         bunLockContent,
+        packages,
       })
     ).toThrow();
   });

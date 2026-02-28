@@ -1,7 +1,7 @@
 import type { ComponentType, ReactNode } from "react";
 
 // Format: { THEME_NAME: CSS_SELECTOR }
-export const THEMES = { light: "", dark: ".dark" } as const;
+export const THEMES = { dark: ".dark", light: "" } as const;
 
 export type ChartConfig = Record<
   string,

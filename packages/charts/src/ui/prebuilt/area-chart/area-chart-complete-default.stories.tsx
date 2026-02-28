@@ -24,9 +24,9 @@ const AreaChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Area/Default",
   component: AreaChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Area/Default",
 } satisfies Meta<typeof AreaChart>;
 
 type Story = StoryObj<typeof AreaChart>;

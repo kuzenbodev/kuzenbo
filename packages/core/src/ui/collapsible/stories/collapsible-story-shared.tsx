@@ -2,16 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import { Typography } from "../../typography/typography";
-import {
-  Collapsible,
-  type CollapsibleContentProps,
-  type CollapsibleProps,
-} from "../collapsible";
+import { Collapsible } from "../collapsible";
+import type { CollapsibleContentProps, CollapsibleProps } from "../collapsible";
 
 export const baseMeta = {
-  title: "Components/Collapsible",
   component: Collapsible,
   tags: ["autodocs"],
+  title: "Components/Collapsible",
 } satisfies Meta<typeof Collapsible>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -43,21 +40,21 @@ const renderScenario = ({
 export const Default: Story = {
   render: () =>
     renderScenario({
-      triggerLabel: "Release notes",
       content:
         "Version 1.8.0 ships new pagination variants, tooltip size overrides, and updated docs examples.",
+      triggerLabel: "Release notes",
     }),
 };
 
 export const DefaultOpen: Story = {
   render: () =>
     renderScenario({
-      triggerLabel: "Onboarding checklist",
       content:
         "Connect the repository, configure CI secrets, and run the initial release dry-run before inviting collaborators.",
       rootProps: {
         defaultOpen: true,
       },
+      triggerLabel: "Onboarding checklist",
     }),
 };
 
@@ -95,35 +92,35 @@ export const Controlled: Story = {
 export const Disabled: Story = {
   render: () =>
     renderScenario({
-      triggerLabel: "Billing lock notice",
       content:
         "This section is unavailable until billing ownership is transferred to an administrator.",
       rootProps: {
         disabled: true,
       },
+      triggerLabel: "Billing lock notice",
     }),
 };
 
 export const KeepMounted: Story = {
   render: () =>
     renderScenario({
-      triggerLabel: "Session draft",
       content:
         "The form draft remains mounted while collapsed, preserving unsaved values between toggle events.",
       contentProps: {
         keepMounted: true,
       },
+      triggerLabel: "Session draft",
     }),
 };
 
 export const HiddenUntilFound: Story = {
   render: () =>
     renderScenario({
-      triggerLabel: "Searchable troubleshooting note",
       content:
         "Browser find can reveal this panel: kuzenbo-hidden-until-found-token.",
       contentProps: {
         hiddenUntilFound: true,
       },
+      triggerLabel: "Searchable troubleshooting note",
     }),
 };

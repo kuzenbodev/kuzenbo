@@ -13,6 +13,14 @@ export const WithLabel: Story = {
   args: {
     value: 75,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Progress with contextual labeling and milestone text for roadmap-style status updates.",
+      },
+    },
+  },
   render: ({ value }) => (
     <div className="w-72 space-y-2">
       <Progress value={value}>
@@ -26,12 +34,4 @@ export const WithLabel: Story = {
       </div>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Progress with contextual labeling and milestone text for roadmap-style status updates.",
-      },
-    },
-  },
 };

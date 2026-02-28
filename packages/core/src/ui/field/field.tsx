@@ -5,7 +5,8 @@ import { FieldDescription } from "./field-description";
 import { FieldError } from "./field-error";
 import { FieldItem } from "./field-item";
 import { FieldLabel } from "./field-label";
-import { FieldRoot, type FieldRootProps } from "./field-root";
+import { FieldRoot } from "./field-root";
+import type { FieldRootProps } from "./field-root";
 import { FieldValidity } from "./field-validity";
 
 export type FieldProps = FieldRootProps;

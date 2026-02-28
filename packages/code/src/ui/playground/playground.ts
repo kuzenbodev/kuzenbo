@@ -5,9 +5,9 @@ import { PlaygroundPreview } from "./playground-preview";
 import { PlaygroundShell } from "./playground-shell";
 
 export const Playground = {
-  Root: PlaygroundShell,
+  Code: PlaygroundCode,
   Controls: PlaygroundControls,
   PresetBar: PlaygroundPresets,
   Preview: PlaygroundPreview,
-  Code: PlaygroundCode,
+  Root: PlaygroundShell,
 } as const;

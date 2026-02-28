@@ -16,12 +16,12 @@ export interface MockDataTableProps<TData extends object> {
 
 const mockDataTableVariants = tv({
   slots: {
+    bodyCell: "px-3 py-2",
+    bodyRow: "border-border/60 border-b",
+    headerCell: "px-3 py-2 text-left font-medium",
     root: "border-border rounded-lg border",
     table: "w-full border-collapse text-sm",
     thead: "border-border bg-muted/40 border-b",
-    headerCell: "px-3 py-2 text-left font-medium",
-    bodyRow: "border-border/60 border-b",
-    bodyCell: "px-3 py-2",
   },
 });
 

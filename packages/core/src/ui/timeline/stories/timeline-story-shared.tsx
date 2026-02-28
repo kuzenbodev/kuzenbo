@@ -4,56 +4,56 @@ import { Timeline } from "../timeline";
 
 const onboardingFlow = [
   {
-    id: 0,
-    title: "Intake submitted",
-    time: "2026-02-18",
     description: "Vendor profile and compliance forms were uploaded.",
+    id: 0,
+    time: "2026-02-18",
+    title: "Intake submitted",
   },
   {
-    id: 1,
-    title: "Legal review",
-    time: "2026-02-19",
     description: "Regional clauses validated by counsel.",
+    id: 1,
+    time: "2026-02-19",
+    title: "Legal review",
   },
   {
-    id: 2,
-    title: "Finance approval",
-    time: "2026-02-21",
     description: "Budget owner approved annual commitment.",
+    id: 2,
+    time: "2026-02-21",
+    title: "Finance approval",
   },
 ] as const;
 
 const milestoneFlow = [
   {
-    id: 0,
-    title: "Q1",
-    time: "2026-01",
     description: "Procurement baseline established",
+    id: 0,
+    time: "2026-01",
+    title: "Q1",
   },
   {
-    id: 1,
-    title: "Q2",
-    time: "2026-04",
     description: "Automated reconciliations launched",
+    id: 1,
+    time: "2026-04",
+    title: "Q2",
   },
   {
-    id: 2,
-    title: "Q3",
-    time: "2026-07",
     description: "Global policy engine rollout",
+    id: 2,
+    time: "2026-07",
+    title: "Q3",
   },
   {
-    id: 3,
-    title: "Q4",
-    time: "2026-10",
     description: "Contract intelligence expansion",
+    id: 3,
+    time: "2026-10",
+    title: "Q4",
   },
 ] as const;
 
 export const baseMeta = {
-  title: "Components/Timeline",
   component: Timeline,
   tags: ["autodocs"],
+  title: "Components/Timeline",
 } satisfies Meta<typeof Timeline>;
 
 type Story = StoryObj<typeof baseMeta>;

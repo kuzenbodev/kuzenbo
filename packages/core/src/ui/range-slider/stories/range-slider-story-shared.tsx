@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  type ComponentProps,
-  type FormEvent,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { ComponentProps, FormEvent, ReactNode } from "react";
 
 import { RangeSlider } from "../range-slider";
 import type { RangeSliderValue } from "../range-slider-types";
@@ -23,21 +17,21 @@ interface RangeStoryExtraProps {
 const defaultRangeValue: RangeSliderValue = [25, 75];
 
 const rangeMarks = [
-  { value: 0, label: "0" },
-  { value: 20, label: "20" },
-  { value: 40, label: "40" },
-  { value: 60, label: "60" },
-  { value: 80, label: "80" },
-  { value: 100, label: "100" },
+  { label: "0", value: 0 },
+  { label: "20", value: 20 },
+  { label: "40", value: 40 },
+  { label: "60", value: 60 },
+  { label: "80", value: 80 },
+  { label: "100", value: 100 },
 ] as const;
 
 const restrictToMarksRangeMarks = [
-  { value: 5, label: "5" },
-  { value: 15, label: "15" },
-  { value: 35, label: "35" },
-  { value: 55, label: "55" },
-  { value: 75, label: "75" },
-  { value: 95, label: "95" },
+  { label: "5", value: 5 },
+  { label: "15", value: 15 },
+  { label: "35", value: 35 },
+  { label: "55", value: 55 },
+  { label: "75", value: 75 },
+  { label: "95", value: 95 },
 ] as const;
 
 const noopRangeOnChange: NonNullable<RangeSliderArgs["onChange"]> = (
@@ -112,9 +106,9 @@ const ControlledRangeSlider = ({ args }: { args: RangeSliderArgs }) => {
 };
 
 export const rangeBaseMeta = {
-  title: "Components/RangeSlider",
   component: RangeSlider,
   tags: ["autodocs"],
+  title: "Components/RangeSlider",
 } satisfies Meta<typeof RangeSlider>;
 
 type RangeStory = StoryObj<typeof rangeBaseMeta>;

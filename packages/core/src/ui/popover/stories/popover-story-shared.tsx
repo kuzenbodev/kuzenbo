@@ -16,26 +16,26 @@ import {
 const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Popover",
-  component: Popover,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     size: {
       control: "select",
       options: sizeOptions,
     },
   },
+  component: Popover,
+  parameters: {
+    layout: "centered",
+  },
   subcomponents: {
-    PopoverTrigger,
+    PopoverArrow,
+    PopoverPopup,
     PopoverPortal,
     PopoverPositioner,
-    PopoverPopup,
-    PopoverArrow,
+    PopoverTrigger,
     PopoverViewport,
   },
+  tags: ["autodocs"],
+  title: "Components/Popover",
 } satisfies Meta<typeof Popover>;
 
 type Story = StoryObj<typeof baseMeta>;

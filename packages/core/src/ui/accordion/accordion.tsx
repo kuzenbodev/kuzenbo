@@ -2,7 +2,8 @@
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { useMemo } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -16,15 +17,15 @@ import { useAccordionDefaultProps } from "./use-accordion-default-props";
 
 const accordionVariants = tv({
   base: "group/accordion flex w-full min-w-0 flex-col",
-  variants: {
-    variant: {
-      default: "",
-      bordered: "border-border bg-background overflow-hidden rounded-lg border",
-      ghost: "gap-1",
-    },
-  },
   defaultVariants: {
     variant: "default",
+  },
+  variants: {
+    variant: {
+      bordered: "border-border bg-background overflow-hidden rounded-lg border",
+      default: "",
+      ghost: "gap-1",
+    },
   },
 });
 

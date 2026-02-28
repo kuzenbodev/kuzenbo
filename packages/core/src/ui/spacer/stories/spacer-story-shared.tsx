@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Spacer } from "../spacer";
 
 export const baseMeta = {
-  title: "Components/Spacer",
   component: Spacer,
   tags: ["autodocs"],
+  title: "Components/Spacer",
 } satisfies Meta<typeof Spacer>;
 
 type Story = StoryObj<typeof baseMeta>;

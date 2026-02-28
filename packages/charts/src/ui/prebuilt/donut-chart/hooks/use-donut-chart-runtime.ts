@@ -6,22 +6,18 @@ import type {
   CompleteChartDatum,
   CompleteChartSeries,
 } from "../../shared/complete-types";
-import {
-  createRadialLabelFormatter,
-  type RadialLabelMode,
-} from "../../shared/utils/radial/create-radial-label-formatter";
+import { createRadialLabelFormatter } from "../../shared/utils/radial/create-radial-label-formatter";
+import type { RadialLabelMode } from "../../shared/utils/radial/create-radial-label-formatter";
 import { getRadialSegmentColor } from "../../shared/utils/radial/get-radial-segment-color";
 import { getRadialSegmentKey } from "../../shared/utils/radial/get-radial-segment-key";
-import {
-  resolveDonutRadii,
-  type ResolveDonutRadiiOptions,
-} from "../../shared/utils/radial/resolve-donut-radii";
+import { resolveDonutRadii } from "../../shared/utils/radial/resolve-donut-radii";
+import type { ResolveDonutRadiiOptions } from "../../shared/utils/radial/resolve-donut-radii";
 import { resolveRadialAngles } from "../../shared/utils/radial/resolve-radial-angles";
 import { resolveRadialChartProps } from "../../shared/utils/radial/resolve-radial-chart-props";
-import {
-  resolveTooltipSourceShared,
-  type CompleteTooltipSourceMode,
-  type RechartsTooltipProps,
+import { resolveTooltipSourceShared } from "../../shared/utils/radial/resolve-tooltip-source-shared";
+import type {
+  CompleteTooltipSourceMode,
+  RechartsTooltipProps,
 } from "../../shared/utils/radial/resolve-tooltip-source-shared";
 import { toRadialValue } from "../../shared/utils/radial/to-radial-value";
 
@@ -118,17 +114,17 @@ const useDonutChartRuntime = <
           if (providedSeries) {
             return {
               ...providedSeries,
-              name: segmentKey,
-              label: providedSeries.label ?? segmentKey,
               color:
                 providedSeries.color ?? getRadialSegmentColor(datum, index),
+              label: providedSeries.label ?? segmentKey,
+              name: segmentKey,
             };
           }
 
           return {
-            name: segmentKey,
-            label: segmentKey,
             color: getRadialSegmentColor(datum, index),
+            label: segmentKey,
+            name: segmentKey,
           };
         })
       : [...(series ?? [])];
@@ -155,15 +151,15 @@ const useDonutChartRuntime = <
   return {
     fallbackDatum,
     labelFormatter,
-    resolvedRadii,
-    resolvedAngles,
-    resolvedNameKey,
-    resolvedSeries,
-    resolvedTooltipProps,
     resolvePieChartProps: (usesAutoSizeContainer: boolean) =>
       resolveRadialChartProps(chartProps, usesAutoSizeContainer),
     resolveSegmentKey: (datum, index) =>
       getRadialSegmentKey(datum, resolvedNameKey, index),
+    resolvedAngles,
+    resolvedNameKey,
+    resolvedRadii,
+    resolvedSeries,
+    resolvedTooltipProps,
     totalValue,
   };
 };

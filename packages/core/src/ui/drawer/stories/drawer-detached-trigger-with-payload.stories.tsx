@@ -54,12 +54,12 @@ const DetachedTriggerWithPayloadDemo = () => {
 };
 
 const meta: Meta = {
-  title: "Components/Drawer/DetachedTriggerWithPayload",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/DetachedTriggerWithPayload",
 };
 
 export default meta;

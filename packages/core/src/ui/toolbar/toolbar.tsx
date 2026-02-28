@@ -2,7 +2,8 @@
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import { useMemo } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -11,21 +12,22 @@ import { ToolbarGroup } from "./toolbar-group";
 import { ToolbarInput } from "./toolbar-input";
 import { ToolbarLink } from "./toolbar-link";
 import { ToolbarSeparator } from "./toolbar-separator";
-import { ToolbarSizeContext, type ToolbarSize } from "./toolbar-size-context";
+import { ToolbarSizeContext } from "./toolbar-size-context";
+import type { ToolbarSize } from "./toolbar-size-context";
 
 const toolbarVariants = tv({
   base: "bg-popover outline-border flex items-center rounded-lg shadow-xs outline",
-  variants: {
-    size: {
-      xs: "gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
-      sm: "gap-0.5 rounded-[min(var(--radius-md),10px)] p-0.5",
-      md: "gap-1 p-1",
-      lg: "gap-1 p-1.5",
-      xl: "gap-1.5 rounded-xl p-2",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-1 p-1.5",
+      md: "gap-1 p-1",
+      sm: "gap-0.5 rounded-[min(var(--radius-md),10px)] p-0.5",
+      xl: "gap-1.5 rounded-xl p-2",
+      xs: "gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
+    },
   },
 });
 

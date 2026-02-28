@@ -6,19 +6,19 @@ import { Rating } from "../rating";
 const ratingSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Rating",
-  component: Rating,
-  tags: ["autodocs"],
   argTypes: {
-    rating: { control: "number", min: 0, max: 5, step: 0.5 },
-    maxRating: { control: "number" },
-    showValue: { control: "boolean" },
     editable: { control: "boolean" },
+    maxRating: { control: "number" },
+    rating: { control: "number", max: 5, min: 0, step: 0.5 },
+    showValue: { control: "boolean" },
     size: {
       control: "select",
       options: ratingSizes,
     },
   },
+  component: Rating,
+  tags: ["autodocs"],
+  title: "Components/Rating",
 } satisfies Meta<typeof Rating>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -88,11 +88,11 @@ export const Sizes: Story = {
 };
 
 export const EditableWithValue: Story = {
-  args: { rating: 4, showValue: true, editable: true },
+  args: { editable: true, rating: 4, showValue: true },
   render: () => <ReviewRatingExample />,
 };
 
 export const ReadOnly: Story = {
-  args: { rating: 4.6, showValue: true, editable: false },
+  args: { editable: false, rating: 4.6, showValue: true },
   render: () => <ReadOnlyQualitySnapshotExample />,
 };

@@ -20,14 +20,14 @@ export const fullScreenVariants = tv({
     "z-immersive",
     "transition-opacity",
   ],
-  variants: {
-    visible: {
-      true: "pointer-events-auto opacity-100",
-      false: "pointer-events-none opacity-0",
-    },
-  },
   defaultVariants: {
     visible: false,
+  },
+  variants: {
+    visible: {
+      false: "pointer-events-none opacity-0",
+      true: "pointer-events-auto opacity-100",
+    },
   },
 });
 

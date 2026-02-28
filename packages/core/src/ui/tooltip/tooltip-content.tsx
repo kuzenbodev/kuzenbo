@@ -6,10 +6,8 @@ import { TooltipArrow } from "./tooltip-arrow";
 import { TooltipPopup } from "./tooltip-popup";
 import { TooltipPortal } from "./tooltip-portal";
 import { TooltipPositioner } from "./tooltip-positioner";
-import {
-  useResolvedTooltipSize,
-  type TooltipSize,
-} from "./tooltip-size-context";
+import { useResolvedTooltipSize } from "./tooltip-size-context";
+import type { TooltipSize } from "./tooltip-size-context";
 import { TooltipViewport } from "./tooltip-viewport";
 export type TooltipContentProps = TooltipPrimitive.Popup.Props &
   Pick<

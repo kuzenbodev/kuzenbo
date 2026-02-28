@@ -23,9 +23,9 @@ const SparklineCompleteTrendColorsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Sparkline/Trend Colors",
   component: Sparkline,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Sparkline/Trend Colors",
 } satisfies Meta<typeof Sparkline>;
 
 type Story = StoryObj<typeof Sparkline>;

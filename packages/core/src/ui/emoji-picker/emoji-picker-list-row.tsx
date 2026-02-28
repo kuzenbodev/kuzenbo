@@ -2,7 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
@@ -12,17 +13,17 @@ import {
 
 const emojiPickerListRowVariants = tv({
   base: "",
-  variants: {
-    size: {
-      xs: "scroll-my-1 px-1",
-      sm: "scroll-my-1.5 px-1.5",
-      md: "scroll-my-1.5 px-1.5",
-      lg: "scroll-my-2 px-2",
-      xl: "scroll-my-2 px-2.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "scroll-my-2 px-2",
+      md: "scroll-my-1.5 px-1.5",
+      sm: "scroll-my-1.5 px-1.5",
+      xl: "scroll-my-2 px-2.5",
+      xs: "scroll-my-1 px-1",
+    },
   },
 });
 

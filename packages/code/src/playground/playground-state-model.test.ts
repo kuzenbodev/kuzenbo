@@ -1,9 +1,7 @@
 import { describe, expect, it } from "bun:test";
 
-import {
-  definePlaygroundControls,
-  type PlaygroundStateFromControls,
-} from "./playground-control-model";
+import { definePlaygroundControls } from "./playground-control-model";
+import type { PlaygroundStateFromControls } from "./playground-control-model";
 import { definePlaygroundPresets } from "./playground-preset-model";
 import {
   applyPlaygroundPreset,
@@ -16,35 +14,35 @@ import {
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "size",
-    prop: "size",
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    prop: "size",
+    type: "size",
   },
   {
-    type: "number",
-    prop: "radius",
-    initialValue: 4,
     defaultValue: 2,
+    initialValue: 4,
+    prop: "radius",
+    type: "number",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Button",
     defaultValue: "Button",
+    initialValue: "Button",
+    prop: "children",
+    type: "string",
   },
   {
-    type: "color",
-    prop: "color",
-    initialValue: "blue",
     defaultValue: "blue",
+    initialValue: "blue",
     locked: true,
+    prop: "color",
+    type: "color",
   },
 ] as const);
 
@@ -54,21 +52,21 @@ const presets = definePlaygroundPresets<
   {
     id: "compact",
     label: "Compact",
-    values: {
-      size: "sm",
-      radius: 1,
-    },
     locks: ["size"],
+    values: {
+      radius: 1,
+      size: "sm",
+    },
   },
   {
     id: "hero",
     label: "Hero",
-    values: {
-      size: "lg",
-      radius: 8,
-      children: "Hero button",
-    },
     locks: ["children"],
+    values: {
+      children: "Hero button",
+      radius: 8,
+      size: "lg",
+    },
   },
 ] as const);
 
@@ -78,36 +76,36 @@ describe("playground-state-model", () => {
     const defaultState = createPlaygroundDefaultState(controls);
 
     expect(initialState).toEqual({
-      disabled: false,
-      size: "md",
-      radius: 4,
       children: "Button",
       color: "blue",
+      disabled: false,
+      radius: 4,
+      size: "md",
     });
 
     expect(defaultState).toEqual({
-      disabled: false,
-      size: "md",
-      radius: 2,
       children: "Button",
       color: "blue",
+      disabled: false,
+      radius: 2,
+      size: "md",
     });
   });
 
   it("applies initial preset values and resolves locks", () => {
     const snapshot = createPlaygroundStateSnapshot({
       controls,
-      presets,
       initialPresetId: "compact",
+      presets,
     });
 
     expect(snapshot.activePresetId).toBe("compact");
     expect(snapshot.values).toEqual({
-      disabled: false,
-      size: "sm",
-      radius: 1,
       children: "Button",
       color: "blue",
+      disabled: false,
+      radius: 1,
+      size: "sm",
     });
     expect(snapshot.lockedProps.has("size")).toBe(true);
     expect(snapshot.lockedProps.has("color")).toBe(true);
@@ -116,8 +114,8 @@ describe("playground-state-model", () => {
   it("does not update locked control values", () => {
     const snapshot = createPlaygroundStateSnapshot({
       controls,
-      presets,
       initialPresetId: "compact",
+      presets,
     });
 
     const lockedUpdate = setPlaygroundControlValue(snapshot, "size", "lg");
@@ -136,11 +134,11 @@ describe("playground-state-model", () => {
     const nextSnapshot = setPlaygroundControlValue(snapshot, "radius", 16);
 
     expect(nextSnapshot.values).toEqual({
-      disabled: false,
-      size: "md",
-      radius: 16,
       children: "Button",
       color: "blue",
+      disabled: false,
+      radius: 16,
+      size: "md",
     });
   });
 
@@ -162,11 +160,11 @@ describe("playground-state-model", () => {
 
     expect(withPreset.activePresetId).toBe("hero");
     expect(withPreset.values).toEqual({
-      disabled: true,
-      size: "lg",
-      radius: 8,
       children: "Hero button",
       color: "blue",
+      disabled: true,
+      radius: 8,
+      size: "lg",
     });
     expect(withPreset.lockedProps.has("children")).toBe(true);
     expect(withPreset.lockedProps.has("color")).toBe(true);
@@ -184,11 +182,11 @@ describe("playground-state-model", () => {
 
     expect(resetSnapshot.activePresetId).toBe("compact");
     expect(resetSnapshot.values).toEqual({
-      disabled: false,
-      size: "sm",
-      radius: 1,
       children: "Button",
       color: "blue",
+      disabled: false,
+      radius: 1,
+      size: "sm",
     });
   });
 });

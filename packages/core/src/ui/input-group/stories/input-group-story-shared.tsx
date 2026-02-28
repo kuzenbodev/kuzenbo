@@ -9,21 +9,21 @@ import {
 } from "../input-group";
 
 export const baseMeta = {
-  title: "Components/InputGroup",
-  component: InputGroup,
-  tags: ["autodocs"],
-  subcomponents: {
-    InputGroupAddon,
-    InputGroupButton,
-    InputGroupInput,
-    InputGroupText,
-  },
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: InputGroup,
+  subcomponents: {
+    InputGroupAddon,
+    InputGroupButton,
+    InputGroupInput,
+    InputGroupText,
+  },
+  tags: ["autodocs"],
+  title: "Components/InputGroup",
 } satisfies Meta<typeof InputGroup>;
 
 type Story = StoryObj<typeof baseMeta>;

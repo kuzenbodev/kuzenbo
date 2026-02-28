@@ -78,7 +78,6 @@ const AsyncOptionsDemo = () => {
 };
 
 export const AsyncOptions: Story = {
-  render: () => <AsyncOptionsDemo />,
   parameters: {
     docs: {
       description: {
@@ -87,4 +86,5 @@ export const AsyncOptions: Story = {
       },
     },
   },
+  render: () => <AsyncOptionsDemo />,
 };

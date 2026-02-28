@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { completeChartShellVariants } from "../stories/complete-chart-story-shared";
-import { Heatmap, type HeatmapTooltipLabelArgs } from "./heatmap";
+import { Heatmap } from "./heatmap";
+import type { HeatmapTooltipLabelArgs } from "./heatmap";
 import { heatmapQualityData } from "./heatmap-story-data";
 
 const heatmapQualityValueFormatter = (value: number): string => `${value}%`;
@@ -39,9 +40,9 @@ const HeatmapCompleteDomainTooltipDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Heatmap/Domain And Tooltip",
   component: Heatmap,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Heatmap/Domain And Tooltip",
 } satisfies Meta<typeof Heatmap>;
 
 type Story = StoryObj<typeof Heatmap>;

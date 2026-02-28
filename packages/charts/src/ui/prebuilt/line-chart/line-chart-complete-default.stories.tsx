@@ -17,10 +17,10 @@ const LineChartCompleteDefaultDemo = () => (
       dataKey="month"
       referenceLines={[
         {
-          y: 235_000,
           color: "var(--color-target)",
-          strokeDasharray: "4 4",
           label: "Target",
+          strokeDasharray: "4 4",
+          y: 235_000,
         },
       ]}
       series={lineDefaultSeries}
@@ -29,15 +29,15 @@ const LineChartCompleteDefaultDemo = () => (
       withLegend
       withRightYAxis
       yAxisProps={{ width: 64 }}
-      rightYAxisProps={{ yAxisId: "right-axis", width: 64 }}
+      rightYAxisProps={{ width: 64, yAxisId: "right-axis" }}
     />
   </div>
 );
 
 export default {
-  title: "Components/Chart Complete/Line/Default",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/Default",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

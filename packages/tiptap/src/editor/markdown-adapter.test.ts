@@ -7,7 +7,7 @@ import { createMarkdownAdapter } from "./markdown-adapter";
 describe("createMarkdownAdapter", () => {
   it("throws when markdown extension is not available", () => {
     const editorWithoutMarkdown = {
-      getJSON: () => ({ type: "doc", content: [] }) as JSONContent,
+      getJSON: () => ({ content: [], type: "doc" }) as JSONContent,
     } as unknown as Editor;
 
     const adapter = createMarkdownAdapter(editorWithoutMarkdown);
@@ -20,22 +20,22 @@ describe("createMarkdownAdapter", () => {
   it("delegates parse and serialize calls to markdown manager", () => {
     const parse = (markdown: string) =>
       ({
-        type: "doc",
         content: [
-          { type: "paragraph", content: [{ type: "text", text: markdown }] },
+          { content: [{ text: markdown, type: "text" }], type: "paragraph" },
         ],
+        type: "doc",
       }) as JSONContent;
 
     const editor = {
       getJSON: () =>
         ({
-          type: "doc",
           content: [
             {
+              content: [{ text: "existing", type: "text" }],
               type: "paragraph",
-              content: [{ type: "text", text: "existing" }],
             },
           ],
+          type: "doc",
         }) as JSONContent,
       markdown: {
         parse,

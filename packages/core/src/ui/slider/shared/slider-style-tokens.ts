@@ -15,19 +15,19 @@ export const sliderStyleTokens = {
 } as const;
 
 const sliderSemanticSizes = {
-  xs: { thumbSize: "0.875rem", trackSize: "0.25rem" },
-  sm: { thumbSize: "1rem", trackSize: "0.375rem" },
-  md: { thumbSize: "1.25rem", trackSize: "0.5rem" },
   lg: { thumbSize: "1.5rem", trackSize: "0.625rem" },
+  md: { thumbSize: "1.25rem", trackSize: "0.5rem" },
+  sm: { thumbSize: "1rem", trackSize: "0.375rem" },
   xl: { thumbSize: "1.75rem", trackSize: "0.75rem" },
+  xs: { thumbSize: "0.875rem", trackSize: "0.25rem" },
 } as const;
 
 const sliderSemanticRadii = {
-  xs: "calc(var(--radius-sm) - 2px)",
-  sm: "var(--radius-sm)",
-  md: "var(--radius-md)",
   lg: "var(--radius-lg)",
+  md: "var(--radius-md)",
+  sm: "var(--radius-sm)",
   xl: "var(--radius-xl)",
+  xs: "calc(var(--radius-sm) - 2px)",
 } as const;
 
 const semanticSliderColorNames = new Set([

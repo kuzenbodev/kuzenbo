@@ -13,10 +13,10 @@ import { Chart } from "../chart";
 
 afterEach(cleanup);
 
-const data = [{ name: "Jan", visits: 120, revenue: 4500 }];
+const data = [{ name: "Jan", revenue: 4500, visits: 120 }];
 const chartConfig = {
-  visits: { label: "Visits", color: "var(--color-chart-1)" },
-  revenue: { label: "Revenue", color: "var(--color-chart-2)" },
+  revenue: { color: "var(--color-chart-2)", label: "Revenue" },
+  visits: { color: "var(--color-chart-1)", label: "Visits" },
 };
 const tooltipDollarFormatter = (value: number) => `$${value}`;
 const RevenueIcon = () => (

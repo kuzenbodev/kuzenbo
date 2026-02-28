@@ -1,7 +1,8 @@
 import fs from "node:fs";
 
 import { RELEASE_CONFIG_PATH } from "./repo";
-import { RELEASE_CHANNELS, type ReleaseConfig } from "./types";
+import { RELEASE_CHANNELS } from "./types";
+import type { ReleaseConfig } from "./types";
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;

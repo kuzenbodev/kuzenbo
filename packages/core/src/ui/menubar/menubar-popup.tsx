@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { DropdownMenuPopup } from "../dropdown-menu/dropdown-menu";
 import type { InputSize } from "../input/input";
@@ -9,17 +10,17 @@ import { MenubarOverlayContext } from "./menubar-overlay-context";
 
 const menubarPopupVariants = tv({
   base: "bg-popover text-popover-foreground ring-foreground/10 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 shadow-md ring-1 duration-100",
-  variants: {
-    size: {
-      xs: "min-w-28 rounded-[min(var(--radius-lg),10px)]",
-      sm: "min-w-32 rounded-[min(var(--radius-lg),12px)]",
-      md: "min-w-36 rounded-lg",
-      lg: "min-w-40 rounded-lg",
-      xl: "min-w-44 rounded-xl",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "min-w-40 rounded-lg",
+      md: "min-w-36 rounded-lg",
+      sm: "min-w-32 rounded-[min(var(--radius-lg),12px)]",
+      xl: "min-w-44 rounded-xl",
+      xs: "min-w-28 rounded-[min(var(--radius-lg),10px)]",
+    },
   },
 });
 

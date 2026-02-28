@@ -19,25 +19,25 @@ import {
 } from "../dialog";
 
 export const baseMeta = {
-  title: "Components/Dialog",
   component: Dialog,
-  tags: ["autodocs"],
-  subcomponents: {
-    DialogTrigger,
-    DialogPortal,
-    DialogBackdrop,
-    DialogViewport,
-    DialogPopup,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription,
-    DialogFooter,
-    DialogClose,
-  },
   parameters: {
     layout: "centered",
   },
+  subcomponents: {
+    DialogBackdrop,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogPopup,
+    DialogPortal,
+    DialogTitle,
+    DialogTrigger,
+    DialogViewport,
+  },
+  tags: ["autodocs"],
+  title: "Components/Dialog",
 } satisfies Meta<typeof Dialog>;
 
 type Story = StoryObj<typeof baseMeta>;

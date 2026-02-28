@@ -1,41 +1,43 @@
 import { OTPInputContext } from "input-otp";
-import { type ComponentProps, useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { useContext } from "react";
+import type { ComponentProps } from "react";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { InputOTPContext } from "./input-otp-context";
 
 const inputOTPSlotVariants = tv({
+  defaultVariants: {
+    size: "md",
+  },
   slots: {
     caret: "animate-caret-blink bg-foreground duration-1000",
     root: "border-input aria-invalid:border-danger data-[active=true]:z-raised data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-danger data-[active=true]:aria-invalid:ring-danger/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-danger/40 relative flex items-center justify-center border-y border-r shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:ring-[3px]",
   },
   variants: {
     size: {
-      xs: {
-        caret: "h-3 w-px",
-        root: "size-6 text-xs first:rounded-l-[min(var(--radius-md),8px)] last:rounded-r-[min(var(--radius-md),8px)]",
-      },
-      sm: {
-        caret: "h-3.5 w-px",
-        root: "size-8 text-sm first:rounded-l-[min(var(--radius-md),10px)] last:rounded-r-[min(var(--radius-md),10px)]",
+      lg: {
+        caret: "h-4 w-px",
+        root: "size-10 text-base first:rounded-l-md last:rounded-r-md md:text-sm",
       },
       md: {
         caret: "h-4 w-px",
         root: "size-9 text-base first:rounded-l-md last:rounded-r-md md:text-sm",
       },
-      lg: {
-        caret: "h-4 w-px",
-        root: "size-10 text-base first:rounded-l-md last:rounded-r-md md:text-sm",
+      sm: {
+        caret: "h-3.5 w-px",
+        root: "size-8 text-sm first:rounded-l-[min(var(--radius-md),10px)] last:rounded-r-[min(var(--radius-md),10px)]",
       },
       xl: {
         caret: "h-5 w-px",
         root: "size-11 text-base first:rounded-l-md last:rounded-r-md",
       },
+      xs: {
+        caret: "h-3 w-px",
+        root: "size-6 text-xs first:rounded-l-[min(var(--radius-md),8px)] last:rounded-r-[min(var(--radius-md),8px)]",
+      },
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 

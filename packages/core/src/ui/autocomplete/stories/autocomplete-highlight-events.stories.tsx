@@ -71,7 +71,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const HighlightEvents: Story = {
-  render: () => <HighlightEventsDemo />,
   parameters: {
     docs: {
       description: {
@@ -80,4 +79,5 @@ export const HighlightEvents: Story = {
       },
     },
   },
+  render: () => <HighlightEventsDemo />,
 };

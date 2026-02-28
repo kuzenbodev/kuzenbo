@@ -3,13 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { CodeWindow } from "../code-window";
 
 export const baseMeta = {
-  title: "Code/CodeWindow",
+  args: {
+    children: <code>npm install @kuzenbo/code @kuzenbo/theme</code>,
+    title: "Install command",
+  },
   component: CodeWindow,
   tags: ["autodocs"],
-  args: {
-    title: "Install command",
-    children: <code>npm install @kuzenbo/code @kuzenbo/theme</code>,
-  },
+  title: "Code/CodeWindow",
 } satisfies Meta<typeof CodeWindow>;
 
 type Story = StoryObj<typeof baseMeta>;

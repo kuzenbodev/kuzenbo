@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { type ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
+import type { ChangeEvent } from "react";
 
 import { Button } from "../../button/button";
 import { Input } from "../../input/input";
@@ -16,19 +17,19 @@ import {
 const dialogSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/AlertDialog",
   component: AlertDialog,
-  tags: ["autodocs"],
-  subcomponents: {
-    AlertDialogTrigger,
-    AlertDialogPortal,
-    AlertDialogBackdrop,
-    AlertDialogViewport,
-    AlertDialogPopup,
-  },
   parameters: {
     layout: "centered",
   },
+  subcomponents: {
+    AlertDialogBackdrop,
+    AlertDialogPopup,
+    AlertDialogPortal,
+    AlertDialogTrigger,
+    AlertDialogViewport,
+  },
+  tags: ["autodocs"],
+  title: "Components/AlertDialog",
 } satisfies Meta<typeof AlertDialog>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -3,7 +3,8 @@
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { EmojiPickerListCategoryHeader as CategoryHeader } from "./emoji-picker-list-category-header";
@@ -16,17 +17,17 @@ import {
 
 const emojiPickerListVariants = tv({
   base: "select-none",
-  variants: {
-    size: {
-      xs: "pb-1.5",
-      sm: "pb-2",
-      md: "pb-2",
-      lg: "pb-2.5",
-      xl: "pb-3",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "pb-2.5",
+      md: "pb-2",
+      sm: "pb-2",
+      xl: "pb-3",
+      xs: "pb-1.5",
+    },
   },
 });
 
@@ -60,8 +61,8 @@ export const EmojiPickerList = ({
         )}
         components={{
           CategoryHeader,
-          Row,
           Emoji,
+          Row,
         }}
         data-size={resolvedSize}
         data-slot="emoji-picker-list"

@@ -15,7 +15,8 @@ import type {
   FileWithPath,
 } from "react-dropzone";
 import { useDropzone } from "react-dropzone";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { Spinner } from "../spinner/spinner";
 import { DropzoneContext, useDropzoneContext } from "./dropzone-context";
@@ -26,23 +27,44 @@ import {
 } from "./dropzone-status";
 
 const dropzoneVariants = tv({
+  compoundVariants: [
+    {
+      class: {
+        root: "border-primary bg-primary/20",
+      },
+      status: "accept",
+      variant: "filled",
+    },
+    {
+      class: {
+        root: "border-primary bg-primary/10",
+      },
+      status: "accept",
+      variant: "light",
+    },
+    {
+      class: {
+        root: "border-danger bg-danger/20",
+      },
+      status: "reject",
+      variant: "filled",
+    },
+    {
+      class: {
+        root: "border-danger bg-danger",
+      },
+      status: "reject",
+      variant: "light",
+    },
+  ],
+  defaultVariants: {
+    activateOnClick: true,
+    disabled: false,
+    loading: false,
+    status: "idle",
+    variant: "light",
+  },
   slots: {
-    root: [
-      "relative",
-      "cursor-clickable",
-      "select-none",
-      "rounded-lg",
-      "border",
-      "border-input",
-      "border-dashed",
-      "bg-background",
-      "p-4",
-      "outline-none",
-      "transition-colors",
-      "focus-visible:ring-2",
-      "focus-visible:ring-ring",
-      "focus-visible:ring-offset-2",
-    ],
     inner: [
       "pointer-events-none",
       "select-none",
@@ -59,53 +81,32 @@ const dropzoneVariants = tv({
       "bg-background/80",
       "backdrop-blur-sm",
     ],
+    root: [
+      "relative",
+      "cursor-clickable",
+      "select-none",
+      "rounded-lg",
+      "border",
+      "border-input",
+      "border-dashed",
+      "bg-background",
+      "p-4",
+      "outline-none",
+      "transition-colors",
+      "focus-visible:ring-2",
+      "focus-visible:ring-ring",
+      "focus-visible:ring-offset-2",
+    ],
   },
   variants: {
-    variant: {
-      default: {
+    activateOnClick: {
+      false: {
         root: [
-          // No additional styles for default variant
+          // Cursor: default cursor when click is disabled
+          "cursor-default",
         ],
       },
-      filled: {
-        root: [
-          // Background: muted background
-          "bg-muted",
-        ],
-      },
-      light: {
-        root: [
-          // Background: muted background with opacity
-          "bg-muted/50",
-        ],
-      },
-    },
-    status: {
-      idle: {
-        root: [
-          // No additional styles for idle status
-        ],
-      },
-      accept: {
-        root: [
-          // Border: primary border color
-          "border-primary",
-          // Background: primary background with opacity
-          "bg-primary/10",
-          // Text: primary text color
-          "text-primary-foreground",
-        ],
-      },
-      reject: {
-        root: [
-          // Border: danger border color
-          "border-danger",
-          // Background: danger background with opacity
-          "bg-danger",
-          // Text: danger text color
-          "text-danger-foreground",
-        ],
-      },
+      true: {},
     },
     disabled: {
       true: {
@@ -125,52 +126,52 @@ const dropzoneVariants = tv({
         ],
       },
     },
-    activateOnClick: {
-      true: {},
-      false: {
+    status: {
+      accept: {
         root: [
-          // Cursor: default cursor when click is disabled
-          "cursor-default",
+          // Border: primary border color
+          "border-primary",
+          // Background: primary background with opacity
+          "bg-primary/10",
+          // Text: primary text color
+          "text-primary-foreground",
+        ],
+      },
+      idle: {
+        root: [
+          // No additional styles for idle status
+        ],
+      },
+      reject: {
+        root: [
+          // Border: danger border color
+          "border-danger",
+          // Background: danger background with opacity
+          "bg-danger",
+          // Text: danger text color
+          "text-danger-foreground",
         ],
       },
     },
-  },
-  compoundVariants: [
-    {
-      status: "accept",
-      variant: "filled",
-      class: {
-        root: "border-primary bg-primary/20",
+    variant: {
+      default: {
+        root: [
+          // No additional styles for default variant
+        ],
+      },
+      filled: {
+        root: [
+          // Background: muted background
+          "bg-muted",
+        ],
+      },
+      light: {
+        root: [
+          // Background: muted background with opacity
+          "bg-muted/50",
+        ],
       },
     },
-    {
-      status: "accept",
-      variant: "light",
-      class: {
-        root: "border-primary bg-primary/10",
-      },
-    },
-    {
-      status: "reject",
-      variant: "filled",
-      class: {
-        root: "border-danger bg-danger/20",
-      },
-    },
-    {
-      status: "reject",
-      variant: "light",
-      class: {
-        root: "border-danger bg-danger",
-      },
-    },
-  ],
-  defaultVariants: {
-    variant: "light",
-    status: "idle",
-    disabled: false,
-    loading: false,
-    activateOnClick: true,
   },
 });
 
@@ -309,17 +310,14 @@ const Dropzone = ({
     isDragActive,
     open,
   } = useDropzone({
-    onDrop: onDropAny,
-    onDropAccepted: onDrop,
-    onDropRejected: onReject,
-    disabled: disabledProp || loading,
     accept: Array.isArray(accept)
       ? Object.fromEntries(accept.map((key) => [key, []]))
       : accept,
-    multiple,
-    maxSize,
-    maxFiles,
     autoFocus,
+    disabled: disabledProp || loading,
+    maxFiles,
+    maxSize,
+    multiple,
     noClick: !activateOnClick,
     noDrag: !activateOnDrag,
     noDragEventsBubbling: !dragEventsBubbling,
@@ -327,6 +325,9 @@ const Dropzone = ({
     onDragEnter,
     onDragLeave,
     onDragOver,
+    onDrop: onDropAny,
+    onDropAccepted: onDrop,
+    onDropRejected: onReject,
     onFileDialogCancel,
     onFileDialogOpen,
     preventDropOnDocument,
@@ -354,14 +355,14 @@ const Dropzone = ({
   const disabled = disabledProp || loading;
 
   const { root, inner, overlay } = dropzoneVariants({
-    variant,
-    status,
+    activateOnClick,
     disabled,
     loading,
-    activateOnClick,
+    status,
+    variant,
   });
   const contextValue = useMemo(
-    () => ({ accept: isAccepted, reject: isRejected, idle: isIdle }),
+    () => ({ accept: isAccepted, idle: isIdle, reject: isRejected }),
     [isAccepted, isRejected, isIdle]
   );
 

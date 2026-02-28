@@ -5,10 +5,8 @@ import type { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { PopoverPopup } from "./popover-popup";
 import { PopoverPortal } from "./popover-portal";
 import { PopoverPositioner } from "./popover-positioner";
-import {
-  useResolvedPopoverSize,
-  type PopoverSize,
-} from "./popover-size-context";
+import { useResolvedPopoverSize } from "./popover-size-context";
+import type { PopoverSize } from "./popover-size-context";
 import { PopoverViewport } from "./popover-viewport";
 export type PopoverContentProps = PopoverPrimitive.Popup.Props &
   Pick<

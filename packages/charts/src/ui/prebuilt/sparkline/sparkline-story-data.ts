@@ -9,13 +9,13 @@ export const sparklineRevenueData = [
 ];
 
 export const sparklineChurnRiskData = [
-  { week: "W1", churnRisk: 14 },
-  { week: "W2", churnRisk: 13 },
-  { week: "W3", churnRisk: null },
-  { week: "W4", churnRisk: 11 },
-  { week: "W5", churnRisk: null },
-  { week: "W6", churnRisk: 9 },
-  { week: "W7", churnRisk: 8 },
+  { churnRisk: 14, week: "W1" },
+  { churnRisk: 13, week: "W2" },
+  { churnRisk: null, week: "W3" },
+  { churnRisk: 11, week: "W4" },
+  { churnRisk: null, week: "W5" },
+  { churnRisk: 9, week: "W6" },
+  { churnRisk: 8, week: "W7" },
 ];
 
 export const sparklineLatencyData = [

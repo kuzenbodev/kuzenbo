@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { InstallCommandSnippet } from "../install-command-snippet";
 
 export const baseMeta = {
-  title: "Code/InstallCommandSnippet",
-  component: InstallCommandSnippet,
-  tags: ["autodocs"],
   args: {
     packages: ["@kuzenbo/code", "@kuzenbo/theme"],
   },
+  component: InstallCommandSnippet,
+  tags: ["autodocs"],
+  title: "Code/InstallCommandSnippet",
 } satisfies Meta<typeof InstallCommandSnippet>;
 
 type Story = StoryObj<typeof baseMeta>;

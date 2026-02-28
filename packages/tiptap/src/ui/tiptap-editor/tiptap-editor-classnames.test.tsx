@@ -13,10 +13,10 @@ describe("TiptapEditor className contract", () => {
       <TiptapEditor.Root
         className="root-local"
         classNames={{
+          control: "control-context",
+          group: "group-context",
           root: "root-context",
           toolbar: "toolbar-context",
-          group: "group-context",
-          control: "control-context",
         }}
         editor={null}
         variant="subtle"

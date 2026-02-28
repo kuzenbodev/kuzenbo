@@ -9,8 +9,8 @@ import { cn, tv } from "tailwind-variants";
 import {
   getEditorExtensionNames,
   hasControlRequirement,
-  type TiptapControlRequirement,
 } from "../../editor/capabilities";
+import type { TiptapControlRequirement } from "../../editor/capabilities";
 import { useTiptapEditorContext } from "./tiptap-editor-context";
 import type { TiptapEditorLabels } from "./tiptap-editor-labels";
 import type { TiptapEditorSize } from "./tiptap-editor-size";
@@ -21,22 +21,22 @@ const toolbarButtonSizeByEditorSize: Record<
   TiptapEditorSize,
   "xs" | "sm" | "md" | "lg"
 > = {
-  xs: "xs",
-  sm: "xs",
-  md: "sm",
   lg: "md",
+  md: "sm",
+  sm: "xs",
   xl: "lg",
+  xs: "xs",
 };
 
 const tiptapEditorControlVariants = tv({
   base: "kb-tiptap-control cursor-clickable text-muted-foreground hover:text-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground rounded-[min(var(--radius-md),10px)]",
   variants: {
     size: {
-      xs: "h-6 min-w-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
-      sm: "h-7 min-w-7 px-2 text-xs [&_svg:not([class*='size-'])]:size-3.5",
-      md: "h-8 min-w-8 px-2 text-sm",
       lg: "h-9 min-w-9 px-2.5 text-sm",
+      md: "h-8 min-w-8 px-2 text-sm",
+      sm: "h-7 min-w-7 px-2 text-xs [&_svg:not([class*='size-'])]:size-3.5",
       xl: "h-10 min-w-10 px-3 text-base [&_svg:not([class*='size-'])]:size-5",
+      xs: "h-6 min-w-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
     },
   },
 });
@@ -133,8 +133,8 @@ export const TiptapEditorControl = ({
     <Toolbar.Button
       aria-label={label}
       className={tiptapEditorControlVariants({
-        size: context.size,
         className: cn(context.classNames?.control, className),
+        size: context.size,
       })}
       data-active={active ? "true" : undefined}
       data-size={context.size}

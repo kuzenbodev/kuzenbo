@@ -1,6 +1,7 @@
 "use client";
 
-import { SheetBackdrop, type SheetBackdropProps } from "./sheet-backdrop";
+import { SheetBackdrop } from "./sheet-backdrop";
+import type { SheetBackdropProps } from "./sheet-backdrop";
 export type SheetOverlayProps = SheetBackdropProps;
 
 const SheetOverlay = ({ className, ...props }: SheetOverlayProps) => (

@@ -3,36 +3,37 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
 } from "./navigation-list-context";
+import type { NavigationListTone } from "./navigation-list-context";
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListActionVariants = tv({
   base: "cursor-clickable absolute right-1 flex aspect-square items-center justify-center rounded-md p-0 outline-hidden transition-transform group-has-data-[slot=navigation-list-badge]/navigation-list-item:right-14 group-data-[collapsible=true]/navigation-list-item:right-10 [&>svg]:shrink-0",
-  variants: {
-    size: {
-      xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",
-      sm: "top-1 w-5 [&>svg:not([class*='size-'])]:size-3.5",
-      md: "top-1.5 w-5 [&>svg:not([class*='size-'])]:size-4",
-      lg: "top-2 w-6 [&>svg:not([class*='size-'])]:size-4",
-      xl: "top-2.5 w-7 [&>svg:not([class*='size-'])]:size-5",
-    },
-    tone: {
-      surface:
-        "text-muted-foreground ring-ring hover:bg-muted hover:text-foreground peer-hover/navigation-list-link:text-foreground peer-data-active/navigation-list-link:text-foreground focus-visible:ring-2",
-      sidebar:
-        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/navigation-list-link:text-sidebar-accent-foreground peer-data-active/navigation-list-link:text-sidebar-accent-foreground focus-visible:ring-2",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
+  },
+  variants: {
+    size: {
+      lg: "top-2 w-6 [&>svg:not([class*='size-'])]:size-4",
+      md: "top-1.5 w-5 [&>svg:not([class*='size-'])]:size-4",
+      sm: "top-1 w-5 [&>svg:not([class*='size-'])]:size-3.5",
+      xl: "top-2.5 w-7 [&>svg:not([class*='size-'])]:size-5",
+      xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",
+    },
+    tone: {
+      sidebar:
+        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/navigation-list-link:text-sidebar-accent-foreground peer-data-active/navigation-list-link:text-sidebar-accent-foreground focus-visible:ring-2",
+      surface:
+        "text-muted-foreground ring-ring hover:bg-muted hover:text-foreground peer-hover/navigation-list-link:text-foreground peer-data-active/navigation-list-link:text-foreground focus-visible:ring-2",
+    },
   },
 });
 

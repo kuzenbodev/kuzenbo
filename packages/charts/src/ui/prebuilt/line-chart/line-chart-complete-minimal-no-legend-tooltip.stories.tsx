@@ -7,7 +7,7 @@ import { lineMinimalData, lineMinimalSeries } from "./line-chart-story-data";
 const LineChartCompleteMinimalNoLegendTooltipDemo = () => (
   <div className={completeChartShellVariants()}>
     <LineChart
-      lineChartProps={{ margin: { top: 8, right: 8, left: 0, bottom: 0 } }}
+      lineChartProps={{ margin: { bottom: 0, left: 0, right: 8, top: 8 } }}
       chartRootProps={{ className: "h-72 w-full" }}
       curveType="linear"
       data={lineMinimalData}
@@ -24,9 +24,9 @@ const LineChartCompleteMinimalNoLegendTooltipDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Line/MinimalNoLegendTooltip",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/MinimalNoLegendTooltip",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

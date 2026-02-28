@@ -9,10 +9,10 @@ import { normalizeChartPayload } from "../payload/chart-payload-normalizer";
 import { shouldHideLegendPayloadItem } from "../payload/utils/should-hide-legend-payload-item";
 import {
   DEFAULT_UI_SIZE,
-  type UISize,
   useGlobalUISize,
   useKuzenboComponentDefaults,
 } from "./chart-size";
+import type { UISize } from "./chart-size";
 import { useLegendHighlightHandlers } from "./hooks/use-legend-highlight-handlers";
 import { getLegendFallbackLabel } from "./utils/get-legend-fallback-label";
 
@@ -27,53 +27,53 @@ type ChartLegendContentProps = ComponentProps<"div"> &
 
 const chartLegendContentVariants = tv({
   base: "flex items-center justify-center gap-4",
-  variants: {
-    size: {
-      xs: "gap-2 text-xs",
-      sm: "gap-3 text-xs",
-      md: "gap-4 text-sm",
-      lg: "gap-5 text-sm",
-      xl: "gap-6 text-base",
-    },
-    topAligned: {
-      true: "pb-3",
-      false: "pt-3",
-    },
-  },
   defaultVariants: {
     size: DEFAULT_UI_SIZE,
+  },
+  variants: {
+    size: {
+      lg: "gap-5 text-sm",
+      md: "gap-4 text-sm",
+      sm: "gap-3 text-xs",
+      xl: "gap-6 text-base",
+      xs: "gap-2 text-xs",
+    },
+    topAligned: {
+      false: "pt-3",
+      true: "pb-3",
+    },
   },
 });
 
 const chartLegendItemVariants = tv({
   base: "cursor-clickable text-muted-foreground focus-visible:ring-ring/50 [&>svg]:text-muted-foreground flex items-center rounded-sm border-0 bg-transparent p-0 text-left focus-visible:ring-2 focus-visible:outline-none",
-  variants: {
-    size: {
-      xs: "gap-1 [&>svg]:h-2.5 [&>svg]:w-2.5",
-      sm: "gap-1.5 [&>svg]:h-3 [&>svg]:w-3",
-      md: "gap-1.5 [&>svg]:h-3 [&>svg]:w-3",
-      lg: "gap-2 [&>svg]:h-3.5 [&>svg]:w-3.5",
-      xl: "gap-2.5 [&>svg]:h-4 [&>svg]:w-4",
-    },
-  },
   defaultVariants: {
     size: DEFAULT_UI_SIZE,
+  },
+  variants: {
+    size: {
+      lg: "gap-2 [&>svg]:h-3.5 [&>svg]:w-3.5",
+      md: "gap-1.5 [&>svg]:h-3 [&>svg]:w-3",
+      sm: "gap-1.5 [&>svg]:h-3 [&>svg]:w-3",
+      xl: "gap-2.5 [&>svg]:h-4 [&>svg]:w-4",
+      xs: "gap-1 [&>svg]:h-2.5 [&>svg]:w-2.5",
+    },
   },
 });
 
 const chartLegendSwatchVariants = tv({
   base: "shrink-0 rounded-[2px]",
-  variants: {
-    size: {
-      xs: "h-1.5 w-1.5",
-      sm: "h-2 w-2",
-      md: "h-2 w-2",
-      lg: "h-2.5 w-2.5",
-      xl: "h-3 w-3",
-    },
-  },
   defaultVariants: {
     size: DEFAULT_UI_SIZE,
+  },
+  variants: {
+    size: {
+      lg: "h-2.5 w-2.5",
+      md: "h-2 w-2",
+      sm: "h-2 w-2",
+      xl: "h-3 w-3",
+      xs: "h-1.5 w-1.5",
+    },
   },
 });
 
@@ -99,9 +99,9 @@ const ChartLegendContent = ({
   });
   const normalizedPayload = normalizeChartPayload({
     config,
-    payload,
-    nameKey,
     getSeriesColor,
+    nameKey,
+    payload,
     resolveColorExpression,
   }).filter((item) => !shouldHideLegendPayloadItem(item.item));
 

@@ -1,6 +1,15 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
+  },
+  clean: true,
+  copy: ["src/styles"],
+  dts: {
+    sourcemap: true,
+  },
   entry: {
     "editor/capabilities": "src/editor/capabilities.ts",
     "editor/create-tiptap-extensions-preset":
@@ -18,22 +27,7 @@ export default defineConfig({
     "ui/tiptap-editor/tiptap-editor-state":
       "src/ui/tiptap-editor/tiptap-editor-state.ts",
   },
-  format: ["esm"],
-  dts: {
-    sourcemap: true,
-  },
-  sourcemap: true,
-  copy: ["src/styles"],
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
-  },
   exports: {
-    devExports: true,
-    packageJson: true,
     customExports(currentExports, { isPublish }) {
       return {
         ...currentExports,
@@ -42,5 +36,11 @@ export default defineConfig({
           : "./src/styles/tiptap-editor.css",
       };
     },
+    devExports: true,
+    packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

@@ -28,9 +28,9 @@ const RadialBarChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/RadialBar/Default",
   component: RadialBarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/RadialBar/Default",
 } satisfies Meta<typeof RadialBarChart>;
 
 type Story = StoryObj<typeof RadialBarChart>;

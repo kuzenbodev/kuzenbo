@@ -1,6 +1,14 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
+  },
+  clean: true,
+  dts: {
+    sourcemap: true,
+  },
   entry: {
     "playground/inject-playground-preview-props":
       "src/playground/inject-playground-preview-props.ts",
@@ -49,20 +57,12 @@ export default defineConfig({
     "utils/playground/normalize-playground-options":
       "src/utils/playground/normalize-playground-options.ts",
   },
-  format: ["esm"],
-  dts: {
-    sourcemap: true,
-  },
-  sourcemap: true,
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
-  },
   exports: {
     devExports: true,
     packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

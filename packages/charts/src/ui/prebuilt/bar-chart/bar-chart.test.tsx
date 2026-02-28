@@ -169,8 +169,8 @@ describe("Complete BarChart", () => {
       <BarChart
         barChartProps={{ layout: "vertical" }}
         data={[
-          { region: "North America", enterprise: 420, smb: 580 },
-          { region: "Europe", enterprise: 360, smb: 490 },
+          { enterprise: 420, region: "North America", smb: 580 },
+          { enterprise: 360, region: "Europe", smb: 490 },
         ]}
         dataKey="region"
         responsiveContainerProps={chartSize}
@@ -317,11 +317,11 @@ describe("Complete BarChart", () => {
         data={completeBarDualAxisData}
         dataKey="month"
         responsiveContainerProps={chartSize}
-        rightYAxisProps={{ ticks: [1006], yAxisId: "right-axis", width: 64 }}
+        rightYAxisProps={{ ticks: [1006], width: 64, yAxisId: "right-axis" }}
         series={completeBarDualAxisSeries}
         valueFormatter={barAxisAwareFormatter}
         withRightYAxis
-        yAxisProps={{ ticks: [41_000], yAxisId: "left-axis", width: 64 }}
+        yAxisProps={{ ticks: [41_000], width: 64, yAxisId: "left-axis" }}
       />
     );
 

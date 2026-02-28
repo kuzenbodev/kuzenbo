@@ -1,4 +1,5 @@
-import { Mention, type MentionOptions } from "@tiptap/extension-mention";
+import { Mention } from "@tiptap/extension-mention";
+import type { MentionOptions } from "@tiptap/extension-mention";
 
 export interface TiptapMentionItem {
   id: string;
@@ -39,7 +40,7 @@ export const createMentionExtension = (
     deleteTriggerWithBackspace: true,
     suggestion: {
       char: options.char ?? "@",
-      items: async ({ query }) => {
+      items: ({ query }) => {
         const loader = options.items ?? defaultItems;
         return loader(query);
       },

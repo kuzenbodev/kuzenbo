@@ -34,12 +34,12 @@ const DefaultDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/Default",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/Default",
 };
 
 export default meta;

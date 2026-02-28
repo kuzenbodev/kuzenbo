@@ -8,30 +8,30 @@ export const completeAreaTrendData = [
 ] as const;
 
 export const completeAreaSeries = [
-  { name: "revenue", label: "Revenue" },
-  { name: "target", label: "Target" },
+  { label: "Revenue", name: "revenue" },
+  { label: "Target", name: "target" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeAreaDualAxisData = [
-  { month: "Jan", mrr: 92_000, conversionRate: 11.2 },
-  { month: "Feb", mrr: 96_500, conversionRate: 12.4 },
-  { month: "Mar", mrr: 101_200, conversionRate: 13.1 },
-  { month: "Apr", mrr: 106_800, conversionRate: 13.9 },
+  { conversionRate: 11.2, month: "Jan", mrr: 92_000 },
+  { conversionRate: 12.4, month: "Feb", mrr: 96_500 },
+  { conversionRate: 13.1, month: "Mar", mrr: 101_200 },
+  { conversionRate: 13.9, month: "Apr", mrr: 106_800 },
 ] as const;
 
 export const completeAreaDualAxisSeries = [
-  { name: "mrr", label: "MRR", yAxisId: "left-axis" },
-  { name: "conversionRate", label: "Conversion", yAxisId: "right-axis" },
+  { label: "MRR", name: "mrr", yAxisId: "left-axis" },
+  { label: "Conversion", name: "conversionRate", yAxisId: "right-axis" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeAreaSignedData = [
-  { month: "Jan", marketing: 320, support: -120 },
-  { month: "Feb", marketing: 340, support: -150 },
-  { month: "Mar", marketing: 365, support: -130 },
-  { month: "Apr", marketing: 352, support: -160 },
+  { marketing: 320, month: "Jan", support: -120 },
+  { marketing: 340, month: "Feb", support: -150 },
+  { marketing: 365, month: "Mar", support: -130 },
+  { marketing: 352, month: "Apr", support: -160 },
 ] as const;
 
 export const completeAreaSignedSeries = [
-  { name: "marketing", label: "Marketing" },
-  { name: "support", label: "Support" },
+  { label: "Marketing", name: "marketing" },
+  { label: "Support", name: "support" },
 ] as const satisfies readonly CompleteChartSeries[];

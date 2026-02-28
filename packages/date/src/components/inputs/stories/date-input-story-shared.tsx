@@ -5,12 +5,12 @@ import { DatesProvider } from "../../dates-provider";
 import { DateInput } from "../date-input";
 
 export const baseMeta = {
-  title: "Components/DateInput",
   component: DateInput,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/DateInput",
 } satisfies Meta<typeof DateInput>;
 
 type Story = StoryObj<typeof baseMeta>;

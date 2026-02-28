@@ -2,7 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import type { UISize } from "../shared/size/size-system";
@@ -16,6 +17,10 @@ export type ButtonGroupProps = ComponentProps<"div"> &
 
 const buttonGroupVariants = tv({
   base: "group/button-group *:focus-visible:z-raised flex w-fit items-stretch overflow-hidden *:focus-visible:relative has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-[inherit] [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
+  defaultVariants: {
+    orientation: "horizontal",
+    size: "md",
+  },
   variants: {
     orientation: {
       horizontal:
@@ -24,16 +29,12 @@ const buttonGroupVariants = tv({
         "flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-[inherit]! [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:border-t-0",
     },
     size: {
-      xs: "rounded-[min(var(--radius-md),8px)] has-[>[data-slot=button-group]]:gap-1",
-      sm: "rounded-[min(var(--radius-md),10px)] has-[>[data-slot=button-group]]:gap-1",
-      md: "rounded-md has-[>[data-slot=button-group]]:gap-2",
       lg: "rounded-md has-[>[data-slot=button-group]]:gap-2",
+      md: "rounded-md has-[>[data-slot=button-group]]:gap-2",
+      sm: "rounded-[min(var(--radius-md),10px)] has-[>[data-slot=button-group]]:gap-1",
       xl: "rounded-md has-[>[data-slot=button-group]]:gap-2.5",
+      xs: "rounded-[min(var(--radius-md),8px)] has-[>[data-slot=button-group]]:gap-1",
     },
-  },
-  defaultVariants: {
-    orientation: "horizontal",
-    size: "md",
   },
 });
 

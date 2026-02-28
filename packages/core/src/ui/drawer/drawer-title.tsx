@@ -1,24 +1,25 @@
 "use client";
 
 import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerTitleVariants = tv({
   base: "text-foreground font-medium",
-  variants: {
-    size: {
-      xs: "text-base leading-6",
-      sm: "text-lg leading-6",
-      md: "text-lg leading-7",
-      lg: "text-xl leading-7",
-      xl: "text-2xl leading-8",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-xl leading-7",
+      md: "text-lg leading-7",
+      sm: "text-lg leading-6",
+      xl: "text-2xl leading-8",
+      xs: "text-base leading-6",
+    },
   },
 });
 

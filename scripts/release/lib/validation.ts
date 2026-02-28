@@ -390,8 +390,8 @@ export const validateReleaseState = ({
     assertSupportedReleaseRef(options.ref, config);
     assertChannelMatchesRef({
       channel: options.channel,
-      ref: options.ref,
       config,
+      ref: options.ref,
     });
   }
 
@@ -423,23 +423,23 @@ export const validateReleaseState = ({
   );
 
   assertPackagePrivacy({
-    packages,
-    names: config.publishAllowlist,
     expectedPrivate: false,
     label: "Allowlist",
+    names: config.publishAllowlist,
+    packages,
   });
   assertPackagePrivacy({
-    packages,
-    names: config.publishBlocked,
     expectedPrivate: true,
     label: "Blocked",
+    names: config.publishBlocked,
+    packages,
   });
   assertPackagePrivacy({
-    packages,
-    names: config.neverPublish,
+    allowMissing: true,
     expectedPrivate: true,
     label: "Never-publish",
-    allowMissing: true,
+    names: config.neverPublish,
+    packages,
   });
 
   if (config.neverPublish.includes("@kuzenbo/website")) {

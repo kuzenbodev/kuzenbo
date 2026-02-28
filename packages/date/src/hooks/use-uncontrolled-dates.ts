@@ -2,11 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import {
-  DEFAULT_DATE_ADAPTER,
-  type DateAdapter,
-  type DateInput,
-} from "../adapter";
+import { DEFAULT_DATE_ADAPTER } from "../adapter";
+import type { DateAdapter, DateInput } from "../adapter";
 import type { DatePickerValue, DateSelectionMode } from "../types";
 import {
   resolveDateSelectionMode,

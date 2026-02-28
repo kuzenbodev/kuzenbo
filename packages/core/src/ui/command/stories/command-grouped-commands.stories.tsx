@@ -10,6 +10,13 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const GroupedCommands: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Grouped command palette pattern aligned with guidance.",
+      },
+    },
+  },
   render: () => (
     <Command className="w-96 rounded-lg border">
       <Command.Input placeholder="Search workspace commands..." />
@@ -44,11 +51,4 @@ export const GroupedCommands: Story = {
       </Command.List>
     </Command>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: "Grouped command palette pattern aligned with guidance.",
-      },
-    },
-  },
 };

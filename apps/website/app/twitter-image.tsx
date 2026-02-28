@@ -4,8 +4,8 @@ import { SITE_NAME } from "@/constants/website";
 
 export const alt = `${SITE_NAME} Twitter Image`;
 export const size = {
-  width: 1200,
   height: 630,
+  width: 1200,
 };
 export const contentType = "image/png";
 
@@ -13,16 +13,16 @@ export default function TwitterImage() {
   return new ImageResponse(
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
         background:
           "linear-gradient(140deg, #05210f 0%, #0d3f22 45%, #177f45 100%)",
         color: "#f8fffb",
-        padding: "72px",
+        display: "flex",
+        flexDirection: "column",
         fontFamily: "sans-serif",
+        height: "100%",
+        justifyContent: "center",
+        padding: "72px",
+        width: "100%",
       }}
     >
       <div style={{ fontSize: 40, opacity: 0.9 }}>Kuzenbo</div>

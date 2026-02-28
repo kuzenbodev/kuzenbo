@@ -1,5 +1,6 @@
 import { FieldsetLegend } from "./fieldset-legend";
-import { FieldsetRoot, type FieldsetRootProps } from "./fieldset-root";
+import { FieldsetRoot } from "./fieldset-root";
+import type { FieldsetRootProps } from "./fieldset-root";
 
 export type FieldsetProps = FieldsetRootProps;
 

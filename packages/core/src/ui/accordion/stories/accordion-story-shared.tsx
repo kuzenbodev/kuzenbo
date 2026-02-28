@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Accordion } from "../accordion";
 
 export const baseMeta = {
-  title: "Components/Accordion",
   component: Accordion,
   tags: ["autodocs"],
+  title: "Components/Accordion",
 } satisfies Meta<typeof Accordion>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -45,6 +45,14 @@ export const Default: Story = {
 };
 
 export const Bordered: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Bordered variant demonstrates dense operations documentation with multiple sections expanded by default and mounted content for fast toggling.",
+      },
+    },
+  },
   render: () => (
     <Accordion
       className="w-[32rem]"
@@ -80,17 +88,17 @@ export const Bordered: Story = {
       </Accordion.Item>
     </Accordion>
   ),
+};
+
+export const Ghost: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          "Bordered variant demonstrates dense operations documentation with multiple sections expanded by default and mounted content for fast toggling.",
+          "Ghost variant highlights lightweight, search-reveal content blocks that blend into documentation-heavy layouts.",
       },
     },
   },
-};
-
-export const Ghost: Story = {
   render: () => (
     <Accordion
       className="w-[32rem]"
@@ -126,12 +134,4 @@ export const Ghost: Story = {
       </Accordion.Item>
     </Accordion>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Ghost variant highlights lightweight, search-reveal content blocks that blend into documentation-heavy layouts.",
-      },
-    },
-  },
 };

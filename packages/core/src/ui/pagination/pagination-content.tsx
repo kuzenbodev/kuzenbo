@@ -1,22 +1,23 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedPaginationSize } from "./pagination-size-context";
 
 const paginationContentVariants = tv({
   base: "flex items-center",
-  variants: {
-    size: {
-      xs: "gap-0.5",
-      sm: "gap-0.5",
-      md: "gap-0.5",
-      lg: "gap-1",
-      xl: "gap-1",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-1",
+      md: "gap-0.5",
+      sm: "gap-0.5",
+      xl: "gap-1",
+      xs: "gap-0.5",
+    },
   },
 });
 

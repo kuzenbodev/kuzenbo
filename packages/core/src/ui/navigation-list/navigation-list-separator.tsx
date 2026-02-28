@@ -2,10 +2,8 @@ import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
 import { Separator } from "../separator/separator";
-import {
-  type NavigationListTone,
-  useResolvedNavigationListTone,
-} from "./navigation-list-context";
+import { useResolvedNavigationListTone } from "./navigation-list-context";
+import type { NavigationListTone } from "./navigation-list-context";
 
 export type NavigationListSeparatorProps = ComponentProps<typeof Separator> & {
   tone?: NavigationListTone;

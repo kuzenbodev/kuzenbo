@@ -2,24 +2,25 @@
 
 import { EmojiPicker as BaseEmojiPicker } from "frimousse";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerEmptyVariants = tv({
   base: "text-muted-foreground absolute inset-0 flex items-center justify-center",
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-sm",
-      lg: "text-sm",
-      xl: "text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-sm",
+      md: "text-sm",
+      sm: "text-sm",
+      xl: "text-base",
+      xs: "text-xs",
+    },
   },
 });
 

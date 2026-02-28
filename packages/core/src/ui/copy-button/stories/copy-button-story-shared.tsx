@@ -1,17 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useState } from "react";
 
-import { CopyButton, type CopyButtonStatus } from "../copy-button";
+import { CopyButton } from "../copy-button";
+import type { CopyButtonStatus } from "../copy-button";
 
 export const baseMeta = {
-  title: "Components/CopyButton",
-  component: CopyButton,
-  tags: ["autodocs"],
-  args: {
-    value: "pnpm add @kuzenbo/core @kuzenbo/theme",
-    children: "Copy install command",
-    timeout: 1200,
-  },
   argTypes: {
     defaultStatus: {
       control: "select",
@@ -23,6 +16,14 @@ export const baseMeta = {
     },
     timeout: { control: "number" },
   },
+  args: {
+    children: "Copy install command",
+    timeout: 1200,
+    value: "pnpm add @kuzenbo/core @kuzenbo/theme",
+  },
+  component: CopyButton,
+  tags: ["autodocs"],
+  title: "Components/CopyButton",
 } satisfies Meta<typeof CopyButton>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -19,9 +19,9 @@ const BubbleChartCompleteRangeSizingDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bubble/RangeSizing",
   component: BubbleChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bubble/RangeSizing",
 } satisfies Meta<typeof BubbleChart>;
 
 type Story = StoryObj<typeof BubbleChart>;

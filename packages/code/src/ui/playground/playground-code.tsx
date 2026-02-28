@@ -77,9 +77,9 @@ export const PlaygroundCode = ({
       <div className={cn("space-y-3", className)} data-slot="playground-code">
         {renderCodeFile(firstFile, {
           codeClassName,
-          showCopyButton,
-          copyLabel,
           copiedLabel,
+          copyLabel,
+          showCopyButton,
         })}
       </div>
     );
@@ -90,14 +90,14 @@ export const PlaygroundCode = ({
       <CodeTabs
         panelClassName={panelClassName}
         tabs={files.map((file) => ({
-          value: `${file.fileName}:${file.language}`,
-          label: file.fileName,
           content: renderCodeFile(file, {
             codeClassName,
-            showCopyButton,
-            copyLabel,
             copiedLabel,
+            copyLabel,
+            showCopyButton,
           }),
+          label: file.fileName,
+          value: `${file.fileName}:${file.language}`,
         }))}
         tabsClassName={tabsClassName}
       />

@@ -1,22 +1,23 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbPageVariants = tv({
   base: "text-foreground font-normal",
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-sm",
-      xl: "text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-sm",
+      md: "text-sm",
+      sm: "text-xs",
+      xl: "text-base",
+      xs: "text-xs",
+    },
   },
 });
 

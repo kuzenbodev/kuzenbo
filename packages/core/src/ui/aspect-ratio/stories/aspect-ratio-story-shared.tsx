@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { AspectRatio } from "../aspect-ratio";
 
 export const baseMeta = {
-  title: "Components/AspectRatio",
   component: AspectRatio,
   tags: ["autodocs"],
+  title: "Components/AspectRatio",
 } satisfies Meta<typeof AspectRatio>;
 
 type Story = StoryObj<typeof baseMeta>;

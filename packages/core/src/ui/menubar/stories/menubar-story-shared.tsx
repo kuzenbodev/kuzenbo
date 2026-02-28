@@ -6,24 +6,24 @@ import { Menubar } from "../menubar";
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/Menubar",
-  component: Menubar,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: sizes,
     },
   },
+  component: Menubar,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "Menubar root size scales both trigger row density and dropdown child surfaces (`content`, `item`, `label`, `shortcut`).",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/Menubar",
 } satisfies Meta<typeof Menubar>;
 
 type Story = StoryObj<typeof baseMeta>;

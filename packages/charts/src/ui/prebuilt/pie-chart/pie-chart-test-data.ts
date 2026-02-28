@@ -7,9 +7,9 @@ export const completePieRevenueData = [
 ] as const;
 
 export const completePieRevenueSeries = [
-  { name: "Starter", label: "Starter" },
-  { name: "Growth", label: "Growth" },
-  { name: "Enterprise", label: "Enterprise" },
+  { label: "Starter", name: "Starter" },
+  { label: "Growth", name: "Growth" },
+  { label: "Enterprise", name: "Enterprise" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completePieLabelData = [
@@ -18,6 +18,6 @@ export const completePieLabelData = [
 ] as const;
 
 export const completePieLabelSeries = [
-  { name: "North", label: "North" },
-  { name: "South", label: "South" },
+  { label: "North", name: "North" },
+  { label: "South", name: "South" },
 ] as const satisfies readonly CompleteChartSeries[];

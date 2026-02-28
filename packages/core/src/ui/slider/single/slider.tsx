@@ -4,26 +4,22 @@ import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { toFloatingValue } from "../math/slider-math-utils";
-import {
-  SliderControl,
-  type SliderControlProps,
-} from "../primitives/slider-control";
-import {
-  SliderIndicator,
-  type SliderIndicatorProps,
-} from "../primitives/slider-indicator";
-import { SliderMark, type SliderMarkProps } from "../primitives/slider-mark";
-import { SliderMarks, type SliderMarksProps } from "../primitives/slider-marks";
-import { SliderThumb, type SliderThumbProps } from "../primitives/slider-thumb";
-import {
-  SliderThumbLabel,
-  type SliderThumbLabelProps,
-} from "../primitives/slider-thumb-label";
-import { SliderTrack, type SliderTrackProps } from "../primitives/slider-track";
-import {
-  SliderValue as SliderValuePrimitive,
-  type SliderValueProps,
-} from "../primitives/slider-value";
+import { SliderControl } from "../primitives/slider-control";
+import type { SliderControlProps } from "../primitives/slider-control";
+import { SliderIndicator } from "../primitives/slider-indicator";
+import type { SliderIndicatorProps } from "../primitives/slider-indicator";
+import { SliderMark } from "../primitives/slider-mark";
+import type { SliderMarkProps } from "../primitives/slider-mark";
+import { SliderMarks } from "../primitives/slider-marks";
+import type { SliderMarksProps } from "../primitives/slider-marks";
+import { SliderThumb } from "../primitives/slider-thumb";
+import type { SliderThumbProps } from "../primitives/slider-thumb";
+import { SliderThumbLabel } from "../primitives/slider-thumb-label";
+import type { SliderThumbLabelProps } from "../primitives/slider-thumb-label";
+import { SliderTrack } from "../primitives/slider-track";
+import type { SliderTrackProps } from "../primitives/slider-track";
+import { SliderValue as SliderValuePrimitive } from "../primitives/slider-value";
+import type { SliderValueProps } from "../primitives/slider-value";
 import { resolveSliderBounds } from "../shared/slider-bounds";
 import { resolveSliderLabel } from "../shared/slider-label";
 import {

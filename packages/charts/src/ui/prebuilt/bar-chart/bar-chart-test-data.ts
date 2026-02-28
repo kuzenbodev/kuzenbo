@@ -7,35 +7,35 @@ export const completeBarGroupedData = [
 ] as const;
 
 export const completeBarGroupedSeries = [
-  { name: "organic", label: "Organic" },
-  { name: "paid", label: "Paid" },
+  { label: "Organic", name: "organic" },
+  { label: "Paid", name: "paid" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeBarStackedSeries = [
-  { name: "organic", label: "Organic", stackId: "acq" },
-  { name: "paid", label: "Paid", stackId: "acq" },
+  { label: "Organic", name: "organic", stackId: "acq" },
+  { label: "Paid", name: "paid", stackId: "acq" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeBarNegativeData = [
-  { month: "Jan", inflow: 42, outflow: -18 },
-  { month: "Feb", inflow: 39, outflow: -21 },
-  { month: "Mar", inflow: 45, outflow: -23 },
-  { month: "Apr", inflow: 47, outflow: -28 },
+  { inflow: 42, month: "Jan", outflow: -18 },
+  { inflow: 39, month: "Feb", outflow: -21 },
+  { inflow: 45, month: "Mar", outflow: -23 },
+  { inflow: 47, month: "Apr", outflow: -28 },
 ] as const;
 
 export const completeBarNegativeSeries = [
-  { name: "inflow", label: "Inflow" },
-  { name: "outflow", label: "Outflow" },
+  { label: "Inflow", name: "inflow" },
+  { label: "Outflow", name: "outflow" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeBarDualAxisData = [
-  { month: "Jan", spend: 41_000, leads: 840 },
-  { month: "Feb", spend: 44_500, leads: 900 },
-  { month: "Mar", spend: 47_800, leads: 958 },
-  { month: "Apr", spend: 49_200, leads: 1006 },
+  { leads: 840, month: "Jan", spend: 41_000 },
+  { leads: 900, month: "Feb", spend: 44_500 },
+  { leads: 958, month: "Mar", spend: 47_800 },
+  { leads: 1006, month: "Apr", spend: 49_200 },
 ] as const;
 
 export const completeBarDualAxisSeries = [
-  { name: "spend", label: "Spend", yAxisId: "left-axis" },
-  { name: "leads", label: "Leads", yAxisId: "right-axis" },
+  { label: "Spend", name: "spend", yAxisId: "left-axis" },
+  { label: "Leads", name: "leads", yAxisId: "right-axis" },
 ] as const satisfies readonly CompleteChartSeries[];

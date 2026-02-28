@@ -414,8 +414,6 @@ export const createDateAdapter = (
   };
 
   const adapter: DateAdapter = {
-    context,
-
     add(value, amount, unit) {
       const parsedValue = parseValue(value);
       if (!parsedValue) {
@@ -423,6 +421,30 @@ export const createDateAdapter = (
       }
 
       return addByUnit(parsedValue, amount, unit, getOptions());
+    },
+
+    addDays(value, amount) {
+      return (
+        adapter.add(value, amount, "day") ??
+        parseValue(value) ??
+        adapter.today()
+      );
+    },
+
+    addMonths(value, amount) {
+      return (
+        adapter.add(value, amount, "month") ??
+        parseValue(value) ??
+        adapter.today()
+      );
+    },
+
+    addYears(value, amount) {
+      return (
+        adapter.add(value, amount, "year") ??
+        parseValue(value) ??
+        adapter.today()
+      );
     },
 
     assignTime(dateValue, timeString) {
@@ -496,6 +518,8 @@ export const createDateAdapter = (
       return compareByUnit(parsedLeft, parsedRight, unit, getOptions());
     },
 
+    context,
+
     endOf(value, unit) {
       const parsedValue = parseValue(value);
       if (!parsedValue) {
@@ -503,6 +527,12 @@ export const createDateAdapter = (
       }
 
       return endOfUnit(parsedValue, unit, getOptions());
+    },
+
+    endOfMonth(value) {
+      return (
+        adapter.endOf(value, "month") ?? parseValue(value) ?? adapter.today()
+      );
     },
 
     format(
@@ -536,6 +566,22 @@ export const createDateAdapter = (
       ).format(parsedValue);
     },
 
+    formatMonthLabel(value, contextOverrides) {
+      return adapter.format(
+        value,
+        { month: "long", year: "numeric" },
+        contextOverrides
+      );
+    },
+
+    formatYearLabel(value, contextOverrides) {
+      return adapter.format(value, { year: "numeric" }, contextOverrides);
+    },
+
+    getDate(value) {
+      return getZonedPart(value, getDayOfMonth);
+    },
+
     getDefaultClampedDate({ minDate, maxDate }) {
       const today = adapter.today();
       const parsedMinDate = parseValue(minDate);
@@ -556,6 +602,28 @@ export const createDateAdapter = (
       }
 
       return adapter.toDateString(today) ?? format(today, DATE_ONLY_PATTERN);
+    },
+
+    getHours(value) {
+      return getZonedPart(value, getHourOfDay);
+    },
+
+    getMinutes(value) {
+      return getZonedPart(value, getMinuteOfHour);
+    },
+
+    getMonth(value) {
+      return getZonedPart(value, getMonthOfYear);
+    },
+
+    getMonthDays(month, firstDayOfWeek) {
+      return adapter
+        .getMonthMatrix({
+          consistentWeeks: true,
+          month,
+          weekStartsOn: firstDayOfWeek,
+        })
+        .flat();
     },
 
     getMonthMatrix({ month, weekStartsOn, consistentWeeks }) {
@@ -603,14 +671,8 @@ export const createDateAdapter = (
       return rows;
     },
 
-    getMonthDays(month, firstDayOfWeek) {
-      return adapter
-        .getMonthMatrix({
-          consistentWeeks: true,
-          month,
-          weekStartsOn: firstDayOfWeek,
-        })
-        .flat();
+    getSeconds(value) {
+      return getZonedPart(value, getSecondOfMinute);
     },
 
     getWeekNumber(value) {
@@ -620,6 +682,10 @@ export const createDateAdapter = (
       }
 
       return getISOWeek(parsedValue, getOptions());
+    },
+
+    getWeekday(value) {
+      return getZonedPart(value, getDayOfWeek);
     },
 
     getWeekdayLabels(
@@ -659,30 +725,6 @@ export const createDateAdapter = (
         const date = addDays(weekStartDate, index, dateFnsOptions);
         return formatter.format(date);
       });
-    },
-
-    getDate(value) {
-      return getZonedPart(value, getDayOfMonth);
-    },
-
-    getHours(value) {
-      return getZonedPart(value, getHourOfDay);
-    },
-
-    getMinutes(value) {
-      return getZonedPart(value, getMinuteOfHour);
-    },
-
-    getMonth(value) {
-      return getZonedPart(value, getMonthOfYear);
-    },
-
-    getSeconds(value) {
-      return getZonedPart(value, getSecondOfMinute);
-    },
-
-    getWeekday(value) {
-      return getZonedPart(value, getDayOfWeek);
     },
 
     getYear(value) {
@@ -861,52 +903,6 @@ export const createDateAdapter = (
       return subtractByUnit(parsedValue, amount, unit, getOptions());
     },
 
-    addDays(value, amount) {
-      return (
-        adapter.add(value, amount, "day") ??
-        parseValue(value) ??
-        adapter.today()
-      );
-    },
-
-    addMonths(value, amount) {
-      return (
-        adapter.add(value, amount, "month") ??
-        parseValue(value) ??
-        adapter.today()
-      );
-    },
-
-    addYears(value, amount) {
-      return (
-        adapter.add(value, amount, "year") ??
-        parseValue(value) ??
-        adapter.today()
-      );
-    },
-
-    endOfMonth(value) {
-      return (
-        adapter.endOf(value, "month") ?? parseValue(value) ?? adapter.today()
-      );
-    },
-
-    formatMonthLabel(value, contextOverrides) {
-      return adapter.format(
-        value,
-        { month: "long", year: "numeric" },
-        contextOverrides
-      );
-    },
-
-    formatYearLabel(value, contextOverrides) {
-      return adapter.format(value, { year: "numeric" }, contextOverrides);
-    },
-
-    toISODate(value) {
-      return adapter.toDateString(value) ?? "";
-    },
-
     toDateString(value) {
       const parsedValue = parseValue(value);
       if (!parsedValue) {
@@ -931,6 +927,10 @@ export const createDateAdapter = (
         DATE_TIME_PATTERN,
         getOptions()
       ) as DateTimeStringValue;
+    },
+
+    toISODate(value) {
+      return adapter.toDateString(value) ?? "";
     },
 
     today() {

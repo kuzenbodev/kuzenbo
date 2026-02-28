@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { QRCode } from "../qr-code";
 
 export const baseMeta = {
-  title: "Components/QRCode",
-  component: QRCode,
-  tags: ["autodocs"],
   argTypes: {
     data: { control: "text" },
   },
+  component: QRCode,
+  tags: ["autodocs"],
+  title: "Components/QRCode",
 } satisfies Meta<typeof QRCode>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -49,13 +49,13 @@ export const CustomSize: Story = {
 export const LongPayload: Story = {
   args: {
     data: JSON.stringify({
-      type: "shipment",
+      checkpoint: "dock-6",
       id: "SHIP-88312",
       lane: "dal-sfo",
-      checkpoint: "dock-6",
       owner: "operations-control",
       priority: "high",
       tags: ["cold-chain", "fragile", "insured"],
+      type: "shipment",
     }),
     robustness: "Q",
   },

@@ -77,9 +77,9 @@ bun run test
 `;
 
 const meta = {
-  title: "Components/Typography/ProseAllElements",
   component: Typography.Prose,
   tags: ["autodocs"],
+  title: "Components/Typography/ProseAllElements",
 } satisfies Meta<typeof Typography.Prose>;
 
 export default meta;

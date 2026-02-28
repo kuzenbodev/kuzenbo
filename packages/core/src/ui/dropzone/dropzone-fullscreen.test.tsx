@@ -7,8 +7,8 @@ import { DropzoneFullScreen } from "./dropzone-fullscreen";
 
 const noop = (): void => undefined;
 
-const dispatchFileDragEvent = async (type: "dragenter" | "dragleave") => {
-  await act(async () => {
+const dispatchFileDragEvent = (type: "dragenter" | "dragleave") => {
+  act(() => {
     const event = new Event(type, { bubbles: true, cancelable: true });
     Object.defineProperty(event, "dataTransfer", {
       value: { types: ["Files"] },

@@ -154,13 +154,13 @@ export const useClipboard = ({
           setStatus("copied");
           setErrorCode(null);
           scheduleReset(copiedDurationMs);
-          return { ok: true, status: "copied", errorCode: null };
+          return { errorCode: null, ok: true, status: "copied" };
         } catch (error) {
           const mappedErrorCode = mapClipboardErrorCode(error);
           setStatus("failed");
           setErrorCode(mappedErrorCode);
           scheduleReset(failedDurationMs);
-          return { ok: false, status: "failed", errorCode: mappedErrorCode };
+          return { errorCode: mappedErrorCode, ok: false, status: "failed" };
         }
       }
 
@@ -168,9 +168,9 @@ export const useClipboard = ({
       setErrorCode("clipboard-unavailable");
       scheduleReset(failedDurationMs);
       return {
+        errorCode: "clipboard-unavailable",
         ok: false,
         status: "failed",
-        errorCode: "clipboard-unavailable",
       };
     },
     [clearResetTimer, copiedDurationMs, failedDurationMs, scheduleReset]
@@ -184,20 +184,20 @@ export const useClipboard = ({
   const announcementProps = useMemo(
     () =>
       ({
-        role: "status",
-        "aria-live": status === "failed" ? "assertive" : "polite",
         "aria-atomic": true,
+        "aria-live": status === "failed" ? "assertive" : "polite",
         children: announcement,
+        role: "status",
       }) as const,
     [announcement, status]
   );
 
   return {
-    status,
-    errorCode,
     announcement,
     announcementProps,
     copy,
+    errorCode,
     reset,
+    status,
   };
 };

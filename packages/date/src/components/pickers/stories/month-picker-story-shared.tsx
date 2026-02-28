@@ -6,12 +6,12 @@ import type { DatePickerValue } from "../../types";
 import { MonthPicker } from "../month-picker";
 
 export const baseMeta = {
-  title: "Components/MonthPicker",
   component: MonthPicker,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/MonthPicker",
 } satisfies Meta<typeof MonthPicker>;
 
 type Story = StoryObj<typeof baseMeta>;

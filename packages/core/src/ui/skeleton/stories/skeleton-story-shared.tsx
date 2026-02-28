@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Skeleton } from "../skeleton";
 
 export const baseMeta = {
-  title: "Components/Skeleton",
   component: Skeleton,
   tags: ["autodocs"],
+  title: "Components/Skeleton",
 } satisfies Meta<typeof Skeleton>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -9,15 +9,15 @@ const data = [
 ];
 
 export const baseMeta = {
-  title: "Datatable/MockDataTable",
-  component: MockDataTable,
-  tags: ["autodocs"],
   args: {
     columns: createMockColumns<(typeof data)[number]>([
       { accessorKey: "label", header: "Metric" },
     ]),
     data,
   },
+  component: MockDataTable,
+  tags: ["autodocs"],
+  title: "Datatable/MockDataTable",
 } satisfies Meta<typeof MockDataTable<(typeof data)[number]>>;
 
 type Story = StoryObj<typeof baseMeta>;

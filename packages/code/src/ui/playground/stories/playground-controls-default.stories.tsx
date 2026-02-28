@@ -1,63 +1,63 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 
-import {
-  definePlaygroundControls,
-  type PlaygroundPropKeyFromControls,
-  type PlaygroundStateFromControls,
+import { definePlaygroundControls } from "../../../playground/playground-control-model";
+import type {
+  PlaygroundPropKeyFromControls,
+  PlaygroundStateFromControls,
 } from "../../../playground/playground-control-model";
 import { CodeBlock } from "../../code-block/code-block";
 import { PlaygroundControls } from "../playground-controls";
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "select",
-    prop: "variant",
-    options: ["filled", "outline", "ghost"],
-    initialValue: "filled",
     defaultValue: "filled",
+    initialValue: "filled",
+    options: ["filled", "outline", "ghost"],
+    prop: "variant",
+    type: "select",
   },
   {
-    type: "segmented",
-    prop: "align",
-    options: ["left", "center", "right"],
-    initialValue: "left",
     defaultValue: "left",
+    initialValue: "left",
+    options: ["left", "center", "right"],
+    prop: "align",
+    type: "segmented",
   },
   {
-    type: "number",
-    prop: "padding",
-    min: 4,
-    max: 24,
-    step: 2,
-    initialValue: 12,
     defaultValue: 12,
+    initialValue: 12,
+    max: 24,
+    min: 4,
+    prop: "padding",
+    step: 2,
+    type: "number",
   },
   {
-    type: "string",
-    prop: "label",
-    initialValue: "Save changes",
     defaultValue: "Save changes",
+    initialValue: "Save changes",
+    prop: "label",
+    type: "string",
   },
   {
-    type: "color",
-    prop: "tone",
-    initialValue: "#2563eb",
     defaultValue: "#2563eb",
+    initialValue: "#2563eb",
+    prop: "tone",
     swatches: ["#2563eb", "#0891b2", "#16a34a", "#ea580c"],
+    type: "color",
   },
   {
-    type: "size",
-    prop: "size",
-    values: ["xs", "sm", "md", "lg"],
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    prop: "size",
+    type: "size",
+    values: ["xs", "sm", "md", "lg"],
   },
 ] as const);
 
@@ -73,13 +73,13 @@ const PlaygroundControlsDemo = ({
   lockSize = false,
 }: PlaygroundControlsDemoProps) => {
   const [state, setState] = useState<ControlsState>({
-    disabled: false,
-    variant: "filled",
     align: "left",
-    padding: 12,
+    disabled: false,
     label: "Save changes",
-    tone: "#2563eb",
+    padding: 12,
     size: "md",
+    tone: "#2563eb",
+    variant: "filled",
   });
 
   const lockedProps = useMemo(() => {
@@ -126,13 +126,13 @@ const PlaygroundControlsDemo = ({
 };
 
 const meta = {
-  title: "Code/Playground/PlaygroundControls/Default",
+  args: {
+    lockSize: false,
+    lockVariant: false,
+  },
   component: PlaygroundControlsDemo,
   tags: ["autodocs"],
-  args: {
-    lockVariant: false,
-    lockSize: false,
-  },
+  title: "Code/Playground/PlaygroundControls/Default",
 } satisfies Meta<typeof PlaygroundControlsDemo>;
 
 export default meta;
@@ -149,7 +149,7 @@ export const WithLockedVariant: Story = {
 
 export const WithLockedVariantAndSize: Story = {
   args: {
-    lockVariant: true,
     lockSize: true,
+    lockVariant: true,
   },
 };

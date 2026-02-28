@@ -6,10 +6,8 @@ import { useMemo } from "react";
 
 import { TIPTAP_CONTROL_REQUIREMENTS } from "../../editor/capabilities";
 import { useTiptapEditorContext } from "../tiptap-editor/tiptap-editor-context";
-import {
-  TiptapEditorControl,
-  type TiptapEditorControlProps,
-} from "../tiptap-editor/tiptap-editor-control";
+import { TiptapEditorControl } from "../tiptap-editor/tiptap-editor-control";
+import type { TiptapEditorControlProps } from "../tiptap-editor/tiptap-editor-control";
 
 const DEFAULT_COLORS = [
   "var(--color-foreground)",

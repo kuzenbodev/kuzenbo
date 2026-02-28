@@ -2,7 +2,8 @@
 
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { DEFAULT_NESTED_ICON_CLASS_BY_SIZE } from "../shared/size/size-system";
 
@@ -17,11 +18,59 @@ export const themeIconVariants = tv({
     // SVG icons: default sizing and behavior
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   ],
+  defaultVariants: {
+    size: "md",
+    variant: "default",
+  },
   variants: {
+    size: {
+      lg: [
+        // Dimensions: large square size
+        "size-10",
+      ],
+      md: [
+        // Dimensions: standard square size
+        "size-9",
+      ],
+      sm: [
+        // Dimensions: small square size
+        "size-8 rounded-[min(var(--radius-md),10px)]",
+        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
+      ],
+      xl: [
+        // Dimensions: extra large square size
+        "size-11",
+        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl,
+      ],
+      xs: [
+        // Dimensions: compact square size
+        "size-6 rounded-[min(var(--radius-md),8px)]",
+        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
+      ],
+    },
     variant: {
+      danger: [
+        // Border: danger border color
+        "border-danger-border",
+        // Background: danger color scheme with shadow
+        "bg-danger text-danger-foreground shadow-xs",
+      ],
       default: [
         // Background: primary color scheme with shadow
         "bg-primary text-primary-foreground shadow-xs",
+      ],
+      ghost: [
+        // No additional styles for ghost variant
+      ],
+      info: [
+        // Border: info border color
+        "border-info-border",
+        // Background: info color scheme with shadow
+        "bg-info text-info-foreground shadow-xs",
+      ],
+      link: [
+        // Typography: primary text color
+        "text-primary-foreground",
       ],
       outline: [
         // Border: visible border with background
@@ -33,12 +82,11 @@ export const themeIconVariants = tv({
         // Background: secondary color scheme with shadow
         "bg-secondary text-secondary-foreground shadow-xs",
       ],
-      ghost: [
-        // No additional styles for ghost variant
-      ],
-      link: [
-        // Typography: primary text color
-        "text-primary-foreground",
+      success: [
+        // Border: success border color
+        "border-success-border",
+        // Background: success color scheme with shadow
+        "bg-success text-success-foreground shadow-xs",
       ],
       warning: [
         // Border: warning border color
@@ -46,54 +94,7 @@ export const themeIconVariants = tv({
         // Background: warning color scheme with shadow
         "bg-warning text-warning-foreground shadow-xs",
       ],
-      danger: [
-        // Border: danger border color
-        "border-danger-border",
-        // Background: danger color scheme with shadow
-        "bg-danger text-danger-foreground shadow-xs",
-      ],
-      info: [
-        // Border: info border color
-        "border-info-border",
-        // Background: info color scheme with shadow
-        "bg-info text-info-foreground shadow-xs",
-      ],
-      success: [
-        // Border: success border color
-        "border-success-border",
-        // Background: success color scheme with shadow
-        "bg-success text-success-foreground shadow-xs",
-      ],
     },
-    size: {
-      xs: [
-        // Dimensions: compact square size
-        "size-6 rounded-[min(var(--radius-md),8px)]",
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
-      ],
-      sm: [
-        // Dimensions: small square size
-        "size-8 rounded-[min(var(--radius-md),10px)]",
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
-      ],
-      md: [
-        // Dimensions: standard square size
-        "size-9",
-      ],
-      lg: [
-        // Dimensions: large square size
-        "size-10",
-      ],
-      xl: [
-        // Dimensions: extra large square size
-        "size-11",
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl,
-      ],
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-    size: "md",
   },
 });
 
@@ -113,16 +114,16 @@ export const ThemeIcon = ({
 }: ThemeIconProps) => {
   const element = useRender({
     defaultTagName: "div",
-    render,
     props: mergeProps<"div">(
       {
-        className: themeIconVariants({ variant, size, className }),
+        className: themeIconVariants({ className, size, variant }),
       },
       {
         "data-slot": "theme-icon",
         ...props,
       }
     ),
+    render,
   });
 
   return element;

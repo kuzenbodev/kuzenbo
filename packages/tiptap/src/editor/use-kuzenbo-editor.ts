@@ -4,10 +4,8 @@ import type { AnyExtension, Editor, JSONContent } from "@tiptap/core";
 import { useEditor } from "@tiptap/react";
 import { useMemo } from "react";
 
-import {
-  createTiptapExtensionsPreset,
-  type TiptapEditorPreset,
-} from "./create-tiptap-extensions-preset";
+import { createTiptapExtensionsPreset } from "./create-tiptap-extensions-preset";
+import type { TiptapEditorPreset } from "./create-tiptap-extensions-preset";
 
 export interface UseKuzenboEditorOptions {
   preset?: TiptapEditorPreset;
@@ -46,9 +44,9 @@ export const useKuzenboEditor = ({
   }, [extensions, presetExtensions]);
 
   return useEditor({
-    extensions: allExtensions,
     content: content ?? "",
     editable,
+    extensions: allExtensions,
     immediatelyRender,
     onUpdate: onUpdate
       ? ({ editor }) => {

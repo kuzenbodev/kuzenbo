@@ -13,11 +13,11 @@ function inputClassName() {
 }
 
 const inputHeightClassBySize = {
-  xs: "h-6",
-  sm: "h-8",
-  md: "h-9",
   lg: "h-10",
+  md: "h-9",
+  sm: "h-8",
   xl: "h-11",
+  xs: "h-6",
 } as const;
 
 describe("Input", () => {

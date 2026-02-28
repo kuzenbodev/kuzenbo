@@ -2,7 +2,8 @@ import { SearchIcon, StarIcon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Breadcrumb, type BreadcrumbProps } from "../breadcrumb";
+import { Breadcrumb } from "../breadcrumb";
+import type { BreadcrumbProps } from "../breadcrumb";
 
 const breadcrumbSizes: NonNullable<BreadcrumbProps["size"]>[] = [
   "xs",
@@ -13,9 +14,9 @@ const breadcrumbSizes: NonNullable<BreadcrumbProps["size"]>[] = [
 ];
 
 export const baseMeta = {
-  title: "Components/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
+  title: "Components/Breadcrumb",
 } satisfies Meta<typeof Breadcrumb>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -51,15 +52,6 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4">
-      {breadcrumbSizes.map((size) => (
-        <div key={size}>
-          {renderDefaultTrail({ size, currentPage: "Live preview" })}
-        </div>
-      ))}
-    </div>
-  ),
   parameters: {
     docs: {
       description: {
@@ -68,9 +60,26 @@ export const Sizes: Story = {
       },
     },
   },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      {breadcrumbSizes.map((size) => (
+        <div key={size}>
+          {renderDefaultTrail({ currentPage: "Live preview", size })}
+        </div>
+      ))}
+    </div>
+  ),
 };
 
 export const WithIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use icon + label links for dense workspace navigation without changing breadcrumb semantics.",
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <Breadcrumb.List>
@@ -111,17 +120,17 @@ export const WithIcons: Story = {
       </Breadcrumb.List>
     </Breadcrumb>
   ),
+};
+
+export const WithOverflow: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          "Use icon + label links for dense workspace navigation without changing breadcrumb semantics.",
+          "Collapse deep breadcrumb hierarchies with an explicit ellipsis item while preserving first and current page context.",
       },
     },
   },
-};
-
-export const WithOverflow: Story = {
   render: () => (
     <Breadcrumb>
       <Breadcrumb.List>
@@ -149,12 +158,4 @@ export const WithOverflow: Story = {
       </Breadcrumb.List>
     </Breadcrumb>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Collapse deep breadcrumb hierarchies with an explicit ellipsis item while preserving first and current page context.",
-      },
-    },
-  },
 };

@@ -24,17 +24,17 @@ const CompositeChartCompleteFunnelBlendDemo = () => (
     <CompositeChart
       areaProps={{ fillOpacity: 0.18 }}
       barProps={{ radius: [8, 8, 0, 0] }}
-      composedChartProps={{ margin: { top: 8, right: 10, left: 0, bottom: 0 } }}
+      composedChartProps={{ margin: { bottom: 0, left: 0, right: 10, top: 8 } }}
       chartRootProps={{ className: "h-80 w-full" }}
       data={compositeFunnelBlendData}
       dataKey="stage"
       lineProps={{ strokeWidth: 3 }}
       referenceLines={[
         {
-          y: 20,
           color: "var(--color-chart-4)",
-          strokeDasharray: "4 4",
           label: "Conversion Goal",
+          strokeDasharray: "4 4",
+          y: 20,
         },
       ]}
       rightYAxisProps={{ width: 52, yAxisId: "conversion-axis" }}
@@ -53,9 +53,9 @@ const CompositeChartCompleteFunnelBlendDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Composite/FunnelBlend",
   component: CompositeChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Composite/FunnelBlend",
 } satisfies Meta<typeof CompositeChart>;
 
 type Story = StoryObj<typeof CompositeChart>;

@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Textarea } from "../textarea";
 
 export const baseMeta = {
-  title: "Components/Textarea",
-  component: Textarea,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Textarea,
+  tags: ["autodocs"],
+  title: "Components/Textarea",
 } satisfies Meta<typeof Textarea>;
 
 type Story = StoryObj<typeof baseMeta>;

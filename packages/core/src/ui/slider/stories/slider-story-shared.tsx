@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  type ComponentProps,
-  type FormEvent,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { ComponentProps, FormEvent, ReactNode } from "react";
 
 import { Slider } from "../slider";
 
@@ -22,19 +16,19 @@ interface SliderStoryExtraProps {
 const defaultSingleValue = 45;
 
 const singleMarks = [
-  { value: 0, label: "0%" },
-  { value: 25, label: "25%" },
-  { value: 50, label: "50%" },
-  { value: 75, label: "75%" },
-  { value: 100, label: "100%" },
+  { label: "0%", value: 0 },
+  { label: "25%", value: 25 },
+  { label: "50%", value: 50 },
+  { label: "75%", value: 75 },
+  { label: "100%", value: 100 },
 ] as const;
 
 const restrictToMarksSingleMarks = [
-  { value: 10, label: "XS" },
-  { value: 30, label: "S" },
-  { value: 55, label: "M" },
-  { value: 75, label: "L" },
-  { value: 95, label: "XL" },
+  { label: "XS", value: 10 },
+  { label: "S", value: 30 },
+  { label: "M", value: 55 },
+  { label: "L", value: 75 },
+  { label: "XL", value: 95 },
 ] as const;
 
 const noopSingleOnChange: NonNullable<SingleSliderArgs["onChange"]> = (
@@ -107,9 +101,9 @@ const ControlledSingleSlider = ({ args }: { args: SingleSliderArgs }) => {
 };
 
 export const singleBaseMeta = {
-  title: "Components/Slider/Single",
   component: Slider,
   tags: ["autodocs"],
+  title: "Components/Slider/Single",
 } satisfies Meta<typeof Slider>;
 
 type SingleStory = StoryObj<typeof singleBaseMeta>;
@@ -200,9 +194,9 @@ export const SingleScaleDomain: SingleStory = {
     domain: [-1000, 11_000],
     label: scaleLabel,
     marks: [
-      { value: 0, label: "0k" },
-      { value: 5000, label: "5k" },
-      { value: 10_000, label: "10k" },
+      { label: "0k", value: 0 },
+      { label: "5k", value: 5000 },
+      { label: "10k", value: 10_000 },
     ],
     max: 10_000,
     min: 0,

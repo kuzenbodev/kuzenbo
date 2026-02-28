@@ -4,9 +4,9 @@ import { useCallback, useMemo, useState } from "react";
 import { ToggleGroup } from "../toggle-group";
 
 export const baseMeta = {
-  title: "Components/ToggleGroup",
   component: ToggleGroup,
   tags: ["autodocs"],
+  title: "Components/ToggleGroup",
 } satisfies Meta<typeof ToggleGroup>;
 
 type Story = StoryObj<typeof baseMeta>;

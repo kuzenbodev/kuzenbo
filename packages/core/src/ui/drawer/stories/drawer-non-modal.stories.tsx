@@ -33,12 +33,12 @@ const NonModalDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/NonModal",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/NonModal",
 };
 
 export default meta;

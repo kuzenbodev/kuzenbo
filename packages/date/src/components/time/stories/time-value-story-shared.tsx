@@ -4,12 +4,12 @@ import { DatesProvider } from "../../dates-provider";
 import { TimeValue } from "../time-value";
 
 export const baseMeta = {
-  title: "Components/TimeValue",
   component: TimeValue,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/TimeValue",
 } satisfies Meta<typeof TimeValue>;
 
 type Story = StoryObj<typeof baseMeta>;

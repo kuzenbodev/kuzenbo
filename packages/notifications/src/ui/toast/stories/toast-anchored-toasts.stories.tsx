@@ -60,19 +60,19 @@ const AnchoredToastDemo = () => {
 };
 
 const meta: Meta<typeof Toast> = {
-  title: "Toast notification/AnchoredToasts",
   component: Toast,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         story:
           "Anchors toasts to the trigger using Toast.Positioner and Toast.Arrow.",
       },
     },
+    layout: "centered",
   },
   render: () => <AnchoredToastDemo />,
+  tags: ["autodocs"],
+  title: "Toast notification/AnchoredToasts",
 };
 
 export default meta;

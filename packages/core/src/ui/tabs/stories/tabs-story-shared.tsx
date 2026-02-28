@@ -43,9 +43,9 @@ const TabsCombination = ({
 );
 
 export const baseMeta = {
-  title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
+  title: "Components/Tabs",
 } satisfies Meta<typeof Tabs>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -73,6 +73,14 @@ export const Default: Story = {
 };
 
 export const Line: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Line tabs in manual activation mode model keyboard workflows where arrow-key focus should not auto-change content.",
+      },
+    },
+  },
   render: () => (
     <Tabs defaultValue="projects">
       <Tabs.List activateOnFocus={false} variant="line">
@@ -93,17 +101,17 @@ export const Line: Story = {
       </Tabs.Content>
     </Tabs>
   ),
+};
+
+export const Pill: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          "Line tabs in manual activation mode model keyboard workflows where arrow-key focus should not auto-change content.",
+          "Pill tabs demonstrate feature gating with a disabled trigger while still exposing neighboring available sections.",
       },
     },
   },
-};
-
-export const Pill: Story = {
   render: () => (
     <Tabs defaultValue="overview">
       <Tabs.List variant="pill">
@@ -125,14 +133,6 @@ export const Pill: Story = {
       </Tabs.Content>
     </Tabs>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Pill tabs demonstrate feature gating with a disabled trigger while still exposing neighboring available sections.",
-      },
-    },
-  },
 };
 
 export const FullWidth: Story = {

@@ -31,23 +31,23 @@ const ToastSizeDemo = ({ size }: { size: ToastSize }) => {
 };
 
 const meta: Meta<typeof ToastProvider> = {
-  title: "Toast notification/Sizes",
-  component: ToastProvider,
-  tags: ["autodocs"],
-  args: {
-    size: "md",
-  },
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"] satisfies ToastSize[],
     },
   },
+  args: {
+    size: "md",
+  },
+  component: ToastProvider,
   render: ({ size = "md" }) => (
     <ToastProvider size={size}>
       <ToastSizeDemo size={size} />
     </ToastProvider>
   ),
+  tags: ["autodocs"],
+  title: "Toast notification/Sizes",
 };
 
 export default meta;

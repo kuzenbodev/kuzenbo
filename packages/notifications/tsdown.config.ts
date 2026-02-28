@@ -1,24 +1,18 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: {
-    "ui/toast": "src/ui/toast/toast.tsx",
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
   },
-  format: ["esm"],
+  clean: true,
   dts: {
     sourcemap: true,
   },
-  sourcemap: true,
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
+  entry: {
+    "ui/toast": "src/ui/toast/toast.tsx",
   },
   exports: {
-    devExports: true,
-    packageJson: true,
     customExports(currentExports) {
       const rootExport = currentExports["."];
       if (!rootExport) {
@@ -32,5 +26,11 @@ export default defineConfig({
         "./ui/toast": rootExport,
       };
     },
+    devExports: true,
+    packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

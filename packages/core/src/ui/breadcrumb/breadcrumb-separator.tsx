@@ -1,24 +1,25 @@
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbSeparatorVariants = tv({
   base: "text-muted-foreground inline-flex items-center",
-  variants: {
-    size: {
-      xs: "[&>svg]:size-3",
-      sm: "[&>svg]:size-3.5",
-      md: "[&>svg]:size-3.5",
-      lg: "[&>svg]:size-4",
-      xl: "[&>svg]:size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "[&>svg]:size-4",
+      md: "[&>svg]:size-3.5",
+      sm: "[&>svg]:size-3.5",
+      xl: "[&>svg]:size-5",
+      xs: "[&>svg]:size-3",
+    },
   },
 });
 

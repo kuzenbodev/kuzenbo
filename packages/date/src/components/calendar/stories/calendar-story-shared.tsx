@@ -7,15 +7,15 @@ import { Calendar } from "../calendar";
 const excludeSunday = (date: Date): boolean => date.getDay() === 0;
 
 export const baseMeta = {
-  title: "Components/Calendar",
-  component: Calendar,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   args: {
     selectionMode: "single",
   },
+  component: Calendar,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/Calendar",
 } satisfies Meta<typeof Calendar>;
 
 type Story = StoryObj<typeof baseMeta>;

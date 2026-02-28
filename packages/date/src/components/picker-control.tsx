@@ -3,36 +3,7 @@ import { cn, tv } from "tailwind-variants";
 
 const pickerControlVariants = tv({
   base: "cursor-clickable text-foreground focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-transparent text-sm font-medium transition-colors outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-40",
-  variants: {
-    disabled: {
-      true: "",
-      false: "hover:bg-muted",
-    },
-    hidden: {
-      true: "invisible",
-      false: "",
-    },
-    inRange: {
-      true: "bg-primary/15 rounded-none",
-      false: "",
-    },
-    firstInRange: {
-      true: "bg-primary/15 !rounded-md",
-      false: "",
-    },
-    lastInRange: {
-      true: "bg-primary/15 !rounded-md",
-      false: "",
-    },
-    outside: {
-      true: "text-muted-foreground/70",
-      false: "",
-    },
-    selected: {
-      true: "bg-primary text-primary-foreground hover:bg-primary/90",
-      false: "",
-    },
-  },
+  compoundVariants: [],
   defaultVariants: {
     disabled: false,
     firstInRange: false,
@@ -42,7 +13,36 @@ const pickerControlVariants = tv({
     outside: false,
     selected: false,
   },
-  compoundVariants: [],
+  variants: {
+    disabled: {
+      false: "hover:bg-muted",
+      true: "",
+    },
+    firstInRange: {
+      false: "",
+      true: "bg-primary/15 !rounded-md",
+    },
+    hidden: {
+      false: "",
+      true: "invisible",
+    },
+    inRange: {
+      false: "",
+      true: "bg-primary/15 rounded-none",
+    },
+    lastInRange: {
+      false: "",
+      true: "bg-primary/15 !rounded-md",
+    },
+    outside: {
+      false: "",
+      true: "text-muted-foreground/70",
+    },
+    selected: {
+      false: "",
+      true: "bg-primary text-primary-foreground hover:bg-primary/90",
+    },
+  },
 });
 
 export type PickerControlProps = Omit<ComponentProps<"button">, "children"> & {

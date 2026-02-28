@@ -25,9 +25,9 @@ const FunnelChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Funnel/Default",
   component: FunnelChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Funnel/Default",
 } satisfies Meta<typeof FunnelChart>;
 
 type Story = StoryObj<typeof FunnelChart>;

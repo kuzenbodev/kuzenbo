@@ -6,11 +6,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "../button/button";
 import { SheetBackdrop } from "./sheet-backdrop";
 import { SheetClose } from "./sheet-close";
-import {
-  SheetPopup,
-  type SheetPopupProps,
-  type SheetSide,
-} from "./sheet-popup";
+import { SheetPopup } from "./sheet-popup";
+import type { SheetPopupProps, SheetSide } from "./sheet-popup";
 import { SheetPortal } from "./sheet-portal";
 import { SheetViewport } from "./sheet-viewport";
 export type SheetContentProps = SheetPopupProps & {

@@ -7,24 +7,24 @@ import { DropdownMenu } from "../dropdown-menu";
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/DropdownMenu",
-  component: DropdownMenu,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: sizes,
     },
   },
+  component: DropdownMenu,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "DropdownMenu uses one size contract (`xs|sm|md|lg|xl`) across trigger-root and popup child surfaces. Child size props override inherited size.",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/DropdownMenu",
 } satisfies Meta<typeof DropdownMenu>;
 
 type Story = StoryObj<typeof baseMeta>;

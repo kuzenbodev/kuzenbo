@@ -26,7 +26,7 @@ if (!isReleaseChannel(channelArg)) {
 }
 
 const channel = channelArg as ReleaseChannel;
-runReleaseValidation({ version, channel, ref: refArg });
+runReleaseValidation({ channel, ref: refArg, version });
 
 const config = loadReleaseConfig();
 const packages = readWorkspacePackages();
@@ -51,7 +51,7 @@ try {
     console.log(`Validated artifact: ${path.basename(tarballPath)}`);
   }
 } finally {
-  fs.rmSync(artifactsDirectory, { recursive: true, force: true });
+  fs.rmSync(artifactsDirectory, { force: true, recursive: true });
 }
 
 console.log("\nDry-run publish validation completed.");

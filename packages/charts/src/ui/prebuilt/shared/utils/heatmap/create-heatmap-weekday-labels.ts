@@ -6,8 +6,8 @@ const createHeatmapWeekdayLabels = (
   locale = "en-US"
 ): readonly HeatmapWeekdayLabel[] => {
   const formatter = new Intl.DateTimeFormat(locale, {
-    weekday: "short",
     timeZone: "UTC",
+    weekday: "short",
   });
   const sundayAnchor = new Date(Date.UTC(2024, 0, 7));
 

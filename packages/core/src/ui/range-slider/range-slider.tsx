@@ -8,10 +8,8 @@ import { SliderControl } from "../slider/primitives/slider-control";
 import { SliderIndicator } from "../slider/primitives/slider-indicator";
 import { SliderMark } from "../slider/primitives/slider-mark";
 import { SliderMarks } from "../slider/primitives/slider-marks";
-import {
-  SliderThumb,
-  type SliderThumbProps,
-} from "../slider/primitives/slider-thumb";
+import { SliderThumb } from "../slider/primitives/slider-thumb";
+import type { SliderThumbProps } from "../slider/primitives/slider-thumb";
 import { SliderThumbLabel } from "../slider/primitives/slider-thumb-label";
 import { SliderTrack } from "../slider/primitives/slider-track";
 import { SliderValue as SliderValuePrimitive } from "../slider/primitives/slider-value";

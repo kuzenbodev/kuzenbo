@@ -23,32 +23,32 @@ describe("PlaygroundControlField", () => {
       <div>
         <PlaygroundControlField
           control={{
-            type: "boolean",
-            prop: "disabled",
-            initialValue: false,
             defaultValue: false,
+            initialValue: false,
+            prop: "disabled",
+            type: "boolean",
           }}
           onChange={onBooleanChange}
           value={false}
         />
         <PlaygroundControlField
           control={{
-            type: "number",
-            prop: "radius",
-            initialValue: 4,
             defaultValue: 4,
-            min: 0,
+            initialValue: 4,
             max: 12,
+            min: 0,
+            prop: "radius",
+            type: "number",
           }}
           onChange={onNumberChange}
           value={4}
         />
         <PlaygroundControlField
           control={{
-            type: "string",
-            prop: "label",
-            initialValue: "Click",
             defaultValue: "Click",
+            initialValue: "Click",
+            prop: "label",
+            type: "string",
           }}
           onChange={onStringChange}
           value="Click"
@@ -78,22 +78,22 @@ describe("PlaygroundControlField", () => {
       <div>
         <PlaygroundControlField
           control={{
-            type: "select",
-            prop: "variant",
-            options: ["filled", "outline"],
-            initialValue: "filled",
             defaultValue: "filled",
+            initialValue: "filled",
+            options: ["filled", "outline"],
+            prop: "variant",
+            type: "select",
           }}
           onChange={onSelectChange}
           value="filled"
         />
         <PlaygroundControlField
           control={{
-            type: "segmented",
-            prop: "position",
-            options: ["left", "center", "right"],
-            initialValue: "center",
             defaultValue: "center",
+            initialValue: "center",
+            options: ["left", "center", "right"],
+            prop: "position",
+            type: "segmented",
           }}
           onChange={onSegmentedChange}
           value="center"
@@ -121,11 +121,11 @@ describe("PlaygroundControlField", () => {
     render(
       <PlaygroundControlField
         control={{
-          type: "color",
-          prop: "color",
-          initialValue: "#112233",
           defaultValue: "#112233",
+          initialValue: "#112233",
+          prop: "color",
           swatches: ["#ff0000", "#00ff00"],
+          type: "color",
         }}
         onChange={onColorChange}
         value="#112233"
@@ -148,10 +148,10 @@ describe("PlaygroundControlField", () => {
     render(
       <PlaygroundControlField
         control={{
-          type: "size",
-          prop: "size",
-          initialValue: "md",
           defaultValue: "md",
+          initialValue: "md",
+          prop: "size",
+          type: "size",
           values: ["xs", "sm", "md", "lg"],
         }}
         onChange={onSizeChange}

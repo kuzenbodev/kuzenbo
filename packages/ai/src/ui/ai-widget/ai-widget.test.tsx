@@ -30,8 +30,8 @@ describe("AiWidget", () => {
     render(<AiWidget title="Assistant">Body</AiWidget>);
 
     const heading = screen.getByRole("heading", {
-      name: "Assistant",
       level: 3,
+      name: "Assistant",
     });
 
     expect(heading).toBeDefined();

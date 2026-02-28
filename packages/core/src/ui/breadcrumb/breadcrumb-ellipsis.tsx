@@ -1,24 +1,25 @@
 import { MoreHorizontalCircle01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbEllipsisVariants = tv({
   base: "text-muted-foreground flex items-center justify-center",
-  variants: {
-    size: {
-      xs: "size-4 [&>svg]:size-3",
-      sm: "size-5 [&>svg]:size-3.5",
-      md: "size-5 [&>svg]:size-4",
-      lg: "size-6 [&>svg]:size-4",
-      xl: "size-7 [&>svg]:size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "size-6 [&>svg]:size-4",
+      md: "size-5 [&>svg]:size-4",
+      sm: "size-5 [&>svg]:size-3.5",
+      xl: "size-7 [&>svg]:size-5",
+      xs: "size-4 [&>svg]:size-3",
+    },
   },
 });
 

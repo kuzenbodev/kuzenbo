@@ -6,18 +6,18 @@ import { Spinner } from "../spinner";
 const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Spinner",
-  component: Spinner,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     size: {
       control: "select",
       options: sizeOptions,
     },
   },
+  component: Spinner,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/Spinner",
 } satisfies Meta<typeof Spinner>;
 
 type Story = StoryObj<typeof baseMeta>;

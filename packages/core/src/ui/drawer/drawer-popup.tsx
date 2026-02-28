@@ -1,23 +1,24 @@
 "use client";
 
 import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerPopupSizeVariants = tv({
-  variants: {
-    size: {
-      xs: "text-xs data-[swipe-direction=down]:px-4 data-[swipe-direction=down]:pt-3 data-[swipe-direction=down]:pb-[calc(1rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(18rem+var(--bleed))] data-[swipe-direction=left]:p-4 data-[swipe-direction=left]:pl-[calc(1rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(18rem+var(--bleed))] data-[swipe-direction=right]:p-4 data-[swipe-direction=right]:pr-[calc(1rem+var(--bleed))] data-[swipe-direction=up]:px-4 data-[swipe-direction=up]:pt-[calc(1rem+var(--bleed))] data-[swipe-direction=up]:pb-3",
-      sm: "text-sm data-[swipe-direction=down]:px-5 data-[swipe-direction=down]:pt-3.5 data-[swipe-direction=down]:pb-[calc(1.25rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(19rem+var(--bleed))] data-[swipe-direction=left]:p-5 data-[swipe-direction=left]:pl-[calc(1.25rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(19rem+var(--bleed))] data-[swipe-direction=right]:p-5 data-[swipe-direction=right]:pr-[calc(1.25rem+var(--bleed))] data-[swipe-direction=up]:px-5 data-[swipe-direction=up]:pt-[calc(1.25rem+var(--bleed))] data-[swipe-direction=up]:pb-3.5",
-      md: "text-sm",
-      lg: "text-sm data-[swipe-direction=down]:px-7 data-[swipe-direction=down]:pt-5 data-[swipe-direction=down]:pb-[calc(1.75rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(22rem+var(--bleed))] data-[swipe-direction=left]:p-7 data-[swipe-direction=left]:pl-[calc(1.75rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(22rem+var(--bleed))] data-[swipe-direction=right]:p-7 data-[swipe-direction=right]:pr-[calc(1.75rem+var(--bleed))] data-[swipe-direction=up]:px-7 data-[swipe-direction=up]:pt-[calc(1.75rem+var(--bleed))] data-[swipe-direction=up]:pb-5",
-      xl: "text-base data-[swipe-direction=down]:px-8 data-[swipe-direction=down]:pt-6 data-[swipe-direction=down]:pb-[calc(2rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(24rem+var(--bleed))] data-[swipe-direction=left]:p-8 data-[swipe-direction=left]:pl-[calc(2rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(24rem+var(--bleed))] data-[swipe-direction=right]:p-8 data-[swipe-direction=right]:pr-[calc(2rem+var(--bleed))] data-[swipe-direction=up]:px-8 data-[swipe-direction=up]:pt-[calc(2rem+var(--bleed))] data-[swipe-direction=up]:pb-6",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-sm data-[swipe-direction=down]:px-7 data-[swipe-direction=down]:pt-5 data-[swipe-direction=down]:pb-[calc(1.75rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(22rem+var(--bleed))] data-[swipe-direction=left]:p-7 data-[swipe-direction=left]:pl-[calc(1.75rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(22rem+var(--bleed))] data-[swipe-direction=right]:p-7 data-[swipe-direction=right]:pr-[calc(1.75rem+var(--bleed))] data-[swipe-direction=up]:px-7 data-[swipe-direction=up]:pt-[calc(1.75rem+var(--bleed))] data-[swipe-direction=up]:pb-5",
+      md: "text-sm",
+      sm: "text-sm data-[swipe-direction=down]:px-5 data-[swipe-direction=down]:pt-3.5 data-[swipe-direction=down]:pb-[calc(1.25rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(19rem+var(--bleed))] data-[swipe-direction=left]:p-5 data-[swipe-direction=left]:pl-[calc(1.25rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(19rem+var(--bleed))] data-[swipe-direction=right]:p-5 data-[swipe-direction=right]:pr-[calc(1.25rem+var(--bleed))] data-[swipe-direction=up]:px-5 data-[swipe-direction=up]:pt-[calc(1.25rem+var(--bleed))] data-[swipe-direction=up]:pb-3.5",
+      xl: "text-base data-[swipe-direction=down]:px-8 data-[swipe-direction=down]:pt-6 data-[swipe-direction=down]:pb-[calc(2rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(24rem+var(--bleed))] data-[swipe-direction=left]:p-8 data-[swipe-direction=left]:pl-[calc(2rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(24rem+var(--bleed))] data-[swipe-direction=right]:p-8 data-[swipe-direction=right]:pr-[calc(2rem+var(--bleed))] data-[swipe-direction=up]:px-8 data-[swipe-direction=up]:pt-[calc(2rem+var(--bleed))] data-[swipe-direction=up]:pb-6",
+      xs: "text-xs data-[swipe-direction=down]:px-4 data-[swipe-direction=down]:pt-3 data-[swipe-direction=down]:pb-[calc(1rem+env(safe-area-inset-bottom,0px)+var(--bleed))] data-[swipe-direction=left]:w-[calc(18rem+var(--bleed))] data-[swipe-direction=left]:p-4 data-[swipe-direction=left]:pl-[calc(1rem+var(--bleed))] data-[swipe-direction=right]:w-[calc(18rem+var(--bleed))] data-[swipe-direction=right]:p-4 data-[swipe-direction=right]:pr-[calc(1rem+var(--bleed))] data-[swipe-direction=up]:px-4 data-[swipe-direction=up]:pt-[calc(1rem+var(--bleed))] data-[swipe-direction=up]:pb-3",
+    },
   },
 });
 

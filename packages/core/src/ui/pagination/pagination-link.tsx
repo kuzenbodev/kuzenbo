@@ -1,7 +1,8 @@
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
-import { Button, type ButtonProps } from "../button/button";
+import { Button } from "../button/button";
+import type { ButtonProps } from "../button/button";
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedPaginationSize } from "./pagination-size-context";
 
@@ -13,20 +14,20 @@ type PaginationLinkProps = {
 
 const PAGINATION_ICON_BUTTON_SIZE_BY_SIZE: Record<UISize, ButtonProps["size"]> =
   {
-    xs: "icon-xs",
-    sm: "icon-sm",
-    md: "icon",
     lg: "icon-lg",
+    md: "icon",
+    sm: "icon-sm",
     xl: "icon-xl",
+    xs: "icon-xs",
   };
 
 const PAGINATION_TEXT_BUTTON_SIZE_BY_SIZE: Record<UISize, ButtonProps["size"]> =
   {
-    xs: "xs",
-    sm: "sm",
-    md: "md",
     lg: "lg",
+    md: "md",
+    sm: "sm",
     xl: "xl",
+    xs: "xs",
   };
 
 const PaginationLink = ({

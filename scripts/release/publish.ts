@@ -71,7 +71,7 @@ if (!isReleasePublishMode(modeArg)) {
 const channel = channelArg as ReleaseChannel;
 const mode = modeArg as ReleasePublishMode;
 assertGitHubCiEnvironment();
-runReleaseValidation({ version, channel, ref });
+runReleaseValidation({ channel, ref, version });
 
 const config = loadReleaseConfig();
 const distTag = config.channelToDistTag[channel];
@@ -129,6 +129,6 @@ if (packagesToPublish.length === 0) {
 
     console.log("\nPublish completed.");
   } finally {
-    fs.rmSync(artifactsDirectory, { recursive: true, force: true });
+    fs.rmSync(artifactsDirectory, { force: true, recursive: true });
   }
 }

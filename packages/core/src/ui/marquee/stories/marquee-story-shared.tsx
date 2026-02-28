@@ -18,9 +18,9 @@ const partnerUpdates = [
 ] as const;
 
 export const baseMeta = {
-  title: "Components/Marquee",
   component: Marquee,
   tags: ["autodocs"],
+  title: "Components/Marquee",
 } satisfies Meta<typeof Marquee>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -1,7 +1,5 @@
-import {
-  AlertDialogBackdrop,
-  type AlertDialogBackdropProps,
-} from "./alert-dialog-backdrop";
+import { AlertDialogBackdrop } from "./alert-dialog-backdrop";
+import type { AlertDialogBackdropProps } from "./alert-dialog-backdrop";
 export type AlertDialogOverlayProps = AlertDialogBackdropProps;
 
 const AlertDialogOverlay = ({

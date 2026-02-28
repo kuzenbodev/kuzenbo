@@ -3,28 +3,28 @@ import type { FooterColumn } from "./footer.types";
 
 export const FOOTER_COLUMNS: readonly FooterColumn[] = [
   {
-    title: "Getting Started",
     links: [
       { href: "/docs/getting-started", label: "Start Here" },
       { href: "/docs/getting-started/installation", label: "Installation" },
       { href: "/docs/getting-started/quickstart", label: "Quickstart" },
     ],
+    title: "Getting Started",
   },
   {
-    title: "Library",
     links: [
       { href: "/docs/components", label: "Components" },
       { href: "/docs/hooks", label: "Hooks" },
       { href: "/showcase/components", label: "Component Gallery" },
     ],
+    title: "Library",
   },
   {
-    title: "Explore",
     links: [
       { href: "/showcase", label: "Showcase" },
       { href: "/showcase/hooks", label: "Hooks Gallery" },
       { href: "/showcase/playground", label: "Playground" },
     ],
+    title: "Explore",
   },
 ];
 

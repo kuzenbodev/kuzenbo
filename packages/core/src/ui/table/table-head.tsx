@@ -1,24 +1,25 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useTableResolvedSize } from "./table-size-context";
 
 const tableHeadVariants = tv({
   base: "text-foreground text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0",
-  variants: {
-    size: {
-      xs: "h-7 px-1.5 text-xs",
-      sm: "h-8 px-2 text-xs",
-      md: "h-10 px-2 text-sm",
-      lg: "h-11 px-2.5 text-sm",
-      xl: "h-12 px-3 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-11 px-2.5 text-sm",
+      md: "h-10 px-2 text-sm",
+      sm: "h-8 px-2 text-xs",
+      xl: "h-12 px-3 text-base",
+      xs: "h-7 px-1.5 text-xs",
+    },
   },
 });
 

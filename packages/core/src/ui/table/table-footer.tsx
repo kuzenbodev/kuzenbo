@@ -2,24 +2,25 @@
 
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { TableSizeContext, useTableResolvedSize } from "./table-size-context";
 
 const tableFooterVariants = tv({
   base: "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-sm",
-      xl: "text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-sm",
+      md: "text-sm",
+      sm: "text-xs",
+      xl: "text-base",
+      xs: "text-xs",
+    },
   },
 });
 

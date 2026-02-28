@@ -17,24 +17,24 @@ interface CommandGroup {
 
 const groupedCommands: CommandGroup[] = [
   {
-    value: "Navigation",
     items: [
-      { value: "go-dashboard", label: "Go to dashboard", shortcut: "G D" },
-      { value: "go-inbox", label: "Open inbox", shortcut: "G I" },
-      { value: "go-settings", label: "Open settings", shortcut: "G S" },
+      { label: "Go to dashboard", shortcut: "G D", value: "go-dashboard" },
+      { label: "Open inbox", shortcut: "G I", value: "go-inbox" },
+      { label: "Open settings", shortcut: "G S", value: "go-settings" },
     ],
+    value: "Navigation",
   },
   {
-    value: "Actions",
     items: [
       {
-        value: "create-ticket",
         label: "Create support ticket",
         shortcut: "C T",
+        value: "create-ticket",
       },
-      { value: "new-workflow", label: "Create workflow", shortcut: "C W" },
-      { value: "invite-user", label: "Invite teammate", shortcut: "I U" },
+      { label: "Create workflow", shortcut: "C W", value: "new-workflow" },
+      { label: "Invite teammate", shortcut: "I U", value: "invite-user" },
     ],
+    value: "Actions",
   },
 ];
 
@@ -96,14 +96,14 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const CommandPaletteModal: Story = {
-  render: () => <CommandPaletteModalDemo />,
   parameters: {
-    layout: "padded",
     docs: {
       description: {
         story:
           "Command-palette style search with grouped commands, modal behavior, backdrop, and arrow.",
       },
     },
+    layout: "padded",
   },
+  render: () => <CommandPaletteModalDemo />,
 };

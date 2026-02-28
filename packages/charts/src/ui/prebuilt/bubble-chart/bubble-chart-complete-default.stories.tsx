@@ -22,9 +22,9 @@ const BubbleChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bubble/Default",
   component: BubbleChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bubble/Default",
 } satisfies Meta<typeof BubbleChart>;
 
 type Story = StoryObj<typeof BubbleChart>;

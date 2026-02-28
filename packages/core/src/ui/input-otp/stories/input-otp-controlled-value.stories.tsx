@@ -53,7 +53,6 @@ export const ControlledValue: Story = {
     render: () => null,
     size: "md",
   },
-  render: () => <ControlledValueDemo />,
   parameters: {
     docs: {
       description: {
@@ -62,4 +61,5 @@ export const ControlledValue: Story = {
       },
     },
   },
+  render: () => <ControlledValueDemo />,
 };

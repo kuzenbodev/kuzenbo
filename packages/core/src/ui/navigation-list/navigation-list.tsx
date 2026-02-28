@@ -2,7 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { BaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -10,10 +11,10 @@ import type { UISize } from "../shared/size/size-system";
 import { NavigationListAction } from "./navigation-list-action";
 import { NavigationListBadge } from "./navigation-list-badge";
 import { NavigationListContent } from "./navigation-list-content";
-import {
-  NavigationListContext,
-  type NavigationListTone,
-  type NavigationListVariant,
+import { NavigationListContext } from "./navigation-list-context";
+import type {
+  NavigationListTone,
+  NavigationListVariant,
 } from "./navigation-list-context";
 import { NavigationListGroup } from "./navigation-list-group";
 import { NavigationListGroupContent } from "./navigation-list-group-content";
@@ -28,28 +29,28 @@ import { NavigationListSubLink } from "./navigation-list-sub-link";
 
 const navigationListVariants = tv({
   base: "flex min-w-0 flex-col",
-  variants: {
-    size: {
-      xs: "gap-1",
-      sm: "gap-1",
-      md: "gap-1.5",
-      lg: "gap-2",
-      xl: "gap-2.5",
-    },
-    tone: {
-      surface: "",
-      sidebar: "",
-    },
-    variant: {
-      subtle: "",
-      light: "",
-      filled: "",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
     variant: "light",
+  },
+  variants: {
+    size: {
+      lg: "gap-2",
+      md: "gap-1.5",
+      sm: "gap-1",
+      xl: "gap-2.5",
+      xs: "gap-1",
+    },
+    tone: {
+      sidebar: "",
+      surface: "",
+    },
+    variant: {
+      filled: "",
+      light: "",
+      subtle: "",
+    },
   },
 });
 

@@ -25,8 +25,8 @@ const generateCodeForTemplate = <
 ): string => {
   const changedProps = clearPlaygroundDefaultProps({
     controls,
-    state,
     mode,
+    state,
   });
   const stateRecord = state as Record<string, unknown>;
   const props = changedProps as Record<string, unknown>;
@@ -36,9 +36,9 @@ const generateCodeForTemplate = <
   }
 
   return injectPlaygroundProps({
-    template,
-    props,
     propOrder: controls.map((control) => control.prop),
+    props,
+    template,
   });
 };
 
@@ -53,16 +53,16 @@ export const generatePlaygroundCode = <
   if (typeof template === "string") {
     return [
       {
+        code: generateCodeForTemplate(controls, state, template, mode),
         fileName: DEFAULT_FILE_NAME,
         language: DEFAULT_LANGUAGE,
-        code: generateCodeForTemplate(controls, state, template, mode),
       },
     ];
   }
 
   return template.map((templateFile, index) => ({
+    code: generateCodeForTemplate(controls, state, templateFile.code, mode),
     fileName: templateFile.fileName ?? getDefaultFileName(index),
     language: templateFile.language ?? DEFAULT_LANGUAGE,
-    code: generateCodeForTemplate(controls, state, templateFile.code, mode),
   }));
 };

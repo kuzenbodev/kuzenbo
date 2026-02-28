@@ -1,24 +1,25 @@
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { PaginationLink } from "./pagination-link";
 import { useResolvedPaginationSize } from "./pagination-size-context";
 
 const paginationPreviousVariants = tv({
-  variants: {
-    size: {
-      xs: "pl-1!",
-      sm: "pl-1!",
-      md: "pl-1.5!",
-      lg: "pl-2!",
-      xl: "pl-2.5!",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "pl-2!",
+      md: "pl-1.5!",
+      sm: "pl-1!",
+      xl: "pl-2.5!",
+      xs: "pl-1!",
+    },
   },
 });
 

@@ -7,19 +7,19 @@ import { Toggle } from "../toggle";
 const toggleSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Toggle",
-  component: Toggle,
-  tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "outline"],
-    },
     size: {
       control: "select",
       options: toggleSizes,
     },
+    variant: {
+      control: "select",
+      options: ["default", "outline"],
+    },
   },
+  component: Toggle,
+  tags: ["autodocs"],
+  title: "Components/Toggle",
 } satisfies Meta<typeof Toggle>;
 
 type Story = StoryObj<typeof baseMeta>;

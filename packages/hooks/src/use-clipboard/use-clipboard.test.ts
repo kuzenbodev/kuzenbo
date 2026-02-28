@@ -2,7 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test";
 
 import { act, cleanup, renderHook } from "@testing-library/react";
 
-import { type ClipboardResult, useClipboard } from "./use-clipboard";
+import { useClipboard } from "./use-clipboard";
+import type { ClipboardResult } from "./use-clipboard";
 
 afterEach(cleanup);
 
@@ -62,10 +63,10 @@ describe("useClipboard", () => {
     expect(result.current.errorCode).toBeNull();
     expect(result.current.announcement).toBe("");
     expect(result.current.announcementProps).toEqual({
-      role: "status",
-      "aria-live": "polite",
       "aria-atomic": true,
+      "aria-live": "polite",
       children: "",
+      role: "status",
     });
     expect(typeof result.current.copy).toBe("function");
     expect(typeof result.current.reset).toBe("function");
@@ -111,9 +112,9 @@ describe("useClipboard", () => {
     });
 
     expect(copyResult).toEqual({
+      errorCode: null,
       ok: true,
       status: "copied",
-      errorCode: null,
     });
     expect(result.current.status).toBe("copied");
     expect(result.current.errorCode).toBeNull();
@@ -129,7 +130,7 @@ describe("useClipboard", () => {
   });
 
   it("maps NotAllowedError to permission-denied and resets after failed timeout", async () => {
-    setClipboardWriteText(async () => {
+    setClipboardWriteText(() => {
       throw createNamedError("NotAllowedError");
     });
 
@@ -141,9 +142,9 @@ describe("useClipboard", () => {
     });
 
     expect(copyResult).toEqual({
+      errorCode: "permission-denied",
       ok: false,
       status: "failed",
-      errorCode: "permission-denied",
     });
     expect(result.current.status).toBe("failed");
     expect(result.current.errorCode).toBe("permission-denied");
@@ -174,15 +175,15 @@ describe("useClipboard", () => {
     });
 
     expect(copyResult).toEqual({
+      errorCode: "clipboard-unavailable",
       ok: false,
       status: "failed",
-      errorCode: "clipboard-unavailable",
     });
     expect(result.current.errorCode).toBe("clipboard-unavailable");
   });
 
   it("reset clears status and error immediately", async () => {
-    setClipboardWriteText(async () => {
+    setClipboardWriteText(() => {
       throw createNamedError("NotSupportedError");
     });
 

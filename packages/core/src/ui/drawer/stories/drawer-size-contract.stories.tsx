@@ -4,24 +4,24 @@ import { Button } from "../../button/button";
 import { Drawer } from "../drawer";
 
 const meta: Meta<typeof Drawer.Root> = {
-  title: "Components/Drawer/SizeContract",
-  component: Drawer.Root,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Drawer.Root,
   parameters: {
-    layout: "fullscreen",
     docs: {
       description: {
         story:
           "Drawer root size cascades to popup/content/typography/actions, while child `size` props override inherited values.",
       },
     },
+    layout: "fullscreen",
   },
+  tags: ["autodocs"],
+  title: "Components/Drawer/SizeContract",
 };
 
 export default meta;

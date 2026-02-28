@@ -6,8 +6,8 @@ import { userEvent } from "@testing-library/user-event";
 
 import { Combobox } from "./combobox";
 
-const firstItem = { value: "a", label: "Option A" };
-const secondItem = { value: "b", label: "Option B" };
+const firstItem = { label: "Option A", value: "a" };
+const secondItem = { label: "Option B", value: "b" };
 const items = [firstItem, secondItem];
 
 afterEach(cleanup);

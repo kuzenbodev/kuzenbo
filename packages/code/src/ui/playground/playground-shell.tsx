@@ -50,17 +50,17 @@ export const PlaygroundShell = <
 }: PlaygroundShellProps<TControls, TPresetId>) => {
   const playground = usePlaygroundState({
     controls,
-    presets,
     initialPresetId,
+    presets,
   });
 
   const generatedCode = useMemo(
     () =>
       generatePlaygroundCode({
         controls,
+        mode: codeMode,
         state: playground.state,
         template,
-        mode: codeMode,
       }),
     [codeMode, controls, playground.state, template]
   );

@@ -1,9 +1,9 @@
-import {
-  createHighlighter,
-  type BundledLanguage,
-  type BundledTheme,
-  type Highlighter,
-  type SpecialLanguage,
+import { createHighlighter } from "shiki";
+import type {
+  BundledLanguage,
+  BundledTheme,
+  Highlighter,
+  SpecialLanguage,
 } from "shiki";
 
 export type ShikiLanguage = BundledLanguage | SpecialLanguage;
@@ -30,10 +30,10 @@ class StaleShikiHighlighterError extends Error {
   }
 }
 
-const createShikiHighlighter = async (): Promise<ShikiHighlighter> =>
+const createShikiHighlighter = () =>
   createHighlighter({
-    themes: [DEFAULT_SHIKI_THEME],
     langs: [...DEFAULT_SHIKI_LANGUAGES],
+    themes: [DEFAULT_SHIKI_THEME],
   });
 
 const createShikiHighlighterForLifecycle = async (

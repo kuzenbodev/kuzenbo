@@ -6,12 +6,12 @@ import { TimeGrid } from "../time-grid";
 import { TimeValue } from "../time-value";
 
 export const baseMeta = {
-  title: "Components/TimeGrid",
   component: TimeGrid,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/TimeGrid",
 } satisfies Meta<typeof TimeGrid>;
 
 type Story = StoryObj<typeof baseMeta>;

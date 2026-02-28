@@ -123,14 +123,14 @@ const useAreaChartRuntime = <
     effectiveValueFormatter,
     fallbackDatum,
     gradientIdPrefix,
-    resolvedGradientStops,
-    resolvedLeftYAxisTickFormatter,
-    resolvedRightYAxisTickFormatter,
     resolveAreaChartProps: (usesAutoSizeContainer: boolean) => ({
       ...mergedChartProps,
       responsive:
         resolvedAreaChartPropsInput?.responsive ?? !usesAutoSizeContainer,
     }),
+    resolvedGradientStops,
+    resolvedLeftYAxisTickFormatter,
+    resolvedRightYAxisTickFormatter,
     shouldUseStack: resolvedAreaStackConfig.shouldUseStack,
   };
 };

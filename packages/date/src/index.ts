@@ -19,18 +19,15 @@ import type {
 import type { DateSelectionMode as DateSelectionModeType } from "./types/date-selection-mode";
 import {
   defaultDateFormatter,
-  type DateFormatter,
   getFormattedDate,
 } from "./utils/get-formatted-date";
+import type { DateFormatter } from "./utils/get-formatted-date";
 import {
   normalizeDateSelectionMode as normalizeDateSelectionModeInternal,
   resolveDateSelectionMode as resolveDateSelectionModeInternal,
 } from "./utils/normalize-selection-mode";
-import {
-  type DateConvertibleInput,
-  toDateString,
-  toDateTimeString,
-} from "./utils/to-date-string";
+import { toDateString, toDateTimeString } from "./utils/to-date-string";
+import type { DateConvertibleInput } from "./utils/to-date-string";
 
 export type { ControlsGroupSettings } from "./types/controls-group-settings";
 export type {

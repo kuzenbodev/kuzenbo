@@ -8,30 +8,28 @@ import {
 import type { ComponentProps } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import {
-  TiptapEditorColorPicker,
-  type TiptapEditorColorPickerProps,
-} from "../controls/color-picker-control";
-import {
-  TiptapEditorLinkPopover,
-  type TiptapEditorLinkPopoverProps,
-} from "../controls/link-popover-control";
-import {
-  TiptapEditorContent,
-  type TiptapEditorContentProps,
-} from "./tiptap-editor-content";
+import { TiptapEditorColorPicker } from "../controls/color-picker-control";
+import type { TiptapEditorColorPickerProps } from "../controls/color-picker-control";
+import { TiptapEditorLinkPopover } from "../controls/link-popover-control";
+import type { TiptapEditorLinkPopoverProps } from "../controls/link-popover-control";
+import { TiptapEditorContent } from "./tiptap-editor-content";
+import type { TiptapEditorContentProps } from "./tiptap-editor-content";
 import {
   TiptapEditorProvider,
-  type TiptapEditorClassNames,
-  type TiptapEditorProviderProps,
-  type TiptapEditorVariant,
   useOptionalTiptapEditorContext,
+} from "./tiptap-editor-context";
+import type {
+  TiptapEditorClassNames,
+  TiptapEditorProviderProps,
+  TiptapEditorVariant,
 } from "./tiptap-editor-context";
 import {
   createTiptapControl,
   TiptapEditorControl,
-  type TiptapControlFactoryConfig,
-  type TiptapEditorControlProps,
+} from "./tiptap-editor-control";
+import type {
+  TiptapControlFactoryConfig,
+  TiptapEditorControlProps,
 } from "./tiptap-editor-control";
 import {
   AlignCenterControl,
@@ -58,33 +56,27 @@ import {
   UndoControl,
   UnlinkControl,
 } from "./tiptap-editor-controls";
-import {
-  TiptapEditorControlsGroup,
-  type TiptapEditorControlsGroupProps,
-} from "./tiptap-editor-controls-group";
+import { TiptapEditorControlsGroup } from "./tiptap-editor-controls-group";
+import type { TiptapEditorControlsGroupProps } from "./tiptap-editor-controls-group";
 import type { TiptapEditorLabels } from "./tiptap-editor-labels";
-import {
-  DEFAULT_TIPTAP_EDITOR_SIZE,
-  type TiptapEditorSize,
-} from "./tiptap-editor-size";
-import {
-  TiptapEditorToolbar,
-  type TiptapEditorToolbarProps,
-} from "./tiptap-editor-toolbar";
+import { DEFAULT_TIPTAP_EDITOR_SIZE } from "./tiptap-editor-size";
+import type { TiptapEditorSize } from "./tiptap-editor-size";
+import { TiptapEditorToolbar } from "./tiptap-editor-toolbar";
+import type { TiptapEditorToolbarProps } from "./tiptap-editor-toolbar";
 
 const tiptapEditorRootVariants = tv({
   base: "kb-tiptap-root group/kb-tiptap-root border-border bg-background text-foreground flex flex-col rounded-lg border",
-  variants: {
-    size: {
-      xs: "gap-1.5 p-1.5 text-xs",
-      sm: "gap-2 p-2 text-sm",
-      md: "gap-2 p-2 text-sm",
-      lg: "gap-2.5 p-2.5 text-sm",
-      xl: "gap-3 p-3 text-base",
-    },
-  },
   defaultVariants: {
     size: DEFAULT_TIPTAP_EDITOR_SIZE,
+  },
+  variants: {
+    size: {
+      lg: "gap-2.5 p-2.5 text-sm",
+      md: "gap-2 p-2 text-sm",
+      sm: "gap-2 p-2 text-sm",
+      xl: "gap-3 p-3 text-base",
+      xs: "gap-1.5 p-1.5 text-xs",
+    },
   },
 });
 
@@ -119,8 +111,8 @@ const TiptapEditorRoot = ({
   >
     <div
       className={tiptapEditorRootVariants({
-        size,
         className: cn(classNames?.root, className),
+        size,
       })}
       data-size={size}
       data-slot="kb-tiptap-root"

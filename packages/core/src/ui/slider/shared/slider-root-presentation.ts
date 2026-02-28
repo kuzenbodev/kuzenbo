@@ -1,10 +1,8 @@
 import type { Slider as SliderPrimitive } from "@base-ui/react/slider";
 import type { CSSProperties } from "react";
 
-import {
-  type BaseUIClassName,
-  mergeBaseUIClassName,
-} from "../../../utils/merge-base-ui-class-name";
+import { mergeBaseUIClassName } from "../../../utils/merge-base-ui-class-name";
+import type { BaseUIClassName } from "../../../utils/merge-base-ui-class-name";
 import type { SliderRootStyleTokenOptions } from "./slider-style-tokens";
 import { resolveSliderRootStyleTokens } from "./slider-style-tokens";
 

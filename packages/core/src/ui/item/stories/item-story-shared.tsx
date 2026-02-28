@@ -11,9 +11,6 @@ import { Item } from "../item";
 const itemSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Item",
-  component: Item,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
@@ -24,6 +21,9 @@ export const baseMeta = {
       options: ["default", "outline", "muted"],
     },
   },
+  component: Item,
+  tags: ["autodocs"],
+  title: "Components/Item",
 } satisfies Meta<typeof Item>;
 
 type Story = StoryObj<typeof baseMeta>;

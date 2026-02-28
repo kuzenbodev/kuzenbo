@@ -53,9 +53,9 @@ const buildWeeks = ({
         date: currentDate,
         dayOfMonth: currentDate.getUTCDate(),
         dayOfWeek: currentDate.getUTCDay(),
-        isoDate: formatIsoDateUTC(currentDate),
         isInRange,
         isOutsideDate: !isInRange,
+        isoDate: formatIsoDateUTC(currentDate),
         monthKey: toMonthKeyUTC(currentDate),
       });
     }

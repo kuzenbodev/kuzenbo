@@ -5,8 +5,6 @@ import { Default as DefaultStory, baseMeta } from "./code-tabs-story-shared";
 
 const frameworkTabs = [
   {
-    value: "react",
-    label: "React",
     content: (
       <CodeBlock
         code={`import { createRoot } from "react-dom/client";
@@ -16,10 +14,10 @@ createRoot(document.getElementById("root")!).render(<App />);`}
         language="tsx"
       />
     ),
+    label: "React",
+    value: "react",
   },
   {
-    value: "next",
-    label: "Next.js",
     content: (
       <CodeBlock
         code={`export default function Page() {
@@ -28,10 +26,10 @@ createRoot(document.getElementById("root")!).render(<App />);`}
         language="tsx"
       />
     ),
+    label: "Next.js",
+    value: "next",
   },
   {
-    value: "vite",
-    label: "Vite",
     content: (
       <CodeBlock
         code={`import { defineConfig } from "vite";
@@ -43,13 +41,13 @@ export default defineConfig({
         language="ts"
       />
     ),
+    label: "Vite",
+    value: "vite",
   },
 ] as const;
 
 const exportMatrixTabs = [
   {
-    value: "exports",
-    label: "exports",
     content: (
       <CodeBlock
         code={`{
@@ -63,10 +61,10 @@ const exportMatrixTabs = [
         language="json"
       />
     ),
+    label: "exports",
+    value: "exports",
   },
   {
-    value: "types",
-    label: "types",
     content: (
       <CodeBlock
         code={`export interface InstallCommandSnippetProps {
@@ -76,17 +74,19 @@ const exportMatrixTabs = [
         language="ts"
       />
     ),
+    label: "types",
+    value: "types",
   },
   {
-    value: "v1",
-    label: "v1",
-    disabled: true,
     content: (
       <CodeBlock
         code={`module.exports = require("./dist/index.cjs");`}
         language="js"
       />
     ),
+    disabled: true,
+    label: "v1",
+    value: "v1",
   },
 ] as const;
 
@@ -101,22 +101,22 @@ export const Default: Story = DefaultStory;
 
 export const FrameworkQuickstarts: Story = {
   args: {
-    tabs: frameworkTabs,
     defaultValue: "next",
+    tabs: frameworkTabs,
   },
 };
 
 export const PackageExportMatrix: Story = {
   args: {
-    tabs: exportMatrixTabs,
     defaultValue: "exports",
+    tabs: exportMatrixTabs,
   },
 };
 
 export const KeyboardNavigationNoLoop: Story = {
   args: {
-    tabs: frameworkTabs,
     defaultValue: "react",
     loop: false,
+    tabs: frameworkTabs,
   },
 };

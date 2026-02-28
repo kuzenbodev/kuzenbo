@@ -2,7 +2,8 @@
 
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -30,17 +31,17 @@ import { MenubarTrigger } from "./menubar-trigger";
 
 const menubarVariants = tv({
   base: "border-border bg-background flex items-center border",
-  variants: {
-    size: {
-      xs: "h-7 gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
-      sm: "h-8 gap-0.5 rounded-[min(var(--radius-md),10px)] p-0.5",
-      md: "h-9 gap-1 rounded-md p-1",
-      lg: "h-10 gap-1 rounded-md p-1",
-      xl: "h-11 gap-1.5 rounded-md p-1.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-10 gap-1 rounded-md p-1",
+      md: "h-9 gap-1 rounded-md p-1",
+      sm: "h-8 gap-0.5 rounded-[min(var(--radius-md),10px)] p-0.5",
+      xl: "h-11 gap-1.5 rounded-md p-1.5",
+      xs: "h-7 gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
+    },
   },
 });
 

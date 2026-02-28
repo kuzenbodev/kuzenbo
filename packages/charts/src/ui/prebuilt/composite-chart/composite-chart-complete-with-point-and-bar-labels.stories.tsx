@@ -38,9 +38,9 @@ const CompositeChartCompleteWithPointAndBarLabelsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Composite/WithPointAndBarLabels",
   component: CompositeChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Composite/WithPointAndBarLabels",
 } satisfies Meta<typeof CompositeChart>;
 
 type Story = StoryObj<typeof CompositeChart>;

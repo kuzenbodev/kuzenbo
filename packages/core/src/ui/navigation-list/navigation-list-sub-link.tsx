@@ -1,85 +1,88 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
-  type NavigationListVariant,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
   useResolvedNavigationListVariant,
+} from "./navigation-list-context";
+import type {
+  NavigationListTone,
+  NavigationListVariant,
 } from "./navigation-list-context";
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListSubLinkVariants = tv({
   base: "flex min-w-0 items-center gap-2 overflow-hidden rounded-md text-left outline-hidden transition-colors focus-visible:ring-2 [&>span:last-child]:truncate",
-  variants: {
-    size: {
-      xs: "h-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
-      sm: "h-7 px-2 text-xs [&_svg:not([class*='size-'])]:size-3.5",
-      md: "h-8 px-2 text-sm [&_svg:not([class*='size-'])]:size-4",
-      lg: "h-9 px-2.5 text-sm [&_svg:not([class*='size-'])]:size-4",
-      xl: "h-10 px-3 text-base [&_svg:not([class*='size-'])]:size-5",
+  compoundVariants: [
+    {
+      className:
+        "hover:bg-muted/70 hover:text-foreground data-active:bg-muted/50",
+      tone: "surface",
+      variant: "subtle",
     },
-    tone: {
-      surface: "ring-ring",
-      sidebar: "ring-sidebar-ring",
+    {
+      className: "hover:bg-muted hover:text-foreground data-active:bg-muted",
+      tone: "surface",
+      variant: "light",
     },
-    variant: {
-      subtle: "",
-      light: "",
-      filled: "",
+    {
+      className:
+        "hover:bg-muted hover:text-foreground data-active:bg-primary data-active:text-primary-foreground",
+      tone: "surface",
+      variant: "filled",
     },
-    active: {
-      true: "font-medium",
-      false: "",
+    {
+      className:
+        "hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent/60 data-active:text-sidebar-accent-foreground",
+      tone: "sidebar",
+      variant: "subtle",
     },
-  },
+    {
+      className:
+        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground",
+      tone: "sidebar",
+      variant: "light",
+    },
+    {
+      className:
+        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-primary data-active:text-sidebar-primary-foreground",
+      tone: "sidebar",
+      variant: "filled",
+    },
+  ],
   defaultVariants: {
+    active: false,
     size: "md",
     tone: "surface",
     variant: "light",
-    active: false,
   },
-  compoundVariants: [
-    {
-      tone: "surface",
-      variant: "subtle",
-      className:
-        "hover:bg-muted/70 hover:text-foreground data-active:bg-muted/50",
+  variants: {
+    active: {
+      false: "",
+      true: "font-medium",
     },
-    {
-      tone: "surface",
-      variant: "light",
-      className: "hover:bg-muted hover:text-foreground data-active:bg-muted",
+    size: {
+      lg: "h-9 px-2.5 text-sm [&_svg:not([class*='size-'])]:size-4",
+      md: "h-8 px-2 text-sm [&_svg:not([class*='size-'])]:size-4",
+      sm: "h-7 px-2 text-xs [&_svg:not([class*='size-'])]:size-3.5",
+      xl: "h-10 px-3 text-base [&_svg:not([class*='size-'])]:size-5",
+      xs: "h-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
     },
-    {
-      tone: "surface",
-      variant: "filled",
-      className:
-        "hover:bg-muted hover:text-foreground data-active:bg-primary data-active:text-primary-foreground",
+    tone: {
+      sidebar: "ring-sidebar-ring",
+      surface: "ring-ring",
     },
-    {
-      tone: "sidebar",
-      variant: "subtle",
-      className:
-        "hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent/60 data-active:text-sidebar-accent-foreground",
+    variant: {
+      filled: "",
+      light: "",
+      subtle: "",
     },
-    {
-      tone: "sidebar",
-      variant: "light",
-      className:
-        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground",
-    },
-    {
-      tone: "sidebar",
-      variant: "filled",
-      className:
-        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-primary data-active:text-sidebar-primary-foreground",
-    },
-  ],
+  },
 });
 
 export type NavigationListSubLinkProps = useRender.ComponentProps<"a"> &

@@ -3,7 +3,8 @@ import { MinusSignIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -16,17 +17,17 @@ export type NumberFieldDecrementProps = ComponentProps<
 
 const numberFieldDecrementVariants = tv({
   base: "cursor-clickable border-input bg-muted text-foreground hover:border-ring/70 flex items-center justify-center border transition-colors select-none disabled:pointer-events-none disabled:opacity-50",
-  variants: {
-    size: {
-      xs: "size-6 rounded-l-[min(var(--radius-md),8px)]",
-      sm: "size-8 rounded-l-[min(var(--radius-md),10px)]",
-      md: "size-9 rounded-l-md",
-      lg: "size-10 rounded-l-md",
-      xl: "size-11 rounded-l-md",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "size-10 rounded-l-md",
+      md: "size-9 rounded-l-md",
+      sm: "size-8 rounded-l-[min(var(--radius-md),10px)]",
+      xl: "size-11 rounded-l-md",
+      xs: "size-6 rounded-l-[min(var(--radius-md),8px)]",
+    },
   },
 });
 

@@ -13,8 +13,8 @@ interface AccordionContextValue {
 }
 
 const AccordionContext = createContext<AccordionContextValue>({
-  variant: "default",
   size: "md",
+  variant: "default",
 });
 
 const useAccordionContext = () => useContext(AccordionContext);

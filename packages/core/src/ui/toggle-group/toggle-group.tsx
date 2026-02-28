@@ -7,10 +7,10 @@ import { cn } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
-import {
-  ToggleGroupContext,
-  type ToggleGroupSize,
-  type ToggleGroupVariant,
+import { ToggleGroupContext } from "./toggle-group-context";
+import type {
+  ToggleGroupSize,
+  ToggleGroupVariant,
 } from "./toggle-group-context";
 import { ToggleGroupItem } from "./toggle-group-item";
 export type ToggleGroupProps = ToggleGroupPrimitive.Props & {
@@ -31,7 +31,7 @@ const ToggleGroup = ({
 }: ToggleGroupProps) => {
   const size = useComponentSize(providedSize);
   const contextValue = useMemo(
-    () => ({ variant, size, spacing, orientation }),
+    () => ({ orientation, size, spacing, variant }),
     [variant, size, spacing, orientation]
   );
 

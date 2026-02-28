@@ -15,27 +15,27 @@ import {
 const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Tooltip",
-  component: Tooltip,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: sizeOptions,
     },
   },
-  subcomponents: {
-    TooltipTrigger,
-    TooltipContent,
-    TooltipPortal,
-    TooltipPositioner,
-    TooltipPopup,
-    TooltipArrow,
-    TooltipViewport,
-  },
+  component: Tooltip,
   parameters: {
     layout: "centered",
   },
+  subcomponents: {
+    TooltipArrow,
+    TooltipContent,
+    TooltipPopup,
+    TooltipPortal,
+    TooltipPositioner,
+    TooltipTrigger,
+    TooltipViewport,
+  },
+  tags: ["autodocs"],
+  title: "Components/Tooltip",
 } satisfies Meta<typeof Tooltip>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -55,6 +55,14 @@ export const Default: Story = {
 };
 
 export const Sides: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates placement tradeoffs for dense UIs where surrounding layout constraints determine tooltip side choice.",
+      },
+    },
+  },
   render: () => (
     <div className="grid grid-cols-2 gap-4">
       <Tooltip>
@@ -91,17 +99,17 @@ export const Sides: Story = {
       </Tooltip>
     </div>
   ),
+};
+
+export const ComposedAnatomy: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          "Demonstrates placement tradeoffs for dense UIs where surrounding layout constraints determine tooltip side choice.",
+          "Uses Trigger, Portal, Positioner, Popup, Viewport, and Arrow directly for low-level tooltip composition.",
       },
     },
   },
-};
-
-export const ComposedAnatomy: Story = {
   render: () => (
     <Tooltip defaultOpen>
       <Tooltip.Trigger render={<Button variant="outline" />}>
@@ -119,14 +127,6 @@ export const ComposedAnatomy: Story = {
       </Tooltip.Portal>
     </Tooltip>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Uses Trigger, Portal, Positioner, Popup, Viewport, and Arrow directly for low-level tooltip composition.",
-      },
-    },
-  },
 };
 
 export const SizeOverrides: Story = {

@@ -3,24 +3,25 @@
 import { Command as CommandPrimitive } from "cmdk";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { CommandContext } from "./command-context";
 
 const commandListVariants = tv({
   base: "no-scrollbar overflow-x-hidden overflow-y-auto outline-none",
-  variants: {
-    size: {
-      xs: "max-h-60 scroll-py-0.5",
-      sm: "max-h-64 scroll-py-1",
-      md: "max-h-72 scroll-py-1",
-      lg: "max-h-80 scroll-py-1.5",
-      xl: "max-h-96 scroll-py-2",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "max-h-80 scroll-py-1.5",
+      md: "max-h-72 scroll-py-1",
+      sm: "max-h-64 scroll-py-1",
+      xl: "max-h-96 scroll-py-2",
+      xs: "max-h-60 scroll-py-0.5",
+    },
   },
 });
 

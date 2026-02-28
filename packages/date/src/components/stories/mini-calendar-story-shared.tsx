@@ -5,12 +5,12 @@ import { DatesProvider } from "../dates-provider";
 import { MiniCalendar } from "../mini-calendar";
 
 export const baseMeta = {
-  title: "Components/MiniCalendar",
   component: MiniCalendar,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/MiniCalendar",
 } satisfies Meta<typeof MiniCalendar>;
 
 type Story = StoryObj<typeof baseMeta>;

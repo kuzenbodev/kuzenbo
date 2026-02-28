@@ -1,24 +1,25 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerListEmojiVariants = tv({
   base: "cursor-clickable data-active:bg-accent flex items-center justify-center rounded-md",
-  variants: {
-    size: {
-      xs: "size-6 text-sm",
-      sm: "size-7 text-base",
-      md: "size-8 text-lg",
-      lg: "size-9 text-xl",
-      xl: "size-10 text-2xl",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "size-9 text-xl",
+      md: "size-8 text-lg",
+      sm: "size-7 text-base",
+      xl: "size-10 text-2xl",
+      xs: "size-6 text-sm",
+    },
   },
 });
 

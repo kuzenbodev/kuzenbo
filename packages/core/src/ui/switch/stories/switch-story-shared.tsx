@@ -7,17 +7,17 @@ import { Switch } from "../switch";
 const switchSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Switch",
-  component: Switch,
-  tags: ["autodocs"],
   argTypes: {
+    defaultChecked: { control: "boolean" },
+    disabled: { control: "boolean" },
     size: {
       control: "select",
       options: switchSizes,
     },
-    disabled: { control: "boolean" },
-    defaultChecked: { control: "boolean" },
   },
+  component: Switch,
+  tags: ["autodocs"],
+  title: "Components/Switch",
 } satisfies Meta<typeof Switch>;
 
 type Story = StoryObj<typeof baseMeta>;

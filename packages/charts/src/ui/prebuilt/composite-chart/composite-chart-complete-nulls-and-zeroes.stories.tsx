@@ -26,7 +26,7 @@ const CompositeChartCompleteNullsAndZeroesDemo = () => (
       connectNulls={false}
       data={compositeNullsAndZeroesData}
       dataKey="month"
-      referenceLines={[{ y: 0, color: "var(--color-chart-4)", label: "Zero" }]}
+      referenceLines={[{ color: "var(--color-chart-4)", label: "Zero", y: 0 }]}
       rightYAxisProps={{ width: 52, yAxisId: "conversion-axis" }}
       series={compositeNullsAndZeroesSeries}
       tooltipProps={{ shared: true, trigger: "hover" }}
@@ -40,9 +40,9 @@ const CompositeChartCompleteNullsAndZeroesDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Composite/NullsAndZeroes",
   component: CompositeChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Composite/NullsAndZeroes",
 } satisfies Meta<typeof CompositeChart>;
 
 type Story = StoryObj<typeof CompositeChart>;

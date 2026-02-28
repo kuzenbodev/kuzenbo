@@ -29,9 +29,9 @@ const BubbleChartCompleteZTooltipFormatterDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bubble/ZTooltipFormatter",
   component: BubbleChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bubble/ZTooltipFormatter",
 } satisfies Meta<typeof BubbleChart>;
 
 type Story = StoryObj<typeof BubbleChart>;

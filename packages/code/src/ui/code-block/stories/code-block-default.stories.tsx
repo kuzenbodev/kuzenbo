@@ -6,11 +6,7 @@ import { CodeBlock } from "../code-block";
 const INSTALL_COMMAND = "bun add @kuzenbo/code @kuzenbo/theme @kuzenbo/core";
 
 const meta = {
-  title: "Code/CodeBlock/Default",
-  component: CodeBlock,
-  tags: ["autodocs"],
   args: {
-    language: "tsx",
     code: `import { CodePreview } from "@kuzenbo/code";
 
 export const DocsExample = () => (
@@ -22,7 +18,11 @@ export const DocsExample = () => (
     code={<code>{"<Alert tone="info" />"}</code>}
   />
 );`,
+    language: "tsx",
   },
+  component: CodeBlock,
+  tags: ["autodocs"],
+  title: "Code/CodeBlock/Default",
 } satisfies Meta<typeof CodeBlock>;
 
 export default meta;
@@ -33,8 +33,8 @@ export const Default: Story = {};
 
 export const InstallGuideCommand: Story = {
   args: {
-    language: "bash",
     code: INSTALL_COMMAND,
+    language: "bash",
     toolbar: (
       <CodeBlockToolbar
         copyValue={INSTALL_COMMAND}
@@ -47,16 +47,6 @@ export const InstallGuideCommand: Story = {
 
 export const ApiRouteImplementation: Story = {
   args: {
-    language: "ts",
-    toolbar: (
-      <CodeBlockToolbar
-        copyValue={`export async function GET() {
-  return Response.json({ status: "ok" });
-}`}
-        language="ts"
-        title="apps/website/app/api/health/route.ts"
-      />
-    ),
     code: `export async function GET() {
   const response = await fetch("https://api.example.dev/status", {
     next: { revalidate: 300 },
@@ -68,19 +58,28 @@ export const ApiRouteImplementation: Story = {
 
   return Response.json({ status: "ok" });
 }`,
+    language: "ts",
+    toolbar: (
+      <CodeBlockToolbar
+        copyValue={`export async function GET() {
+  return Response.json({ status: "ok" });
+}`}
+        language="ts"
+        title="apps/website/app/api/health/route.ts"
+      />
+    ),
   },
 };
 
 export const HighlightedHtmlOutput: Story = {
   args: {
-    language: "tsx",
     highlightedHtml: `<pre><code><span class="line">import { Button } from "@kuzenbo/core";</span>\n<span class="line highlighted">export const Demo = () =&gt; &lt;Button&gt;Ship&lt;/Button&gt;;</span></code></pre>`,
+    language: "tsx",
   },
 };
 
 export const LongConfigurationFile: Story = {
   args: {
-    language: "json",
     code: `{
   "extends": "@kuzenbo/typescript/react-library",
   "compilerOptions": {
@@ -92,5 +91,6 @@ export const LongConfigurationFile: Story = {
   "include": ["src", "stories", "tests"],
   "exclude": ["dist", "node_modules"]
 }`,
+    language: "json",
   },
 };

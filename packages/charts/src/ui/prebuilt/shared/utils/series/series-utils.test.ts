@@ -11,7 +11,7 @@ describe("series utils", () => {
       createSeriesHighlightScopeKey([
         { name: " Revenue " },
         { key: "TARGET" },
-        { name: "", key: "" },
+        { key: "", name: "" },
       ])
     ).toBe('["revenue","target","series-3"]');
   });
@@ -23,11 +23,11 @@ describe("series utils", () => {
   });
 
   it("resolves complete series names from name, key, and fallback", () => {
-    expect(resolveCompleteSeriesName({ name: " revenue ", key: "rev" })).toBe(
+    expect(resolveCompleteSeriesName({ key: "rev", name: " revenue " })).toBe(
       "revenue"
     );
     expect(resolveCompleteSeriesName({ key: " rev " })).toBe("rev");
-    expect(resolveCompleteSeriesName({ name: "", key: "" }, "fallback")).toBe(
+    expect(resolveCompleteSeriesName({ key: "", name: "" }, "fallback")).toBe(
       "fallback"
     );
   });

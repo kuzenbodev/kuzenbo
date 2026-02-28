@@ -7,12 +7,6 @@ import { Pill } from "../pill";
 const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Pill",
-  component: Pill,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     size: {
       control: "select",
@@ -33,6 +27,12 @@ export const baseMeta = {
       ],
     },
   },
+  component: Pill,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/Pill",
 } satisfies Meta<typeof Pill>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -42,6 +42,10 @@ export const Default: Story = {
 };
 
 export const Removable: Story = {
+  args: {
+    size: "md",
+    variant: "secondary",
+  },
   render: (args) => (
     <Pill {...args}>
       <Pill.Icon icon={SearchIcon} />
@@ -51,10 +55,6 @@ export const Removable: Story = {
       </Pill.Button>
     </Pill>
   ),
-  args: {
-    size: "md",
-    variant: "secondary",
-  },
 };
 
 export const StatusVariants: Story = {

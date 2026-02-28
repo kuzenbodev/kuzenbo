@@ -30,9 +30,9 @@ const PieChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Pie/Default",
   component: PieChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Pie/Default",
 } satisfies Meta<typeof PieChart>;
 
 type Story = StoryObj<typeof PieChart>;

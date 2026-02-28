@@ -1,13 +1,8 @@
 "use client";
 
 import { useIsomorphicEffect } from "@kuzenbo/hooks/use-isomorphic-effect";
-import {
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-  type RefObject,
-  useRef,
-  useState,
-} from "react";
+import { useRef, useState } from "react";
+import type { ComponentPropsWithoutRef, ReactNode, RefObject } from "react";
 import { createPortal } from "react-dom";
 
 const createPortalNode = (
@@ -143,7 +138,7 @@ export const Portal = ({
 
   useIsomorphicEffect(() => {
     setMounted(true);
-    const resolvedNode = getTargetNode({ target, reuseTargetNode, ...others });
+    const resolvedNode = getTargetNode({ reuseTargetNode, target, ...others });
     nodeRef.current = resolvedNode.node;
     shouldCleanupRef.current = resolvedNode.shouldCleanup;
 

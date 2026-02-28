@@ -11,11 +11,11 @@ interface WorkspaceOption {
 }
 
 const workspaces: WorkspaceOption[] = [
-  { value: "ops-hq", label: "Ops HQ", plan: "Enterprise" },
-  { value: "growth-lab", label: "Growth Lab", plan: "Pro" },
-  { value: "customer-success", label: "Customer Success", plan: "Pro" },
-  { value: "sandbox", label: "Sandbox", plan: "Starter" },
-  { value: "qa-staging", label: "QA Staging", plan: "Starter" },
+  { label: "Ops HQ", plan: "Enterprise", value: "ops-hq" },
+  { label: "Growth Lab", plan: "Pro", value: "growth-lab" },
+  { label: "Customer Success", plan: "Pro", value: "customer-success" },
+  { label: "Sandbox", plan: "Starter", value: "sandbox" },
+  { label: "QA Staging", plan: "Starter", value: "qa-staging" },
 ];
 
 const workspaceToValue = (itemValue: unknown) =>
@@ -72,7 +72,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const WorkspaceSwitcher: Story = {
-  render: () => <WorkspaceSwitcherDemo />,
   parameters: {
     docs: {
       description: {
@@ -81,4 +80,5 @@ export const WorkspaceSwitcher: Story = {
       },
     },
   },
+  render: () => <WorkspaceSwitcherDemo />,
 };

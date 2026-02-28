@@ -6,24 +6,24 @@ import { ContextMenu } from "../context-menu";
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/ContextMenu",
-  component: ContextMenu,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: sizes,
     },
   },
+  component: ContextMenu,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "ContextMenu uses a shared `xs|sm|md|lg|xl` size contract for root and popup child surfaces, with optional child overrides.",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/ContextMenu",
 } satisfies Meta<typeof ContextMenu>;
 
 type Story = StoryObj<typeof baseMeta>;

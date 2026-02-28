@@ -2,7 +2,8 @@
 
 import type { ComponentProps, MouseEvent } from "react";
 import { useCallback } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import {
   useComponentSize,
@@ -15,32 +16,32 @@ export const ratingVariants = tv({
     // Layout: flex container with centered items
     "inline-flex items-center gap-1",
   ],
+  defaultVariants: {
+    size: "md",
+  },
   variants: {
     size: {
-      xs: [
-        // Extra small size: compact gap
-        "gap-0.5",
-      ],
-      sm: [
-        // Small size: smaller gap and text
-        "gap-0.5",
+      lg: [
+        // Large size: larger gap
+        "gap-1.5",
       ],
       md: [
         // Medium size: default gap
         "gap-1",
       ],
-      lg: [
-        // Large size: larger gap
-        "gap-1.5",
+      sm: [
+        // Small size: smaller gap and text
+        "gap-0.5",
       ],
       xl: [
         // Extra large size: largest spacing
         "gap-2",
       ],
+      xs: [
+        // Extra small size: compact gap
+        "gap-0.5",
+      ],
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 
@@ -49,32 +50,32 @@ export const ratingValueVariants = tv({
     // Typography: rating value text styling
     "text-sm font-medium",
   ],
+  defaultVariants: {
+    size: "md",
+  },
   variants: {
     size: {
-      xs: [
-        // Extra small size: smallest text
-        "text-xs",
-      ],
-      sm: [
-        // Small size: smaller text
-        "text-xs",
+      lg: [
+        // Large size: larger text
+        "text-base",
       ],
       md: [
         // Medium size: default text
         "text-sm",
       ],
-      lg: [
-        // Large size: larger text
-        "text-base",
+      sm: [
+        // Small size: smaller text
+        "text-xs",
       ],
       xl: [
         // Extra large size: largest text
         "text-base",
       ],
+      xs: [
+        // Extra small size: smallest text
+        "text-xs",
+      ],
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 

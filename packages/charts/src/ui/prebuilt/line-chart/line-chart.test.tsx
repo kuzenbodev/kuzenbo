@@ -94,9 +94,9 @@ describe("Complete LineChart", () => {
         data={completeLineTrendData}
         dataKey="month"
         rightYAxisProps={{
-          yAxisId: "right-axis",
           ticks: [1400, 1500],
           width: 64,
+          yAxisId: "right-axis",
         }}
         responsiveContainerProps={chartSize}
         series={completeLineDualAxisSeries}

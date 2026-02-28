@@ -6,10 +6,8 @@ import { cleanup, render, screen } from "@testing-library/react";
 
 import { Label } from "../label/label";
 import { NumberField } from "./number-field";
-import {
-  NumberFieldScrubAreaCursor,
-  type NumberFieldScrubAreaCursorProps,
-} from "./number-field-scrub-area-cursor";
+import { NumberFieldScrubAreaCursor } from "./number-field-scrub-area-cursor";
+import type { NumberFieldScrubAreaCursorProps } from "./number-field-scrub-area-cursor";
 
 afterEach(cleanup);
 

@@ -11,84 +11,84 @@ export const barDefaultData = [
 
 export const barDefaultSeries = [
   {
-    name: "organic",
-    label: "Organic",
     color: "var(--color-chart-1)",
+    label: "Organic",
+    name: "organic",
     stackId: "acquisition",
   },
   {
-    name: "paid",
-    label: "Paid",
     color: "var(--color-chart-2)",
+    label: "Paid",
+    name: "paid",
     stackId: "acquisition",
   },
   {
-    name: "partners",
-    label: "Partners",
     color: "var(--color-chart-3)",
+    label: "Partners",
+    name: "partners",
     stackId: "acquisition",
   },
 ] satisfies CompleteChartSeries[];
 
 export const barGroupedChannelsData = [
-  { quarter: "Q1", web: 860, sales: 610, partner: 290 },
-  { quarter: "Q2", web: 910, sales: 635, partner: 328 },
-  { quarter: "Q3", web: 960, sales: 688, partner: 357 },
-  { quarter: "Q4", web: 1030, sales: 740, partner: 390 },
+  { partner: 290, quarter: "Q1", sales: 610, web: 860 },
+  { partner: 328, quarter: "Q2", sales: 635, web: 910 },
+  { partner: 357, quarter: "Q3", sales: 688, web: 960 },
+  { partner: 390, quarter: "Q4", sales: 740, web: 1030 },
 ];
 
 export const barGroupedChannelsSeries = [
-  { name: "web", label: "Web", color: "var(--color-chart-1)" },
-  { name: "sales", label: "Sales", color: "var(--color-chart-4)" },
-  { name: "partner", label: "Partner", color: "var(--color-chart-5)" },
+  { color: "var(--color-chart-1)", label: "Web", name: "web" },
+  { color: "var(--color-chart-4)", label: "Sales", name: "sales" },
+  { color: "var(--color-chart-5)", label: "Partner", name: "partner" },
 ] satisfies CompleteChartSeries[];
 
 export const barHorizontalRegionalData = [
-  { region: "North America", smb: 580, enterprise: 420 },
-  { region: "Europe", smb: 490, enterprise: 360 },
-  { region: "APAC", smb: 470, enterprise: 330 },
-  { region: "LATAM", smb: 350, enterprise: 220 },
+  { enterprise: 420, region: "North America", smb: 580 },
+  { enterprise: 360, region: "Europe", smb: 490 },
+  { enterprise: 330, region: "APAC", smb: 470 },
+  { enterprise: 220, region: "LATAM", smb: 350 },
 ];
 
 export const barHorizontalRegionalSeries = [
-  { name: "smb", label: "SMB", color: "var(--color-chart-2)" },
-  { name: "enterprise", label: "Enterprise", color: "var(--color-chart-1)" },
+  { color: "var(--color-chart-2)", label: "SMB", name: "smb" },
+  { color: "var(--color-chart-1)", label: "Enterprise", name: "enterprise" },
 ] satisfies CompleteChartSeries[];
 
 export const barNetFlowNegativeData = [
-  { month: "Jan", inflow: 42, outflow: -18 },
-  { month: "Feb", inflow: 39, outflow: -21 },
-  { month: "Mar", inflow: 45, outflow: -23 },
-  { month: "Apr", inflow: 47, outflow: -28 },
-  { month: "May", inflow: 50, outflow: -31 },
-  { month: "Jun", inflow: 54, outflow: -34 },
+  { inflow: 42, month: "Jan", outflow: -18 },
+  { inflow: 39, month: "Feb", outflow: -21 },
+  { inflow: 45, month: "Mar", outflow: -23 },
+  { inflow: 47, month: "Apr", outflow: -28 },
+  { inflow: 50, month: "May", outflow: -31 },
+  { inflow: 54, month: "Jun", outflow: -34 },
 ];
 
 export const barNetFlowNegativeSeries = [
-  { name: "inflow", label: "Inflow", color: "var(--color-chart-1)" },
-  { name: "outflow", label: "Outflow", color: "var(--color-chart-5)" },
+  { color: "var(--color-chart-1)", label: "Inflow", name: "inflow" },
+  { color: "var(--color-chart-5)", label: "Outflow", name: "outflow" },
 ] satisfies CompleteChartSeries[];
 
 export const barDualAxisGoalsData = [
-  { month: "Jan", spend: 41_000, leads: 840 },
-  { month: "Feb", spend: 44_500, leads: 900 },
-  { month: "Mar", spend: 47_800, leads: 958 },
-  { month: "Apr", spend: 49_200, leads: 1006 },
-  { month: "May", spend: 53_400, leads: 1080 },
-  { month: "Jun", spend: 55_000, leads: 1120 },
+  { leads: 840, month: "Jan", spend: 41_000 },
+  { leads: 900, month: "Feb", spend: 44_500 },
+  { leads: 958, month: "Mar", spend: 47_800 },
+  { leads: 1006, month: "Apr", spend: 49_200 },
+  { leads: 1080, month: "May", spend: 53_400 },
+  { leads: 1120, month: "Jun", spend: 55_000 },
 ];
 
 export const barDualAxisGoalsSeries = [
   {
-    name: "spend",
-    label: "Spend",
     color: "var(--color-chart-3)",
+    label: "Spend",
+    name: "spend",
     yAxisId: "left-axis",
   },
   {
-    name: "leads",
-    label: "Leads",
     color: "var(--color-chart-1)",
+    label: "Leads",
+    name: "leads",
     yAxisId: "right-axis",
   },
 ] satisfies CompleteChartSeries[];
@@ -109,5 +109,5 @@ export const barDenseCategoriesData = [
 ];
 
 export const barDenseCategoriesSeries = [
-  { name: "pipeline", label: "Pipeline", color: "var(--color-chart-2)" },
+  { color: "var(--color-chart-2)", label: "Pipeline", name: "pipeline" },
 ] satisfies CompleteChartSeries[];

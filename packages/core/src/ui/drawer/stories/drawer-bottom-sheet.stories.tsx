@@ -35,12 +35,12 @@ const BottomSheetDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/BottomSheet",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/BottomSheet",
 };
 
 export default meta;

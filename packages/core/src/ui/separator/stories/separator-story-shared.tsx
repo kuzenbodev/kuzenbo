@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Separator } from "../separator";
 
 export const baseMeta = {
-  title: "Components/Separator",
-  component: Separator,
-  tags: ["autodocs"],
   argTypes: {
     orientation: {
       control: "select",
       options: ["horizontal", "vertical"],
     },
   },
+  component: Separator,
+  tags: ["autodocs"],
+  title: "Components/Separator",
 } satisfies Meta<typeof Separator>;
 
 type Story = StoryObj<typeof baseMeta>;

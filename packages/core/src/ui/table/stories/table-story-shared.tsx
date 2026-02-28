@@ -6,51 +6,49 @@ const sizeOptions = ["xs", "sm", "md", "lg", "xl"] as const;
 
 const approvalRows = [
   {
+    amount: "$148,200",
     id: "PO-48213",
     owner: "Finance Ops",
-    amount: "$148,200",
     status: "Approved",
   },
   {
+    amount: "$72,900",
     id: "PO-48217",
     owner: "Legal",
-    amount: "$72,900",
     status: "Reviewing",
   },
   {
+    amount: "$41,360",
     id: "PO-48229",
     owner: "Procurement",
-    amount: "$41,360",
     status: "Escalated",
   },
   {
+    amount: "$19,840",
     id: "PO-48235",
     owner: "Security",
-    amount: "$19,840",
     status: "Queued",
   },
 ] as const;
 
 const denseRows = [
-  { id: "REQ-9012", team: "APAC", sla: "8h", state: "Completed" },
-  { id: "REQ-9013", team: "EMEA", sla: "6h", state: "Completed" },
-  { id: "REQ-9014", team: "AMER", sla: "12h", state: "Active" },
-  { id: "REQ-9015", team: "APAC", sla: "10h", state: "Active" },
-  { id: "REQ-9016", team: "EMEA", sla: "24h", state: "Blocked" },
-  { id: "REQ-9017", team: "AMER", sla: "14h", state: "Queued" },
-  { id: "REQ-9018", team: "LATAM", sla: "18h", state: "Queued" },
+  { id: "REQ-9012", sla: "8h", state: "Completed", team: "APAC" },
+  { id: "REQ-9013", sla: "6h", state: "Completed", team: "EMEA" },
+  { id: "REQ-9014", sla: "12h", state: "Active", team: "AMER" },
+  { id: "REQ-9015", sla: "10h", state: "Active", team: "APAC" },
+  { id: "REQ-9016", sla: "24h", state: "Blocked", team: "EMEA" },
+  { id: "REQ-9017", sla: "14h", state: "Queued", team: "AMER" },
+  { id: "REQ-9018", sla: "18h", state: "Queued", team: "LATAM" },
 ] as const;
 
 export const baseMeta = {
-  title: "Components/Table",
-  component: Table,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: sizeOptions,
     },
   },
+  component: Table,
   parameters: {
     docs: {
       description: {
@@ -59,6 +57,8 @@ export const baseMeta = {
       },
     },
   },
+  tags: ["autodocs"],
+  title: "Components/Table",
 } satisfies Meta<typeof Table>;
 
 type Story = StoryObj<typeof baseMeta>;

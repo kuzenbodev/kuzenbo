@@ -2,28 +2,29 @@
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import {
   ToolbarSizeContext,
   useToolbarResolvedSize,
-  type ToolbarSize,
 } from "./toolbar-size-context";
+import type { ToolbarSize } from "./toolbar-size-context";
 
 const toolbarGroupVariants = tv({
   base: "flex items-center",
-  variants: {
-    size: {
-      xs: "gap-0.5",
-      sm: "gap-0.5",
-      md: "gap-1",
-      lg: "gap-1",
-      xl: "gap-1.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-1",
+      md: "gap-1",
+      sm: "gap-0.5",
+      xl: "gap-1.5",
+      xs: "gap-0.5",
+    },
   },
 });
 

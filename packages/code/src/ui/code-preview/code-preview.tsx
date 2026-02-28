@@ -37,8 +37,8 @@ const isCodeMode = (value: string | undefined): value is CodePreviewCodeMode =>
   value === "minimal" || value === "full";
 
 const previewModeLabelByValue: Record<CodePreviewMode, string> = {
-  preview: "Preview",
   code: "Code",
+  preview: "Preview",
   split: "Split",
 };
 

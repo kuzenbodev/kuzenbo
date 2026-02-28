@@ -18,7 +18,7 @@ const BarChartCompleteNetFlowNegativeDemo = () => (
       chartRootProps={{ className: "h-80 w-full" }}
       data={barNetFlowNegativeData}
       dataKey="month"
-      referenceLines={[{ y: 0, color: "var(--color-chart-4)", label: "Zero" }]}
+      referenceLines={[{ color: "var(--color-chart-4)", label: "Zero", y: 0 }]}
       series={barNetFlowNegativeSeries}
       valueFormatter={formatNetFlowValue}
       withLegend
@@ -28,9 +28,9 @@ const BarChartCompleteNetFlowNegativeDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/NetFlowNegative",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/NetFlowNegative",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

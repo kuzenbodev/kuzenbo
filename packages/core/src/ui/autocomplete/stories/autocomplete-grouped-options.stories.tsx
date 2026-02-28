@@ -9,8 +9,8 @@ interface OptionGroup {
 }
 
 const groupedOptions: OptionGroup[] = [
-  { value: "Fruits", items: ["Apple", "Banana", "Orange"] },
-  { value: "Vegetables", items: ["Carrot", "Spinach", "Zucchini"] },
+  { items: ["Apple", "Banana", "Orange"], value: "Fruits" },
+  { items: ["Carrot", "Spinach", "Zucchini"], value: "Vegetables" },
 ];
 
 export default {
@@ -21,6 +21,14 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const GroupedOptions: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Grouped options rendered with Group, GroupLabel, and Collection.",
+      },
+    },
+  },
   render: () => (
     <Autocomplete defaultValue="Apple" items={groupedOptions}>
       <Autocomplete.Input placeholder="Search produce..." />
@@ -46,12 +54,4 @@ export const GroupedOptions: Story = {
       </Autocomplete.Content>
     </Autocomplete>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Grouped options rendered with Group, GroupLabel, and Collection.",
-      },
-    },
-  },
 };

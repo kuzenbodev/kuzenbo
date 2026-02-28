@@ -23,9 +23,9 @@ const BubbleChartCompletePointLabelsReferenceLinesDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bubble/PointLabelsReferenceLines",
   component: BubbleChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bubble/PointLabelsReferenceLines",
 } satisfies Meta<typeof BubbleChart>;
 
 type Story = StoryObj<typeof BubbleChart>;

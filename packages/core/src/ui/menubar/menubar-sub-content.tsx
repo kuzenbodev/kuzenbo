@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { DropdownMenuSubContent } from "../dropdown-menu/dropdown-menu";
 import type { InputSize } from "../input/input";
@@ -9,17 +10,17 @@ import { MenubarOverlayContext } from "./menubar-overlay-context";
 
 const menubarSubContentVariants = tv({
   base: "shadow-lg",
-  variants: {
-    size: {
-      xs: "min-w-28 rounded-[min(var(--radius-lg),10px)]",
-      sm: "min-w-32 rounded-[min(var(--radius-lg),12px)]",
-      md: "min-w-32 rounded-lg",
-      lg: "min-w-36 rounded-lg",
-      xl: "min-w-40 rounded-xl",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "min-w-36 rounded-lg",
+      md: "min-w-32 rounded-lg",
+      sm: "min-w-32 rounded-[min(var(--radius-lg),12px)]",
+      xl: "min-w-40 rounded-xl",
+      xs: "min-w-28 rounded-[min(var(--radius-lg),10px)]",
+    },
   },
 });
 

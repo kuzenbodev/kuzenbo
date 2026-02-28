@@ -2,7 +2,8 @@
 
 import { SidebarLeftIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useCallback, type ComponentProps } from "react";
+import { useCallback } from "react";
+import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 
 import { Button } from "../button/button";

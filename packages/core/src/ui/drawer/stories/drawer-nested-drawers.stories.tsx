@@ -165,12 +165,12 @@ const NestedDrawersDemo = () => {
 };
 
 const meta: Meta = {
-  title: "Components/Drawer/NestedDrawers",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/NestedDrawers",
 };
 
 export default meta;

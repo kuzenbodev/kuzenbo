@@ -1,7 +1,8 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -14,17 +15,17 @@ export type AutocompleteGroupLabelProps = ComponentProps<
 
 const autocompleteGroupLabelVariants = tv({
   base: "text-muted-foreground font-medium",
-  variants: {
-    size: {
-      xs: "px-1.5 py-1 text-xs",
-      sm: "px-2 py-1 text-xs",
-      md: "px-2 py-1.5 text-xs",
-      lg: "px-2.5 py-1.5 text-sm",
-      xl: "px-3 py-2 text-sm",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "px-2.5 py-1.5 text-sm",
+      md: "px-2 py-1.5 text-xs",
+      sm: "px-2 py-1 text-xs",
+      xl: "px-3 py-2 text-sm",
+      xs: "px-1.5 py-1 text-xs",
+    },
   },
 });
 

@@ -3,15 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Select } from "../select";
 
 export const baseMeta = {
-  title: "Components/Select",
-  component: Select,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Select,
   parameters: {
     docs: {
       description: {
@@ -20,6 +18,8 @@ export const baseMeta = {
       },
     },
   },
+  tags: ["autodocs"],
+  title: "Components/Select",
 } satisfies Meta<typeof Select>;
 
 type Story = StoryObj<typeof baseMeta>;

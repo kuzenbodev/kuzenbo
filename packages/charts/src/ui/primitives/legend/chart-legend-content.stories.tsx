@@ -4,8 +4,8 @@ import { ChartProvider } from "../provider/chart-provider";
 import { ChartLegendContent } from "./chart-legend-content";
 
 const chartConfig = {
-  visits: { color: "var(--color-chart-1)", label: "Visits" },
   revenue: { color: "var(--color-chart-2)", label: "Revenue" },
+  visits: { color: "var(--color-chart-1)", label: "Visits" },
 };
 
 const legendPayload = [
@@ -24,14 +24,6 @@ const legendPayload = [
 ];
 
 const meta = {
-  title: "Charts/Primitives/LegendContent",
-  component: ChartLegendContent,
-  tags: ["autodocs"],
-  args: {
-    payload: legendPayload,
-    size: "md",
-    verticalAlign: "bottom",
-  },
   argTypes: {
     size: {
       control: "select",
@@ -42,11 +34,19 @@ const meta = {
       options: ["top", "bottom"],
     },
   },
+  args: {
+    payload: legendPayload,
+    size: "md",
+    verticalAlign: "bottom",
+  },
+  component: ChartLegendContent,
   render: (args) => (
     <ChartProvider config={chartConfig}>
       <ChartLegendContent {...args} />
     </ChartProvider>
   ),
+  tags: ["autodocs"],
+  title: "Charts/Primitives/LegendContent",
 } satisfies Meta<typeof ChartLegendContent>;
 
 export default meta;

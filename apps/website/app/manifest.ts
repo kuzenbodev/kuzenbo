@@ -4,40 +4,40 @@ import { SITE_NAME } from "@/constants/website";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE_NAME} Website`,
-    short_name: SITE_NAME,
+    background_color: "#05210f",
     description:
       "Kuzenbo website with docs, showcase pages, and production-ready design system resources.",
-    start_url: "/",
     display: "standalone",
-    background_color: "#05210f",
-    theme_color: "#05210f",
     icons: [
       {
-        src: "/favicon.ico",
         sizes: "any",
+        src: "/favicon.ico",
         type: "image/x-icon",
       },
       {
+        sizes: "512x512",
         src: "/icon.png",
-        sizes: "512x512",
         type: "image/png",
       },
       {
-        src: "/apple-icon.png",
         sizes: "180x180",
+        src: "/apple-icon.png",
         type: "image/png",
       },
       {
-        src: "/icons/icon-192.png",
         sizes: "192x192",
+        src: "/icons/icon-192.png",
         type: "image/png",
       },
       {
-        src: "/icons/icon-512.png",
         sizes: "512x512",
+        src: "/icons/icon-512.png",
         type: "image/png",
       },
     ],
+    name: `${SITE_NAME} Website`,
+    short_name: SITE_NAME,
+    start_url: "/",
+    theme_color: "#05210f",
   };
 }

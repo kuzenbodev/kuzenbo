@@ -78,14 +78,14 @@ describe("Carousel", () => {
     expect(root).not.toBeNull();
 
     const rootEvent = new KeyboardEvent("keydown", {
-      key: "ArrowRight",
       bubbles: true,
       cancelable: true,
+      key: "ArrowRight",
     });
     const nestedEvent = new KeyboardEvent("keydown", {
-      key: "ArrowRight",
       bubbles: true,
       cancelable: true,
+      key: "ArrowRight",
     });
 
     const rootDispatchResult = root.dispatchEvent(rootEvent);
@@ -112,14 +112,14 @@ describe("Carousel", () => {
     expect(root).not.toBeNull();
 
     const verticalEvent = new KeyboardEvent("keydown", {
-      key: "ArrowDown",
       bubbles: true,
       cancelable: true,
+      key: "ArrowDown",
     });
     const horizontalEvent = new KeyboardEvent("keydown", {
-      key: "ArrowRight",
       bubbles: true,
       cancelable: true,
+      key: "ArrowRight",
     });
 
     const verticalDispatchResult = root.dispatchEvent(verticalEvent);

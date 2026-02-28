@@ -4,11 +4,8 @@ import { Moon01Icon, Sun01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@kuzenbo/core/ui/button";
 import { Tooltip } from "@kuzenbo/core/ui/tooltip";
-import {
-  applyThemeToRootElement,
-  persistThemeCookie,
-  type ThemePreference,
-} from "@kuzenbo/theme";
+import { applyThemeToRootElement, persistThemeCookie } from "@kuzenbo/theme";
+import type { ThemePreference } from "@kuzenbo/theme";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 

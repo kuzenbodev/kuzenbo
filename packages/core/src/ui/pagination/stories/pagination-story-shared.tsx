@@ -3,15 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Pagination } from "../pagination";
 
 export const baseMeta = {
-  title: "Components/Pagination",
-  component: Pagination,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Pagination,
   parameters: {
     docs: {
       description: {
@@ -20,6 +18,8 @@ export const baseMeta = {
       },
     },
   },
+  tags: ["autodocs"],
+  title: "Components/Pagination",
 } satisfies Meta<typeof Pagination>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -58,6 +58,14 @@ export const WithEllipsis: Story = {
   args: {
     size: "md",
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Represents a deep result set by keeping a focused page window around the active page and collapsing distant ranges.",
+      },
+    },
+  },
   render: (args) => (
     <Pagination size={args.size}>
       <Pagination.Content>
@@ -81,19 +89,19 @@ export const WithEllipsis: Story = {
       </Pagination.Content>
     </Pagination>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Represents a deep result set by keeping a focused page window around the active page and collapsing distant ranges.",
-      },
-    },
-  },
 };
 
 export const WithBoundaryLinks: Story = {
   args: {
     size: "md",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Adds explicit first/last boundary navigation for table and inbox views where jumping directly to edge pages is common.",
+      },
+    },
   },
   render: (args) => (
     <Pagination size={args.size}>
@@ -120,12 +128,4 @@ export const WithBoundaryLinks: Story = {
       </Pagination.Content>
     </Pagination>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Adds explicit first/last boundary navigation for table and inbox views where jumping directly to edge pages is common.",
-      },
-    },
-  },
 };

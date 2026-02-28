@@ -7,9 +7,8 @@ import {
   Funnel,
   FunnelChart as RechartsFunnelChart,
   LabelList,
-  type LegendProps,
-  type TooltipProps,
 } from "recharts";
+import type { LegendProps, TooltipProps } from "recharts";
 
 import type { ChartRootProps } from "../../primitives/chart";
 import { CompleteRadialShell } from "../shared/complete-radial-shell";

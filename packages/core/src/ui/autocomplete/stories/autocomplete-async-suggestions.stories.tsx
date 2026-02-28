@@ -74,7 +74,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const AsyncSuggestions: Story = {
-  render: () => <AsyncSuggestionsDemo />,
   parameters: {
     docs: {
       description: {
@@ -83,4 +82,5 @@ export const AsyncSuggestions: Story = {
       },
     },
   },
+  render: () => <AsyncSuggestionsDemo />,
 };

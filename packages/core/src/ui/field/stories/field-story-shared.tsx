@@ -14,9 +14,9 @@ const validBillingEmail = (value: unknown) => {
 };
 
 export const baseMeta = {
-  title: "Components/Field",
   component: Field,
   tags: ["autodocs"],
+  title: "Components/Field",
 } satisfies Meta<typeof Field>;
 
 type Story = StoryObj<typeof baseMeta>;

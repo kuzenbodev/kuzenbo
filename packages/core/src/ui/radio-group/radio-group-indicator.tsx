@@ -1,5 +1,6 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -7,17 +8,17 @@ import type { UISize } from "../shared/size/size-system";
 
 const radioGroupIndicatorVariants = tv({
   base: "text-primary group-aria-invalid/radio-group-item:text-danger flex items-center justify-center",
-  variants: {
-    size: {
-      xs: "size-3",
-      sm: "size-3.5",
-      md: "size-4",
-      lg: "size-[18px]",
-      xl: "size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "size-[18px]",
+      md: "size-4",
+      sm: "size-3.5",
+      xl: "size-5",
+      xs: "size-3",
+    },
   },
 });
 

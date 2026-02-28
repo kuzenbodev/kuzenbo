@@ -10,23 +10,23 @@ export type AccordionContentProps = AccordionPrimitive.Panel.Props;
 
 const accordionContentVariants = tv({
   base: "overflow-hidden text-sm transition-[height,width] ease-out data-[orientation=horizontal]:w-[var(--accordion-panel-width)] data-[orientation=horizontal]:data-[ending-style]:w-0 data-[orientation=vertical]:h-[var(--accordion-panel-height)] data-[orientation=vertical]:data-[ending-style]:h-0 data-[orientation=horizontal]:data-[starting-style]:w-0 data-[orientation=vertical]:data-[starting-style]:h-0",
-  variants: {
-    size: {
-      xs: "",
-      sm: "",
-      md: "",
-      lg: "",
-      xl: "",
-    },
-    variant: {
-      default: "",
-      bordered: "",
-      ghost: "",
-    },
-  },
   defaultVariants: {
     size: "md",
     variant: "default",
+  },
+  variants: {
+    size: {
+      lg: "",
+      md: "",
+      sm: "",
+      xl: "",
+      xs: "",
+    },
+    variant: {
+      bordered: "",
+      default: "",
+      ghost: "",
+    },
   },
 });
 
@@ -84,23 +84,23 @@ const accordionContentBodyVariants = tv({
       variant: "ghost",
     },
   ],
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-sm",
-      lg: "text-sm",
-      xl: "text-base",
-    },
-    variant: {
-      default: "",
-      bordered: "",
-      ghost: "",
-    },
-  },
   defaultVariants: {
     size: "md",
     variant: "default",
+  },
+  variants: {
+    size: {
+      lg: "text-sm",
+      md: "text-sm",
+      sm: "text-sm",
+      xl: "text-base",
+      xs: "text-xs",
+    },
+    variant: {
+      bordered: "",
+      default: "",
+      ghost: "",
+    },
   },
 });
 

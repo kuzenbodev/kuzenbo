@@ -10,32 +10,32 @@ import { TypographyH3 } from "./typography-h3";
 import { TypographyH4 } from "./typography-h4";
 import { TypographyH5 } from "./typography-h5";
 import { TypographyH6 } from "./typography-h6";
-import {
-  TypographyHeading,
-  type TypographyHeadingAliasProps,
-  type TypographyHeadingProps,
+import { TypographyHeading } from "./typography-heading";
+import type {
+  TypographyHeadingAliasProps,
+  TypographyHeadingProps,
 } from "./typography-heading";
 import { TypographyLead } from "./typography-lead";
-import { TypographyLi, type TypographyLiProps } from "./typography-li";
+import { TypographyLi } from "./typography-li";
+import type { TypographyLiProps } from "./typography-li";
 import type { TypographyLinkProps } from "./typography-link";
 import { TypographyLink } from "./typography-link";
 import { TypographyMuted } from "./typography-muted";
-import { TypographyOl, type TypographyOlProps } from "./typography-ol";
+import { TypographyOl } from "./typography-ol";
+import type { TypographyOlProps } from "./typography-ol";
 import { TypographyOverline } from "./typography-overline";
 import { TypographyP } from "./typography-p";
-import {
-  TypographyProse,
-  type TypographyProseProps,
-  typographyProseVariants,
-} from "./typography-prose";
+import { TypographyProse, typographyProseVariants } from "./typography-prose";
+import type { TypographyProseProps } from "./typography-prose";
 import { TypographySmall } from "./typography-small";
 import { TypographySubheading } from "./typography-subheading";
-import {
-  TypographyText,
-  type TypographyTextAliasProps,
-  type TypographyTextProps,
+import { TypographyText } from "./typography-text";
+import type {
+  TypographyTextAliasProps,
+  TypographyTextProps,
 } from "./typography-text";
-import { TypographyUl, type TypographyUlProps } from "./typography-ul";
+import { TypographyUl } from "./typography-ul";
+import type { TypographyUlProps } from "./typography-ul";
 import {
   typographyHeadingVariants,
   typographyTextVariants,

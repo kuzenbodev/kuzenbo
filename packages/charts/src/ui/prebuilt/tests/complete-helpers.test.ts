@@ -22,7 +22,7 @@ describe("complete helper contracts", () => {
   });
 
   it("resolves canonical series name with key alias fallback", () => {
-    expect(resolveCompleteSeriesName({ name: "revenue", key: "rev" })).toBe(
+    expect(resolveCompleteSeriesName({ key: "rev", name: "revenue" })).toBe(
       "revenue"
     );
     expect(resolveCompleteSeriesName({ key: "revenueSeries" })).toBe(

@@ -89,8 +89,8 @@ const Heatmap = <TData extends CompleteChartDatum = CompleteChartDatum>({
                   aria-hidden
                   className="text-muted-foreground grid pt-5 text-[11px] leading-[1]"
                   style={{
-                    rowGap: gap,
                     gridTemplateRows: `repeat(7, ${cellSize}px)`,
+                    rowGap: gap,
                   }}
                 >
                   {weekdayLabels.map((weekday) => (
@@ -131,8 +131,8 @@ const Heatmap = <TData extends CompleteChartDatum = CompleteChartDatum>({
                       key={week.key}
                       role="row"
                       style={{
-                        rowGap: gap,
                         gridTemplateRows: `repeat(7, ${cellSize}px)`,
+                        rowGap: gap,
                       }}
                     >
                       {week.cells.map((cell) => {

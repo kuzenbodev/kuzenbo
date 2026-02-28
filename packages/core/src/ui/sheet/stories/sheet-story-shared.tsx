@@ -13,19 +13,19 @@ import {
 } from "../sheet";
 
 export const baseMeta = {
-  title: "Components/Sheet",
   component: Sheet,
-  tags: ["autodocs"],
-  subcomponents: {
-    SheetTrigger,
-    SheetPortal,
-    SheetBackdrop,
-    SheetViewport,
-    SheetPopup,
-  },
   parameters: {
     layout: "centered",
   },
+  subcomponents: {
+    SheetBackdrop,
+    SheetPopup,
+    SheetPortal,
+    SheetTrigger,
+    SheetViewport,
+  },
+  tags: ["autodocs"],
+  title: "Components/Sheet",
 } satisfies Meta<typeof Sheet>;
 
 type Story = StoryObj<typeof baseMeta>;

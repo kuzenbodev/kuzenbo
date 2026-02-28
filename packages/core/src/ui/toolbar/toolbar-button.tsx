@@ -6,10 +6,8 @@ import { cn } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { buttonVariants } from "../button/button";
-import {
-  useToolbarResolvedSize,
-  type ToolbarSize,
-} from "./toolbar-size-context";
+import { useToolbarResolvedSize } from "./toolbar-size-context";
+import type { ToolbarSize } from "./toolbar-size-context";
 
 type ToolbarButtonVariantProps = Omit<
   VariantProps<typeof buttonVariants>,
@@ -33,7 +31,7 @@ export const ToolbarButton = ({
     <ToolbarPrimitive.Button
       className={mergeBaseUIClassName<ToolbarPrimitive.Button.State>(
         cn(
-          buttonVariants({ variant, size: resolvedSize }),
+          buttonVariants({ size: resolvedSize, variant }),
           "cursor-clickable shrink-0"
         ),
         className

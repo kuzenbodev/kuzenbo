@@ -5,13 +5,13 @@ import { injectPlaygroundProps } from "./inject-playground-props";
 describe("injectPlaygroundProps", () => {
   it("injects props into inline placeholder and replaces children", () => {
     const code = injectPlaygroundProps({
-      template: "<Button{{props}}>{{children}}</Button>",
-      props: {
-        variant: "outline",
-        disabled: true,
-        children: "Save",
-      },
       propOrder: ["disabled", "variant"],
+      props: {
+        children: "Save",
+        disabled: true,
+        variant: "outline",
+      },
+      template: "<Button{{props}}>{{children}}</Button>",
     });
 
     expect(code).toBe('<Button disabled variant="outline">Save</Button>');
@@ -19,13 +19,13 @@ describe("injectPlaygroundProps", () => {
 
   it("preserves multiline placeholder indentation", () => {
     const code = injectPlaygroundProps({
-      template: `<Button\n  {{props}}\n>\n  {{children}}\n</Button>`,
-      props: {
-        size: "lg",
-        radius: 12,
-        children: "Multiline",
-      },
       propOrder: ["size", "radius"],
+      props: {
+        children: "Multiline",
+        radius: 12,
+        size: "lg",
+      },
+      template: `<Button\n  {{props}}\n>\n  {{children}}\n</Button>`,
     });
 
     expect(code).toBe(
@@ -35,8 +35,8 @@ describe("injectPlaygroundProps", () => {
 
   it("clears placeholder when no props are provided", () => {
     const code = injectPlaygroundProps({
-      template: "<Button{{props}}>X</Button>",
       props: {},
+      template: "<Button{{props}}>X</Button>",
     });
 
     expect(code).toBe("<Button>X</Button>");
@@ -44,12 +44,12 @@ describe("injectPlaygroundProps", () => {
 
   it("falls back to alphabetical order for unknown props", () => {
     const code = injectPlaygroundProps({
-      template: "<Button{{props}} />",
-      props: {
-        zeta: "z",
-        alpha: "a",
-      },
       propOrder: ["size"],
+      props: {
+        alpha: "a",
+        zeta: "z",
+      },
+      template: "<Button{{props}} />",
     });
 
     expect(code).toBe('<Button alpha="a" zeta="z" />');

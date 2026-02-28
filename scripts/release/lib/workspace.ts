@@ -52,7 +52,7 @@ export const readWorkspacePackages = (): WorkspacePackage[] => {
       }
 
       const manifest = readManifest(manifestPath);
-      return { dirPath, manifestPath, manifest };
+      return { dirPath, manifest, manifestPath };
     })
     .filter((pkg): pkg is WorkspacePackage => pkg !== null)
     .toSorted((a, b) => a.manifest.name.localeCompare(b.manifest.name));

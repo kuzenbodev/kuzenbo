@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { ResizablePanelGroup } from "../resizable";
 
 export const baseMeta = {
-  title: "Components/Resizable",
   component: ResizablePanelGroup,
   tags: ["autodocs"],
+  title: "Components/Resizable",
 } satisfies Meta<typeof ResizablePanelGroup>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -3,24 +3,24 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Command } from "../command";
 
 export const baseMeta = {
-  title: "Components/Command",
-  component: Command,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Command,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "`Command` and child surfaces share one size contract (`xs|sm|md|lg|xl`) with child-level overrides available.",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/Command",
 } satisfies Meta<typeof Command>;
 
 type Story = StoryObj<typeof baseMeta>;

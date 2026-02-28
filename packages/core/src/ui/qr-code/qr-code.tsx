@@ -19,13 +19,13 @@ const getOklch = (color: string, fallback: [number, number, number]) => {
   const oklchMatch = color.match(oklchRegex);
 
   if (!oklchMatch) {
-    return { l: fallback[0], c: fallback[1], h: fallback[2] };
+    return { c: fallback[1], h: fallback[2], l: fallback[0] };
   }
 
   return {
-    l: Number.parseFloat(oklchMatch[1] ?? "0"),
     c: Number.parseFloat(oklchMatch[2] ?? "0"),
     h: Number.parseFloat(oklchMatch[3] ?? "0"),
+    l: Number.parseFloat(oklchMatch[1] ?? "0"),
   };
 };
 
@@ -55,14 +55,14 @@ export const QRCode = ({
         const backgroundOklch = getOklch(backgroundColor, [0.985, 0, 0]);
 
         const newSvg = await QR.toString(data, {
-          type: "svg",
           color: {
             dark: formatHex(oklch({ mode: "oklch", ...foregroundOklch })),
             light: formatHex(oklch({ mode: "oklch", ...backgroundOklch })),
           },
-          width: 200,
           errorCorrectionLevel: robustness,
           margin: 0,
+          type: "svg",
+          width: 200,
         });
 
         setSVG(newSvg);

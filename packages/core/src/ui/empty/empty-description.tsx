@@ -1,22 +1,23 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedEmptySize } from "./empty-size-context";
 
 const emptyDescriptionVariants = tv({
   base: "text-muted-foreground [&>a:hover]:text-primary-foreground [&>a]:underline [&>a]:underline-offset-4",
-  variants: {
-    size: {
-      xs: "text-xs/relaxed",
-      sm: "text-sm/relaxed",
-      md: "text-sm/relaxed",
-      lg: "text-base/relaxed",
-      xl: "text-base/relaxed",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-base/relaxed",
+      md: "text-sm/relaxed",
+      sm: "text-sm/relaxed",
+      xl: "text-base/relaxed",
+      xs: "text-xs/relaxed",
+    },
   },
 });
 

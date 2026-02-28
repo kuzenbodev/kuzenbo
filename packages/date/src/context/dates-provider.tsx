@@ -3,12 +3,8 @@
 import type { ReactNode } from "react";
 import { createContext, useMemo } from "react";
 
-import {
-  createDateAdapter,
-  DEFAULT_DATE_ADAPTER,
-  type DateAdapter,
-  type DateAdapterContext,
-} from "../adapter";
+import { createDateAdapter, DEFAULT_DATE_ADAPTER } from "../adapter";
+import type { DateAdapter, DateAdapterContext } from "../adapter";
 import type { DayOfWeek } from "../types";
 
 export interface DatesProviderValue extends DateAdapterContext {

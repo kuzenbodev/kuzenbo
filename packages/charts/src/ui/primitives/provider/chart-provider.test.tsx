@@ -8,7 +8,7 @@ import { ChartProvider } from "./chart-provider";
 afterEach(cleanup);
 
 const chartConfig = {
-  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
+  revenue: { color: "var(--color-chart-1)", label: "Revenue" },
 };
 
 describe("Chart provider value", () => {

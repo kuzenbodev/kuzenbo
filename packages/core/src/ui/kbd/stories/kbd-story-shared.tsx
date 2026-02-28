@@ -5,15 +5,13 @@ import { Kbd } from "../kbd";
 const KBD_SIZES = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Kbd",
-  component: Kbd,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: KBD_SIZES,
     },
   },
+  component: Kbd,
   parameters: {
     docs: {
       description: {
@@ -22,6 +20,8 @@ export const baseMeta = {
       },
     },
   },
+  tags: ["autodocs"],
+  title: "Components/Kbd",
 } satisfies Meta<typeof Kbd>;
 
 type Story = StoryObj<typeof baseMeta>;

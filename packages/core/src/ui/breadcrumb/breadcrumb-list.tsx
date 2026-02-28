@@ -1,22 +1,23 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedBreadcrumbSize } from "./breadcrumb-size-context";
 
 const breadcrumbListVariants = tv({
   base: "text-muted-foreground flex flex-wrap items-center break-words",
-  variants: {
-    size: {
-      xs: "gap-1 text-xs sm:gap-1.5",
-      sm: "gap-1.5 text-xs sm:gap-2",
-      md: "gap-1.5 text-sm sm:gap-2.5",
-      lg: "gap-2 text-sm sm:gap-3",
-      xl: "gap-2.5 text-base sm:gap-3.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-2 text-sm sm:gap-3",
+      md: "gap-1.5 text-sm sm:gap-2.5",
+      sm: "gap-1.5 text-xs sm:gap-2",
+      xl: "gap-2.5 text-base sm:gap-3.5",
+      xs: "gap-1 text-xs sm:gap-1.5",
+    },
   },
 });
 

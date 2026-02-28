@@ -1,42 +1,43 @@
 import { MoreHorizontalCircle01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedPaginationSize } from "./pagination-size-context";
 
 const paginationEllipsisVariants = tv({
+  defaultVariants: {
+    size: "md",
+  },
   slots: {
     icon: "",
     root: "flex items-center justify-center",
   },
   variants: {
     size: {
-      xs: {
-        icon: "size-3",
-        root: "size-6",
-      },
-      sm: {
-        icon: "size-3.5",
-        root: "size-7",
+      lg: {
+        icon: "size-4",
+        root: "size-9",
       },
       md: {
         icon: "size-4",
         root: "size-8",
       },
-      lg: {
-        icon: "size-4",
-        root: "size-9",
+      sm: {
+        icon: "size-3.5",
+        root: "size-7",
       },
       xl: {
         icon: "size-5",
         root: "size-10",
       },
+      xs: {
+        icon: "size-3",
+        root: "size-6",
+      },
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 

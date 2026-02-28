@@ -7,10 +7,10 @@ import { Chart } from "../chart";
 
 afterEach(cleanup);
 
-const data = [{ name: "Jan", visits: 100, revenue: 3200 }];
+const data = [{ name: "Jan", revenue: 3200, visits: 100 }];
 const chartConfig = {
-  visits: { label: "Visits", color: "var(--color-chart-1)" },
-  revenue: { label: "Revenue", color: "var(--color-chart-2)" },
+  revenue: { color: "var(--color-chart-2)", label: "Revenue" },
+  visits: { color: "var(--color-chart-1)", label: "Visits" },
 };
 
 const getStyleTagContent = (container: HTMLElement) => {

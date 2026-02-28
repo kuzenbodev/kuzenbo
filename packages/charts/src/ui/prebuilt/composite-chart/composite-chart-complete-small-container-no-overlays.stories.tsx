@@ -10,7 +10,7 @@ import {
 const CompositeChartCompleteSmallContainerNoOverlaysDemo = () => (
   <div className={completeChartCompactShellVariants()}>
     <CompositeChart
-      composedChartProps={{ margin: { top: 8, right: 4, left: -8, bottom: 0 } }}
+      composedChartProps={{ margin: { bottom: 0, left: -8, right: 4, top: 8 } }}
       chartRootProps={{ className: "h-52 w-full" }}
       data={compositeSmallContainerData}
       dataKey="day"
@@ -26,9 +26,9 @@ const CompositeChartCompleteSmallContainerNoOverlaysDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Composite/SmallContainerNoOverlays",
   component: CompositeChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Composite/SmallContainerNoOverlays",
 } satisfies Meta<typeof CompositeChart>;
 
 type Story = StoryObj<typeof CompositeChart>;

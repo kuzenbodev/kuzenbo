@@ -22,9 +22,9 @@ const SparklineCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Sparkline/Default",
   component: Sparkline,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Sparkline/Default",
 } satisfies Meta<typeof Sparkline>;
 
 type Story = StoryObj<typeof Sparkline>;

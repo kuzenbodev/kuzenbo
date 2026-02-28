@@ -10,66 +10,66 @@ export const areaDefaultData = [
 ];
 
 export const areaDefaultSeries = [
-  { name: "newMrr", label: "New MRR", color: "var(--color-chart-1)" },
+  { color: "var(--color-chart-1)", label: "New MRR", name: "newMrr" },
   {
-    name: "retainedMrr",
-    label: "Retained MRR",
     color: "var(--color-chart-3)",
+    label: "Retained MRR",
+    name: "retainedMrr",
   },
 ] satisfies CompleteChartSeries[];
 
 export const areaStackedDemandData = [
-  { week: "W1", selfServe: 420, salesAssist: 210, partner: 110 },
-  { week: "W2", selfServe: 448, salesAssist: 226, partner: 116 },
-  { week: "W3", selfServe: 472, salesAssist: 238, partner: 124 },
-  { week: "W4", selfServe: 491, salesAssist: 254, partner: 133 },
-  { week: "W5", selfServe: 515, salesAssist: 268, partner: 140 },
-  { week: "W6", selfServe: 538, salesAssist: 281, partner: 148 },
+  { partner: 110, salesAssist: 210, selfServe: 420, week: "W1" },
+  { partner: 116, salesAssist: 226, selfServe: 448, week: "W2" },
+  { partner: 124, salesAssist: 238, selfServe: 472, week: "W3" },
+  { partner: 133, salesAssist: 254, selfServe: 491, week: "W4" },
+  { partner: 140, salesAssist: 268, selfServe: 515, week: "W5" },
+  { partner: 148, salesAssist: 281, selfServe: 538, week: "W6" },
 ];
 
 export const areaStackedDemandSeries = [
-  { name: "selfServe", label: "Self-Serve", color: "var(--color-chart-1)" },
+  { color: "var(--color-chart-1)", label: "Self-Serve", name: "selfServe" },
   {
-    name: "salesAssist",
-    label: "Sales Assist",
     color: "var(--color-chart-2)",
+    label: "Sales Assist",
+    name: "salesAssist",
   },
-  { name: "partner", label: "Partner", color: "var(--color-chart-4)" },
+  { color: "var(--color-chart-4)", label: "Partner", name: "partner" },
 ] satisfies CompleteChartSeries[];
 
 export const areaPercentMixData = [
-  { quarter: "Q1", product: 44, services: 32, support: 24 },
-  { quarter: "Q2", product: 46, services: 31, support: 23 },
-  { quarter: "Q3", product: 48, services: 30, support: 22 },
-  { quarter: "Q4", product: 50, services: 29, support: 21 },
+  { product: 44, quarter: "Q1", services: 32, support: 24 },
+  { product: 46, quarter: "Q2", services: 31, support: 23 },
+  { product: 48, quarter: "Q3", services: 30, support: 22 },
+  { product: 50, quarter: "Q4", services: 29, support: 21 },
 ];
 
 export const areaPercentMixSeries = [
-  { name: "product", label: "Product", color: "var(--color-chart-1)" },
-  { name: "services", label: "Services", color: "var(--color-chart-3)" },
-  { name: "support", label: "Support", color: "var(--color-chart-5)" },
+  { color: "var(--color-chart-1)", label: "Product", name: "product" },
+  { color: "var(--color-chart-3)", label: "Services", name: "services" },
+  { color: "var(--color-chart-5)", label: "Support", name: "support" },
 ] satisfies CompleteChartSeries[];
 
 export const areaSplitSignalData = [
-  { month: "Jan", positiveFlow: 280, negativeFlow: -140 },
-  { month: "Feb", positiveFlow: 320, negativeFlow: -170 },
-  { month: "Mar", positiveFlow: 350, negativeFlow: -190 },
-  { month: "Apr", positiveFlow: 340, negativeFlow: -180 },
-  { month: "May", positiveFlow: 365, negativeFlow: -205 },
-  { month: "Jun", positiveFlow: 390, negativeFlow: -214 },
+  { month: "Jan", negativeFlow: -140, positiveFlow: 280 },
+  { month: "Feb", negativeFlow: -170, positiveFlow: 320 },
+  { month: "Mar", negativeFlow: -190, positiveFlow: 350 },
+  { month: "Apr", negativeFlow: -180, positiveFlow: 340 },
+  { month: "May", negativeFlow: -205, positiveFlow: 365 },
+  { month: "Jun", negativeFlow: -214, positiveFlow: 390 },
 ];
 
 export const areaSplitSignalSeries = [
   {
-    name: "positiveFlow",
-    label: "Positive Flow",
     color: "var(--color-chart-2)",
     curveType: "natural",
+    label: "Positive Flow",
+    name: "positiveFlow",
   },
   {
-    name: "negativeFlow",
-    label: "Negative Flow",
     color: "var(--color-chart-5)",
     curveType: "stepAfter",
+    label: "Negative Flow",
+    name: "negativeFlow",
   },
 ] satisfies CompleteChartSeries[];

@@ -5,24 +5,24 @@ import { Autocomplete } from "../autocomplete";
 const options = ["Option A", "Option B", "Option C"] as const;
 
 export const baseMeta = {
-  title: "Components/Autocomplete",
-  component: Autocomplete,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Autocomplete,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "Autocomplete uses a shared size contract across input and popup child surfaces. Content and child slots can override root size.",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/Autocomplete",
 } satisfies Meta<typeof Autocomplete>;
 
 type Story = StoryObj<typeof baseMeta>;

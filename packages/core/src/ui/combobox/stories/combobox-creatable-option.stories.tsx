@@ -132,7 +132,6 @@ const CreatableOptionDemo = () => {
 };
 
 export const CreatableOption: Story = {
-  render: () => <CreatableOptionDemo />,
   parameters: {
     docs: {
       description: {
@@ -141,4 +140,5 @@ export const CreatableOption: Story = {
       },
     },
   },
+  render: () => <CreatableOptionDemo />,
 };

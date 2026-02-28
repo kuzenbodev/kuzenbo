@@ -12,7 +12,6 @@ import { Typography } from "@kuzenbo/core/ui/typography";
 
 const features = [
   {
-    title: "Composable Primitives",
     description:
       "Built on Base UI for maximum flexibility. Compose components exactly how you need them with render props and slots.",
     icon: (
@@ -30,9 +29,9 @@ const features = [
         />
       </svg>
     ),
+    title: "Composable Primitives",
   },
   {
-    title: "TypeScript First",
     description:
       "Fully typed components with intelligent autocomplete. Catch errors at compile time and ship with confidence.",
     icon: (
@@ -50,9 +49,9 @@ const features = [
         />
       </svg>
     ),
+    title: "TypeScript First",
   },
   {
-    title: "Accessible by Default",
     description:
       "ARIA-compliant components following WAI-ARIA guidelines. Keyboard navigation and screen reader support built-in.",
     icon: (
@@ -75,9 +74,9 @@ const features = [
         />
       </svg>
     ),
+    title: "Accessible by Default",
   },
   {
-    title: "Dark Mode Ready",
     description:
       "Seamless light and dark mode support with semantic color tokens. No extra configuration needed.",
     icon: (
@@ -95,9 +94,9 @@ const features = [
         />
       </svg>
     ),
+    title: "Dark Mode Ready",
   },
   {
-    title: "RTL Support",
     description:
       "Full right-to-left language support out of the box. Perfect for international applications with automatic layout flipping.",
     icon: (
@@ -115,9 +114,9 @@ const features = [
         />
       </svg>
     ),
+    title: "RTL Support",
   },
   {
-    title: "Tailwind Compatible",
     description:
       "Built with Tailwind CSS v4 and semantic tokens. Customize every aspect without fighting the framework.",
     icon: (
@@ -135,6 +134,7 @@ const features = [
         />
       </svg>
     ),
+    title: "Tailwind Compatible",
   },
 ];
 

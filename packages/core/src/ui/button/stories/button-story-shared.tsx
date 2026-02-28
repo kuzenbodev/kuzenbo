@@ -12,14 +12,9 @@ import { ButtonGroup } from "../../button-group/button-group";
 import { Button } from "../button";
 
 export const baseMeta = {
-  title: "Components/Button",
-  component: Button,
-  tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "outline", "secondary", "ghost", "danger", "link"],
-    },
+    disabled: { control: "boolean" },
+    isLoading: { control: "boolean" },
     size: {
       control: "select",
       options: [
@@ -35,9 +30,14 @@ export const baseMeta = {
         "icon-xl",
       ],
     },
-    isLoading: { control: "boolean" },
-    disabled: { control: "boolean" },
+    variant: {
+      control: "select",
+      options: ["default", "outline", "secondary", "ghost", "danger", "link"],
+    },
   },
+  component: Button,
+  tags: ["autodocs"],
+  title: "Components/Button",
 } satisfies Meta<typeof Button>;
 
 type Story = StoryObj<typeof baseMeta>;

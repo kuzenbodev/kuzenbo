@@ -1,4 +1,5 @@
-import { Link, type LinkOptions } from "@tiptap/extension-link";
+import { Link } from "@tiptap/extension-link";
+import type { LinkOptions } from "@tiptap/extension-link";
 
 export type CreateLinkExtensionOptions = Partial<LinkOptions>;
 

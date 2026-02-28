@@ -19,10 +19,10 @@ export interface ToggleGroupContextValue {
 }
 
 const ToggleGroupContext = createContext<ToggleGroupContextValue>({
-  size: "md",
-  variant: "default",
-  spacing: 0,
   orientation: "horizontal",
+  size: "md",
+  spacing: 0,
+  variant: "default",
 });
 
 export { ToggleGroupContext };

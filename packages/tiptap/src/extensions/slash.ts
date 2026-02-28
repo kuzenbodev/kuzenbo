@@ -38,8 +38,6 @@ const filterSlashItems = (
 };
 
 const SlashCommand = Extension.create<CreateSlashExtensionOptions>({
-  name: "slashCommand",
-
   addOptions() {
     return {
       char: "/",
@@ -51,15 +49,17 @@ const SlashCommand = Extension.create<CreateSlashExtensionOptions>({
     return [
       suggestionPlugin({
         char: this.options.char,
-        editor: this.editor,
-        items: ({ query }) => filterSlashItems(this.options.items ?? [], query),
         command: ({ editor, range, props }) => {
           const item = props as SlashCommandItem;
           item.command({ editor, range });
         },
+        editor: this.editor,
+        items: ({ query }) => filterSlashItems(this.options.items ?? [], query),
       }),
     ];
   },
+
+  name: "slashCommand",
 });
 
 export const createSlashExtension = (

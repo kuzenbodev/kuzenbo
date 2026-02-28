@@ -14,11 +14,11 @@ const tiptapEditorControlsGroupVariants = tv({
   base: "kb-tiptap-controls-group border-border/80 bg-background/60 border",
   variants: {
     size: {
-      xs: "gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
-      sm: "gap-0.5 p-0.5",
-      md: "gap-1 rounded-md p-0.5",
       lg: "gap-1 rounded-md p-1",
+      md: "gap-1 rounded-md p-0.5",
+      sm: "gap-0.5 p-0.5",
       xl: "gap-1.5 rounded-lg p-1",
+      xs: "gap-0.5 rounded-[min(var(--radius-md),8px)] p-0.5",
     },
     subtle: {
       true: "border-transparent bg-transparent p-0",
@@ -36,9 +36,9 @@ export const TiptapEditorControlsGroup = ({
   return (
     <Toolbar.Group
       className={tiptapEditorControlsGroupVariants({
+        className: cn(context.classNames?.group, className),
         size: context.size,
         subtle: context.variant === "subtle",
-        className: cn(context.classNames?.group, className),
       })}
       data-size={context.size}
       {...props}

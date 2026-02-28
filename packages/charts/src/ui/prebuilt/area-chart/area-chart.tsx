@@ -267,10 +267,10 @@ const AreaChart = <TData extends CompleteChartDatum = CompleteChartDatum>({
                   label={
                     withPointLabels
                       ? {
+                          content: pointLabelContentRenderer,
                           fill: "var(--color-foreground)",
                           fontSize: 12,
                           fontWeight: 600,
-                          content: pointLabelContentRenderer,
                           position: "top",
                         }
                       : false

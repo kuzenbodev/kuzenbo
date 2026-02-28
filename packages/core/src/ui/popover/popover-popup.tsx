@@ -1,24 +1,25 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { PopoverSize } from "./popover-size-context";
 import { useResolvedPopoverSize } from "./popover-size-context";
 
 const popoverPopupVariants = tv({
   base: "z-overlay bg-popover text-popover-foreground ring-foreground/10 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 flex origin-(--transform-origin) flex-col shadow-md ring-1 outline-hidden duration-100",
-  variants: {
-    size: {
-      xs: "w-64 gap-1.5 rounded-[min(var(--radius-md),8px)] p-2 text-xs",
-      sm: "w-72 gap-2 rounded-[min(var(--radius-md),10px)] p-3 text-sm",
-      md: "w-80 gap-3 rounded-md p-4 text-sm",
-      lg: "w-96 gap-3.5 rounded-md p-5 text-sm",
-      xl: "w-[28rem] gap-4 rounded-md p-6 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "w-96 gap-3.5 rounded-md p-5 text-sm",
+      md: "w-80 gap-3 rounded-md p-4 text-sm",
+      sm: "w-72 gap-2 rounded-[min(var(--radius-md),10px)] p-3 text-sm",
+      xl: "w-[28rem] gap-4 rounded-md p-6 text-base",
+      xs: "w-64 gap-1.5 rounded-[min(var(--radius-md),8px)] p-2 text-xs",
+    },
   },
 });
 

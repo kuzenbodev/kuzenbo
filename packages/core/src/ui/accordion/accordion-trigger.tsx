@@ -39,24 +39,24 @@ const accordionTriggerVariants = tv({
       variant: "ghost",
     },
   ],
-  variants: {
-    size: {
-      xs: "min-h-8 gap-2 py-2 text-xs **:data-[slot=accordion-trigger-icon]:size-3.5",
-      sm: "min-h-9 gap-2 py-2.5 text-sm **:data-[slot=accordion-trigger-icon]:size-3.5",
-      md: "min-h-10 gap-2.5 py-3 text-sm **:data-[slot=accordion-trigger-icon]:size-4",
-      lg: "min-h-11 gap-3 py-3.5 text-sm **:data-[slot=accordion-trigger-icon]:size-4",
-      xl: "min-h-12 gap-3.5 py-4 text-base **:data-[slot=accordion-trigger-icon]:size-5",
-    },
-    variant: {
-      default: "",
-      bordered: "",
-      ghost:
-        "hover:bg-muted/70 data-[panel-open]:bg-muted rounded-md hover:no-underline",
-    },
-  },
   defaultVariants: {
     size: "md",
     variant: "default",
+  },
+  variants: {
+    size: {
+      lg: "min-h-11 gap-3 py-3.5 text-sm **:data-[slot=accordion-trigger-icon]:size-4",
+      md: "min-h-10 gap-2.5 py-3 text-sm **:data-[slot=accordion-trigger-icon]:size-4",
+      sm: "min-h-9 gap-2 py-2.5 text-sm **:data-[slot=accordion-trigger-icon]:size-3.5",
+      xl: "min-h-12 gap-3.5 py-4 text-base **:data-[slot=accordion-trigger-icon]:size-5",
+      xs: "min-h-8 gap-2 py-2 text-xs **:data-[slot=accordion-trigger-icon]:size-3.5",
+    },
+    variant: {
+      bordered: "",
+      default: "",
+      ghost:
+        "hover:bg-muted/70 data-[panel-open]:bg-muted rounded-md hover:no-underline",
+    },
   },
 });
 

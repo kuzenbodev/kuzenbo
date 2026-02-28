@@ -17,7 +17,7 @@ const BarChartCompleteHorizontalRegionalDemo = () => (
     <BarChart
       barChartProps={{
         layout: "vertical",
-        margin: { top: 8, right: 12, left: 18, bottom: 8 },
+        margin: { bottom: 8, left: 18, right: 12, top: 8 },
       }}
       chartRootProps={{ className: "h-80 w-full" }}
       data={barHorizontalRegionalData}
@@ -33,9 +33,9 @@ const BarChartCompleteHorizontalRegionalDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/HorizontalRegional",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/HorizontalRegional",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

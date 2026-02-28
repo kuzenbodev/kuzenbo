@@ -26,19 +26,19 @@ const timePickerVariants = tv({
 
 const timePickerControlsListGroupVariants = tv({
   base: "grid grid-cols-2 gap-1",
+  defaultVariants: {
+    format: "24h",
+    withSeconds: false,
+  },
   variants: {
     format: {
       "12h": "grid-cols-3",
       "24h": "grid-cols-2",
     },
     withSeconds: {
-      true: "grid-cols-3",
       false: "",
+      true: "grid-cols-3",
     },
-  },
-  defaultVariants: {
-    format: "24h",
-    withSeconds: false,
   },
 });
 

@@ -1,61 +1,59 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { CSSProperties } from "react";
 
-import {
-  definePlaygroundControls,
-  type PlaygroundStateFromControls,
-} from "../../../playground/playground-control-model";
+import { definePlaygroundControls } from "../../../playground/playground-control-model";
+import type { PlaygroundStateFromControls } from "../../../playground/playground-control-model";
 import { definePlaygroundPresets } from "../../../playground/playground-preset-model";
 import { PlaygroundShell } from "../playground-shell";
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "select",
-    prop: "variant",
-    options: ["filled", "outline", "ghost"],
-    initialValue: "filled",
     defaultValue: "filled",
+    initialValue: "filled",
+    options: ["filled", "outline", "ghost"],
+    prop: "variant",
+    type: "select",
   },
   {
-    type: "segmented",
-    prop: "justify",
-    options: ["left", "center", "right"],
-    initialValue: "center",
     defaultValue: "center",
+    initialValue: "center",
+    options: ["left", "center", "right"],
+    prop: "justify",
+    type: "segmented",
   },
   {
-    type: "number",
-    prop: "radius",
-    initialValue: 8,
     defaultValue: 8,
-    min: 0,
+    initialValue: 8,
     max: 24,
+    min: 0,
+    prop: "radius",
     step: 1,
+    type: "number",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Ship release",
     defaultValue: "Ship release",
+    initialValue: "Ship release",
+    prop: "children",
+    type: "string",
   },
   {
-    type: "color",
-    prop: "color",
-    initialValue: "#3b82f6",
     defaultValue: "#3b82f6",
+    initialValue: "#3b82f6",
+    prop: "color",
     swatches: ["#3b82f6", "#22c55e", "#f97316", "#ef4444"],
+    type: "color",
   },
   {
-    type: "size",
-    prop: "size",
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    prop: "size",
+    type: "size",
     values: ["xs", "sm", "md", "lg", "xl"],
   },
 ] as const);
@@ -66,35 +64,35 @@ const presets = definePlaygroundPresets<
   {
     id: "outlineLocked",
     label: "Outline locked",
+    locks: ["variant", "size"],
     values: {
-      variant: "outline",
-      size: "sm",
+      children: "Open docs",
       color: "#0ea5e9",
       radius: 4,
-      children: "Open docs",
+      size: "sm",
+      variant: "outline",
     },
-    locks: ["variant", "size"],
   },
   {
     id: "filledLarge",
     label: "Filled large",
     values: {
-      variant: "filled",
-      size: "lg",
+      children: "Ship release",
       color: "#22c55e",
       radius: 14,
-      children: "Ship release",
+      size: "lg",
+      variant: "filled",
     },
   },
   {
     id: "ghostCompact",
     label: "Ghost compact",
     values: {
-      variant: "ghost",
-      size: "xs",
+      children: "Cancel deploy",
       color: "#ef4444",
       radius: 6,
-      children: "Cancel deploy",
+      size: "xs",
+      variant: "ghost",
     },
   },
 ] as const);
@@ -110,11 +108,11 @@ interface PlaygroundDemoPreviewProps {
 }
 
 const FONT_SIZES: Record<string, number> = {
-  xs: 12,
-  sm: 13,
-  md: 15,
   lg: 17,
+  md: 15,
+  sm: 13,
   xl: 19,
+  xs: 12,
 };
 
 const resolveJustifyContent = (
@@ -151,14 +149,14 @@ const PlaygroundDemoPreview = ({
       data-variant={variant}
       disabled={disabled}
       style={{
-        borderColor: color,
         backgroundColor: isFilled ? color : "transparent",
-        color: isFilled ? "#ffffff" : color,
+        borderColor: color,
         borderRadius: radius,
-        justifyContent: resolveJustifyContent(justify),
-        fontSize: FONT_SIZES[size] ?? FONT_SIZES.md,
-        opacity: disabled ? 0.6 : 1,
         boxShadow: isOutline ? `0 0 0 1px ${color} inset` : "none",
+        color: isFilled ? "#ffffff" : color,
+        fontSize: FONT_SIZES[size] ?? FONT_SIZES.md,
+        justifyContent: resolveJustifyContent(justify),
+        opacity: disabled ? 0.6 : 1,
       }}
       type="button"
     >
@@ -202,12 +200,12 @@ export const PlaygroundShellDemo = ({
 );
 
 export const baseMeta = {
-  title: "Code/Playground/PlaygroundShell",
-  component: PlaygroundShellDemo,
-  tags: ["autodocs"],
   args: {
     codeMode: "minimal",
   },
+  component: PlaygroundShellDemo,
+  tags: ["autodocs"],
+  title: "Code/Playground/PlaygroundShell",
 } satisfies Meta<typeof PlaygroundShellDemo>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -228,8 +226,8 @@ export const WithLockedPreset: Story = {
 
 export const PreviewOnly: Story = {
   args: {
-    showCode: false,
     initialPresetId: "ghostCompact",
+    showCode: false,
   },
 };
 
@@ -242,7 +240,7 @@ export const FullOutputWithPreset: Story = {
 
 export const LockedPresetWithoutCode: Story = {
   args: {
-    showCode: false,
     initialPresetId: "outlineLocked",
+    showCode: false,
   },
 };

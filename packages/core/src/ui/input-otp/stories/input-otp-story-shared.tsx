@@ -6,15 +6,15 @@ import { InputOTP } from "../input-otp";
 const inputOTPSizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/InputOTP",
-  component: InputOTP,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: inputOTPSizes,
     },
   },
+  component: InputOTP,
+  tags: ["autodocs"],
+  title: "Components/InputOTP",
 } satisfies Meta<typeof InputOTP>;
 
 type Story = StoryObj<typeof baseMeta>;

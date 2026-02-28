@@ -18,8 +18,10 @@ import {
   createPlaygroundStateSnapshot,
   resetPlaygroundState,
   setPlaygroundControlValue,
-  type PlaygroundStateOptions,
-  type PlaygroundStateSnapshot,
+} from "./playground-state-model";
+import type {
+  PlaygroundStateOptions,
+  PlaygroundStateSnapshot,
 } from "./playground-state-model";
 
 export interface UsePlaygroundStateOptions<
@@ -56,8 +58,8 @@ const createSnapshot = <
 ): PlaygroundStateSnapshot<TControls, TPresetId> =>
   createPlaygroundStateSnapshot({
     controls: options.controls,
-    presets: options.presets,
     initialPresetId: options.initialPresetId ?? null,
+    presets: options.presets,
   });
 
 const resetSnapshot = <
@@ -70,8 +72,8 @@ const resetSnapshot = <
   resetPlaygroundState(
     {
       controls: options.controls,
-      presets: options.presets,
       initialPresetId: options.initialPresetId ?? null,
+      presets: options.presets,
     },
     presetId
   );
@@ -154,14 +156,14 @@ export const usePlaygroundState = <
   );
 
   return {
-    state: snapshot.values,
     activePresetId: snapshot.activePresetId,
-    lockedProps: snapshot.lockedProps,
-    setValue,
     applyPreset,
-    reset,
-    isLocked,
     getPreviewProps,
+    isLocked,
+    lockedProps: snapshot.lockedProps,
+    reset,
+    setValue,
+    state: snapshot.values,
   };
 };
 

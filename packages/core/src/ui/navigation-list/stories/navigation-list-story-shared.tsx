@@ -19,9 +19,6 @@ import { NavigationList } from "../navigation-list";
 const sizes: UISize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const baseMeta = {
-  title: "Components/NavigationList",
-  component: NavigationList,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
@@ -36,15 +33,18 @@ export const baseMeta = {
       options: ["subtle", "light", "filled"],
     },
   },
+  component: NavigationList,
   parameters: {
-    layout: "padded",
     docs: {
       description: {
         component:
           "NavigationList provides aside navigation rows with Kuzenbo compound composition, size cascade, tone variants, and optional collapsible nesting.",
       },
     },
+    layout: "padded",
   },
+  tags: ["autodocs"],
+  title: "Components/NavigationList",
 } satisfies Meta<typeof NavigationList>;
 
 type Story = StoryObj<typeof baseMeta>;

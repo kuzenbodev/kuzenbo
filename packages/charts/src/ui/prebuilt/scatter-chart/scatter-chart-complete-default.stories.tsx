@@ -19,9 +19,9 @@ const ScatterChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Scatter/Default",
   component: ScatterChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Scatter/Default",
 } satisfies Meta<typeof ScatterChart>;
 
 type Story = StoryObj<typeof ScatterChart>;

@@ -1,6 +1,7 @@
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { ContextMenuContext } from "./context-menu-context";
@@ -8,17 +9,17 @@ import { ContextMenuOverlayContext } from "./context-menu-overlay-context";
 
 const contextMenuSeparatorVariants = tv({
   base: "bg-border h-px",
-  variants: {
-    size: {
-      xs: "-mx-0.5 my-0.5",
-      sm: "-mx-0.5 my-0.5",
-      md: "-mx-1 my-1",
-      lg: "-mx-1.5 my-1.5",
-      xl: "-mx-2 my-2",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "-mx-1.5 my-1.5",
+      md: "-mx-1 my-1",
+      sm: "-mx-0.5 my-0.5",
+      xl: "-mx-2 my-2",
+      xs: "-mx-0.5 my-0.5",
+    },
   },
 });
 

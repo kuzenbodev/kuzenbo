@@ -6,12 +6,12 @@ import type { DatePickerValue } from "../../types";
 import { DatePickerInput } from "../date-picker-input";
 
 export const baseMeta = {
-  title: "Components/DatePickerInput",
   component: DatePickerInput,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/DatePickerInput",
 } satisfies Meta<typeof DatePickerInput>;
 
 type Story = StoryObj<typeof baseMeta>;

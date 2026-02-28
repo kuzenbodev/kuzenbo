@@ -2,7 +2,8 @@
 import type { ComponentProps, KeyboardEvent, MouseEvent } from "react";
 import { cn, tv } from "tailwind-variants";
 
-import { PickerControl, type PickerControlProps } from "../picker-control";
+import { PickerControl } from "../picker-control";
+import type { PickerControlProps } from "../picker-control";
 import { useDatesContext } from "../use-dates-context";
 import { getMonthInTabOrder } from "./utils/get-month-in-tab-order";
 import { getMonthsData } from "./utils/get-months-data";

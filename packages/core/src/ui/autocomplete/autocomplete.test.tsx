@@ -102,7 +102,7 @@ describe("Autocomplete", () => {
   });
 
   it("renders Backdrop and Arrow wrappers with data-slot attributes", async () => {
-    await act(async () => {
+    await act(() => {
       render(
         <Autocomplete items={items} open>
           <Autocomplete.Input />
@@ -133,8 +133,8 @@ describe("Autocomplete", () => {
     ).toBeDefined();
   });
 
-  it("preserves callback className on Popup and exposes popup subprimitive", async () => {
-    await act(async () => {
+  it("preserves callback className on Popup and exposes popup subprimitive", () => {
+    act(() => {
       render(
         <Autocomplete items={items} open>
           <Autocomplete.Input />

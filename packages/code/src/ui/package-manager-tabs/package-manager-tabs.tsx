@@ -8,8 +8,8 @@ import {
   isPackageManager,
   PACKAGE_MANAGER_LABEL_BY_VALUE,
   PACKAGE_MANAGERS,
-  type PackageManager,
 } from "./package-manager-tabs-types";
+import type { PackageManager } from "./package-manager-tabs-types";
 
 export const PACKAGE_MANAGER_PREFERENCE_STORAGE_KEY = "kuzenbo:package-manager";
 
@@ -155,12 +155,12 @@ export const PackageManagerTabs = ({
   const tabs = useMemo(
     () =>
       availableManagers.map((manager) => ({
-        value: manager,
-        label: PACKAGE_MANAGER_LABEL_BY_VALUE[manager],
         content:
           typeof children === "function"
             ? children(manager)
             : (children?.[manager] ?? null),
+        label: PACKAGE_MANAGER_LABEL_BY_VALUE[manager],
+        value: manager,
       })),
     [availableManagers, children]
   );

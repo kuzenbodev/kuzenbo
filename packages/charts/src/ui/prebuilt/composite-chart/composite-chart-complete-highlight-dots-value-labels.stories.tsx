@@ -45,9 +45,9 @@ const CompositeChartCompleteHighlightDotsValueLabelsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Composite/HighlightDotsValueLabels",
   component: CompositeChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Composite/HighlightDotsValueLabels",
 } satisfies Meta<typeof CompositeChart>;
 
 type Story = StoryObj<typeof CompositeChart>;

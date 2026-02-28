@@ -8,8 +8,8 @@ export const donutDefaultData = [
 ];
 
 export const donutDefaultSeries = [
-  { name: "Direct", label: "Direct", color: "var(--color-chart-1)" },
-  { name: "Organic", label: "Organic", color: "var(--color-chart-2)" },
-  { name: "Paid", label: "Paid", color: "var(--color-chart-3)" },
-  { name: "Partners", label: "Partners", color: "var(--color-chart-4)" },
+  { color: "var(--color-chart-1)", label: "Direct", name: "Direct" },
+  { color: "var(--color-chart-2)", label: "Organic", name: "Organic" },
+  { color: "var(--color-chart-3)", label: "Paid", name: "Paid" },
+  { color: "var(--color-chart-4)", label: "Partners", name: "Partners" },
 ] satisfies CompleteChartSeries[];

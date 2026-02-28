@@ -1,24 +1,25 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useTableResolvedSize } from "./table-size-context";
 
 const tableCellVariants = tv({
   base: "align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0",
-  variants: {
-    size: {
-      xs: "px-1.5 py-1 text-xs",
-      sm: "px-2 py-1.5 text-xs",
-      md: "p-2 text-sm",
-      lg: "px-2.5 py-2 text-sm",
-      xl: "px-3 py-2.5 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "px-2.5 py-2 text-sm",
+      md: "p-2 text-sm",
+      sm: "px-2 py-1.5 text-xs",
+      xl: "px-3 py-2.5 text-base",
+      xs: "px-1.5 py-1 text-xs",
+    },
   },
 });
 

@@ -12,7 +12,8 @@ import {
   SIDEBAR_WIDTH,
   SIDEBAR_WIDTH_ICON,
 } from "./constants";
-import { SidebarContext, type SidebarContextProps } from "./use-sidebar";
+import { SidebarContext } from "./use-sidebar";
+import type { SidebarContextProps } from "./use-sidebar";
 export type SidebarProviderProps = ComponentProps<"div"> & {
   defaultOpen?: boolean;
   open?: boolean;
@@ -80,12 +81,12 @@ const SidebarProvider = ({
 
   const contextValue = useMemo<SidebarContextProps>(
     () => ({
-      state,
-      open,
-      setOpen,
       isMobile,
+      open,
       openMobile,
+      setOpen,
       setOpenMobile,
+      state,
       toggleSidebar,
     }),
     [state, open, setOpen, isMobile, openMobile, toggleSidebar]

@@ -5,12 +5,12 @@ import { DateTimePicker } from "../date-time-picker";
 import { DatesProvider } from "../dates-provider";
 
 export const baseMeta = {
-  title: "Components/DateTimePicker",
   component: DateTimePicker,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/DateTimePicker",
 } satisfies Meta<typeof DateTimePicker>;
 
 type Story = StoryObj<typeof baseMeta>;

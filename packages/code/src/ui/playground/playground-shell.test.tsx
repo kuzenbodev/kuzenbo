@@ -9,10 +9,8 @@ import {
 } from "@testing-library/react";
 
 import { definePlaygroundControls } from "../../playground/playground-control-model";
-import {
-  definePlaygroundPresets,
-  type PlaygroundPreset,
-} from "../../playground/playground-preset-model";
+import { definePlaygroundPresets } from "../../playground/playground-preset-model";
+import type { PlaygroundPreset } from "../../playground/playground-preset-model";
 import { PlaygroundShell } from "./playground-shell";
 
 afterEach(cleanup);
@@ -37,23 +35,23 @@ const DemoPreview = ({ variant, disabled, children }: DemoPreviewProps) => (
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "select",
-    prop: "variant",
-    options: ["filled", "outline"],
-    initialValue: "filled",
     defaultValue: "filled",
+    initialValue: "filled",
+    options: ["filled", "outline"],
+    prop: "variant",
+    type: "select",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Action",
     defaultValue: "Action",
+    initialValue: "Action",
+    prop: "children",
+    type: "string",
   },
 ] as const);
 
@@ -61,10 +59,10 @@ const presets = definePlaygroundPresets([
   {
     id: "outlineLocked",
     label: "Outline locked",
+    locks: ["variant"],
     values: {
       variant: "outline",
     },
-    locks: ["variant"],
   },
 ] as const satisfies readonly PlaygroundPreset<
   {

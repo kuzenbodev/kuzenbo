@@ -8,29 +8,29 @@ const radioSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 const billingCycles = [
   {
-    value: "monthly",
+    cost: 49,
     label: "Monthly",
     subtitle: "$49 per seat",
-    cost: 49,
+    value: "monthly",
   },
   {
-    value: "annual",
+    cost: 39,
     label: "Annual",
     subtitle: "$39 per seat (20% savings)",
-    cost: 39,
+    value: "annual",
   },
   {
-    value: "multi-year",
+    cost: 34,
     label: "24-month agreement",
     subtitle: "$34 per seat (best for committed teams)",
-    cost: 34,
+    value: "multi-year",
   },
 ] as const;
 
 export const baseMeta = {
-  title: "Components/RadioGroup",
   component: RadioGroup,
   tags: ["autodocs"],
+  title: "Components/RadioGroup",
 } satisfies Meta<typeof RadioGroup>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -69,8 +69,8 @@ const BillingCycleExample = () => {
       <p className="text-muted-foreground text-sm">
         Forecast:{" "}
         {selectedCycle.cost.toLocaleString("en-US", {
-          style: "currency",
           currency: "USD",
+          style: "currency",
         })}{" "}
         per seat per month equivalent.
       </p>

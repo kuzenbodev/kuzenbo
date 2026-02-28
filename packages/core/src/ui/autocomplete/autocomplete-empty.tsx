@@ -1,7 +1,8 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -14,17 +15,17 @@ export type AutocompleteEmptyProps = ComponentProps<
 
 const autocompleteEmptyVariants = tv({
   base: "text-center empty:m-0 empty:p-0",
-  variants: {
-    size: {
-      xs: "py-4 text-xs",
-      sm: "py-5 text-sm",
-      md: "py-6 text-sm",
-      lg: "py-7 text-sm",
-      xl: "py-8 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "py-7 text-sm",
+      md: "py-6 text-sm",
+      sm: "py-5 text-sm",
+      xl: "py-8 text-base",
+      xs: "py-4 text-xs",
+    },
   },
 });
 

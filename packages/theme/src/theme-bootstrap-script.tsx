@@ -3,8 +3,8 @@ import {
   getThemeBootstrapScript,
   getThemeBootstrapScriptNonce,
   THEME_BOOTSTRAP_SCRIPT_ID,
-  type ThemeSetting,
 } from "./theme-bootstrap";
+import type { ThemeSetting } from "./theme-bootstrap";
 
 export interface ThemeBootstrapScriptProps {
   defaultThemeSetting?: ThemeSetting;

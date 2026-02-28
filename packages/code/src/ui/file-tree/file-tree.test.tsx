@@ -8,30 +8,31 @@ import {
   waitFor,
 } from "@testing-library/react";
 
-import { FileTree, type FileTreeNode } from "./file-tree";
+import { FileTree } from "./file-tree";
+import type { FileTreeNode } from "./file-tree";
 
 afterEach(cleanup);
 
 const sampleTreeData: FileTreeNode[] = [
   {
-    id: "src",
-    name: "src",
     children: [
       {
         id: "src-index",
         name: "index.ts",
       },
       {
-        id: "src-ui",
-        name: "ui",
         children: [
           {
             id: "src-ui-code",
             name: "code-line-highlight.tsx",
           },
         ],
+        id: "src-ui",
+        name: "ui",
       },
     ],
+    id: "src",
+    name: "src",
   },
   {
     id: "package-json",

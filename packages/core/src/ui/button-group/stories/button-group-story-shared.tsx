@@ -12,12 +12,6 @@ import { ButtonGroup } from "../button-group";
 const SIZE_OPTIONS = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/ButtonGroup",
-  component: ButtonGroup,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     orientation: {
       control: "select",
@@ -28,6 +22,12 @@ export const baseMeta = {
       options: SIZE_OPTIONS,
     },
   },
+  component: ButtonGroup,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/ButtonGroup",
 } satisfies Meta<typeof ButtonGroup>;
 
 type Story = StoryObj<typeof baseMeta>;

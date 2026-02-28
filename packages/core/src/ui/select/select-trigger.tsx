@@ -4,7 +4,8 @@ import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { UnfoldMoreIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -19,19 +20,16 @@ import { SelectIcon } from "./select-icon";
 
 const selectTriggerVariants = tv({
   base: "cursor-clickable border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/20 data-placeholder:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 flex w-fit items-center justify-between border bg-transparent whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  defaultVariants: {
+    size: "md",
+  },
   variants: {
     size: {
-      xs: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.xs,
-        FIELD_TEXT_CLASS_BY_SIZE.xs,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
-        "gap-1 rounded-[min(var(--radius-md),8px)] pr-1.5 pl-2 *:data-[slot=select-value]:gap-1",
-      ],
-      sm: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.sm,
-        FIELD_TEXT_CLASS_BY_SIZE.sm,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
-        "gap-1 rounded-[min(var(--radius-md),10px)] pr-2 pl-2.5 *:data-[slot=select-value]:gap-1.5",
+      lg: [
+        FIELD_HEIGHT_CLASS_BY_SIZE.lg,
+        FIELD_TEXT_CLASS_BY_SIZE.lg,
+        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.lg,
+        "gap-1.5 rounded-md pr-2.5 pl-3 *:data-[slot=select-value]:gap-1.5",
       ],
       md: [
         FIELD_HEIGHT_CLASS_BY_SIZE.md,
@@ -39,11 +37,11 @@ const selectTriggerVariants = tv({
         DEFAULT_NESTED_ICON_CLASS_BY_SIZE.md,
         "gap-1.5 rounded-md pr-2 pl-2.5 *:data-[slot=select-value]:gap-1.5",
       ],
-      lg: [
-        FIELD_HEIGHT_CLASS_BY_SIZE.lg,
-        FIELD_TEXT_CLASS_BY_SIZE.lg,
-        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.lg,
-        "gap-1.5 rounded-md pr-2.5 pl-3 *:data-[slot=select-value]:gap-1.5",
+      sm: [
+        FIELD_HEIGHT_CLASS_BY_SIZE.sm,
+        FIELD_TEXT_CLASS_BY_SIZE.sm,
+        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.sm,
+        "gap-1 rounded-[min(var(--radius-md),10px)] pr-2 pl-2.5 *:data-[slot=select-value]:gap-1.5",
       ],
       xl: [
         FIELD_HEIGHT_CLASS_BY_SIZE.xl,
@@ -51,10 +49,13 @@ const selectTriggerVariants = tv({
         DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xl,
         "gap-2 rounded-md pr-3 pl-4 *:data-[slot=select-value]:gap-2",
       ],
+      xs: [
+        FIELD_HEIGHT_CLASS_BY_SIZE.xs,
+        FIELD_TEXT_CLASS_BY_SIZE.xs,
+        DEFAULT_NESTED_ICON_CLASS_BY_SIZE.xs,
+        "gap-1 rounded-[min(var(--radius-md),8px)] pr-1.5 pl-2 *:data-[slot=select-value]:gap-1",
+      ],
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 

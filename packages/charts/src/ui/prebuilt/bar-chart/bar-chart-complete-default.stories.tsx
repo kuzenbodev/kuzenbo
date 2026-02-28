@@ -18,9 +18,9 @@ const BarChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/Default",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/Default",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

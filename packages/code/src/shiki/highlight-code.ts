@@ -6,8 +6,8 @@ import {
   ensureShikiLanguageLoaded,
   ensureShikiThemeLoaded,
   getShikiHighlighter,
-  type ShikiHighlighter,
 } from "./shiki-highlighter";
+import type { ShikiHighlighter } from "./shiki-highlighter";
 import { resolveShikiLanguage } from "./shiki-language-map";
 import { createShikiTransformers } from "./shiki-transformers";
 

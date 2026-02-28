@@ -6,21 +6,21 @@ import { Input } from "../input";
 const inputSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export const baseMeta = {
-  title: "Components/Input",
-  component: Input,
-  tags: ["autodocs"],
   argTypes: {
-    type: {
-      control: "select",
-      options: ["text", "email", "password", "number", "search", "tel", "url"],
-    },
-    placeholder: { control: "text" },
     disabled: { control: "boolean" },
+    placeholder: { control: "text" },
     size: {
       control: "select",
       options: inputSizes,
     },
+    type: {
+      control: "select",
+      options: ["text", "email", "password", "number", "search", "tel", "url"],
+    },
   },
+  component: Input,
+  tags: ["autodocs"],
+  title: "Components/Input",
 } satisfies Meta<typeof Input>;
 
 type Story = StoryObj<typeof baseMeta>;

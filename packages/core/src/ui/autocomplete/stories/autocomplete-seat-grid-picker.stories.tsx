@@ -11,22 +11,22 @@ interface Seat {
 
 const seatRows: Seat[][] = [
   [
-    { value: "1A", label: "1A Window", available: true },
-    { value: "1B", label: "1B Middle", available: false },
-    { value: "1C", label: "1C Aisle", available: true },
-    { value: "1D", label: "1D Window", available: true },
+    { available: true, label: "1A Window", value: "1A" },
+    { available: false, label: "1B Middle", value: "1B" },
+    { available: true, label: "1C Aisle", value: "1C" },
+    { available: true, label: "1D Window", value: "1D" },
   ],
   [
-    { value: "2A", label: "2A Window", available: true },
-    { value: "2B", label: "2B Middle", available: true },
-    { value: "2C", label: "2C Aisle", available: false },
-    { value: "2D", label: "2D Window", available: true },
+    { available: true, label: "2A Window", value: "2A" },
+    { available: true, label: "2B Middle", value: "2B" },
+    { available: false, label: "2C Aisle", value: "2C" },
+    { available: true, label: "2D Window", value: "2D" },
   ],
   [
-    { value: "3A", label: "3A Window", available: true },
-    { value: "3B", label: "3B Middle", available: true },
-    { value: "3C", label: "3C Aisle", available: true },
-    { value: "3D", label: "3D Window", available: false },
+    { available: true, label: "3A Window", value: "3A" },
+    { available: true, label: "3B Middle", value: "3B" },
+    { available: true, label: "3C Aisle", value: "3C" },
+    { available: false, label: "3D Window", value: "3D" },
   ],
 ];
 
@@ -78,7 +78,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const SeatGridPicker: Story = {
-  render: () => <SeatGridPickerDemo />,
   parameters: {
     docs: {
       description: {
@@ -87,4 +86,5 @@ export const SeatGridPicker: Story = {
       },
     },
   },
+  render: () => <SeatGridPickerDemo />,
 };

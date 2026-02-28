@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { type ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
+import type { ChangeEvent } from "react";
 
 import { useClipboard } from "../use-clipboard";
 
 export const baseMeta = {
-  title: "Hooks/useClipboard",
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
+  title: "Hooks/useClipboard",
 } satisfies Meta;
 
 type Story = StoryObj<typeof baseMeta>;

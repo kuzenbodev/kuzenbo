@@ -6,21 +6,21 @@ describe("normalizePlaygroundOptions", () => {
   it("normalizes string and object options", () => {
     const options = normalizePlaygroundOptions([
       "sm",
-      { value: "md", label: "medium" },
+      { label: "medium", value: "md" },
     ]);
 
     expect(options).toEqual([
-      { value: "sm", label: "Sm" },
-      { value: "md", label: "Medium" },
+      { label: "Sm", value: "sm" },
+      { label: "Medium", value: "md" },
     ]);
   });
 
   it("can preserve original labels", () => {
     const options = normalizePlaygroundOptions(
-      [{ value: "xl", label: "XL" }],
+      [{ label: "XL", value: "xl" }],
       false
     );
 
-    expect(options).toEqual([{ value: "xl", label: "XL" }]);
+    expect(options).toEqual([{ label: "XL", value: "xl" }]);
   });
 });

@@ -7,7 +7,8 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Empty, type EmptyProps } from "../empty";
+import { Empty } from "../empty";
+import type { EmptyProps } from "../empty";
 
 const emptySizes: NonNullable<EmptyProps["size"]>[] = [
   "xs",
@@ -18,9 +19,9 @@ const emptySizes: NonNullable<EmptyProps["size"]>[] = [
 ];
 
 export const baseMeta = {
-  title: "Components/Empty",
   component: Empty,
   tags: ["autodocs"],
+  title: "Components/Empty",
 } satisfies Meta<typeof Empty>;
 
 type Story = StoryObj<typeof baseMeta>;
@@ -140,6 +141,14 @@ export const WithLink: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Empty size scales root density, slot spacing, and icon/media treatment from xs to xl.",
+      },
+    },
+  },
   render: () => (
     <div className="grid gap-4">
       {emptySizes.map((size) => (
@@ -165,12 +174,4 @@ export const Sizes: Story = {
       ))}
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Empty size scales root density, slot spacing, and icon/media treatment from xs to xl.",
-      },
-    },
-  },
 };

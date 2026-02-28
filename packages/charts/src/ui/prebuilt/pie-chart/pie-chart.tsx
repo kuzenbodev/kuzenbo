@@ -2,13 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useCallback } from "react";
-import {
-  Cell,
-  Pie,
-  PieChart as RechartsPieChart,
-  type LegendProps,
-  type TooltipProps,
-} from "recharts";
+import { Cell, Pie, PieChart as RechartsPieChart } from "recharts";
+import type { LegendProps, TooltipProps } from "recharts";
 
 import type { ChartRootProps } from "../../primitives/chart";
 import { CompleteRadialShell } from "../shared/complete-radial-shell";
@@ -126,8 +121,8 @@ const PieChart = <TData extends CompleteChartDatum = CompleteChartDatum>({
     endAngle,
     labelMode,
     nameKey,
-    size,
     series,
+    size,
     startAngle,
     tooltipProps,
     tooltipSource,

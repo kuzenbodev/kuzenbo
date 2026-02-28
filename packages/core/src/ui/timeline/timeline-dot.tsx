@@ -9,51 +9,51 @@ const timelineDotVariants = tv({
     "z-raised bg-background relative flex shrink-0 items-center justify-center rounded-full border-2",
     "size-[var(--timeline-dot-size)]",
   ],
-  variants: {
-    status: {
-      completed: "border-primary bg-primary",
-      active: "border-primary bg-background",
-      pending: "border-border bg-background",
-    },
-    orientation: {
-      vertical: "",
-      horizontal: "",
-    },
-    variant: {
-      default: "",
-      alternate: "",
-    },
-    isAlternateRight: {
-      true: "",
-      false: "",
-    },
-  },
   compoundVariants: [
     {
-      variant: "alternate",
-      orientation: "vertical",
-      isAlternateRight: false,
       className:
         "absolute -right-[calc(var(--timeline-dot-size)/2+var(--timeline-connector-thickness)/2)]",
+      isAlternateRight: false,
+      orientation: "vertical",
+      variant: "alternate",
     },
     {
-      variant: "alternate",
-      orientation: "vertical",
-      isAlternateRight: true,
       className:
         "absolute -left-[calc(var(--timeline-dot-size)/2+var(--timeline-connector-thickness)/2)]",
+      isAlternateRight: true,
+      orientation: "vertical",
+      variant: "alternate",
     },
     {
-      variant: "alternate",
-      orientation: "horizontal",
       className: "row-start-2",
+      orientation: "horizontal",
+      variant: "alternate",
     },
   ],
   defaultVariants: {
-    status: "pending",
-    orientation: "vertical",
-    variant: "default",
     isAlternateRight: false,
+    orientation: "vertical",
+    status: "pending",
+    variant: "default",
+  },
+  variants: {
+    isAlternateRight: {
+      false: "",
+      true: "",
+    },
+    orientation: {
+      horizontal: "",
+      vertical: "",
+    },
+    status: {
+      active: "border-primary bg-background",
+      completed: "border-primary bg-primary",
+      pending: "border-border bg-background",
+    },
+    variant: {
+      alternate: "",
+      default: "",
+    },
   },
 });
 
@@ -69,10 +69,10 @@ const TimelineDot = ({ className, render, ...props }: TimelineDotProps) => {
       {
         className: cn(
           timelineDotVariants({
-            status,
-            orientation,
-            variant,
             isAlternateRight,
+            orientation,
+            status,
+            variant,
           }),
           className
         ),
@@ -81,9 +81,9 @@ const TimelineDot = ({ className, render, ...props }: TimelineDotProps) => {
     ),
     render,
     state: {
+      orientation,
       slot: "timeline-dot",
       status,
-      orientation,
     },
   });
 };

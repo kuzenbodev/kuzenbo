@@ -1,22 +1,23 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedEmptySize } from "./empty-size-context";
 
 const emptyHeaderVariants = tv({
   base: "flex flex-col items-center",
-  variants: {
-    size: {
-      xs: "max-w-xs gap-1.5",
-      sm: "max-w-sm gap-2",
-      md: "max-w-sm gap-2.5",
-      lg: "max-w-md gap-3",
-      xl: "max-w-md gap-3.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "max-w-md gap-3",
+      md: "max-w-sm gap-2.5",
+      sm: "max-w-sm gap-2",
+      xl: "max-w-md gap-3.5",
+      xs: "max-w-xs gap-1.5",
+    },
   },
 });
 

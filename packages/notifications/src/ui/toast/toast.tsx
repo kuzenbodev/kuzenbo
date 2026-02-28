@@ -14,11 +14,11 @@ import { ToastPositioner } from "./toast-positioner";
 import { ToastProvider } from "./toast-provider";
 import { ToastRoot } from "./toast-root";
 import {
-  type UISize,
   ToastSizeContext,
   useKuzenboComponentDefaults,
   useResolvedToastSize,
 } from "./toast-size";
+import type { UISize } from "./toast-size";
 import { ToastTitle } from "./toast-title";
 import { ToastViewport } from "./toast-viewport";
 import { useToast } from "./use-toast";

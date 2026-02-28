@@ -37,28 +37,19 @@ const webSiteJsonLd = createWebSiteJsonLd({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kuzenbo.com"),
-  title: {
-    default: SITE_TITLE,
-    template: `%s | ${SITE_NAME}`,
-  },
-  description: SITE_DESCRIPTION,
-  applicationName: SITE_NAME,
   alternates: {
     canonical: "/",
   },
+  applicationName: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL("https://kuzenbo.com"),
   openGraph: {
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
     type: "website",
     url: "/",
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    siteName: SITE_NAME,
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
   },
   robots: {
     follow: true,
@@ -71,17 +62,26 @@ export const metadata: Metadata = {
     },
     index: true,
   },
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    description: SITE_DESCRIPTION,
+    title: SITE_TITLE,
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: [
     {
-      media: "(prefers-color-scheme: light)",
       color: "#f8fffb",
+      media: "(prefers-color-scheme: light)",
     },
     {
-      media: "(prefers-color-scheme: dark)",
       color: "#05210f",
+      media: "(prefers-color-scheme: dark)",
     },
   ],
 };

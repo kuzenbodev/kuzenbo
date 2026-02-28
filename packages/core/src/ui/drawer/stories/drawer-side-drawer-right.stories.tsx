@@ -32,12 +32,12 @@ const SideDrawerRightDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/SideDrawerRight",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/SideDrawerRight",
 };
 
 export default meta;

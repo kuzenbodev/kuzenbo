@@ -5,12 +5,16 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Command as CommandPrimitive } from "cmdk";
 import type { ComponentProps } from "react";
 import { useContext, useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { CommandContext, CommandItemContext } from "./command-context";
 
 const commandItemVariants = tv({
+  defaultVariants: {
+    size: "md",
+  },
   slots: {
     indicator:
       "data-[selected=true]:*:[svg]:text-foreground ml-auto opacity-0 group-has-[[data-slot=command-shortcut]]/command-item:hidden group-data-[checked=true]/command-item:opacity-100",
@@ -18,30 +22,27 @@ const commandItemVariants = tv({
   },
   variants: {
     size: {
-      xs: {
-        indicator: "size-3",
-        root: "gap-1 px-1.5 py-1 text-xs [&_svg:not([class*='size-'])]:size-3",
-      },
-      sm: {
-        indicator: "size-3.5",
-        root: "gap-1.5 px-2 py-1 text-sm [&_svg:not([class*='size-'])]:size-3.5",
+      lg: {
+        indicator: "size-4",
+        root: "gap-2 px-2.5 py-2 text-sm [&_svg:not([class*='size-'])]:size-4",
       },
       md: {
         indicator: "size-4",
         root: "gap-2 px-2 py-1.5 text-sm [&_svg:not([class*='size-'])]:size-4",
       },
-      lg: {
-        indicator: "size-4",
-        root: "gap-2 px-2.5 py-2 text-sm [&_svg:not([class*='size-'])]:size-4",
+      sm: {
+        indicator: "size-3.5",
+        root: "gap-1.5 px-2 py-1 text-sm [&_svg:not([class*='size-'])]:size-3.5",
       },
       xl: {
         indicator: "size-5",
         root: "gap-2.5 px-3 py-2.5 text-base [&_svg:not([class*='size-'])]:size-5",
       },
+      xs: {
+        indicator: "size-3",
+        root: "gap-1 px-1.5 py-1 text-xs [&_svg:not([class*='size-'])]:size-3",
+      },
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 

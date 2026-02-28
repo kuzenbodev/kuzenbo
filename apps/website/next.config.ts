@@ -60,13 +60,13 @@ const nextConfig: NextConfig = {
   logging: {
     incomingRequests: { ignore: [/\/api\/.*\/health/] },
   },
-  async redirects() {
+  redirects() {
     return [
       {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.kuzenbo.com" }],
         destination: "https://kuzenbo.com/:path*",
+        has: [{ type: "host", value: "www.kuzenbo.com" }],
         permanent: true,
+        source: "/:path*",
       },
     ];
   },

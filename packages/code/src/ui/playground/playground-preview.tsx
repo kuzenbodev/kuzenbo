@@ -1,4 +1,5 @@
-import { cloneElement, isValidElement, type ReactNode } from "react";
+import { cloneElement, isValidElement } from "react";
+import type { ReactNode } from "react";
 
 import { injectPlaygroundPreviewProps } from "../../playground/inject-playground-preview-props";
 

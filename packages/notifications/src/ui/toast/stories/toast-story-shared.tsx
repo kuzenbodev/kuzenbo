@@ -25,12 +25,7 @@ const ToastDemo = () => {
 };
 
 export const baseMeta: Meta<typeof ToastProvider> = {
-  title: "Components/Toast",
   component: ToastProvider,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-  },
   decorators: [
     (Story) => (
       <ToastProvider>
@@ -38,6 +33,11 @@ export const baseMeta: Meta<typeof ToastProvider> = {
       </ToastProvider>
     ),
   ],
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/Toast",
 };
 
 type Story = StoryObj<typeof baseMeta>;

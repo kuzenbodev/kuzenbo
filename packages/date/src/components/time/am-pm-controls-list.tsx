@@ -9,14 +9,14 @@ const amPmControlsListVariants = tv({
 
 const amPmControlVariants = tv({
   base: "text-foreground hover:bg-muted h-auto w-full items-center justify-center rounded-sm px-2 py-1 text-xs",
-  variants: {
-    active: {
-      true: "bg-primary text-primary-foreground hover:bg-primary/90",
-      false: "",
-    },
-  },
   defaultVariants: {
     active: false,
+  },
+  variants: {
+    active: {
+      false: "",
+      true: "bg-primary text-primary-foreground hover:bg-primary/90",
+    },
   },
 });
 

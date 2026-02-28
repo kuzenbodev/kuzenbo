@@ -1,6 +1,14 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
+  },
+  clean: true,
+  dts: {
+    sourcemap: true,
+  },
   entry: {
     provider: "src/provider/index.ts",
     size: "src/size/index.ts",
@@ -82,20 +90,12 @@ export default defineConfig({
     "ui/tooltip": "src/ui/tooltip/tooltip.tsx",
     "ui/typography": "src/ui/typography/typography.tsx",
   },
-  format: ["esm"],
-  dts: {
-    sourcemap: true,
-  },
-  sourcemap: true,
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
-  },
   exports: {
     devExports: true,
     packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

@@ -1,6 +1,14 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
+  },
+  clean: true,
+  dts: {
+    sourcemap: true,
+  },
   entry: {
     "ui/area-chart": "src/ui/prebuilt/area-chart/area-chart.tsx",
     "ui/bar-chart": "src/ui/prebuilt/bar-chart/bar-chart.tsx",
@@ -17,20 +25,12 @@ export default defineConfig({
     "ui/scatter-chart": "src/ui/prebuilt/scatter-chart/scatter-chart.tsx",
     "ui/sparkline": "src/ui/prebuilt/sparkline/sparkline.tsx",
   },
-  format: ["esm"],
-  dts: {
-    sourcemap: true,
-  },
-  sourcemap: true,
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
-  },
   exports: {
     devExports: true,
     packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

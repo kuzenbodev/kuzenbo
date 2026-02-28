@@ -4,8 +4,8 @@ import { ChartProvider } from "../provider/chart-provider";
 import { ChartTooltipContent } from "./chart-tooltip-content";
 
 const chartConfig = {
-  visits: { color: "var(--color-chart-1)", label: "Visits" },
   revenue: { color: "var(--color-chart-2)", label: "Revenue" },
+  visits: { color: "var(--color-chart-1)", label: "Visits" },
 };
 
 const tooltipPayload = [
@@ -28,29 +28,29 @@ const tooltipPayload = [
 ];
 
 const meta = {
-  title: "Charts/Primitives/TooltipContent",
-  component: ChartTooltipContent,
-  tags: ["autodocs"],
+  argTypes: {
+    indicator: {
+      control: "inline-radio",
+      options: ["dot", "line", "dashed"],
+    },
+    size: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
+  },
   args: {
     active: true,
     payload: tooltipPayload,
     size: "md",
   },
-  argTypes: {
-    size: {
-      control: "select",
-      options: ["xs", "sm", "md", "lg", "xl"],
-    },
-    indicator: {
-      control: "inline-radio",
-      options: ["dot", "line", "dashed"],
-    },
-  },
+  component: ChartTooltipContent,
   render: (args) => (
     <ChartProvider config={chartConfig}>
       <ChartTooltipContent {...args} />
     </ChartProvider>
   ),
+  tags: ["autodocs"],
+  title: "Charts/Primitives/TooltipContent",
 } satisfies Meta<typeof ChartTooltipContent>;
 
 export default meta;

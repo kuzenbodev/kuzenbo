@@ -4,7 +4,8 @@ import {
   completeChartShellVariants,
   formatNumberCompact,
 } from "../stories/complete-chart-story-shared";
-import { DonutChart, type DonutCenterLabelContext } from "./donut-chart";
+import { DonutChart } from "./donut-chart";
+import type { DonutCenterLabelContext } from "./donut-chart";
 import { donutDefaultData, donutDefaultSeries } from "./donut-chart-story-data";
 
 const donutCenterLabel = ({ total }: DonutCenterLabelContext): string =>
@@ -31,9 +32,9 @@ const DonutChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Donut/Default",
   component: DonutChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Donut/Default",
 } satisfies Meta<typeof DonutChart>;
 
 type Story = StoryObj<typeof DonutChart>;

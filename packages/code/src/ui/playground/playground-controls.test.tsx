@@ -9,16 +9,16 @@ afterEach(cleanup);
 
 const controls = definePlaygroundControls([
   {
-    type: "boolean",
-    prop: "disabled",
-    initialValue: false,
     defaultValue: false,
+    initialValue: false,
+    prop: "disabled",
+    type: "boolean",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Click me",
     defaultValue: "Click me",
+    initialValue: "Click me",
+    prop: "children",
+    type: "string",
   },
 ] as const);
 
@@ -31,8 +31,8 @@ describe("PlaygroundControls", () => {
         controls={controls}
         onChange={onChange}
         state={{
-          disabled: false,
           children: "Click me",
+          disabled: false,
         }}
       />
     );
@@ -55,8 +55,8 @@ describe("PlaygroundControls", () => {
         lockedProps={new Set(["children"] as const)}
         onChange={onChange}
         state={{
-          disabled: false,
           children: "Click me",
+          disabled: false,
         }}
       />
     );

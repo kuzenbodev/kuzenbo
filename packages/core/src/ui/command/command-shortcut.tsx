@@ -2,24 +2,25 @@
 
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { CommandContext, CommandItemContext } from "./command-context";
 
 const commandShortcutVariants = tv({
   base: "text-muted-foreground group-data-[selected=true]/command-item:text-foreground ml-auto",
-  variants: {
-    size: {
-      xs: "text-[10px] tracking-wide",
-      sm: "text-xs tracking-wide",
-      md: "text-xs tracking-widest",
-      lg: "text-xs tracking-widest",
-      xl: "text-sm tracking-widest",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-xs tracking-widest",
+      md: "text-xs tracking-widest",
+      sm: "text-xs tracking-wide",
+      xl: "text-sm tracking-widest",
+      xs: "text-[10px] tracking-wide",
+    },
   },
 });
 

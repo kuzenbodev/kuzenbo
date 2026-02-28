@@ -42,9 +42,9 @@ const BarChartCompleteWaterfallDynamicColorsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/WaterfallDynamicColors",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/WaterfallDynamicColors",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

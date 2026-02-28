@@ -7,14 +7,14 @@ import { TimeValue } from "./time-value";
 
 const timeGridControlVariants = tv({
   base: "text-foreground h-auto w-full items-center justify-between rounded-md px-2 py-1 text-left text-xs disabled:cursor-not-allowed disabled:opacity-50",
-  variants: {
-    active: {
-      true: "bg-primary text-primary-foreground hover:bg-primary/90",
-      false: "",
-    },
-  },
   defaultVariants: {
     active: false,
+  },
+  variants: {
+    active: {
+      false: "",
+      true: "bg-primary text-primary-foreground hover:bg-primary/90",
+    },
   },
 });
 

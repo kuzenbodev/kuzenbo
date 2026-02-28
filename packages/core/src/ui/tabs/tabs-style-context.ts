@@ -15,9 +15,9 @@ interface TabsStyleContextValue {
 }
 
 const tabsStyleDefaults: TabsStyleContextValue = {
-  variant: "default",
-  size: "md",
   fullWidth: false,
+  size: "md",
+  variant: "default",
 };
 
 const TabsStyleContext =

@@ -7,12 +7,12 @@ import {
 import { LineChart } from "./line-chart";
 
 const gradientCurveData = [
-  { month: "Jan", baseline: 148_000, booked: 156_500 },
-  { month: "Feb", baseline: 152_000, booked: 161_200 },
-  { month: "Mar", baseline: 157_000, booked: 167_400 },
-  { month: "Apr", baseline: 160_500, booked: 172_000 },
-  { month: "May", baseline: 163_000, booked: 175_300 },
-  { month: "Jun", baseline: 165_000, booked: 179_600 },
+  { baseline: 148_000, booked: 156_500, month: "Jan" },
+  { baseline: 152_000, booked: 161_200, month: "Feb" },
+  { baseline: 157_000, booked: 167_400, month: "Mar" },
+  { baseline: 160_500, booked: 172_000, month: "Apr" },
+  { baseline: 163_000, booked: 175_300, month: "May" },
+  { baseline: 165_000, booked: 179_600, month: "Jun" },
 ];
 
 const gradientCurveSeries = [
@@ -39,11 +39,11 @@ const LineChartCompleteGradientCurvePointsDemo = () => (
       dataKey="month"
       dotProps={{ r: 4, strokeWidth: 1 }}
       gradientStops={[
-        { offset: 0, color: "var(--color-chart-5)" },
-        { offset: 50, color: "var(--color-chart-2)" },
-        { offset: 100, color: "var(--color-chart-1)" },
+        { color: "var(--color-chart-5)", offset: 0 },
+        { color: "var(--color-chart-2)", offset: 50 },
+        { color: "var(--color-chart-1)", offset: 100 },
       ]}
-      lineChartProps={{ margin: { top: 8, right: 8, left: 0, bottom: 0 } }}
+      lineChartProps={{ margin: { bottom: 0, left: 0, right: 8, top: 8 } }}
       series={gradientCurveSeries}
       type="gradient"
       valueFormatter={formatRevenue}
@@ -55,9 +55,9 @@ const LineChartCompleteGradientCurvePointsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Line/GradientCurvePoints",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/GradientCurvePoints",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

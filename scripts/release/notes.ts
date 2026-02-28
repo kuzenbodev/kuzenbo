@@ -15,9 +15,9 @@ const config = loadReleaseConfig();
 const distTag = config.channelToDistTag[channelArg];
 
 const releaseNotesPath = ensureReleaseNotesFile({
-  version,
   channel: channelArg,
   distTag,
+  version,
 });
 
 console.log(`Created release notes: ${releaseNotesPath}`);

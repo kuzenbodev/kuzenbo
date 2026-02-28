@@ -1,4 +1,5 @@
-import { type ComponentProps, type ReactNode, useMemo } from "react";
+import { useMemo } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { cn, tv } from "tailwind-variants";
 
 import {
@@ -9,53 +10,53 @@ import {
 
 const timelineItemVariants = tv({
   base: "group/timeline-item relative flex",
-  variants: {
-    orientation: {
-      vertical: "",
-      horizontal: "",
-    },
-    variant: {
-      default: "",
-      alternate: "",
-    },
-    isAlternateRight: {
-      true: "",
-      false: "",
-    },
-  },
   compoundVariants: [
     {
-      orientation: "vertical",
-      variant: "default",
       className: "gap-3 pb-8 last:pb-0",
+      orientation: "vertical",
+      variant: "default",
     },
     {
+      className: "flex-col gap-3",
       orientation: "horizontal",
       variant: "default",
-      className: "flex-col gap-3",
     },
     {
-      orientation: "vertical",
-      variant: "alternate",
-      isAlternateRight: false,
       className: "w-1/2 gap-3 pr-6 pb-8 last:pb-0",
-    },
-    {
+      isAlternateRight: false,
       orientation: "vertical",
       variant: "alternate",
-      isAlternateRight: true,
-      className: "ml-auto w-1/2 flex-row-reverse gap-3 pb-8 pl-6 last:pb-0",
     },
     {
+      className: "ml-auto w-1/2 flex-row-reverse gap-3 pb-8 pl-6 last:pb-0",
+      isAlternateRight: true,
+      orientation: "vertical",
+      variant: "alternate",
+    },
+    {
+      className: "grid min-w-0 grid-rows-[1fr_auto_1fr] gap-3",
       orientation: "horizontal",
       variant: "alternate",
-      className: "grid min-w-0 grid-rows-[1fr_auto_1fr] gap-3",
     },
   ],
   defaultVariants: {
+    isAlternateRight: false,
     orientation: "vertical",
     variant: "default",
-    isAlternateRight: false,
+  },
+  variants: {
+    isAlternateRight: {
+      false: "",
+      true: "",
+    },
+    orientation: {
+      horizontal: "",
+      vertical: "",
+    },
+    variant: {
+      alternate: "",
+      default: "",
+    },
   },
 });
 
@@ -78,8 +79,8 @@ const TimelineItem = ({
   const itemContextValue = useMemo(
     () => ({
       index,
-      status,
       isAlternateRight,
+      status,
     }),
     [index, status, isAlternateRight]
   );
@@ -90,9 +91,9 @@ const TimelineItem = ({
         aria-current={status === "active" ? "step" : undefined}
         className={cn(
           timelineItemVariants({
+            isAlternateRight,
             orientation,
             variant,
-            isAlternateRight,
           }),
           className
         )}

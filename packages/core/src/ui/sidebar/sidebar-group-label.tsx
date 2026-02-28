@@ -23,8 +23,8 @@ const SidebarGroupLabel = ({
     ),
     render,
     state: {
-      slot: "sidebar-group-label",
       sidebar: "group-label",
+      slot: "sidebar-group-label",
     },
   });
 

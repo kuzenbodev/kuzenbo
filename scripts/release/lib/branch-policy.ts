@@ -85,7 +85,7 @@ export const resolveReleaseRef = ({
 
   if (inputRef) {
     assertSupportedReleaseRef(inputRef, config);
-    assertChannelMatchesRef({ channel, ref: inputRef, config });
+    assertChannelMatchesRef({ channel, config, ref: inputRef });
     return inputRef;
   }
 
@@ -103,6 +103,6 @@ export const resolveReleaseRef = ({
   }
 
   assertSupportedReleaseRef(resolvedCurrentBranch, config);
-  assertChannelMatchesRef({ channel, ref: resolvedCurrentBranch, config });
+  assertChannelMatchesRef({ channel, config, ref: resolvedCurrentBranch });
   return resolvedCurrentBranch;
 };

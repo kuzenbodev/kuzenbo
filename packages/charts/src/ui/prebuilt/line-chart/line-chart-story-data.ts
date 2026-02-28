@@ -10,83 +10,83 @@ export const lineDefaultData = [
 ];
 
 export const lineDefaultSeries = [
-  { name: "revenue", label: "Revenue", color: "var(--color-chart-1)" },
+  { color: "var(--color-chart-1)", label: "Revenue", name: "revenue" },
   {
-    name: "target",
-    label: "Target",
     color: "var(--color-chart-4)",
+    label: "Target",
+    name: "target",
     yAxisId: "right-axis",
   },
 ] satisfies CompleteChartSeries[];
 
 export const lineCampaignVsTargetData = [
-  { week: "W1", campaignReach: 48_300, targetReach: 50_000 },
-  { week: "W2", campaignReach: 52_600, targetReach: 53_000 },
-  { week: "W3", campaignReach: 56_200, targetReach: 56_000 },
-  { week: "W4", campaignReach: 55_500, targetReach: 59_000 },
-  { week: "W5", campaignReach: 63_800, targetReach: 62_000 },
-  { week: "W6", campaignReach: 67_900, targetReach: 65_000 },
-  { week: "W7", campaignReach: 69_200, targetReach: 68_000 },
-  { week: "W8", campaignReach: 72_800, targetReach: 71_000 },
+  { campaignReach: 48_300, targetReach: 50_000, week: "W1" },
+  { campaignReach: 52_600, targetReach: 53_000, week: "W2" },
+  { campaignReach: 56_200, targetReach: 56_000, week: "W3" },
+  { campaignReach: 55_500, targetReach: 59_000, week: "W4" },
+  { campaignReach: 63_800, targetReach: 62_000, week: "W5" },
+  { campaignReach: 67_900, targetReach: 65_000, week: "W6" },
+  { campaignReach: 69_200, targetReach: 68_000, week: "W7" },
+  { campaignReach: 72_800, targetReach: 71_000, week: "W8" },
 ];
 
 export const lineCampaignVsTargetSeries = [
   {
-    name: "campaignReach",
-    label: "Campaign Reach",
     color: "var(--color-chart-1)",
+    label: "Campaign Reach",
+    name: "campaignReach",
   },
   {
-    name: "targetReach",
-    label: "Target Reach",
     color: "var(--color-chart-3)",
+    label: "Target Reach",
+    name: "targetReach",
     strokeDasharray: "6 4",
   },
 ] satisfies CompleteChartSeries[];
 
 export const lineKpiDualAxisData = [
-  { month: "Jan", activeUsers: 24_100, nps: 39 },
-  { month: "Feb", activeUsers: 25_800, nps: 41 },
-  { month: "Mar", activeUsers: 27_600, nps: 43 },
-  { month: "Apr", activeUsers: 28_900, nps: 45 },
-  { month: "May", activeUsers: 30_700, nps: 44 },
-  { month: "Jun", activeUsers: 32_100, nps: 46 },
+  { activeUsers: 24_100, month: "Jan", nps: 39 },
+  { activeUsers: 25_800, month: "Feb", nps: 41 },
+  { activeUsers: 27_600, month: "Mar", nps: 43 },
+  { activeUsers: 28_900, month: "Apr", nps: 45 },
+  { activeUsers: 30_700, month: "May", nps: 44 },
+  { activeUsers: 32_100, month: "Jun", nps: 46 },
 ];
 
 export const lineKpiDualAxisSeries = [
   {
-    name: "activeUsers",
-    label: "Active Users",
     color: "var(--color-chart-2)",
+    label: "Active Users",
+    name: "activeUsers",
     yAxisId: "left-axis",
   },
   {
-    name: "nps",
-    label: "NPS",
     color: "var(--color-chart-5)",
+    label: "NPS",
+    name: "nps",
     yAxisId: "right-axis",
   },
 ] satisfies CompleteChartSeries[];
 
 export const lineForecastGapsData = [
-  { month: "Jan", actualRevenue: 128_000, forecastRevenue: 130_000 },
-  { month: "Feb", actualRevenue: 133_500, forecastRevenue: 136_000 },
-  { month: "Mar", actualRevenue: null, forecastRevenue: 141_000 },
-  { month: "Apr", actualRevenue: 145_300, forecastRevenue: 146_000 },
-  { month: "May", actualRevenue: null, forecastRevenue: 151_500 },
-  { month: "Jun", actualRevenue: 157_400, forecastRevenue: 156_000 },
+  { actualRevenue: 128_000, forecastRevenue: 130_000, month: "Jan" },
+  { actualRevenue: 133_500, forecastRevenue: 136_000, month: "Feb" },
+  { actualRevenue: null, forecastRevenue: 141_000, month: "Mar" },
+  { actualRevenue: 145_300, forecastRevenue: 146_000, month: "Apr" },
+  { actualRevenue: null, forecastRevenue: 151_500, month: "May" },
+  { actualRevenue: 157_400, forecastRevenue: 156_000, month: "Jun" },
 ];
 
 export const lineForecastGapsSeries = [
   {
-    name: "actualRevenue",
-    label: "Actual Revenue",
     color: "var(--color-chart-1)",
+    label: "Actual Revenue",
+    name: "actualRevenue",
   },
   {
-    name: "forecastRevenue",
-    label: "Forecast Revenue",
     color: "var(--color-chart-4)",
+    label: "Forecast Revenue",
+    name: "forecastRevenue",
     strokeDasharray: "5 5",
   },
 ] satisfies CompleteChartSeries[];
@@ -101,24 +101,24 @@ export const lineMinimalData = [
 ];
 
 export const lineMinimalSeries = [
-  { name: "velocity", label: "Velocity", color: "var(--color-chart-2)" },
+  { color: "var(--color-chart-2)", label: "Velocity", name: "velocity" },
 ] satisfies CompleteChartSeries[];
 
 export const lineSmallContainerData = [
-  { day: "Mon", signups: 38, activations: 27 },
-  { day: "Tue", signups: 42, activations: 29 },
-  { day: "Wed", signups: 40, activations: 31 },
-  { day: "Thu", signups: 51, activations: 35 },
-  { day: "Fri", signups: 57, activations: 39 },
-  { day: "Sat", signups: 49, activations: 34 },
-  { day: "Sun", signups: 44, activations: 30 },
+  { activations: 27, day: "Mon", signups: 38 },
+  { activations: 29, day: "Tue", signups: 42 },
+  { activations: 31, day: "Wed", signups: 40 },
+  { activations: 35, day: "Thu", signups: 51 },
+  { activations: 39, day: "Fri", signups: 57 },
+  { activations: 34, day: "Sat", signups: 49 },
+  { activations: 30, day: "Sun", signups: 44 },
 ];
 
 export const lineSmallContainerSeries = [
-  { name: "signups", label: "Signups", color: "var(--color-chart-1)" },
+  { color: "var(--color-chart-1)", label: "Signups", name: "signups" },
   {
-    name: "activations",
-    label: "Activations",
     color: "var(--color-chart-3)",
+    label: "Activations",
+    name: "activations",
   },
 ] satisfies CompleteChartSeries[];

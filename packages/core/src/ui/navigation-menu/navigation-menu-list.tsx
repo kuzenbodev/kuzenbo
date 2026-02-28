@@ -1,24 +1,25 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { NavigationMenuContext } from "./navigation-menu-context";
 
 const navigationMenuListVariants = tv({
   base: "group flex flex-1 list-none items-center justify-center",
-  variants: {
-    size: {
-      xs: "gap-0.5",
-      sm: "gap-0.5",
-      md: "gap-0",
-      lg: "gap-0.5",
-      xl: "gap-1",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-0.5",
+      md: "gap-0",
+      sm: "gap-0.5",
+      xl: "gap-1",
+      xs: "gap-0.5",
+    },
   },
 });
 

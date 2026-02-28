@@ -16,31 +16,31 @@ const presets = definePlaygroundPresets<DemoPresetState>([
   {
     id: "outline",
     label: "Outline",
+    locks: ["variant"],
     values: {
       disabled: false,
-      variant: "outline",
       size: "md",
+      variant: "outline",
     },
-    locks: ["variant"],
   },
   {
     id: "filled",
     label: "Filled",
     values: {
       disabled: false,
-      variant: "filled",
       size: "lg",
+      variant: "filled",
     },
   },
   {
     id: "disabled",
     label: "Disabled",
+    locks: ["disabled"],
     values: {
       disabled: true,
-      variant: "ghost",
       size: "sm",
+      variant: "ghost",
     },
-    locks: ["disabled"],
   },
 ] as const);
 
@@ -90,12 +90,12 @@ const PlaygroundPresetsDemo = ({
 };
 
 const meta = {
-  title: "Code/Playground/PlaygroundPresets/Default",
-  component: PlaygroundPresetsDemo,
-  tags: ["autodocs"],
   args: {
     initialPresetId: null,
   },
+  component: PlaygroundPresetsDemo,
+  tags: ["autodocs"],
+  title: "Code/Playground/PlaygroundPresets/Default",
 } satisfies Meta<typeof PlaygroundPresetsDemo>;
 
 export default meta;

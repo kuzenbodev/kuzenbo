@@ -6,14 +6,14 @@ import { TimeValue } from "./time-value";
 
 const timePresetControlVariants = tv({
   base: "border-border bg-background text-foreground hover:bg-muted h-auto w-full items-center justify-center rounded-sm border px-2 py-1 text-xs",
-  variants: {
-    active: {
-      true: "border-primary bg-primary text-primary-foreground hover:bg-primary/90",
-      false: "",
-    },
-  },
   defaultVariants: {
     active: false,
+  },
+  variants: {
+    active: {
+      false: "",
+      true: "border-primary bg-primary text-primary-foreground hover:bg-primary/90",
+    },
   },
 });
 

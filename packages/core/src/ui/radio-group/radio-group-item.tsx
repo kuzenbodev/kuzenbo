@@ -1,7 +1,8 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { CircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -10,17 +11,17 @@ import { RadioGroupIndicator } from "./radio-group-indicator";
 
 const radioGroupItemVariants = tv({
   base: "group/radio-group-item peer cursor-clickable border-input text-primary-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger-foreground aria-invalid:ring-danger-foreground/20 dark:bg-input/30 dark:aria-invalid:border-danger-foreground/50 dark:aria-invalid:ring-danger-foreground/40 relative flex shrink-0 rounded-full border shadow-xs outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px]",
-  variants: {
-    size: {
-      xs: "aspect-square size-3 after:absolute after:-inset-1.5",
-      sm: "aspect-square size-3.5 after:absolute after:-inset-2",
-      md: "aspect-square size-4 after:absolute after:-inset-2.5",
-      lg: "aspect-square size-[18px] after:absolute after:-inset-3",
-      xl: "aspect-square size-5 after:absolute after:-inset-3.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "aspect-square size-[18px] after:absolute after:-inset-3",
+      md: "aspect-square size-4 after:absolute after:-inset-2.5",
+      sm: "aspect-square size-3.5 after:absolute after:-inset-2",
+      xl: "aspect-square size-5 after:absolute after:-inset-3.5",
+      xs: "aspect-square size-3 after:absolute after:-inset-1.5",
+    },
   },
 });
 

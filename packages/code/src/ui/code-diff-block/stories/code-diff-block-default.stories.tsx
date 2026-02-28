@@ -3,11 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { CodeDiffBlock } from "../code-diff-block";
 
 const meta = {
-  title: "Code/CodeDiffBlock/Default",
-  component: CodeDiffBlock,
-  tags: ["autodocs"],
   args: {
-    oldTitle: "main",
+    newCode: `import { Button } from "@kuzenbo/core";
+
+export function Toolbar() {
+  return <Button variant="primary">Save changes</Button>;
+}
+`,
     newTitle: "feature/docs",
     oldCode: `import { Button } from "@kuzenbo/core";
 
@@ -15,13 +17,11 @@ export function Toolbar() {
   return <Button variant="outline">Save</Button>;
 }
 `,
-    newCode: `import { Button } from "@kuzenbo/core";
-
-export function Toolbar() {
-  return <Button variant="primary">Save changes</Button>;
-}
-`,
+    oldTitle: "main",
   },
+  component: CodeDiffBlock,
+  tags: ["autodocs"],
+  title: "Code/CodeDiffBlock/Default",
 } satisfies Meta<typeof CodeDiffBlock>;
 
 export default meta;
@@ -38,16 +38,6 @@ export const Unified: Story = {
 
 export const ApiContractMigration: Story = {
   args: {
-    oldTitle: "v1/search",
-    newTitle: "v2/search",
-    oldCode: `export interface SearchResponse {
-  items: string[];
-}
-
-export const fetchSearch = async (query: string): Promise<SearchResponse> => {
-  const response = await fetch("/api/search?q=" + query);
-  return response.json();
-};`,
     newCode: `export interface SearchResponse {
   results: {
     id: string;
@@ -63,34 +53,44 @@ export const fetchSearch = async (query: string): Promise<SearchResponse> => {
   });
   return response.json();
 };`,
+    newTitle: "v2/search",
+    oldCode: `export interface SearchResponse {
+  items: string[];
+}
+
+export const fetchSearch = async (query: string): Promise<SearchResponse> => {
+  const response = await fetch("/api/search?q=" + query);
+  return response.json();
+};`,
+    oldTitle: "v1/search",
   },
 };
 
 export const ReleaseWorkflowRefactor: Story = {
   args: {
-    oldTitle: "release.yml (old)",
-    newTitle: "release.yml (trusted publishing)",
-    oldCode: `- name: Publish
-  env:
-    NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-  run: npm publish --access public`,
     newCode: `permissions:
   id-token: write
 
 - name: Publish
   run: npm publish --provenance --access public`,
-    viewMode: "unified",
+    newTitle: "release.yml (trusted publishing)",
+    oldCode: `- name: Publish
+  env:
+    NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
+  run: npm publish --access public`,
+    oldTitle: "release.yml (old)",
     showLineNumbers: false,
+    viewMode: "unified",
   },
 };
 
 export const DarkUnifiedReview: Story = {
   args: {
-    viewMode: "unified",
-    useDarkTheme: true,
-    oldTitle: "before",
+    newCode: `const channel = process.env.RELEASE_CHANNEL ?? "next";`,
     newTitle: "after",
     oldCode: `const channel = process.env.RELEASE_CHANNEL ?? "stable";`,
-    newCode: `const channel = process.env.RELEASE_CHANNEL ?? "next";`,
+    oldTitle: "before",
+    useDarkTheme: true,
+    viewMode: "unified",
   },
 };

@@ -6,44 +6,44 @@ import { useTimeline, useTimelineItem } from "./use-timeline";
 
 const timelineContentVariants = tv({
   base: "flex-1",
-  variants: {
-    orientation: {
-      vertical: "",
-      horizontal: "",
-    },
-    variant: {
-      default: "",
-      alternate: "",
-    },
-    isAlternateRight: {
-      true: "",
-      false: "",
-    },
-  },
   compoundVariants: [
     {
-      variant: "alternate",
-      orientation: "vertical",
-      isAlternateRight: false,
       className: "text-right",
-    },
-    {
-      variant: "alternate",
-      orientation: "horizontal",
       isAlternateRight: false,
-      className: "row-start-3 pt-2",
+      orientation: "vertical",
+      variant: "alternate",
     },
     {
-      variant: "alternate",
+      className: "row-start-3 pt-2",
+      isAlternateRight: false,
       orientation: "horizontal",
-      isAlternateRight: true,
+      variant: "alternate",
+    },
+    {
       className: "row-start-1 pb-2",
+      isAlternateRight: true,
+      orientation: "horizontal",
+      variant: "alternate",
     },
   ],
   defaultVariants: {
+    isAlternateRight: false,
     orientation: "vertical",
     variant: "default",
-    isAlternateRight: false,
+  },
+  variants: {
+    isAlternateRight: {
+      false: "",
+      true: "",
+    },
+    orientation: {
+      horizontal: "",
+      vertical: "",
+    },
+    variant: {
+      alternate: "",
+      default: "",
+    },
   },
 });
 
@@ -63,9 +63,9 @@ const TimelineContent = ({
       {
         className: cn(
           timelineContentVariants({
+            isAlternateRight,
             orientation,
             variant,
-            isAlternateRight,
           }),
           className
         ),

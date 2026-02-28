@@ -2,7 +2,8 @@
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { ComboboxChipRemove } from "./combobox-chip-remove";
@@ -10,17 +11,17 @@ import { ComboboxContext } from "./combobox-context";
 
 const comboboxChipVariants = tv({
   base: "bg-muted text-foreground flex w-fit items-center justify-center gap-1 rounded-sm font-medium whitespace-nowrap has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-data-[slot=combobox-chip-remove]:pr-0",
-  variants: {
-    size: {
-      xs: "h-5 px-1 text-[11px]",
-      sm: "h-[calc(--spacing(5.25))] px-1.5 text-xs",
-      md: "h-[calc(--spacing(5.25))] px-1.5 text-xs",
-      lg: "h-6 px-2 text-xs",
-      xl: "h-7 px-2.5 text-sm",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-6 px-2 text-xs",
+      md: "h-[calc(--spacing(5.25))] px-1.5 text-xs",
+      sm: "h-[calc(--spacing(5.25))] px-1.5 text-xs",
+      xl: "h-7 px-2.5 text-sm",
+      xs: "h-5 px-1 text-[11px]",
+    },
   },
 });
 

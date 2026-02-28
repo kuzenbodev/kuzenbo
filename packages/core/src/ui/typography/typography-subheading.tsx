@@ -1,9 +1,7 @@
 import { createElement } from "react";
 
-import {
-  TypographyHeading,
-  type TypographyHeadingAliasProps,
-} from "./typography-heading";
+import { TypographyHeading } from "./typography-heading";
+import type { TypographyHeadingAliasProps } from "./typography-heading";
 export type TypographySubheadingProps = TypographyHeadingAliasProps;
 
 const defaultRender: NonNullable<TypographyHeadingAliasProps["render"]> = (

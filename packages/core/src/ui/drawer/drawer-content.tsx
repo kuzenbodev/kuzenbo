@@ -1,24 +1,25 @@
 "use client";
 
 import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerContentVariants = tv({
   base: "mx-auto w-full",
-  variants: {
-    size: {
-      xs: "max-w-[24rem]",
-      sm: "max-w-[28rem]",
-      md: "max-w-[32rem]",
-      lg: "max-w-[36rem]",
-      xl: "max-w-[40rem]",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "max-w-[36rem]",
+      md: "max-w-[32rem]",
+      sm: "max-w-[28rem]",
+      xl: "max-w-[40rem]",
+      xs: "max-w-[24rem]",
+    },
   },
 });
 

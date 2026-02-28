@@ -2,6 +2,9 @@ import { tv } from "tailwind-variants";
 
 const typographyHeadingVariants = tv({
   base: "text-foreground tracking-tight",
+  defaultVariants: {
+    variant: "h2",
+  },
   variants: {
     variant: {
       display: "text-5xl leading-tight font-semibold text-balance",
@@ -14,28 +17,25 @@ const typographyHeadingVariants = tv({
       subheading: "text-muted-foreground text-lg leading-7 font-medium",
     },
   },
-  defaultVariants: {
-    variant: "h2",
-  },
 });
 
 const typographyTextVariants = tv({
   base: "text-foreground",
+  defaultVariants: {
+    variant: "body",
+  },
   variants: {
     variant: {
       body: "text-base leading-7",
-      lead: "text-muted-foreground text-xl leading-8",
-      muted: "text-muted-foreground text-sm leading-6",
-      small: "text-sm leading-5 font-medium",
       caption: "text-muted-foreground text-xs leading-5",
-      overline:
-        "text-muted-foreground text-xs leading-5 font-semibold tracking-wide uppercase",
       eyebrow:
         "text-foreground text-xs leading-5 font-semibold tracking-widest uppercase",
+      lead: "text-muted-foreground text-xl leading-8",
+      muted: "text-muted-foreground text-sm leading-6",
+      overline:
+        "text-muted-foreground text-xs leading-5 font-semibold tracking-wide uppercase",
+      small: "text-sm leading-5 font-medium",
     },
-  },
-  defaultVariants: {
-    variant: "body",
   },
 });
 

@@ -13,6 +13,14 @@ export const WarningThreshold: Story = {
   args: {
     value: 74,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Warning-threshold meter using low/high/optimum guidance to communicate near-capacity usage.",
+      },
+    },
+  },
   render: ({ value }) => (
     <div className="w-64 space-y-2">
       <Meter max={100} min={0} value={value}>
@@ -24,12 +32,4 @@ export const WarningThreshold: Story = {
       </div>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Warning-threshold meter using low/high/optimum guidance to communicate near-capacity usage.",
-      },
-    },
-  },
 };

@@ -12,52 +12,52 @@ interface DirectoryPerson {
 
 const directoryPeople: DirectoryPerson[] = [
   {
-    value: "maya-johnson",
     label: "Maya Johnson",
     role: "Engineering Manager",
     team: "Platform",
+    value: "maya-johnson",
   },
   {
-    value: "david-park",
     label: "David Park",
     role: "Senior Frontend Engineer",
     team: "Growth",
+    value: "david-park",
   },
   {
-    value: "sarah-ali",
     label: "Sarah Ali",
     role: "Product Designer",
     team: "Design Systems",
+    value: "sarah-ali",
   },
   {
-    value: "luis-moreno",
     label: "Luis Moreno",
     role: "Backend Engineer",
     team: "API",
+    value: "luis-moreno",
   },
   {
-    value: "naomi-brown",
     label: "Naomi Brown",
     role: "Customer Success",
     team: "Enterprise",
+    value: "naomi-brown",
   },
   {
-    value: "xiao-wang",
     label: "Xiao Wang",
     role: "Data Analyst",
     team: "Operations",
+    value: "xiao-wang",
   },
   {
-    value: "alex-reed",
     label: "Alex Reed",
     role: "QA Engineer",
     team: "Release",
+    value: "alex-reed",
   },
   {
-    value: "priya-kapoor",
     label: "Priya Kapoor",
     role: "Security Engineer",
     team: "Security",
+    value: "priya-kapoor",
   },
 ];
 
@@ -106,7 +106,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const TeamDirectoryLimit: Story = {
-  render: () => <TeamDirectoryLimitDemo />,
   parameters: {
     docs: {
       description: {
@@ -115,4 +114,5 @@ export const TeamDirectoryLimit: Story = {
       },
     },
   },
+  render: () => <TeamDirectoryLimitDemo />,
 };

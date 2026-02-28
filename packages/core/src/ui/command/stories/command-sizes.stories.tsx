@@ -14,6 +14,14 @@ type Story = StoryObj<typeof baseMeta>;
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Root size cascades to input/list/group/item/empty/shortcut with optional child overrides.",
+      },
+    },
+  },
   render: () => (
     <div className="grid w-[28rem] gap-4">
       {sizes.map((size) => (
@@ -40,12 +48,4 @@ export const Sizes: Story = {
       ))}
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Root size cascades to input/list/group/item/empty/shortcut with optional child overrides.",
-      },
-    },
-  },
 };

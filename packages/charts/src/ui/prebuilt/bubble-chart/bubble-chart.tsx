@@ -229,11 +229,11 @@ const BubbleChart = <TData extends BubbleChartDatum = BubbleChartDatum>({
                   label={
                     withPointLabels
                       ? {
+                          content: pointLabelContentRenderer,
                           dataKey: pointLabelValueKey,
                           fill: "var(--color-foreground)",
                           fontSize: 12,
                           fontWeight: 600,
-                          content: pointLabelContentRenderer,
                           position: "top",
                         }
                       : false

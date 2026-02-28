@@ -1,6 +1,7 @@
 "use client";
 
-import { DialogBackdrop, type DialogBackdropProps } from "./dialog-backdrop";
+import { DialogBackdrop } from "./dialog-backdrop";
+import type { DialogBackdropProps } from "./dialog-backdrop";
 
 export type DialogOverlayProps = DialogBackdropProps;
 

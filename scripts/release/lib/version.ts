@@ -1,9 +1,5 @@
-import {
-  RELEASE_BUMPS,
-  RELEASE_CHANNELS,
-  type ReleaseBump,
-  type ReleaseChannel,
-} from "./types";
+import { RELEASE_BUMPS, RELEASE_CHANNELS } from "./types";
+import type { ReleaseBump, ReleaseChannel } from "./types";
 
 interface ParsedVersion {
   major: number;

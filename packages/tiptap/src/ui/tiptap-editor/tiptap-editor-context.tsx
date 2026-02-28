@@ -4,16 +4,14 @@ import type { Editor } from "@tiptap/core";
 import type { ReactNode } from "react";
 import { createContext, useContext } from "react";
 
-import {
-  DEFAULT_TIPTAP_LABELS,
-  type TiptapEditorLabels,
-} from "./tiptap-editor-labels";
+import { DEFAULT_TIPTAP_LABELS } from "./tiptap-editor-labels";
+import type { TiptapEditorLabels } from "./tiptap-editor-labels";
 import {
   DEFAULT_TIPTAP_EDITOR_SIZE,
   useGlobalUISize,
   useKuzenboComponentDefaults,
-  type TiptapEditorSize,
 } from "./tiptap-editor-size";
+import type { TiptapEditorSize } from "./tiptap-editor-size";
 
 export type TiptapEditorVariant = "default" | "subtle";
 

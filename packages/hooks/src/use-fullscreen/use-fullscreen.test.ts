@@ -19,21 +19,21 @@ describe("useFullscreen", () => {
     exitFullscreenMock = mock(asyncNoop);
 
     Object.defineProperty(document, "fullscreenElement", {
-      writable: true,
       configurable: true,
       value: null,
+      writable: true,
     });
 
     Object.defineProperty(document, "exitFullscreen", {
-      writable: true,
       configurable: true,
       value: exitFullscreenMock,
+      writable: true,
     });
 
     Object.defineProperty(document.documentElement, "requestFullscreen", {
-      writable: true,
       configurable: true,
       value: requestFullscreenMock,
+      writable: true,
     });
   });
 
@@ -68,9 +68,9 @@ describe("useFullscreen", () => {
 
   it("exits fullscreen when toggle is called and in fullscreen", async () => {
     Object.defineProperty(document, "fullscreenElement", {
-      writable: true,
       configurable: true,
       value: document.documentElement,
+      writable: true,
     });
 
     const { result } = renderHook(() => useFullscreen());
@@ -97,9 +97,9 @@ describe("useFullscreen", () => {
 
     act(() => {
       Object.defineProperty(document, "fullscreenElement", {
-        writable: true,
         configurable: true,
         value: document.documentElement,
+        writable: true,
       });
       document.documentElement.dispatchEvent(
         new Event("fullscreenchange", { bubbles: true })
@@ -110,9 +110,9 @@ describe("useFullscreen", () => {
 
     act(() => {
       Object.defineProperty(document, "fullscreenElement", {
-        writable: true,
         configurable: true,
         value: null,
+        writable: true,
       });
       document.documentElement.dispatchEvent(
         new Event("fullscreenchange", { bubbles: true })
@@ -131,9 +131,9 @@ describe("useFullscreen", () => {
 
     act(() => {
       Object.defineProperty(document, "fullscreenElement", {
-        writable: true,
         configurable: true,
         value: document.documentElement,
+        writable: true,
       });
       document.documentElement.dispatchEvent(
         new Event("fullscreenchange", { bubbles: true })
@@ -162,9 +162,9 @@ describe("useFullscreen", () => {
     const div = document.createElement("div");
     const requestSpy = mock(asyncNoop);
     Object.defineProperty(div, "requestFullscreen", {
-      writable: true,
       configurable: true,
       value: requestSpy,
+      writable: true,
     });
 
     const { result } = renderHook(() => useFullscreen());
@@ -187,9 +187,9 @@ describe("useFullscreen", () => {
       )
     );
     Object.defineProperty(document.documentElement, "removeEventListener", {
-      writable: true,
       configurable: true,
       value: removeSpy,
+      writable: true,
     });
 
     const { result, unmount } = renderHook(() => useFullscreen());

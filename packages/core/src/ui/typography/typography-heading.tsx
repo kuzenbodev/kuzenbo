@@ -1,6 +1,7 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { cn, type VariantProps } from "tailwind-variants";
+import { cn } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { typographyHeadingVariants } from "./typography-variants";
 

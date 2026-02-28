@@ -27,7 +27,7 @@ describe("line utils", () => {
 
   it("merges line dot props and applies dimmed opacity", () => {
     const dimmed = resolveLineDotProps({
-      dotProps: { r: 4, fill: "blue" },
+      dotProps: { fill: "blue", r: 4 },
       isDimmed: true,
       withDots: true,
     }) as Record<string, unknown>;

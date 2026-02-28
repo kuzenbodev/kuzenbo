@@ -31,9 +31,9 @@ const seatLimitValidation = (value: unknown) => {
 };
 
 export const baseMeta = {
-  title: "Components/Form",
   component: Form,
   tags: ["autodocs"],
+  title: "Components/Form",
 } satisfies Meta<typeof Form>;
 
 type Story = StoryObj<typeof baseMeta>;

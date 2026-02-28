@@ -1,4 +1,5 @@
-import { DEFAULT_DATE_ADAPTER, type DateAdapter } from "../../../adapter";
+import { DEFAULT_DATE_ADAPTER } from "../../../adapter";
+import type { DateAdapter } from "../../../adapter";
 import type {
   TimeAmPmLabels,
   TimeFormat,
@@ -149,17 +150,17 @@ export const convertTimeTo12HourFormat = ({
   amPmLabels: TimeAmPmLabels;
 }): TimePasteSplitReturn => {
   if (hours === null) {
-    return { hours: null, minutes: null, seconds: null, amPm: null };
+    return { amPm: null, hours: null, minutes: null, seconds: null };
   }
 
   const amPm = hours >= 12 ? amPmLabels.pm : amPmLabels.am;
   const hours12 = hours % 12 === 0 ? 12 : hours % 12;
 
   return {
+    amPm,
     hours: hours12,
     minutes: typeof minutes === "number" ? minutes : null,
     seconds: typeof seconds === "number" ? seconds : null,
-    amPm,
   };
 };
 
@@ -169,7 +170,7 @@ export const parseFormattedTime = ({
   time,
 }: TimePasteSplitInput): TimePasteSplitReturn => {
   if (time.trim() === "") {
-    return { hours: null, minutes: null, seconds: null, amPm: null };
+    return { amPm: null, hours: null, minutes: null, seconds: null };
   }
 
   const parsed = splitTimeString(time);

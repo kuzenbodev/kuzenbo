@@ -6,12 +6,12 @@ import type { DatePickerProps } from "../date-picker";
 import { DatePicker } from "../date-picker";
 
 export const baseMeta = {
-  title: "Components/DatePicker",
   component: DatePicker,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/DatePicker",
 } satisfies Meta<typeof DatePicker>;
 
 type Story = StoryObj<typeof baseMeta>;

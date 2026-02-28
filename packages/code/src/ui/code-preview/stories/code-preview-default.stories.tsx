@@ -39,8 +39,9 @@ export const Default: Story = DefaultStory;
 
 export const OnboardingInstallGuide: Story = {
   args: {
-    title: "Onboarding: install dependencies",
+    code: <CodeBlock code={onboardingFullCode} language="tsx" />,
     defaultMode: "split",
+    minimalCode: <CodeBlock code={onboardingMinimalCode} language="tsx" />,
     preview: (
       <div className="border-border bg-card space-y-3 rounded-md border p-4">
         <Typography.Small>Step 1 of 3</Typography.Small>
@@ -52,17 +53,17 @@ export const OnboardingInstallGuide: Story = {
         </Button>
       </div>
     ),
-    minimalCode: <CodeBlock code={onboardingMinimalCode} language="tsx" />,
-    code: <CodeBlock code={onboardingFullCode} language="tsx" />,
+    title: "Onboarding: install dependencies",
   },
 };
 
 export const SearchToolbarPreviewOnly: Story = {
   args: {
-    title: "Search toolbar preview",
-    mode: "preview",
-    hideModeControls: true,
+    code: <CodeBlock code={searchFullCode} language="tsx" />,
     hideCodeModeControls: true,
+    hideModeControls: true,
+    minimalCode: <CodeBlock code={searchPreviewCode} language="tsx" />,
+    mode: "preview",
     preview: (
       <div className="border-border bg-card rounded-md border p-4">
         <form
@@ -74,31 +75,12 @@ export const SearchToolbarPreviewOnly: Story = {
         </form>
       </div>
     ),
-    minimalCode: <CodeBlock code={searchPreviewCode} language="tsx" />,
-    code: <CodeBlock code={searchFullCode} language="tsx" />,
+    title: "Search toolbar preview",
   },
 };
 
 export const FullCodeReviewMode: Story = {
   args: {
-    title: "Route handler code review",
-    mode: "code",
-    defaultCodeMode: "full",
-    preview: (
-      <div className="border-border bg-card rounded-md border p-4">
-        <Typography.Muted>
-          Preview hidden while reviewing implementation details.
-        </Typography.Muted>
-      </div>
-    ),
-    minimalCode: (
-      <CodeBlock
-        code={`export async function GET() {
-  return Response.json({ status: "ok" });
-}`}
-        language="ts"
-      />
-    ),
     code: (
       <CodeBlock
         code={`export async function GET() {
@@ -115,5 +97,23 @@ export const FullCodeReviewMode: Story = {
         language="ts"
       />
     ),
+    defaultCodeMode: "full",
+    minimalCode: (
+      <CodeBlock
+        code={`export async function GET() {
+  return Response.json({ status: "ok" });
+}`}
+        language="ts"
+      />
+    ),
+    mode: "code",
+    preview: (
+      <div className="border-border bg-card rounded-md border p-4">
+        <Typography.Muted>
+          Preview hidden while reviewing implementation details.
+        </Typography.Muted>
+      </div>
+    ),
+    title: "Route handler code review",
   },
 };

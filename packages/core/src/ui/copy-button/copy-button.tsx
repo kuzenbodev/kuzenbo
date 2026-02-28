@@ -31,24 +31,24 @@ const STATUS_ORDER: CopyButtonStatus[] = [
 ];
 
 const STATUS_LABELS: CopyButtonStatusMap = {
-  idle: "Copy",
-  copying: "Copying",
   copied: "Copied",
+  copying: "Copying",
   failed: "Copy failed",
+  idle: "Copy",
 };
 
 const STATUS_LIVE_MESSAGES: CopyButtonStatusMap = {
-  idle: "Ready to copy to clipboard",
-  copying: "Copying to clipboard",
   copied: "Copied to clipboard",
+  copying: "Copying to clipboard",
   failed: "Failed to copy to clipboard",
+  idle: "Ready to copy to clipboard",
 };
 
 const STATUS_ICON_BY_STATUS = {
-  idle: Copy01Icon,
-  copying: Loading03Icon,
   copied: Tick02Icon,
+  copying: Loading03Icon,
   failed: Alert01Icon,
+  idle: Copy01Icon,
 } as const satisfies Record<
   CopyButtonStatus,
   NonNullable<HugeiconsProps["icon"]>

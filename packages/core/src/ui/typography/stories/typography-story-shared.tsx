@@ -4,9 +4,9 @@ import { Code } from "../../code/code";
 import { Typography } from "../typography";
 
 export const baseMeta = {
-  title: "Components/Typography",
   component: Typography.Text,
   tags: ["autodocs"],
+  title: "Components/Typography",
 } satisfies Meta<typeof Typography.Text>;
 
 type Story = StoryObj<typeof baseMeta>;

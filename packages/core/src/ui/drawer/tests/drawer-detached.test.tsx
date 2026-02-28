@@ -126,7 +126,7 @@ describe("Drawer detached and imperative controls", () => {
       expect(actionsRef.current).not.toBeNull();
     });
 
-    await act(async () => {
+    act(() => {
       actionsRef.current?.close();
     });
 
@@ -134,7 +134,7 @@ describe("Drawer detached and imperative controls", () => {
       expect(screen.queryByRole("dialog")).toBeNull();
     });
 
-    await act(async () => {
+    act(() => {
       actionsRef.current?.unmount();
     });
   });

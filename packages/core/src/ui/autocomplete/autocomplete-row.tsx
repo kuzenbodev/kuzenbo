@@ -1,7 +1,8 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -9,17 +10,17 @@ import { AutocompleteOverlayContext } from "./autocomplete-overlay-context";
 
 const autocompleteRowVariants = tv({
   base: "grid w-full",
-  variants: {
-    size: {
-      xs: "scroll-my-1",
-      sm: "scroll-my-1",
-      md: "scroll-my-1.5",
-      lg: "scroll-my-2",
-      xl: "scroll-my-2.5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "scroll-my-2",
+      md: "scroll-my-1.5",
+      sm: "scroll-my-1",
+      xl: "scroll-my-2.5",
+      xs: "scroll-my-1",
+    },
   },
 });
 

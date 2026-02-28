@@ -27,9 +27,9 @@ const ScatterChartCompletePointLabelsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Scatter/PointLabels",
   component: ScatterChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Scatter/PointLabels",
 } satisfies Meta<typeof ScatterChart>;
 
 type Story = StoryObj<typeof ScatterChart>;

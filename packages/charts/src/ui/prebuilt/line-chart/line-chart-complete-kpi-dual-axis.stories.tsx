@@ -21,34 +21,34 @@ const formatKpiValue = (value: number, seriesKey: string) => {
 const LineChartCompleteKpiDualAxisDemo = () => (
   <div className={completeChartShellVariants()}>
     <LineChart
-      lineChartProps={{ margin: { top: 8, right: 8, left: 0, bottom: 0 } }}
+      lineChartProps={{ margin: { bottom: 0, left: 0, right: 8, top: 8 } }}
       chartRootProps={{ className: "h-80 w-full" }}
       data={lineKpiDualAxisData}
       dataKey="month"
       referenceLines={[
         {
-          y: 45,
           color: "var(--color-chart-4)",
-          strokeDasharray: "4 4",
           label: "NPS Goal",
+          strokeDasharray: "4 4",
+          y: 45,
         },
       ]}
-      rightYAxisProps={{ yAxisId: "right-axis", width: 48 }}
+      rightYAxisProps={{ width: 48, yAxisId: "right-axis" }}
       series={lineKpiDualAxisSeries}
       tooltipProps={{ axisId: "left-axis", defaultIndex: 3, trigger: "click" }}
       valueFormatter={formatKpiValue}
       withDots={false}
       withLegend
       withRightYAxis
-      yAxisProps={{ yAxisId: "left-axis", width: 64 }}
+      yAxisProps={{ width: 64, yAxisId: "left-axis" }}
     />
   </div>
 );
 
 export default {
-  title: "Components/Chart Complete/Line/KpiDualAxis",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/KpiDualAxis",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

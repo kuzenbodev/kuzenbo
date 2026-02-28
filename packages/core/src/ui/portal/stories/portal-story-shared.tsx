@@ -5,12 +5,12 @@ import { Dialog } from "../../dialog/dialog";
 import { Portal } from "../portal";
 
 export const baseMeta = {
-  title: "Components/Portal",
-  component: Portal,
-  tags: ["autodocs"],
   args: {
     children: "Portaled content",
   },
+  component: Portal,
+  tags: ["autodocs"],
+  title: "Components/Portal",
 } satisfies Meta<typeof Portal>;
 
 type Story = StoryObj<typeof baseMeta>;

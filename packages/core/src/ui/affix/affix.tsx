@@ -3,7 +3,8 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { CSSProperties } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { OptionalPortal } from "../portal/optional-portal";
 import type { BasePortalProps } from "../portal/portal";
@@ -107,18 +108,18 @@ export const Affix = ({
 
   const element = useRender({
     defaultTagName: "div",
-    render,
     props: mergeProps<"div">(
       {
+        children,
         className: cn(affixVariants(), className),
         style: positionStyles,
-        children,
       },
       {
         "data-slot": "affix",
         ...props,
       }
     ),
+    render,
   });
 
   return (

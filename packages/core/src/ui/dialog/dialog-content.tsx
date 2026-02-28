@@ -6,7 +6,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "../button/button";
 import { DialogBackdrop } from "./dialog-backdrop";
 import { DialogClose } from "./dialog-close";
-import { DialogPopup, type DialogPopupProps } from "./dialog-popup";
+import { DialogPopup } from "./dialog-popup";
+import type { DialogPopupProps } from "./dialog-popup";
 import { DialogPortal } from "./dialog-portal";
 import { DialogViewport } from "./dialog-viewport";
 

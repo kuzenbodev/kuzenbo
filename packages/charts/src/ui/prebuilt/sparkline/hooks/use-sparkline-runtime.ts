@@ -81,11 +81,11 @@ const useSparklineRuntime = <
       name: valueKey,
     },
     gradientId,
-    resolvedGradientStops,
     resolveSparklineChartProps: (usesAutoSizeContainer: boolean) => ({
       ...mergedChartProps,
       responsive: resolvedChartPropsInput?.responsive ?? !usesAutoSizeContainer,
     }),
+    resolvedGradientStops,
     trendDirection,
   };
 };

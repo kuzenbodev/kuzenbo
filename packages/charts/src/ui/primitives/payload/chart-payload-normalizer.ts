@@ -67,17 +67,17 @@ const normalizeChartPayload = ({
     const resolvedColor = resolveColorExpression(getShapeColor(item), key);
 
     return {
+      color: resolvedColor ?? getSeriesColor(key ?? "value"),
       item,
-      key,
       itemConfig,
-      payloadData,
-      value: item.value,
+      key,
       label:
         itemConfig?.label ??
         toStringValue(item.name) ??
         toStringValue(item.dataKey) ??
         toStringValue(item.value),
-      color: resolvedColor ?? getSeriesColor(key ?? "value"),
+      payloadData,
+      value: item.value,
     };
   });
 };

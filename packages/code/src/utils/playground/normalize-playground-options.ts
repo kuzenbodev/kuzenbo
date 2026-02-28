@@ -15,13 +15,13 @@ export const normalizePlaygroundOptions = <TValue extends string>(
   options.map((option) => {
     if (typeof option === "string") {
       return {
-        value: option,
         label: transformLabels ? upperFirst(option) : option,
+        value: option,
       };
     }
 
     return {
-      value: option.value,
       label: transformLabels ? upperFirst(option.label) : option.label,
+      value: option.value,
     };
   });

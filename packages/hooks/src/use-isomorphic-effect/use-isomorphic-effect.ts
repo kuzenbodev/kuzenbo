@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  type DependencyList,
-  type EffectCallback,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import { useEffect, useLayoutEffect } from "react";
+import type { DependencyList, EffectCallback } from "react";
 
 // UseLayoutEffect will show warning if used during ssr, for example with Next.js
 // UseIsomorphicEffect removes it by replacing useLayoutEffect with useEffect during ssr

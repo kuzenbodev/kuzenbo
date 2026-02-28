@@ -30,110 +30,110 @@ export interface TiptapControlRequirement {
 }
 
 export const TIPTAP_CONTROL_REQUIREMENTS = {
-  bold: {
-    capability: "bold",
-    requiredExtensions: ["bold"],
-    requiredCommands: ["toggleBold"],
-  },
-  italic: {
-    capability: "italic",
-    requiredExtensions: ["italic"],
-    requiredCommands: ["toggleItalic"],
-  },
-  underline: {
-    capability: "underline",
-    requiredExtensions: ["underline"],
-    requiredCommands: ["toggleUnderline"],
-  },
-  strike: {
-    capability: "strike",
-    requiredExtensions: ["strike"],
-    requiredCommands: ["toggleStrike"],
-  },
-  heading: {
-    capability: "heading",
-    requiredExtensions: ["heading"],
-    requiredCommands: ["toggleHeading"],
-  },
   blockquote: {
     capability: "blockquote",
-    requiredExtensions: ["blockquote"],
     requiredCommands: ["toggleBlockquote"],
+    requiredExtensions: ["blockquote"],
   },
-  code: {
-    capability: "code",
-    requiredExtensions: ["code"],
-    requiredCommands: ["toggleCode"],
-  },
-  codeBlock: {
-    capability: "codeBlock",
-    requiredExtensions: ["codeBlock"],
-    requiredCommands: ["toggleCodeBlock"],
+  bold: {
+    capability: "bold",
+    requiredCommands: ["toggleBold"],
+    requiredExtensions: ["bold"],
   },
   bulletList: {
     capability: "bulletList",
-    requiredExtensions: ["bulletList"],
     requiredCommands: ["toggleBulletList"],
+    requiredExtensions: ["bulletList"],
   },
-  orderedList: {
-    capability: "orderedList",
-    requiredExtensions: ["orderedList"],
-    requiredCommands: ["toggleOrderedList"],
+  code: {
+    capability: "code",
+    requiredCommands: ["toggleCode"],
+    requiredExtensions: ["code"],
   },
-  taskList: {
-    capability: "taskList",
-    requiredExtensions: ["taskList", "taskItem"],
-    requiredCommands: ["toggleTaskList"],
+  codeBlock: {
+    capability: "codeBlock",
+    requiredCommands: ["toggleCodeBlock"],
+    requiredExtensions: ["codeBlock"],
   },
-  link: {
-    capability: "link",
-    requiredExtensions: ["link"],
-    requiredCommands: ["setLink", "unsetLink"],
-  },
-  textAlign: {
-    capability: "textAlign",
-    requiredExtensions: ["textAlign"],
-    requiredCommands: ["setTextAlign"],
-  },
-  textColor: {
-    capability: "textColor",
-    requiredExtensions: ["textStyle", "color"],
-    requiredCommands: ["setColor", "unsetColor"],
+  heading: {
+    capability: "heading",
+    requiredCommands: ["toggleHeading"],
+    requiredExtensions: ["heading"],
   },
   highlight: {
     capability: "highlight",
-    requiredExtensions: ["highlight"],
     requiredCommands: ["toggleHighlight"],
+    requiredExtensions: ["highlight"],
   },
-  table: {
-    capability: "table",
-    requiredExtensions: ["table", "tableRow", "tableCell", "tableHeader"],
-    requiredCommands: ["insertTable"],
+  italic: {
+    capability: "italic",
+    requiredCommands: ["toggleItalic"],
+    requiredExtensions: ["italic"],
   },
-  mention: {
-    capability: "mention",
-    requiredExtensions: ["mention"],
-    requiredCommands: [],
-  },
-  slash: {
-    capability: "slash",
-    requiredExtensions: ["slashCommand"],
-    requiredCommands: [],
-  },
-  undo: {
-    capability: "undo",
-    requiredExtensions: ["history"],
-    requiredCommands: ["undo"],
-  },
-  redo: {
-    capability: "redo",
-    requiredExtensions: ["history"],
-    requiredCommands: ["redo"],
+  link: {
+    capability: "link",
+    requiredCommands: ["setLink", "unsetLink"],
+    requiredExtensions: ["link"],
   },
   markdown: {
     capability: "markdown",
-    requiredExtensions: ["markdown"],
     requiredCommands: [],
+    requiredExtensions: ["markdown"],
+  },
+  mention: {
+    capability: "mention",
+    requiredCommands: [],
+    requiredExtensions: ["mention"],
+  },
+  orderedList: {
+    capability: "orderedList",
+    requiredCommands: ["toggleOrderedList"],
+    requiredExtensions: ["orderedList"],
+  },
+  redo: {
+    capability: "redo",
+    requiredCommands: ["redo"],
+    requiredExtensions: ["history"],
+  },
+  slash: {
+    capability: "slash",
+    requiredCommands: [],
+    requiredExtensions: ["slashCommand"],
+  },
+  strike: {
+    capability: "strike",
+    requiredCommands: ["toggleStrike"],
+    requiredExtensions: ["strike"],
+  },
+  table: {
+    capability: "table",
+    requiredCommands: ["insertTable"],
+    requiredExtensions: ["table", "tableRow", "tableCell", "tableHeader"],
+  },
+  taskList: {
+    capability: "taskList",
+    requiredCommands: ["toggleTaskList"],
+    requiredExtensions: ["taskList", "taskItem"],
+  },
+  textAlign: {
+    capability: "textAlign",
+    requiredCommands: ["setTextAlign"],
+    requiredExtensions: ["textAlign"],
+  },
+  textColor: {
+    capability: "textColor",
+    requiredCommands: ["setColor", "unsetColor"],
+    requiredExtensions: ["textStyle", "color"],
+  },
+  underline: {
+    capability: "underline",
+    requiredCommands: ["toggleUnderline"],
+    requiredExtensions: ["underline"],
+  },
+  undo: {
+    capability: "undo",
+    requiredCommands: ["undo"],
+    requiredExtensions: ["history"],
   },
 } as const satisfies Record<string, TiptapControlRequirement>;
 

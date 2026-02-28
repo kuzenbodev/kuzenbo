@@ -4,12 +4,12 @@ import { completeChartShellVariants } from "../stories/complete-chart-story-shar
 import { BarChart } from "./bar-chart";
 
 const percentStackedData = [
-  { month: "Jan", selfServe: 0.42, salesLed: 0.38, partner: 0.2 },
-  { month: "Feb", selfServe: 0.45, salesLed: 0.35, partner: 0.2 },
-  { month: "Mar", selfServe: 0.44, salesLed: 0.33, partner: 0.23 },
-  { month: "Apr", selfServe: 0.47, salesLed: 0.31, partner: 0.22 },
-  { month: "May", selfServe: 0.48, salesLed: 0.29, partner: 0.23 },
-  { month: "Jun", selfServe: 0.5, salesLed: 0.28, partner: 0.22 },
+  { month: "Jan", partner: 0.2, salesLed: 0.38, selfServe: 0.42 },
+  { month: "Feb", partner: 0.2, salesLed: 0.35, selfServe: 0.45 },
+  { month: "Mar", partner: 0.23, salesLed: 0.33, selfServe: 0.44 },
+  { month: "Apr", partner: 0.22, salesLed: 0.31, selfServe: 0.47 },
+  { month: "May", partner: 0.23, salesLed: 0.29, selfServe: 0.48 },
+  { month: "Jun", partner: 0.22, salesLed: 0.28, selfServe: 0.5 },
 ];
 
 const percentStackedSeries = [
@@ -34,9 +34,9 @@ const BarChartCompletePercentStackedLabelsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Bar/PercentStackedLabels",
   component: BarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Bar/PercentStackedLabels",
 } satisfies Meta<typeof BarChart>;
 
 type Story = StoryObj<typeof BarChart>;

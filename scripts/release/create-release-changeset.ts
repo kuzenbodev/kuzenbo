@@ -77,8 +77,8 @@ export const createReleaseChangesetFile = ({
   }
 
   const content = buildReleaseChangesetContent({
-    packages,
     bump,
+    packages,
     summary: cleanedSummary,
   });
   fs.writeFileSync(filePath, content, "utf8");
@@ -100,9 +100,9 @@ if (import.meta.main) {
   }
 
   const filePath = createReleaseChangesetFile({
-    packages: readWorkspacePackages(),
     bump: bumpArg as ReleaseBump,
     channel: channelArg as ReleaseChannel,
+    packages: readWorkspacePackages(),
     summary: summaryArg,
   });
 

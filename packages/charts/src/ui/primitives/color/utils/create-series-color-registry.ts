@@ -37,19 +37,19 @@ const createSeriesColorRegistry = (
     const fallback = getFallbackColor(index);
     const colorByTheme: Record<ChartThemeName, string> = itemConfig.theme
       ? {
-          light: normalizeColorWithFallback(itemConfig.theme.light, fallback),
           dark: normalizeColorWithFallback(itemConfig.theme.dark, fallback),
+          light: normalizeColorWithFallback(itemConfig.theme.light, fallback),
         }
       : {
-          light: normalizeColorWithFallback(itemConfig.color, fallback),
           dark: normalizeColorWithFallback(itemConfig.color, fallback),
+          light: normalizeColorWithFallback(itemConfig.color, fallback),
         };
 
     const descriptor: ChartSeriesColorDescriptor = {
+      colorByTheme,
       key,
       slug,
       varName,
-      colorByTheme,
     };
 
     byKey[key] = descriptor;
@@ -59,9 +59,9 @@ const createSeriesColorRegistry = (
   }
 
   return {
-    order,
     byKey,
     byVarName,
+    order,
   };
 };
 

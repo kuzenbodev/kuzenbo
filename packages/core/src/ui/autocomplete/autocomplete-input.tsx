@@ -1,24 +1,25 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { AutocompleteContext } from "./autocomplete-context";
 
 const autocompleteInputVariants = tv({
   base: "border-input selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-danger aria-invalid:ring-danger/50 dark:bg-input/30 flex w-full min-w-0 border bg-transparent transition-colors outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50",
-  variants: {
-    size: {
-      xs: "h-6 rounded-[min(var(--radius-md),8px)] px-2 py-0.5 text-xs",
-      sm: "h-8 rounded-[min(var(--radius-md),10px)] px-2.5 py-1 text-sm",
-      md: "h-9 rounded-md px-2.5 py-1 text-base md:text-sm",
-      lg: "h-10 rounded-md px-3 py-1.5 text-base md:text-sm",
-      xl: "h-11 rounded-md px-4 py-1.5 text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-10 rounded-md px-3 py-1.5 text-base md:text-sm",
+      md: "h-9 rounded-md px-2.5 py-1 text-base md:text-sm",
+      sm: "h-8 rounded-[min(var(--radius-md),10px)] px-2.5 py-1 text-sm",
+      xl: "h-11 rounded-md px-4 py-1.5 text-base",
+      xs: "h-6 rounded-[min(var(--radius-md),8px)] px-2 py-0.5 text-xs",
+    },
   },
 });
 

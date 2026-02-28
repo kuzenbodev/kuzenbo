@@ -55,7 +55,6 @@ const CommandDialogStory = () => {
 };
 
 export const Dialog: Story = {
-  render: () => <CommandDialogStory />,
   parameters: {
     docs: {
       description: {
@@ -64,4 +63,5 @@ export const Dialog: Story = {
       },
     },
   },
+  render: () => <CommandDialogStory />,
 };

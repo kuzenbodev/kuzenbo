@@ -3,7 +3,8 @@
 import { StarIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";
 
@@ -16,43 +17,43 @@ export const ratingStarVariants = tv({
     // Transitions: smooth color transitions
     "transition-colors duration-150",
   ],
+  defaultVariants: {
+    editable: false,
+    size: "md",
+  },
   variants: {
-    size: {
-      xs: [
-        // Extra small size: smallest star
-        "size-3",
+    editable: {
+      false: [
+        // Non-editable: no pointer cursor
+        "cursor-default",
       ],
-      sm: [
-        // Small size: smaller star
-        "size-3.5",
+      true: [
+        // Hover: slight scale on hover when editable
+        "hover:scale-110",
+      ],
+    },
+    size: {
+      lg: [
+        // Large size: larger star
+        "size-5",
       ],
       md: [
         // Medium size: default star
         "size-4",
       ],
-      lg: [
-        // Large size: larger star
-        "size-5",
+      sm: [
+        // Small size: smaller star
+        "size-3.5",
       ],
       xl: [
         // Extra large size: largest star
         "size-6",
       ],
-    },
-    editable: {
-      true: [
-        // Hover: slight scale on hover when editable
-        "hover:scale-110",
-      ],
-      false: [
-        // Non-editable: no pointer cursor
-        "cursor-default",
+      xs: [
+        // Extra small size: smallest star
+        "size-3",
       ],
     },
-  },
-  defaultVariants: {
-    size: "md",
-    editable: false,
   },
 });
 
@@ -63,20 +64,20 @@ export const ratingStarFilledVariants = tv({
     // Fill: semantic warning token for filled stars
     "fill-warning-foreground text-warning-foreground",
   ],
+  defaultVariants: {
+    visible: true,
+  },
   variants: {
     visible: {
-      true: [
-        // Visible: show filled star
-        "opacity-100",
-      ],
       false: [
         // Hidden: hide filled star
         "opacity-0",
       ],
+      true: [
+        // Visible: show filled star
+        "opacity-100",
+      ],
     },
-  },
-  defaultVariants: {
-    visible: true,
   },
 });
 
@@ -87,20 +88,20 @@ export const ratingStarHalfVariants = tv({
     // Fill: semantic warning token for half-filled stars
     "fill-warning-foreground text-warning-foreground",
   ],
+  defaultVariants: {
+    visible: true,
+  },
   variants: {
     visible: {
-      true: [
-        // Visible: show half-filled star
-        "opacity-100",
-      ],
       false: [
         // Hidden: hide half-filled star
         "opacity-0",
       ],
+      true: [
+        // Visible: show half-filled star
+        "opacity-100",
+      ],
     },
-  },
-  defaultVariants: {
-    visible: true,
   },
 });
 
@@ -111,20 +112,20 @@ export const ratingStarOutlineVariants = tv({
     // Color: muted color for outline
     "text-muted-foreground",
   ],
+  defaultVariants: {
+    active: false,
+  },
   variants: {
     active: {
-      true: [
-        // Active: slightly visible outline
-        "opacity-30",
-      ],
       false: [
         // Inactive: more visible outline
         "opacity-100",
       ],
+      true: [
+        // Active: slightly visible outline
+        "opacity-30",
+      ],
     },
-  },
-  defaultVariants: {
-    active: false,
   },
 });
 
@@ -183,7 +184,7 @@ export const RatingStar = ({
     <button
       aria-label={getAriaLabel()}
       className={cn(
-        ratingStarVariants({ size: resolvedSize, editable }),
+        ratingStarVariants({ editable, size: resolvedSize }),
         className
       )}
       data-size={resolvedSize}

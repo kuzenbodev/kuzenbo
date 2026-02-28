@@ -2,32 +2,30 @@ import { describe, expect, it } from "bun:test";
 
 import { act, renderHook } from "@testing-library/react";
 
-import {
-  definePlaygroundControls,
-  type PlaygroundStateFromControls,
-} from "./playground-control-model";
+import { definePlaygroundControls } from "./playground-control-model";
+import type { PlaygroundStateFromControls } from "./playground-control-model";
 import { definePlaygroundPresets } from "./playground-preset-model";
 import { usePlaygroundState } from "./use-playground-state";
 
 const controls = definePlaygroundControls([
   {
-    type: "segmented",
-    prop: "variant",
-    options: ["filled", "outline", "subtle"],
-    initialValue: "filled",
     defaultValue: "filled",
+    initialValue: "filled",
+    options: ["filled", "outline", "subtle"],
+    prop: "variant",
+    type: "segmented",
   },
   {
-    type: "size",
-    prop: "size",
-    initialValue: "md",
     defaultValue: "md",
+    initialValue: "md",
+    prop: "size",
+    type: "size",
   },
   {
-    type: "string",
-    prop: "children",
-    initialValue: "Action",
     defaultValue: "Action",
+    initialValue: "Action",
+    prop: "children",
+    type: "string",
   },
 ] as const);
 
@@ -37,11 +35,11 @@ const presets = definePlaygroundPresets<
   {
     id: "dense",
     label: "Dense",
+    locks: ["size"],
     values: {
       size: "sm",
       variant: "outline",
     },
-    locks: ["size"],
   },
 ] as const);
 
@@ -57,10 +55,10 @@ describe("usePlaygroundState", () => {
     const injected = result.current.getPreviewProps({ id: "preview-1" });
 
     expect(injected).toEqual({
-      id: "preview-1",
-      variant: "filled",
-      size: "md",
       children: "Action",
+      id: "preview-1",
+      size: "md",
+      variant: "filled",
     });
   });
 
@@ -108,8 +106,8 @@ describe("usePlaygroundState", () => {
     const { result } = renderHook(() =>
       usePlaygroundState({
         controls,
-        presets,
         initialPresetId: "dense",
+        presets,
       })
     );
 
@@ -120,9 +118,9 @@ describe("usePlaygroundState", () => {
 
     expect(result.current.activePresetId).toBe("dense");
     expect(result.current.state).toEqual({
-      variant: "outline",
-      size: "sm",
       children: "Action",
+      size: "sm",
+      variant: "outline",
     });
   });
 });

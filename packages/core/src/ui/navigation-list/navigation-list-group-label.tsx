@@ -1,33 +1,34 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
 } from "./navigation-list-context";
+import type { NavigationListTone } from "./navigation-list-context";
 
 const navigationListGroupLabelVariants = tv({
   base: "flex items-center rounded-md px-2 font-medium tracking-wide uppercase",
-  variants: {
-    size: {
-      xs: "h-6 text-[10px]",
-      sm: "h-7 text-[10px]",
-      md: "h-8 text-[11px]",
-      lg: "h-9 text-xs",
-      xl: "h-10 text-xs",
-    },
-    tone: {
-      surface: "text-muted-foreground",
-      sidebar: "text-sidebar-foreground/70",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
+  },
+  variants: {
+    size: {
+      lg: "h-9 text-xs",
+      md: "h-8 text-[11px]",
+      sm: "h-7 text-[10px]",
+      xl: "h-10 text-xs",
+      xs: "h-6 text-[10px]",
+    },
+    tone: {
+      sidebar: "text-sidebar-foreground/70",
+      surface: "text-muted-foreground",
+    },
   },
 });
 
@@ -64,8 +65,8 @@ const NavigationListGroupLabel = ({
     ),
     render,
     state: {
-      slot: "navigation-list-group-label",
       size: resolvedSize,
+      slot: "navigation-list-group-label",
       tone: resolvedTone,
     },
   });

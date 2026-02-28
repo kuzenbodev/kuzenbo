@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  type RefCallback,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { RefCallback } from "react";
 
 type DocumentWithFullscreen = Document & {
   fullscreenElement?: Element | null;
@@ -125,11 +120,11 @@ export const useFullscreen = <
       _ref.current ?? (window.document?.documentElement as unknown as T);
     if (el) {
       return addEvents(el, {
-        onFullScreen: handleFullscreenChange,
         onError: handleFullscreenError,
+        onFullScreen: handleFullscreenChange,
       });
     }
   }, [handleFullscreenChange, handleFullscreenError]);
 
-  return { ref, toggle, fullscreen } as const;
+  return { fullscreen, ref, toggle } as const;
 };

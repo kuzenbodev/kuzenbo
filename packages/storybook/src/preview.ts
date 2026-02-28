@@ -19,12 +19,12 @@ const withKuzenboColorScheme: Decorator = (Story, context) => {
 const preview: Preview = {
   decorators: [
     withThemeByClassName({
-      themes: {
-        light: "",
-        dark: "dark",
-      },
       defaultTheme: "light",
       parentSelector: "html",
+      themes: {
+        dark: "dark",
+        light: "",
+      },
     }),
     withKuzenboColorScheme,
   ],

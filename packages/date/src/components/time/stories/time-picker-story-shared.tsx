@@ -6,12 +6,12 @@ import { TimePicker } from "../time-picker";
 import { TimeValue } from "../time-value";
 
 export const baseMeta = {
-  title: "Components/TimePicker",
   component: TimePicker,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/TimePicker",
 } satisfies Meta<typeof TimePicker>;
 
 type Story = StoryObj<typeof baseMeta>;

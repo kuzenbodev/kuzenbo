@@ -2,7 +2,8 @@
 
 import type { ComponentProps, CSSProperties } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { Skeleton } from "../skeleton/skeleton";
@@ -10,17 +11,17 @@ import { SidebarMenuContext } from "./sidebar-menu-context";
 
 const sidebarMenuSkeletonVariants = tv({
   base: "flex items-center gap-2 rounded-md",
-  variants: {
-    size: {
-      xs: "h-6 px-1.5",
-      sm: "h-7 px-2",
-      md: "h-8 px-2",
-      lg: "h-10 px-2.5",
-      xl: "h-11 px-3",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-10 px-2.5",
+      md: "h-8 px-2",
+      sm: "h-7 px-2",
+      xl: "h-11 px-3",
+      xs: "h-6 px-1.5",
+    },
   },
 });
 

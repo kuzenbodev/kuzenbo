@@ -9,9 +9,9 @@ export const funnelDefaultData = [
 ];
 
 export const funnelDefaultSeries = [
-  { name: "Sessions", label: "Sessions", color: "var(--color-chart-1)" },
-  { name: "Activated", label: "Activated", color: "var(--color-chart-2)" },
-  { name: "Trials", label: "Trials", color: "var(--color-chart-3)" },
-  { name: "Paid", label: "Paid", color: "var(--color-chart-4)" },
-  { name: "Renewed", label: "Renewed", color: "var(--color-chart-5)" },
+  { color: "var(--color-chart-1)", label: "Sessions", name: "Sessions" },
+  { color: "var(--color-chart-2)", label: "Activated", name: "Activated" },
+  { color: "var(--color-chart-3)", label: "Trials", name: "Trials" },
+  { color: "var(--color-chart-4)", label: "Paid", name: "Paid" },
+  { color: "var(--color-chart-5)", label: "Renewed", name: "Renewed" },
 ] satisfies CompleteChartSeries[];

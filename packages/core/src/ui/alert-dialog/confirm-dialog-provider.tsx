@@ -4,10 +4,8 @@ import type { ReactNode } from "react";
 import { useCallback, useMemo, useState } from "react";
 
 import { ConfirmDialogRenderer } from "./confirm-dialog-renderer";
-import {
-  ConfirmDialogContext,
-  type ConfirmDialogState,
-} from "./use-confirm-dialog";
+import { ConfirmDialogContext } from "./use-confirm-dialog";
+import type { ConfirmDialogState } from "./use-confirm-dialog";
 
 export interface ConfirmDialogProviderProps {
   children: ReactNode;
@@ -16,7 +14,7 @@ export interface ConfirmDialogProviderProps {
 
 export const ConfirmDialogProvider = ({
   children,
-  labels: defaultLabels = { confirm: "Confirm", cancel: "Cancel" },
+  labels: defaultLabels = { cancel: "Cancel", confirm: "Confirm" },
 }: ConfirmDialogProviderProps) => {
   const [dialogs, setDialogs] = useState<ConfirmDialogState[]>([]);
 
@@ -42,7 +40,7 @@ export const ConfirmDialogProvider = ({
     setDialogs([]);
   }, []);
   const contextValue = useMemo(
-    () => ({ openConfirmDialog, closeDialog, closeAll }),
+    () => ({ closeAll, closeDialog, openConfirmDialog }),
     [openConfirmDialog, closeDialog, closeAll]
   );
 

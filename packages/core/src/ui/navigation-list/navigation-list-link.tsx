@@ -7,135 +7,138 @@ import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { ComponentProps, MouseEvent, ReactNode } from "react";
 import { useCallback, useEffect } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { BaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
-  type NavigationListVariant,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
   useResolvedNavigationListVariant,
+} from "./navigation-list-context";
+import type {
+  NavigationListTone,
+  NavigationListVariant,
 } from "./navigation-list-context";
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListLinkVariants = tv({
   base: "peer/navigation-list-link cursor-clickable ring-offset-background flex w-full gap-2 overflow-hidden rounded-md text-left outline-hidden transition-colors group-has-data-[slot=navigation-list-action]/navigation-list-item:pr-20 group-has-data-[slot=navigation-list-badge]/navigation-list-item:pr-20 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
-  variants: {
-    size: {
-      xs: "min-h-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
-      sm: "min-h-7 px-2 text-xs [&_svg:not([class*='size-'])]:size-3.5",
-      md: "min-h-8 px-2 text-sm [&_svg:not([class*='size-'])]:size-4",
-      lg: "min-h-9 px-2.5 text-sm [&_svg:not([class*='size-'])]:size-4",
-      xl: "min-h-10 px-3 text-base [&_svg:not([class*='size-'])]:size-5",
+  compoundVariants: [
+    {
+      className:
+        "hover:bg-muted/70 hover:text-foreground data-active:bg-muted/50 data-active:text-foreground data-active:font-medium",
+      tone: "surface",
+      variant: "subtle",
     },
-    tone: {
-      surface: "ring-ring",
-      sidebar: "ring-sidebar-ring",
+    {
+      className:
+        "hover:bg-muted hover:text-foreground data-active:bg-muted data-active:text-foreground data-active:font-medium",
+      tone: "surface",
+      variant: "light",
     },
-    variant: {
-      subtle: "",
-      light: "",
-      filled: "",
+    {
+      className:
+        "hover:bg-muted hover:text-foreground data-active:bg-primary data-active:text-primary-foreground data-active:font-medium",
+      tone: "surface",
+      variant: "filled",
     },
-    noWrap: {
-      true: "",
-      false: "",
+    {
+      className:
+        "hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent/60 data-active:text-sidebar-accent-foreground data-active:font-medium",
+      tone: "sidebar",
+      variant: "subtle",
     },
-    hasDescription: {
-      true: "items-start py-1.5",
-      false: "items-center",
+    {
+      className:
+        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-active:font-medium",
+      tone: "sidebar",
+      variant: "light",
     },
-  },
+    {
+      className:
+        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-primary data-active:text-sidebar-primary-foreground data-active:font-medium",
+      tone: "sidebar",
+      variant: "filled",
+    },
+  ],
   defaultVariants: {
+    hasDescription: false,
+    noWrap: false,
     size: "md",
     tone: "surface",
     variant: "light",
-    noWrap: false,
-    hasDescription: false,
   },
-  compoundVariants: [
-    {
-      tone: "surface",
-      variant: "subtle",
-      className:
-        "hover:bg-muted/70 hover:text-foreground data-active:bg-muted/50 data-active:text-foreground data-active:font-medium",
+  variants: {
+    hasDescription: {
+      false: "items-center",
+      true: "items-start py-1.5",
     },
-    {
-      tone: "surface",
-      variant: "light",
-      className:
-        "hover:bg-muted hover:text-foreground data-active:bg-muted data-active:text-foreground data-active:font-medium",
+    noWrap: {
+      false: "",
+      true: "",
     },
-    {
-      tone: "surface",
-      variant: "filled",
-      className:
-        "hover:bg-muted hover:text-foreground data-active:bg-primary data-active:text-primary-foreground data-active:font-medium",
+    size: {
+      lg: "min-h-9 px-2.5 text-sm [&_svg:not([class*='size-'])]:size-4",
+      md: "min-h-8 px-2 text-sm [&_svg:not([class*='size-'])]:size-4",
+      sm: "min-h-7 px-2 text-xs [&_svg:not([class*='size-'])]:size-3.5",
+      xl: "min-h-10 px-3 text-base [&_svg:not([class*='size-'])]:size-5",
+      xs: "min-h-6 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-3",
     },
-    {
-      tone: "sidebar",
-      variant: "subtle",
-      className:
-        "hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent/60 data-active:text-sidebar-accent-foreground data-active:font-medium",
+    tone: {
+      sidebar: "ring-sidebar-ring",
+      surface: "ring-ring",
     },
-    {
-      tone: "sidebar",
-      variant: "light",
-      className:
-        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-active:font-medium",
+    variant: {
+      filled: "",
+      light: "",
+      subtle: "",
     },
-    {
-      tone: "sidebar",
-      variant: "filled",
-      className:
-        "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-primary data-active:text-sidebar-primary-foreground data-active:font-medium",
-    },
-  ],
+  },
 });
 
 const navigationListLinkBodyVariants = tv({
   base: "min-w-0 flex-1",
-  variants: {
-    noWrap: {
-      true: "truncate",
-      false: "",
-    },
-  },
   defaultVariants: {
     noWrap: false,
+  },
+  variants: {
+    noWrap: {
+      false: "",
+      true: "truncate",
+    },
   },
 });
 
 const navigationListLinkLabelVariants = tv({
   base: "block",
-  variants: {
-    noWrap: {
-      true: "truncate",
-      false: "",
-    },
-  },
   defaultVariants: {
     noWrap: false,
+  },
+  variants: {
+    noWrap: {
+      false: "",
+      true: "truncate",
+    },
   },
 });
 
 const navigationListLinkDescriptionVariants = tv({
   base: "mt-0.5 block text-xs",
-  variants: {
-    noWrap: {
-      true: "truncate",
-      false: "",
-    },
-    tone: {
-      surface: "text-muted-foreground",
-      sidebar: "text-sidebar-foreground/70",
-    },
-  },
   defaultVariants: {
     noWrap: false,
     tone: "surface",
+  },
+  variants: {
+    noWrap: {
+      false: "",
+      true: "truncate",
+    },
+    tone: {
+      sidebar: "text-sidebar-foreground/70",
+      surface: "text-muted-foreground",
+    },
   },
 });
 
@@ -355,14 +358,14 @@ const NavigationListLink = ({
     defaultTagName: "button",
     props: mergeProps<"button">(
       {
-        className: mergedClassName,
         "aria-current": resolvedAriaCurrent,
         "aria-disabled": resolvedDisabled ? "true" : undefined,
+        children: composedContent,
+        className: mergedClassName,
         disabled: isLinkLike ? undefined : resolvedDisabled,
         onClick: handleClick,
         onKeyDown,
         type: isLinkLike ? undefined : "button",
-        children: composedContent,
       },
       props
     ),

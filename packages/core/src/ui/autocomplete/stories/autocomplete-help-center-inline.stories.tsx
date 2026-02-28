@@ -11,29 +11,29 @@ interface HelpArticle {
 
 const helpArticles: HelpArticle[] = [
   {
-    value: "reset-password",
-    label: "Reset your password",
     category: "Account",
+    label: "Reset your password",
+    value: "reset-password",
   },
   {
-    value: "change-billing-owner",
-    label: "Change billing owner",
     category: "Billing",
+    label: "Change billing owner",
+    value: "change-billing-owner",
   },
   {
-    value: "connect-github",
-    label: "Connect GitHub repository",
     category: "Integrations",
+    label: "Connect GitHub repository",
+    value: "connect-github",
   },
   {
-    value: "custom-domain",
-    label: "Configure custom domain",
     category: "Hosting",
+    label: "Configure custom domain",
+    value: "custom-domain",
   },
   {
-    value: "team-permissions",
-    label: "Manage team permissions",
     category: "Security",
+    label: "Manage team permissions",
+    value: "team-permissions",
   },
 ];
 
@@ -74,7 +74,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const HelpCenterInline: Story = {
-  render: () => <HelpCenterInlineDemo />,
   parameters: {
     docs: {
       description: {
@@ -83,4 +82,5 @@ export const HelpCenterInline: Story = {
       },
     },
   },
+  render: () => <HelpCenterInlineDemo />,
 };

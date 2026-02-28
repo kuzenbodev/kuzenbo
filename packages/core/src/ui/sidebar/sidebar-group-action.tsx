@@ -23,8 +23,8 @@ const SidebarGroupAction = ({
     ),
     render,
     state: {
-      slot: "sidebar-group-action",
       sidebar: "group-action",
+      slot: "sidebar-group-action",
     },
   });
 

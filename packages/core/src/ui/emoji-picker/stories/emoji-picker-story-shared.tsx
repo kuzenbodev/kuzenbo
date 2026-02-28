@@ -1,27 +1,28 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { type MouseEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
+import type { MouseEvent } from "react";
 
 import { EmojiPicker } from "../emoji-picker";
 
 export const baseMeta = {
-  title: "Components/EmojiPicker",
-  component: EmojiPicker,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component:
-          "Emoji picker root and child surfaces share a unified size contract (`xs | sm | md | lg | xl`) with child-level overrides.",
-      },
-    },
-  },
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: EmojiPicker,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Emoji picker root and child surfaces share a unified size contract (`xs | sm | md | lg | xl`) with child-level overrides.",
+      },
+    },
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  title: "Components/EmojiPicker",
 } satisfies Meta<typeof EmojiPicker>;
 
 type Story = StoryObj<typeof baseMeta>;

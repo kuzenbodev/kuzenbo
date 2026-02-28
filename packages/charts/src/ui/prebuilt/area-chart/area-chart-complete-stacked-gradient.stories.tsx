@@ -25,9 +25,9 @@ const AreaChartCompleteStackedGradientDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Area/StackedGradient",
   component: AreaChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Area/StackedGradient",
 } satisfies Meta<typeof AreaChart>;
 
 type Story = StoryObj<typeof AreaChart>;

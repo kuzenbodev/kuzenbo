@@ -2,7 +2,8 @@
 
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { useComponentSize } from "../shared/size/size-provider";
 import type { UISize } from "../shared/size/size-system";
@@ -16,17 +17,17 @@ import { EmptyTitle } from "./empty-title";
 
 const emptyVariants = tv({
   base: "flex w-full min-w-0 flex-1 flex-col items-center justify-center rounded-lg border-dashed text-center text-balance",
-  variants: {
-    size: {
-      xs: "gap-2 p-4",
-      sm: "gap-3 p-6",
-      md: "gap-4 p-8",
-      lg: "gap-5 p-10",
-      xl: "gap-6 p-12",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-5 p-10",
+      md: "gap-4 p-8",
+      sm: "gap-3 p-6",
+      xl: "gap-6 p-12",
+      xs: "gap-2 p-4",
+    },
   },
 });
 

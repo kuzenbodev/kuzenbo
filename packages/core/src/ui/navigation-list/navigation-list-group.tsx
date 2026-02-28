@@ -1,39 +1,42 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
-  type NavigationListVariant,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
   useResolvedNavigationListVariant,
 } from "./navigation-list-context";
+import type {
+  NavigationListTone,
+  NavigationListVariant,
+} from "./navigation-list-context";
 
 const navigationListGroupVariants = tv({
   base: "list-none space-y-1",
-  variants: {
-    size: {
-      xs: "",
-      sm: "",
-      md: "",
-      lg: "",
-      xl: "",
-    },
-    tone: {
-      surface: "",
-      sidebar: "",
-    },
-    variant: {
-      subtle: "",
-      light: "",
-      filled: "",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
     variant: "light",
+  },
+  variants: {
+    size: {
+      lg: "",
+      md: "",
+      sm: "",
+      xl: "",
+      xs: "",
+    },
+    tone: {
+      sidebar: "",
+      surface: "",
+    },
+    variant: {
+      filled: "",
+      light: "",
+      subtle: "",
+    },
   },
 });
 

@@ -1,27 +1,26 @@
 "use client";
 
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
-import {
-  useToolbarResolvedSize,
-  type ToolbarSize,
-} from "./toolbar-size-context";
+import { useToolbarResolvedSize } from "./toolbar-size-context";
+import type { ToolbarSize } from "./toolbar-size-context";
 
 const toolbarSeparatorVariants = tv({
   base: "bg-border w-px shrink-0",
-  variants: {
-    size: {
-      xs: "h-4",
-      sm: "h-5",
-      md: "h-6",
-      lg: "h-7",
-      xl: "h-8",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-7",
+      md: "h-6",
+      sm: "h-5",
+      xl: "h-8",
+      xs: "h-4",
+    },
   },
 });
 

@@ -52,9 +52,9 @@ const CompositeChartCompleteOpsMixStackedLineDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Composite/OpsMixStackedLine",
   component: CompositeChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Composite/OpsMixStackedLine",
 } satisfies Meta<typeof CompositeChart>;
 
 type Story = StoryObj<typeof CompositeChart>;

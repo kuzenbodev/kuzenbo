@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedEmptySize } from "./empty-size-context";
@@ -33,22 +34,22 @@ const emptyMediaVariants = tv({
       variant: "icon",
     },
   ],
+  defaultVariants: {
+    size: "md",
+    variant: "default",
+  },
   variants: {
     size: {
-      xs: "mb-1.5 [&_svg:not([class*='size-'])]:size-3",
-      sm: "mb-2 [&_svg:not([class*='size-'])]:size-3.5",
-      md: "mb-2 [&_svg:not([class*='size-'])]:size-4",
       lg: "mb-2.5 [&_svg:not([class*='size-'])]:size-4",
+      md: "mb-2 [&_svg:not([class*='size-'])]:size-4",
+      sm: "mb-2 [&_svg:not([class*='size-'])]:size-3.5",
       xl: "mb-3 [&_svg:not([class*='size-'])]:size-5",
+      xs: "mb-1.5 [&_svg:not([class*='size-'])]:size-3",
     },
     variant: {
       default: "bg-transparent",
       icon: "bg-muted text-foreground shrink-0",
     },
-  },
-  defaultVariants: {
-    size: "md",
-    variant: "default",
   },
 });
 

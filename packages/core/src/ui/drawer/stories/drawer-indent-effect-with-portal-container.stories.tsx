@@ -54,12 +54,12 @@ const IndentEffectWithPortalContainerDemo = () => {
 };
 
 const meta: Meta = {
-  title: "Components/Drawer/IndentEffectWithPortalContainer",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/IndentEffectWithPortalContainer",
 };
 
 export default meta;

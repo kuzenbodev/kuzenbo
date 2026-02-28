@@ -1,34 +1,35 @@
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import {
-  type NavigationListTone,
   useResolvedNavigationListSize,
   useResolvedNavigationListTone,
 } from "./navigation-list-context";
+import type { NavigationListTone } from "./navigation-list-context";
 import { useNavigationListItemContext } from "./navigation-list-item-context";
 
 const navigationListBadgeVariants = tv({
   base: "pointer-events-none absolute right-1 flex items-center justify-center rounded-md px-1 font-medium tabular-nums select-none group-data-[collapsible=true]/navigation-list-item:right-8",
-  variants: {
-    size: {
-      xs: "top-0.5 h-4 min-w-4 text-[10px]",
-      sm: "top-1 h-5 min-w-5 text-[11px]",
-      md: "top-1.5 h-5 min-w-5 text-xs",
-      lg: "top-2 h-6 min-w-6 text-xs",
-      xl: "top-2.5 h-7 min-w-7 text-sm",
-    },
-    tone: {
-      surface:
-        "text-muted-foreground peer-hover/navigation-list-link:text-foreground peer-data-active/navigation-list-link:text-foreground",
-      sidebar:
-        "text-sidebar-foreground peer-hover/navigation-list-link:text-sidebar-accent-foreground peer-data-active/navigation-list-link:text-sidebar-accent-foreground",
-    },
-  },
   defaultVariants: {
     size: "md",
     tone: "surface",
+  },
+  variants: {
+    size: {
+      lg: "top-2 h-6 min-w-6 text-xs",
+      md: "top-1.5 h-5 min-w-5 text-xs",
+      sm: "top-1 h-5 min-w-5 text-[11px]",
+      xl: "top-2.5 h-7 min-w-7 text-sm",
+      xs: "top-0.5 h-4 min-w-4 text-[10px]",
+    },
+    tone: {
+      sidebar:
+        "text-sidebar-foreground peer-hover/navigation-list-link:text-sidebar-accent-foreground peer-data-active/navigation-list-link:text-sidebar-accent-foreground",
+      surface:
+        "text-muted-foreground peer-hover/navigation-list-link:text-foreground peer-data-active/navigation-list-link:text-foreground",
+    },
   },
 });
 

@@ -26,12 +26,12 @@ const NakedCompoundDemo = () => (
 );
 
 const meta: Meta = {
-  title: "Components/Drawer/NakedCompound",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/NakedCompound",
 };
 
 export default meta;

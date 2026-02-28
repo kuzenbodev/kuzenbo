@@ -1,24 +1,25 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useResolvedDrawerSize } from "./drawer-size-context";
 
 const drawerActionsVariants = tv({
   base: "flex justify-end",
-  variants: {
-    size: {
-      xs: "gap-2",
-      sm: "gap-2.5",
-      md: "gap-4",
-      lg: "gap-4",
-      xl: "gap-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "gap-4",
+      md: "gap-4",
+      sm: "gap-2.5",
+      xl: "gap-5",
+      xs: "gap-2",
+    },
   },
 });
 

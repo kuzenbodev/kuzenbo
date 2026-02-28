@@ -21,9 +21,9 @@ const ScatterChartCompleteReferenceLinesDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Scatter/ReferenceLines",
   component: ScatterChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Scatter/ReferenceLines",
 } satisfies Meta<typeof ScatterChart>;
 
 type Story = StoryObj<typeof ScatterChart>;

@@ -7,8 +7,8 @@ import {
 } from "./chart-payload-normalizer";
 
 const baseConfig: ChartConfig = {
-  revenue: { label: "Revenue", color: "var(--color-chart-1)" },
-  total: { label: "Total", color: "var(--color-chart-2)" },
+  revenue: { color: "var(--color-chart-1)", label: "Revenue" },
+  total: { color: "var(--color-chart-2)", label: "Total" },
 };
 
 const fallbackColorBySeries: Record<string, string> = {
@@ -69,8 +69,8 @@ describe("Chart payload normalizer", () => {
 
   it("normalizes numeric and dotted nameKey payload values to config keys", () => {
     const numericKeyConfig: ChartConfig = {
-      "42": { label: "Answer", color: "var(--color-chart-4)" },
-      total: { label: "Total", color: "var(--color-chart-2)" },
+      "42": { color: "var(--color-chart-4)", label: "Answer" },
+      total: { color: "var(--color-chart-2)", label: "Total" },
     };
 
     expect(

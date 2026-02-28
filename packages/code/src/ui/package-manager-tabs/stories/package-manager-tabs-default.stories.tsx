@@ -8,17 +8,17 @@ import {
 } from "./package-manager-tabs-story-shared";
 
 const runtimeCommandByManager: Record<PackageManager, string> = {
+  bun: "bun run dev",
   npm: "npm run dev -- --turbo",
   pnpm: "pnpm dev --filter @kuzenbo/website",
   yarn: "yarn workspace @kuzenbo/website dev",
-  bun: "bun run dev",
 };
 
 const testCommandByManager: Record<PackageManager, string> = {
+  bun: "bun test --watch",
   npm: "npm run test -- --watch",
   pnpm: "pnpm test -- --watch",
   yarn: "yarn test --watch",
-  bun: "bun test --watch",
 };
 
 export default {
@@ -32,8 +32,8 @@ export const Default: Story = DefaultStory;
 
 export const RuntimeBootstrapCommands: Story = {
   args: {
-    managers: ["bun", "pnpm", "npm"],
     defaultValue: "bun",
+    managers: ["bun", "pnpm", "npm"],
   },
   render: (args) => (
     <PackageManagerTabs {...args}>
@@ -44,8 +44,8 @@ export const RuntimeBootstrapCommands: Story = {
 
 export const TestSuiteCommands: Story = {
   args: {
-    managers: ["bun", "pnpm", "yarn"],
     defaultValue: "pnpm",
+    managers: ["bun", "pnpm", "yarn"],
   },
   render: (args) => (
     <PackageManagerTabs {...args}>

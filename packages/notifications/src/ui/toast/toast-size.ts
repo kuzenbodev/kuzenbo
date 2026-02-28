@@ -3,8 +3,8 @@ import {
   DEFAULT_UI_SIZE,
   useGlobalUISize,
   useKuzenboComponentDefaults,
-  type UISize,
 } from "@kuzenbo/core/provider";
+import type { UISize } from "@kuzenbo/core/provider";
 import type { Context } from "react";
 
 interface ToastSizeContextValue {

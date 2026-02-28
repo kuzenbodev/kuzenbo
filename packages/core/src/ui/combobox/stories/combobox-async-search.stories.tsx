@@ -19,29 +19,29 @@ interface ProjectItem {
 
 const allProjects: ProjectItem[] = [
   {
+    keywords: ["dashboard", "metrics", "reporting"],
     label: "Analytics Dashboard",
     value: "analytics-dashboard",
-    keywords: ["dashboard", "metrics", "reporting"],
   },
   {
+    keywords: ["support", "tickets", "chat"],
     label: "Customer Support Hub",
     value: "customer-support-hub",
-    keywords: ["support", "tickets", "chat"],
   },
   {
+    keywords: ["ui", "components", "tokens"],
     label: "Design System",
     value: "design-system",
-    keywords: ["ui", "components", "tokens"],
   },
   {
+    keywords: ["experiments", "ab-testing", "growth"],
     label: "Growth Experiments",
     value: "growth-experiments",
-    keywords: ["experiments", "ab-testing", "growth"],
   },
   {
+    keywords: ["release", "deployments", "ci"],
     label: "Release Operations",
     value: "release-operations",
-    keywords: ["release", "deployments", "ci"],
   },
 ];
 
@@ -142,7 +142,6 @@ const AsyncSearchDemo = () => {
 };
 
 export const AsyncSearch: Story = {
-  render: () => <AsyncSearchDemo />,
   parameters: {
     docs: {
       description: {
@@ -151,4 +150,5 @@ export const AsyncSearch: Story = {
       },
     },
   },
+  render: () => <AsyncSearchDemo />,
 };

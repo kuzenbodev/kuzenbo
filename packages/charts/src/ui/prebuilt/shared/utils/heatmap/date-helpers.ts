@@ -69,8 +69,8 @@ const toMonthKeyUTC = (date: Date): string => {
 const formatMonthLabelUTC = (date: Date, locale = "en-US"): string => {
   const formatter = new Intl.DateTimeFormat(locale, {
     month: "short",
-    year: "numeric",
     timeZone: "UTC",
+    year: "numeric",
   });
 
   return formatter.format(date);

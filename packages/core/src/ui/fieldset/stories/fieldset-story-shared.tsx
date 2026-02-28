@@ -4,9 +4,9 @@ import { Field } from "../../field/field";
 import { Fieldset } from "../fieldset";
 
 export const baseMeta = {
-  title: "Components/Fieldset",
   component: Fieldset,
   tags: ["autodocs"],
+  title: "Components/Fieldset",
 } satisfies Meta<typeof Fieldset>;
 
 type Story = StoryObj<typeof baseMeta>;

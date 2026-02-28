@@ -7,41 +7,41 @@ import { CheckboxGroup } from "../checkbox-group";
 
 const permissionOptions = [
   {
-    value: "view-finance-dashboard",
     label: "View finance dashboard",
+    value: "view-finance-dashboard",
   },
   {
-    value: "approve-reimbursements",
     label: "Approve reimbursements",
+    value: "approve-reimbursements",
   },
   {
-    value: "export-vendor-ledger",
     label: "Export vendor ledger",
+    value: "export-vendor-ledger",
   },
 ] as const;
 
 const governanceOptions = [
   {
-    value: "soc2-report",
-    label: "Attach SOC 2 summary",
     description: "Required for security sign-off during procurement reviews.",
+    label: "Attach SOC 2 summary",
+    value: "soc2-report",
   },
   {
-    value: "dpa-template",
-    label: "Attach DPA template",
     description: "Includes legal language for EU and UK data handling.",
+    label: "Attach DPA template",
+    value: "dpa-template",
   },
   {
-    value: "risk-register",
-    label: "Attach risk register",
     description: "Lists open exceptions and compensating controls.",
+    label: "Attach risk register",
+    value: "risk-register",
   },
 ] as const;
 
 export const baseMeta = {
-  title: "Components/CheckboxGroup",
   component: CheckboxGroup,
   tags: ["autodocs"],
+  title: "Components/CheckboxGroup",
 } satisfies Meta<typeof CheckboxGroup>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, type ButtonProps } from "@kuzenbo/core/ui/button";
+import { Button } from "@kuzenbo/core/ui/button";
+import type { ButtonProps } from "@kuzenbo/core/ui/button";
 
 import type { State } from "./controls";
 

@@ -15,17 +15,17 @@ const formatForecastValue = (value: number) => formatCurrencyCompact(value);
 const LineChartCompleteForecastGapsDemo = () => (
   <div className={completeChartShellVariants()}>
     <LineChart
-      lineChartProps={{ margin: { top: 8, right: 12, left: 4, bottom: 0 } }}
+      lineChartProps={{ margin: { bottom: 0, left: 4, right: 12, top: 8 } }}
       chartRootProps={{ className: "h-80 w-full" }}
       connectNulls={false}
       data={lineForecastGapsData}
       dataKey="month"
       referenceLines={[
         {
-          y: 150_000,
           color: "var(--color-chart-5)",
-          strokeDasharray: "3 4",
           label: "Quarter Plan",
+          strokeDasharray: "3 4",
+          y: 150_000,
         },
       ]}
       series={lineForecastGapsSeries}
@@ -41,9 +41,9 @@ const LineChartCompleteForecastGapsDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Line/ForecastGaps",
   component: LineChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Line/ForecastGaps",
 } satisfies Meta<typeof LineChart>;
 
 type Story = StoryObj<typeof LineChart>;

@@ -1,14 +1,13 @@
 "use client";
 
 import { TIPTAP_CONTROL_REQUIREMENTS } from "../../editor/capabilities";
-import {
-  createTiptapControl,
-  type TiptapEditorControlProps,
-} from "./tiptap-editor-control";
+import { createTiptapControl } from "./tiptap-editor-control";
+import type { TiptapEditorControlProps } from "./tiptap-editor-control";
 
 const DEFAULT_LINK_URL = "https://example.com";
 
 export const BoldControl = createTiptapControl({
+  active: (editor) => editor.isActive("bold"),
   command: (editor) => {
     editor.chain().focus().toggleBold().run();
   },
@@ -17,10 +16,10 @@ export const BoldControl = createTiptapControl({
   id: "bold",
   labelKey: "bold",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.bold,
-  active: (editor) => editor.isActive("bold"),
 });
 
 export const ItalicControl = createTiptapControl({
+  active: (editor) => editor.isActive("italic"),
   command: (editor) => {
     editor.chain().focus().toggleItalic().run();
   },
@@ -29,10 +28,10 @@ export const ItalicControl = createTiptapControl({
   id: "italic",
   labelKey: "italic",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.italic,
-  active: (editor) => editor.isActive("italic"),
 });
 
 export const UnderlineControl = createTiptapControl({
+  active: (editor) => editor.isActive("underline"),
   command: (editor) => {
     editor.chain().focus().toggleUnderline().run();
   },
@@ -41,10 +40,10 @@ export const UnderlineControl = createTiptapControl({
   id: "underline",
   labelKey: "underline",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.underline,
-  active: (editor) => editor.isActive("underline"),
 });
 
 export const StrikeControl = createTiptapControl({
+  active: (editor) => editor.isActive("strike"),
   command: (editor) => {
     editor.chain().focus().toggleStrike().run();
   },
@@ -53,10 +52,10 @@ export const StrikeControl = createTiptapControl({
   id: "strike",
   labelKey: "strike",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.strike,
-  active: (editor) => editor.isActive("strike"),
 });
 
 export const H1Control = createTiptapControl({
+  active: (editor) => editor.isActive("heading", { level: 1 }),
   command: (editor) => {
     editor.chain().focus().toggleHeading({ level: 1 }).run();
   },
@@ -66,10 +65,10 @@ export const H1Control = createTiptapControl({
   id: "heading-1",
   labelKey: "heading1",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.heading,
-  active: (editor) => editor.isActive("heading", { level: 1 }),
 });
 
 export const H2Control = createTiptapControl({
+  active: (editor) => editor.isActive("heading", { level: 2 }),
   command: (editor) => {
     editor.chain().focus().toggleHeading({ level: 2 }).run();
   },
@@ -79,10 +78,10 @@ export const H2Control = createTiptapControl({
   id: "heading-2",
   labelKey: "heading2",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.heading,
-  active: (editor) => editor.isActive("heading", { level: 2 }),
 });
 
 export const H3Control = createTiptapControl({
+  active: (editor) => editor.isActive("heading", { level: 3 }),
   command: (editor) => {
     editor.chain().focus().toggleHeading({ level: 3 }).run();
   },
@@ -92,10 +91,10 @@ export const H3Control = createTiptapControl({
   id: "heading-3",
   labelKey: "heading3",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.heading,
-  active: (editor) => editor.isActive("heading", { level: 3 }),
 });
 
 export const BulletListControl = createTiptapControl({
+  active: (editor) => editor.isActive("bulletList"),
   command: (editor) => {
     editor.chain().focus().toggleBulletList().run();
   },
@@ -104,10 +103,10 @@ export const BulletListControl = createTiptapControl({
   id: "bullet-list",
   labelKey: "bulletList",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.bulletList,
-  active: (editor) => editor.isActive("bulletList"),
 });
 
 export const OrderedListControl = createTiptapControl({
+  active: (editor) => editor.isActive("orderedList"),
   command: (editor) => {
     editor.chain().focus().toggleOrderedList().run();
   },
@@ -116,10 +115,10 @@ export const OrderedListControl = createTiptapControl({
   id: "ordered-list",
   labelKey: "orderedList",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.orderedList,
-  active: (editor) => editor.isActive("orderedList"),
 });
 
 export const TaskListControl = createTiptapControl({
+  active: (editor) => editor.isActive("taskList"),
   command: (editor) => {
     editor.chain().focus().toggleTaskList().run();
   },
@@ -128,10 +127,10 @@ export const TaskListControl = createTiptapControl({
   id: "task-list",
   labelKey: "taskList",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.taskList,
-  active: (editor) => editor.isActive("taskList"),
 });
 
 export const LinkControl = createTiptapControl({
+  active: (editor) => editor.isActive("link"),
   command: (editor) => {
     const currentHref = editor.getAttributes("link").href as string | undefined;
     if (editor.isActive("link")) {
@@ -153,10 +152,10 @@ export const LinkControl = createTiptapControl({
   id: "link",
   labelKey: "link",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.link,
-  active: (editor) => editor.isActive("link"),
 });
 
 export const UnlinkControl = createTiptapControl({
+  active: () => false,
   command: (editor) => {
     editor.chain().focus().unsetLink().run();
   },
@@ -165,10 +164,10 @@ export const UnlinkControl = createTiptapControl({
   id: "unlink",
   labelKey: "unlink",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.link,
-  active: () => false,
 });
 
 export const AlignLeftControl = createTiptapControl({
+  active: (editor) => editor.isActive({ textAlign: "left" }),
   command: (editor) => {
     editor.chain().focus().setTextAlign("left").run();
   },
@@ -178,10 +177,10 @@ export const AlignLeftControl = createTiptapControl({
   id: "align-left",
   labelKey: "alignLeft",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.textAlign,
-  active: (editor) => editor.isActive({ textAlign: "left" }),
 });
 
 export const AlignCenterControl = createTiptapControl({
+  active: (editor) => editor.isActive({ textAlign: "center" }),
   command: (editor) => {
     editor.chain().focus().setTextAlign("center").run();
   },
@@ -191,10 +190,10 @@ export const AlignCenterControl = createTiptapControl({
   id: "align-center",
   labelKey: "alignCenter",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.textAlign,
-  active: (editor) => editor.isActive({ textAlign: "center" }),
 });
 
 export const AlignRightControl = createTiptapControl({
+  active: (editor) => editor.isActive({ textAlign: "right" }),
   command: (editor) => {
     editor.chain().focus().setTextAlign("right").run();
   },
@@ -204,10 +203,10 @@ export const AlignRightControl = createTiptapControl({
   id: "align-right",
   labelKey: "alignRight",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.textAlign,
-  active: (editor) => editor.isActive({ textAlign: "right" }),
 });
 
 export const AlignJustifyControl = createTiptapControl({
+  active: (editor) => editor.isActive({ textAlign: "justify" }),
   command: (editor) => {
     editor.chain().focus().setTextAlign("justify").run();
   },
@@ -217,10 +216,10 @@ export const AlignJustifyControl = createTiptapControl({
   id: "align-justify",
   labelKey: "alignJustify",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.textAlign,
-  active: (editor) => editor.isActive({ textAlign: "justify" }),
 });
 
 export const CodeControl = createTiptapControl({
+  active: (editor) => editor.isActive("code"),
   command: (editor) => {
     editor.chain().focus().toggleCode().run();
   },
@@ -229,10 +228,10 @@ export const CodeControl = createTiptapControl({
   id: "code",
   labelKey: "code",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.code,
-  active: (editor) => editor.isActive("code"),
 });
 
 export const CodeBlockControl = createTiptapControl({
+  active: (editor) => editor.isActive("codeBlock"),
   command: (editor) => {
     editor.chain().focus().toggleCodeBlock().run();
   },
@@ -241,10 +240,10 @@ export const CodeBlockControl = createTiptapControl({
   id: "code-block",
   labelKey: "codeBlock",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.codeBlock,
-  active: (editor) => editor.isActive("codeBlock"),
 });
 
 export const HighlightControl = createTiptapControl({
+  active: (editor) => editor.isActive("highlight"),
   command: (editor) => {
     editor.chain().focus().toggleHighlight().run();
   },
@@ -253,10 +252,10 @@ export const HighlightControl = createTiptapControl({
   id: "highlight",
   labelKey: "highlight",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.highlight,
-  active: (editor) => editor.isActive("highlight"),
 });
 
 export const ColorControl = createTiptapControl({
+  active: (editor) => Boolean(editor.getAttributes("textStyle").color),
   command: (editor) => {
     editor.chain().focus().setColor("var(--color-primary)").run();
   },
@@ -265,7 +264,6 @@ export const ColorControl = createTiptapControl({
   id: "color",
   labelKey: "color",
   requirement: TIPTAP_CONTROL_REQUIREMENTS.textColor,
-  active: (editor) => Boolean(editor.getAttributes("textStyle").color),
 });
 
 export const InsertTableControl = createTiptapControl({

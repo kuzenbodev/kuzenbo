@@ -5,8 +5,6 @@ import { PlaygroundCode } from "../playground-code";
 
 const singleFile: readonly PlaygroundGeneratedCodeFile[] = [
   {
-    fileName: "button-demo.tsx",
-    language: "tsx",
     code: `import { Button } from "@kuzenbo/core";
 
 export const ButtonDemo = () => (
@@ -14,13 +12,13 @@ export const ButtonDemo = () => (
     Publish release
   </Button>
 );`,
+    fileName: "button-demo.tsx",
+    language: "tsx",
   },
 ];
 
 const multiFile: readonly PlaygroundGeneratedCodeFile[] = [
   {
-    fileName: "api-client.ts",
-    language: "ts",
     code: `export interface SearchRequest {
   query: string;
   locale: string;
@@ -34,10 +32,10 @@ export const fetchSearchResults = async (request: SearchRequest) => {
 
   return response.json();
 };`,
+    fileName: "api-client.ts",
+    language: "ts",
   },
   {
-    fileName: "search-panel.tsx",
-    language: "tsx",
     code: `import { useState } from "react";
 import { fetchSearchResults } from "./api-client";
 
@@ -53,22 +51,24 @@ export const SearchPanel = () => {
     </form>
   );
 };`,
+    fileName: "search-panel.tsx",
+    language: "tsx",
   },
   {
-    fileName: "index.ts",
-    language: "ts",
     code: `export { SearchPanel } from "./search-panel";
 export { fetchSearchResults } from "./api-client";`,
+    fileName: "index.ts",
+    language: "ts",
   },
 ];
 
 const meta = {
-  title: "Code/Playground/PlaygroundCode/Default",
-  component: PlaygroundCode,
-  tags: ["autodocs"],
   args: {
     files: singleFile,
   },
+  component: PlaygroundCode,
+  tags: ["autodocs"],
+  title: "Code/Playground/PlaygroundCode/Default",
 } satisfies Meta<typeof PlaygroundCode>;
 
 export default meta;
@@ -85,9 +85,9 @@ export const MultiFileFeatureScaffold: Story = {
 
 export const WithCustomCopyLabels: Story = {
   args: {
-    files: multiFile,
-    copyLabel: "Copy file",
     copiedLabel: "Copied file",
+    copyLabel: "Copy file",
+    files: multiFile,
   },
 };
 

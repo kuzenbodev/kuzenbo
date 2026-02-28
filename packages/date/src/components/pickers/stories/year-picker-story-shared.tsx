@@ -6,12 +6,12 @@ import type { DatePickerValue } from "../../types";
 import { YearPicker } from "../year-picker";
 
 export const baseMeta = {
-  title: "Components/YearPicker",
   component: YearPicker,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/YearPicker",
 } satisfies Meta<typeof YearPicker>;
 
 type Story = StoryObj<typeof baseMeta>;

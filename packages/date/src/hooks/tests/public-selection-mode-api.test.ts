@@ -3,10 +3,12 @@ import { describe, expect, it } from "bun:test";
 import {
   normalizeDateSelectionMode,
   resolveDateSelectionMode,
-  type DatePickerValue,
-  type UseDatesInputOptions,
-  type UseDatesStateOptions,
-  type UseUncontrolledDatesOptions,
+} from "../../index";
+import type {
+  DatePickerValue,
+  UseDatesInputOptions,
+  UseDatesStateOptions,
+  UseUncontrolledDatesOptions,
 } from "../../index";
 
 type ResolveInput = Parameters<typeof resolveDateSelectionMode>[0];

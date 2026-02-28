@@ -2,7 +2,8 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { SidebarMenuContext } from "./sidebar-menu-context";
@@ -14,17 +15,17 @@ export type SidebarMenuSubButtonProps = useRender.ComponentProps<"a"> &
 
 const sidebarMenuSubButtonVariants = tv({
   base: "cursor-clickable text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex min-w-0 -translate-x-px items-center overflow-hidden rounded-md outline-hidden group-data-[collapsible=icon]:hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:shrink-0",
-  variants: {
-    size: {
-      xs: "h-6 gap-1.5 px-1.5 text-xs [&>svg:not([class*='size-'])]:size-3",
-      sm: "h-7 gap-2 px-2 text-xs [&>svg:not([class*='size-'])]:size-3.5",
-      md: "h-8 gap-2 px-2 text-sm [&>svg:not([class*='size-'])]:size-4",
-      lg: "h-9 gap-2.5 px-2.5 text-sm [&>svg:not([class*='size-'])]:size-4",
-      xl: "h-10 gap-2.5 px-3 text-base [&>svg:not([class*='size-'])]:size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "h-9 gap-2.5 px-2.5 text-sm [&>svg:not([class*='size-'])]:size-4",
+      md: "h-8 gap-2 px-2 text-sm [&>svg:not([class*='size-'])]:size-4",
+      sm: "h-7 gap-2 px-2 text-xs [&>svg:not([class*='size-'])]:size-3.5",
+      xl: "h-10 gap-2.5 px-3 text-base [&>svg:not([class*='size-'])]:size-5",
+      xs: "h-6 gap-1.5 px-1.5 text-xs [&>svg:not([class*='size-'])]:size-3",
+    },
   },
 });
 
@@ -51,10 +52,10 @@ const SidebarMenuSubButton = ({
     ),
     render,
     state: {
-      slot: "sidebar-menu-sub-button",
+      active: isActive,
       sidebar: "menu-sub-button",
       size: resolvedSize,
-      active: isActive,
+      slot: "sidebar-menu-sub-button",
     },
   });
 };

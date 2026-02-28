@@ -2,7 +2,8 @@
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { useContext } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import type { InputSize } from "../input/input";
@@ -10,17 +11,17 @@ import { SelectOverlayContext } from "./select-overlay-context";
 
 const selectLabelVariants = tv({
   base: "text-muted-foreground",
-  variants: {
-    size: {
-      xs: "px-1.5 py-0.5 text-xs",
-      sm: "px-1.5 py-1 text-xs",
-      md: "px-1.5 py-1 text-xs",
-      lg: "px-2 py-1.5 text-xs",
-      xl: "px-2.5 py-1.5 text-sm",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "px-2 py-1.5 text-xs",
+      md: "px-1.5 py-1 text-xs",
+      sm: "px-1.5 py-1 text-xs",
+      xl: "px-2.5 py-1.5 text-sm",
+      xs: "px-1.5 py-0.5 text-xs",
+    },
   },
 });
 

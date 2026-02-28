@@ -7,19 +7,19 @@ import { tv } from "tailwind-variants";
 
 import { mergeBaseUIClassName } from "../../utils/merge-base-ui-class-name";
 import { toggleVariants } from "../toggle/toggle";
-import {
-  ToggleGroupContext,
-  type ToggleGroupSize,
-  type ToggleGroupVariant,
+import { ToggleGroupContext } from "./toggle-group-context";
+import type {
+  ToggleGroupSize,
+  ToggleGroupVariant,
 } from "./toggle-group-context";
 
 const toggleGroupItemVariants = tv({
   base: "focus:z-raised focus-visible:z-raised shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-md group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-md group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-md group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-md group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t",
-  extend: toggleVariants,
   defaultVariants: {
-    variant: "default",
     size: "md",
+    variant: "default",
   },
+  extend: toggleVariants,
 });
 
 type ToggleGroupItemVariantProps = Omit<
@@ -52,8 +52,8 @@ const ToggleGroupItem = ({
     <TogglePrimitive
       className={mergeBaseUIClassName<TogglePrimitive.State>(
         toggleGroupItemVariants({
-          variant: resolvedVariant,
           size: resolvedSize,
+          variant: resolvedVariant,
         }),
         className
       )}

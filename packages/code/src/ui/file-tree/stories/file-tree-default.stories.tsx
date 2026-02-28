@@ -2,16 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import { CodeBlock } from "../../code-block/code-block";
-import { FileTree, type FileTreeNode } from "../file-tree";
+import { FileTree } from "../file-tree";
+import type { FileTreeNode } from "../file-tree";
 
 const sampleTreeData: FileTreeNode[] = [
   {
-    id: "app",
-    name: "app",
     children: [
       {
-        id: "app-docs",
-        name: "docs",
         children: [
           {
             id: "app-docs-page",
@@ -22,12 +19,16 @@ const sampleTreeData: FileTreeNode[] = [
             name: "content.mdx",
           },
         ],
+        id: "app-docs",
+        name: "docs",
       },
       {
         id: "app-layout",
         name: "layout.tsx",
       },
     ],
+    id: "app",
+    name: "app",
   },
   {
     id: "package-json",
@@ -37,123 +38,119 @@ const sampleTreeData: FileTreeNode[] = [
 
 const monorepoTreeData: FileTreeNode[] = [
   {
-    id: "apps",
-    name: "apps",
     children: [
       {
-        id: "apps-website",
-        name: "website",
         children: [
           {
-            id: "apps-website-app",
-            name: "app",
             children: [
               {
-                id: "apps-website-app-docs",
-                name: "(docs)",
                 children: [
                   {
                     id: "apps-website-app-docs-page",
                     name: "page.tsx",
                   },
                 ],
+                id: "apps-website-app-docs",
+                name: "(docs)",
               },
             ],
+            id: "apps-website-app",
+            name: "app",
           },
           {
             id: "apps-website-config",
             name: "next.config.ts",
           },
         ],
+        id: "apps-website",
+        name: "website",
       },
     ],
+    id: "apps",
+    name: "apps",
   },
   {
-    id: "packages",
-    name: "packages",
     children: [
       {
-        id: "packages-code",
-        name: "code",
         children: [
           {
-            id: "packages-code-src",
-            name: "src",
             children: [
               {
-                id: "packages-code-ui",
-                name: "ui",
                 children: [
                   {
-                    id: "packages-code-code-preview",
-                    name: "code-preview",
                     children: [
                       {
                         id: "packages-code-code-preview-component",
                         name: "code-preview.tsx",
                       },
                       {
-                        id: "packages-code-code-preview-stories",
-                        name: "stories",
                         children: [
                           {
                             id: "packages-code-code-preview-story-file",
                             name: "code-preview-default.stories.tsx",
                           },
                         ],
+                        id: "packages-code-code-preview-stories",
+                        name: "stories",
                       },
                     ],
+                    id: "packages-code-code-preview",
+                    name: "code-preview",
                   },
                 ],
+                id: "packages-code-ui",
+                name: "ui",
               },
             ],
+            id: "packages-code-src",
+            name: "src",
           },
         ],
+        id: "packages-code",
+        name: "code",
       },
     ],
+    id: "packages",
+    name: "packages",
   },
 ];
 
 const apiAuditTreeData: FileTreeNode[] = [
   {
-    id: "app-api",
-    name: "app",
     children: [
       {
-        id: "app-api-folder",
-        name: "api",
         children: [
           {
-            id: "app-api-search",
-            name: "search",
             children: [
               {
                 id: "app-api-search-route",
                 name: "route.ts",
               },
             ],
+            id: "app-api-search",
+            name: "search",
           },
           {
-            id: "app-api-health",
-            name: "health",
             children: [
               {
                 id: "app-api-health-route",
                 name: "route.ts",
               },
             ],
+            id: "app-api-health",
+            name: "health",
           },
         ],
+        id: "app-api-folder",
+        name: "api",
       },
     ],
+    id: "app-api",
+    name: "app",
   },
   {
-    id: "tests",
-    name: "tests",
     children: [
       {
-        id: "tests-api",
-        name: "api",
         children: [
           {
             id: "tests-api-search",
@@ -164,21 +161,25 @@ const apiAuditTreeData: FileTreeNode[] = [
             name: "health.test.ts",
           },
         ],
+        id: "tests-api",
+        name: "api",
       },
     ],
+    id: "tests",
+    name: "tests",
   },
 ];
 
 const meta = {
-  title: "Code/FileTree/Default",
-  component: FileTree,
-  tags: ["autodocs"],
   args: {
     data: sampleTreeData,
-    openByDefault: true,
     height: 260,
+    openByDefault: true,
     width: 520,
   },
+  component: FileTree,
+  tags: ["autodocs"],
+  title: "Code/FileTree/Default",
 } satisfies Meta<typeof FileTree>;
 
 export default meta;
@@ -190,18 +191,18 @@ export const Default: Story = {};
 export const MonorepoWorkspaceExplorer: Story = {
   args: {
     data: monorepoTreeData,
-    openByDefault: true,
     height: 360,
-    width: 620,
     indent: 18,
+    openByDefault: true,
+    width: 620,
   },
 };
 
 export const ApiRouteAudit: Story = {
   args: {
     data: apiAuditTreeData,
-    openByDefault: true,
     height: 280,
+    openByDefault: true,
     width: 560,
   },
   render: (args) => {
@@ -236,8 +237,8 @@ export const ApiRouteAudit: Story = {
 export const CollapsedByDefault: Story = {
   args: {
     data: monorepoTreeData,
-    openByDefault: false,
     height: 300,
+    openByDefault: false,
     width: 620,
   },
 };

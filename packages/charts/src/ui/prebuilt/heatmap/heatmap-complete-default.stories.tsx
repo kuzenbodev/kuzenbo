@@ -20,9 +20,9 @@ const HeatmapCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Heatmap/Default",
   component: Heatmap,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Heatmap/Default",
 } satisfies Meta<typeof Heatmap>;
 
 type Story = StoryObj<typeof Heatmap>;

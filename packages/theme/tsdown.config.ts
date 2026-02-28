@@ -1,25 +1,19 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: {
-    index: "src/index.ts",
+  attw: {
+    ignoreRules: ["no-resolution"],
+    profile: "esm-only",
   },
-  format: ["esm"],
+  clean: true,
+  copy: ["src/default.css", "src/prebuilt"],
   dts: {
     sourcemap: true,
   },
-  sourcemap: true,
-  copy: ["src/default.css", "src/prebuilt"],
-  clean: true,
-  platform: "neutral",
-  publint: true,
-  attw: {
-    profile: "esm-only",
-    ignoreRules: ["no-resolution"],
+  entry: {
+    index: "src/index.ts",
   },
   exports: {
-    devExports: true,
-    packageJson: true,
     customExports(currentExports, { isPublish }) {
       return {
         ...currentExports,
@@ -29,5 +23,11 @@ export default defineConfig({
           : "./src/prebuilt/*.css",
       };
     },
+    devExports: true,
+    packageJson: true,
   },
+  format: ["esm"],
+  platform: "neutral",
+  publint: true,
+  sourcemap: true,
 });

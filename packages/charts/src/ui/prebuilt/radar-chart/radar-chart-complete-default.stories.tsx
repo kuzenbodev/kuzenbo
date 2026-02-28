@@ -18,9 +18,9 @@ const RadarChartCompleteDefaultDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Radar/Default",
   component: RadarChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Radar/Default",
 } satisfies Meta<typeof RadarChart>;
 
 type Story = StoryObj<typeof RadarChart>;

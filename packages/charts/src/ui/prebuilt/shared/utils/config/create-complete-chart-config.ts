@@ -16,17 +16,17 @@ const createCompleteChartConfig = (
     );
 
     config[seriesName] = {
-      label: seriesItem.label,
       icon: seriesItem.icon,
+      label: seriesItem.label,
       ...(seriesItem.theme
         ? {
             theme: {
-              light:
-                normalizeChartColor(seriesItem.theme.light) ??
-                seriesItem.theme.light,
               dark:
                 normalizeChartColor(seriesItem.theme.dark) ??
                 seriesItem.theme.dark,
+              light:
+                normalizeChartColor(seriesItem.theme.light) ??
+                seriesItem.theme.light,
             },
           }
         : {

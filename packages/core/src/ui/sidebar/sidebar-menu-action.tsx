@@ -2,24 +2,25 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import type { ComponentProps } from "react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { SidebarMenuContext } from "./sidebar-menu-context";
 
 const sidebarMenuActionVariants = tv({
   base: "text-sidebar-foreground ring-sidebar-ring peer-hover/menu-button:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute right-1 flex aspect-square items-center justify-center rounded-md p-0 outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 focus-visible:ring-2 md:after:hidden [&>svg]:shrink-0",
-  variants: {
-    size: {
-      xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",
-      sm: "top-1 w-5 [&>svg:not([class*='size-'])]:size-3.5",
-      md: "top-1.5 w-5 [&>svg:not([class*='size-'])]:size-4",
-      lg: "top-2 w-6 [&>svg:not([class*='size-'])]:size-4",
-      xl: "top-2.5 w-7 [&>svg:not([class*='size-'])]:size-5",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "top-2 w-6 [&>svg:not([class*='size-'])]:size-4",
+      md: "top-1.5 w-5 [&>svg:not([class*='size-'])]:size-4",
+      sm: "top-1 w-5 [&>svg:not([class*='size-'])]:size-3.5",
+      xl: "top-2.5 w-7 [&>svg:not([class*='size-'])]:size-5",
+      xs: "top-0.5 w-4 [&>svg:not([class*='size-'])]:size-3",
+    },
   },
 });
 
@@ -55,9 +56,9 @@ const SidebarMenuAction = ({
     ),
     render,
     state: {
-      slot: "sidebar-menu-action",
       sidebar: "menu-action",
       size: resolvedSize,
+      slot: "sidebar-menu-action",
     },
   });
 };

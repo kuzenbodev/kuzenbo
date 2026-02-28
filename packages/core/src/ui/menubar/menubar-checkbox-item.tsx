@@ -2,13 +2,17 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useContext } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { InputSize } from "../input/input";
 import { MenubarContext } from "./menubar-context";
 import { MenubarOverlayContext } from "./menubar-overlay-context";
 
 const menubarCheckboxItemVariants = tv({
+  defaultVariants: {
+    size: "md",
+  },
   slots: {
     indicator:
       "pointer-events-none absolute flex items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -16,30 +20,27 @@ const menubarCheckboxItemVariants = tv({
   },
   variants: {
     size: {
-      xs: {
-        indicator: "left-1 size-3 [&_svg:not([class*='size-'])]:size-3",
-        root: "gap-1 rounded-[min(var(--radius-md),8px)] py-1 pr-1.5 pl-6 text-xs [&_svg:not([class*='size-'])]:size-3",
-      },
-      sm: {
-        indicator: "left-1 size-3.5 [&_svg:not([class*='size-'])]:size-3.5",
-        root: "gap-1.5 rounded-[min(var(--radius-md),10px)] py-1 pr-1.5 pl-6.5 text-sm [&_svg:not([class*='size-'])]:size-3.5",
+      lg: {
+        indicator: "left-2 size-4 [&_svg:not([class*='size-'])]:size-4",
+        root: "gap-2 py-1.5 pr-2 pl-8 text-sm [&_svg:not([class*='size-'])]:size-4",
       },
       md: {
         indicator: "left-1.5 size-4 [&_svg:not([class*='size-'])]:size-4",
         root: "gap-1.5 py-1 pr-1.5 pl-7 text-sm [&_svg:not([class*='size-'])]:size-4",
       },
-      lg: {
-        indicator: "left-2 size-4 [&_svg:not([class*='size-'])]:size-4",
-        root: "gap-2 py-1.5 pr-2 pl-8 text-sm [&_svg:not([class*='size-'])]:size-4",
+      sm: {
+        indicator: "left-1 size-3.5 [&_svg:not([class*='size-'])]:size-3.5",
+        root: "gap-1.5 rounded-[min(var(--radius-md),10px)] py-1 pr-1.5 pl-6.5 text-sm [&_svg:not([class*='size-'])]:size-3.5",
       },
       xl: {
         indicator: "left-2.5 size-5 [&_svg:not([class*='size-'])]:size-5",
         root: "gap-2.5 py-2 pr-2.5 pl-9 text-base [&_svg:not([class*='size-'])]:size-5",
       },
+      xs: {
+        indicator: "left-1 size-3 [&_svg:not([class*='size-'])]:size-3",
+        root: "gap-1 rounded-[min(var(--radius-md),8px)] py-1 pr-1.5 pl-6 text-xs [&_svg:not([class*='size-'])]:size-3",
+      },
     },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 

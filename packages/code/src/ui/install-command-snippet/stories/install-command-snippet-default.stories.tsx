@@ -16,30 +16,30 @@ export const Default: Story = DefaultStory;
 
 export const MonorepoWorkspaceInstall: Story = {
   args: {
+    commands: {
+      bun: "bun add @kuzenbo/code @kuzenbo/theme @kuzenbo/core @kuzenbo/hooks",
+      pnpm: "pnpm add @kuzenbo/code @kuzenbo/theme @kuzenbo/core @kuzenbo/hooks -w",
+    },
     packages: [
       "@kuzenbo/code",
       "@kuzenbo/theme",
       "@kuzenbo/core",
       "@kuzenbo/hooks",
     ],
-    commands: {
-      pnpm: "pnpm add @kuzenbo/code @kuzenbo/theme @kuzenbo/core @kuzenbo/hooks -w",
-      bun: "bun add @kuzenbo/code @kuzenbo/theme @kuzenbo/core @kuzenbo/hooks",
-    },
   },
 };
 
 export const DevDependencySetup: Story = {
   args: {
-    packages: ["@types/node", "typescript", "vitest"],
     commands: {
+      bun: "bun add -d @types/node typescript vitest",
       npm: "npm install --save-dev @types/node typescript vitest",
       pnpm: "pnpm add -D @types/node typescript vitest",
       yarn: "yarn add -D @types/node typescript vitest",
-      bun: "bun add -d @types/node typescript vitest",
     },
-    copyLabel: "Copy command",
     copiedLabel: "Command copied",
+    copyLabel: "Copy command",
+    packages: ["@types/node", "typescript", "vitest"],
   },
 };
 

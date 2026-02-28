@@ -1,9 +1,7 @@
 import { createElement } from "react";
 
-import {
-  TypographyText,
-  type TypographyTextAliasProps,
-} from "./typography-text";
+import { TypographyText } from "./typography-text";
+import type { TypographyTextAliasProps } from "./typography-text";
 export type TypographyCaptionProps = TypographyTextAliasProps;
 
 const defaultRender: NonNullable<TypographyTextAliasProps["render"]> = (

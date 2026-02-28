@@ -21,8 +21,8 @@ export const Spacer = ({
     ...style,
     ...(orientation === "horizontal" && !size && { flex: 1 }),
     ...(size && {
-      width: orientation === "vertical" ? "1px" : size,
       height: orientation === "horizontal" ? "1px" : size,
+      width: orientation === "vertical" ? "1px" : size,
     }),
   };
 

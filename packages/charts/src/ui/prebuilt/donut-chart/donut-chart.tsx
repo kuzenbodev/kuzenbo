@@ -2,14 +2,8 @@
 
 import type { ComponentProps, ReactNode } from "react";
 import { useCallback } from "react";
-import {
-  Cell,
-  Label,
-  Pie,
-  PieChart as RechartsPieChart,
-  type LegendProps,
-  type TooltipProps,
-} from "recharts";
+import { Cell, Label, Pie, PieChart as RechartsPieChart } from "recharts";
+import type { LegendProps, TooltipProps } from "recharts";
 
 import type { ChartRootProps } from "../../primitives/chart";
 import { CompleteRadialShell } from "../shared/complete-radial-shell";
@@ -153,15 +147,15 @@ const DonutChart = <TData extends CompleteChartDatum = CompleteChartDatum>({
     chartProps: pieChartProps ?? chartProps,
     data,
     dataKey,
+    endAngle,
     fallbackNameKey: "name" as keyof TData & string,
     isSemicircle,
     labelMode,
     nameKey,
     series,
-    startAngle,
     size,
+    startAngle,
     thickness,
-    endAngle,
     tooltipProps,
     tooltipSource,
     valueFormatter,

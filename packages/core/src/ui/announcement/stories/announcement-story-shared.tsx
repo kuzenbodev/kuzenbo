@@ -5,9 +5,9 @@ import { Button } from "../../button/button";
 import { Announcement } from "../announcement";
 
 export const baseMeta = {
-  title: "Components/Announcement",
   component: Announcement,
   tags: ["autodocs"],
+  title: "Components/Announcement",
 } satisfies Meta<typeof Announcement>;
 
 type Story = StoryObj<typeof baseMeta>;

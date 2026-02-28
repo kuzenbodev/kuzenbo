@@ -1,7 +1,9 @@
 "use client";
 
-import { type ComponentProps, type ReactNode, useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { useMemo } from "react";
+import type { ComponentProps, ReactNode } from "react";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { TimelineConnector } from "./timeline-connector";
 import { TimelineContent } from "./timeline-content";
@@ -11,7 +13,8 @@ import { TimelineHeader } from "./timeline-header";
 import { TimelineItem } from "./timeline-item";
 import { TimelineTime } from "./timeline-time";
 import { TimelineTitle } from "./timeline-title";
-import { type Direction, TimelineContext } from "./use-timeline";
+import { TimelineContext } from "./use-timeline";
+import type { Direction } from "./use-timeline";
 
 const timelineVariants = tv({
   base: [
@@ -19,41 +22,41 @@ const timelineVariants = tv({
     "[--timeline-connector-thickness:0.125rem]",
     "[--timeline-dot-size:0.875rem]",
   ],
-  variants: {
-    orientation: {
-      vertical: "flex-col",
-      horizontal: "flex-row items-start",
-    },
-    variant: {
-      default: "",
-      alternate: "",
-    },
-  },
   compoundVariants: [
     {
+      className: "gap-0",
       orientation: "vertical",
       variant: "default",
-      className: "gap-0",
     },
     {
+      className: "gap-0",
       orientation: "horizontal",
       variant: "default",
-      className: "gap-0",
     },
     {
-      orientation: "vertical",
-      variant: "alternate",
       className: "relative w-full gap-0",
+      orientation: "vertical",
+      variant: "alternate",
     },
     {
+      className: "items-center gap-0",
       orientation: "horizontal",
       variant: "alternate",
-      className: "items-center gap-0",
     },
   ],
   defaultVariants: {
     orientation: "vertical",
     variant: "default",
+  },
+  variants: {
+    orientation: {
+      horizontal: "flex-row items-start",
+      vertical: "flex-col",
+    },
+    variant: {
+      alternate: "",
+      default: "",
+    },
   },
 });
 
@@ -75,10 +78,10 @@ const Timeline = ({
 }: TimelineProps) => {
   const contextValue = useMemo(
     () => ({
+      activeIndex,
+      dir,
       orientation,
       variant,
-      dir,
-      activeIndex,
     }),
     [orientation, variant, dir, activeIndex]
   );

@@ -31,9 +31,9 @@ const AreaChartCompletePercentRightAxisDemo = () => (
 );
 
 export default {
-  title: "Components/Chart Complete/Area/PercentRightAxis",
   component: AreaChart,
   tags: ["autodocs"],
+  title: "Components/Chart Complete/Area/PercentRightAxis",
 } satisfies Meta<typeof AreaChart>;
 
 type Story = StoryObj<typeof AreaChart>;

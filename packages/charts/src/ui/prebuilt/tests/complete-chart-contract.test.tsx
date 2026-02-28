@@ -58,16 +58,16 @@ import { Sparkline as CompleteSparkline } from "../sparkline/sparkline";
 
 const buildSeries = () =>
   [
-    { name: "revenue", label: "Revenue" },
+    { label: "Revenue", name: "revenue" },
     {
-      name: "growth",
       label: "Growth",
+      name: "growth",
       theme: {
-        light: "var(--color-chart-3)",
         dark: "var(--color-chart-4)",
+        light: "var(--color-chart-3)",
       },
     },
-    { name: "pipeline", color: "var(--color-chart-5)" },
+    { color: "var(--color-chart-5)", name: "pipeline" },
   ] as const;
 
 describe("Complete charts contract", () => {

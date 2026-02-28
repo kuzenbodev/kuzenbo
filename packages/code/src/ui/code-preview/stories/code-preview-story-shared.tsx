@@ -4,11 +4,17 @@ import { CodeBlock } from "../../code-block/code-block";
 import { CodePreview } from "../code-preview";
 
 export const baseMeta = {
-  title: "Code/CodePreview",
-  component: CodePreview,
-  tags: ["autodocs"],
   args: {
-    title: "Button example",
+    code: (
+      <CodeBlock
+        code={`import { Button } from "@kuzenbo/core";
+
+export const Demo = () => <Button>Click me</Button>;`}
+        language="tsx"
+      />
+    ),
+    defaultMode: "split",
+    minimalCode: <CodeBlock code="<Button>Click me</Button>" language="tsx" />,
     preview: (
       <div className="border-border bg-card rounded-md border p-4">
         <button
@@ -19,17 +25,11 @@ export const baseMeta = {
         </button>
       </div>
     ),
-    minimalCode: <CodeBlock code="<Button>Click me</Button>" language="tsx" />,
-    code: (
-      <CodeBlock
-        code={`import { Button } from "@kuzenbo/core";
-
-export const Demo = () => <Button>Click me</Button>;`}
-        language="tsx"
-      />
-    ),
-    defaultMode: "split",
+    title: "Button example",
   },
+  component: CodePreview,
+  tags: ["autodocs"],
+  title: "Code/CodePreview",
 } satisfies Meta<typeof CodePreview>;
 
 type Story = StoryObj<typeof baseMeta>;

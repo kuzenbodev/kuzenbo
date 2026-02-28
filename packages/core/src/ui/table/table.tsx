@@ -3,7 +3,8 @@
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import type { ComponentProps } from "react";
 import { useMemo } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import { ScrollBar } from "../scroll-area/scroll-bar";
 import { useComponentSize } from "../shared/size/size-provider";
@@ -19,17 +20,17 @@ import { TableSizeContext } from "./table-size-context";
 
 const tableVariants = tv({
   base: "w-full caption-bottom",
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-sm",
-      xl: "text-base",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "text-sm",
+      md: "text-sm",
+      sm: "text-xs",
+      xl: "text-base",
+      xs: "text-xs",
+    },
   },
 });
 

@@ -5,24 +5,24 @@ import { Combobox } from "../combobox";
 const frameworkItems = ["React", "Vue", "Svelte", "Solid", "Angular"] as const;
 
 export const baseMeta = {
-  title: "Components/Combobox",
-  component: Combobox,
-  tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
+  component: Combobox,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "Combobox size cascades across input/chips and popup internals (list, item, labels, status, empty, indicators).",
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
+  title: "Components/Combobox",
 } satisfies Meta<typeof Combobox>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -70,11 +70,7 @@ export const useToast = (): UseToastReturn => {
   return {
     add: (options: ToastOptions) => toastManager.add(options),
 
-    success: (options: Omit<ToastOptions, "type">) =>
-      toastManager.add({
-        ...options,
-        type: "success",
-      }),
+    close: (toastId: string) => toastManager.close(toastId),
 
     error: (options: Omit<ToastOptions, "type">) =>
       toastManager.add({
@@ -88,12 +84,6 @@ export const useToast = (): UseToastReturn => {
         type: "info",
       }),
 
-    warning: (options: Omit<ToastOptions, "type">) =>
-      toastManager.add({
-        ...options,
-        type: "warning",
-      }),
-
     loading: (options: Omit<ToastOptions, "type">) =>
       toastManager.add({
         ...options,
@@ -103,13 +93,23 @@ export const useToast = (): UseToastReturn => {
     promise: <Value>(promise: Promise<Value>, options: PromiseOptions) =>
       toastManager.promise(promise, options),
 
-    update: (toastId: string, options: UpdateOptions) =>
-      toastManager.update(toastId, options),
-
-    close: (toastId: string) => toastManager.close(toastId),
+    success: (options: Omit<ToastOptions, "type">) =>
+      toastManager.add({
+        ...options,
+        type: "success",
+      }),
 
     get toasts() {
       return toastManager.toasts;
     },
+
+    update: (toastId: string, options: UpdateOptions) =>
+      toastManager.update(toastId, options),
+
+    warning: (options: Omit<ToastOptions, "type">) =>
+      toastManager.add({
+        ...options,
+        type: "warning",
+      }),
   };
 };

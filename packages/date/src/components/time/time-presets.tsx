@@ -16,14 +16,14 @@ const timePresetsVariants = tv({
 
 const timePresetsGridVariants = tv({
   base: "grid grid-cols-2 gap-1",
-  variants: {
-    withSeconds: {
-      true: "grid-cols-2",
-      false: "grid-cols-3",
-    },
-  },
   defaultVariants: {
     withSeconds: false,
+  },
+  variants: {
+    withSeconds: {
+      false: "grid-cols-3",
+      true: "grid-cols-2",
+    },
   },
 });
 

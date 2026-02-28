@@ -1,24 +1,25 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 import type { UISize } from "../shared/size/size-system";
 import { useEmojiPickerResolvedSize } from "./emoji-picker-size-context";
 
 const emojiPickerListCategoryHeaderVariants = tv({
   base: "bg-popover text-muted-foreground font-medium",
-  variants: {
-    size: {
-      xs: "px-2 pb-1 text-[10px]",
-      sm: "px-2.5 pb-1 text-xs",
-      md: "px-3 pb-1.5 text-xs",
-      lg: "px-3.5 pb-1.5 text-sm",
-      xl: "px-4 pb-2 text-sm",
-    },
-  },
   defaultVariants: {
     size: "md",
+  },
+  variants: {
+    size: {
+      lg: "px-3.5 pb-1.5 text-sm",
+      md: "px-3 pb-1.5 text-xs",
+      sm: "px-2.5 pb-1 text-xs",
+      xl: "px-4 pb-2 text-sm",
+      xs: "px-2 pb-1 text-[10px]",
+    },
   },
 });
 

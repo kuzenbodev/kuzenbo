@@ -19,20 +19,20 @@ const planningSheetTypes = {
 };
 
 export const baseMeta = {
-  title: "Components/Dropzone",
   component: Dropzone,
   tags: ["autodocs"],
+  title: "Components/Dropzone",
 } satisfies Meta<typeof Dropzone>;
 
 type Story = StoryObj<typeof baseMeta>;
 
 export const Default: Story = {
   args: {
-    onDrop: handleDrop,
-    multiple: false,
+    accept: contractDocumentTypes,
     maxFiles: 1,
     maxSize: 10 * 1024 * 1024,
-    accept: contractDocumentTypes,
+    multiple: false,
+    onDrop: handleDrop,
   },
   render: (args) => (
     <Dropzone className="w-[360px]" {...args}>
@@ -60,11 +60,11 @@ export const Default: Story = {
 
 export const MultipleFiles: Story = {
   args: {
-    onDrop: handleDrop,
-    multiple: true,
+    accept: planningSheetTypes,
     maxFiles: 6,
     maxSize: 15 * 1024 * 1024,
-    accept: planningSheetTypes,
+    multiple: true,
+    onDrop: handleDrop,
   },
   render: (args) => (
     <Dropzone className="w-[420px]" variant="filled" {...args}>
@@ -90,11 +90,11 @@ export const MultipleFiles: Story = {
 
 export const RejectedFiles: Story = {
   args: {
+    accept: contractDocumentTypes,
+    maxFiles: 1,
+    multiple: false,
     onDrop: handleDrop,
     status: "reject",
-    multiple: false,
-    maxFiles: 1,
-    accept: contractDocumentTypes,
   },
   render: (args) => (
     <Dropzone className="w-[360px]" variant="filled" {...args}>

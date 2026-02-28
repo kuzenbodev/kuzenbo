@@ -15,6 +15,14 @@ const options = ["Option A", "Option B", "Option C"] as const;
 const sizes: InputSize[] = ["xs", "sm", "md", "lg", "xl"];
 
 export const ChildScaling: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Input, popup, rows, items, labels, status, and empty state all scale with the same size token.",
+      },
+    },
+  },
   render: () => (
     <div className="grid w-[30rem] gap-4">
       {sizes.map((size) => (
@@ -45,12 +53,4 @@ export const ChildScaling: Story = {
       ))}
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Input, popup, rows, items, labels, status, and empty state all scale with the same size token.",
-      },
-    },
-  },
 };

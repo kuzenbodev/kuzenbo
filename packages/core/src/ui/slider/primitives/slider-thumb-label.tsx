@@ -3,10 +3,8 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "tailwind-variants";
 
-import {
-  defaultSliderLabelTransitionProps,
-  type SliderLabelTransitionProps,
-} from "../shared/slider-transition";
+import { defaultSliderLabelTransitionProps } from "../shared/slider-transition";
+import type { SliderLabelTransitionProps } from "../shared/slider-transition";
 
 export interface SliderThumbLabelProps extends Omit<
   ComponentPropsWithoutRef<"span">,

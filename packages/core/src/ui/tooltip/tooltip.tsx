@@ -10,7 +10,8 @@ import { TooltipPopup } from "./tooltip-popup";
 import { TooltipPortal } from "./tooltip-portal";
 import { TooltipPositioner } from "./tooltip-positioner";
 import { TooltipProvider } from "./tooltip-provider";
-import { TooltipSizeContext, type TooltipSize } from "./tooltip-size-context";
+import { TooltipSizeContext } from "./tooltip-size-context";
+import type { TooltipSize } from "./tooltip-size-context";
 import { TooltipTrigger } from "./tooltip-trigger";
 import { TooltipViewport } from "./tooltip-viewport";
 export type TooltipProps = TooltipPrimitive.Root.Props & {

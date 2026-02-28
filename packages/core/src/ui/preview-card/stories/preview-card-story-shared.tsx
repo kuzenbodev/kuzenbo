@@ -13,20 +13,20 @@ import {
 } from "../preview-card";
 
 export const baseMeta = {
-  title: "Components/PreviewCard",
   component: PreviewCard,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },
   subcomponents: {
-    PreviewCardTrigger,
+    PreviewCardArrow,
+    PreviewCardPopup,
     PreviewCardPortal,
     PreviewCardPositioner,
-    PreviewCardPopup,
-    PreviewCardArrow,
+    PreviewCardTrigger,
     PreviewCardViewport,
   },
+  tags: ["autodocs"],
+  title: "Components/PreviewCard",
 } satisfies Meta<typeof PreviewCard>;
 
 type Story = StoryObj<typeof baseMeta>;

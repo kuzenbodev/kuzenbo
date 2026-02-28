@@ -13,40 +13,40 @@ interface AirportOption {
 
 const airportOptions: AirportOption[] = [
   {
-    value: "JFK",
-    label: "JFK - John F. Kennedy International",
     city: "New York",
     country: "United States",
+    label: "JFK - John F. Kennedy International",
+    value: "JFK",
   },
   {
-    value: "LAX",
-    label: "LAX - Los Angeles International",
     city: "Los Angeles",
     country: "United States",
+    label: "LAX - Los Angeles International",
+    value: "LAX",
   },
   {
-    value: "SFO",
-    label: "SFO - San Francisco International",
     city: "San Francisco",
     country: "United States",
+    label: "SFO - San Francisco International",
+    value: "SFO",
   },
   {
-    value: "CDG",
-    label: "CDG - Charles de Gaulle",
     city: "Paris",
     country: "France",
+    label: "CDG - Charles de Gaulle",
+    value: "CDG",
   },
   {
-    value: "NRT",
-    label: "NRT - Narita International",
     city: "Tokyo",
     country: "Japan",
+    label: "NRT - Narita International",
+    value: "NRT",
   },
   {
-    value: "SIN",
-    label: "SIN - Changi Airport",
     city: "Singapore",
     country: "Singapore",
+    label: "SIN - Changi Airport",
+    value: "SIN",
   },
 ];
 
@@ -119,7 +119,6 @@ export default {
 type Story = StoryObj<typeof baseMeta>;
 
 export const AirportCodeFilter: Story = {
-  render: () => <AirportCodeFilterDemo />,
   parameters: {
     docs: {
       description: {
@@ -128,4 +127,5 @@ export const AirportCodeFilter: Story = {
       },
     },
   },
+  render: () => <AirportCodeFilterDemo />,
 };

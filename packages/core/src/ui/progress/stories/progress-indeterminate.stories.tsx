@@ -13,6 +13,14 @@ export const Indeterminate: Story = {
   args: {
     value: null,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Indeterminate progress state for long-running background tasks without a known completion percentage.",
+      },
+    },
+  },
   render: ({ value }) => (
     <div className="w-72 space-y-2">
       <Progress value={value}>
@@ -26,12 +34,4 @@ export const Indeterminate: Story = {
       </div>
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Indeterminate progress state for long-running background tasks without a known completion percentage.",
-      },
-    },
-  },
 };

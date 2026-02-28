@@ -71,9 +71,9 @@ describe("Chart color regression", () => {
     const registry = createSeriesColorRegistry({
       alpha: {},
       beta: {},
-      gamma: {},
       delta: {},
       epsilon: {},
+      gamma: {},
       zeta: {},
     });
 
@@ -116,10 +116,10 @@ describe("Chart color regression", () => {
   it("preserves valid color expressions in style declarations", () => {
     const registry = createSeriesColorRegistry({
       cssvar: { color: "var(--brand-chart-color)" },
-      oklch: { color: "oklch(0.56 0.12 150)" },
-      rgb: { color: "rgb(11, 22, 33)" },
       hex: { color: "#1A2B3C" },
       named: { color: "rebeccapurple" },
+      oklch: { color: "oklch(0.56 0.12 150)" },
+      rgb: { color: "rgb(11, 22, 33)" },
     });
 
     const styleContent = getStyleDeclarationsForTheme(registry, "light").join(

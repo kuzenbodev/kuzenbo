@@ -9,23 +9,23 @@ export type TabsIndicatorProps = TabsPrimitive.Indicator.Props;
 
 const tabsIndicatorVariants = tv({
   base: "z-behind pointer-events-none absolute top-0 left-0 h-[var(--active-tab-height)] w-[var(--active-tab-width)] translate-x-[var(--active-tab-left)] translate-y-[var(--active-tab-top)] transition-[translate,width,height,opacity] duration-200 ease-in-out",
+  defaultVariants: {
+    size: "md",
+    variant: "default",
+  },
   variants: {
+    size: {
+      lg: "rounded-[var(--radius-md)]",
+      md: "rounded-[min(var(--radius-md),10px)]",
+      sm: "rounded-[min(var(--radius-md),8px)]",
+      xl: "rounded-[var(--radius-md)]",
+      xs: "rounded-[min(var(--radius-md),8px)]",
+    },
     variant: {
       default: "bg-muted",
       line: "bg-primary group-data-[orientation=horizontal]/tabs:h-[2px] group-data-[orientation=horizontal]/tabs:w-[var(--active-tab-width)] group-data-[orientation=horizontal]/tabs:translate-x-[var(--active-tab-left)] group-data-[orientation=horizontal]/tabs:translate-y-[calc(var(--active-tab-top)+var(--active-tab-height)-2px)] group-data-[orientation=vertical]/tabs:h-[var(--active-tab-height)] group-data-[orientation=vertical]/tabs:w-[2px] group-data-[orientation=vertical]/tabs:translate-x-[var(--active-tab-left)] group-data-[orientation=vertical]/tabs:translate-y-[var(--active-tab-top)]",
       pill: "bg-background shadow-sm",
     },
-    size: {
-      xs: "rounded-[min(var(--radius-md),8px)]",
-      sm: "rounded-[min(var(--radius-md),8px)]",
-      md: "rounded-[min(var(--radius-md),10px)]",
-      lg: "rounded-[var(--radius-md)]",
-      xl: "rounded-[var(--radius-md)]",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-    size: "md",
   },
 });
 

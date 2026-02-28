@@ -30,9 +30,9 @@ const pendingItems = [
 ] as const;
 
 export const baseMeta = {
-  title: "Components/ScrollArea",
   component: ScrollArea,
   tags: ["autodocs"],
+  title: "Components/ScrollArea",
 } satisfies Meta<typeof ScrollArea>;
 
 type Story = StoryObj<typeof baseMeta>;

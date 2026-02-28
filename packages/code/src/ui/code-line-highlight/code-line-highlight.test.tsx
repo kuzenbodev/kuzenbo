@@ -49,8 +49,8 @@ describe("CodeLineHighlight", () => {
       <CodeLineHighlight
         annotations={[
           {
-            line: 12,
             content: "Boots the HTTP server",
+            line: 12,
           },
         ]}
         code={sampleCode}
@@ -67,8 +67,8 @@ describe("CodeLineHighlight", () => {
         annotationSlot={({ lineNumber }) => `Line ${lineNumber}`}
         annotations={[
           {
-            line: 12,
             content: "Ignored by custom slot",
+            line: 12,
           },
         ]}
         code={sampleCode}

@@ -17,45 +17,45 @@ describe("useIsMobile", () => {
     originalInnerWidth = window.innerWidth;
 
     Object.defineProperty(window, "matchMedia", {
-      writable: true,
       value: (query: string) => ({
-        matches: false,
-        media: query,
-        onchange: null,
         addEventListener: (_event: string, handler: () => void) => {
           listeners.push(handler);
-        },
-        removeEventListener: (_event: string, handler: () => void) => {
-          listeners = listeners.filter((l) => l !== handler);
         },
         addListener: () => {
           // do nothing
         },
+        dispatchEvent: () => false,
+        matches: false,
+        media: query,
+        onchange: null,
+        removeEventListener: (_event: string, handler: () => void) => {
+          listeners = listeners.filter((l) => l !== handler);
+        },
         removeListener: () => {
           // do nothing
         },
-        dispatchEvent: () => false,
       }),
+      writable: true,
     });
   });
 
   afterEach(() => {
     Object.defineProperty(window, "matchMedia", {
-      writable: true,
       value: originalMatchMedia,
+      writable: true,
     });
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: originalInnerWidth,
+      writable: true,
     });
   });
 
   it("returns false when window width is >= 768", () => {
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: 1024,
+      writable: true,
     });
 
     const { result } = renderHook(() => useIsMobile());
@@ -64,9 +64,9 @@ describe("useIsMobile", () => {
 
   it("returns true when window width is < 768", () => {
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: 500,
+      writable: true,
     });
 
     const { result } = renderHook(() => useIsMobile());
@@ -75,9 +75,9 @@ describe("useIsMobile", () => {
 
   it("returns false at exactly 768px", () => {
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: 768,
+      writable: true,
     });
 
     const { result } = renderHook(() => useIsMobile());
@@ -86,9 +86,9 @@ describe("useIsMobile", () => {
 
   it("returns true at 767px", () => {
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: 767,
+      writable: true,
     });
 
     const { result } = renderHook(() => useIsMobile());
@@ -97,9 +97,9 @@ describe("useIsMobile", () => {
 
   it("updates when the media query changes", () => {
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: 1024,
+      writable: true,
     });
 
     const { result } = renderHook(() => useIsMobile());
@@ -107,9 +107,9 @@ describe("useIsMobile", () => {
 
     act(() => {
       Object.defineProperty(window, "innerWidth", {
-        writable: true,
         configurable: true,
         value: 500,
+        writable: true,
       });
       for (const listener of listeners) {
         listener();
@@ -121,9 +121,9 @@ describe("useIsMobile", () => {
 
   it("cleans up the event listener on unmount", () => {
     Object.defineProperty(window, "innerWidth", {
-      writable: true,
       configurable: true,
       value: 1024,
+      writable: true,
     });
 
     const { unmount } = renderHook(() => useIsMobile());

@@ -37,12 +37,12 @@ const ControlledStateDemo = () => {
 };
 
 const meta: Meta = {
-  title: "Components/Drawer/ControlledState",
   component: Drawer.Root,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  title: "Components/Drawer/ControlledState",
 };
 
 export default meta;

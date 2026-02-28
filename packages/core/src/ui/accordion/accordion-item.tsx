@@ -37,23 +37,23 @@ const accordionItemVariants = tv({
       variant: ["bordered", "ghost"],
     },
   ],
-  variants: {
-    size: {
-      xs: "",
-      sm: "",
-      md: "",
-      lg: "",
-      xl: "",
-    },
-    variant: {
-      default: "",
-      bordered: "",
-      ghost: "border-0",
-    },
-  },
   defaultVariants: {
     size: "md",
     variant: "default",
+  },
+  variants: {
+    size: {
+      lg: "",
+      md: "",
+      sm: "",
+      xl: "",
+      xs: "",
+    },
+    variant: {
+      bordered: "",
+      default: "",
+      ghost: "border-0",
+    },
   },
 });
 

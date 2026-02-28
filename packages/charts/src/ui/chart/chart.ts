@@ -43,13 +43,13 @@ import {
 const Chart = Object.assign(PrimitiveChart, {
   Preset: {
     Area: AreaChart,
-    Bubble: BubbleChart,
-    Line: LineChart,
     Bar: BarChart,
+    Bubble: BubbleChart,
     Composite: CompositeChart,
     Donut: DonutChart,
     Funnel: FunnelChart,
     Heatmap,
+    Line: LineChart,
     Pie: PieChart,
     Radar: RadarChart,
     RadialBar: RadialBarChart,

@@ -5,14 +5,14 @@ import { useDatesContext } from "../use-dates-context";
 
 const weekdaysRowVariants = tv({
   base: "grid gap-1",
-  variants: {
-    withWeekNumbers: {
-      true: "grid-cols-[auto_repeat(7,minmax(0,1fr))]",
-      false: "grid-cols-7",
-    },
-  },
   defaultVariants: {
     withWeekNumbers: false,
+  },
+  variants: {
+    withWeekNumbers: {
+      false: "grid-cols-7",
+      true: "grid-cols-[auto_repeat(7,minmax(0,1fr))]",
+    },
   },
 });
 

@@ -8,8 +8,8 @@ export const pieDefaultData = [
 ];
 
 export const pieDefaultSeries = [
-  { name: "Product", label: "Product", color: "var(--color-chart-1)" },
-  { name: "Services", label: "Services", color: "var(--color-chart-2)" },
-  { name: "Support", label: "Support", color: "var(--color-chart-3)" },
-  { name: "Other", label: "Other", color: "var(--color-chart-4)" },
+  { color: "var(--color-chart-1)", label: "Product", name: "Product" },
+  { color: "var(--color-chart-2)", label: "Services", name: "Services" },
+  { color: "var(--color-chart-3)", label: "Support", name: "Support" },
+  { color: "var(--color-chart-4)", label: "Other", name: "Other" },
 ] satisfies CompleteChartSeries[];

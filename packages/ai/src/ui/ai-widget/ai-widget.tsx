@@ -9,9 +9,9 @@ export type AiWidgetProps = ComponentProps<"section"> & {
 
 const aiWidgetVariants = tv({
   slots: {
+    content: "text-muted-foreground mt-2 text-sm",
     root: "border-border bg-card text-card-foreground rounded-lg border p-4",
     title: "text-sm font-medium",
-    content: "text-muted-foreground mt-2 text-sm",
   },
 });
 

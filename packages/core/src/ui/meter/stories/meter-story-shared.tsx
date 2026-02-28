@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Meter } from "../meter";
 
 export const baseMeta = {
-  title: "Components/Meter",
+  argTypes: {
+    value: { control: "number", max: 100, min: 0, step: 5 },
+  },
   component: Meter,
   tags: ["autodocs"],
-  argTypes: {
-    value: { control: "number", min: 0, max: 100, step: 5 },
-  },
+  title: "Components/Meter",
 } satisfies Meta<typeof Meter>;
 
 type Story = StoryObj<typeof baseMeta>;

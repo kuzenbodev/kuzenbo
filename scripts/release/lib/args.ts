@@ -26,7 +26,7 @@ export const parseArgs = (argv: string[]): ParsedArgs => {
     index += 1;
   }
 
-  return { values, flags };
+  return { flags, values };
 };
 
 export const getRequiredArg = (args: ParsedArgs, key: string): string => {

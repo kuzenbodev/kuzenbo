@@ -16,8 +16,8 @@ try {
 
 const rows = packages.map((pkg) => ({
   name: pkg.manifest.name,
-  version: pkg.manifest.version,
   private: pkg.manifest.private === true ? "true" : "false",
+  version: pkg.manifest.version,
 }));
 
 console.log("Kuzenbo release status");

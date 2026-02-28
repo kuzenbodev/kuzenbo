@@ -28,9 +28,9 @@ const html = `
 `;
 
 const meta = {
-  title: "Components/Typography/ProseCmsArticle",
   component: Typography.Prose,
   tags: ["autodocs"],
+  title: "Components/Typography/ProseCmsArticle",
 } satisfies Meta<typeof Typography.Prose>;
 
 export default meta;

@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 const data = [{ name: "A", value: 120 }];
 const chartConfig = {
-  value: { label: "Value", color: "var(--color-chart-1)" },
+  value: { color: "var(--color-chart-1)", label: "Value" },
 };
 
 const getStyleTagContent = (container: HTMLElement) => {

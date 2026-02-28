@@ -26,18 +26,18 @@ const complianceRows = [
 ] as const;
 
 export const baseMeta = {
-  title: "Components/Checkbox",
-  component: Checkbox,
-  tags: ["autodocs"],
   argTypes: {
+    defaultChecked: { control: "boolean" },
     disabled: { control: "boolean" },
     indeterminate: { control: "boolean" },
-    defaultChecked: { control: "boolean" },
     size: {
       control: "select",
       options: checkboxSizes,
     },
   },
+  component: Checkbox,
+  tags: ["autodocs"],
+  title: "Components/Checkbox",
 } satisfies Meta<typeof Checkbox>;
 
 type Story = StoryObj<typeof baseMeta>;

@@ -7,9 +7,9 @@ export const completeRadialBarData = [
 ] as const;
 
 export const completeRadialBarSeries = [
-  { name: "North", label: "North" },
-  { name: "South", label: "South" },
-  { name: "West", label: "West" },
+  { label: "North", name: "North" },
+  { label: "South", name: "South" },
+  { label: "West", name: "West" },
 ] as const satisfies readonly CompleteChartSeries[];
 
 export const completeRadialBarLabelData = [
@@ -18,6 +18,6 @@ export const completeRadialBarLabelData = [
 ] as const;
 
 export const completeRadialBarLabelSeries = [
-  { name: "Mobile", label: "Mobile" },
-  { name: "Web", label: "Web" },
+  { label: "Mobile", name: "Mobile" },
+  { label: "Web", name: "Web" },
 ] as const satisfies readonly CompleteChartSeries[];
