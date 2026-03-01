@@ -10,7 +10,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../sheet/sheet";
-import { SIDEBAR_WIDTH_MOBILE } from "./constants";
 import { SidebarContent } from "./sidebar-content";
 import { SidebarFooter } from "./sidebar-footer";
 import { SidebarGroup } from "./sidebar-group";
@@ -76,7 +75,7 @@ const Sidebar = ({
           side={side}
           style={
             {
-              "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+              "--sidebar-width": "var(--kb-sidebar-width-mobile, 18rem)",
             } as CSSProperties
           }
         >

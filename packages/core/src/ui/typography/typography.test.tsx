@@ -87,6 +87,29 @@ describe("Typography", () => {
     expect(heading.dataset.variant).toBe("h4");
   });
 
+  it("uses tokenized class contracts for heading and text scale", () => {
+    render(
+      <>
+        <Typography.H1 data-testid="tokenized-heading">
+          Tokenized heading
+        </Typography.H1>
+        <Typography.Body data-testid="tokenized-body">
+          Tokenized body
+        </Typography.Body>
+      </>
+    );
+
+    const heading = screen.getByTestId("tokenized-heading");
+    const body = screen.getByTestId("tokenized-body");
+
+    expect(
+      heading.className.includes("var(--kb-typography-heading-h1-size")
+    ).toBe(true);
+    expect(body.className.includes("var(--kb-typography-text-body-size")).toBe(
+      true
+    );
+  });
+
   it("maps aliases to the same canonical variants", () => {
     render(
       <>
@@ -139,7 +162,9 @@ describe("Typography", () => {
     const element = screen.getByText("Class test");
 
     expect(element.className.includes("custom-class")).toBe(true);
-    expect(element.className.includes("text-base")).toBe(true);
+    expect(
+      element.className.includes("text-[length:var(--kb-typography-text-body")
+    ).toBe(true);
   });
 
   it("styles rich html content with Typography.Prose", () => {
@@ -183,5 +208,10 @@ describe("Typography", () => {
     expect(prose.dataset.slot).toBe("typography-prose");
     expect(prose.className.includes("custom-prose")).toBe(true);
     expect(prose.className.includes("w-full")).toBe(true);
+    expect(
+      prose.className.includes(
+        "max-w-[var(--kb-typography-prose-max-width,100%)]"
+      )
+    ).toBe(true);
   });
 });

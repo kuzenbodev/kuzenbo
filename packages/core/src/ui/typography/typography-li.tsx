@@ -9,7 +9,10 @@ const TypographyLi = ({ className, render, ...props }: TypographyLiProps) =>
     defaultTagName: "li",
     props: mergeProps<"li">(
       {
-        className: cn("leading-6", className),
+        className: cn(
+          "leading-[var(--kb-typography-list-item-line-height,1.5rem)]",
+          className
+        ),
       },
       props
     ),

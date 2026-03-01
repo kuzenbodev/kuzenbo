@@ -17,11 +17,11 @@ const comboboxListVariants = tv({
   },
   variants: {
     size: {
-      lg: "max-h-[min(calc(--spacing(72)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-1.5 p-1.5",
-      md: "max-h-[min(calc(--spacing(72)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-1 p-1",
-      sm: "max-h-[min(calc(--spacing(72)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-1 p-1",
-      xl: "max-h-[min(calc(--spacing(72)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-2 p-2",
-      xs: "max-h-[min(calc(--spacing(72)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-0.5 p-0.5",
+      lg: "max-h-[min(calc(var(--kb-overlay-list-max-height,20rem)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-1.5 p-1.5",
+      md: "max-h-[min(calc(var(--kb-overlay-list-max-height,20rem)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-1 p-1",
+      sm: "max-h-[min(calc(var(--kb-overlay-list-max-height,20rem)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-1 p-1",
+      xl: "max-h-[min(calc(var(--kb-overlay-list-max-height,20rem)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-2 p-2",
+      xs: "max-h-[min(calc(var(--kb-overlay-list-max-height,20rem)-var(--kb-combobox-anchor-offset)),calc(var(--available-height)-var(--kb-combobox-anchor-offset)))] scroll-py-0.5 p-0.5",
     },
   },
 });

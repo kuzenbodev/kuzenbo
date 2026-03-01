@@ -76,6 +76,78 @@ Theme CSS exposes a semantic cursor token and utility class for interactive UI:
 
 Use scoped overrides to switch interactive components to a default cursor in non-clickable or read-only contexts.
 
+## Container Width Token
+
+Theme CSS also includes a shared layout token for `Container` max width:
+
+- Token: `--kb-container-max-width` (default `86rem`)
+- Used by `@kuzenbo/core` `Container` via `max-width: var(--kb-container-max-width, 86rem)`
+
+```css
+:root {
+  --kb-container-max-width: 92rem;
+}
+
+.docs-shell {
+  --kb-container-max-width: 80rem;
+}
+```
+
+## Overlay and Surface Layout Tokens
+
+Theme CSS exposes additional layout tokens for global surface tuning:
+
+- Overlay backdrops (`Dialog`, `Sheet`, `Popover`, `AlertDialog`, `PreviewCard`):
+  - `--kb-overlay-scrim-opacity`
+  - `--kb-overlay-scrim-blur`
+- Dialog:
+  - `--kb-dialog-max-width`
+  - `--kb-dialog-edge-gutter`
+- Sheet side panels:
+  - `--kb-sheet-side-width`
+  - `--kb-sheet-side-max-width`
+- Drawer:
+  - `--kb-drawer-bleed`, `--kb-drawer-peek`, `--kb-drawer-stack-step`
+  - `--kb-drawer-max-height`
+  - `--kb-drawer-content-max-width-{xs|sm|md|lg|xl}`
+  - `--kb-drawer-side-width-{xs|sm|md|lg|xl}`
+  - `--kb-drawer-action-sheet-max-width`
+  - `--kb-drawer-backdrop-opacity`, `--kb-drawer-backdrop-opacity-dark`
+- Toast:
+  - `--kb-toast-viewport-width-{xs|sm|md|lg|xl}`
+  - `--kb-toast-viewport-width-{xs|sm|md|lg|xl}-sm`
+  - `--kb-toast-max-width-{xs|sm|md|lg|xl}`
+- Shared utility layout:
+  - `--kb-overlay-list-max-height` (select/autocomplete/combobox popup lists)
+  - `--kb-chart-min-height`
+  - `--kb-sidebar-width`, `--kb-sidebar-width-mobile`, `--kb-sidebar-width-icon`
+- Typography primitives:
+  - Heading scale: `--kb-typography-heading-*-size`, `--kb-typography-heading-*-line-height`
+  - Text scale: `--kb-typography-text-*-size`, `--kb-typography-text-*-line-height`
+  - Prose measure/layout: `--kb-typography-prose-max-width`, `--kb-typography-prose-paragraph-margin-bottom`
+  - Block/list spacing: `--kb-typography-blockquote-*`, `--kb-typography-list-*`
+
+```css
+:root {
+  --kb-overlay-scrim-opacity: 0.14;
+  --kb-overlay-scrim-blur: 6px;
+  --kb-dialog-max-width: 34rem;
+  --kb-sheet-side-max-width: 28rem;
+  --kb-drawer-side-width-md: 22rem;
+  --kb-toast-max-width-md: 20rem;
+  --kb-overlay-list-max-height: 24rem;
+  --kb-chart-min-height: 280px;
+  --kb-sidebar-width: 18rem;
+
+  --kb-typography-heading-h1-size: 2.5rem;
+  --kb-typography-heading-h1-line-height: 3rem;
+  --kb-typography-text-body-size: 1.0625rem;
+  --kb-typography-text-body-line-height: 1.875rem;
+  --kb-typography-prose-max-width: 72ch;
+  --kb-typography-list-indent: 1.5rem;
+}
+```
+
 ## CSP and Nonce Support
 
 If your app enforces Content Security Policy nonces, set `THEME_BOOTSTRAP_NONCE` and let `ThemeBootstrapScript` use it automatically through `getThemeBootstrapScriptNonce()`.

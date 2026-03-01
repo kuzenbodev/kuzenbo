@@ -155,8 +155,23 @@ export function TypographyAdvanced() {
 ## Styling and Tokens
 
 - Typography variants are built on semantic tokens (`text-foreground`, `text-muted-foreground`).
+- Typography primitives also expose global CSS variable hooks:
+  - Heading scale (`Typography.Heading`, aliases): `--kb-typography-heading-*-size`, `--kb-typography-heading-*-line-height`
+  - Text scale (`Typography.Text`, aliases): `--kb-typography-text-*-size`, `--kb-typography-text-*-line-height`
+  - Prose wrapper (`Typography.Prose`): `--kb-typography-prose-max-width`, `--kb-typography-prose-paragraph-margin-bottom`
+  - Block/list helpers: `--kb-typography-blockquote-*`, `--kb-typography-list-*`
 - Prefer component variants over direct utility typography overrides.
 - If you must customize, layer `className` onto primitives so slot metadata remains intact.
+
+```css
+:root {
+  --kb-typography-heading-h2-size: 2rem;
+  --kb-typography-heading-h2-line-height: 2.5rem;
+  --kb-typography-text-body-size: 1.0625rem;
+  --kb-typography-text-body-line-height: 1.875rem;
+  --kb-typography-prose-max-width: 72ch;
+}
+```
 
 ## Troubleshooting
 

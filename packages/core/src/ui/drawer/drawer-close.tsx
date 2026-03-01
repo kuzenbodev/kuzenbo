@@ -33,14 +33,26 @@ type DrawerCloseVariantProps = Omit<
 export type DrawerCloseProps = DrawerPrimitive.Close.Props &
   DrawerCloseVariantProps;
 
-const DrawerClose = ({ className, size, ...props }: DrawerCloseProps) => {
+const DrawerClose = ({
+  className,
+  render,
+  size,
+  ...props
+}: DrawerCloseProps) => {
   const resolvedSize = useResolvedDrawerSize(size);
+  const hasCustomRender = render !== undefined;
 
   return (
     <DrawerPrimitive.Close
-      className={cn(drawerCloseVariants({ size: resolvedSize }), className)}
+      className={cn(
+        hasCustomRender
+          ? undefined
+          : drawerCloseVariants({ size: resolvedSize }),
+        className
+      )}
       data-size={resolvedSize}
       data-slot="drawer-close"
+      render={render}
       {...props}
     />
   );

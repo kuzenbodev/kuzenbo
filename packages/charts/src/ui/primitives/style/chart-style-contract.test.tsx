@@ -40,7 +40,9 @@ describe("Chart style contracts", () => {
     const root = container.querySelector("[data-slot=chart]") as HTMLElement;
 
     expect(root.className).toContain("w-full");
-    expect(root.className).toContain("min-h-[240px]");
+    expect(root.className).toContain(
+      "min-h-[var(--kb-chart-min-height,240px)]"
+    );
     expect(root.className).toContain("text-xs");
   });
 
@@ -58,7 +60,9 @@ describe("Chart style contracts", () => {
     const root = container.querySelector("[data-slot=chart]") as HTMLElement;
 
     expect(root.className).toContain("custom-chart-shell");
-    expect(root.className).toContain("min-h-[240px]");
+    expect(root.className).toContain(
+      "min-h-[var(--kb-chart-min-height,240px)]"
+    );
   });
 
   it("keeps style injection stable for multi-series config without unsafe duplicates", () => {

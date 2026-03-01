@@ -4,8 +4,10 @@ import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer";
 import { useMemo } from "react";
 
 import { useComponentSize } from "../shared/size/size-provider";
+import { DrawerActionSheet } from "./drawer-action-sheet";
 import { DrawerActions } from "./drawer-actions";
 import { DrawerBackdrop } from "./drawer-backdrop";
+import { DrawerBottomSheet } from "./drawer-bottom-sheet";
 import { DrawerClose } from "./drawer-close";
 import { DrawerContent } from "./drawer-content";
 import { DrawerDescription } from "./drawer-description";
@@ -13,9 +15,11 @@ import { DrawerHandle } from "./drawer-handle";
 import { DrawerHeader } from "./drawer-header";
 import { DrawerIndent } from "./drawer-indent";
 import { DrawerIndentBackground } from "./drawer-indent-background";
+import { DrawerIndentShell } from "./drawer-indent-shell";
 import { DrawerPopup } from "./drawer-popup";
 import { DrawerPortal } from "./drawer-portal";
 import { DrawerProvider } from "./drawer-provider";
+import { DrawerSidePanel } from "./drawer-side-panel";
 import { DrawerSizeContext } from "./drawer-size-context";
 import type { DrawerSize } from "./drawer-size-context";
 import { DrawerTitle } from "./drawer-title";
@@ -41,18 +45,22 @@ const Drawer = <T,>({ size: providedSize, ...props }: DrawerRootProps<T>) => {
 const DrawerRoot = Drawer;
 
 Drawer.Root = DrawerRoot;
+Drawer.ActionSheet = DrawerActionSheet;
 Drawer.Actions = DrawerActions;
 Drawer.Backdrop = DrawerBackdrop;
+Drawer.BottomSheet = DrawerBottomSheet;
 Drawer.Close = DrawerClose;
 Drawer.Content = DrawerContent;
 Drawer.Description = DrawerDescription;
 Drawer.Indent = DrawerIndent;
 Drawer.IndentBackground = DrawerIndentBackground;
+Drawer.IndentShell = DrawerIndentShell;
 Drawer.Handle = DrawerHandle;
 Drawer.Header = DrawerHeader;
 Drawer.Popup = DrawerPopup;
 Drawer.Portal = DrawerPortal;
 Drawer.Provider = DrawerProvider;
+Drawer.SidePanel = DrawerSidePanel;
 Drawer.Title = DrawerTitle;
 Drawer.Trigger = DrawerTrigger;
 Drawer.Viewport = DrawerViewport;
@@ -60,8 +68,10 @@ Drawer.createHandle = DrawerPrimitive.createHandle;
 
 const createDrawerHandle = DrawerPrimitive.createHandle;
 
+export type { DrawerActionSheetProps } from "./drawer-action-sheet";
 export type { DrawerActionsProps } from "./drawer-actions";
 export type { DrawerBackdropProps } from "./drawer-backdrop";
+export type { DrawerBottomSheetProps } from "./drawer-bottom-sheet";
 export type { DrawerCloseProps } from "./drawer-close";
 export type { DrawerContentProps } from "./drawer-content";
 export type { DrawerDescriptionProps } from "./drawer-description";
@@ -69,10 +79,12 @@ export type { DrawerHandleProps } from "./drawer-handle";
 export type { DrawerHeaderProps } from "./drawer-header";
 export type { DrawerIndentBackgroundProps } from "./drawer-indent-background";
 export type { DrawerIndentProps } from "./drawer-indent";
+export type { DrawerIndentShellProps } from "./drawer-indent-shell";
 export type { DrawerPopupProps } from "./drawer-popup";
 export type { DrawerPopupSize } from "./drawer-popup";
 export type { DrawerPortalProps } from "./drawer-portal";
 export type { DrawerProviderProps } from "./drawer-provider";
+export type { DrawerSidePanelProps } from "./drawer-side-panel";
 export type { DrawerSize } from "./drawer-size-context";
 export type { DrawerTitleProps } from "./drawer-title";
 export type { DrawerTriggerProps } from "./drawer-trigger";
@@ -80,9 +92,11 @@ export type { DrawerViewportProps } from "./drawer-viewport";
 
 export {
   Drawer,
+  DrawerActionSheet,
   DrawerRoot,
   DrawerActions,
   DrawerBackdrop,
+  DrawerBottomSheet,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -90,9 +104,11 @@ export {
   DrawerHeader,
   DrawerIndent,
   DrawerIndentBackground,
+  DrawerIndentShell,
   DrawerPopup,
   DrawerPortal,
   DrawerProvider,
+  DrawerSidePanel,
   DrawerTitle,
   DrawerTrigger,
   DrawerViewport,

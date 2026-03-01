@@ -22,11 +22,11 @@ const toastViewportVariants = tv({
   },
   variants: {
     size: {
-      lg: "w-[280px] sm:w-[340px]",
-      md: "w-[250px] sm:w-[300px]",
-      sm: "w-[240px] sm:w-[280px]",
-      xl: "w-[320px] sm:w-[380px]",
-      xs: "w-[220px] sm:w-[260px]",
+      lg: "w-[var(--kb-toast-viewport-width-lg,280px)] sm:w-[var(--kb-toast-viewport-width-lg-sm,340px)]",
+      md: "w-[var(--kb-toast-viewport-width-md,250px)] sm:w-[var(--kb-toast-viewport-width-md-sm,300px)]",
+      sm: "w-[var(--kb-toast-viewport-width-sm,240px)] sm:w-[var(--kb-toast-viewport-width-sm-sm,280px)]",
+      xl: "w-[var(--kb-toast-viewport-width-xl,320px)] sm:w-[var(--kb-toast-viewport-width-xl-sm,380px)]",
+      xs: "w-[var(--kb-toast-viewport-width-xs,220px)] sm:w-[var(--kb-toast-viewport-width-xs-sm,260px)]",
     },
   },
 });

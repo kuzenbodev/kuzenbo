@@ -20,7 +20,7 @@ const DefaultDemo = () => (
                 next production rollout.
               </Drawer.Description>
               <Drawer.Actions>
-                <Button size="xl">Save changes</Button>
+                <Button>Save changes</Button>
                 <Drawer.Close render={<Button variant="outline" size="xl" />}>
                   Cancel
                 </Drawer.Close>

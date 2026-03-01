@@ -4,6 +4,7 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { useCallback, useState } from "react";
 
+import { Button } from "../../button/button";
 import { Drawer } from "../drawer";
 
 afterEach(cleanup);
@@ -322,6 +323,36 @@ describe("Drawer core behavior", () => {
     expect(popupClass.includes("custom-popup-sentinel")).toBe(true);
     expect(popupClass.includes("--drawer-swipe-movement-y")).toBe(true);
     expect(popupClass.includes("data-nested-drawer-open")).toBe(true);
+  });
+
+  it("does not apply icon-size close classes when using a rendered Button", () => {
+    render(
+      <Drawer.Root defaultOpen>
+        <Drawer.Portal>
+          <Drawer.Viewport>
+            <Drawer.Popup>
+              <Drawer.Content>
+                <Drawer.Close render={<Button variant="outline" />}>
+                  Close
+                </Drawer.Close>
+              </Drawer.Content>
+            </Drawer.Popup>
+          </Drawer.Viewport>
+        </Drawer.Portal>
+      </Drawer.Root>
+    );
+
+    const close = document.querySelector<HTMLElement>(
+      "[data-slot=drawer-close]"
+    );
+    expect(close).not.toBeNull();
+    const closeElement = close as HTMLElement;
+    const closeClass = closeElement.className;
+
+    expect(closeClass.includes("size-7")).toBe(false);
+    expect(closeClass.includes("size-8")).toBe(false);
+    expect(closeClass.includes("size-9")).toBe(false);
+    expect(closeClass.includes("size-6")).toBe(false);
   });
 
   it("does not render a root DOM node by itself", () => {

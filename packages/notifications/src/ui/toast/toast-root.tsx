@@ -20,27 +20,27 @@ const toastRootVariants = tv({
   compoundVariants: [
     {
       anchored: true,
-      class: "max-w-[16rem] px-2 py-1.5 text-xs",
+      class: "max-w-[var(--kb-toast-max-width-xs,16rem)] px-2 py-1.5 text-xs",
       size: "xs",
     },
     {
       anchored: true,
-      class: "max-w-[17rem] px-2.5 py-2 text-sm",
+      class: "max-w-[var(--kb-toast-max-width-sm,17rem)] px-2.5 py-2 text-sm",
       size: "sm",
     },
     {
       anchored: true,
-      class: "max-w-[18rem] px-3 py-2 text-sm",
+      class: "max-w-[var(--kb-toast-max-width-md,18rem)] px-3 py-2 text-sm",
       size: "md",
     },
     {
       anchored: true,
-      class: "max-w-[19rem] px-3.5 py-2.5 text-sm",
+      class: "max-w-[var(--kb-toast-max-width-lg,19rem)] px-3.5 py-2.5 text-sm",
       size: "lg",
     },
     {
       anchored: true,
-      class: "max-w-[20rem] px-4 py-3 text-base",
+      class: "max-w-[var(--kb-toast-max-width-xl,20rem)] px-4 py-3 text-base",
       size: "xl",
     },
     {

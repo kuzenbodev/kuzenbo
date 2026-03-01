@@ -9,8 +9,6 @@ import {
   SIDEBAR_COOKIE_MAX_AGE,
   SIDEBAR_COOKIE_NAME,
   SIDEBAR_KEYBOARD_SHORTCUT,
-  SIDEBAR_WIDTH,
-  SIDEBAR_WIDTH_ICON,
 } from "./constants";
 import { SidebarContext } from "./use-sidebar";
 import type { SidebarContextProps } from "./use-sidebar";
@@ -102,8 +100,8 @@ const SidebarProvider = ({
         data-slot="sidebar-wrapper"
         style={
           {
-            "--sidebar-width": SIDEBAR_WIDTH,
-            "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
+            "--sidebar-width": "var(--kb-sidebar-width, 16rem)",
+            "--sidebar-width-icon": "var(--kb-sidebar-width-icon, 3rem)",
             ...style,
           } as CSSProperties
         }

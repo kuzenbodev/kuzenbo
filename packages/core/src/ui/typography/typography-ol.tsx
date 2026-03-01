@@ -10,7 +10,7 @@ const TypographyOl = ({ className, render, ...props }: TypographyOlProps) =>
     props: mergeProps<"ol">(
       {
         className: cn(
-          "text-foreground list-decimal pl-5 [&>li]:mt-1",
+          "text-foreground list-decimal pl-[var(--kb-typography-list-indent,1.25rem)] [&>li]:mt-[var(--kb-typography-list-item-spacing,0.25rem)]",
           className
         ),
       },

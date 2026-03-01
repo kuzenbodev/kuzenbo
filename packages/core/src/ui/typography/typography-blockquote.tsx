@@ -14,7 +14,7 @@ const TypographyBlockquote = ({
     props: mergeProps<"blockquote">(
       {
         className: cn(
-          "border-border text-foreground border-l-2 pl-4 italic",
+          "border-border text-foreground border-l-[var(--kb-typography-blockquote-border-width,2px)] pl-[var(--kb-typography-blockquote-padding-inline-start,1rem)] italic",
           className
         ),
       },

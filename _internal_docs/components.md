@@ -290,6 +290,21 @@ Use explicit composition:
 
 `Drawer.Provider -> Drawer.IndentBackground -> Drawer.Indent -> Drawer.Root -> Drawer.Trigger -> Drawer.Portal -> Drawer.Backdrop -> Drawer.Viewport -> Drawer.Popup -> Drawer.Handle (optional) -> Drawer.Header (optional) -> Drawer.Content -> Drawer.Actions (optional)`
 
+`Drawer` also ships preset wrappers for common cases:
+
+- `Drawer.BottomSheet`
+- `Drawer.SidePanel`
+- `Drawer.ActionSheet`
+- `Drawer.IndentShell`
+
+Treat presets as convenience wrappers over primitives, not replacements. Keep
+advanced flows (nested stacks, detached payloads, and custom choreography)
+recipe-first on the primitive anatomy.
+
+Preset handle policy: only `Drawer.BottomSheet` renders `Drawer.Handle`
+(`showHandle` defaults to `true`). `Drawer.SidePanel` and
+`Drawer.ActionSheet` stay handle-less by design.
+
 `Drawer.Overlay` and `Drawer.Footer` were removed as previous Vaul-oriented
 parts. Prefer `Drawer.Backdrop` and `Drawer.Actions` for layout. Use
 `Drawer.Header` for top-of-popup blocks (handle + title) when needed.

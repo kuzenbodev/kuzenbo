@@ -8,7 +8,7 @@ export type SheetBackdropProps = SheetPrimitive.Backdrop.Props;
 const SheetBackdrop = ({ className, ...props }: SheetBackdropProps) => (
   <SheetPrimitive.Backdrop
     className={cn(
-      "z-overlay data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0 fixed inset-0 bg-black/10 duration-100 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-xs",
+      "z-overlay data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0 fixed inset-0 bg-[rgb(0_0_0_/_var(--kb-overlay-scrim-opacity,0.1))] duration-100 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-[var(--kb-overlay-scrim-blur,4px)]",
       className
     )}
     data-slot="sheet-backdrop"

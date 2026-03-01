@@ -21,12 +21,16 @@ npm i @kuzenbo/core
 ```tsx
 import {
   Drawer,
+  DrawerActionSheet,
   DrawerBackdrop,
+  DrawerBottomSheet,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
+  DrawerIndentShell,
   DrawerPortal,
   DrawerPopup,
+  DrawerSidePanel,
   DrawerTitle,
   DrawerTrigger,
   DrawerViewport,
@@ -127,9 +131,77 @@ export function DrawerDetachedTriggerExample() {
 }
 ```
 
+## Preset Components
+
+`Drawer` ships focused presets for high-frequency layouts:
+
+- `Drawer.BottomSheet`
+- `Drawer.SidePanel`
+- `Drawer.ActionSheet`
+- `Drawer.IndentShell`
+
+Presets optimize setup speed while preserving full primitive control.
+Use presets for standard overlays, and use primitives for advanced stacks, detached payload orchestration, and deep custom animation choreography.
+
+`DrawerHandle` is preset-scoped to `Drawer.BottomSheet` (`showHandle` defaults to
+`true`). `Drawer.SidePanel` and `Drawer.ActionSheet` intentionally omit handles;
+if you need a handle there, compose from primitives.
+
+```tsx
+import { Button } from "@kuzenbo/core/ui/button";
+import { Drawer } from "@kuzenbo/core/ui/drawer";
+
+export function DrawerPresetExamples() {
+  return (
+    <>
+      <Drawer.BottomSheet
+        trigger="Open bottom sheet"
+        triggerProps={{ render: <Button variant="outline" size="xl" /> }}
+      >
+        <Drawer.Title>Bottom Sheet</Drawer.Title>
+        <Drawer.Description>Preset with sensible defaults.</Drawer.Description>
+      </Drawer.BottomSheet>
+
+      <Drawer.SidePanel
+        side="right"
+        trigger="Open side panel"
+        triggerProps={{ render: <Button variant="outline" size="xl" /> }}
+      >
+        <Drawer.Title>Side Panel</Drawer.Title>
+      </Drawer.SidePanel>
+
+      <Drawer.ActionSheet
+        trigger="Open action sheet"
+        triggerProps={{ render: <Button variant="outline" size="xl" /> }}
+        destructiveAction={<button type="button">Delete</button>}
+      >
+        <Drawer.Title className="sr-only">Actions</Drawer.Title>
+        <ul>
+          <li>
+            <button type="button">Mute</button>
+          </li>
+        </ul>
+      </Drawer.ActionSheet>
+
+      <Drawer.IndentShell>
+        <main>
+          <Drawer.BottomSheet
+            trigger="Open indented drawer"
+            triggerProps={{ render: <Button variant="outline" size="xl" /> }}
+          >
+            <Drawer.Title>Indented Shell</Drawer.Title>
+          </Drawer.BottomSheet>
+        </main>
+      </Drawer.IndentShell>
+    </>
+  );
+}
+```
+
 ## API Notes
 
 - `Drawer` is a namespace around `Drawer.Root` and all compound parts.
+- `Drawer` also exposes focused presets: `Drawer.BottomSheet`, `Drawer.SidePanel`, `Drawer.ActionSheet`, and `Drawer.IndentShell`.
 - `Drawer.Root` supports controlled and uncontrolled state (`open`, `defaultOpen`, `onOpenChange`).
 - `onOpenChangeComplete` fires after open/close transitions finish.
 - `swipeDirection` controls placement and dismissal direction (`down`, `up`, `left`, `right`).

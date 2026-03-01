@@ -35,7 +35,7 @@ export const SizeContract: Story = {
   render: (args) => (
     <div className="border-border bg-background relative min-h-[36rem] w-[min(100%,56rem)] overflow-hidden rounded-2xl border p-6">
       <Drawer.Root size={args.size}>
-        <Drawer.Trigger render={<Button size="xl" variant="outline" />}>
+        <Drawer.Trigger render={<Button variant="outline" />}>
           Open drawer
         </Drawer.Trigger>
         <Drawer.Portal>
@@ -51,7 +51,7 @@ export const SizeContract: Story = {
               </Drawer.Header>
               <Drawer.Content>
                 <Drawer.Actions>
-                  <Drawer.Close render={<Button size="xl" variant="outline" />}>
+                  <Drawer.Close render={<Button variant="outline" />}>
                     Close
                   </Drawer.Close>
                 </Drawer.Actions>

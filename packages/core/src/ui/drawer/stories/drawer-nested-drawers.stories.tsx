@@ -138,9 +138,7 @@ const NestedDrawersDemo = () => {
                                   </Drawer.Root>
                                 </div>
                                 <Drawer.Close
-                                  render={
-                                    <Button size="xl" variant="outline" />
-                                  }
+                                  render={<Button variant="outline" />}
                                 >
                                   Close
                                 </Drawer.Close>
@@ -151,7 +149,7 @@ const NestedDrawersDemo = () => {
                       </Drawer.Portal>
                     </Drawer.Root>
                   </div>
-                  <Drawer.Close render={<Button size="xl" variant="outline" />}>
+                  <Drawer.Close render={<Button variant="outline" />}>
                     Close
                   </Drawer.Close>
                 </Drawer.Actions>

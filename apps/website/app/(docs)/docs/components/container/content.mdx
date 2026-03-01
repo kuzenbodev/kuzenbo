@@ -9,8 +9,8 @@ description: "Use Container from @kuzenbo/core to apply consistent max-width and
 
 - centered layout (`mx-auto`)
 - full-width behavior (`w-full`)
-- default max width (`max-w-[86rem]`)
-- responsive gutters (`px-4 sm:px-6 lg:px-8`)
+- default max width (`max-width: var(--kb-container-max-width, 86rem)`)
+- horizontal gutters (`px-4`)
 
 Use it to keep sections aligned to the same content column.
 
@@ -71,7 +71,8 @@ export function ReadingWidthSection() {
 ## API Notes
 
 - `Container` accepts `ContainerProps = ComponentProps<"div">`.
-- `className` is merged with default width and gutter classes.
+- `className` is merged with default layout classes.
+- `style.maxWidth` defaults to `var(--kb-container-max-width, 86rem)`.
 - Component sets `data-slot="container"` for targeting in tests or style overrides.
 
 ## Accessibility
@@ -87,6 +88,14 @@ Wrap it inside semantic elements (`main`, `section`, `nav`, `footer`) when docum
 ## Styling and Semantic Tokens
 
 `Container` does not apply color tokens directly. Keep color and typography decisions on child surfaces (`bg-card`, `text-foreground`, `border-border`, `text-muted-foreground`).
+
+Set a global container width in theme CSS with:
+
+```css
+:root {
+  --kb-container-max-width: 92rem;
+}
+```
 
 ## Troubleshooting
 

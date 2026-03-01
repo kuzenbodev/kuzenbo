@@ -103,6 +103,97 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 Use scoped overrides when a section should intentionally keep the default cursor while still consuming shared component utilities.
 
+## 📐 Container Width Token
+
+`@kuzenbo/theme` also exposes a layout token used by `@kuzenbo/core` `Container`:
+
+- Token: `--kb-container-max-width` (default: `86rem`)
+- Usage: `Container` resolves `max-width` via `var(--kb-container-max-width, 86rem)`
+
+```css
+:root {
+  --kb-container-max-width: 92rem;
+}
+
+.reading-surface {
+  --kb-container-max-width: 72rem;
+}
+```
+
+## 🌫️ Overlay Scrim Tokens
+
+Use shared scrim tokens to tune backdrop strength consistently across dialog-like overlays:
+
+- `--kb-overlay-scrim-opacity` (default: `0.1`)
+- `--kb-overlay-scrim-blur` (default: `4px`)
+
+These tokens are consumed by `Dialog`, `Sheet`, `Popover`, `AlertDialog`, and `PreviewCard` backdrops.
+
+## 🧱 Surface Layout Tokens
+
+Tune modal/surface geometry globally without per-instance class overrides:
+
+- Dialog: `--kb-dialog-max-width`, `--kb-dialog-edge-gutter`
+- Sheet (left/right): `--kb-sheet-side-width`, `--kb-sheet-side-max-width`
+- Drawer: `--kb-drawer-bleed`, `--kb-drawer-peek`, `--kb-drawer-stack-step`, `--kb-drawer-max-height`, `--kb-drawer-content-max-width-{xs|sm|md|lg|xl}`, `--kb-drawer-side-width-{xs|sm|md|lg|xl}`, `--kb-drawer-action-sheet-max-width`, `--kb-drawer-backdrop-opacity`, `--kb-drawer-backdrop-opacity-dark`
+
+## 🔔 Toast Layout Tokens
+
+Control notification density and readable width at system level:
+
+- Viewport widths: `--kb-toast-viewport-width-{xs|sm|md|lg|xl}` and `--kb-toast-viewport-width-{xs|sm|md|lg|xl}-sm`
+- Toast card caps: `--kb-toast-max-width-{xs|sm|md|lg|xl}`
+
+## 📊 Utility Layout Tokens
+
+Additional cross-package layout tokens:
+
+- Overlay list cap (`Select`, `Autocomplete`, `Combobox`): `--kb-overlay-list-max-height`
+- Charts frame minimum height: `--kb-chart-min-height`
+- Sidebar defaults: `--kb-sidebar-width`, `--kb-sidebar-width-mobile`, `--kb-sidebar-width-icon`
+
+## ✍️ Typography Tokens
+
+Global typography primitives can now be tuned with `--kb-typography-*` variables:
+
+- Headings (`Typography.Heading`, `H1..H6`, `Display`, `Subheading`):
+  `--kb-typography-heading-*-size`, `--kb-typography-heading-*-line-height`
+- Text variants (`Typography.Text`, `Body`, `Lead`, `Muted`, `Small`, `Caption`, `Overline`, `Eyebrow`):
+  `--kb-typography-text-*-size`, `--kb-typography-text-*-line-height`
+- Prose wrapper (`Typography.Prose`):
+  `--kb-typography-prose-max-width`, `--kb-typography-prose-paragraph-margin-bottom`,
+  `--kb-typography-prose-blockquote-size`, `--kb-typography-prose-blockquote-line-height`,
+  `--kb-typography-prose-inline-code-size`, `--kb-typography-prose-code-size`, `--kb-typography-prose-code-line-height`
+- Block/list primitives:
+  `--kb-typography-blockquote-border-width`, `--kb-typography-blockquote-padding-inline-start`,
+  `--kb-typography-list-indent`, `--kb-typography-list-item-spacing`, `--kb-typography-list-item-line-height`
+
+```css
+:root {
+  --kb-overlay-scrim-opacity: 0.14;
+  --kb-overlay-scrim-blur: 6px;
+
+  --kb-dialog-max-width: 34rem;
+  --kb-sheet-side-max-width: 28rem;
+  --kb-drawer-side-width-md: 22rem;
+
+  --kb-toast-viewport-width-md: 280px;
+  --kb-toast-viewport-width-md-sm: 340px;
+  --kb-toast-max-width-md: 20rem;
+
+  --kb-overlay-list-max-height: 24rem;
+  --kb-chart-min-height: 280px;
+  --kb-sidebar-width: 18rem;
+
+  --kb-typography-heading-h1-size: 2.5rem;
+  --kb-typography-heading-h1-line-height: 3rem;
+  --kb-typography-text-body-size: 1.0625rem;
+  --kb-typography-text-body-line-height: 1.875rem;
+  --kb-typography-prose-max-width: 72ch;
+  --kb-typography-list-indent: 1.5rem;
+}
+```
+
 ## 📚 Docs And Playgrounds
 
 - [Theming Guide](https://kuzenbo.com/docs/getting-started/theming)

@@ -14,11 +14,11 @@ const drawerContentVariants = tv({
   },
   variants: {
     size: {
-      lg: "max-w-[36rem]",
-      md: "max-w-[32rem]",
-      sm: "max-w-[28rem]",
-      xl: "max-w-[40rem]",
-      xs: "max-w-[24rem]",
+      lg: "max-w-[var(--kb-drawer-content-max-width-lg,36rem)]",
+      md: "max-w-[var(--kb-drawer-content-max-width-md,32rem)]",
+      sm: "max-w-[var(--kb-drawer-content-max-width-sm,28rem)]",
+      xl: "max-w-[var(--kb-drawer-content-max-width-xl,40rem)]",
+      xs: "max-w-[var(--kb-drawer-content-max-width-xs,24rem)]",
     },
   },
 });

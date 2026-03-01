@@ -19,7 +19,9 @@ describe("Chart layout contract v2", () => {
     ) as HTMLElement;
 
     expect(chartRoot.className).toContain("w-full");
-    expect(chartRoot.className).toContain("min-h-[240px]");
+    expect(chartRoot.className).toContain(
+      "min-h-[var(--kb-chart-min-height,240px)]"
+    );
     expect(chartRoot.className).toContain("text-xs");
     expect(chartRoot.className).toContain(
       "[&_.recharts-surface]:outline-hidden"
