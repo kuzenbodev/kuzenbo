@@ -1,6 +1,6 @@
 {
   "name": "@kuzenbo/hooks",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "description": "Standalone React hooks for Kuzenbo.",
   "keywords": [
